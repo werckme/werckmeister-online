@@ -1,0 +1,57 @@
+<div class="app container" [ngClass]="{isPlaying: werck.isPlaying || werck.isPaused, hasError: werck.hasError}"
+    dragable-position-listnener [attr.style]="gridStyle">
+    <div class="mainmenu">
+        <mainmenu></mainmenu>
+    </div>
+    <div class="topbar">
+        <transport></transport>
+    </div>
+    <div class="sidebar">
+        <div class="browser" [hidden]="app.isTutorialOpen">
+            <h3 class="filelist-header">Sheet Files</h3>
+            <div class="resize-handle" app-dragable [dragPosition]="sidebarResizePos"></div>
+
+            <filelist-folder>
+                <h4 class="folder-header" folder-title>Sheet</h4>
+                <div folder-content>
+                    <filelist [files]="werck.sheetFiles" [(selectedFile)]="app.currentFile"></filelist>
+                </div>
+            </filelist-folder>
+
+            <filelist-folder>
+                <h4 class="folder-header" folder-title>Templates</h4>
+                <div folder-content>
+                    <filelist [files]="werck.templateFiles" [(selectedFile)]="app.currentFile"></filelist>
+                </div>
+            </filelist-folder>
+
+            <filelist-folder>
+                <h4 class="folder-header" folder-title>Misc</h4>
+                <div folder-content>
+                    <filelist [files]="werck.miscFiles" [(selectedFile)]="app.currentFile"></filelist>
+                </div>
+            </filelist-folder>
+        </div>
+        <div [hidden]="!app.isTutorialOpen" class="tutorial-toc">
+            <tutorial-toc-elements></tutorial-toc-elements>
+        </div>
+    </div>
+    <div class="editor">
+        <div class="main-container">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <div class="bottom" id="main-app-bottom">
+        <div class="tabs-wrapper">
+            <div class="tabs">
+                <a class="tab" (click)="bottomTabIndex=tabs.klavier; $event.preventDefault()"
+                    [ngClass]="{selected: bottomTabIndex === tabs.klavier}" href>Piano</a>
+                <a class="tab" (click)="bottomTabIndex=tabs.console; $event.preventDefault()"
+                    [ngClass]="{selected: bottomTabIndex === tabs.console}" href>Log</a>
+            </div>
+        </div>
+        <div class="resize-handle" app-dragable [dragInverted]="true" [dragPosition]="bottomResizePos"></div>
+        <klavier [hidden]="bottomTabIndex!==tabs.klavier"></klavier>
+        <console [hidden]="bottomTabIndex!==tabs.console"></console>
+    </div>
+</div>

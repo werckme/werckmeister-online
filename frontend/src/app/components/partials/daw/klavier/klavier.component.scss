@@ -1,0 +1,58 @@
+@import "../../../../../variables.scss";
+
+.ccontainer {
+    height: 100%;
+    position: relative;
+}
+
+.ctrls {
+    position: absolute;
+    display: flex;
+}
+
+.type-preview {
+    button[type=submit] {
+        color: green;
+    }
+    button[type=reset] {
+        color: red;
+    }
+}
+
+svg {
+    max-height: 200px;
+    .octaves {
+        transform: scale(0.2, 0.2);
+    }
+    
+    .octave {
+        stroke-width: 2px;
+        .bg {
+            fill: yellow;
+            stroke: grey;
+        }
+        .wk {
+            fill: white;
+            stroke: black;
+        }
+        .bk {
+            fill: black;
+            stroke: black;
+        }
+        .wk:active, 
+        .wk.pressed,
+        .bk:active, 
+        .bk.pressed {
+            fill: darkgrey;
+        }
+    }
+}
+
+.ccontainer {
+    @for $i from 0 through 127 {
+        &.k#{$i} svg .k#{$i} {
+            fill: salmon;
+        }
+
+    }
+}

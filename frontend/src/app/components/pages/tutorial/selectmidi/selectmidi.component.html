@@ -1,0 +1,28 @@
+<h2>MIDI Config</h2>
+<p>
+	Before we start you need to define a MIDI port.<br>
+</p>
+
+<tutorialsnippet [lineOffset]="0" [lineHeight]="4" [file]="files[0]" (onEditorViewModelChange)="snippetViewModel = $event;">
+	Set your device port number and press play. You should hear a Cmaj accord. (don't change the name: "MyDevice")
+</tutorialsnippet>
+
+<b>Here is a list of your MIDI devices, which you could use</b>
+
+<table class="table devices">
+	<tr>
+		<th>Port Number</th>
+		<th>Name</th>
+	</tr>
+	<tr *ngFor="let device of devices">
+		<td>{{device.id}}</td>
+		<td>{{device.name}}</td>
+	</tr>
+</table>
+
+
+<div class="tutorial-end">
+	<a href [style.visibility]="'hidden'">previous</a>
+	<a href (click)="continue($event)">I've choosen my device. Please continue. </a>
+	<a href [style.visibility]="'hidden'">>next</a>
+</div>

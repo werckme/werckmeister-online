@@ -1,0 +1,128 @@
+$ionicons-font-path: "~ionicons/dist/fonts";
+@import "node_modules/ionicons/dist/scss/ionicons";
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import "./editor-style.scss";
+@import "./roboto-condensed.scss";
+@import "./roboto.scss";
+@import "./theme1.scss";
+
+
+// remove "?version=xyz" from ionic urls
+// our cef app scheme handler canot handle this  
+@import "node_modules/ionicons/dist/scss/ionicons-variables";
+@font-face {
+    font-family: "Ionicons";
+    src:url("#{$ionicons-font-path}/ionicons.eot");
+    src:url("#{$ionicons-font-path}/ionicons.eot#iefix") format("embedded-opentype"),
+        url("#{$ionicons-font-path}/ionicons.woff2") format("woff2"),
+        url("#{$ionicons-font-path}/ionicons.woff") format("woff"),
+        url("#{$ionicons-font-path}/ionicons.ttf") format("truetype"),
+        url("#{$ionicons-font-path}/ionicons.svg#Ionicons") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "Roboto Condensed";
+    font-weight: lighter; 
+}
+
+img {
+    pointer-events: none; // disable dragging
+}
+
+a {
+    -webkit-user-drag: none;
+}
+
+span[werckmeister] {
+    &::before {
+        content: "Werckmeister",
+    }
+}
+
+a[href^="http://"], a[href^="https://"] {
+    &::after {
+        content: " \f33b ";
+        font-family: "Ionicons";
+    }
+}
+
+body {
+    font-family: "Roboto";
+    user-select: none;
+    cursor: default;
+}
+
+.main-container {
+    position: absolute;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.sidebar tutorial-toc-elements {
+    ol {
+        padding: 0px;
+    }
+    li {
+        list-style: none;
+    }
+}
+
+editor.tutorial {
+    .sheet-editor {
+        position: relative;
+        width: 100%;
+    }
+    .ace_scrollbar {
+      display: none;
+    }
+}
+
+tutorialsnippet {
+    .ccontainer {
+        margin: 2em 0;
+    }
+}
+
+.tutorial-end {
+    width: 100%;
+    a:nth-child(1) {
+        left: 15px;
+        position: absolute;
+    }
+    a:nth-child(2) {
+        text-align: center;
+        display: block;
+    }
+    a:nth-child(3) {
+        position: absolute;
+        right: 15px;
+    }
+    margin: 5em 0;
+    height: 5px;
+    &::after {
+        height: 20em;
+    }
+}
+
+div[accordion-title] {
+    display: inline-block;
+}
+
+table {
+    background: inherit;
+    tr {
+        border-top: 1px solid darkgray;
+        padding: 5px; 
+    }
+    td + td, th + th {
+        border-left: 2px solid darkgray;
+    }
+    tr>:nth-child(1) {
+        width: 150px;
+    }
+}

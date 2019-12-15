@@ -1,0 +1,19 @@
+<div class="alert alert-secondary">
+	<code>
+		{{ def.usage }}
+	</code>
+</div>
+<div>
+	<table class="table table-sm">
+		<tr>
+			<th>Argument</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+		<tr *ngFor="let arg of def.args">
+			<td [innerHtml]="arg.name"></td>
+			<td [innerHtml]="arg.type"></td>
+			<td [innerHtml]="arg.description"></td>
+		</tr>
+	</table>
+</div>

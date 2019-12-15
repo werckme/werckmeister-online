@@ -1,0 +1,49 @@
+$keycolor: #ff79c6;
+@import 'node_modules/bootstrap/scss/variables';
+
+.sheet-editor {
+    .track-begin 
+    , .track-end
+    {
+        color: #dbdbdb;
+    }
+
+    .voice-begin
+    , .voice-end
+    {
+        
+        color: #a9a9a9;
+    }
+
+
+    .eob {
+        color: #e0e0e0;
+        //background: #004eff2b;
+    }
+
+    .metaargs {
+        opacity: 0.7;
+    }
+
+    .link {
+        color: $link-color;
+        cursor: pointer;
+        pointer-events: all;
+    }    
+
+    .marked {
+        position: absolute;
+        width: 5px !important; 
+    }
+    .marked[werckzeug="off"] {
+        border-top: none;
+    }
+}
+
+.app.isPlaying {
+    .sheet-editor {
+        .marked[werckzeug="marked"] {
+            border-top:yellow solid 5px;
+        }
+    }
+}

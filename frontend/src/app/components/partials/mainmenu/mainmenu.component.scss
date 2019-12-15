@@ -1,0 +1,36 @@
+@import "../../../../variables.scss";
+
+.ccontainer {
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100%;
+}
+
+ul {
+    padding: 0px;
+    margin: 0px;
+    li {
+        &.disabled {
+            pointer-events: none;
+        }
+        padding: 2px 15px;
+        list-style-type: none;
+        white-space: nowrap;
+    }
+    .short {
+        font-style: italic;
+        font-weight: lighter;
+        float:  right;
+    }
+
+    li + li {
+        margin-top: 5px;
+    }
+
+    hr {
+        margin: 5px 0;
+        padding: 0;
+    }
+
+}

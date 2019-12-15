@@ -1,0 +1,49 @@
+<h2>Setup an instrument </h2>
+
+
+<accordion>
+	<div accordion-title>
+		<h5><code>instrumentDef</code> usage</h5>
+	</div>
+	<div accordion-content>
+		<help-definition [def]="idef"></help-definition>
+	</div>
+</accordion>
+
+<tutorialsnippet [lineOffset]="4" [lineHeight]="4" [file]="files[0]" (isReady)="onSnippetIsReady()">
+	to keep that example working, don't change the name "piano"
+</tutorialsnippet>
+<p>
+	for example:<br>
+	on a General Midi device, following line defines an organ on channel 5. 
+	<br>
+	<code>instrumentDef: organ  MyDevice  5 0 16;</code>
+</p>
+
+<br>
+
+
+
+<h2>Instrument config</h2>
+
+<accordion>
+	<div accordion-title>
+		<h5><code>instrumentConf</code> usage</h5>
+	</div>
+	<div accordion-content>
+		<help-definition [def]="iconf"></help-definition>
+	</div>
+</accordion>
+
+<tutorialsnippet [lineOffset]="8" [lineHeight]="4" [file]="files[1]" (isReady)="onSnippetIsReady()">
+
+</tutorialsnippet>
+
+
+
+<div class="tutorial-end">
+	<a href [style.visibility]="hasPrev ? 'visible' : 'hidden'" (click)="prev($event)">previous</a>
+	<a href (click)="toc($event)">back to overview</a>
+	<a href [style.visibility]="hasNext ? 'visible' : 'hidden'" (click)="next($event)">next</a>
+</div>
+

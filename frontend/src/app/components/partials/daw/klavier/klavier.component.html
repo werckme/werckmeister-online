@@ -1,0 +1,36 @@
+<div class="ccontainer" [ngClass]="pitches" (mouseup)="onKeyUp()">
+    <div class="ctrls">
+        <instrument-select (mouseover)="mouseInDeadZone=true" (mouseout)="mouseInDeadZone=false" [(instrument)]="instrument"></instrument-select>
+        <form (mouseover)="mouseInDeadZone=true" (mouseout)="mouseInDeadZone=false" (submit)="submitTyping()" (reset)="resetTyping()" class="type-preview" [hidden]="!typedText">
+            <input #typePreviewInput type="text" name="typedtext" [(ngModel)]="typedText" (keyup)="onKeyboard($event)">
+            <button type="submit"><span class="ion ion-md-checkmark"></span></button>
+            <button type="reset"><span class="ion ion-md-close"></span></button>
+        </form>
+        
+    </div>
+	<svg xmlns="http://www.w3.org/2000/svg" 
+		xmlns:xlink="http://www.w3.org/1999/xlink" 
+		width="100%" 
+		height="100%"
+		preserveAspectRatio="none"
+		viewBox="0 0 490 50"
+        >
+        <svg:g class="octaves" *ngFor="let octave of [0,1,2,3,4,5,6]">
+            <svg:g class="octave" attr.transform="translate({{ octave * 490 }}, 0)">
+                <svg:rect width="490" height="200" class="bg" />
+                <svg:rect [ngClass]="getClasses(0, octave)" class="wk C" x="0" width="70px" height="200px" (mousedown)="onKey(0, octave, $event)" (mouseenter)="onEnter(0, octave)" />
+                <svg:rect [ngClass]="getClasses(2, octave)" class="wk D" x="70" width="70px" height="200px" (mousedown)="onKey(2, octave, $event)" (mouseenter)="onEnter(2, octave)" />
+                <svg:rect [ngClass]="getClasses(4, octave)" class="wk E" x="140" width="70px" height="200px" (mousedown)="onKey(4, octave, $event)" (mouseenter)="onEnter(4, octave)" />
+                <svg:rect [ngClass]="getClasses(5, octave)" class="wk F" x="210" width="70px" height="200px" (mousedown)="onKey(5, octave, $event)" (mouseenter)="onEnter(5, octave)" />
+                <svg:rect [ngClass]="getClasses(7, octave)" class="wk G" x="280" width="70px" height="200px" (mousedown)="onKey(7, octave, $event)" (mouseenter)="onEnter(7, octave)" />
+                <svg:rect [ngClass]="getClasses(9, octave)" class="wk A" x="350" width="70px" height="200px" (mousedown)="onKey(9, octave, $event)" (mouseenter)="onEnter(9, octave)" />
+                <svg:rect [ngClass]="getClasses(11, octave)" class="wk B" x="420" width="70px" height="200px" (mousedown)="onKey(11, octave, $event)" (mouseenter)="onEnter(11, octave)" />
+                <svg:rect [ngClass]="getClasses(1, octave)" class="bk Cs" x="52" width="35px" height="132px" (mousedown)="onKey(1, octave, $event)" (mouseenter)="onEnter(1, octave)" />
+                <svg:rect [ngClass]="getClasses(3, octave)" class="bk Ds" x="122" width="35px" height="132px" (mousedown)="onKey(3, octave, $event)" (mouseenter)="onEnter(3, octave)" />
+                <svg:rect [ngClass]="getClasses(6, octave)" class="bk Fs" x="262" width="35px" height="132px" (mousedown)="onKey(6, octave, $event)" (mouseenter)="onEnter(6, octave)" />
+                <svg:rect [ngClass]="getClasses(8, octave)" class="bk Gs" x="332" width="35px" height="132px" (mousedown)="onKey(8, octave, $event)" (mouseenter)="onEnter(8, octave)" />
+                <svg:rect [ngClass]="getClasses(10, octave)" class="bk As" x="402" width="35px" height="132px" (mousedown)="onKey(10, octave, $event)" (mouseenter)="onEnter(10, octave)" />
+            </svg:g>
+        </svg:g>
+    </svg>
+</div>

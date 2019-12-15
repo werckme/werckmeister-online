@@ -1,0 +1,13 @@
+<div class="ccontainer">
+    <div class="accordion-header" [ngClass]="{'handle-visible': handleVisible}">
+        <span class="control" (click)="onClicked($event)">
+            <ng-content class="accordion-title" select="[accordion-title]"></ng-content>
+            <a href (click)="$event.preventDefault()" *ngIf="handleVisible">
+                <span [ngClass]="{'open': open}"></span>
+            </a>
+        </span>
+    </div>
+    <div #content class="accordion-content" [attr.style]="contentStyle" [ngClass]="{hidden: !open}">
+        <ng-content select="[accordion-content]"></ng-content>
+    </div>
+</div>

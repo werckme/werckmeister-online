@@ -1,0 +1,44 @@
+<h2>MIDI setup</h2>
+<p>
+	You need to define at least one MIDI port. You can do this with the <code>device</code> expression.<br>
+</p>
+
+
+<accordion>
+	<div accordion-title>
+		<h5><code>device</code> usage</h5>
+	</div>
+	<div accordion-content>
+		<help-definition [def]="deviceDev"></help-definition>
+	</div>
+</accordion>
+
+<tutorialsnippet [lineOffset]="0" [lineHeight]="4" [file]="files[0]" (onEditorViewModelChange)="snippetViewModel = $event;" (isReady)="onSnippetIsReady()">
+	Set your device port number and press play. You should hear a Cmaj accord. (don't change the name: "MyDevice")
+</tutorialsnippet>
+
+<b>Here is a list of your MIDI devices, which you could use</b>
+
+<table class="table devices">
+	<tr>
+		<th>Port Number</th>
+		<th>Name</th>
+	</tr> 
+	<tr *ngFor="let device of devices">
+		<td>{{device.id}}</td>
+		<td>{{device.name}}</td>
+	</tr>
+</table>
+
+<help-tip>
+	<help-menupath [path]="['Help', 'List MIDI Devices']"></help-menupath>
+	<br>
+	will print a MIDI device table to the console.
+</help-tip>
+
+
+<div class="tutorial-end">
+	<a href [style.visibility]="hasPrev ? 'visible' : 'hidden'" (click)="prev($event)">previous</a>
+	<a href (click)="toc($event)">back to overview</a>
+	<a href [style.visibility]="hasNext ? 'visible' : 'hidden'" (click)="next($event)">next</a>
+</div>

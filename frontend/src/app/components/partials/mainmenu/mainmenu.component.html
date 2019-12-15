@@ -1,0 +1,50 @@
+<div class="ccontainer">
+	
+	<mmenuitem [hidden]="!app.isTutorialOpen" mtitle="Close Tutorial" (click)="app.closeTutorial()">
+	</mmenuitem>
+
+	<mmenuitem [hidden]="app.isTutorialOpen" mtitle="File" [ngClass]="{isOpen: isOpen[0]}" [(isOpen)]="isOpen[0]" (mouseenter)="onMouseEnter($event, 0)">
+		<menupanel>
+			<ul>
+				<li (click)="handle($event, app.newSheet)">New Sheet...</li>
+				<li (click)="handle($event, app.openSheet)">Open Sheet...</li>
+				<hr>
+				<li [ngClass]="{disabled: !app.canEdit || !app.currentFileIsSheet}" (click)="handle($event, app.includeResource)">Include Resource...</li>
+				<li [ngClass]="{disabled: !app.canEdit || !app.currentFileIsSheet}"  (click)="handle($event, app.newTemplate)">New Template...</li>
+				<li [ngClass]="{disabled: !app.canEdit || !app.currentFileIsSheet}"  (click)="handle($event, app.newChordDef)">New Chord Definitions...</li>
+				<li [ngClass]="{disabled: !app.canEdit || !app.currentFileIsSheet}"  (click)="handle($event, app.newPitchmap)">New Pitchmap...</li>
+				<hr>
+				<li [ngClass]="{disabled: !app.canEdit}" (click)="handle($event, app.save)">Save</li>
+				<hr>
+				<li [ngClass]="{disabled: !app.canEdit}" (click)="handle($event, app.exportMidi)">Export Midi ...</li>
+				<hr>
+				<li (click)="handle($event, app.exit)">Exit</li>
+			</ul>
+		</menupanel>
+	</mmenuitem>
+	<mmenuitem [hidden]="app.isTutorialOpen" mtitle="Edit" [ngClass]="{isOpen: isOpen[1]}" [(isOpen)]="isOpen[1]" (mouseenter)="onMouseEnter($event, 1)">
+		<menupanel>
+			<ul>
+				<li [ngClass]="{disabled: !app.canEdit}" (click)="handle($event, app.undo)">Undo <span class="short">{{ctrl}}+Z</span></li>
+				<li [ngClass]="{disabled: !app.canEdit}" (click)="handle($event, app.redo)">Redo <span class="short">{{ctrl}}+Y</span></li>
+				<li [ngClass]="{disabled: !app.canEdit}" (click)="handle($event, app.toggleLineComment)">Toggle Line Comment <span class="short">{{ctrl}}+/</span></li>
+			</ul>
+			<hr>
+			<ul>
+				<li [ngClass]="{disabled: !app.canEdit}" (click)="handle($event, app.insertInstrument)">Insert instrument def</li>
+				<li [ngClass]="{disabled: !app.canEdit}" (click)="handle($event, app.insertNotationTrack)">Insert notation track</li>
+				<li [ngClass]="{disabled: !app.canEdit}" (click)="handle($event, app.insertTemplateTrack)">Insert template track</li>
+				<li [ngClass]="{disabled: !app.canEdit}" (click)="handle($event, app.insertSheetTrack)">Insert sheet track</li>
+			</ul>
+		</menupanel>
+	</mmenuitem>
+	<mmenuitem [hidden]="app.isTutorialOpen" mtitle="Help" [ngClass]="{isOpen: isOpen[2]}" [(isOpen)]="isOpen[2]" (mouseenter)="onMouseEnter($event, 2)">
+		<menupanel>
+			<ul>
+				<li (click)="handle($event, app.gotoTutorial)">Tutorial</li>
+				<hr>
+				<li (click)="handle($event, app.listMidiDevices)">List MIDI Devices</li>
+			</ul>
+		</menupanel>
+	</mmenuitem>
+</div>

@@ -1,0 +1,39 @@
+@import "../../../../variables.scss";
+
+
+.ccontainer {
+    color: white;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+li {
+    margin-bottom: 2px;
+    padding: 0px $main-sidebar-padding;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    list-style: none;
+    cursor: default;
+    &.changed span.filename::after {
+        content: '*';
+    }
+}
+
+.icon {
+    margin-right: 10px;
+    position: relative;
+    top: 1px;
+
+    &.sheet::before {
+        content: "\f333";
+    }
+    &.style::before {
+        content: "\f332";
+    }
+}

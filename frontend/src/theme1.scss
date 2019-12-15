@@ -1,0 +1,131 @@
+$grey1: rgb(49, 49, 49);
+$grey2: rgb(65, 65, 65);
+$grey3: rgb(81, 76, 90);
+$grey4: rgb(46, 46, 46);
+$grey5: rgb(204, 204, 204);
+$buttonGrey: #4a4a4a;
+$blue: rgb(0, 0, 255);
+
+h1 {
+    font-family: "Roboto Condensed";
+}
+
+.main-container {
+    background: $grey4;
+    color: white;
+}
+
+span[werckmeister] {
+    &::before {
+        color: darken($color: white, $amount: 30);
+    }
+}
+
+.mainmenu {
+    background: $grey3;
+    mmenuitem {
+        &:hover, &.isOpen {
+            background:  $grey1;
+        }
+    }
+    menupanel .ccontainer{
+        background: white;
+        color: $grey1;
+        li {
+            &.disabled {
+                color: darkgrey;
+            }
+            &:hover {
+                background: $grey5;
+            }
+        }
+    }
+}
+
+.topbar {
+    background: $grey1;
+    transport {
+        $background: #0e0e0e;
+        button {
+            background: $buttonGrey;
+            color: white;
+        }
+        input {
+            color: #54a6ff;
+            background: $background;
+            border: none;
+            font-weight: 300;
+        }
+        .ccontainer {
+            @keyframes playing {
+                from {color: slateblue;}
+                to {color:  darken($color: orange, $amount: 20)}
+              }
+            .display {
+                color: #54a6ff;
+                background: #0e0e0e;
+            }
+            &.isPlaying {
+                .btn-play {
+                    color: slateblue;
+                    animation-name: playing;
+                    animation-duration: 2s;
+                    animation-iteration-count: infinite;
+                    animation-direction: alternate-reverse;
+                    animation-timing-function: step(1, start);
+                }
+            }
+        }
+    }
+}
+
+.sidebar {
+    h3 {
+        background: $grey4;
+    }
+    background: $grey2;
+    color: white;
+    h4 {
+        background: $grey3;
+    }
+
+    .browser li {
+        &:hover {
+            background: lighten($grey3, 50);
+            color: black;
+        }
+        &.selected {
+            background: $blue;
+            color: white;
+        }
+    }
+
+    a {
+        transition: all 0.3s;
+        &.active {
+            color: slateblue;
+        }
+    }
+}
+
+
+.bottom {
+    background: $grey4;
+}
+
+help-tip {
+    .content {
+        border-left: white solid 1px;
+    }
+}
+
+help-menupath {
+    li {
+        background: white;
+        color: $grey1;
+        &::before {
+            background: $grey4;
+            color: white;
+        }
+    }
+}

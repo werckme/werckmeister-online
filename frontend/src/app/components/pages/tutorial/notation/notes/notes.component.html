@@ -1,0 +1,30 @@
+<h2>Write notes</h2>
+<p>
+	The notation is loosely inspired by the <a href="http://www.lilypond.org">LilyPond</a> notaion syntax.
+	<br> 
+	So a note is written by letter followed by a number for its duration.
+	If a note has no duration, the last given duration will be used.
+</p>
+<tutorialsnippet stitle="a Cmaj scale" [lineOffset]="7" [lineHeight]="4" [file]="files[0]" (isReady)="onSnippetIsReady()"></tutorialsnippet>
+
+<tutorialsnippet stitle="accidentals" [lineOffset]="7" [lineHeight]="4" [file]="files[1]" (isReady)="onSnippetIsReady()"></tutorialsnippet>
+ 
+
+<tutorialsnippet stitle="different durations" [lineOffset]="7" [lineHeight]="4" [file]="files[2]" (isReady)="onSnippetIsReady()"></tutorialsnippet>
+
+<tutorialsnippet stitle="different octaves" [lineOffset]="7" [lineHeight]="4" [file]="files[3]" (isReady)="onSnippetIsReady()"></tutorialsnippet>
+
+<tutorialsnippet stitle="augmentation dots & ties" [lineOffset]="7" [lineHeight]="4" [file]="files[4]" (isReady)="onSnippetIsReady()"></tutorialsnippet>
+
+
+<tutorialsnippet stitle="tuplets" [lineOffset]="7" [lineHeight]="4" [file]="files[5]" (isReady)="onSnippetIsReady()"></tutorialsnippet>
+
+<tutorialsnippet stitle="chorded notes" [lineOffset]="7" [lineHeight]="4" [file]="files[6]" (isReady)="onSnippetIsReady()"></tutorialsnippet>
+
+
+<div class="tutorial-end">
+	<a href [style.visibility]="hasPrev ? 'visible' : 'hidden'" (click)="prev($event)">previous</a>
+	<a href (click)="toc($event)">back to overview</a>
+	<a href [style.visibility]="hasNext ? 'visible' : 'hidden'" (click)="next($event)">next</a>
+</div>
+

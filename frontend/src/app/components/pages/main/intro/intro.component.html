@@ -1,0 +1,16 @@
+<div class="ccontainer">
+	<h1>Hello Maestro</h1>
+	<img src="/assets/images/Logo.png" height="350px">
+	<p>
+		<a (click)="$event.preventDefault(); app.openSheet()" href>Open an existing sheet...</a>
+		<br>
+		<a (click)="$event.preventDefault(); app.newSheet()" href>Create a new sheet...</a>
+	</p>
+	<p>
+		<a href="werck://help/tutorial/midiconfig">Tutorial</a><br>
+	</p>
+
+	<p class="version">
+		■ {{app.version}}
+	</p>
+</div>
