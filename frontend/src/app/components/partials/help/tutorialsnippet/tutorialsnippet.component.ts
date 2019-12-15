@@ -43,7 +43,7 @@ export class TutorialsnippetComponent implements OnInit {
 			return;
 		}
 		await this.werck.setSheet(this.file);
-		this.werck.play();
+		//this.werck.play();
 	}
 
 	_onEditorViewModelChange(vm: IEditorViewModel) {

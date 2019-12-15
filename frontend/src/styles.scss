@@ -76,7 +76,6 @@ tutorialsnippet {
 }
 
 .ace_editor {
-    border-radius: 10px;
-    @include mat-card-1;
+    @include mat-card-2;
 }
 
