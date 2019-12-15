@@ -22,7 +22,6 @@ import { TutorialsnippetComponent } from './components/partials/help/tutorialsni
 import { ExpressionComponent } from './components/partials/help/expression/definition.component';
 import { TipComponent } from './components/partials/help/tip/tip.component';
 import { MenupathComponent } from './components/partials/help/menupath/menupath.component';
-import { HrefDirective } from './components/directives/href.directive';
 import { TutorialTocComponent } from './components/pages/tutorial/toc/toc.component';
 import { MidiConfigComponent } from './components/pages/tutorial/first-steps/midi/midi-config.component';
 import { NotesComponent } from './components/pages/tutorial/notation/notes/notes.component';
@@ -58,7 +57,6 @@ import { HeaderComponent } from './components/partials/header/header.component';
 		ExpressionComponent,
 		TipComponent,
 		MenupathComponent,
-		HrefDirective,
 		ExpressionComponent,
 		MenupathComponent,
 		TipComponent,

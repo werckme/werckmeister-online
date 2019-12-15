@@ -71,7 +71,7 @@ export class SheetEventMarkerManager {
 			return;
 		}
 		this.markers = {};
-		let positions = await this.werck.getEvents(this.file);
+		let positions = []; // await this.werck.getEvents(this.file);
 		this.addEventMarkers(positions);
 	}
 

@@ -4,7 +4,7 @@ $ionicons-font-path: "~ionicons/dist/fonts";
 @import "./editor-style.scss";
 @import "./roboto-condensed.scss";
 @import "./roboto.scss";
-
+@import "./mixins.scss";
 
 // remove "?version=xyz" from ionic urls
 // our cef app scheme handler canot handle this  
@@ -29,6 +29,7 @@ h1, h2, h3, h4, h5 {
 
 body {
     font-family: "Roboto";
+    background: #e2e1e0;
 }
 
 
@@ -40,8 +41,33 @@ $grey5: rgb(204, 204, 204);
 $buttonGrey: #4a4a4a;
 $blue: rgb(0, 0, 255);
 
+nav {
+    margin-bottom: 3.5em;
+    @include mat-card-1;
+}
+
 h1 {
     font-family: "Roboto Condensed";
 }
 
+editor.tutorial {
+    .sheet-editor {
+        position: relative;
+        width: 100%;
+    }
+    .ace_scrollbar {
+      display: none;
+    }
+}
+
+tutorialsnippet {
+    .ccontainer {
+        margin: 2em 0;
+    }
+}
+
+.ace_editor {
+    border-radius: 10px;
+    @include mat-card-1;
+}
 

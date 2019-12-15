@@ -29,8 +29,7 @@ export class ConsoleComponent implements OnInit {
 	}
 
 	async printHello() {
-		let version = (await this.backend.appGetConfig()).version;
-		this.editor.insert(`Tach  M E I S T E R: ${version}\n`);
+		this.editor.insert(`Tach  M E I S T E R`);
 		this.handlePileOfShame();
 	}
 

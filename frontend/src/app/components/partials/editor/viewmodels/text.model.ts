@@ -93,7 +93,7 @@ export class EditorTextViewModel implements IEditorViewModel {
 		this.file = file;
 		try {
 			if (!file.hasContent) {
-				await this.fileService.loadContent(this.file); 
+				//await this.fileService.loadContent(this.file); 
 			}
 		} catch (ex) {
 			this.log.error(ex);

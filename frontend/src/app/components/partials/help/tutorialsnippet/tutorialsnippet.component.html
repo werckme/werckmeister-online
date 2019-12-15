@@ -1,5 +1,7 @@
 <div class="ccontainer">
-    <h5 *ngIf="!justSnippet">{{ stitle }}</h5>
+    
+    <h4 *ngIf="!justSnippet">{{ stitle }}</h4>
+
     <editor [line]="lineOffset" 
             [lineHeight]="lineHeight" 
             class="tutorial" 
@@ -8,5 +10,7 @@
             (editorViewModelChange)="_onEditorViewModelChange($event)">
     </editor>
     <div class="description"><ng-content></ng-content></div>
-    <a *ngIf="!justSnippet" href="#" (click)="$event.preventDefault(); play()">[<span class="play ion-md-play"></span> Play]</a>
+    <div class="ctrl">
+        <a *ngIf="!justSnippet" href="#" (click)="$event.preventDefault(); play()">[<span class="play ion-md-play"></span> Play]</a>
+    </div>
 </div>

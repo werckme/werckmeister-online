@@ -183,7 +183,6 @@ export class KlavierComponent implements OnInit {
 		ev.parameter2 = AppConfig.KeyboardVelocity;
 		ev.channel = this.instrument.channel;
 		this.sentNoteOn.set(ev.parameter1, true);
-		this.backend.werckSendMidiEvent(this.instrument, ev);
 	}
 
 	sendNoteOff(pitch: number) {
@@ -195,7 +194,6 @@ export class KlavierComponent implements OnInit {
 		ev.parameter1 = pitch;
 		ev.parameter2 = 0;
 		ev.channel = this.instrument.channel;
-		this.backend.werckSendMidiEvent(this.instrument, ev);
 		this.sentNoteOn.delete(pitch);
 
 	}

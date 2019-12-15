@@ -99,30 +99,16 @@ export class WerckService {
 		this.startPosition_ = val;
 	}
 
-	ppq(): Promise<Ticks> {
-		return this.backend.appGetConfig().then(x => x.ppq);
-	}
 
-	async handleWerckChanged() {
-		this.handleErrors(this.mainSheet);
-		this.handleWarnings(this.mainSheet);
-		await this.updateDocumentFiles();
-		await this.updateInstruments();
-		this.werckChanged.emit();
+	setSheet(file: IFile) {
+
 	}
 
 	async update() {
-		await this.backend.werckUpdate(this.mainSheet);
-		this.handleWerckChanged();
+		
 	}
 
 	async fileChanged(file: IFile) {
-		let isSheetFile = file.extension === AppConfig.knownExtensions.sheet
-			|| file.extension === AppConfig.knownExtensions.tutorial;
-		if (file.isNew && isSheetFile) {
-			await this.openSheet(file.path);
-			return;
-		}
 		return await this.update();
 	}
 
@@ -144,79 +130,22 @@ export class WerckService {
 		}
 	}
 
-	async updateDocumentFiles() {
-		let newDocumentFiles = await this.backend.werckGetSheetFiles();
-		newDocumentFiles = _(newDocumentFiles)
-			.filter(x => x.sourceId !== this.mainSheet.sourceId)
-			.value();
-		newDocumentFiles = _.concat(this.mainSheet, newDocumentFiles);
-		this.merge_(newDocumentFiles, this.documentFiles)
-	}
 
 	async closeSheet() {
 		if (this.isPlaying) {
 			await this.stop();
 		}
-		this.backend.werckCloseSheet();
-		this.documentFiles.splice(0, this.documentFiles.length);
-		this.onCloseSheet.emit(this.mainSheet);
 	}
 
-	async createNewSheet(): Promise<IFile> {
-		if (!!this.mainSheet) {
-			await this.closeSheet();
-		}
-		this.mainSheet = await this.backend.werckCreateNewSheet();
-		this.sheetChanged.emit(this.mainSheet);
-		this.instruments = [];
-		this.documentFiles = [];
-		this.totalDuration = 0;
-		this.werckChanged.emit();
-		return this.mainSheet;
-	}
 
-	private async updateInstruments() {
-		let newInstruments = await this.backend.werckGetInstruments();
-		newInstruments = newInstruments.filter(x => !!x).sort((a, b) => a.name.localeCompare(b.name));
-		this.instruments.splice(0, this.instruments.length);
-		for(let instrument of newInstruments) {
-			this.instruments.push( instrument );
-		}
-	}
 
-	private async _openSheetImpl(path: Path, sf: _SheetFileCreator): Promise<IFile> {
-		this.log.info(`open: ${path} `);
-		try {
-			if (!!this.mainSheet) {
-				await this.closeSheet();
-			}
-			this.mainSheet = await sf(path);
-			this.sheetChanged.emit(this.mainSheet);
-		} catch (ex) {
-			throw ex;
-		}
-		await this.handleWerckChanged();
-		return this.mainSheet;
-	}
 
-	openSheet(path): Promise<IFile> {
-		return this._openSheetImpl(path, this.backend.werckOpenSheet.bind(this.backend));
-	}
 
 	async createTutorialFile(text: string): Promise<IFile> {
 		return await this.backend.appCreateVirtualSheet(text);
 	}
 
-	async setSheet(file: IFile) {
-		if (!!this.mainSheet) {
-			let isSheetType = this.mainSheet.extension === AppConfig.knownExtensions.sheet;
-			if (isSheetType) {
-				await this.closeSheet();
-			}
-		}
-		this.mainSheet = await this.backend.werckOpenSheet(file.path);
-		await this.handleWerckChanged();
-	}
+
 
 	handleErrors(mainSheet: ISheetFile): any {
 		if (mainSheet.hasError) {
@@ -232,13 +161,6 @@ export class WerckService {
 		}
 	}
 
-	getEvents(file: IFile) {
-		return this.backend.werckGetEvents(file.sourceId);
-	}
-
-	getEventsAt(position: Ticks) {
-		return this.backend.werckGetEventsAt(position);
-	}
 
 	getEventsAtCurrentTime() {
 		return this.currentEvents;
@@ -251,36 +173,7 @@ export class WerckService {
 		}
 	}
 
-	async updatePosition() {
-		let posres = await this.backend.werckGetCurrentPosition();
-		let newPosition = Math.min(posres.quarters, this.totalDuration);
-		if (newPosition !== this.position) {
-			this.positionChange.emit(newPosition);
-			this.currentEvents = await this.backend.werckGetEventsAtCurrentTime();
-		}
-		this.position = newPosition;
-		this.checkAutoStop();
-	}
 
-	startPositionPolling() {
-		// if (this.pollerId) {
-		// 	return;
-		// }
-		// this.pollerId = setInterval(this.updatePosition.bind(this), AppConfig.WerckPositionPollingMillis);
-	}
-
-	stopPositionPolling() {
-		// if (!this.pollerId) {
-		// 	return;
-		// }
-		// clearInterval(this.pollerId);
-		// this.pollerId = null;
-	}
-
-	async updateTotalDuration() {
-		let response = await this.backend.werckGetTotalDuration();
-		this.totalDuration = response.quarters;
-	}
 
 	async play() {
 		if (this.mainSheet.isNew) {
@@ -290,16 +183,11 @@ export class WerckService {
 		if (this.isPlaying) {
 			return;
 		}
-		let ppq = await this.ppq();
 		let startPosition = this.startPosition;
 		if (this.isPaused) {
 			startPosition = this.position;
 		}
 		this.playerState = PlayerState.Playing;
-		this.backend.werckPlay(startPosition * ppq);
-		this.updateTotalDuration().then(() => {
-			this.startPositionPolling();
-		});
 	}
 
 	async stop() {
@@ -307,8 +195,6 @@ export class WerckService {
 			return;
 		}
 		this.playerState = PlayerState.Stopped;
-		this.stopPositionPolling();
-		await this.backend.werckStop();
 		setTimeout(()=>{
 			this.position = 0;
 		}, 100);
@@ -318,7 +204,5 @@ export class WerckService {
 			return;
 		}
 		this.playerState = PlayerState.Paused;
-		this.stopPositionPolling();
-		await this.backend.werckStop();
 	}
 }

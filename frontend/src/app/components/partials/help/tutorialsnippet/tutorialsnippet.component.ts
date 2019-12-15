@@ -42,7 +42,6 @@ export class TutorialsnippetComponent implements OnInit {
 		if (this.werck.isPlaying) {
 			return;
 		}
-		await this.backend.werckSaveFile(this.file);
 		await this.werck.setSheet(this.file);
 		this.werck.play();
 	}

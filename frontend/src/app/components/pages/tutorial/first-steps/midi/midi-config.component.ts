@@ -54,9 +54,6 @@ export class MidiConfigComponent extends ATutorial implements OnInit {
 	async ngOnInit() {
 		let text = this.prepareSnippet(snippet);
 		this.files = [await this.werck.createTutorialFile(text)];
-		this.backend.appGetMidiDevices().then((result)=>{
-			this.devices = result.outputs;
-		});
 	}
 
 	getMidiPortnumber(): number {
