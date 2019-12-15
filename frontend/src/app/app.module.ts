@@ -36,6 +36,7 @@ import { PitchmapComponent } from './components/pages/tutorial/notation/pitchmap
 import { VoicingsComponent } from './components/pages/tutorial/templates/voicings/voicings.component';
 import { TocComponent } from './components/partials/help/toc/toc.component';
 import { HomeComponent } from './components/pages/home/home.component';
+import { HeaderComponent } from './components/partials/header/header.component';
 
 @NgModule({
 	declarations: [
@@ -73,7 +74,8 @@ import { HomeComponent } from './components/pages/home/home.component';
 		PitchmapComponent,
 		VoicingsComponent,
 		TocComponent,
-		HomeComponent
+		HomeComponent,
+		HeaderComponent
 	],
 	imports: [
 		BrowserModule,
