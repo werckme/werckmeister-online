@@ -15,9 +15,6 @@ import { KlavierComponent } from './components/partials/daw/klavier/klavier.comp
 import { InstrumentSelectComponent } from './components/partials/daw/instrument-select/instrument-select.component';
 import { DragableDirective, PointerPositionListenerDirective } from './components/directives/dragable.directive';
 import { FolderComponent } from './components/partials/folder/folder.component';
-import { MainmenuComponent } from './components/partials/mainmenu/mainmenu.component';
-import { MenupanelComponent } from './components/partials/menupanel/menupanel.component';
-import { MmenuitemComponent } from './components/partials/mainmenu/mmenuitem/mmenuitem.component';
 import { TutorialsnippetComponent } from './components/partials/help/tutorialsnippet/tutorialsnippet.component';
 import { ExpressionComponent } from './components/partials/help/expression/definition.component';
 import { TipComponent } from './components/partials/help/tip/tip.component';
@@ -50,9 +47,6 @@ import { HeaderComponent } from './components/partials/header/header.component';
 		DragableDirective,
 		PointerPositionListenerDirective,
 		FolderComponent,
-		MainmenuComponent,
-		MenupanelComponent,
-		MmenuitemComponent,
 		TutorialsnippetComponent,
 		ExpressionComponent,
 		TipComponent,
