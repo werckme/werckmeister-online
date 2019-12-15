@@ -25,6 +25,7 @@ const ModeOptions = {
         readOnly: true
     },
     "snippet": {
+        highlightActiveLine: false,
         showGutter: false,
         printMargin: false,
         scrollSpeed: 0,

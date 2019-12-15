@@ -4,6 +4,7 @@ $ionicons-font-path: "~ionicons/dist/fonts";
 @import "./editor-style.scss";
 @import "./roboto-condensed.scss";
 @import "./roboto.scss";
+@import "./variables.scss";
 @import "./mixins.scss";
 
 // remove "?version=xyz" from ionic urls
@@ -29,7 +30,7 @@ h1, h2, h3, h4, h5 {
 
 body {
     font-family: "Roboto";
-    background: #e2e1e0;
+    background: $background;
 }
 
 
@@ -41,9 +42,17 @@ $grey5: rgb(204, 204, 204);
 $buttonGrey: #4a4a4a;
 $blue: rgb(0, 0, 255);
 
-nav {
+nav, .navbar {
     margin-bottom: 3.5em;
-    @include mat-card-1;
+    background: lighten($color: $background, $amount: 5);
+    width: 100%;
+    position: fixed;
+    @include mat-card-2;
+    z-index: 10;
+}
+
+.app.container {
+    padding-top: $nav-height + 15px;
 }
 
 h1 {
