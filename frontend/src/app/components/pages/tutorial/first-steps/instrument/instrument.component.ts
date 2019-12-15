@@ -65,8 +65,8 @@ export class InstrumentComponent extends ATutorial implements OnInit {
 	}
 
 	async ngOnInit() {
-		let text1 = this.prepareSnippet(snippet1);
-		let text2 = this.prepareSnippet(snippet2);
+		const text1 = this.prepareSnippet(snippet1);
+		const text2 = this.prepareSnippet(snippet2);
 		this.files = [await this.werck.createTutorialFile(text1), await this.werck.createTutorialFile(text2)];
 	}
 

@@ -4,7 +4,6 @@ $ionicons-font-path: "~ionicons/dist/fonts";
 @import "./editor-style.scss";
 @import "./roboto-condensed.scss";
 @import "./roboto.scss";
-@import "./theme1.scss";
 
 
 // remove "?version=xyz" from ionic urls
@@ -27,102 +26,22 @@ h1, h2, h3, h4, h5 {
     font-weight: lighter; 
 }
 
-img {
-    pointer-events: none; // disable dragging
-}
-
-a {
-    -webkit-user-drag: none;
-}
-
-span[werckmeister] {
-    &::before {
-        content: "Werckmeister",
-    }
-}
-
-a[href^="http://"], a[href^="https://"] {
-    &::after {
-        content: " \f33b ";
-        font-family: "Ionicons";
-    }
-}
 
 body {
     font-family: "Roboto";
-    user-select: none;
-    cursor: default;
 }
 
-.main-container {
-    position: absolute;
-    padding: 15px;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: auto;
+
+$grey1: rgb(49, 49, 49);
+$grey2: rgb(65, 65, 65);
+$grey3: rgb(81, 76, 90);
+$grey4: rgb(46, 46, 46);
+$grey5: rgb(204, 204, 204);
+$buttonGrey: #4a4a4a;
+$blue: rgb(0, 0, 255);
+
+h1 {
+    font-family: "Roboto Condensed";
 }
 
-.sidebar tutorial-toc-elements {
-    ol {
-        padding: 0px;
-    }
-    li {
-        list-style: none;
-    }
-}
 
-editor.tutorial {
-    .sheet-editor {
-        position: relative;
-        width: 100%;
-    }
-    .ace_scrollbar {
-      display: none;
-    }
-}
-
-tutorialsnippet {
-    .ccontainer {
-        margin: 2em 0;
-    }
-}
-
-.tutorial-end {
-    width: 100%;
-    a:nth-child(1) {
-        left: 15px;
-        position: absolute;
-    }
-    a:nth-child(2) {
-        text-align: center;
-        display: block;
-    }
-    a:nth-child(3) {
-        position: absolute;
-        right: 15px;
-    }
-    margin: 5em 0;
-    height: 5px;
-    &::after {
-        height: 20em;
-    }
-}
-
-div[accordion-title] {
-    display: inline-block;
-}
-
-table {
-    background: inherit;
-    tr {
-        border-top: 1px solid darkgray;
-        padding: 5px; 
-    }
-    td + td, th + th {
-        border-left: 2px solid darkgray;
-    }
-    tr>:nth-child(1) {
-        width: 150px;
-    }
-}

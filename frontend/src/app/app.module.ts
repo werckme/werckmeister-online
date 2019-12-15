@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { EditorComponent } from './components/partials/editor/editor.component';
 import { BackendService } from './services/backend.service';
 import { ShortcutService } from './services/shortcut.service';
-import { MainComponent } from './components/pages/main/main.component';
+import { MainComponent } from './components/pages/main.component';
 import { TransportComponent } from './components/partials/daw/transport/transport.component';
 import { FilelistComponent } from './components/partials/filelist/filelist.component';
 import { ConsoleComponent } from './components/partials/console/console.component';
@@ -18,13 +18,11 @@ import { FolderComponent } from './components/partials/folder/folder.component';
 import { MainmenuComponent } from './components/partials/mainmenu/mainmenu.component';
 import { MenupanelComponent } from './components/partials/menupanel/menupanel.component';
 import { MmenuitemComponent } from './components/partials/mainmenu/mmenuitem/mmenuitem.component';
-import { IntroComponent } from './components/pages/main/intro/intro.component';
 import { TutorialsnippetComponent } from './components/partials/help/tutorialsnippet/tutorialsnippet.component';
 import { ExpressionComponent } from './components/partials/help/expression/definition.component';
 import { TipComponent } from './components/partials/help/tip/tip.component';
 import { MenupathComponent } from './components/partials/help/menupath/menupath.component';
 import { HrefDirective } from './components/directives/href.directive';
-import { MainEditorComponent } from './components/pages/main/main-editor/main-editor.component';
 import { TutorialTocComponent } from './components/pages/tutorial/toc/toc.component';
 import { MidiConfigComponent } from './components/pages/tutorial/first-steps/midi/midi-config.component';
 import { NotesComponent } from './components/pages/tutorial/notation/notes/notes.component';
@@ -37,6 +35,7 @@ import { ChordDefComponent } from './components/pages/tutorial/templates/chordde
 import { PitchmapComponent } from './components/pages/tutorial/notation/pitchmap/pitchmap.component';
 import { VoicingsComponent } from './components/pages/tutorial/templates/voicings/voicings.component';
 import { TocComponent } from './components/partials/help/toc/toc.component';
+import { HomeComponent } from './components/pages/home/home.component';
 
 @NgModule({
 	declarations: [
@@ -58,9 +57,7 @@ import { TocComponent } from './components/partials/help/toc/toc.component';
 		ExpressionComponent,
 		TipComponent,
 		MenupathComponent,
-		IntroComponent,
 		HrefDirective,
-		MainEditorComponent,
 		ExpressionComponent,
 		MenupathComponent,
 		TipComponent,
@@ -75,7 +72,8 @@ import { TocComponent } from './components/partials/help/toc/toc.component';
 		ChordDefComponent,
 		PitchmapComponent,
 		VoicingsComponent,
-		TocComponent
+		TocComponent,
+		HomeComponent
 	],
 	imports: [
 		BrowserModule,

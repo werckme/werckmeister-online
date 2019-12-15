@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { IntroComponent } from './components/pages/main/intro/intro.component';
-import { MainEditorComponent } from './components/pages/main/main-editor/main-editor.component';
 import { TutorialTocComponent } from './components/pages/tutorial/toc/toc.component';
 import { MidiConfigComponent } from './components/pages/tutorial/first-steps/midi/midi-config.component';
 import { InstrumentComponent } from './components/pages/tutorial/first-steps/instrument/instrument.component';
@@ -12,11 +10,12 @@ import { PitchmapComponent } from './components/pages/tutorial/notation/pitchmap
 import { TemplatesComponent } from './components/pages/tutorial/templates/templates/template.component';
 import { ChordDefComponent } from './components/pages/tutorial/templates/chorddef/chorddef.component';
 import { VoicingsComponent } from './components/pages/tutorial/templates/voicings/voicings.component';
+import { HomeComponent } from './components/pages/home/home.component';
 
 
 
 const routes: Routes = [
-	{ path: '', component: IntroComponent },
+	{ path: '', component: HomeComponent },
 	{ path: 'help/tutorial', component: TutorialTocComponent },
 	{ path: 'help/tutorial/midiconfig', component: MidiConfigComponent },
 	{ path: 'help/tutorial/instrument', component: InstrumentComponent },
@@ -27,7 +26,6 @@ const routes: Routes = [
 	{ path: 'help/tutorial/templates', component: TemplatesComponent },
 	{ path: 'help/tutorial/voicings', component: VoicingsComponent },
 	{ path: 'help/tutorial/chorddef', component: ChordDefComponent },
-	{ path: 'editor', component: MainEditorComponent }
 ];
 
 @NgModule({
