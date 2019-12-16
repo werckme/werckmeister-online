@@ -9,6 +9,7 @@ import { PlayerState } from 'src/shared/werck/player';
 import { IInstrument } from 'src/shared/werck/instrument';
 import { LogService } from './log.service';
 import { FileService } from './file.service';
+import { RestService } from './rest.service';
 
 
 
@@ -36,7 +37,7 @@ export class WerckService {
 	sheetChanged = new EventEmitter<ISheetFile>();
 	onTryPlayWithoutSheet = new EventEmitter<void>();
 	onCloseSheet = new EventEmitter<IFile>();
-	constructor(protected backend: BackendService, protected log: LogService, protected fileService: FileService) {
+	constructor(protected backend: BackendService, protected log: LogService, protected fileService: FileService, protected rest: RestService) {
 		this.fileService.fileSaved.subscribe({next: this.onFileSaved.bind(this)});
 	}
 
@@ -101,7 +102,7 @@ export class WerckService {
 
 
 	setSheet(file: IFile) {
-
+		this.mainSheet = file as ISheetFile;
 	}
 
 	async update() {
@@ -176,18 +177,20 @@ export class WerckService {
 
 
 	async play() {
-		if (this.mainSheet.isNew) {
-			this.onTryPlayWithoutSheet.emit();
-			return;
-		}
-		if (this.isPlaying) {
-			return;
-		}
-		let startPosition = this.startPosition;
-		if (this.isPaused) {
-			startPosition = this.position;
-		}
-		this.playerState = PlayerState.Playing;
+		console.log(this.mainSheet);
+		this.rest.compile();
+		// if (this.mainSheet.isNew) {
+		// 	this.onTryPlayWithoutSheet.emit();
+		// 	return;
+		// }
+		// if (this.isPlaying) {
+		// 	return;
+		// }
+		// let startPosition = this.startPosition;
+		// if (this.isPaused) {
+		// 	startPosition = this.position;
+		// }
+		// this.playerState = PlayerState.Playing;
 	}
 
 	async stop() {

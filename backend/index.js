@@ -1,44 +1,32 @@
+var args = process.argv.slice(2);
+if (args.length < 1) {
+    throw new Error("missing port argument");
+}
+const port = Number.parseInt(args[0]);
+if (!port) {
+    throw new Error("invalid port: " + args[0]);
+}
+
 const { spawn } = require('child_process');
 const path = require('path')
+const express = require('express');
+const cors = require('cors')
+const app = express();
+//const config = require('config');
+const resolve = require('path').resolve;
+const join = require('path').join;
+
 const WerckmeisterBinaries = "/home/samba/workspace/werckmeister/build";
 const WMCompilerBin = path.join(WerckmeisterBinaries, 'sheetc');
 
 
-const testsheet =
-    `
-using "./com/myChords.chords";
-device: SC1 midi 2;
-
-tempo: 130;
-instrumentDef: piano   SC1 2 0 0;
-
-[
-instrument: piano;
-{
-    c d e f | g a b c' |
+function handle(res, func) {
+    func().catch((ex)=> {
+        res.status(500).send(ex.message);
+    });
 }
-]
-
-`
-
-const testchords =
-    `
-------------------------------------------------------------------
-X: 			I=0	    		III=4 			V=7
-Xmin: 		I=0     		III=3 			V=7
-X-: 		I=0     		III=3 			V=7
-X/7: 		I=0     		III=4 			V=7 			VII=-2
-X-/7: 		I=0     		III=3 			V=7 			VII=-2
-X/maj7: 	I=0          	III=4 			V=7 			VII=-1
-X/5: 		I=0	    		III=4 			V=-5
-X-/5: 		I=0	    		III=3 			V=-5
-X/4: 		I=0	    		III=4 	IV=-7	V=7
-X-/4: 		I=0	    		III=3 	IV=-7	V=7
-X/3: 		I=0	    		III=-8 	    	V=7
-X-/3: 		I=0	    		III=-9 	    	V=7
-X/2: 		I=0	    II=-10	III=4 	    	V=7
-`
-
+app.use(cors());
+app.use(express.json())
 
 function executeCompiler(jsonData) {
     return new Promise((resolve, reject) => {
@@ -63,23 +51,17 @@ function executeCompiler(jsonData) {
     });
 }
 
-async function main() {
-    try {
-        const result = await executeCompiler([
-            {
-                path: "myfile.sheet",
-                data: testsheet
-            }
-            ,
-            {
-                path: "./com/myChords.chords",
-                data: testchords
-            }
-        ]);
-        console.log(result);
-    } catch (ex) {
-        console.log(ex);
-    }
-}
 
-main();
+app.post('/api/compile', function name(req, res) {
+    handle(res, async () => {
+        console.log(req.body);
+        res.send({});
+    });
+});
+
+const server = app.listen(port, function () {
+    var host = server.address().address
+    var port = server.address().port
+
+    console.log("listening at http://%s:%s", host, port)
+});

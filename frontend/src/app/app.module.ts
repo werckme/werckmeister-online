@@ -33,6 +33,7 @@ import { VoicingsComponent } from './components/pages/tutorial/templates/voicing
 import { TocComponent } from './components/partials/help/toc/toc.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { HeaderComponent } from './components/partials/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
 	declarations: [
@@ -73,7 +74,8 @@ import { HeaderComponent } from './components/partials/header/header.component';
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
-		NgbModule
+		NgbModule,
+		HttpClientModule
 	],
 	providers: [BackendService, ShortcutService],
 	bootstrap: [AppComponent]
