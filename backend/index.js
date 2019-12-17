@@ -54,8 +54,9 @@ function executeCompiler(jsonData) {
 
 app.post('/api/compile', function name(req, res) {
     handle(res, async () => {
-        console.log(req.body);
-        res.send({});
+        let result = await executeCompiler(req.body);
+        result = JSON.parse(result);
+        res.send(result);
     });
 });
 

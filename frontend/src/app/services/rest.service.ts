@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IFile } from 'src/shared/io/file';
-
+import { AppConfig } from 'src/config';
+import * as _ from 'lodash';
+import { TextFile, TextFileContent } from 'src/shared/io/fileContent';
 @Injectable({
 	providedIn: 'root'
 })
@@ -29,7 +31,23 @@ export class RestService {
 		return this.http.delete<T>(`${this.endpointUrl}/${url}`).toPromise();
 	}
 
+	fileToRequestFiles(file: IFile) {
+		if (!file) {
+			return null;
+		}
+		if (file.extension === AppConfig.knownExtensions.tutorial) {
+			file.extension = AppConfig.knownExtensions.sheet;
+			file.filename = "main.sheet"
+		}
+		return {path: file.filename, data: (file.content as TextFileContent).data}
+	}
+
 	async compile(files: IFile[]) {
-		const res = await this.post('compile', files);
+		const requestFiles:any = _(files)
+			.map((file: IFile) => this.fileToRequestFiles(file))
+			.filter( x => !!x )
+			.value()
+		;
+		const res = await this.post('compile', requestFiles);
 	}
 }

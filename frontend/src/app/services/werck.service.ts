@@ -177,8 +177,7 @@ export class WerckService {
 
 
 	async play() {
-		console.log(this.mainSheet);
-		this.rest.compile();
+		this.rest.compile([this.mainSheet]);
 		// if (this.mainSheet.isNew) {
 		// 	this.onTryPlayWithoutSheet.emit();
 		// 	return;
