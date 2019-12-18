@@ -31,7 +31,7 @@ app.use(express.json())
 function executeCompiler(jsonData) {
     return new Promise((resolve, reject) => {
         let result = "";
-        const pobj = spawn(WMCompilerBin, [JSON.stringify(jsonData), '--mode=json']);
+        const pobj = spawn(WMCompilerBin, [JSON.stringify(jsonData), '--mode=json', '--nometa']);
 
         pobj.stderr.on('data', (data) => {
             result += data;
@@ -45,6 +45,7 @@ function executeCompiler(jsonData) {
             if (code === 0) {
                 resolve(result);
             } else {
+                console.log(result);
                 reject(result);
             }
         });

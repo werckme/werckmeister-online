@@ -48,6 +48,6 @@ export class RestService {
 			.filter( x => !!x )
 			.value()
 		;
-		const res = await this.post('compile', requestFiles);
+		return await this.post('compile', requestFiles);
 	}
 }

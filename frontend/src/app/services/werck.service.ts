@@ -10,7 +10,7 @@ import { IInstrument } from 'src/shared/werck/instrument';
 import { LogService } from './log.service';
 import { FileService } from './file.service';
 import { RestService } from './rest.service';
-
+import { MidiplayerService } from './midiplayer.service';
 
 
 type _SheetFileCreator = (path: string) => Promise<ISheetFile>;
@@ -37,7 +37,12 @@ export class WerckService {
 	sheetChanged = new EventEmitter<ISheetFile>();
 	onTryPlayWithoutSheet = new EventEmitter<void>();
 	onCloseSheet = new EventEmitter<IFile>();
-	constructor(protected backend: BackendService, protected log: LogService, protected fileService: FileService, protected rest: RestService) {
+	constructor(protected backend: BackendService, 
+		protected log: LogService, 
+		protected fileService: FileService, 
+		protected rest: RestService,
+		protected midiPlayer: MidiplayerService) 
+	{
 		this.fileService.fileSaved.subscribe({next: this.onFileSaved.bind(this)});
 	}
 
@@ -177,7 +182,8 @@ export class WerckService {
 
 
 	async play() {
-		this.rest.compile([this.mainSheet]);
+		const result:any = await this.rest.compile([this.mainSheet]);
+		this.midiPlayer.play(result.midiData);
 		// if (this.mainSheet.isNew) {
 		// 	this.onTryPlayWithoutSheet.emit();
 		// 	return;
