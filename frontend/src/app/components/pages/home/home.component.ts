@@ -8,8 +8,8 @@ import { ATutorial } from '../tutorial/ATutorial';
 const snippets = [
   `
   tempo: 120;
-  device: MyDevice  midi $PORTNR;
-  instrumentDef:ex1  MyDevice  2 0 0;
+  device: MyDevice  midi 0;
+  instrumentDef:ex1  MyDevice  0 0 0;
   [
   instrument: ex1;
   {
@@ -24,8 +24,8 @@ const snippets = [
   ,
   `
   tempo: 120;
-  device: MyDevice  midi $PORTNR;
-  instrumentDef:ex1  MyDevice  2 0 0;
+  device: MyDevice  midi 0;
+  instrumentDef:ex1  MyDevice  0 0 0;
   [
   instrument: ex1;
   {
@@ -40,8 +40,8 @@ const snippets = [
   ,
   `
   tempo: 80;
-  device: MyDevice  midi $PORTNR;
-  instrumentDef:ex1  MyDevice  2 0 0;
+  device: MyDevice  midi 0;
+  instrumentDef:ex1  MyDevice  0 0 0;
   [
   instrument: ex1;
   {
@@ -56,8 +56,8 @@ const snippets = [
   ,
   `
   tempo: 120;
-  device: MyDevice  midi $PORTNR;
-  instrumentDef:ex1  MyDevice  2 0 0;
+  device: MyDevice  midi 0;
+  instrumentDef:ex1  MyDevice  0 0 0;
   [
   instrument: ex1;
   {
@@ -72,8 +72,8 @@ const snippets = [
   ,
   `
   tempo: 120;
-  device: MyDevice  midi $PORTNR;
-  instrumentDef:ex1  MyDevice  2 0 0;
+  device: MyDevice  midi 0;
+  instrumentDef:ex1  MyDevice  0 0 0;
   [
   instrument: ex1;
   {
@@ -88,8 +88,8 @@ const snippets = [
   ,
   `
   tempo: 120;
-  device: MyDevice  midi $PORTNR;
-  instrumentDef:ex1  MyDevice  2 0 0;
+  device: MyDevice  midi 0;
+  instrumentDef:ex1  MyDevice  0 0 0;
   [
   instrument: ex1;
   {
@@ -104,13 +104,13 @@ const snippets = [
   ,
   `
   tempo: 80;
-  device: MyDevice  midi $PORTNR;
-  instrumentDef:ex1  MyDevice  2 0 0;
+  device: MyDevice  midi 0;
+  instrumentDef:ex1  MyDevice  0 0 0;
   [
   instrument: ex1;
   {
   
-    <g,, c e g bes>4 <c, c es g bes>2. |
+    <g,, c e g bb>4 <c, c eb g bb>2. |
   
   
   }

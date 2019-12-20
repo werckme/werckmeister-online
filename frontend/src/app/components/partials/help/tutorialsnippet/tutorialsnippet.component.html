@@ -11,6 +11,6 @@
     </editor>
     <div class="description"><ng-content></ng-content></div>
     <div class="ctrl">
-        <a *ngIf="!justSnippet" href="#" (click)="$event.preventDefault(); play()">[<span class="play ion-md-play"></span> Play]</a>
+        <a *ngIf="!justSnippet" href="#" (click)="$event.preventDefault(); play($event)">[<span class="play ion-md-play"></span> Play]</a>
     </div>
 </div>

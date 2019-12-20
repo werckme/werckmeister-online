@@ -38,12 +38,12 @@ export class TutorialsnippetComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	async play() {
+	async play(mouseEvent: MouseEvent) {
 		if (this.werck.isPlaying) {
 			return;
 		}
 		await this.werck.setSheet(this.file);
-		this.werck.play();
+		this.werck.play(mouseEvent);
 	}
 
 	_onEditorViewModelChange(vm: IEditorViewModel) {

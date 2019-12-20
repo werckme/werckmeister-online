@@ -180,10 +180,14 @@ export class WerckService {
 	}
 
 
-
-	async play() {
+	/**
+	 * 
+	 * @param new brower policies require to do audio context initialization during
+	 * an user event. Thats why we force to have a event arg.
+	 */
+	async play(event: MouseEvent | KeyboardEvent) {
 		const result:any = await this.rest.compile([this.mainSheet]);
-		this.midiPlayer.play(result.midiData);
+		this.midiPlayer.play(result.midiData, event);
 		// if (this.mainSheet.isNew) {
 		// 	this.onTryPlayWithoutSheet.emit();
 		// 	return;

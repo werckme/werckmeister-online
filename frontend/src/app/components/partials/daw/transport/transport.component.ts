@@ -17,7 +17,7 @@ export class TransportComponent implements OnInit {
 	}
 
 	play() {
-		this.werck.play();
+		this.werck.play(null);
 	}
 
 	pause() {
