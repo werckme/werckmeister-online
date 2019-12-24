@@ -134,9 +134,9 @@ export class HomeComponent extends ATutorial implements OnInit {
 	}
 
 	async ngOnInit() {
-		for (let snippet of snippets) {
-			let text = this.prepareSnippet(snippet);
-			let file = await this.werck.createTutorialFile(text);
+		for (const snippet of snippets) {
+			const text = this.prepareSnippet(snippet);
+			const file = await this.werck.createTutorialFile(text);
 			this.files.push(file);
 		}
 	}
