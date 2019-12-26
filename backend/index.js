@@ -31,7 +31,9 @@ app.use(express.json())
 function executeCompiler(jsonData) {
     return new Promise((resolve, reject) => {
         let result = "";
-        const pobj = spawn(WMCompilerBin, [JSON.stringify(jsonData), '--mode=json', '--nometa']);
+        jsonData = JSON.stringify(jsonData);
+        jsonData = Buffer.from(jsonData).toString('base64');
+        const pobj = spawn(WMCompilerBin, [jsonData, '--mode=json', '--nometa']);
 
         pobj.stderr.on('data', (data) => {
             result += data;
