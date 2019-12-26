@@ -37,13 +37,13 @@ export class RestService {
 		}
 		if (file.extension === AppConfig.knownExtensions.tutorial) {
 			file.extension = AppConfig.knownExtensions.sheet;
-			file.filename = "main.sheet"
 		}
-		return {path: file.filename, data: (file.content as TextFileContent).data}
+		file.filename = `main.${file.extension}`;
+		return {path: file.filename, data: (file.content as TextFileContent).data};
 	}
 
 	async compile(files: IFile[]) {
-		const requestFiles:any = _(files)
+		const requestFiles: any = _(files)
 			.map((file: IFile) => this.fileToRequestFiles(file))
 			.filter( x => !!x )
 			.value()

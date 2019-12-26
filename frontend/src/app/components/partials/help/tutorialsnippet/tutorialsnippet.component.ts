@@ -22,10 +22,10 @@ export class TutorialsnippetComponent implements OnInit {
 	lineHeight: number;
 
 	@Input()
-	justSnippet: boolean = false;
+	justSnippet = false;
 
 	@Input()
-	stitle: string = "LIVE Action™ Snippet";
+	stitle = 'LIVE Action™ Snippet';
 
 	@Output()
 	onEditorViewModelChange = new EventEmitter<IEditorViewModel>();

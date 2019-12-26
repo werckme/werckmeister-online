@@ -151,6 +151,12 @@ export class WerckService {
 		return await this.backend.appCreateVirtualSheet(text);
 	}
 
+	async createSnippetFile(text: string): Promise<IFile> {
+		const result =  await this.backend.appCreateVirtualSheet(text);
+		result.extension = '.sheet';
+		return result;
+	}	
+
 
 
 	handleErrors(mainSheet: ISheetFile): any {

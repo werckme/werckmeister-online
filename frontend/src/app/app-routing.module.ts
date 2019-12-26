@@ -11,11 +11,11 @@ import { TemplatesComponent } from './components/pages/tutorial/templates/templa
 import { ChordDefComponent } from './components/pages/tutorial/templates/chorddef/chorddef.component';
 import { VoicingsComponent } from './components/pages/tutorial/templates/voicings/voicings.component';
 import { HomeComponent } from './components/pages/home/home.component';
-
-
+import { EditorComponent } from './components/pages/editor/editor.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
+	{ path: 'editor', component: EditorComponent },
 	{ path: 'help/tutorial', component: TutorialTocComponent },
 	{ path: 'help/tutorial/midiconfig', component: MidiConfigComponent },
 	{ path: 'help/tutorial/instrument', component: InstrumentComponent },

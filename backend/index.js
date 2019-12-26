@@ -28,6 +28,14 @@ function handle(res, func) {
 app.use(cors());
 app.use(express.json())
 
+function tryParseJSON(str) {
+    try {
+        return JSON.parse(str);
+    } catch(ex) {
+        return null;
+    }
+}
+
 function executeCompiler(jsonData) {
     return new Promise((resolve, reject) => {
         let result = "";
@@ -47,7 +55,6 @@ function executeCompiler(jsonData) {
             if (code === 0) {
                 resolve(result);
             } else {
-                console.log(result);
                 reject(result);
             }
         });
@@ -56,9 +63,15 @@ function executeCompiler(jsonData) {
 
 
 app.post('/api/compile', function name(req, res) {
+    let result = null;
     handle(res, async () => {
-        let result = await executeCompiler(req.body);
-        result = JSON.parse(result);
+        try {
+            result = await executeCompiler(req.body);
+        } catch(ex) {
+            result = ex;
+            res.statusCode = 500;
+        }
+        result = tryParseJSON(result);
         res.send(result);
     });
 });

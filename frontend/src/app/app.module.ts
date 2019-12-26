@@ -34,6 +34,8 @@ import { TocComponent } from './components/partials/help/toc/toc.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { HeaderComponent } from './components/partials/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SnippedComponent } from './components/partials/help/snipped/snipped.component';
+import { EditorComponent as EditorPageComponent } from './components/pages/editor/editor.component';
 
 @NgModule({
 	declarations: [
@@ -68,7 +70,9 @@ import { HttpClientModule } from '@angular/common/http';
 		VoicingsComponent,
 		TocComponent,
 		HomeComponent,
-		HeaderComponent
+		HeaderComponent,
+		SnippedComponent,
+		EditorPageComponent
 	],
 	imports: [
 		BrowserModule,
