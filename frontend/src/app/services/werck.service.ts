@@ -193,6 +193,7 @@ export class WerckService {
 	 */
 	async play(event: MouseEvent | KeyboardEvent) {
 		const result:any = await this.rest.compile([this.mainSheet]);
+		this.midiPlayer.tempo = result.bpm;
 		this.midiPlayer.play(result.midiData, event);
 		// if (this.mainSheet.isNew) {
 		// 	this.onTryPlayWithoutSheet.emit();

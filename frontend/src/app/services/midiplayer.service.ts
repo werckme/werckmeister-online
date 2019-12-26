@@ -31,7 +31,16 @@ function fixBrokenDeltaPlayback() {
 })
 export class MidiplayerService {
 	private _player: any;
+	private _tempo = 120;
 	constructor() { 
+	}
+
+	get tempo(): number {
+		return this._tempo;
+	}
+
+	set tempo(val: number) {
+		this._tempo = val;
 	}
 
 	getPlayer(event: MouseEvent | KeyboardEvent): Promise<any> {
@@ -60,6 +69,7 @@ export class MidiplayerService {
 
 	async play(midiBase64: string, event: MouseEvent | KeyboardEvent) {
 		const player = await this.getPlayer(event);
+		player.BPM = this._tempo;
 		await this.loadFile(midiBase64, player);
 		fixBrokenDeltaPlayback();	
 		player.stop(); // stops all audio being played, and resets currentTime to 0.
