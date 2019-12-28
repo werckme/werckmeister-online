@@ -219,7 +219,7 @@ export class KlavierComponent implements OnInit {
 		if (this.werckPositionObserver) {
 			return;
 		}
-		this.werckPositionObserver = this.werck.positionChange.subscribe({
+		this.werckPositionObserver = this.werck.noteOnChange.subscribe({
 			next: this.updateEvents.bind(this)
 		});
 	}

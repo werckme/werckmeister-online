@@ -22,8 +22,9 @@ export class SheetEventMarkerManager {
 		this.file = file;
 		this.editor = editor;
 		this.werck = werck;
-		for(let key in this.markers) {
-			let marker:IMarker = this.markers[key];
+		// tslint:disable-next-line: forin
+		for (const key in this.markers) {
+			const marker: IMarker = this.markers[key];
 			this.editor.addMarker(marker);
 		}
 	}
@@ -32,7 +33,7 @@ export class SheetEventMarkerManager {
 		if (this.isObserving) {
 			return;
 		}
-		this.werckPositionObserver = this.werck.positionChange.subscribe({
+		this.werckPositionObserver = this.werck.noteOnChange.subscribe({
 			next: this.updateEventMarkerStates.bind(this)
 		});
 	}
@@ -52,7 +53,7 @@ export class SheetEventMarkerManager {
 	}
 
 	setMarkersEnabled(markers: IMarker[], val: boolean) {
-		for (let marker of markers) {
+		for (const marker of markers) {
 			marker.setMarked(val);
 		}
 	}
@@ -71,29 +72,29 @@ export class SheetEventMarkerManager {
 			return;
 		}
 		this.markers = {};
-		let positions = []; // await this.werck.getEvents(this.file);
+		const positions = []; // await this.werck.getEvents(this.file);
 		this.addEventMarkers(positions);
 	}
 
 	async updateEventMarkerStates() {
-		let events = await this.werck.getEventsAtCurrentTime();
-		let nextMarkers = this.getMarkersByPosition(events);
+		const events = await this.werck.getEventsAtCurrentTime();
+		const nextMarkers = this.getMarkersByPosition(events);
 		allMarkersOff();
 		this.setMarkersEnabled(nextMarkers, true);
 	}
 
 	addEventMarker(row: number, column: number): IMarker {
-		let range = this.editor.getTokenRange(row, column, "event");
-		let marker = this.editor.createMarker(range, new MarkerOptions());
+		const range = this.editor.getTokenRange(row, column, 'event');
+		const marker = this.editor.createMarker(range, new MarkerOptions());
 		this.editor.addMarker(marker);
 		this.markers[createMarkerId(range.start.row, range.start.column)] = marker;
 		return marker;
 	}
 
 	addEventMarkers(locations: IEventInfo[]): IMarker[] {
-		let result = [];
-		for (let location of locations) {
-			let marker = this.addEventMarker(location.row, location.column);
+		const result = [];
+		for (const location of locations) {
+			const marker = this.addEventMarker(location.row, location.column);
 			result.push(marker);
 		}
 		return result;

@@ -67,7 +67,6 @@ app.post('/api/compile', function name(req, res) {
     handle(res, async () => {
         try {
             result = await executeCompiler(req.body);
-            console.log(result);
         } catch(ex) {
             result = ex;
             res.statusCode = 500;

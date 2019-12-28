@@ -10,7 +10,8 @@ import { IInstrument } from 'src/shared/werck/instrument';
 import { LogService } from './log.service';
 import { FileService } from './file.service';
 import { RestService } from './rest.service';
-import { MidiplayerService } from './midiplayer.service';
+import { MidiplayerService, IMidiplayerEvent } from './midiplayer.service';
+import { EventType } from 'src/shared/midi/midiEvent';
 
 
 type _SheetFileCreator = (path: string) => Promise<ISheetFile>;
@@ -30,10 +31,9 @@ export class WerckService {
 	instruments: IInstrument[] = [];
 	currentEvents: IEventInfo[] = [];
 	werckChanged = new EventEmitter<void>();
-	positionChange = new EventEmitter<Quarters>();
+	noteOnChange = new EventEmitter<Quarters>();
 	playerStateChange = new EventEmitter<PlayerStateChange>();
 	sheetChanged = new EventEmitter<ISheetFile>();
-	onTryPlayWithoutSheet = new EventEmitter<void>();
 	onCloseSheet = new EventEmitter<IFile>();
 	constructor(protected backend: BackendService, 
 		           protected log: LogService, 
@@ -42,10 +42,17 @@ export class WerckService {
 		           protected midiPlayer: MidiplayerService) {
 		this.fileService.fileSaved.subscribe({next: this.onFileSaved.bind(this)});
 		this.midiPlayer.onEOF.subscribe({next: this.onWerckEof.bind(this)});
+		this.midiPlayer.onMidiEvent.subscribe({next: this.onMidiEvent.bind(this)});
 	}
 
 	onWerckEof() {
 		this.stop();
+	}
+	
+	onMidiEvent(ev: IMidiplayerEvent) {
+		if (ev.midiEvent.eventType === EventType.NoteOn) {
+			this.noteOnChange.emit(ev.position);
+		}
 	}
 
 	getFilesOfType(extensions: string[]): IFile[] {
@@ -200,7 +207,6 @@ export class WerckService {
 		}
 		this.playerState = PlayerState.Playing;
 		const result: any = await this.rest.compile([this.mainSheet]);
-		console.log(result);
 		this.midiPlayer.tempo = result.midi.bpm;
 		this.midiPlayer.play(result.midi.midiData, event);
 	}

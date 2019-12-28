@@ -11,6 +11,4 @@ export class MainComponent implements OnInit {
 
 	async ngOnInit() {
 	}
-
-
 }

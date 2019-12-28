@@ -13,7 +13,7 @@ export const enum EventType {
     ChannelAftertouch = 0xD,
     PitchBend = 0xE,
     MetaEvent = 0xFF
-};
+}
 
 function checkedRange(x: number, min: number, max: number): number {
     if (x < min || x > max) {
