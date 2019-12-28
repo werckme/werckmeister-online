@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { ATutorial } from '../tutorial/ATutorial';
 import { IFile } from 'src/shared/io/file';
 
-const snippets = [
+const snippet = 
   `
   tempo: 60;
   device: MyDevice  midi 0;
-  instrumentDef:ex1  MyDevice  0 0 0;
+  instrumentDef:piano  MyDevice  0 0 0;
   [
-  instrument: ex1;
+  instrument: piano;
   {
     b   f#'32 x c#' b a'8~   x16  c''\`g' e'8  e'16 a'8 f#'16  |  (g'16 c'' f')8  a'  (e'16 r d')8  c''~  (x c''\`a' g' f'  d' )2  |
     c#'8.  d'32 g' e'2.      |  c'32 e' d' f'   e' g f' d'  (a'16 c'' e')8 (e'32 f' e' d' a)8  (bb32 c'x d'x e' f')4 (a'32 gx d' fx e)4 |
@@ -29,24 +29,8 @@ const snippets = [
     ((r eb' bb' ab' e') (e' g' eb' bb ab') (c'' bb'x ab'x f'))2  (bb' gb'x ab' f' db'x eb' b ab' f')4 (f' eb' gb' e' db' eb' ab' db' gb' f eb)4 |
     c'1 |
   }
-  ]
-  
+  ]   
   `
-  ,
-  `
-  tempo: 60;
-  device: MyDevice  midi 0;
-  instrumentDef:ex1  MyDevice  0 0 0;
-  [
-  instrument: ex1;
-  {
-    b   f#'32 x c#' b a'8~   x16  c''\`g' e'8  e'16 a'8 f#'16  |  (g'16 c'' f')8  a'  (e'16 r d')8  c''~  (x c''\`a' g' f'  d' )2  |
-    c#'8.  d'32 g' e'2.      |  c'32 e' d' f'   e' g f' d'  (a'16 c'' e')8 (e'32 f' e' d' a)8  (bb32 c'x d'x e' f')4 (a'32 gx d' fx e)4 |
-  }
-  ]
-  
-  `
-  ]
   ;
 
 
@@ -63,11 +47,9 @@ export class EditorComponent extends ATutorial implements OnInit {
 	}
 
 	async ngOnInit() {
-		for (const snippet of snippets) {
-			const text = this.prepareSnippet(snippet);
-			const file = await this.werck.createSnippetFile(text);
-			this.files.push(file);
-		}
+    const text = this.prepareSnippet(snippet);
+    const file = await this.werck.createSnippetFile(text);
+    this.files.push(file);
 	}
 
 }

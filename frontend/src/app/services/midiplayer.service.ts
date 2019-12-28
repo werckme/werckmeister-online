@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
-
+import { Injectable, EventEmitter } from '@angular/core';
+import { Quarters } from 'src/shared/werck/types';
+import * as _ from 'lodash';
 
 declare const MIDI: any;
+const DeltaBugFixOffset = 1;
 
 /**
  * there seems to be a problem with MIDI.js, where if a note event appears
@@ -10,15 +12,14 @@ declare const MIDI: any;
  * So we fix that by adding a small delta to the first event.
  */
 function fixBrokenDeltaPlayback() {
-	const deltaFix = 1;
 	const data = MIDI.Player.data;
 	for (const event of data) {
 		const evData = event[0];
 		const needsAFix = evData.event.subtype === 'noteOn';
 		if (needsAFix) {
-			event[1] = deltaFix;
-			evData.event.deltaTime = deltaFix;
-			evData.ticksToEvent = deltaFix;
+			event[1] = DeltaBugFixOffset;
+			evData.event.deltaTime = DeltaBugFixOffset;
+			evData.ticksToEvent = DeltaBugFixOffset;
 			break;
 		}
 	}
@@ -32,8 +33,13 @@ function fixBrokenDeltaPlayback() {
 export class MidiplayerService {
 	private _player: any;
 	private _tempo = 120;
+	public position: Quarters = 0;
+	public onEOF = new EventEmitter<void>();
+	private onEofDebounced: any = null;
 	constructor() { 
+		this.onEofDebounced = _.debounce(this.onEOF.emit.bind(this.onEOF), 100);
 	}
+
 
 	get tempo(): number {
 		return this._tempo;
@@ -41,6 +47,13 @@ export class MidiplayerService {
 
 	set tempo(val: number) {
 		this._tempo = val;
+	}
+
+	onEvent(midiEvent: any) {
+		this.position = midiEvent.now - DeltaBugFixOffset;
+		if (midiEvent.now >= midiEvent.end) {
+			this.onEofDebounced();
+		}
 	}
 
 	getPlayer(event: MouseEvent | KeyboardEvent): Promise<any> {
@@ -55,6 +68,7 @@ export class MidiplayerService {
 				onsuccess: () => {
 					this._player = MIDI.Player;
 					resolve(this._player);
+					MIDI.Player.addListener(this.onEvent.bind(this));
 				}
 			});
 		});

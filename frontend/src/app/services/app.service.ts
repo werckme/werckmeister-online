@@ -18,16 +18,15 @@ export class AppService {
 	onBoundsChanged = new EventEmitter<void>();
 	currentEditor: IEditorViewModel;
 	version: string;
-	private currentFile_: IFile;
 	constructor(protected title: Title, 
-		protected backend: BackendService, 
-		protected log: LogService,
-		protected werck: WerckService,
-		protected shortcuts: ShortcutService,
-		protected file: FileService,
-		protected router: Router) {
+		           protected backend: BackendService, 
+		           protected log: LogService,
+		           protected werck: WerckService,
+		           protected shortcuts: ShortcutService,
+		           protected file: FileService,
+		           protected router: Router) {
 		router.events.subscribe(() => {
-			let main = $(".main-container");
+			const main = $('.main-container');
 			main.scrollTop();
 		});
 	}
@@ -42,12 +41,12 @@ export class AppService {
 	}
 
 	async openLink(_url: string) {
-		let url = new URL(_url);
-		if (url.protocol === "werck:") {
-			let route = url.pathname.replace('/', ''); // remove first /
+		const url = new URL(_url);
+		if (url.protocol === 'werck:') {
+			const route = url.pathname.replace('/', ''); // remove first /
 			this.router.navigateByUrl(route);
 		}
-		if (url.protocol === "tutorial:") {
+		if (url.protocol === 'tutorial:') {
 			// let path = './tutorial' + url.pathname.replace('/', ''); // remove first /
 			// this.currentFile = await this.werck.openSheet(path);
 			// this.openEditor();

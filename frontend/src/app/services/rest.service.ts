@@ -38,7 +38,7 @@ export class RestService {
 		if (file.extension === AppConfig.knownExtensions.tutorial) {
 			file.extension = AppConfig.knownExtensions.sheet;
 		}
-		file.filename = `main.${file.extension}`;
+		file.filename = `main${file.extension}`;
 		return {path: file.filename, data: (file.content as TextFileContent).data};
 	}
 

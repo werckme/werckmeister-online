@@ -39,9 +39,6 @@ export class TutorialsnippetComponent implements OnInit {
 	}
 
 	async play(mouseEvent: MouseEvent) {
-		if (this.werck.isPlaying) {
-			return;
-		}
 		await this.werck.setSheet(this.file);
 		this.werck.play(mouseEvent);
 	}

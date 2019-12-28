@@ -23,7 +23,6 @@ export interface PlayerStateChange { from: PlayerState; to: PlayerState; }
 export class WerckService {
 	private playerState_: PlayerState = PlayerState.Stopped;
 	pollerId: any;
-	position: Quarters = 0;
 	totalDuration = 0;
 	private startPosition_: Quarters = 0;
 	mainSheet: ISheetFile;
@@ -42,6 +41,11 @@ export class WerckService {
 		           protected rest: RestService,
 		           protected midiPlayer: MidiplayerService) {
 		this.fileService.fileSaved.subscribe({next: this.onFileSaved.bind(this)});
+		this.midiPlayer.onEOF.subscribe({next: this.onWerckEof.bind(this)});
+	}
+
+	onWerckEof() {
+		this.stop();
 	}
 
 	getFilesOfType(extensions: string[]): IFile[] {
@@ -103,6 +107,12 @@ export class WerckService {
 		this.startPosition_ = val;
 	}
 
+	get position(): Quarters {
+		if (this.isStopped || !this.midiPlayer) {
+			return 0;
+		}
+		return this.midiPlayer.position;
+	}
 
 	setSheet(file: IFile) {
 		this.mainSheet = file as ISheetFile;
@@ -184,9 +194,6 @@ export class WerckService {
 	 * an user event. Thats why we force to have a event arg.
 	 */
 	async play(event: MouseEvent | KeyboardEvent) {
-		if (this.isPlaying) {
-			return;
-		}
 		let startPosition = this.startPosition;
 		if (this.isPaused) {
 			startPosition = this.position;
@@ -202,9 +209,6 @@ export class WerckService {
 			return;
 		}
 		this.playerState = PlayerState.Stopped;
-		setTimeout(() => {
-			this.position = 0;
-		}, 100);
 	}
 	async pause() {
 		if (this.isPaused) {

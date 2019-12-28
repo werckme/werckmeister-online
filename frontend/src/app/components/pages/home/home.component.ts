@@ -87,14 +87,14 @@ const snippets = [
   `
   ,
   `
-  tempo: 120;
+  tempo: 60;
   device: MyDevice  midi 0;
   instrumentDef:ex1  MyDevice  0 0 0;
   [
   instrument: ex1;
   {
   
-    c8t c c   c8n5 c c c c  c8n7 c c c c c c  c8n9 c c c c c c c c |
+    (c8 c c)4   (c8 c c c c)4  (c8 c c c c c c)4  (c8 c c c c c c c c)4 |
   
   
   }
