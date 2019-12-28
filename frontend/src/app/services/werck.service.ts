@@ -15,13 +15,12 @@ import { MidiplayerService } from './midiplayer.service';
 
 type _SheetFileCreator = (path: string) => Promise<ISheetFile>;
 
-export type PlayerStateChange = { from: PlayerState, to: PlayerState };
+export interface PlayerStateChange { from: PlayerState; to: PlayerState; }
 
 @Injectable({
 	providedIn: 'root'
 })
 export class WerckService {
-	//isPlaying: boolean;
 	private playerState_: PlayerState = PlayerState.Stopped;
 	pollerId: any;
 	position: Quarters = 0;
@@ -38,11 +37,10 @@ export class WerckService {
 	onTryPlayWithoutSheet = new EventEmitter<void>();
 	onCloseSheet = new EventEmitter<IFile>();
 	constructor(protected backend: BackendService, 
-		protected log: LogService, 
-		protected fileService: FileService, 
-		protected rest: RestService,
-		protected midiPlayer: MidiplayerService) 
-	{
+		           protected log: LogService, 
+		           protected fileService: FileService, 
+		           protected rest: RestService,
+		           protected midiPlayer: MidiplayerService) {
 		this.fileService.fileSaved.subscribe({next: this.onFileSaved.bind(this)});
 	}
 
@@ -80,7 +78,7 @@ export class WerckService {
 	}
 
 	set playerState(val: PlayerState) {
-		let oldState = this.playerState_;
+		const oldState = this.playerState_;
 		this.playerState_ = val;
 		this.playerStateChange.emit({ from: oldState, to: val });
 	}
@@ -128,10 +126,10 @@ export class WerckService {
 	}
 
 	private merge_(newFiles: IFile[], destination: IFile[]) {
-		let toRemove = _(destination).differenceBy(newFiles, x => x.sourceId).value();
-		let toAdd = _(newFiles).differenceBy(destination, x => x.sourceId).value();
+		const toRemove = _(destination).differenceBy(newFiles, x => x.sourceId).value();
+		const toAdd = _(newFiles).differenceBy(destination, x => x.sourceId).value();
 		_.pullAll(this.documentFiles, toRemove);
-		for (let x of toAdd) {
+		for (const x of toAdd) {
 			this.documentFiles.push(x);
 		}
 	}
@@ -143,10 +141,6 @@ export class WerckService {
 		}
 	}
 
-
-
-
-
 	async createTutorialFile(text: string): Promise<IFile> {
 		return await this.backend.appCreateVirtualSheet(text);
 	}
@@ -157,8 +151,6 @@ export class WerckService {
 		return result;
 	}	
 
-
-
 	handleErrors(mainSheet: ISheetFile): any {
 		if (mainSheet.hasError) {
 			this.log.error(mainSheet.error);
@@ -167,7 +159,7 @@ export class WerckService {
 
 	handleWarnings(mainSheet: ISheetFile): any {
 		if (mainSheet.hasWarnings) {
-			for (let warning of mainSheet.warnings) {
+			for (const warning of mainSheet.warnings) {
 				this.log.warn(warning);
 			}
 		}
@@ -192,21 +184,17 @@ export class WerckService {
 	 * an user event. Thats why we force to have a event arg.
 	 */
 	async play(event: MouseEvent | KeyboardEvent) {
-		const result:any = await this.rest.compile([this.mainSheet]);
+		if (this.isPlaying) {
+			return;
+		}
+		let startPosition = this.startPosition;
+		if (this.isPaused) {
+			startPosition = this.position;
+		}
+		this.playerState = PlayerState.Playing;
+		const result: any = await this.rest.compile([this.mainSheet]);
 		this.midiPlayer.tempo = result.bpm;
 		this.midiPlayer.play(result.midiData, event);
-		// if (this.mainSheet.isNew) {
-		// 	this.onTryPlayWithoutSheet.emit();
-		// 	return;
-		// }
-		// if (this.isPlaying) {
-		// 	return;
-		// }
-		// let startPosition = this.startPosition;
-		// if (this.isPaused) {
-		// 	startPosition = this.position;
-		// }
-		// this.playerState = PlayerState.Playing;
 	}
 
 	async stop() {
@@ -214,7 +202,7 @@ export class WerckService {
 			return;
 		}
 		this.playerState = PlayerState.Stopped;
-		setTimeout(()=>{
+		setTimeout(() => {
 			this.position = 0;
 		}, 100);
 	}

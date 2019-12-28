@@ -53,7 +53,6 @@ export class MidiplayerService {
 				instrument: 'acoustic_grand_piano',		
 				onerror: reject,
 				onsuccess: () => {
-					console.log('PLAYER INIT');
 					this._player = MIDI.Player;
 					resolve(this._player);
 				}

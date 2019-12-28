@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IFile, AFile, ITextFileContent, strToArrayBuffer, ISheetFile, UndefinedSourceId, FileType, ExtensionMap } from 'src/shared/io/file';
+import { IFile, AFile, strToArrayBuffer, ISheetFile, UndefinedSourceId, FileType, ExtensionMap } from 'src/shared/io/file';
 import { IEventInfo } from 'src/shared/editor/EventLocation';
 import { DocumentSourceId, Quarters, Path, Ticks } from 'src/shared/werck/types';
 import * as _ from 'lodash';
@@ -75,53 +75,12 @@ interface FileDialogResult {
 	file: string;
 }
 
-class WerckFile extends AFile {
-    constructor(from: FileResponse) {
-		super(from);
-        if (from) {
-			if (from.data) {
-				this.content = new TextFileContent(from.data);
-			}
-        }
-	}
-	private static getTemplate(fileType: FileType): string {
-		switch(fileType) {
-			case FileType.Template: return TmplSheetTemplate;
-			case FileType.Chords: return TmplChordDef;
-			case FileType.Pitchmap: return TmplPitchmap;
-			default: return "";
-		}
-	}
-	static createEmptyFile(fileType: FileType): WerckFile {
-		let fileData:FileResponse = {
-			content: null,
-			data: WerckFile.getTemplate(fileType),
-			extension: ExtensionMap[fileType],
-			filename: "New File",
-			equals: null,
-			hasContent: null,
-			path: null,
-			sourceId: UndefinedSourceId,
-			isNew: null
-		};
-		return new WerckFile(fileData);
-	}
-}
-
 class SheetFile extends AFile implements ISheetFile {
-	error: string;
-	warnings: string[];
     constructor(from: FileResponse) {
 		super(from);
 		if (from.data !== undefined) {
 			this.content = new TextFileContent(from.data);
 		}
-	}
-
-	assign(from: FileResponse) {
-		super.assign(from);
-		this.error = (from as any).error;
-		this.warnings = (from as any).warnings;
 	}
 
 	get hasError(): boolean {
@@ -130,16 +89,14 @@ class SheetFile extends AFile implements ISheetFile {
 	get hasWarnings(): boolean {
 		return !!this.warnings && this.warnings.length > 0;
 	}
-	updateStatus(status: IUpdateStatus):void {
-		this.error = status.error;
-		this.warnings = status.warnings;
-	}
+	error: string;
+	warnings: string[];
 	static createEmptySheet(): SheetFile {
-		let sheetData:FileResponse = {
+		const sheetData: FileResponse = {
 			content: null,
 			data: TmplNewSheet,
 			extension: AppConfig.knownExtensions.sheet,
-			filename: "New Sheet",
+			filename: 'New Sheet',
 			equals: null,
 			hasContent: null,
 			path: null,
@@ -148,29 +105,28 @@ class SheetFile extends AFile implements ISheetFile {
 		};
 		return new SheetFile(sheetData);
 	}
-}
 
-class MidiFile extends AFile {
-    constructor(from: MidiFileResponse) {
-		super();
-        if (from) {
-            this.path = from.path;
-			this.sourceId = from.sourceId;
-			if (from.data) {
-				this.content = new BinaryFileContent(strToArrayBuffer(from.data));
-			}
-        }
-    }
+	assign(from: FileResponse) {
+		super.assign(from);
+		this.error = (from as any).error;
+		this.warnings = (from as any).warnings;
+	}
+
+	updateStatus(status: IUpdateStatus): void {
+		this.error = status.error;
+		this.warnings = status.warnings;
+	}
 }
 
 class TutorialFile extends SheetFile {
     constructor(fileResponse: FileResponse, text: string) {
         super(fileResponse);
         this.extension = AppConfig.knownExtensions.tutorial;
-		this.content = new TextFileContent(text);
-		this.content.changed = true;
+		      this.content = new TextFileContent(text);
+		      this.content.changed = true;
 	}
 }
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -181,12 +137,10 @@ export class BackendService {
 	constructor() {
 	}
 
-
 	async appCreateVirtualSheet(text: string): Promise<ISheetFile> {
 		const fileResponse = {} as FileResponse;
 		return new TutorialFile(fileResponse, text);	
 	}
 
-
-	//sheet
+	// sheet
 }
