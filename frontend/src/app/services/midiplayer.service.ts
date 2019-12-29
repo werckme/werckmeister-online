@@ -28,6 +28,20 @@ function fixBrokenDeltaPlayback() {
 	MIDI.Player.replayer.getData = () => data;
 }
 
+
+/**
+ * the tick values of MIDI.js seems only to be correct if 
+ * the bpm = 120
+ * @param ticks 
+ * @param tempo 
+ */
+function fixBrokenTicks(ticks:number, tempo: number): Quarters {
+	if (tempo === 0) {
+		return 0;
+	}
+	return ticks * (tempo / 120);
+}
+
 export interface IMidiplayerEvent {
 	position: Quarters;
 	midiEvent: MidiEvent;
@@ -60,12 +74,14 @@ export class MidiplayerService {
 		if (!this._player || !this._currentMidifile) {
 			return 0;
 		}
-		return this._player.currentTime / this._currentMidifile.header.ticksPerBeat;
+		const ppq = this._currentMidifile.header.ticksPerBeat;
+		return fixBrokenTicks(this._player.currentTime, this.tempo) / ppq;
 	}
 
 	onEvent(playerEvent: any) {
 		const ticks = playerEvent.now - DeltaBugFixOffset;
-		const position = ticks / this._currentMidifile.header.ticksPerBeat;
+		const ppq = this._currentMidifile.header.ticksPerBeat;
+		const position = fixBrokenTicks(ticks, this.tempo) / ppq;
 		const midiEvent = new MidiEvent();
 		// tslint:disable-next-line: no-bitwise
 		midiEvent.eventType = playerEvent.message >> 4;

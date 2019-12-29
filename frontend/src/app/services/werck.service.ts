@@ -122,7 +122,6 @@ export class WerckService {
 
 	async setSheet(file: IFile) {
 		this.mainSheet = await this.rest.compile([file]);
-		console.log(this.mainSheet);
 	}
 
 	async update() {
@@ -187,9 +186,13 @@ export class WerckService {
 		if (!this.mainSheet) {
 			return null;
 		}
-		return _(this.mainSheet.eventInfos)
-			.filter((x: IEventInfo) => this.time >= x.sheetTime)
-			.last();
+		const treffer = _(this.mainSheet.eventInfos)
+			.map((x:IEventInfo) => ({diff: Math.abs(this.time - x.sheetTime), eventInfo: x}))
+			.minBy(x => x.diff);
+		if (!treffer) {
+			return null;
+		}
+		return treffer.eventInfo;
 	}
 
 	getEvents(file: IFile): IEventInfo[] {

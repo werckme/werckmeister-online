@@ -205,14 +205,14 @@ export class KlavierComponent implements OnInit {
 	}
 
 	updateEvents() {
-		if (!this.instrument) {
-			return;
-		}
-		this.pitches = _(this.werck.currentEvents)
-			.filter(x => x.instrumentId === this.instrument.id && x.channel === this.instrument.channel)
-			.map(x => _(x.pitches).map(pitch=>`k${pitch}`).value())
-			.flatten()
-			.value();
+		// if (!this.instrument) {
+		// 	return;
+		// }
+		// this.pitches = _(this.werck.currentEvents)
+		// 	.filter(x => x.instrumentId === this.instrument.id && x.channel === this.instrument.channel)
+		// 	.map(x => _(x.pitches).map(pitch=>`k${pitch}`).value())
+		// 	.flatten()
+		// 	.value();
 	}
 
 	startEventHighlighter() {
