@@ -1,10 +1,10 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Ticks, Quarters, Path } from 'src/shared/werck/types';
 import { BackendService } from './backend.service';
-import { AFile, IFile, ISheetFile } from 'src/shared/io/file';
+import { AFile, IFile, ISheetFile, ICompiledSheetFile, IEventInfo, ISheetEventInfo } from 'src/shared/io/file';
 import { AppConfig } from 'src/config';
 import * as _ from 'lodash';
-import { IEventInfo } from 'src/shared/editor/EventLocation';
+import { IEventLocation } from 'src/shared/editor/EventLocation';
 import { PlayerState } from 'src/shared/werck/player';
 import { IInstrument } from 'src/shared/werck/instrument';
 import { LogService } from './log.service';
@@ -26,10 +26,9 @@ export class WerckService {
 	pollerId: any;
 	totalDuration = 0;
 	private startPosition_: Quarters = 0;
-	mainSheet: ISheetFile;
+	mainSheet: ICompiledSheetFile;
 	documentFiles: IFile[] = [];
 	instruments: IInstrument[] = [];
-	currentEvents: IEventInfo[] = [];
 	werckChanged = new EventEmitter<void>();
 	noteOnChange = new EventEmitter<Quarters>();
 	playerStateChange = new EventEmitter<PlayerStateChange>();
@@ -114,15 +113,16 @@ export class WerckService {
 		this.startPosition_ = val;
 	}
 
-	get position(): Quarters {
+	get time(): Quarters {
 		if (this.isStopped || !this.midiPlayer) {
 			return 0;
 		}
 		return this.midiPlayer.position;
 	}
 
-	setSheet(file: IFile) {
-		this.mainSheet = file as ISheetFile;
+	async setSheet(file: IFile) {
+		this.mainSheet = await this.rest.compile([file]);
+		console.log(this.mainSheet);
 	}
 
 	async update() {
@@ -158,12 +158,12 @@ export class WerckService {
 		}
 	}
 
-	async createTutorialFile(text: string): Promise<IFile> {
-		return await this.backend.appCreateVirtualSheet(text);
+	async createTutorialFile(text: string, filename: string = "unknown.sheet"): Promise<IFile> {
+		return await this.backend.appCreateVirtualSheet(text, filename);
 	}
 
-	async createSnippetFile(text: string): Promise<IFile> {
-		const result =  await this.backend.appCreateVirtualSheet(text);
+	async createSnippetFile(text: string, filename: string): Promise<IFile> {
+		const result =  await this.backend.appCreateVirtualSheet(text, filename);
 		result.extension = '.sheet';
 		return result;
 	}	
@@ -183,13 +183,24 @@ export class WerckService {
 	}
 
 
-	getEventsAtCurrentTime() {
-		return this.currentEvents;
+	getEventsAtCurrentTime(): IEventInfo {
+		if (!this.mainSheet) {
+			return null;
+		}
+		return _(this.mainSheet.eventInfos)
+			.filter((x: IEventInfo) => this.time >= x.sheetTime)
+			.last();
 	}
 
+	getEvents(file: IFile): IEventInfo[] {
+		if (!this.mainSheet) {
+			return [];
+		}
+		return this.mainSheet.eventInfos;
+	}
 
 	checkAutoStop() {
-		if (this.position >= this.totalDuration) {
+		if (this.time >= this.totalDuration) {
 			setTimeout(this.stop.bind(this));
 		}
 	}
@@ -201,14 +212,16 @@ export class WerckService {
 	 * an user event. Thats why we force to have a event arg.
 	 */
 	async play(event: MouseEvent | KeyboardEvent) {
+		if (!this.mainSheet) {
+			return;
+		}
 		let startPosition = this.startPosition;
 		if (this.isPaused) {
-			startPosition = this.position;
+			startPosition = this.time;
 		}
 		this.playerState = PlayerState.Playing;
-		const result: any = await this.rest.compile([this.mainSheet]);
-		this.midiPlayer.tempo = result.midi.bpm;
-		this.midiPlayer.play(result.midi.midiData, event);
+		this.midiPlayer.tempo = this.mainSheet.midi.bpm;
+		this.midiPlayer.play(this.mainSheet.midi.midiData, event);
 	}
 
 	async stop() {

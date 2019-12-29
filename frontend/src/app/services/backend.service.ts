@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IFile, AFile, strToArrayBuffer, ISheetFile, UndefinedSourceId, FileType, ExtensionMap } from 'src/shared/io/file';
-import { IEventInfo } from 'src/shared/editor/EventLocation';
+import { IEventLocation } from 'src/shared/editor/EventLocation';
 import { DocumentSourceId, Quarters, Path, Ticks } from 'src/shared/werck/types';
 import * as _ from 'lodash';
 import { TextFileContent, BinaryFileContent } from 'src/shared/io/fileContent';
@@ -45,7 +45,7 @@ export interface ArgvResult {
 }
 
 export interface EventsResult {
-	events: IEventInfo[];
+	events: IEventLocation[];
 }
 
 export interface PositionsResult {
@@ -137,9 +137,11 @@ export class BackendService {
 	constructor() {
 	}
 
-	async appCreateVirtualSheet(text: string): Promise<ISheetFile> {
+	async appCreateVirtualSheet(text: string, filename: string): Promise<ISheetFile> {
 		const fileResponse = {} as FileResponse;
-		return new TutorialFile(fileResponse, text);	
+		const result = new TutorialFile(fileResponse, text);
+		result.filename = filename;
+		return result;	
 	}
 
 	// sheet

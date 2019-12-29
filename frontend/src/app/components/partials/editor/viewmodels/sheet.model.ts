@@ -76,6 +76,9 @@ export class EditorSheetViewModel extends EditorTextViewModel{
 	}
 
 	onPlayerStateChanged(state: PlayerStateChange) {
+		if (this.werck.mainSheet.filename !== this.file.filename) {
+			return;
+		}
 		if (state.from === PlayerState.Stopped && state.to === PlayerState.Playing) {
 			this.startHighlighter();
 		}

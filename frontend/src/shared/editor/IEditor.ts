@@ -1,5 +1,5 @@
 import { AceEditor } from './Ace/AceEditor';
-import { IEventInfo } from './EventLocation';
+import { IEventLocation } from './EventLocation';
 import { Path } from '../werck/types';
 import { IFile } from '../io/file';
 import { BackendService } from 'src/app/services/backend.service';

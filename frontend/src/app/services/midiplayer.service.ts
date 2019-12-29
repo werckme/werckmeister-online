@@ -110,7 +110,6 @@ export class MidiplayerService {
 		const player = await this.getPlayer(event);
 		player.BPM = this._tempo;
 		await this.loadFile(midiBase64, player);
-		console.log(this._currentMidifile);
 		fixBrokenDeltaPlayback();	
 		player.stop(); // stops all audio being played, and resets currentTime to 0.
 		player.start();

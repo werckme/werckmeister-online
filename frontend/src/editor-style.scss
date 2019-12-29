@@ -40,10 +40,8 @@ $keycolor: #ff79c6;
     }
 }
 
-.app.isPlaying {
-    .sheet-editor {
-        .marked[werckzeug="marked"] {
-            border-top:yellow solid 5px;
-        }
+.sheet-editor {
+    .marked[werckzeug="marked"] {
+        border-top:yellow solid 5px;
     }
 }

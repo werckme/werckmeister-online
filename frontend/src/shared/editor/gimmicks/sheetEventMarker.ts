@@ -1,17 +1,19 @@
 import { IEditor, IMarker, ITextPosition, IRange } from '../IEditor';
 import { MarkerOptions } from '../MarkerOptions';
-import { IEventInfo } from '../EventLocation';
+import { IEventLocation } from '../EventLocation';
 import { createMarkerId, allMarkersOff } from '../Ace/Marker';
 import { WerckService } from 'src/app/services/werck.service';
 import * as _ from 'lodash';
-import { IFile } from 'src/shared/io/file';
+import { IFile, IEventInfo, ISheetEventInfo } from 'src/shared/io/file';
+import { SheetInspector } from '../SheetInspector';
 
 
 export class SheetEventMarkerManager {
 	markers = {};
 	werckPositionObserver: any;
+	inspector: SheetInspector;
 	constructor(public file: IFile, public editor: IEditor, public werck: WerckService) {
-
+		this.inspector = new SheetInspector(editor);
 	}
 
 	get isObserving(): boolean {
@@ -58,27 +60,46 @@ export class SheetEventMarkerManager {
 		}
 	}
 
-	getMarkersByPosition(positions: IEventInfo[]): IMarker[] {
+	getMarkersByPosition(positions: IEventLocation[]): IMarker[] {
 		return _(positions)
-			.filter( x => x.sourceId === this.file.sourceId )
 			.map(x => this.markers[createMarkerId(x.row, x.column)])
 			.filter(x => !!x)
 			.value();
 	}
 
-	async updateEventMarkers() {
-		if (this.file.isNew) {
-			// a new (unsaved) file can not have any events to mark
-			return;
+	private _eventInfosToEventLocations(infos: IEventInfo[]) {
+		let eventInfos = _(infos)
+			.map((x: IEventInfo) => x.sheetEventInfos)
+			.flatten()
+			.value()
+		;
+		const rowsAndClolumns = this.inspector.getRowAndColumns(eventInfos.map(x=>x.beginPosition));
+		const locations = [];
+		for (let idx = 0; idx < rowsAndClolumns.length; ++idx) {
+			locations.push({
+				sourceId: eventInfos[idx].sourceId,
+				row: rowsAndClolumns[idx].row,
+				column: rowsAndClolumns[idx].col
+			});
 		}
-		this.markers = {};
-		const positions = []; // await this.werck.getEvents(this.file);
-		this.addEventMarkers(positions);
+		return locations;
 	}
 
-	async updateEventMarkerStates() {
-		const events = await this.werck.getEventsAtCurrentTime();
-		const nextMarkers = this.getMarkersByPosition(events);
+	updateEventMarkers() {
+		this.markers = {};
+		const eventInfos = this.werck.getEvents(this.file);
+		const locations = this._eventInfosToEventLocations(eventInfos);
+		this.addEventMarkers(locations);
+	}
+
+	updateEventMarkerStates() {
+		const eventInfos = this.werck.getEventsAtCurrentTime();
+		if (!eventInfos) {
+			allMarkersOff();
+			return;
+		}
+		const locations = this._eventInfosToEventLocations([eventInfos]);
+		const nextMarkers = this.getMarkersByPosition(locations);
 		allMarkersOff();
 		this.setMarkersEnabled(nextMarkers, true);
 	}
@@ -91,7 +112,7 @@ export class SheetEventMarkerManager {
 		return marker;
 	}
 
-	addEventMarkers(locations: IEventInfo[]): IMarker[] {
+	addEventMarkers(locations: IEventLocation[]): IMarker[] {
 		const result = [];
 		for (const location of locations) {
 			const marker = this.addEventMarker(location.row, location.column);

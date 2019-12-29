@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IFile } from 'src/shared/io/file';
+import { IFile, ICompiledSheetFile, ISheetFile } from 'src/shared/io/file';
 import { AppConfig } from 'src/config';
 import * as _ from 'lodash';
 import { TextFile, TextFileContent } from 'src/shared/io/fileContent';
@@ -38,16 +38,25 @@ export class RestService {
 		if (file.extension === AppConfig.knownExtensions.tutorial) {
 			file.extension = AppConfig.knownExtensions.sheet;
 		}
-		file.filename = `main${file.extension}`;
 		return {path: file.filename, data: (file.content as TextFileContent).data};
 	}
 
-	async compile(files: IFile[]) {
+	async compile(files: IFile[]): Promise<ICompiledSheetFile> {
 		const requestFiles: any = _(files)
 			.map((file: IFile) => this.fileToRequestFiles(file))
 			.filter( x => !!x )
 			.value()
 		;
-		return await this.post('compile', requestFiles);
+		const sheet:any = _(files).filter(x=>x.extension === '.sheet').first();
+		const response:any = await this.post('compile', requestFiles);
+		sheet.eventInfos = response.eventInfos;
+		sheet.warnings = response.midi.warnings;
+		sheet.midi = {
+			bpm: response.midi.bpm,
+			duration: response.midi.duration,
+			midiData: response.midi.midiData
+		};
+		sheet.sources = response.midi.sources;
+		return sheet as ICompiledSheetFile;
 	}
 }

@@ -48,7 +48,7 @@ export class EditorComponent extends ATutorial implements OnInit {
 
 	async ngOnInit() {
     const text = this.prepareSnippet(snippet);
-    const file = await this.werck.createSnippetFile(text);
+    const file = await this.werck.createSnippetFile(text, 'blackpages.sheet');
     this.files.push(file);
 	}
 

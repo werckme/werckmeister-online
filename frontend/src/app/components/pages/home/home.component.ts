@@ -39,7 +39,7 @@ const snippets = [
   `
   ,
   `
-  tempo: 80;
+  tempo: 50;
   device: MyDevice  midi 0;
   instrumentDef:ex1  MyDevice  0 0 0;
   [
@@ -134,9 +134,10 @@ export class HomeComponent extends ATutorial implements OnInit {
 	}
 
 	async ngOnInit() {
+    let c = 0;
 		for (const snippet of snippets) {
 			const text = this.prepareSnippet(snippet);
-			const file = await this.werck.createTutorialFile(text);
+			const file = await this.werck.createTutorialFile(text, `tutorial-${c++}.sheet`);
 			this.files.push(file);
 		}
 	}

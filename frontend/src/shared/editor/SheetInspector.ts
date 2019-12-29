@@ -1,5 +1,6 @@
 import { IEditor, IRange } from './IEditor';
 import { AInspector, Token } from './AInspector';
+import { TextInspector } from './TextInspector';
 
 export enum TokenType {
     LoadExpression = "document-config-load",
@@ -30,7 +31,7 @@ export class MidiConfig implements IMidiConfig {
 
 }
 
-export class SheetInspector extends AInspector {
+export class SheetInspector extends TextInspector {
     constructor(editor: IEditor) {
         super(editor);
     }

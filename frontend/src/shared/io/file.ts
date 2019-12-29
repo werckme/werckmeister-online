@@ -1,4 +1,4 @@
-import { DocumentSourceId, Path } from '../werck/types';
+import { DocumentSourceId, Path, Quarters } from '../werck/types';
 import { sha256, sha224 } from 'js-sha256';
 import { AppConfig } from 'src/config';
 import { TextFileContent } from './fileContent';
@@ -60,6 +60,26 @@ export interface ISheetFile extends IFile {
     warnings: string[];
     hasError: boolean;
     hasWarnings: boolean;
+}
+
+export interface ISheetEventInfo {
+    beginPosition: number;
+    endPosition: number;
+    sourceId: number;
+}
+
+export interface IEventInfo {
+    sheetTime: Quarters;
+    sheetEventInfos: ISheetEventInfo[];
+}
+
+export interface ICompiledSheetFile extends ISheetFile {
+    midi: {
+        bpm: number,
+        duration: number,
+        midiData: string
+    };
+    eventInfos: IEventInfo[];
 }
 
 
