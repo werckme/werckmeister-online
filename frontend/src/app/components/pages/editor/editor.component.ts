@@ -6,6 +6,8 @@ import { IFile } from 'src/shared/io/file';
 
 const snippet = 
   `
+  using "chords/default.chords";
+
   tempo: 60;
   device: MyDevice  midi 0;
   instrumentDef:piano  MyDevice  0 0 0;
@@ -41,7 +43,35 @@ const snippet =
     ((r eb' bb' ab' e') (e' g' eb' bb ab') (c'' bb'x ab'x f'))2  (bb' gb'x ab' f' db'x eb' b ab' f')4 (f' eb' gb' e' db' eb' ab' db' gb' f eb)4 |
     c'1 |
   }
-  ]   
+  ]
+
+  [
+    type: template;
+    name: x;
+    instrument: piano;
+    {
+        <I II III IV V VI VII>1 |
+    }
+    ]
+    
+    [
+    type: accomp;
+    {   
+        /template: x/
+        G2   |  Bb2  |  G2   |
+        Bb2  |  G2   |  Bb2  | 
+        G2   |  Bb2  |  D2   | 
+        D2   |  D2   |  D2   | 
+        D2   |  D2   |  D2   | 
+        D2   |  Gb2  |  Gb2  |
+        Bb2  |  G2   |  Bb2  |
+        G2   |  Bb2  |  C2   |
+        C2   |  C2   |  C2   |
+        C2   |  C#2   B2  |  
+        Ab2  |
+    
+    }
+    ]
   `
   ;
 
