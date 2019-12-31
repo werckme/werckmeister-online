@@ -3,13 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IFile, ICompiledSheetFile, ISheetFile } from 'src/shared/io/file';
 import { AppConfig } from 'src/config';
 import * as _ from 'lodash';
-import { TextFile, TextFileContent } from 'src/shared/io/fileContent';
-import { DefaultChords } from 'src/shared/werck/com/chords';
+import { TextFileContent } from 'src/shared/io/fileContent';
+
 @Injectable({
 	providedIn: 'root'
 })
 export class RestService {
-	protected endpointUrl: string = "http://localhost:10000/api";
+	protected endpointUrl = 'http://localhost:10000/api';
 	constructor(protected http: HttpClient) { }
 
 	protected deserialize<TDomain>(obj: TDomain, json: any): TDomain {
@@ -32,13 +32,6 @@ export class RestService {
 		return this.http.delete<T>(`${this.endpointUrl}/${url}`).toPromise();
 	}
 
-	addAdditionalFiles(requestFiles) {
-		requestFiles.push({
-			path: 'chords/default.chords',
-			data: DefaultChords
-		});
-	}
-
 	fileToRequestFiles(file: IFile) {
 		if (!file) {
 			return null;
@@ -55,9 +48,8 @@ export class RestService {
 			.filter( x => !!x )
 			.value()
 		;
-		this.addAdditionalFiles(requestFiles);
-		const sheet:any = _(files).filter(x=>x.extension === '.sheet').first();
-		const response:any = await this.post('compile', requestFiles);
+		const sheet: any = _(files).filter(x => x.extension === '.sheet').first();
+		const response: any = await this.post('compile', requestFiles);
 		sheet.eventInfos = response.eventInfos;
 		sheet.warnings = response.midi.warnings;
 		sheet.midi = {

@@ -23,13 +23,6 @@ let instances = 0;
 	styleUrls: ['./editor.component.scss']
 })
 export class EditorComponent implements OnInit, OnDestroy {
-
-	private file_: IFile;
-	private fileViewModelMap = {};
-	private currentModel_: IEditorViewModel;
-	private line_: number;
-	private lineHeight_: number;
-	private onTokenClickedListener: any;
 	get currentModel(): IEditorViewModel {
 		return this.currentModel_;
 	}
@@ -38,19 +31,6 @@ export class EditorComponent implements OnInit, OnDestroy {
 		this.currentModel_ = val;
 		this.editorViewModelChange.emit(val);
 	}
-	
-	async ngOnDestroy() {
-		if (!this.editorReady) {
-			return;
-		}
-		this.currentModel.onDestroying();
-	}
-
-	@Output()
-	editorViewModelChange = new EventEmitter<IEditorViewModel>();
-	
-	@Output()
-	isReady = new EventEmitter<void>();
 
 	get file(): IFile {
 		return this.file_;
@@ -87,8 +67,6 @@ export class EditorComponent implements OnInit, OnDestroy {
 	get lineHeight(): number {
 		return this.lineHeight_;
 	}
-
-	elementId = `sheet-ed-${instances++}`;
 	constructor(protected backend: BackendService,
 		protected app: AppService,
 		protected werck: WerckService,
@@ -103,11 +81,33 @@ export class EditorComponent implements OnInit, OnDestroy {
 		return !!this.currentModel && !!this.currentModel.editor;
 	}
 
+	private file_: IFile;
+	private fileViewModelMap = {};
+	private currentModel_: IEditorViewModel;
+	private line_: number;
+	private lineHeight_: number;
+	private onTokenClickedListener: any;
+
+	@Output()
+	editorViewModelChange = new EventEmitter<IEditorViewModel>();
+	
+	@Output()
+	isReady = new EventEmitter<void>();
+
+	elementId = `sheet-ed-${instances++}`;
+	
+	async ngOnDestroy() {
+		if (!this.editorReady) {
+			return;
+		}
+		this.currentModel.onDestroying();
+	}
+
 	ngOnInit() {
 		this.shortcuts
 			.when()
-			.shiftCtrlAndChar("/")
-			.thenExecute(()=>{
+			.shiftCtrlAndChar('/')
+			.thenExecute(() => {
 				this.onCommentSelection();
 			});
 	}
@@ -138,7 +138,7 @@ export class EditorComponent implements OnInit, OnDestroy {
 	}
 
 	private setLineHeight_(val: number) {
-		$(`#${this.elementId}`).attr("style", `height: ${val}em`);
+		$(`#${this.elementId}`).attr('style', `height: ${val}em`);
 	}
 
 	private createNewViewModel(file: IFile): IEditorViewModel {
@@ -163,7 +163,7 @@ export class EditorComponent implements OnInit, OnDestroy {
 	}
 
 	onTokenClicked(token: IToken):void {
-		if (token.isType("link")) {
+		if (token.isType('link')) {
 			this.app.openLink(token.value);
 		}
 	}

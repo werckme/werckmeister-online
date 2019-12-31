@@ -7,10 +7,17 @@ import { IFile } from 'src/shared/io/file';
 const snippet = 
   `
   using "chords/default.chords";
+  using "lua/voicings/simple.lua";
 
   tempo: 60;
   device: MyDevice  midi 0;
+  instrumentDef:lead  MyDevice  0 0 0;
   instrumentDef:piano  MyDevice  0 0 0;
+  
+  instrumentConf: piano
+    voicingStrategy simple range tenor
+    volume 80;  
+
   [
   instrument: piano;
   {
