@@ -12,11 +12,9 @@ const path = require('path')
 const express = require('express');
 const cors = require('cors')
 const app = express();
-//const config = require('config');
-const resolve = require('path').resolve;
-const join = require('path').join;
+const config = require('config');
 
-const WerckmeisterBinaries = "/home/samba/workspace/werckmeister/build";
+const WerckmeisterBinaries = config.werckmeister.bin;
 const WMCompilerBin = path.join(WerckmeisterBinaries, 'sheetc');
 
 
