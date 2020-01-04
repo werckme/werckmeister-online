@@ -36,12 +36,10 @@ function tryParseJSON(str) {
     }
 }
 
-function executeCompiler(jsonData) {
+function executeCompiler(args) {
     return new Promise((resolve, reject) => {
         let result = "";
-        jsonData = JSON.stringify(jsonData);
-        jsonData = Buffer.from(jsonData).toString('base64');
-        const pobj = spawn(WMCompilerBin, [jsonData, '--mode=json', '--nometa']);
+        const pobj = spawn(WMCompilerBin, args);
 
         pobj.stderr.on('data', (data) => {
             result += data;
@@ -55,6 +53,7 @@ function executeCompiler(jsonData) {
             if (code === 0) {
                 resolve(result);
             } else {
+                console.log(result);
                 reject(result);
             }
         });
@@ -66,7 +65,10 @@ app.post('/api/compile', function name(req, res) {
     let result = null;
     handle(res, async () => {
         try {
-            result = await executeCompiler(req.body);
+            let jsonData = JSON.stringify(req.body);
+            jsonData = Buffer.from(jsonData).toString('base64');
+            args = [jsonData, '--mode=json', '--nometa'];
+            result = await executeCompiler(args);
         } catch(ex) {
             result = ex;
             res.statusCode = 500;
@@ -77,7 +79,18 @@ app.post('/api/compile', function name(req, res) {
 });
 
 app.get('/api/version', function name(req, res) {
-    res.send({version: '20200104.1'})
+    let result = null;
+    handle(res, async () => {
+        try {
+            result = await executeCompiler(['--version']);
+            result = result.replace(/\n/g, '');
+        } catch(ex) {
+            result = ex;
+            res.statusCode = 500;
+        }
+        result = {version: result};
+        res.send(result);
+    });
 });
 
 const server = app.listen(port, function () {
