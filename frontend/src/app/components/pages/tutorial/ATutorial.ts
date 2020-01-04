@@ -19,7 +19,6 @@ export abstract class ATutorial {
     
 
     private onSnippetsAreReadyImpl() {
-        this.redirectToMidiConfigIfNeccessary();
     }
 
     abstract files: IFile[];

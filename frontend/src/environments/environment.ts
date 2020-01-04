@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  defaultMidiport: 1
+  defaultMidiport: 1,
+  restEndpoint: 'http://localhost:10000/api'
 };
 
 /*

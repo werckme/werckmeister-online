@@ -6,7 +6,7 @@
 	<button (click)="stop()" class="btn-stop"><i class="ion-md-square"></i></button>
 	
 	<div class="display">
-		<span class="position">{{ werck.position.toFixed(2) }}</span>
+		<span class="position">{{ werck.time.toFixed(2) }}</span>
 	</div>
 	<input class="range-from" type="number" min="0" [(ngModel)]="werck.startPosition" [attr.max]="werck.totalDuration-1" [disabled]="werck.isPlaying">
 	<input class="range-to" type="number" [value]="werck.totalDuration" disabled>

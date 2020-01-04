@@ -4,12 +4,13 @@ import { IFile, ICompiledSheetFile, ISheetFile } from 'src/shared/io/file';
 import { AppConfig } from 'src/config';
 import * as _ from 'lodash';
 import { TextFileContent } from 'src/shared/io/fileContent';
+import { environment } from '../../environments/environment';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class RestService {
-	protected endpointUrl = 'http://localhost:10000/api';
+	protected endpointUrl = environment.restEndpoint;
 	constructor(protected http: HttpClient) { }
 
 	protected deserialize<TDomain>(obj: TDomain, json: any): TDomain {

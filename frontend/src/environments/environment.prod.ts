@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  defaultMidiport: undefined
+  defaultMidiport: undefined,
+  restEndpoint: 'https://trabant.uber.space/werckmeister-compiler/api'
 };
