@@ -76,6 +76,10 @@ app.post('/api/compile', function name(req, res) {
     });
 });
 
+app.get('/api/version', function name(req, res) {
+    res.send({version: '20200104.1'})
+});
+
 const server = app.listen(port, function () {
     var host = server.address().address
     var port = server.address().port
