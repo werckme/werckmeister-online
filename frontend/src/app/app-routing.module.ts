@@ -12,9 +12,10 @@ import { ChordDefComponent } from './components/pages/tutorial/templates/chordde
 import { VoicingsComponent } from './components/pages/tutorial/templates/voicings/voicings.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { EditorComponent } from './components/pages/editor/editor.component';
+import { ManualComponent } from './components/pages/manual/manual.component';
 
 const routes: Routes = [
-	{ path: '', component: HomeComponent },
+	{ path: '', component: ManualComponent},
 	{ path: 'editor', component: EditorComponent },
 	{ path: 'help/tutorial', component: TutorialTocComponent },
 	{ path: 'help/tutorial/midiconfig', component: MidiConfigComponent },

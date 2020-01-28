@@ -36,6 +36,8 @@ import { HeaderComponent } from './components/partials/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SnippedComponent } from './components/partials/help/snipped/snipped.component';
 import { EditorComponent as EditorPageComponent } from './components/pages/editor/editor.component';
+import { WmcodeDirective } from './directives/wmcode.directive';
+import { ManualComponent } from './components/pages/manual/manual.component';
 
 @NgModule({
 	declarations: [
@@ -72,7 +74,9 @@ import { EditorComponent as EditorPageComponent } from './components/pages/edito
 		HomeComponent,
 		HeaderComponent,
 		SnippedComponent,
-		EditorPageComponent
+		EditorPageComponent,
+		WmcodeDirective,
+		ManualComponent
 	],
 	imports: [
 		BrowserModule,
