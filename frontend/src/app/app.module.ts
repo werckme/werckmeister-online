@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { EditorComponent } from './components/partials/editor/editor.component';
 import { BackendService } from './services/backend.service';
 import { ShortcutService } from './services/shortcut.service';
-import { MainComponent } from './components/pages/main.component';
 import { TransportComponent } from './components/partials/daw/transport/transport.component';
 import { FilelistComponent } from './components/partials/filelist/filelist.component';
 import { ConsoleComponent } from './components/partials/console/console.component';
@@ -19,31 +18,23 @@ import { TutorialsnippetComponent } from './components/partials/help/tutorialsni
 import { ExpressionComponent } from './components/partials/help/expression/definition.component';
 import { TipComponent } from './components/partials/help/tip/tip.component';
 import { MenupathComponent } from './components/partials/help/menupath/menupath.component';
-import { TutorialTocComponent } from './components/pages/tutorial/toc/toc.component';
-import { MidiConfigComponent } from './components/pages/tutorial/first-steps/midi/midi-config.component';
-import { NotesComponent } from './components/pages/tutorial/notation/notes/notes.component';
-import { InstrumentComponent } from './components/pages/tutorial/first-steps/instrument/instrument.component';
 import { AccordionComponent } from './components/partials/accordion/accordion.component';
-import { SelectMidiComponent } from './components/pages/tutorial/selectmidi/selectmidi.component';
-import { TracksComponent } from './components/pages/tutorial/notation/tracks/tracks.component';
-import { TemplatesComponent } from './components/pages/tutorial/templates/templates/template.component';
-import { ChordDefComponent } from './components/pages/tutorial/templates/chorddef/chorddef.component';
-import { PitchmapComponent } from './components/pages/tutorial/notation/pitchmap/pitchmap.component';
-import { VoicingsComponent } from './components/pages/tutorial/templates/voicings/voicings.component';
 import { TocComponent } from './components/partials/help/toc/toc.component';
-import { HomeComponent } from './components/pages/home/home.component';
 import { HeaderComponent } from './components/partials/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SnippedComponent } from './components/partials/help/snipped/snipped.component';
-import { EditorComponent as EditorPageComponent } from './components/pages/editor/editor.component';
 import { WmcodeDirective } from './directives/wmcode.directive';
-import { ManualComponent } from './components/pages/manual/manual.component';
+import { WerckmeisterComponent } from './components/pages/werckmeister.component';
+import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
 
+registerLocaleData(en);
 @NgModule({
 	declarations: [
 		AppComponent,
 		EditorComponent,
-		MainComponent,
 		TransportComponent,
 		FilelistComponent,
 		ConsoleComponent,
@@ -59,33 +50,23 @@ import { ManualComponent } from './components/pages/manual/manual.component';
 		ExpressionComponent,
 		MenupathComponent,
 		TipComponent,
-		TutorialTocComponent,
-		MidiConfigComponent,
-		NotesComponent,
-		InstrumentComponent,
 		AccordionComponent,
-		SelectMidiComponent,
-		TracksComponent,
-		TemplatesComponent,
-		ChordDefComponent,
-		PitchmapComponent,
-		VoicingsComponent,
 		TocComponent,
-		HomeComponent,
 		HeaderComponent,
 		SnippedComponent,
-		EditorPageComponent,
 		WmcodeDirective,
-		ManualComponent
+		WerckmeisterComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
 		NgbModule,
-		HttpClientModule
+		HttpClientModule,
+		NgZorroAntdModule,
+		BrowserAnimationsModule
 	],
-	providers: [BackendService, ShortcutService],
+	providers: [BackendService, ShortcutService, { provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
