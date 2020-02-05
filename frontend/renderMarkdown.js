@@ -78,6 +78,7 @@ const inText = fs.readFileSync(filePath).toString();
 const renderer = new marked.Renderer();
 const superHeading = renderer.heading.bind(renderer);
 const superCode = renderer.code.bind(renderer);
+const superTable = renderer.table.bind(renderer);
 
 renderer.heading = (string, level, raw, slugger) => {
   let result = superHeading(string, level, raw, slugger);
@@ -89,6 +90,12 @@ ${result}
   }
   return result;
 };
+
+renderer.table = (header, body) => {
+  const result = superTable(header, body);
+  return result
+    .replace("<table>", '<table class="table table-bordered">');
+}
 
 renderer.code = (code, language, isEscaped) => {
   let languageData = getLanguageMetaDataOrDefault(language);

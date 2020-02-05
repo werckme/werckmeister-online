@@ -1,6 +1,6 @@
  .logo {
-    height: 31px;
-    margin: 16px 24px 16px 15px;
+    height: 65px;
+    margin: 0 24px 0 15px;
     float: left;
 }
 
@@ -12,8 +12,8 @@ nz-breadcrumb {
     margin: 16px 0;
 }
 
-nz-content {
-    padding: 0 50px;
+nz-content, nz-header {
+    padding: 0 5%;
 }
 
 nz-footer {
