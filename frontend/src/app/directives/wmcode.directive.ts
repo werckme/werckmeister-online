@@ -11,7 +11,6 @@ export class WmcodeDirective implements OnInit {
 
 	ngOnInit() {
 		this.source = this.el.nativeElement.innerText;
-		console.log(this.source);
 	}
 
 }

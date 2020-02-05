@@ -37,6 +37,11 @@ function getLanguageMetaDataOrDefault(languageString) {
   return values;
 }
 
+function getLineHeight(code) {
+  lines = _(code).countBy(x => x === '\n').value().true;
+  return lines;
+}
+
 const inText = fs.readFileSync(filePath).toString();
 
 const renderer = new marked.Renderer();
@@ -55,11 +60,12 @@ ${result}
 
 renderer.code = (code, language) => {
   let languageData = getLanguageMetaDataOrDefault(language);
-  let codeTag = "<code>";
   if (languageData && languageData.language) {
-    codeTag = `<code appWerckmeisterCode>`;
+    let lineHeight = getLineHeight(code);
+    let lineOffset = 0;
+    return `<tutorialsnippet lineHeight="${lineHeight}" lineOffset="${lineOffset}"><pre><code appWerckmeisterCode><![CDATA[${code}]]></code></pre></tutorialsnippet>`;
   }
-  return `<pre>${codeTag}<![CDATA[\n${code}\n]]></code></pre>`;
+  return `<pre><code><![CDATA[\n${code}\n]]></code></pre>`;
 }
 renderer.codespan = (code) => { 
   return "<code>" + code

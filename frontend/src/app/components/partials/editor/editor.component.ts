@@ -58,6 +58,8 @@ export class EditorComponent implements OnInit, OnDestroy {
 
 	@Input()
 	set lineHeight(val: number) {
+		const copy:any = val; // force parse
+		val = Number.parseFloat(copy);
 		this.lineHeight_ = val;
 		if (this.editorReady) {
 			this.setLineHeight_(val);
@@ -138,7 +140,8 @@ export class EditorComponent implements OnInit, OnDestroy {
 	}
 
 	private setLineHeight_(val: number) {
-		$(`#${this.elementId}`).attr('style', `height: ${val}em`);
+		val = (val + 1) * AppConfig.EditorFontSizePx * 1.2;
+		$(`#${this.elementId}`).attr('style', `height: ${val}px`);
 	}
 
 	private createNewViewModel(file: IFile): IEditorViewModel {
