@@ -49,7 +49,8 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 	}
 
 	private async createFile(text: string): Promise<IFile> {
-		return await this.werck.createTutorialFile(text);
+		const file = await this.werck.createTutorialFile(text);
+		return file;
 	}
 
 	async play(mouseEvent: MouseEvent) {

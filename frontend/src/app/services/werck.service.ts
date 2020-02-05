@@ -12,7 +12,7 @@ import { FileService } from './file.service';
 import { RestService } from './rest.service';
 import { MidiplayerService, IMidiplayerEvent } from './midiplayer.service';
 import { EventType } from 'src/shared/midi/midiEvent';
-
+import * as uuid from 'uuid-random';
 
 type _SheetFileCreator = (path: string) => Promise<ISheetFile>;
 
@@ -158,12 +158,15 @@ export class WerckService {
 	}
 
 	async createTutorialFile(text: string, filename: string = "unknown.sheet"): Promise<IFile> {
-		return await this.backend.appCreateVirtualSheet(text, filename);
+		const file = await this.backend.appCreateVirtualSheet(text, filename);
+		file.sourceId = uuid();
+		return file;
 	}
 
 	async createSnippetFile(text: string, filename: string): Promise<IFile> {
 		const result =  await this.backend.appCreateVirtualSheet(text, filename);
 		result.extension = '.sheet';
+		result.sourceId = uuid();
 		return result;
 	}	
 

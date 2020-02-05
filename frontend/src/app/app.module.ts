@@ -28,6 +28,8 @@ import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { ManualComponent } from './components/pages/manual.component';
+import { AutumnLeavesComponent } from './components/pages/examples/autumn.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -52,7 +54,9 @@ registerLocaleData(en);
 		HeaderComponent,
 		SnippedComponent,
 		WmcodeDirective,
-		WerckmeisterComponent
+		WerckmeisterComponent,
+		ManualComponent,
+		AutumnLeavesComponent
 	],
 	imports: [
 		BrowserModule,

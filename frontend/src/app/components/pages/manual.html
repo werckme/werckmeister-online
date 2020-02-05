@@ -15,8 +15,7 @@
 <p>The Werckmeister language knows only a few statement types. It&#39;s all about tracks, voices, and events. That&#39;s it. 
 <br>The remaining statements are just for configuration purposes.</p>
 <p>A basic Werckmeister document will look like this:</p>
-<pre><code><![CDATA[
--- CONFIG STUFF:
+<tutorialsnippet lineHeight="25" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[-- CONFIG STUFF:
 -- 1) configure your MIDI device
 -- 2) define an instrument with the name piano
 -- 3) set the tempo
@@ -27,7 +26,7 @@ device: MyMidiDevice midi 1;
 
 -- 2)
 --             name  device       ch pc cc
-instrumentDef: piano MyMidiDevice 1  0  0;
+instrumentDef: piano MyMidiDevice 0  0  0;
 -- (ch= channel, pc= programm change, cc= control change)
 
 -- 3)
@@ -41,29 +40,23 @@ instrument: piano;
 {
     c4 d e f | g1 --note events
 }
-]
-]]></code></pre><h4 id="tracks-and-voices">Tracks and Voices</h4>
+]]]></code></pre></tutorialsnippet><h4 id="tracks-and-voices">Tracks and Voices</h4>
 <p>A track in Werckmeister has excactly the same meanig as it has in a MIDI file.
 It is related to an instrument and contains events.</p>
 <p>A track begins with a <code>[</code> and ends with a <code>]</code>.</p>
-<pre><code><![CDATA[
--- a track with one voice and an instrument setup
+<tutorialsnippet lineHeight="6" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[-- a track with one voice and an instrument setup
 
 [
-instrument: piano;
 {
     c d e f | g a b c'
 }
-]
-]]></code></pre><p>All events of a track are releated at least to one voice. A voice starts with <code>{{</code> and ends with <code>}}</code>.
+]]]></code></pre></tutorialsnippet><p>All events of a track are releated at least to one voice. A voice starts with <code>{{</code> and ends with <code>}}</code>.
 If you want to write polyphonic melody lines, you can add more voices to your track. </p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/poly.png" alt="a polyphonic melody"></p>
 <p>The melody above would be written like this:</p>
-<pre><code><![CDATA[
--- a track with two voices
+<tutorialsnippet lineHeight="10" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[-- a track with two voices
 
 [
-instrument: piano;
 {
     g4  f#8 g  a4   g
 }
@@ -71,37 +64,38 @@ instrument: piano;
     d4   d     d    d
 }
 ]
-
-]]></code></pre><h4 id="events">Events</h4>
+]]></code></pre></tutorialsnippet><h4 id="events">Events</h4>
 <p>There are a few event types:</p>
 <h5 id="note-events">Note Events</h5>
 <p><br>have a pitch and a duration, to be performed by a MIDI instrument.</p>
-<pre><code><![CDATA[
-c d e f g
-]]></code></pre><h5 id="degree-events">Degree Events</h5>
+<pre><code><![CDATA[c d e f g]]></code></pre><h5 id="degree-events">Degree Events</h5>
 <p><br>have a relative pitch degree and a duration. In combination with a chord, degree events can be transformed into regular note events.</p>
-<pre><code><![CDATA[
-I II III IV V VI VII
-]]></code></pre><h5 id="chord-events">Chord Events</h5>
+<pre><code><![CDATA[I II III IV V VI VII]]></code></pre><h5 id="chord-events">Chord Events</h5>
 <p><br>Events which are related to a name. They also store the information which interval is used for a degree. These informations are stored in a <a href="#chords">chord definiton file</a>.</p>
-<pre><code><![CDATA[
-C7 D-7 E-7 F7 Gmaj7 A-7
-]]></code></pre><h5 id="meta-events">Meta Events</h5>
+<pre><code><![CDATA[C7 D-7 E-7 F7 Gmaj7 A-7]]></code></pre><h5 id="meta-events">Meta Events</h5>
 <p><br>Events to set up something or loading a mod script.
 <br>You can recognize meta events by its slashes at the beginning and the end.</p>
-<pre><code><![CDATA[
-/tempo: 100/ -- meta event: set tempo to 100
+<tutorialsnippet lineHeight="4" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
+device: MyDevice  midi 1;
+instrumentDef:ex1  MyDevice  0 0 0;
+[
+instrument: ex1;
+{
+
+
+  /tempo: 100/ -- meta event: set tempo to 100
 c d e f
 /tempo: 50/
 a b c' 
 
-]]></code></pre><h2 id="setup-a-piece">Setup A Piece</h2>
+
+
+}
+]]]></code></pre></tutorialsnippet><h2 id="setup-a-piece">Setup A Piece</h2>
 <h4 id="using">Using</h4>
 <p>The first thing you want to do in a Werckmeister document, is to load include other files to your project. This may be chord definitions, accomp. templates or modulation scripts.</p>
 <p>To include a file use the <code>using</code> command.</p>
-<pre><code><![CDATA[
-using "./chords/default.chords";
-]]></code></pre><p>The path of your file is written between double quotes (<code>&quot;</code>).</p>
+<pre><code><![CDATA[using "./chords/default.chords";]]></code></pre><p>The path of your file is written between double quotes (<code>&quot;</code>).</p>
 <p>The path can be absolute or relative to the current document.
 <em>(It is recommended to use relative path values)</em></p>
 <h4 id="devices--instruments">Devices &amp; Instruments</h4>
@@ -110,37 +104,25 @@ using "./chords/default.chords";
 <p>device statement format:</p>
 <p><code>device: aName midi aMidiPort [offset millis]</code></p>
 <p>To see which devices with what port are connected to your device run the player with the <code>--list</code> argument: </p>
-<pre><code><![CDATA[
-sheetp --list
-]]></code></pre><p>you will get a output like this:</p>
-<pre><code><![CDATA[
-0: Midi Through
+<pre><code><![CDATA[sheetp --list]]></code></pre><p>you will get a output like this:</p>
+<pre><code><![CDATA[0: Midi Through
 1: SC-8850 Part A
 2: SC-8850 Part B
 3: SC-8850 Part C
 4: SC-8850 Part D
-5: USB-Midi Port
-]]></code></pre><p>where the first number means the port number.</p>
+5: USB-Midi Port]]></code></pre><p>where the first number means the port number.</p>
 <p>So lets say we want to add the <code>SC-8850 Part A</code> to our project, we write:</p>
-<pre><code><![CDATA[
-device: MyRoland midi 1;
-]]></code></pre><p>To add a further MIDI port, for example a DX7 on the USB-Midi Port we add another line:</p>
-<pre><code><![CDATA[
-device: MyRoland midi 1;
-device: MyDX7 midi 5;
-]]></code></pre><p>Imagine your USB-Midi Port is a bit cheap and laggy. Every signal to your USB-Midi port has a delay of about 20 milliseconds. We can compensate this by adding a 20 milliseconds delay to the <code>MyRoland</code> device, so that this device and your laggy USB-Midi Port should be in sync. We do this by using an optional <code>offset</code> argument.</p>
-<pre><code><![CDATA[
-device: MyRoland midi 1 offset 20;
-device: MyDX7 midi 5;
-]]></code></pre><h4 id="adding-instruments">Adding instruments</h4>
+<pre><code><![CDATA[device: MyRoland midi 1;]]></code></pre><p>To add a further MIDI port, for example a DX7 on the USB-Midi Port we add another line:</p>
+<pre><code><![CDATA[device: MyRoland midi 1;
+device: MyDX7 midi 5;]]></code></pre><p>Imagine your USB-Midi Port is a bit cheap and laggy. Every signal to your USB-Midi port has a delay of about 20 milliseconds. We can compensate this by adding a 20 milliseconds delay to the <code>MyRoland</code> device, so that this device and your laggy USB-Midi Port should be in sync. We do this by using an optional <code>offset</code> argument.</p>
+<pre><code><![CDATA[device: MyRoland midi 1 offset 20;
+device: MyDX7 midi 5;]]></code></pre><h4 id="adding-instruments">Adding instruments</h4>
 <p>To adding instruments we using the <code>instrumentDef</code> statement, which is constructed like this:</p>
 <p><code>instrumentDef: aInstrumentName aMidiDevice midiChannel midiControlChange midiProgramChange</code></p>
 <p>Let&#39;s add an organ instrument which uses our Roland device from above:</p>
 <p>The Roland SC-8850 offers, for example, a <code>Farf Organ</code>. So if I want to use this instrument on channel 0, I have to send a <code>cc=19 pc=17</code> sequence to the channel on this device.<br>A suitable <code>instrumentDef</code> statement would be look as follows: </p>
-<pre><code><![CDATA[
---             name      device   ch  cc  pc
-instrumentDef: myFarfisa MyRoland 0   19   17;
-]]></code></pre><h4 id="configuring-instruments">Configuring instruments</h4>
+<pre><code><![CDATA[--             name      device   ch  cc  pc
+instrumentDef: myFarfisa MyRoland 0   19   17;]]></code></pre><h4 id="configuring-instruments">Configuring instruments</h4>
 <p>With an instrument added there are further options to configure it.
 A config statement has as first argument the instrument name you want to configure followed by several optional config aruments.</p>
 <p><code>instrumentConf: aInstrumentName [pan aValue] [volume aValue] [voicingStrategy aStrategyName] [mod aModName];</code></p>
@@ -175,24 +157,19 @@ A config statement has as first argument the instrument name you want to configu
 </tbody></table>
 <p>Now, as an example we set a volume value of 80 to our Farfisa organ, also we set the pan more to the left.</p>
 <p><em>(the final result of these settings is strongly dependent by your actual MIDI device)</em> </p>
-<pre><code><![CDATA[
-instrumentConf: myFarfisa volume 80 pan 20;
-]]></code></pre><h4 id="tempo">Tempo</h4>
+<pre><code><![CDATA[instrumentConf: myFarfisa volume 80 pan 20;]]></code></pre><h4 id="tempo">Tempo</h4>
 <p>To set the tempo of your pice, write <code>tempo: aNumber</code>.</p>
-<pre><code><![CDATA[
-tempo 120;
+<tutorialsnippet lineHeight="5" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[tempo 120;
 [
 {
     c d e f | g a b c'
 }
-]
-]]></code></pre><p>Sometimes you want to setup diffent tempi for for several voices.
+]]]></code></pre></tutorialsnippet><p>Sometimes you want to setup diffent tempi for for several voices.
 Then you have to add a tempo <a href="#meta-events">Meta Event</a> to your voice.</p>
 <p><em>since MIDI doesn&#39;t support simultaneous tempi, we achive this effect by streching or shrinking the note durations in relation to the main tempo (Augmentation/Diminution). As an simple example: on double time we pay eights instead of fourths.</em></p>
 <p>Here we play four voices on one track, with four different tempo configurations:</p>
 <p><strong>There seems to be a bug on the webplayer (first notes are missing)</strong></p>
-<pre><code><![CDATA[
-tempo: 120;
+<tutorialsnippet lineHeight="19" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
 [
 {
     /tempo: double/
@@ -211,10 +188,8 @@ tempo: 120;
     c,, d,, e,, f,, | g,, a,, b,, c,
 }
 ]
-
-]]></code></pre><p>Also it is possible to change the tempo in between events:</p>
-<pre><code><![CDATA[
-tempo: 120;
+]]></code></pre></tutorialsnippet><p>Also it is possible to change the tempo in between events:</p>
+<tutorialsnippet lineHeight="15" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
 [
 {
     /tempo: double/
@@ -229,70 +204,157 @@ tempo: 120;
     c d e f | g a b c' |
 }
 ]
-
-]]></code></pre><h4 id="time-signatures">Time Signatures</h4>
+]]></code></pre></tutorialsnippet><h4 id="time-signatures">Time Signatures</h4>
 <p>The time signature 4/4 by default.
 If you want to setup a different time signature than the default, you can achieve this by using the signature <a href="#Meta-Events">meta event</a>.
 With this you are able to setup different time signatures during a piece.</p>
-<pre><code><![CDATA[
-[
+<tutorialsnippet lineHeight="7" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[[
 {
     /signature: 3 4/
     c e e | c e e |
     /signature: 4 4/
     c d e f | g a b c'
 }
-]
-]]></code></pre><h4 id="key-signatures">Key Signatures</h4>
+]]]></code></pre></tutorialsnippet><h4 id="key-signatures">Key Signatures</h4>
 <p>key signatures are not supported.</p>
 <h2 id="write-melodies">Write Melodies</h2>
 <h4 id="notes">Notes</h4>
 <p>The syntax is loosely inspired by the <a href="http://lilypond.org">lilypond</a> notation syntax. A note is just a letter followed by a number for its duration.</p>
 <p><em>If a note has no duration, the last assigned duration will be used.</em></p>
-<pre><code><![CDATA[
-c4 d e8 f
-]]></code></pre><p><br><em>c and d will be played as quarter notes, e and f as eighth notes</em></p>
+<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
+device: MyDevice  midi 1;
+instrumentDef:ex1  MyDevice  0 0 0;
+[
+instrument: ex1;
+{
+
+
+  c4 d e8 f
+
+
+}
+]]]></code></pre></tutorialsnippet><p><br><em>c and d will be played as quarter notes, e and f as eighth notes</em></p>
 <p>the end of a bar is marked by a pipe: <code>|</code></p>
-<pre><code><![CDATA[
-c d e f | g a b c'
-]]></code></pre><h4 id="octaves">Octaves</h4>
+<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
+device: MyDevice  midi 1;
+instrumentDef:ex1  MyDevice  0 0 0;
+[
+instrument: ex1;
+{
+
+
+  c d e f | g a b c'
+
+
+}
+]]]></code></pre></tutorialsnippet><h4 id="octaves">Octaves</h4>
 <p>Lower octaves are marked by a comma (<code>,</code>) after the note, upper octaves by a single quote (<code>&#39;</code>).</p>
-<pre><code><![CDATA[
-c,,  e,,  g,, | c, e, g, | c e g | c' e' g' | c'' e'' g''
-]]></code></pre><h4 id="accidentals">Accidentals</h4>
+<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
+device: MyDevice  midi 1;
+instrumentDef:ex1  MyDevice  0 0 0;
+[
+instrument: ex1;
+{
+
+
+  c,,  e,,  g,, b,, | c, e, g, b, | c e g b | c' e' g' b' | c'' e'' g'' b''
+
+
+}
+]]]></code></pre></tutorialsnippet><h4 id="accidentals">Accidentals</h4>
 <p><code>#</code> raises a pitch by a half step.
 <br> A <code>b</code> lowers it. </p>
-<pre><code><![CDATA[
-c# d# f# g# | bb db' eb' gb'
-]]></code></pre><h4 id="durations">Durations</h4>
+<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
+device: MyDevice  midi 1;
+instrumentDef:ex1  MyDevice  0 0 0;
+[
+instrument: ex1;
+{
+
+
+  c# d# f# g# | bb db' eb' gb'
+
+
+}
+]]]></code></pre></tutorialsnippet><h4 id="durations">Durations</h4>
 <p>A numeric value after a note marks its duration.</p>
-<pre><code><![CDATA[
-c2 c4 c8 c16 c32 c64 c128 r
-]]></code></pre><h4 id="intervals-and-chords">Intervals and Chords</h4>
+<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
+device: MyDevice  midi 1;
+instrumentDef:ex1  MyDevice  0 0 0;
+[
+instrument: ex1;
+{
+
+
+  c2 c4 c8 c16 c32 c64 c128 r
+
+
+}
+]]]></code></pre></tutorialsnippet><h4 id="intervals-and-chords">Intervals and Chords</h4>
 <p>Notes that have to sound simultaneous are written in angle brackets. The duration is written after the brackets.</p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/chords.png" alt="two chords"></p>
-<pre><code><![CDATA[
-<g,, c e g bb>4   <c, c eb g bb>2.
-]]></code></pre><h4 id="augmentation-dots--ties">Augmentation Dots &amp; Ties</h4>
+<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 80;
+device: MyDevice  midi 1;
+instrumentDef:ex1  MyDevice  0 0 0;
+[
+instrument: ex1;
+{
+
+
+  <g,, c e g bb>4   <c, c eb g bb>2.
+
+
+}
+]]]></code></pre></tutorialsnippet><h4 id="augmentation-dots--ties">Augmentation Dots &amp; Ties</h4>
 <p>To write a augmentation dot (<code>.</code>) append a dot to a note duration value.
 <br>For ties use a tilde (<code>~</code>) instead. </p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/dotsties.png" alt="dots and ties"></p>
-<pre><code><![CDATA[
-c2. c4 | c2~ c4 c
-]]></code></pre><h4 id="tuplets">Tuplets</h4>
+<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
+device: MyDevice  midi 1;
+instrumentDef:ex1  MyDevice  0 0 0;
+[
+instrument: ex1;
+{
+
+
+  c2. c4 | c2~ c4 c
+
+
+}
+]]]></code></pre></tutorialsnippet><h4 id="tuplets">Tuplets</h4>
 <p>To write tuplets of any kind you just have to write notes encloded by parentheses followed by a duration value. For example: <code>(c c c)4</code>.
 These three notes will now be played in the time of one quarter.</p>
 <p>It doesn&#39;t matter if you write <code>(c2 c2 c2)4</code> or <code>(c8 c8 c8)4</code> because you have three notes with equal durations to be played in the time of one quarter.</p>
 <p><em>The relations between the notes are vital, not their absolute durations.</em></p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/tuplets.png" alt="n-tole examples with 3,7 and 9"></p>
-<pre><code><![CDATA[
-(c8 c c)4   (c8 c c c c)4  (c8 c c c c c c)4  (c8 c c c c c c c c)4
-]]></code></pre><h5 id="nested-tuplets">Nested Tuplets</h5>
+<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 60;
+device: MyDevice  midi 1;
+instrumentDef:ex1  MyDevice  0 0 0;
+[
+instrument: ex1;
+{
+
+
+  (c8 c c)4   (c8 c c c c)4  (c8 c c c c c c)4  (c8 c c c c c c c c)4
+
+
+}
+]]]></code></pre></tutorialsnippet><h5 id="nested-tuplets">Nested Tuplets</h5>
 <p>You are also able to write nested tuplets:</p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/blackpages.png" alt="a example of nested tuplets"></p>
-<pre><code><![CDATA[
-b2 ((b c#' c#' b d')  (f' a a bb c')  (e' a' bb' f' c' g))2
-]]></code></pre><h2 id="write-for-drums">Write for drums</h2>
+<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 60;
+device: MyDevice  midi 1;
+instrumentDef:ex1  MyDevice  0 0 0;
+[
+instrument: ex1;
+{
+
+
+  b2 ((b c#' c#' b d')  (f' a a bb c')  (e' a' bb' f' c' g))2
+
+
+}
+]]]></code></pre></tutorialsnippet><h2 id="write-for-drums">Write for drums</h2>
 <h4 id="pitchmaps">Pitchmaps</h4>
 <p>tbd.</p>
 <h2 id="accomp-my-melodies">Accomp My Melodies</h2>
@@ -300,8 +362,7 @@ b2 ((b c#' c#' b d')  (f' a a bb c')  (e' a' bb' f' c' g))2
 <br>You would say something like: play the 1st degree on one and the 5th degree on four. </p>
 <p>And this is exactly what you doing when writing style templates.
 <br>So in our example above you would write:</p>
-<pre><code><![CDATA[
--- make sure that you have a chord definition loaded
+<tutorialsnippet lineHeight="25" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[-- make sure that you have a chord definition loaded
 using "chords/default.chords";
 
 device: MyDevice  midi 0;
@@ -326,8 +387,7 @@ type: accomp;
     C | F | G | C |
 }
 ]
-
-]]></code></pre><p>Instead of writing absolute notes, you use relative degrees. For example <code>I4</code> means the first degree as a quarter note. </p>
+]]></code></pre></tutorialsnippet><p>Instead of writing absolute notes, you use relative degrees. For example <code>I4</code> means the first degree as a quarter note. </p>
 <p><em>If a degree does not appear in a chord, the degree will not played.</em></p>
 <p>There are the same rules as for writing absolute <a href="#Notes">notes</a>:</p>
 <p>such as:</p>
@@ -338,8 +398,7 @@ type: accomp;
 <li>create tuplets using parantheses</li>
 </ul>
 <p>To spice up our example a bit, we add a second bar which plays an interval with I and III</p>
-<pre><code><![CDATA[
--- make sure that you have a chord definition loaded
+<tutorialsnippet lineHeight="22" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[-- make sure that you have a chord definition loaded
 using "chords/default.chords";
 
 device: MyDevice  midi 0;
@@ -361,8 +420,7 @@ type: accomp;
     /template: simpleBass/
     C | F | G | C |
 }
-]
-]]></code></pre><h2 id="advanced-techniques">Advanced techniques</h2>
+]]]></code></pre></tutorialsnippet><h2 id="advanced-techniques">Advanced techniques</h2>
 <h5 id="chords">Chords</h5>
 <h5 id="voicing-strategies">Voicing strategies</h5>
 <h5 id="mods">Mods</h5>

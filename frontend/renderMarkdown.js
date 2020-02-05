@@ -16,6 +16,7 @@ instrument: ex1;
 , lineOffset: 7
 };
 const MdCodeWerckmeisterTypeSingle = 'single';
+const MdCodeWerckmeisterTypeMute = 'mute';
 const marked = require('marked');
 const _ = require('lodash');
 var fs = require('fs');
@@ -76,6 +77,7 @@ const inText = fs.readFileSync(filePath).toString();
 
 const renderer = new marked.Renderer();
 const superHeading = renderer.heading.bind(renderer);
+const superCode = renderer.code.bind(renderer);
 
 renderer.heading = (string, level, raw, slugger) => {
   let result = superHeading(string, level, raw, slugger);
@@ -88,13 +90,14 @@ ${result}
   return result;
 };
 
-renderer.code = (code, language) => {
+renderer.code = (code, language, isEscaped) => {
   let languageData = getLanguageMetaDataOrDefault(language);
-  if (languageData && languageData.language) {
+  if (languageData && languageData.language && languageData.type != MdCodeWerckmeisterTypeMute) {
     const codeObj = createCodeObj(code, languageData); 
     return `<tutorialsnippet lineHeight="${codeObj.lineHeight}" lineOffset="${codeObj.lineOffset}"><pre><code appWerckmeisterCode><![CDATA[${codeObj.code}]]></code></pre></tutorialsnippet>`;
   }
-  return `<pre><code><![CDATA[\n${code}\n]]></code></pre>`;
+  const cdata = `![CDATA[${code}]]`;
+  return `<pre><code><${cdata}></code></pre>`;
 }
 renderer.codespan = (code) => { 
   return "<code>" + code

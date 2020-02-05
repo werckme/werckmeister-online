@@ -4,12 +4,8 @@
 <p>Go to the page <a href="https://github.com/SambaGodschynski/werckmeister/releases">https://github.com/SambaGodschynski/werckmeister/releases</a> and download the most recent version of Werckmeister.</p>
 <p>On Mac and on Linux you have to install the binaries by executing the installer script.</p>
 <h4 id="mac">Mac</h4>
-<pre><code><![CDATA[
-sudo sh werckmeister-x.x.x-Darwin.sh --prefix=/usr/local --exclude-subdir
-]]></code></pre><h4 id="linux">Linux</h4>
-<pre><code><![CDATA[
-sudo sh werckmeister-x.x.x-Linux.sh --prefix=/usr/local --exclude-subdir
-]]></code></pre><h4 id="windows">Windows</h4>
+<pre><code><![CDATA[sudo sh werckmeister-x.x.x-Darwin.sh --prefix=/usr/local --exclude-subdir]]></code></pre><h4 id="linux">Linux</h4>
+<pre><code><![CDATA[sudo sh werckmeister-x.x.x-Linux.sh --prefix=/usr/local --exclude-subdir]]></code></pre><h4 id="windows">Windows</h4>
 <p>Just execute the installer.</p>
 <h3 id="all-done-what-now">All done, what now?</h3>
 <p>After the installation, two executables should be available:</p>
@@ -19,23 +15,17 @@ sudo sh werckmeister-x.x.x-Linux.sh --prefix=/usr/local --exclude-subdir
 </ul>
 <p>Open a command line shell: <code>cmd</code> on windows or <code>terminal</code> on Mac.</p>
 <p>Type into the terminal:</p>
-<pre><code><![CDATA[
-sheetc --help
-]]></code></pre><p>You should get an output like this:</p>
-<pre><code><![CDATA[
-  --help                produce help message
+<pre><code><![CDATA[sheetc --help]]></code></pre><p>You should get an output like this:</p>
+<pre><code><![CDATA[  --help                produce help message
   --input arg           input file
   --output arg          output file
-  (...)
-]]></code></pre><p>If not, please make sure that the werckmeister <code>bin</code> path of your installation is written into your <code>PATH</code> environment variable.</p>
+  (...)]]></code></pre><p>If not, please make sure that the werckmeister <code>bin</code> path of your installation is written into your <code>PATH</code> environment variable.</p>
 <h3 id="compiler">Compiler</h3>
 <p>Run <code>sheetc aSheetFile.sheet</code> to compile a sheet file into a MIDI file.</p>
 <h3 id="player">Player</h3>
 <p>To playback a sheet file you can do this by executing <code>sheetp</code>.
 Just as with the compiler type in <code>sheetp</code> and then the file you want to playback.</p>
-<pre><code><![CDATA[
-sheetp aSheetFile.sheet
-]]></code></pre><p>In order to get an sheet file played via MIDI, you have to configure set your MIDI ports. </p>
+<pre><code><![CDATA[sheetp aSheetFile.sheet]]></code></pre><p>In order to get an sheet file played via MIDI, you have to configure set your MIDI ports. </p>
 <p>Have a look <a href="#Adding-a-device">here</a> to see how it&#39;s done.</p>
 <h2 id="examples">Examples</h2>
 <p><em>(tbd): examples did not exists yet</em></p>
