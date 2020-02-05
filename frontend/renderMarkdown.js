@@ -1,5 +1,6 @@
 // Create reference instance
 const marked = require('marked');
+const _ = require('lodash');
 var fs = require('fs');
 const splitFilesByH1 = true;
 const fileSplitSeq = '$FILE-SPLIT';
@@ -22,6 +23,20 @@ function normalizeFileName(text) {
     .toLowerCase();
 }
 
+function getLanguageMetaDataOrDefault(languageString) {
+  if (!languageString) {
+    return null;
+  }
+  let values = _(languageString.split(/\s*,\s*/))
+    .map(x=>x.split(/\s*=\s*/))
+    .fromPairs()
+    .value();
+  if (values.length === 1) {
+    return languageString;
+  }
+  return values;
+}
+
 const inText = fs.readFileSync(filePath).toString();
 
 const renderer = new marked.Renderer();
@@ -38,10 +53,19 @@ ${result}
   return result;
 };
 
-renderer.code = code => `<pre><code><![CDATA[\n${code}\n]]></code></pre>`;
-renderer.codespan = code => "<code>" + code
+renderer.code = (code, language) => {
+  let languageData = getLanguageMetaDataOrDefault(language);
+  let codeTag = "<code>";
+  if (languageData && languageData.language) {
+    codeTag = `<code appWerckmeisterCode>`;
+  }
+  return `<pre>${codeTag}<![CDATA[\n${code}\n]]></code></pre>`;
+}
+renderer.codespan = (code) => { 
+  return "<code>" + code
     .replace(/{/g, '{{')
     .replace(/}/g, '}}') + "</code>";
+};
 
 // Set options
 // `highlight` example uses `highlight.js`

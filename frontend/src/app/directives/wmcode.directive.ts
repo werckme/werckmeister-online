@@ -1,7 +1,7 @@
 import { Directive, ElementRef, OnInit } from '@angular/core';
 
 @Directive({
-	selector: '[appWmCode]'
+	selector: '[appWerckmeisterCode]'
 })
 export class WmcodeDirective implements OnInit {
 
