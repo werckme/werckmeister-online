@@ -3,10 +3,17 @@
 
 <img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/Logo_med.png" style="display: block; margin: auto">
 
-<tutorialsnippet lineHeight="5" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[tempo 120;
+<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
+device: MyDevice  midi 1;
+instrumentDef:ex1  MyDevice  0 0 0;
 [
+instrument: ex1;
 {
-    c d e f | g a b c'
+
+
+      c d e f | g a b c'
+
+
 }
 ]]]></code></pre></tutorialsnippet><h2 id="vision">Vision</h2>
 <p>Consider the beauty of lead sheet music: you write a melody and some chords. Thats it.

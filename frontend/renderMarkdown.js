@@ -1,4 +1,21 @@
-// Create reference instance
+const singleTemplate = { 
+  code:
+`tempo: $tempo;
+device: MyDevice  midi 1;
+instrumentDef:ex1  MyDevice  0 0 0;
+[
+instrument: ex1;
+{
+
+
+  $code
+
+
+}
+]`
+, lineOffset: 7
+};
+const MdCodeWerckmeisterTypeSingle = 'single';
 const marked = require('marked');
 const _ = require('lodash');
 var fs = require('fs');
@@ -38,8 +55,21 @@ function getLanguageMetaDataOrDefault(languageString) {
 }
 
 function getLineHeight(code) {
-  lines = _(code).countBy(x => x === '\n').value().true;
-  return lines;
+  const lines = _(code).countBy(x => x === '\n').value().true;
+  return lines || 1;
+}
+
+function createCodeObj(code, languageData) {
+  let lineHeight = getLineHeight(code);
+  let lineOffset = 0;
+  if (languageData.type === MdCodeWerckmeisterTypeSingle) {
+    const tempo = languageData.tempo || 120;
+    code = singleTemplate.code.replace('$code', code)
+      .replace('$tempo', tempo);
+    lineOffset = singleTemplate.lineOffset;
+    lineHeight = Math.max(lineHeight, 2);
+  }
+  return {lineHeight, lineOffset, code};
 }
 
 const inText = fs.readFileSync(filePath).toString();
@@ -61,9 +91,8 @@ ${result}
 renderer.code = (code, language) => {
   let languageData = getLanguageMetaDataOrDefault(language);
   if (languageData && languageData.language) {
-    let lineHeight = getLineHeight(code);
-    let lineOffset = 0;
-    return `<tutorialsnippet lineHeight="${lineHeight}" lineOffset="${lineOffset}"><pre><code appWerckmeisterCode><![CDATA[${code}]]></code></pre></tutorialsnippet>`;
+    const codeObj = createCodeObj(code, languageData); 
+    return `<tutorialsnippet lineHeight="${codeObj.lineHeight}" lineOffset="${codeObj.lineOffset}"><pre><code appWerckmeisterCode><![CDATA[${codeObj.code}]]></code></pre></tutorialsnippet>`;
   }
   return `<pre><code><![CDATA[\n${code}\n]]></code></pre>`;
 }
