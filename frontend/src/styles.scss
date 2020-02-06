@@ -92,6 +92,7 @@ tutorialsnippet {
 
 .ace_editor {
     @include mat-card-2;
+    border-radius: 5px;
 }
 
 pre {
