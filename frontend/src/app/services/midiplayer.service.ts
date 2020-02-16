@@ -107,7 +107,11 @@ export class MidiplayerService {
 		await this.loadFile(midiBase64, player);
 		player.stop(); // stops all audio being played, and resets currentTime to 0.
 		player.start();
-		
+	}
+
+	async stop() {
+		const player = await this.getPlayer(null);
+		player.stop();
 	}
 
 }

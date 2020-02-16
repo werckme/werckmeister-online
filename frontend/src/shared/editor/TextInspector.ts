@@ -36,7 +36,7 @@ export class TextInspector extends AInspector {
                 .filter(x => x.pos!==null && x.pos ===idx)
                 .each(x=> {
                     x.row = row;
-                    x.col = col;
+                    x.col = col-1;
                 })
             ;
         }

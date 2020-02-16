@@ -54,6 +54,9 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 	}
 
 	async play(mouseEvent: MouseEvent) {
+		if (this.werck.isPlaying) {
+			await this.werck.stop();
+		}
 		await this.werck.setSheet(this.file);
 		this.werck.play(mouseEvent);
 	}

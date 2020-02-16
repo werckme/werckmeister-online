@@ -13,6 +13,7 @@ import { RestService } from './rest.service';
 import { MidiplayerService, IMidiplayerEvent } from './midiplayer.service';
 import { EventType } from 'src/shared/midi/midiEvent';
 import * as uuid from 'uuid-random';
+import { waitAsync } from 'src/shared/help/waitAsync';
 
 type _SheetFileCreator = (path: string) => Promise<ISheetFile>;
 
@@ -211,13 +212,15 @@ export class WerckService {
 		}
 	}
 
-
 	/**
 	 * 
 	 * @param new brower policies require to do audio context initialization during
 	 * an user event. Thats why we force to have a event arg.
 	 */
 	async play(event: MouseEvent | KeyboardEvent) {
+		if (this.isPlaying) {
+			await this.stop();
+		}
 		if (!this.mainSheet) {
 			return;
 		}
@@ -235,6 +238,7 @@ export class WerckService {
 			return;
 		}
 		this.playerState = PlayerState.Stopped;
+		await waitAsync(500);
 	}
 	async pause() {
 		if (this.isPaused) {
