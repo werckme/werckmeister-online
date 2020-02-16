@@ -1,5 +1,6 @@
 $keycolor: #ff79c6;
 @import 'node_modules/bootstrap/scss/variables';
+@import './variables.scss';
 
 .sheet-editor {
     .track-begin 
@@ -42,6 +43,13 @@ $keycolor: #ff79c6;
 
 .sheet-editor {
     .marked[werckzeug="marked"] {
-        border-top:yellow solid 5px;
+        $color: yellow;
+        border-top: $color solid 1px;
+        border-left: $color solid 1px;
+        border-radius: 0;
+        height: 8px !important;
+        width: 8px !important;
+        margin-top: -0.4em;
+        transform: rotate(-135deg);
     }
 }

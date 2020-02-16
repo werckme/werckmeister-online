@@ -71,6 +71,7 @@ export class SheetEventMarkerManager {
 		let eventInfos = _(infos)
 			.map((x: IEventInfo) => x.sheetEventInfos)
 			.flatten()
+			.uniqBy(x => `${x.sourceId}-${x.beginPosition}`)
 			.value()
 		;
 		const rowsAndClolumns = this.inspector.getRowAndColumns(eventInfos.map(x=>x.beginPosition));

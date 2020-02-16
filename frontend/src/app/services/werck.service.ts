@@ -238,6 +238,7 @@ export class WerckService {
 			return;
 		}
 		this.playerState = PlayerState.Stopped;
+		this.midiPlayer.stop();
 		await waitAsync(500);
 	}
 	async pause() {

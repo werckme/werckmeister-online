@@ -35,7 +35,7 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 
 	@ContentChild(WmcodeDirective) wmCode: WmcodeDirective;
 
-	constructor(protected werck: WerckService, protected backend: BackendService, protected files: FileService) { 
+	constructor(public werck: WerckService, protected backend: BackendService, protected files: FileService) { 
 		
 	}
 
@@ -59,6 +59,10 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 		}
 		await this.werck.setSheet(this.file);
 		this.werck.play(mouseEvent);
+	}
+
+	async stop() {
+		await this.werck.stop();
 	}
 
 	_onEditorViewModelChange(vm: IEditorViewModel) {
