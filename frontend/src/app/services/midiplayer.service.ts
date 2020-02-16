@@ -7,27 +7,6 @@ declare const MIDI: any;
 declare const MidiFile: any;
 const DeltaBugFixOffset = 1;
 
-/**
- * there seems to be a problem with MIDI.js, where if a note event appears
- * right after a control event without any delta, then the first note
- * will be dissapear.
- * So we fix that by adding a small delta to the first event.
- */
-function fixBrokenDeltaPlayback() {
-	const data = MIDI.Player.data;
-	for (const event of data) {
-		const evData = event[0];
-		const needsAFix = evData.event.subtype === 'noteOn';
-		if (needsAFix) {
-			event[1] = DeltaBugFixOffset;
-			evData.event.deltaTime = DeltaBugFixOffset;
-			evData.ticksToEvent = DeltaBugFixOffset;
-			break;
-		}
-	}
-	MIDI.Player.replayer.getData = () => data;
-}
-
 
 /**
  * the tick values of MIDI.js seems only to be correct if 
@@ -126,7 +105,6 @@ export class MidiplayerService {
 		const player = await this.getPlayer(event);
 		player.BPM = this._tempo;
 		await this.loadFile(midiBase64, player);
-		fixBrokenDeltaPlayback();	
 		player.stop(); // stops all audio being played, and resets currentTime to 0.
 		player.start();
 		
