@@ -35,8 +35,11 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 
 	@ContentChild(WmcodeDirective) wmCode: WmcodeDirective;
 
+	get isPlaying(): boolean {
+		return this.werck.isPlaying && this.werck.mainSheet.sourceId === this.file.sourceId;
+	}
+
 	constructor(public werck: WerckService, protected backend: BackendService, protected files: FileService) { 
-		
 	}
 
 	ngOnInit() {

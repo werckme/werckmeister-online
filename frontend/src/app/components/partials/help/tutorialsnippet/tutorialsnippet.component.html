@@ -1,13 +1,12 @@
 <div class="ccontainer">
-    <editor [line]="lineOffset" 
-            [lineHeight]="lineHeight" 
-            class="tutorial" 
-            [file]="file" 
-            (isReady)="_onIsReady()"
-            (editorViewModelChange)="_onEditorViewModelChange($event)">
+    <div class="ctrl">
+        <a *ngIf="!justSnippet && !isPlaying" href="#" (click)="$event.preventDefault(); play($event)"><span
+                class="play ion-md-play"></span> Play</a>
+        <a *ngIf="!justSnippet && isPlaying" href="#" (click)="$event.preventDefault(); stop()"><span
+                class="play ion-md-square"></span> Stop</a>
+    </div>
+    <editor [line]="lineOffset" [lineHeight]="lineHeight" class="tutorial" [file]="file" (isReady)="_onIsReady()"
+        (editorViewModelChange)="_onEditorViewModelChange($event)">
     </editor>
     <ng-content class="hidden"></ng-content>
-    <div class="ctrl">
-        <a *ngIf="!justSnippet" href="#" (click)="$event.preventDefault(); play($event)">[<span class="play ion-md-play"></span> Play]</a>
-    </div>
 </div>
