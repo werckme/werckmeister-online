@@ -62,4 +62,8 @@ export class AppService {
 	get isTutorialOpen(): boolean {
 		return this.router.url.indexOf('/help/tutorial') >= 0;
 	}
+
+	get isExamples(): boolean {
+		return this.router.url.indexOf('/examples') >= 0;
+	}
 }

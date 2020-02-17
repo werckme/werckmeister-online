@@ -30,6 +30,7 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { ManualComponent } from './components/pages/manual.component';
 import { AutumnLeavesComponent } from './components/pages/examples/autumn.component';
+import { IpanemaComponent } from './components/pages/examples/ipanema.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -56,7 +57,8 @@ registerLocaleData(en);
 		WmcodeDirective,
 		WerckmeisterComponent,
 		ManualComponent,
-		AutumnLeavesComponent
+		AutumnLeavesComponent,
+		IpanemaComponent
 	],
 	imports: [
 		BrowserModule,

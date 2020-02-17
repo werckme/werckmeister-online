@@ -2,18 +2,23 @@
     <nz-header>
         <img class="logo" src="assets/images/Logo.png" alt="werckmeister logo">
         <ul nz-menu nzTheme="light" nzMode="horizontal">
-            <li nz-menu-item>nav 1</li>
-            <li nz-menu-item>nav 2</li>
-            <li nz-menu-item>nav 3</li>
+            <li nz-menu-item><a [routerLink]="['manual']">Manual</a></li>
+            <li nz-menu-item><a [routerLink]="['examples', 'autumnleaves']">Examples</a></li>
         </ul>
     </nz-header>
     <nz-content>
         <nz-layout>
-            <nz-sider *ngIf="app.sideMenuItems.length > 0" [nzWidth]="200" style="background:#fff">
+            <nz-sider *ngIf="!app.isExamples && app.sideMenuItems.length > 0" [nzWidth]="200" style="background:#fff">
                 <ul nz-menu [nzMode]="'inline'" style="height:100%">
                     <li *ngFor="let x of app.sideMenuItems" (click)="x.onClick($event)" nz-menu-item>{{x.title}}</li>
                 </ul>
             </nz-sider>
+            <nz-sider *ngIf="app.isExamples" [nzWidth]="200" style="background:#fff">
+                    <ul nz-menu [nzMode]="'inline'" style="height:100%">
+                        <li nz-menu-item><a [routerLink]="['examples', 'autumnleaves']">Autumn Leaves</a></li>
+                        <li nz-menu-item><a [routerLink]="['examples', 'ipanema']">The Girl From Ipanema</a></li>
+                    </ul>
+                </nz-sider>            
             <nz-content class="inner-content">
                 <div>
                     <router-outlet></router-outlet>
