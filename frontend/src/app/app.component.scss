@@ -22,10 +22,18 @@ nz-footer {
 
 .inner-content {
     background: #fff;
-    padding: 24px;
+  //  padding: 24px;
     min-height: 280px;
 }
 
 .ant-layout-header {
     background: initial;
+}
+
+.inner-content.ant-layout-content {
+    padding: 0;
+}
+
+.ant-menu-inline {
+    border-right: none;
 }

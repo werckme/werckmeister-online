@@ -10,6 +10,10 @@ import { IFile } from 'src/shared/io/file';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 
+export class SideMenuItem {
+	onClick = (ev: MouseEvent)=> {};
+	constructor(public title=null) {}
+}
 
 @Injectable({
 	providedIn: 'root'
@@ -18,6 +22,8 @@ export class AppService {
 	onBoundsChanged = new EventEmitter<void>();
 	currentEditor: IEditorViewModel;
 	version: string;
+	sideMenuItems: SideMenuItem[] = [];
+
 	constructor(protected title: Title, 
 		           protected backend: BackendService, 
 		           protected log: LogService,

@@ -8,9 +8,18 @@
         </ul>
     </nz-header>
     <nz-content>
-        <div class="inner-content">
-            <router-outlet></router-outlet>
-        </div>
+        <nz-layout>
+            <nz-sider *ngIf="app.sideMenuItems.length > 0" [nzWidth]="200" style="background:#fff">
+                <ul nz-menu [nzMode]="'inline'" style="height:100%">
+                    <li *ngFor="let x of app.sideMenuItems" (click)="x.onClick($event)" nz-menu-item>{{x.title}}</li>
+                </ul>
+            </nz-sider>
+            <nz-content class="inner-content">
+                <div>
+                    <router-outlet></router-outlet>
+                </div>
+            </nz-content>
+        </nz-layout>
+        <nz-footer>Werckmeister ©2020 by Samba Godschynski</nz-footer>
     </nz-content>
-    <nz-footer>Werckmeister ©2020 by Samba Godschynski</nz-footer>
 </nz-layout>
