@@ -16,13 +16,17 @@ nz-content, nz-header {
     padding: 0 5%;
 }
 
+nz-header {
+    margin-bottom: 24px;
+}
+
 nz-footer {
     text-align: center;
 }
 
-.inner-content {
+nz-content.inner-content {
     background: #fff;
-  //  padding: 24px;
+    padding: 24px;
     min-height: 280px;
 }
 
@@ -30,9 +34,6 @@ nz-footer {
     background: initial;
 }
 
-.inner-content.ant-layout-content {
-    padding: 0;
-}
 
 .ant-menu-inline {
     border-right: none;
