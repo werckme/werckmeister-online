@@ -230,7 +230,7 @@ export class WerckService {
 		}
 		this.playerState = PlayerState.Playing;
 		this.midiPlayer.tempo = this.mainSheet.midi.bpm;
-		this.midiPlayer.play(this.mainSheet.midi.midiData, event);
+		await this.midiPlayer.play(this.mainSheet.midi.midiData, event);
 	}
 
 	async stop() {

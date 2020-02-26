@@ -35,6 +35,10 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 
 	@ContentChild(WmcodeDirective) wmCode: WmcodeDirective;
 
+	waiting: boolean;
+
+	errorMessage: string;
+
 	get isPlaying(): boolean {
 		return this.werck.isPlaying && this.werck.mainSheet.sourceId === this.file.sourceId;
 	}
@@ -57,11 +61,24 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 	}
 
 	async play(mouseEvent: MouseEvent) {
-		if (this.werck.isPlaying) {
-			await this.werck.stop();
+		try {
+			this.errorMessage = null;
+			this.waiting = true;
+			if (this.werck.isPlaying) {
+				await this.werck.stop();
+			}
+			await this.werck.setSheet(this.file);
+			await this.werck.play(mouseEvent);
+			this.waiting = false;
+		} catch (ex) {
+			this.waiting = false;
+			console.log(ex)
+			if (ex.error && ex.error.errorMessage) {
+				this.errorMessage = ex.error.errorMessage;
+			} else {
+				this.errorMessage = "unkown error"
+			}
 		}
-		await this.werck.setSheet(this.file);
-		this.werck.play(mouseEvent);
 	}
 
 	async stop() {
