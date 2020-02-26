@@ -3,15 +3,15 @@ import { AAutoSideMenu } from './AAutoSideMenu';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
-	selector: 'app-werckmeister',
-	templateUrl: './werckmeister.html',
+	selector: 'app-getting-started',
+	templateUrl: './getting-started.html',
 	styleUrls: []
 })
-export class WerckmeisterComponent extends AAutoSideMenu implements OnInit {
-	constructor(elRef:ElementRef, app: AppService) { 
+export class GettingStartedComponent extends AAutoSideMenu implements OnInit {
+	constructor(elRef:ElementRef, app: AppService) {
 		super(elRef, app);
 	}
 
-	async ngOnInit() {
+	ngOnInit() {
 	}
 }

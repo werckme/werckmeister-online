@@ -75,7 +75,7 @@ If you want to write polyphonic melody lines, you can add more voices to your tr
 <pre><code><![CDATA[C7 D-7 E-7 F7 Gmaj7 A-7]]></code></pre><h3 id="meta-events">Meta Events</h3>
 <p>Events to set up something or loading a mod script.
 <br>You can recognize meta events by its slashes at the beginning and the end.</p>
-<tutorialsnippet lineHeight="4" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
+<tutorialsnippet lineHeight="5" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
 device: MyDevice  midi 1;
 instrumentDef:ex1  MyDevice  0 0 0;
 [
@@ -83,10 +83,11 @@ instrument: ex1;
 {
 
 
-  /tempo: 100/ -- meta event: set tempo to 100
-c d e f
+/tempo: 100/ -- meta event: set tempo to 100
+c d e f |
 /tempo: 50/
-a b c' 
+g a b c'
+
 
 
 
@@ -229,7 +230,7 @@ instrument: ex1;
 {
 
 
-  c4 d e8 f
+c4 d e8 f
 
 
 }
@@ -243,7 +244,7 @@ instrument: ex1;
 {
 
 
-  c d e f | g a b c'
+c d e f | g a b c'
 
 
 }
@@ -257,7 +258,7 @@ instrument: ex1;
 {
 
 
-  c,,  e,,  g,, b,, | c, e, g, b, | c e g b | c' e' g' b' | c'' e'' g'' b''
+c,,  e,,  g,, b,, | c, e, g, b, | c e g b | c' e' g' b' | c'' e'' g'' b''
 
 
 }
@@ -272,7 +273,7 @@ instrument: ex1;
 {
 
 
-  c# d# f# g# | bb db' eb' gb'
+c# d# f# g# | bb db' eb' gb'
 
 
 }
@@ -286,7 +287,7 @@ instrument: ex1;
 {
 
 
-  c2 c4 c8 c16 c32 c64 c128 r
+c2 c4 c8 c16 c32 c64 c128 r
 
 
 }
@@ -301,7 +302,7 @@ instrument: ex1;
 {
 
 
-  <g,, c e g bb>4   <c, c eb g bb>2.
+<g,, c e g bb>4   <c, c eb g bb>2.
 
 
 }
@@ -317,7 +318,7 @@ instrument: ex1;
 {
 
 
-  c2. c4 | c2~ c4 c
+c2. c4 | c2~ c4 c
 
 
 }
@@ -335,7 +336,7 @@ instrument: ex1;
 {
 
 
-  (c8 c c)4   (c8 c c c c)4  (c8 c c c c c c)4  (c8 c c c c c c c c)4
+(c8 c c)4   (c8 c c c c)4  (c8 c c c c c c)4  (c8 c c c c c c c c)4
 
 
 }
@@ -350,7 +351,7 @@ instrument: ex1;
 {
 
 
-  b2 ((b c#' c#' b d')  (f' a a bb c')  (e' a' bb' f' c' g))2
+b2 ((b c#' c#' b d')  (f' a a bb c')  (e' a' bb' f' c' g))2
 
 
 }

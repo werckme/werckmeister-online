@@ -14,7 +14,6 @@ export abstract class AAutoSideMenu implements AfterViewInit {
     
     udpateMenu() {
         const content = $(this.elRef.nativeElement)
-        console.log(content);
         const h2s = content.find("h2");
         const createMenuItem = function(el) {
             const item = new SideMenuItem(el.innerText);
@@ -25,6 +24,5 @@ export abstract class AAutoSideMenu implements AfterViewInit {
         }
         const sideMenuItems = _(h2s).map(el => createMenuItem(el)).value();
         this.app.sideMenuItems = sideMenuItems;
-        console.log(this.app.sideMenuItems)
     }
 }

@@ -31,6 +31,7 @@ import en from '@angular/common/locales/en';
 import { ManualComponent } from './components/pages/manual.component';
 import { AutumnLeavesComponent } from './components/pages/examples/autumn.component';
 import { IpanemaComponent } from './components/pages/examples/ipanema.component';
+import { GettingStartedComponent } from './components/pages/getting-started';
 
 registerLocaleData(en);
 @NgModule({
@@ -58,7 +59,8 @@ registerLocaleData(en);
 		WerckmeisterComponent,
 		ManualComponent,
 		AutumnLeavesComponent,
-		IpanemaComponent
+		IpanemaComponent,
+		GettingStartedComponent
 	],
 	imports: [
 		BrowserModule,

@@ -8,7 +8,7 @@ instrument: ex1;
 {
 
 
-  $code
+$code
 
 
 }
