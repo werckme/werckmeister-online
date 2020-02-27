@@ -38,6 +38,7 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 	waiting: boolean;
 
 	errorMessage: string;
+	errorPosition: number = null;
 
 	get isPlaying(): boolean {
 		return this.werck.isPlaying && this.werck.mainSheet.sourceId === this.file.sourceId;
@@ -63,6 +64,7 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 	async play(mouseEvent: MouseEvent) {
 		try {
 			this.errorMessage = null;
+			this.errorPosition = null;
 			this.waiting = true;
 			if (this.werck.isPlaying) {
 				await this.werck.stop();
@@ -72,9 +74,9 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 			this.waiting = false;
 		} catch (ex) {
 			this.waiting = false;
-			console.log(ex)
 			if (ex.error && ex.error.errorMessage) {
 				this.errorMessage = ex.error.errorMessage;
+				this.errorPosition = ex.error.positionBegin;
 			} else {
 				this.errorMessage = "unkown error"
 			}

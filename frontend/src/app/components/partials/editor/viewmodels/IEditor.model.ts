@@ -1,5 +1,5 @@
 import { IFile } from 'src/shared/io/file';
-import { IEditor, IRange } from 'src/shared/editor/IEditor';
+import { IEditor, IRange, IMarker } from 'src/shared/editor/IEditor';
 import { AInspector } from 'src/shared/editor/AInspector';
 import { EventEmitter } from '@angular/core';
 

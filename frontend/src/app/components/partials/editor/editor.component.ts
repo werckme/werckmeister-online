@@ -13,7 +13,9 @@ import { ShortcutService } from 'src/app/services/shortcut.service';
 import { IEditorViewModel } from './viewmodels/IEditor.model';
 import { EditorTutorialModel } from './viewmodels/tutorial.model';
 import * as $ from 'jquery';
-import { IToken } from 'src/shared/editor/IEditor';
+import { IToken, IMarker } from 'src/shared/editor/IEditor';
+import { MarkerOptions } from 'src/shared/editor/MarkerOptions';
+import { SheetInspector } from 'src/shared/editor/SheetInspector';
 
 let instances = 0;
 
@@ -66,6 +68,8 @@ export class EditorComponent implements OnInit, OnDestroy {
 		}
 	}
 
+
+
 	get lineHeight(): number {
 		return this.lineHeight_;
 	}
@@ -89,6 +93,29 @@ export class EditorComponent implements OnInit, OnDestroy {
 	private line_: number;
 	private lineHeight_: number;
 	private onTokenClickedListener: any;
+	private currentErrorPosition: number|null = null;
+
+	@Input()
+	set errorPosition(pos: number|null) {
+		console.log(pos);
+		if (pos === this.currentErrorPosition) {
+			return;
+		}
+		this.currentModel.editor.clearMarkers();
+		if (pos===null) {
+			return;
+		}
+		setTimeout(()=>{
+			const inspector = new SheetInspector(this.currentModel.editor);
+			const range = inspector.getRowAndColumns([pos])[0];
+			const markerRange = this.currentModel.editor.createRange(range.row, range.col, range.row, range.col+1);
+			const options = new MarkerOptions();
+			options.elementClasses = ["error"]
+			const errorMarker = this.currentModel.editor.createMarker(markerRange, options);
+			this.currentModel.editor.addMarker(errorMarker);
+			errorMarker.setMarked(true);
+		});
+	}
 
 	@Output()
 	editorViewModelChange = new EventEmitter<IEditorViewModel>();

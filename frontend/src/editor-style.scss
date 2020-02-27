@@ -52,4 +52,15 @@ $keycolor: #ff79c6;
         margin-top: -0.4em;
         transform: rotate(-135deg);
     }
+
+    .marked.error {
+        $color: red;
+        border-top: $color solid 2px;
+        border-left: $color solid 2px;
+        border-radius: 0;
+        height: 8px !important;
+        width: 8px !important;
+        margin-top: -0.4em;
+        transform: rotate(-135deg);
+    }
 }

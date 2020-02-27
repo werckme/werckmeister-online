@@ -7,7 +7,7 @@
         <nz-spin nzSimple nzSize="small" [nzDelay]="500" [nzSpinning]="waiting"></nz-spin>
     </div>
     <nz-alert *ngIf="!!errorMessage" nzBanner nzType="error" [nzMessage]="errorMessage"></nz-alert>
-    <editor [line]="lineOffset" [lineHeight]="lineHeight" class="tutorial" [file]="file" (isReady)="_onIsReady()"
+    <editor [line]="lineOffset" [lineHeight]="lineHeight" class="tutorial" [file]="file" (isReady)="_onIsReady()" [errorPosition]="errorPosition"
         (editorViewModelChange)="_onEditorViewModelChange($event)">
     </editor>
     <ng-content class="hidden"></ng-content>

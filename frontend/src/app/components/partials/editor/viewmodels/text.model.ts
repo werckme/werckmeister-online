@@ -1,5 +1,5 @@
 import { IFile, ITextFileContent } from 'src/shared/io/file';
-import { IEditor, createNewEditor, IRange, IToken } from 'src/shared/editor/IEditor';
+import { IEditor, createNewEditor, IRange, IToken, IMarker } from 'src/shared/editor/IEditor';
 import { SheetEventMarkerManager } from 'src/shared/editor/gimmicks/sheetEventMarker';
 import { BackendService } from 'src/app/services/backend.service';
 import { AppService } from 'src/app/services/app.service';
@@ -26,7 +26,7 @@ export class EditorTextViewModel implements IEditorViewModel {
 		protected fileService: FileService) {
 		this.fileService.fileSaved.subscribe({next: this.onFileChanged.bind(this)});
 	}
-	
+
 	isLineCommented(line: string): boolean {
 		return false;
 	}
