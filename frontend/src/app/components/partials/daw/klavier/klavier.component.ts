@@ -69,7 +69,7 @@ export class KlavierComponent implements OnInit {
 	currentKey: Note;
 	typedText: string = '';
 	mouseInDeadZone: boolean = false;
-	@ViewChild('typePreviewInput')
+	@ViewChild('typePreviewInput', { static: true })
 	typePreviewInput: ElementRef;
 	constructor(protected werck: WerckService, protected backend: BackendService, protected app: AppService) { 
 		this.koffset = 36;

@@ -33,7 +33,7 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 	@Output()
 	isReady = new  EventEmitter<void>();
 
-	@ContentChild(WmcodeDirective) wmCode: WmcodeDirective;
+	@ContentChild(WmcodeDirective, {static: true}) wmCode: WmcodeDirective;
 
 	waiting: boolean;
 

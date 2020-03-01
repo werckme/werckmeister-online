@@ -20,7 +20,7 @@ export class AccordionComponent implements OnInit {
 	
 	height: number;
 
-	@ViewChild('content') contentEl:ElementRef;
+	@ViewChild('content', { static: true }) contentEl:ElementRef;
 
 	constructor(private sanitizer: DomSanitizer) { 
 	}

@@ -97,7 +97,6 @@ export class EditorComponent implements OnInit, OnDestroy {
 
 	@Input()
 	set errorPosition(pos: number|null) {
-		console.log(pos);
 		if (pos === this.currentErrorPosition) {
 			return;
 		}
