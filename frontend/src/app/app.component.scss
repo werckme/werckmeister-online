@@ -2,6 +2,8 @@
     height: 65px;
     margin: 0 24px 0 15px;
     float: left;
+    height: 63px;
+    margin-left: 25px;
 }
 
 .ant-layout-header {
@@ -13,17 +15,21 @@
     height: 100vh;
 }
 
-.logo {
-    width: 120px;
-    height: 31px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 16px 24px 16px 0;
-    float: left;
+.ant-layout {
+    background: white;;
 }
 
 nz-header {
     position: fixed;
     width: 100%;
+    z-index: 1;
+    background: #fff;
+    padding: 0;
+    ul {
+        li:first-child {
+            margin-left: 122px;
+        }
+    }
 }
 
 [nz-menu] {
@@ -33,6 +39,9 @@ nz-header {
 nz-content {
     padding: 0 50px;
     margin-top: 64px;
+    margin: 25px 0 82px 75px;
+    overflow: initial;
+    width: 100%;
 }
 
 nz-breadcrumb {
@@ -41,19 +50,8 @@ nz-breadcrumb {
 
 .inner-content {
     background: #fff;
-    padding: 24px;
+    padding: 40px;
     min-height: 380px;
-}
-
-nz-footer {
-    text-align: center;
-}
-
-
-.logo {
-    height: 32px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 16px;
 }
 
 .left-layout {
@@ -65,27 +63,11 @@ nz-sider {
     height: 100%;
     position: fixed;
     left: 0;
-    top: 75px;
+    top: 65px;
 }
 
 .right-layout { 
     margin-left: 200px;
-}
-
-nz-header {
-    background: #fff;
-    padding: 0;
-}
-
-nz-content {
-    margin: 24px 0 75px;
-    overflow: initial;
-}
-
-.inner-content {
-    padding: 24px;
-    background: #fff;
-    text-align: center;
 }
 
 nz-footer {

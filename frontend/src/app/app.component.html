@@ -10,13 +10,14 @@
     </nz-header>
     <nz-content>
         <nz-layout>
-            <nz-sider *ngIf="!app.isExamples && app.sideMenuItems.length > 0" [nzWidth]="200" style="background:#fff">
-                <ul nz-menu [nzMode]="'inline'" style="height:100%">
+            <nz-sider *ngIf="!app.isExamples && app.sideMenuItems.length > 0" 
+                [nzWidth]="200" style="background:#fff">
+                <ul nz-menu [nzMode]="'inline'">
                     <li *ngFor="let x of app.sideMenuItems" (click)="x.onClick($event)" nz-menu-item>{{x.title}}</li>
                 </ul>
             </nz-sider>
             <nz-sider *ngIf="app.isExamples" [nzWidth]="200" style="background:#fff">
-                    <ul nz-menu [nzMode]="'inline'" style="height:100%">
+                    <ul nz-menu [nzMode]="'inline'" >
                         <li nz-menu-item><a [routerLink]="['examples', 'autumnleaves']">Autumn Leaves</a></li>
                         <li nz-menu-item><a [routerLink]="['examples', 'ipanema']">The Girl From Ipanema</a></li>
                     </ul>
@@ -27,6 +28,5 @@
                 </div>
             </nz-content>
         </nz-layout>
-        <nz-footer>Werckmeister ©2020 by Samba Godschynski</nz-footer>
     </nz-content>
 </nz-layout>
