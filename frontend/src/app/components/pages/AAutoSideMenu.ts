@@ -18,7 +18,9 @@ export abstract class AAutoSideMenu implements AfterViewInit {
         const createMenuItem = function(el) {
             const item = new SideMenuItem(el.innerText);
             item.onClick = (ev: MouseEvent) => {
-                el.scrollIntoView();
+                console.log(content[0] );
+                el.scrollIntoView({block: "center", behavior: "smooth"});
+                
             };
             return item;
         }
