@@ -25,11 +25,6 @@ nz-header {
     z-index: 1;
     background: #fff;
     padding: 0;
-    ul {
-        li:first-child {
-            margin-left: 122px;
-        }
-    }
 }
 
 [nz-menu] {
@@ -37,9 +32,8 @@ nz-header {
 }
 
 nz-content {
-    padding: 0 50px;
-    margin-top: 64px;
-    margin: 25px 0 82px 75px;
+    margin-top: 20px;
+    padding: 25px;
     overflow: initial;
     width: 100%;
 }
@@ -50,7 +44,6 @@ nz-breadcrumb {
 
 .inner-content {
     background: #fff;
-    padding: 40px;
     min-height: 380px;
 }
 

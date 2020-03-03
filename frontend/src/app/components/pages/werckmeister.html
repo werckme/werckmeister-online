@@ -7,17 +7,6 @@
 <p>Consider the beauty of lead sheet music: you write a melody and some chords. Thats it.
 <br>Later you can tell your band in which style the piece has to be played. You can say, after 4 beats play it as a bossa nova or a blues or whatever.</p>
 <p>This is the idea behind Werckmeister. Of course it can not replace a band or a musician but it offers you a tool to write melodies and chords then you can define how to interpret the chords along your melody or even define your own interpretation templates.</p>
-<h2 id="why-source-code-based">Why source code based?</h2>
-<p>The motivation behind this decision cames with an experience which I had in the past with a professional scorewriter software I was using back in the early 2000.</p>
-<p>This software was a bit clunky but I&#39;ve got used to it. At some point the developer discontinued the support for my version and I&#39;ve got more and more problems to get the software running on a modern system. The other problem was, that my project files were written in a proprietary format. </p>
-<p>So I realized: 
-<br><strong>not I am the owner of my written music, the company behind the scorewriter software owns it
- and if I want to continue using my projects I have to pay money.</strong></p>
-<p>So I&#39;ve came to the conclusion, that readable text files is my way to go.</p>
-<p><em>What is so hard writing notes in a text edior such as <code>c d e f g</code> in comparison to an overloaded clunky editor software.
-<br>(actually notes in a score have a lot advantages in comparison to a text file regarding readability etc., but that aside)</em></p>
-<p>I&#39;ve discovered that <a href="http://lilypond.org/">LilyPond</a> is a good way to write music using textfiles.
-But for me there was a problem: LilyPond&#39;s main purpose is make score visible. So the LilyPond language is designed to describe how notes have to look on paper in the first place. Basically, I wanted the same but with the focus on how the notes sounds played by MIDI instruments.</p>
 <h2 id="what-it-wants-to-be">What it wants to be</h2>
 <ul>
 <li>a fast and easy way to create lead sheet music</li>
@@ -31,3 +20,53 @@ But for me there was a problem: LilyPond&#39;s main purpose is make score visibl
 <li>a scorewriter software</li>
 <li>a programming language</li>
 </ul>
+<tutorialsnippet lineHeight="49" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "chords/default.chords";
+tempo: 140;
+device: MyDevice  midi 0;
+instrumentDef:lead  MyDevice  0 0 0;
+instrumentDef:piano  MyDevice  0 0 0;
+instrumentDef:bass  MyDevice  0 0 0;
+
+[
+instrument: piano;
+{
+    \fff
+    r4 e f# g | c'1~ | c'4 d e f# | b2 b2~ | b4 c d e | a1~ | a4 b, c# d# | g1 |
+    -- wiederholung
+    r4 e f# g | c'1~ | c'4 d e f# | b2 b2~ | b4 c d e | a1~ | 
+    -- 2.
+    a4 f# a g | e1~ | e4 r d# e | f# b, f#2~ | f#4 f# e f# | g1~ | g4 g f# g | a1~ |
+    a4 d d' c' | b1~ | b4 r a# b | c' c' a a | f#2. c'4 | b2 b2~ | b2. e4 | a2. g4 | 
+    f#2 g4 b, | e1 
+}
+]
+[
+type: template;
+name: x;
+instrument: piano;
+{
+    \p
+    <III, V, VII, II>1 |
+}
+]
+[
+type: template;
+name: x;
+instrument: bass;
+{
+    \p
+    I,,2. V,,4 |
+}
+]
+
+[
+type: accomp;
+{   
+    r | A-7 | D7 | Gmaj7 | Cmaj7 | F#-7b5 | B7 | E- | E- |
+    -- wiederholung
+    A-7 | D7 | Gmaj7 | Cmaj7 | F#-7b5  | 
+    -- 2.
+    B7 | E- | E- | F#-7b5  | B7b9 | E- | E- | A-7 | D7 | Gmaj7 | Gmaj7 |
+    F#-7b5  | B7b9 | E-7 A7 | D-7 G7 | F#-7b5 | B7b9 | E- |
+}
+]]]></code></pre></tutorialsnippet>
