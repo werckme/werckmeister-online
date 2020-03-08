@@ -10,6 +10,11 @@ import { WerckService } from './services/werck.service';
 })
 export class AppComponent {
 	constructor(public app: AppService, private router: Router, private werck: WerckService) {
+		const path = localStorage.getItem('wmstartpath');
+		if (path) {
+		  localStorage.removeItem('wmstartpath');
+		  this.router.navigate([path]);
+		}
 		this.router.events.subscribe((event: Event) => {
             if (event instanceof NavigationStart) {
 				if (this.werck.isPlaying) {

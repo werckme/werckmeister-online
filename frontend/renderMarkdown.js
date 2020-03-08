@@ -79,6 +79,15 @@ const renderer = new marked.Renderer();
 const superHeading = renderer.heading.bind(renderer);
 const superCode = renderer.code.bind(renderer);
 const superTable = renderer.table.bind(renderer);
+const superLink = renderer.link.bind(renderer);
+
+renderer.link = (href, title, text) => {
+  if (href[0] !== '#') {
+    return superLink(href, title, text);
+  }
+  href = href.substr(1);
+  return `<a [routerLink]="['./']" fragment="${href}">${text}</a>`
+}
 
 renderer.heading = (string, level, raw, slugger) => {
   let result = superHeading(string, level, raw, slugger);

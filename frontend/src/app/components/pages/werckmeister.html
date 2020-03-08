@@ -1,6 +1,7 @@
 
 <h1 id="werckmeister">Werckmeister</h1>
 
+<h2 id="a-sheet-music-compiler">A Sheet Music Compiler</h2>
 <img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/Logo_med.png" style="display: block; margin: auto">
 
 <h2 id="vision">Vision</h2>
@@ -20,13 +21,18 @@
 <li>a scorewriter software</li>
 <li>a programming language</li>
 </ul>
-<tutorialsnippet lineHeight="49" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "chords/default.chords";
+<h2 id="try-it-out">Try it out</h2>
+<h3 id="autumn-leaves">Autumn Leaves</h3>
+<p>This is the jazz standard &quot;Autumn Leaves&quot; written in werckmeister notation.
+<br>Click play to start the song.</p>
+<tutorialsnippet lineHeight="54" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "chords/default.chords";
 tempo: 140;
 device: MyDevice  midi 0;
 instrumentDef:lead  MyDevice  0 0 0;
 instrumentDef:piano  MyDevice  0 0 0;
 instrumentDef:bass  MyDevice  0 0 0;
 
+-- melody track
 [
 instrument: piano;
 {
@@ -40,25 +46,8 @@ instrument: piano;
     f#2 g4 b, | e1 
 }
 ]
-[
-type: template;
-name: x;
-instrument: piano;
-{
-    \p
-    <III, V, VII, II>1 |
-}
-]
-[
-type: template;
-name: x;
-instrument: bass;
-{
-    \p
-    I,,2. V,,4 |
-}
-]
 
+-- accomp track
 [
 type: accomp;
 {   
@@ -68,5 +57,26 @@ type: accomp;
     -- 2.
     B7 | E- | E- | F#-7b5  | B7b9 | E- | E- | A-7 | D7 | Gmaj7 | Gmaj7 |
     F#-7b5  | B7b9 | E-7 A7 | D-7 G7 | F#-7b5 | B7b9 | E- |
+}
+]
+
+-- the templates defines what the accomp track has to play
+[
+type: template;
+name: x;
+instrument: piano;
+{
+    \p
+    <III, V, VII, II>1 | 
+}
+]
+
+[
+type: template;
+name: x;
+instrument: bass;
+{
+    \p
+    I,,2. V,,4 |
 }
 ]]]></code></pre></tutorialsnippet>

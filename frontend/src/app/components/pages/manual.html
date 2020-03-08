@@ -2,15 +2,12 @@
 <h1 id="manual">Manual</h1>
 
 <h2 id="i-want-to-">I want to ...</h2>
-<p><a href="#it&#39;s-just-text">... get an impression of what I have to face if I want to learn Werckmeister</a></p>
-<p><a href="#Setup-A-Piece">... setup a piece</a></p>
-<p><a href="#Write-Melodies">... write melodies</a></p>
-<p><a href="#Writing-for-drums">... write for drums</a></p>
-<p><a href="">... use several instruments</a></p>
-<p><a href="#Accomp-My-Melodies">... accomp my melodies</a></p>
-<p><a href="#chords">... setup my own chord symbols</a></p>
-<p><a href="">... use MIDI expression mods</a></p>
-<p><a href="">... write my own MIDI expression mods</a></p>
+<p><a [routerLink]="['./']" fragment="its-just-text">... get an impression of what I have to face if I want to learn Werckmeister</a></p>
+<p><a [routerLink]="['./']" fragment="setup-a-piece">... setup a piece</a></p>
+<p><a [routerLink]="['./']" fragment="write-melodies">... write melodies</a></p>
+<p><a [routerLink]="['./']" fragment="write-for-drums">... write for drums</a></p>
+<p><a [routerLink]="['./']" fragment="accomp-my-melodies">... accomp my melodies</a></p>
+<p><a [routerLink]="['./']" fragment="chords">... setup my own chord symbols</a></p>
 <h2 id="its-just-text">It&#39;s just text</h2>
 <p>The Werckmeister language knows only a few statement types. It&#39;s all about tracks, voices, and events. That&#39;s it. 
 <br>The remaining statements are just for configuration purposes.</p>
@@ -71,7 +68,7 @@ If you want to write polyphonic melody lines, you can add more voices to your tr
 <pre><code><![CDATA[c d e f g]]></code></pre><h3 id="degree-events">Degree Events</h3>
 <p>have a relative pitch degree and a duration. In combination with a chord, degree events can be transformed into regular note events.</p>
 <pre><code><![CDATA[I II III IV V VI VII]]></code></pre><h3 id="chord-events">Chord Events</h3>
-<p>Events which are related to a name. They also store the information which interval is used for a degree. These informations are stored in a <a href="#chords">chord definiton file</a>.</p>
+<p>Events which are related to a name. They also store the information which interval is used for a degree. These informations are stored in a <a [routerLink]="['./']" fragment="chords">chord definiton file</a>.</p>
 <pre><code><![CDATA[C7 D-7 E-7 F7 Gmaj7 A-7]]></code></pre><h3 id="meta-events">Meta Events</h3>
 <p>Events to set up something or loading a mod script.
 <br>You can recognize meta events by its slashes at the beginning and the end.</p>
@@ -148,12 +145,12 @@ A config statement has as first argument the instrument name you want to configu
 <tr>
 <td>mod</td>
 <td>aName [option value]</td>
-<td>set a <a href="#Mods">mod</a></td>
+<td>set a <a [routerLink]="['./']" fragment="Mods">mod</a></td>
 </tr>
 <tr>
 <td>voicingStrategy</td>
 <td>aName [option value]</td>
-<td>set a <a href="#Voicing-strategies">voicingStrategy</a></td>
+<td>set a <a [routerLink]="['./']" fragment="Voicing-strategies">voicingStrategy</a></td>
 </tr>
 </tbody></table>
 <p>Now, as an example we set a volume value of 80 to our Farfisa organ, also we set the pan more to the left.</p>
@@ -166,7 +163,7 @@ A config statement has as first argument the instrument name you want to configu
     c d e f | g a b c'
 }
 ]]]></code></pre></tutorialsnippet><p>Sometimes you want to setup diffent tempi for for several voices.
-Then you have to add a tempo <a href="#meta-events">Meta Event</a> to your voice.</p>
+Then you have to add a tempo <a [routerLink]="['./']" fragment="meta-events">Meta Event</a> to your voice.</p>
 <p><em>since MIDI doesn&#39;t support simultaneous tempi, we achive this effect by streching or shrinking the note durations in relation to the main tempo (Augmentation/Diminution). As an simple example: on double time we pay eights instead of fourths.</em></p>
 <p>Here we play four voices on one track, with four different tempo configurations:</p>
 <p><strong>There seems to be a bug on the webplayer (first notes are missing)</strong></p>
@@ -207,7 +204,7 @@ Then you have to add a tempo <a href="#meta-events">Meta Event</a> to your voice
 ]
 ]]></code></pre></tutorialsnippet><h3 id="time-signatures">Time Signatures</h3>
 <p>The time signature 4/4 by default.
-If you want to setup a different time signature than the default, you can achieve this by using the signature <a href="#Meta-Events">meta event</a>.
+If you want to setup a different time signature than the default, you can achieve this by using the signature <a [routerLink]="['./']" fragment="Meta-Events">meta event</a>.
 With this you are able to setup different time signatures during a piece.</p>
 <tutorialsnippet lineHeight="7" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[[
 {
@@ -307,7 +304,7 @@ instrument: ex1;
 
 }
 ]]]></code></pre></tutorialsnippet><h3 id="augmentation-dots--ties">Augmentation Dots &amp; Ties</h3>
-<p>To write a augmentation dot (<code>.</code>) append a dot to a note duration value.
+<p>To write a augmentation dot (<code>.</code>) append a dot after a note duration value.
 <br>For ties use a tilde (<code>~</code>) instead. </p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/dotsties.png" alt="dots and ties"></p>
 <tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
@@ -359,7 +356,7 @@ b2 ((b c#' c#' b d')  (f' a a bb c')  (e' a' bb' f' c' g))2
 <h3 id="pitchmaps">Pitchmaps</h3>
 <p>tbd.</p>
 <h2 id="accomp-my-melodies">Accomp My Melodies</h2>
-<p>Imagine you give your bass player some chords, and he or she asks you to play these.
+<p>Imagine you give your bass player some chords, and he or she asks you how to play these.
 <br>You would say something like: play the 1st degree on one and the 5th degree on four. </p>
 <p>And this is exactly what you doing when writing style templates.
 <br>So in our example above you would write:</p>
@@ -390,7 +387,7 @@ type: accomp;
 ]
 ]]></code></pre></tutorialsnippet><p>Instead of writing absolute notes, you use relative degrees. For example <code>I4</code> means the first degree as a quarter note. </p>
 <p><em>If a degree does not appear in a chord, the degree will not played.</em></p>
-<p>There are the same rules as for writing absolute <a href="#Notes">notes</a>:</p>
+<p>There are the same rules as for writing absolute <a [routerLink]="['./']" fragment="Notes">notes</a>:</p>
 <p>such as:</p>
 <ul>
 <li>use <code>#</code> or <code>b</code> for sharp or flat</li>
