@@ -1,9 +1,10 @@
 
 <h1 id="werckmeister">Werckmeister</h1>
 
-<h2 id="a-sheet-music-compiler">A Sheet Music Compiler</h2>
+<h2 id="a-sheet-music-midi-compiler">A Sheet Music MIDI Compiler</h2>
 <img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/Logo_med.png" style="display: block; margin: auto">
 
+<p>Werckmeister compiles sheet music source code into a MIDI file.</p>
 <h2 id="vision">Vision</h2>
 <p>Consider the beauty of lead sheet music: you write a melody and some chords. Thats it.
 <br>Later you can tell your band in which style the piece has to be played. You can say, after 4 beats play it as a bossa nova or a blues or whatever.</p>
@@ -25,7 +26,9 @@
 <h3 id="autumn-leaves">Autumn Leaves</h3>
 <p>This is the jazz standard &quot;Autumn Leaves&quot; written in werckmeister notation.
 <br>Click play to start the song.</p>
-<tutorialsnippet lineHeight="54" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "chords/default.chords";
+<p>For fun sake try to replace the bass template </p>
+<pre><code><![CDATA[I,,2. V,,4 |]]></code></pre><p>with this </p>
+<pre><code><![CDATA[I,,4 I,8 I,8   I,,4 I,8 I,8 |]]></code></pre><tutorialsnippet lineHeight="54" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "chords/default.chords";
 tempo: 140;
 device: MyDevice  midi 0;
 instrumentDef:lead  MyDevice  0 0 0;
@@ -63,7 +66,7 @@ type: accomp;
 -- the templates defines what the accomp track has to play
 [
 type: template;
-name: x;
+name: myAccomp;
 instrument: piano;
 {
     \p
@@ -73,7 +76,7 @@ instrument: piano;
 
 [
 type: template;
-name: x;
+name: myAccomp;
 instrument: bass;
 {
     \p

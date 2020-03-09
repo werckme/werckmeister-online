@@ -1,5 +1,4 @@
 $keycolor: #ff79c6;
-@import 'node_modules/bootstrap/scss/variables';
 @import './variables.scss';
 
 .sheet-editor {
@@ -27,7 +26,6 @@ $keycolor: #ff79c6;
     }
 
     .link {
-        color: $link-color;
         cursor: pointer;
         pointer-events: all;
     }    

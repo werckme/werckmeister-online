@@ -1,9 +1,0 @@
-<div class="ccontainer">
-	<ul>
-		<li *ngFor="let file of files" (click)="onSelectedFileChanged(file)" 
-			[ngClass]="{selected: file.equals(selectedFile), changed: file.content && file.content.changed}">
-			<span class="icon ion ion-ios-document" [ngClass]="getIconClasses(file)"></span>
-			<span class="filename" [attr.title]="file.path">{{file.filename}}</span>
-		</li>
-	</ul>
-</div>
