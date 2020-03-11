@@ -1,4 +1,7 @@
- .logo {
+@import "../variables.scss";
+@import "../mixins.scss";
+
+.logo {
     height: 65px;
     margin: 0 24px 0 15px;
     float: left;
@@ -16,10 +19,11 @@
 }
 
 .ant-layout {
-    background: white;;
+    background: white;
 }
 
 nz-header {
+    @include mat-card-2;
     position: fixed;
     width: 100%;
     z-index: 1;
@@ -36,14 +40,15 @@ nz-content {
     padding: 25px;
     overflow: initial;
     width: 100%;
+    background: $background;
 }
 
 nz-breadcrumb {
     margin: 16px 0;
 }
 
-.inner-content {
-    background: #fff;
+.inner-content { 
+    background: $background;
     min-height: 380px;
 }
 

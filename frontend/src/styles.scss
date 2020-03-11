@@ -22,6 +22,9 @@ $ionicons-font-path: "~ionicons/dist/fonts";
 }
 
 
+html {
+    background: $background;
+}
 
 body {
     background: $background;
@@ -99,7 +102,8 @@ pre {
     overflow: auto;
     font-size: 85%;
     line-height: 1.45;
-    background-color: #f6f8fa;
+    color: black;
+    background-color: #e4e4e4;
     border-radius: 3px;
     code {
         display: inline;
