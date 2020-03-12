@@ -18,6 +18,7 @@ export class AppComponent {
             }
 
             if (event instanceof NavigationEnd) {
+				window.scrollTo(0, 0);
             }
 
             if (event instanceof NavigationError) {

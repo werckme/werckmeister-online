@@ -6,9 +6,7 @@ import { WerckService } from './werck.service';
 import { LogService } from './log.service';
 import { ShortcutService } from './shortcut.service';
 import { FileService } from './file.service';
-import { IFile } from 'src/shared/io/file';
 import { Router } from '@angular/router';
-import * as $ from 'jquery';
 
 export class SideMenuItem {
 	onClick = (ev: MouseEvent)=> {};
@@ -31,10 +29,6 @@ export class AppService {
 		           protected shortcuts: ShortcutService,
 		           protected file: FileService,
 		           protected router: Router) {
-		router.events.subscribe(() => {
-			const main = $('.main-container');
-			main.scrollTop();
-		});
 	}
 
 	
