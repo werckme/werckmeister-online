@@ -18,6 +18,8 @@ import { ManualComponent } from './components/pages/manual.component';
 import { AutumnLeavesComponent } from './components/pages/examples/autumn.component';
 import { IpanemaComponent } from './components/pages/examples/ipanema.component';
 import { GettingStartedComponent } from './components/pages/getting-started';
+import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+import { NgxPageScrollModule } from 'ngx-page-scroll';
 
 registerLocaleData(en);
 @NgModule({
@@ -38,7 +40,9 @@ registerLocaleData(en);
 		AppRoutingModule,
 		HttpClientModule,
 		NgZorroAntdModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		NgxPageScrollCoreModule,
+		NgxPageScrollModule
 	],
 	providers: [BackendService, ShortcutService, { provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent]

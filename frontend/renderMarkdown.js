@@ -25,6 +25,8 @@ const fileSplitSeq = '$FILE-SPLIT';
 const fileNames = [];
 const filePath = process.argv[2]
 const outputDir = process.argv[3]
+const anchorPixelOffset = 66;
+
 if (!filePath) {
     console.log("missing input file");
     process.exit(-1);
@@ -82,11 +84,13 @@ const superTable = renderer.table.bind(renderer);
 const superLink = renderer.link.bind(renderer);
 
 renderer.link = (href, title, text) => {
-  if (href[0] !== '#') {
+  if (href.indexOf('#')<0) {
     return superLink(href, title, text);
   }
-  href = href.substr(1);
-  return `<a [routerLink]="['./']" fragment="${href}">${text}</a>`
+  var seg = href.split('#');
+  href = !!seg[0] ? `/${seg[0]}` : "./";
+  var frag = seg[1] 
+  return `<a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="${anchorPixelOffset}" [routerLink]="['${href}']" fragment="${frag}">${text}</a>`
 }
 
 renderer.heading = (string, level, raw, slugger) => {
