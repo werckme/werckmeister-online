@@ -10,7 +10,10 @@ ng build --prod
 cd $target
 rm *.js *css
 rsync -a $cdir/dist/spa/ .
+
+
 mkdir -p werckmeister && cp index.html werckmeister/
 mkdir -p manual && cp index.html manual/
 mkdir -p getting-started && cp index.html getting-started/
+mkdir -p examples && cp index.html examples/
 cd $cdir
