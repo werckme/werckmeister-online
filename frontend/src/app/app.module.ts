@@ -20,6 +20,8 @@ import { IpanemaComponent } from './components/pages/examples/ipanema.component'
 import { GettingStartedComponent } from './components/pages/getting-started';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { ExamplesComponent } from './components/pages/examples/examples.component';
+import { EmbeddedPlayerComponent } from './components/partials/embedded-player/embedded-player.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -33,7 +35,9 @@ registerLocaleData(en);
 		ManualComponent,
 		AutumnLeavesComponent,
 		IpanemaComponent,
-		GettingStartedComponent
+		GettingStartedComponent,
+		ExamplesComponent,
+		EmbeddedPlayerComponent
 	],
 	imports: [
 		BrowserModule,

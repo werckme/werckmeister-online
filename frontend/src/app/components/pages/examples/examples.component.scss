@@ -1,0 +1,13 @@
+@import "../../../../mixins.scss";
+
+ul.sources {
+    padding: 0;
+    li {
+        list-style: none;
+    }
+}
+
+nz-card {
+    margin-bottom: 1em;
+    @include mat-card-1;
+}

@@ -5,7 +5,7 @@ import { AppService } from 'src/app/services/app.service';
 @Component({
 	selector: 'app-getting-started',
 	templateUrl: './getting-started.html',
-	styleUrls: []
+	styleUrls: ['manual.scss']
 })
 export class GettingStartedComponent extends AAutoSideMenu implements OnInit {
 	constructor(elRef:ElementRef, app: AppService) {

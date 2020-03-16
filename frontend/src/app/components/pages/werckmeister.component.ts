@@ -5,7 +5,7 @@ import { AppService } from 'src/app/services/app.service';
 @Component({
 	selector: 'app-werckmeister',
 	templateUrl: './werckmeister.html',
-	styleUrls: ['werckmeister.scss']
+	styleUrls: ['werckmeister.scss', 'manual.scss']
 })
 export class WerckmeisterComponent extends AAutoSideMenu implements OnInit {
 	constructor(elRef:ElementRef, app: AppService) { 
