@@ -22,8 +22,8 @@
 device: MyMidiDevice midi 1;
 
 -- 2)
---             name  device       ch pc cc
-instrumentDef: piano MyMidiDevice 0  0  0;
+--             name  device       ch  cc pc
+instrumentDef: piano MyMidiDevice  0   0  0;
 -- (ch= channel, pc= programm change, cc= control change)
 
 -- 3)
@@ -119,8 +119,8 @@ device: MyDX7 midi 5;]]></code></pre><h4 id="adding-instruments">Adding instrume
 <p><code>instrumentDef: aInstrumentName aMidiDevice midiChannel midiControlChange midiProgramChange</code></p>
 <p>Let&#39;s add an organ instrument which uses our Roland device from above:</p>
 <p>The Roland SC-8850 offers, for example, a <code>Farf Organ</code>. So if I want to use this instrument on channel 0, I have to send a <code>cc=19 pc=17</code> sequence to the channel on this device.<br>A suitable <code>instrumentDef</code> statement would be look as follows: </p>
-<pre><code><![CDATA[--             name      device   ch  cc  pc
-instrumentDef: myFarfisa MyRoland 0   19   17;]]></code></pre><h4 id="configuring-instruments">Configuring instruments</h4>
+<pre><code><![CDATA[--             name      device   ch   cc   pc
+instrumentDef: myFarfisa MyRoland  0   19   17;]]></code></pre><h4 id="configuring-instruments">Configuring instruments</h4>
 <p>With an instrument added there are further options to configure it.
 A config statement has as first argument the instrument name you want to configure followed by several optional config aruments.</p>
 <p><code>instrumentConf: aInstrumentName [pan aValue] [volume aValue] [voicingStrategy aStrategyName] [mod aModName];</code></p>
