@@ -22,6 +22,7 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { ExamplesComponent } from './components/pages/examples/examples.component';
 import { EmbeddedPlayerComponent } from './components/partials/embedded-player/embedded-player.component';
+import { ContactComponent } from './components/pages/contact/contact.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -37,7 +38,8 @@ registerLocaleData(en);
 		IpanemaComponent,
 		GettingStartedComponent,
 		ExamplesComponent,
-		EmbeddedPlayerComponent
+		EmbeddedPlayerComponent,
+		ContactComponent
 	],
 	imports: [
 		BrowserModule,
