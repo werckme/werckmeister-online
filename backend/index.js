@@ -41,6 +41,12 @@ function isExistingDirOrFile(str) {
     if (!str) {
         return false;
     }
+    if (str.indexOf("/home") >= 0) {
+        return true;
+    }
+    if (str.indexOf("/usr") >= 0) {
+        return true;
+    }    
     str = str.trim();
     return fs.existsSync(str);
 }
