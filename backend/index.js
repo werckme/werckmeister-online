@@ -11,6 +11,7 @@ const { spawn } = require('child_process');
 const path = require('path')
 const express = require('express');
 const cors = require('cors')
+const fs = require('fs')
 const app = express();
 const config = require('config');
 var bodyParser = require('body-parser')
@@ -34,6 +35,40 @@ function tryParseJSON(str) {
     } catch(ex) {
         return null;
     }
+}
+
+function isExistingDirOrFile(str) {
+    if (!str) {
+        return false;
+    }
+    str = str.trim();
+    return fs.existsSync(str);
+}
+
+function removeFullPathFromString(str) {
+    const lines = str.split('\n');
+        for (const line of lines) {
+        if (!isExistingDirOrFile(line)) {
+            continue;
+        }
+        const replacement = path.basename(line);
+        str = str.replace(line, replacement);
+    }
+    return str;
+}
+
+function removeFullPathValues(obj) {
+    for (idx in obj) {
+        const value = obj[idx];
+        const type = typeof(value);
+        if (type === 'string') {
+            obj[idx] = removeFullPathFromString(value);
+        }
+        if (type === 'object' || type === 'array') {
+            removeFullPathValues(value);
+        }
+    }
+    return obj;
 }
 
 function executeCompiler(args) {
@@ -74,7 +109,7 @@ app.post('/api/compile', function name(req, res) {
             res.statusCode = 500;
         }
         result = tryParseJSON(result);
-        res.send(result);
+        res.send(removeFullPathValues(result));
     });
 });
 
@@ -89,7 +124,7 @@ app.get('/api/version', function name(req, res) {
             res.statusCode = 500;
         }
         result = {version: result};
-        res.send(result);
+        res.send(removeFullPathValues(result));
     });
 });
 
