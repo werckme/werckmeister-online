@@ -7,12 +7,14 @@ import { IpanemaComponent } from './components/pages/examples/ipanema.component'
 import { GettingStartedComponent } from './components/pages/getting-started';
 import { ExamplesComponent } from './components/pages/examples/examples.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { CodeExtensionComponent } from './components/pages/visual-studio-extension';
 
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'werckmeister', pathMatch: 'full'},
 	{ path: 'werckmeister', component: WerckmeisterComponent},
 	{ path: 'getting-started', component: GettingStartedComponent},
+	{ path: 'code-extension', component: CodeExtensionComponent},
 	{ path: 'manual', component: ManualComponent},
 	{ path: 'examples', component: ExamplesComponent},
 	{ path: 'contact', component: ContactComponent},

@@ -23,6 +23,7 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { ExamplesComponent } from './components/pages/examples/examples.component';
 import { EmbeddedPlayerComponent } from './components/partials/embedded-player/embedded-player.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { CodeExtensionComponent } from './components/pages/visual-studio-extension';
 
 registerLocaleData(en);
 @NgModule({
@@ -39,7 +40,8 @@ registerLocaleData(en);
 		GettingStartedComponent,
 		ExamplesComponent,
 		EmbeddedPlayerComponent,
-		ContactComponent
+		ContactComponent,
+		CodeExtensionComponent
 	],
 	imports: [
 		BrowserModule,
