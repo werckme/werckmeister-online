@@ -9,6 +9,7 @@ import { WerckService } from './services/werck.service';
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+	mobileMenuOpen: boolean = false;
 	constructor(public app: AppService, private router: Router, private werck: WerckService) {
 		this.router.events.subscribe((event: Event) => {
             if (event instanceof NavigationStart) {

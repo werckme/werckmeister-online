@@ -24,6 +24,8 @@ import { ExamplesComponent } from './components/pages/examples/examples.componen
 import { EmbeddedPlayerComponent } from './components/partials/embedded-player/embedded-player.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CodeExtensionComponent } from './components/pages/visual-studio-extension';
+import { NgZorroAntdMobileModule } from 'ng-zorro-antd-mobile';
+import { MobileAppMenuComponent } from './components/partials/mobile/app-menu/app-menu.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -41,7 +43,8 @@ registerLocaleData(en);
 		ExamplesComponent,
 		EmbeddedPlayerComponent,
 		ContactComponent,
-		CodeExtensionComponent
+		CodeExtensionComponent,
+		MobileAppMenuComponent
 	],
 	imports: [
 		BrowserModule,
@@ -50,7 +53,8 @@ registerLocaleData(en);
 		NgZorroAntdModule,
 		BrowserAnimationsModule,
 		NgxPageScrollCoreModule,
-		NgxPageScrollModule
+		NgxPageScrollModule,
+		NgZorroAntdMobileModule
 	],
 	providers: [BackendService, ShortcutService, { provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent]
