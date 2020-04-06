@@ -26,4 +26,8 @@ export class AppComponent {
             }
         });
 	}
+
+	onMobileMenuItemClicked(event: MouseEvent) {
+		this.mobileMenuOpen = false;
+	}
 }

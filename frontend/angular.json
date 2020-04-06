@@ -32,9 +32,9 @@
               }
             ],
             "styles": [
+              "node_modules/ng-zorro-antd-mobile/src/ng-zorro-antd-mobile.min.css",
               "src/theme.less",
-              "src/styles.scss",
-              "node_modules/ng-zorro-antd-mobile/src/ng-zorro-antd-mobile.min.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true

@@ -13,18 +13,19 @@
     background: initial;
 }
 
-nz-header.desktop {
+nz-header {
     @include mat-card-2;
     position: fixed;
     width: 100%;
     z-index: 1;
     background: #fff;
     padding: 0;
-
-    .ant-layout {
-        background: white;
-    }
 }
+
+.ant-layout {
+    background: white;
+}
+
 
 [nz-menu] {
     line-height: 64px;
@@ -65,4 +66,13 @@ nz-sider {
 
 nz-footer {
     text-align: center;
+}
+
+@include if-xs-or-smaller {
+    nz-content {
+        padding: 5px;
+    }
+    nz-content {
+        margin-top: 30px;
+    }
 }

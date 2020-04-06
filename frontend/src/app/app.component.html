@@ -1,16 +1,29 @@
 <nz-layout>
-    <nz-header class="xs d-block d-sm-none">
-        <lib-mobile-app-menu [(isOpen)]="mobileMenuOpen">
+    <nz-header>
+        <lib-mobile-app-menu [(isOpen)]="mobileMenuOpen" class="d-block d-sm-none">
             <List>
                 <ListItem>
-                    <a [routerLink]="['werckmeister']">Werckmeister</a>
-                </ListItem>                                                                              
+                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['werckmeister']">Werckmeister</a>
+                </ListItem>
+                <ListItem>
+                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['getting-started']">Getting Started</a>
+                </ListItem>  
+                <ListItem>
+                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['manual']">Manual</a>
+                </ListItem>  
+                <ListItem>
+                    <a (click)="onMobileMenuItemClicked($event)" href="/examples">Examples</a>
+                </ListItem>
+                <ListItem>
+                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['code-extension']">Visual Studio Code</a>
+                </ListItem>  
+                <ListItem>
+                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['contact']">Contact</a>
+                </ListItem>                                                                                                                                                            
             </List>
         </lib-mobile-app-menu>
-    </nz-header>
-    <nz-header class="desktop d-none d-sm-block">
-        <img class="logo" src="assets/images/Logo.png" alt="werckmeister logo">
-        <ul nz-menu nzTheme="light" nzMode="horizontal">
+        <img class="logo d-none d-sm-block" src="assets/images/Logo.png" alt="werckmeister logo">
+        <ul nz-menu nzTheme="light" nzMode="horizontal" class="d-none d-sm-block">
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['werckmeister']">Werckmeister</a></li>
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['getting-started']">Getting Started</a></li>
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['manual']">Manual</a>

@@ -22,6 +22,11 @@ $ionicons-font-path: "~ionicons/dist/fonts";
     font-style: normal;
 }
  
+ul {
+  list-style: inherit;
+  margin: initial;
+  padding-inline-start: 40px;
+}
 
 html {
     background: $background;
@@ -33,6 +38,11 @@ body {
     font-size: 1.125rem;
 }
 
+@include if-xs-or-smaller {
+  h1 {
+    word-break: break-all;
+  }
+}
 
 $grey1: rgb(49, 49, 49);
 $grey2: rgb(65, 65, 65);
