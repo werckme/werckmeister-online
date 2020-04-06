@@ -23,7 +23,7 @@ $ionicons-font-path: "~ionicons/dist/fonts";
 }
  
 ul {
-  list-style: inherit;
+  list-style: initial;
   margin: initial;
   padding-inline-start: 40px;
 }
@@ -39,8 +39,11 @@ body {
 }
 
 @include if-xs-or-smaller {
-  h1 {
+  * {
     word-break: break-all;
+  }
+  h1 {
+    font-size: 2.7rem !important;
   }
 }
 
@@ -102,6 +105,12 @@ pre {
         background-color: initial;
         border: 0;
     }
+}
+
+.inner-content {
+  img {
+    max-width: 100%;
+  }
 }
 
 tutorialsnippet {
