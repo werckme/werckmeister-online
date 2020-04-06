@@ -5,6 +5,7 @@ $ionicons-font-path: "~ionicons/dist/fonts";
 @import "./roboto.scss";
 @import "./variables.scss";
 @import "./mixins.scss";
+@import "./bootstrap-display-utility.scss";
 
 // remove "?version=xyz" from ionic urls
 // our cef app scheme handler canot handle this  
@@ -20,7 +21,7 @@ $ionicons-font-path: "~ionicons/dist/fonts";
     font-weight: normal;
     font-style: normal;
 }
-
+ 
 
 html {
     background: $background;

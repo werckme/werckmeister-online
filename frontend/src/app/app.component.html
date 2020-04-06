@@ -1,26 +1,28 @@
 <nz-layout>
-    <nz-header>
-        <img class="logo" src="assets/images/Logo.png" alt="werckmeister logo">
-        <lib-mobile-app-menu [(isOpen)]="mobileMenuOpen" class="d-block d-sm-none">
+    <nz-header class="xs d-block d-sm-none">
+        <lib-mobile-app-menu [(isOpen)]="mobileMenuOpen">
             <List>
-              <ListItem>
-                <a (click)="closeMobileMenu()" [routerLink]="['/search']">Technikausleihe</a>
-              </ListItem>
+                <ListItem>
+                    <a [routerLink]="['werckmeister']">Werckmeister</a>
+                </ListItem>                                                                              
             </List>
-          </lib-mobile-app-menu>
-        <ul nz-menu nzTheme="light" nzMode="horizontal" class="d-none d-sm-block">
+        </lib-mobile-app-menu>
+    </nz-header>
+    <nz-header class="desktop d-none d-sm-block">
+        <img class="logo" src="assets/images/Logo.png" alt="werckmeister logo">
+        <ul nz-menu nzTheme="light" nzMode="horizontal">
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['werckmeister']">Werckmeister</a></li>
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['getting-started']">Getting Started</a></li>
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['manual']">Manual</a></li>
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']">
-                <a href="/examples">Examples</a>
+            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['manual']">Manual</a>
             </li>
+            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a href="/examples">Examples</a></li>
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['code-extension']">Visual Studio Code</a></li>
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['contact']">Contact</a></li>
+            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['contact']">Contact</a>
+            </li>
         </ul>
     </nz-header>
     <nz-content>
-        <nz-layout>          
+        <nz-layout>
             <nz-content class="inner-content">
                 <div>
                     <router-outlet></router-outlet>

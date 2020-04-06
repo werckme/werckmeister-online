@@ -13,22 +13,17 @@
     background: initial;
 }
 
-
-.layout {
-    height: 100vh;
-}
-
-.ant-layout {
-    background: white;
-}
-
-nz-header {
+nz-header.desktop {
     @include mat-card-2;
     position: fixed;
     width: 100%;
     z-index: 1;
     background: #fff;
     padding: 0;
+
+    .ant-layout {
+        background: white;
+    }
 }
 
 [nz-menu] {
