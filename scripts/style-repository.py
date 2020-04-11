@@ -8,7 +8,9 @@ TempSheet = "_temp.sheet"
 PITCH_MAP_FILE = "defaultMIDI.pitchmap"
 TARGET_MIDI_DEVICE_ID = 0
 PLAYER_EXE = "sheetp"
+RECORD_EXE = "record_mp3.sh"
 META_VALUE_PRIORITY_INSTRUMENT = "drums"
+ROOT_PATH = ""
 
 def get_template_meta_comment_lines(file):
     with open(file, "r") as f:
@@ -123,10 +125,16 @@ class SheetGenerator:
         return res
 
 class Player:
-    def __init__(self): pass
+    def __init__(self): 
+        self.player_exe = PLAYER_EXE
+        self.record_exe = RECORD_EXE
 
     def play(self, filename):
-        execute(f"{PLAYER_EXE} {filename}")
+        execute(f"{self.player_exe} {filename}")
+
+    def record(self, filename, outname):
+        execute(f"{self.record_exe} {filename} {outname}")
+
 
 def is_sheetfile(filename):
     path_ext = path.splitext(filename)
@@ -147,14 +155,16 @@ def get_styles_of_folder(in_dir):
 
 def play(style):
     import os
-    script_path = os.path.dirname(os.path.abspath(__file__ ))
-    generator = SheetGenerator(path.join(script_path, SheetTemplate))
+    global ROOT_PATH
+    ROOT_PATH = os.path.dirname(os.path.abspath(__file__ ))
+    generator = SheetGenerator(path.join(ROOT_PATH, SheetTemplate))
     player = Player()
+    player.record_exe = path.join(ROOT_PATH, RECORD_EXE)
     generator.templates = style.templates
     # write file
     with open(TempSheet, "w") as f:
         f.write(generator.generate())
-    player.play(TempSheet)
+    player.record(TempSheet, style.name+".mp3")
     # remove file
     os.remove(TempSheet)
 
@@ -163,12 +173,15 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('in_directory', type=str, help='the input directory')
     parser.add_argument('--mididevice', type=int, help='the device id of the midi taret device')
+    parser.add_argument('--style',      type=str, help='set a specific style to process')
     args = parser.parse_args()
     in_dir = args.in_directory
     PITCH_MAP_FILE = path.join(in_dir, PITCH_MAP_FILE)
-    TARGET_MIDI_DEVICE_ID = args.mididevice
+    TARGET_MIDI_DEVICE_ID = args.mididevice if args.mididevice else 0
     styles = get_styles_of_folder(in_dir)
     for style in styles:
+        if args.style and style.name != args.style:
+            continue
         print(f"{style}:")
         play(style)
     
