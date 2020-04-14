@@ -153,7 +153,7 @@ def get_styles_of_folder(in_dir):
     styles = [Style(x, styles[x]) for x in styles.keys()]
     return styles
 
-def play(style):
+def perform(style, **args):
     import os
     global ROOT_PATH
     ROOT_PATH = os.path.dirname(os.path.abspath(__file__ ))
@@ -164,7 +164,10 @@ def play(style):
     # write file
     with open(TempSheet, "w") as f:
         f.write(generator.generate())
-    player.record(TempSheet, style.name+".mp3")
+    if args["record"]:
+        player.record(TempSheet, style.name+".mp3")
+    else:
+        player.play(TempSheet)
     # remove file
     os.remove(TempSheet)
 
@@ -174,6 +177,7 @@ if __name__ == "__main__":
     parser.add_argument('in_directory', type=str, help='the input directory')
     parser.add_argument('--mididevice', type=int, help='the device id of the midi taret device')
     parser.add_argument('--style',      type=str, help='set a specific style to process')
+    parser.add_argument('--playback', help='playback only')
     args = parser.parse_args()
     in_dir = args.in_directory
     PITCH_MAP_FILE = path.join(in_dir, PITCH_MAP_FILE)
@@ -183,5 +187,5 @@ if __name__ == "__main__":
         if args.style and style.name != args.style:
             continue
         print(f"{style}:")
-        play(style)
+        perform(style, record=not args.playback)
     
