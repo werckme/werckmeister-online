@@ -76,7 +76,7 @@ class SheetGenerator:
         self.templates = []
         self.part = "normal"
         self.midiDeviceId = TARGET_MIDI_DEVICE_ID
-        self.chords = ["Cmaj7", "Fmaj7", "G7", "Cmaj7"]
+        self.chords = ["C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7"]
         self.meta = {}
 
     @property
@@ -169,7 +169,7 @@ def perform(style, **args):
     else:
         player.play(TempSheet)
     # remove file
-    os.remove(TempSheet)
+    #os.remove(TempSheet)
 
 if __name__ == "__main__":
     import argparse

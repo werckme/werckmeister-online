@@ -1,7 +1,10 @@
 using "./chords/default.chords";
-$USINGS
+using "../../style-templates/bass.jazzSwing.template";
+using "../../style-templates/drums.jazzSwing.template";
+using "../../style-templates/rhythm.jazzSwing.template";
+using "../../style-templates/defaultMIDI.pitchmap";
 
-device: MyDevice          midi      $DEVICE_ID;
+device: MyDevice          midi      5;
 
 
 -- define your instruments:
@@ -32,11 +35,15 @@ instrumentConf: bass
     volume 100
 ;
 
-$DOC_CONFIG
+tempo: 155;
 
 [
 type: accomp;
 {
-    $ACCOMP
+    /signature: 4 4/
+/template: 	bass.jazzSwing.normal
+	drums.jazzSwing.normal
+	rhythm.jazzSwing.normal/
+C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7 | C7
 }
 ]
