@@ -40,6 +40,7 @@ class Template:
         self.name = path.basename(self.path)
         self.name = path.splitext(self.name)[0]
         self.__path_segments__ = self.name.split('.')
+        self.part = "normal"
         if len(self.__path_segments__) < 2:
             raise RuntimeError(f"{filename} has wrong filename format")
     def __str__(self):
@@ -55,6 +56,13 @@ class Template:
     @property
     def meta(self):
         return get_template_meta_comments(self.path)
+    @property
+    def parts(self):
+        if 'parts' not in self.meta:
+            return []
+        partStr = self.meta['parts']
+        parts = [x.strip() for x in partStr.split(',')]
+        return parts
 
 class Style:
     def __init__(self, name, templates = []): 
@@ -69,12 +77,24 @@ class Style:
     def meta(self):
         return aggregate_metas(self.templates)
 
+    @property
+    def parts(self):
+        parts = []
+        for tmpl in self.templates:
+            for part in tmpl.parts:
+                parts.append(part)
+        return list(set(parts))
+
+    def preferred_part(self, part_name):
+        for tmpl in self.templates:
+            if part_name in tmpl.parts:
+                tmpl.part = part_name
+
 class SheetGenerator:
     def __init__(self, infile=SheetTemplate): 
         self.infile = infile
         self.txt = self.input_text
         self.templates = []
-        self.part = "normal"
         self.midiDeviceId = TARGET_MIDI_DEVICE_ID
         self.chords = ["C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7", "C7"]
         self.meta = {}
@@ -107,7 +127,7 @@ class SheetGenerator:
 
     @property
     def accomp(self):
-        templates = ['\t' + f'{x.name}.{self.part}' for x in self.templates]
+        templates = ['\t' + f'{x.name}.{x.part}' for x in self.templates]
         endl = "\n"
         return [
             f"/signature: {self.signature[0]} {self.signature[1]}/",
@@ -169,7 +189,7 @@ def perform(style, **args):
     else:
         player.play(TempSheet)
     # remove file
-    #os.remove(TempSheet)
+    os.remove(TempSheet)
 
 if __name__ == "__main__":
     import argparse
@@ -178,6 +198,7 @@ if __name__ == "__main__":
     parser.add_argument('--mididevice', type=int, help='the device id of the midi taret device')
     parser.add_argument('--style',      type=str, help='set a specific style to process')
     parser.add_argument('--playback', help='playback only')
+    parser.add_argument('--part', help='play a specific part')
     args = parser.parse_args()
     in_dir = args.in_directory
     PITCH_MAP_FILE = path.join(in_dir, PITCH_MAP_FILE)
@@ -186,6 +207,8 @@ if __name__ == "__main__":
     for style in styles:
         if args.style and style.name != args.style:
             continue
+        if args.part:
+            style.preferred_part(args.part)
         print(f"{style}:")
         perform(style, record=not args.playback)
     
