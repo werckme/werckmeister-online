@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os.path as path
 from os import system as execute
+import json
 
 Template_Extension = ".template"
 SheetTemplate = "preview.sheet"
@@ -22,9 +23,13 @@ def get_template_meta_comment_lines(file):
                 break
             yield line.replace("--", "").strip()
 
+def split_meta_args(str_meta):
+    return [x.strip() for x in str_meta.split(',')]
+
 def get_template_meta_comments(file):
     lines = get_template_meta_comment_lines(file)
-    return { x[0].strip(): x[1].strip() for x in (line.split(':') for line in lines)  }
+    split = lambda x: x.split(":", 1) if len(x.split(":", 1)) >=2 else ["", ""] 
+    return { x[0].strip(): x[1].strip() for x in (split(line) for line in lines)  }
 
 def aggregate_metas(templates):
     result = {}
@@ -60,9 +65,18 @@ class Template:
     def parts(self):
         if 'parts' not in self.meta:
             return []
-        partStr = self.meta['parts']
-        parts = [x.strip() for x in partStr.split(',')]
-        return parts
+        return split_meta_args(self.meta['parts'])
+    
+    @property
+    def instrument_confs(self):
+        if 'instrumentConfs' not in self.meta:
+            return None
+        str_arg = self.meta['instrumentConfs']
+        if str_arg == None:
+            return
+        args = json.loads(str_arg)
+        return args
+
 
 class Style:
     def __init__(self, name, templates = []): 
@@ -113,6 +127,15 @@ class SheetGenerator:
         return [int(x) for x in vals]
 
     @property
+    def instrument_confs(self):
+        for tmpl in self.templates:
+            confs = tmpl.instrument_confs
+            if confs == None:
+                continue
+            for key in confs.keys():
+                yield f"instrumentConf: {key} {confs[key]};"
+
+    @property
     def input_text(self):
         with open(self.infile, "r") as f:
             return f.read()
@@ -141,6 +164,7 @@ class SheetGenerator:
         res = res.replace("$DEVICE_ID", str(self.midiDeviceId))
         res = res.replace("$USINGS"           , "\n" .join(self.usings))
         res = res.replace("$DOC_CONFIG"       , "\n" .join(self.doc_config))
+        res = res.replace("$INSTUMENT_CONFS"  , "\n" .join(self.instrument_confs))
         res = res.replace("$ACCOMP"           , "\n" .join(self.accomp))
         return res
 
@@ -199,6 +223,7 @@ if __name__ == "__main__":
     parser.add_argument('--style',      type=str, help='set a specific style to process')
     parser.add_argument('--playback', help='playback only')
     parser.add_argument('--part', help='play a specific part')
+    parser.add_argument('--solo', help='plays a template solo')
     args = parser.parse_args()
     in_dir = args.in_directory
     PITCH_MAP_FILE = path.join(in_dir, PITCH_MAP_FILE)
@@ -209,6 +234,11 @@ if __name__ == "__main__":
             continue
         if args.part:
             style.preferred_part(args.part)
+        if args.solo:
+            tmpl_name = f"{args.solo}.{style.name}"
+            style.templates = [x for x in style.templates if x.name == tmpl_name]
+            if len(style.templates) == 0:
+                raise("solo argument filters all styles")
         print(f"{style}:")
         perform(style, record=not args.playback)
     

@@ -1,4 +1,7 @@
 using "./chords/default.chords";
+using "./lua/voicings/simple.lua";
+using "./lua/voicings/guitar.lua";
+using "./lua/voicings/voicelead.lua";
 $USINGS
 
 device: MyDevice          midi      $DEVICE_ID;
@@ -14,6 +17,7 @@ instrumentDef: bass         MyDevice   5   0  33;
 instrumentDef: drums        MyDevice   9   0  0;
 instrumentDef: drumsBrushes MyDevice   9   0  40;
 
+$INSTUMENT_CONFS
 
 instrumentConf: rhythm
     volume 100
