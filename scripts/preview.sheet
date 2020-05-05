@@ -1,4 +1,4 @@
-using "./chords/default.chords";
+using "chords/default.chords";
 $USINGS
 
 device: MyDevice          midi      $DEVICE_ID;
