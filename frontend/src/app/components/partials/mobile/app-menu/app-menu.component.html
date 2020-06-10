@@ -1,0 +1,14 @@
+<div class="app-mobile-menu" (click)="onOpenChange()">
+  <img class="logo" src="assets/images/Logo.png" alt="werckmeister logo">
+  <div class="action">
+    <img (click)="onClose($event)" class="close-action" [ngClass]="{'visible': isOpen}" src="/assets/images/close-outline.svg">
+    <img [ngClass]="{'visible': !isOpen}" src="/assets/images/ham.svg">
+  </div>
+</div>
+
+<Drawer class="my-drawer" [enableDragHandle]="true" [sidebar]="sidebar"
+  [open]="isOpen" [position]="'left'" (onOpenChange)="onOpenChange()">
+</Drawer>
+<ng-template #sidebar>
+  <ng-content></ng-content>
+</ng-template>

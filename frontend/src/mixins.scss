@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 @mixin mat-card-1 {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     border-radius: 2px;
@@ -21,4 +23,16 @@
 @mixin mat-card-5 {
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     border-radius: 2px;
+}
+
+@mixin if-xs-or-smaller {
+    @media screen and (max-width: $breakpoint-sm) {
+        @content
+    }
+}
+
+@mixin if-sm-or-larger {
+    @media screen and (min-width: $breakpoint-sm + 1) {
+        @content
+    }
 }

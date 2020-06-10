@@ -5,6 +5,7 @@ $ionicons-font-path: "~ionicons/dist/fonts";
 @import "./roboto.scss";
 @import "./variables.scss";
 @import "./mixins.scss";
+@import "./bootstrap-display-utility.scss";
 
 // remove "?version=xyz" from ionic urls
 // our cef app scheme handler canot handle this  
@@ -20,7 +21,12 @@ $ionicons-font-path: "~ionicons/dist/fonts";
     font-weight: normal;
     font-style: normal;
 }
-
+ 
+ul {
+  list-style: initial;
+  margin: initial;
+  padding-inline-start: 40px;
+}
 
 html {
     background: $background;
@@ -32,6 +38,14 @@ body {
     font-size: 1.125rem;
 }
 
+@include if-xs-or-smaller {
+  * {
+    word-break: break-all;
+  }
+  h1 {
+    font-size: 2.7rem !important;
+  }
+}
 
 $grey1: rgb(49, 49, 49);
 $grey2: rgb(65, 65, 65);
@@ -91,6 +105,12 @@ pre {
         background-color: initial;
         border: 0;
     }
+}
+
+.inner-content {
+  img {
+    max-width: 100%;
+  }
 }
 
 tutorialsnippet {
