@@ -1,12 +1,12 @@
 ### Device
 | parameter name | description |
 |:--- |:--- |
-| WithName |  |
-| IsType |  |
-| UsePort |  |
-| OffsetIndicator |  @positional |
-| OffsetValue |  @positional |
-| WithOffset |  @named @alternative |
+| setName |  |
+| isType |  |
+| usePort |  |
+| use |  @positional |
+| value |  @positional |
+| withOffset |  @named @alternative |
 
 
 
@@ -14,11 +14,11 @@
 ### InstrumentDef
 | parameter name | description |
 |:--- |:--- |
-| WithName |  |
-| OnDevice |  |
-| Ch |  |
-| Cc |  |
-| Pc |  |
+| setName |  |
+| onDevice |  |
+| ch |  |
+| cc |  |
+| pc |  |
 
 
 
@@ -26,7 +26,7 @@
 ### InstrumentConf
 | parameter name | description |
 |:--- |:--- |
-| ForInstrument |  |
+| for |  |
 
 
 
@@ -34,7 +34,7 @@
 ### SetVolume
 | parameter name | description |
 |:--- |:--- |
-| SetTo |  |
+| to |  |
 
 
 
@@ -42,7 +42,7 @@
 ### SetPan
 | parameter name | description |
 |:--- |:--- |
-| SetTo |  |
+| to |  |
 
 
 
@@ -50,7 +50,7 @@
 ### SetVoicingStrategy
 | parameter name | description |
 |:--- |:--- |
-| Use |  |
+| use |  |
 
 
 
@@ -58,7 +58,7 @@
 ### SimpleGuitarVoicingStrategy
 | parameter name | description |
 |:--- |:--- |
-| Range |  |
+| range |  |
 
 
 
@@ -66,10 +66,10 @@
 ### Bend
 | parameter name | description |
 |:--- |:--- |
-| Mode |  @positional |
-| Value |  @positional |
-| BendTo |  @named @alternative |
-| BendFrom |  @named @alternative |
+| mode |  @positional |
+| value |  @positional |
+| to |  @named @alternative |
+| from |  @named @alternative |
 
 
 
@@ -77,7 +77,7 @@
 ### AddMod
 | parameter name | description |
 |:--- |:--- |
-| Use |  |
+| use |  |
 
 
 
@@ -85,8 +85,8 @@
 ### SelectMidiSound
 | parameter name | description |
 |:--- |:--- |
-| CC |  |
-| PC |  |
+| cc |  |
+| pc |  |
 
 
 
@@ -94,7 +94,7 @@
 ### SetExpression
 | parameter name | description |
 |:--- |:--- |
-| Value |  |
+| value |  |
 
 
 
@@ -102,7 +102,7 @@
 ### SetTempo
 | parameter name | description |
 |:--- |:--- |
-| Bpm |  |
+| bpm |  |
 
 
 
@@ -110,8 +110,8 @@
 ### SetSignature
 | parameter name | description |
 |:--- |:--- |
-| Upper |  |
-| Lower |  |
+| upper |  |
+| lower |  |
 
 
 
@@ -119,7 +119,7 @@
 ### SetInstrument
 | parameter name | description |
 |:--- |:--- |
-| Use |  |
+| use |  |
 
 
 
@@ -127,16 +127,16 @@
 ### VelocityRemap
 | parameter name | description |
 |:--- |:--- |
-| PPPPP |  |
-| PPPP |  |
-| PPP |  |
-| PP |  |
-| P |  |
-| F |  |
-| FF |  |
-| FFF |  |
-| FFFF |  |
-| FFFFF |  |
+| ppppp |  |
+| pppp |  |
+| ppp |  |
+| pp |  |
+| p |  |
+| f |  |
+| ff |  |
+| fff |  |
+| ffff |  |
+| fffff |  |
 
 
 

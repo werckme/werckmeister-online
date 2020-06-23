@@ -62,7 +62,8 @@ def processArgumentNames(file_str):
             comments = ""
             if 'doxygen' in argument:
                 comments = argument['doxygen']
-            cmd_dto.add_argument(argument['name'], comments)
+            arg_name = argument['default'].replace('"', '')
+            cmd_dto.add_argument(arg_name, comments)
     return command_dtos
     
 
