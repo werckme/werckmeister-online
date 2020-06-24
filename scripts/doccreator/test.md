@@ -1,142 +1,28 @@
-### Device
-| parameter name | description |
-|:--- |:--- |
-| setName |  |
-| isType |  |
-| usePort |  |
-| use |  @positional |
-| value |  @positional |
-| withOffset |  @named @alternative |
+### signature
+Set the signature of the current track.<br>
+ **positional:** <br>
+ `/signature: 3 4/`<br>
+ **named:**<br>
+ `/signature: _upper=3 _lower=4/`
+#### parameters
+| name | position | description | range |
+|:--- |:--- |:--- |:--- |
+| upper | 0 | the upper value of the signature | - |
+| lower | 1 | the lower value of the signature | - |
 
 
 
 
-### InstrumentDef
-| parameter name | description |
-|:--- |:--- |
-| setName |  |
-| onDevice |  |
-| ch |  |
-| cc |  |
-| pc |  |
-
-
-
-
-### InstrumentConf
-| parameter name | description |
-|:--- |:--- |
-| for |  |
-
-
-
-
-### SetVolume
-| parameter name | description |
-|:--- |:--- |
-| to |  |
-
-
-
-
-### SetPan
-| parameter name | description |
-|:--- |:--- |
-| to |  |
-
-
-
-
-### SetVoicingStrategy
-| parameter name | description |
-|:--- |:--- |
-| use |  |
-
-
-
-
-### SimpleGuitarVoicingStrategy
-| parameter name | description |
-|:--- |:--- |
-| range |  |
-
-
-
-
-### Bend
-| parameter name | description |
-|:--- |:--- |
-| mode |  @positional |
-| value |  @positional |
-| to |  @named @alternative |
-| from |  @named @alternative |
-
-
-
-
-### AddMod
-| parameter name | description |
-|:--- |:--- |
-| use |  |
-
-
-
-
-### SelectMidiSound
-| parameter name | description |
-|:--- |:--- |
-| cc |  |
-| pc |  |
-
-
-
-
-### SetExpression
-| parameter name | description |
-|:--- |:--- |
-| value |  |
-
-
-
-
-### SetTempo
-| parameter name | description |
-|:--- |:--- |
-| bpm |  |
-
-
-
-
-### SetSignature
-| parameter name | description |
-|:--- |:--- |
-| upper |  |
-| lower |  |
-
-
-
-
-### SetInstrument
-| parameter name | description |
-|:--- |:--- |
-| use |  |
-
-
-
-
-### VelocityRemap
-| parameter name | description |
-|:--- |:--- |
-| ppppp |  |
-| pppp |  |
-| ppp |  |
-| pp |  |
-| p |  |
-| f |  |
-| ff |  |
-| fff |  |
-| ffff |  |
-| fffff |  |
+### volume
+set the volume of the current track<br>
+ **positional:** <br>
+ `/volume: 50/`<br>
+ **named:**<br>
+ `/volume: _to=50/`
+#### parameters
+| name | position | description | range |
+|:--- |:--- |:--- |:--- |
+| to | 0 | the volume value | 0..100 |
 
 
 

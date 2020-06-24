@@ -1,40 +1,63 @@
 #!/usr/bin/env python3
 import markdown_generator as mg
 from io import StringIO
+import xml.etree.ElementTree as ET
 
 heading_level = 3
 
+class DocParser:
+    def __init__(self, comment_sequence = '///'):
+        self.comment_sequence = comment_sequence
+
+    def parse(self, str:str):
+        txt = lambda node: node.text.strip().replace('\n', '<br>\n')
+        attr = lambda node, name, default="": node.attrib[name] if name in node.attrib else default
+        str = str.replace(self.comment_sequence, '')
+        doc_tree = ET.fromstring(f'<root>{str}</root>')
+        command_node = doc_tree.find('command')
+        command = CommandDto(attr(command_node, 'name'))
+        command.summary = txt(command_node)
+        for param in doc_tree.findall("param"):
+            argument = ArgumentDto(attr(param, "name"))
+            argument.summary = txt(param)
+            argument.position = attr(param, 'position', "-")
+            argument.range = attr(param, 'range', "-")
+            command.args.append(argument)
+        return command
+        
+
+
 class ArgumentDto:
-    def __init__(self, arg_name, comments):
+    def __init__(self, arg_name):
         self.name = arg_name
-        self.comments = comments
+        self.summary = ""
+        self.position = "-"
+        self.range = "-"
 
 class CommandDto:
     def __init__(self, command_name):
         self.command_name = command_name
+        self.summary = ""
         self.args = []
-        self.comments = None
-
-    def add_argument(self, name, comments):
-        arg = ArgumentDto(name, comments)
-        self.args.append(arg)
 
 class Printer:
     def __init__(self, dto):
         self.dto = dto
 
-    def comments_to_str(self, comments:str):
-        return comments.replace('///', '')
 
     def print(self):
         with StringIO() as stream:
             writer = mg.Writer(stream)
             writer.write_heading(self.dto.command_name, heading_level)
+            writer.writeline(self.dto.summary)
+            writer.write_heading("parameters", heading_level + 1)
             table = mg.Table()
-            table.add_column('parameter name')
+            table.add_column('name')
+            table.add_column('position')
             table.add_column('description')
+            table.add_column('range')
             for arg in self.dto.args:
-                table.append(arg.name, self.comments_to_str(arg.comments))
+                table.append(arg.name, arg.position, arg.summary, arg.range)
             writer.write(table)
             writer.writeline()
             writer.writeline()
@@ -48,31 +71,33 @@ class Printer:
     def __repr__(self):
         return str(self)
 
-def processArgumentNames(file_str):
+def processHeader(file_str):
     import CppHeaderParser
-    main_class = "ArgumentNames"
     cppHeader = CppHeaderParser.CppHeader(file_str)
-    names = cppHeader.classes[main_class]
-    command_dtos = []
-    for command in names["properties"]["public"]:
-        cmd_dto  = CommandDto(command['name'])
-        command_class = cppHeader.classes[f"{main_class}::C{cmd_dto.command_name}"]
-        command_dtos.append(cmd_dto)
-        for argument in command_class["properties"]["public"]:
-            comments = ""
-            if 'doxygen' in argument:
-                comments = argument['doxygen']
-            arg_name = argument['default'].replace('"', '')
-            cmd_dto.add_argument(arg_name, comments)
-    return command_dtos
+    if len(cppHeader.classes) == 0:
+        return
+    class_ = list(cppHeader.classes.values())[0]
+    if 'doxygen' not in class_:
+        return
+    comments = class_['doxygen']
+    comments_parser = DocParser()
+    command = comments_parser.parse(comments)
+    print(Printer(command))
+
     
 
 if __name__ == '__main__':
     import argparse
+    from os import listdir
+    from os.path import isfile, splitext, join
     #parser = argparse.ArgumentParser(description='generates markdown from argumentNames.h')
     #parser.add_argument('input', help='the input file')
     #args = parser.parse_args()
     #processArgumentNames(args.input)
-    dtos = processArgumentNames('/home/samba/workspace/werckmeister/src/compiler/argumentNames.h')
-    for dto in dtos:
-        print(Printer(dto))
+    is_ignore = lambda file_path: file_path[0] == '_'  
+    is_header = lambda file_path: splitext(file_path)[-1] == '.h'
+    in_dir = '/home/samba/workspace/werckmeister/src/compiler/commands'
+    files = [join(in_dir, file) for file in listdir(in_dir) if not is_ignore(file)]
+    headers = [file for file in files if isfile(file) and is_header(file)]
+    for file in headers:
+        processHeader(file)
