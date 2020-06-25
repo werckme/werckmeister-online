@@ -2,8 +2,8 @@
 import markdown_generator as mg
 from io import StringIO
 import xml.etree.ElementTree as ET
-
-heading_level = 3
+import sys
+heading_level = 2
 
 class DocParser:
     def __init__(self, comment_sequence = '///'):
@@ -48,7 +48,8 @@ class Printer:
     def print(self):
         with StringIO() as stream:
             writer = mg.Writer(stream)
-            writer.write_heading(self.dto.command_name, heading_level)
+            writer.write_heading(f'`{self.dto.command_name}`', heading_level)
+            writer.write_hrule()
             writer.writeline(self.dto.summary)
             writer.write_heading("parameters", heading_level + 1)
             table = mg.Table()
@@ -59,8 +60,7 @@ class Printer:
             for arg in self.dto.args:
                 table.append(arg.name, arg.position, arg.summary, arg.range)
             writer.write(table)
-            writer.writeline()
-            writer.writeline()
+            writer.writeline('<br>'*3)
             #finito
             stream.seek(0)
             return stream.read()
@@ -82,9 +82,11 @@ def processHeader(file_str):
     comments = class_['doxygen']
     comments_parser = DocParser()
     command = comments_parser.parse(comments)
-    print(Printer(command))
+    return command
 
-    
+def printToc(commands):
+    for command in commands:
+        print(f'* [{command.command_name}](#{command.command_name})')
 
 if __name__ == '__main__':
     import argparse
@@ -99,5 +101,14 @@ if __name__ == '__main__':
     in_dir = '/home/samba/workspace/werckmeister/src/compiler/commands'
     files = [join(in_dir, file) for file in listdir(in_dir) if not is_ignore(file)]
     headers = [file for file in files if isfile(file) and is_header(file)]
+    commands = []
     for file in headers:
-        processHeader(file)
+        commands.append(processHeader(file))
+    commands = [command for command in commands if command != None]
+    commands.sort(key=lambda x: x.command_name)
+    print('## Commands')
+    printToc(commands)
+    print('')
+    for command in commands:
+        printer = Printer(command)
+        print(printer)
