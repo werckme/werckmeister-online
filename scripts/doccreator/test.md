@@ -9,11 +9,16 @@
 
 ## `device`
 ---
-Defines a device which can be used when adding instruments (see [instrumentDef](#instrumentDef))<br>
- ### examples<br>
- **positional:** <br>
- `device: MyDevice midi 0 offset 100;`<br>
- **named:**<br>
+Defines a device which can be used when adding instruments (see [instrumentDef](#instrumentDef))
+
+ ### examples
+
+ **positional:** 
+
+ `device: MyDevice midi 0 offset 100;`
+
+ **named:**
+
  `device: _setName=MyDevice _isType=midi _usePort=0 _withOffset=100;`
 ### parameters
 | name | position | description | range |
@@ -27,8 +32,10 @@ Defines a device which can be used when adding instruments (see [instrumentDef](
 
 ## `instrument`
 ---
-### examples<br>
- **positional:** <br>
+### examples
+
+ **positional:** 
+
  **named:**
 ### parameters
 | name | position | description | range |
@@ -39,31 +46,56 @@ Defines a device which can be used when adding instruments (see [instrumentDef](
 
 ## `instrumentConf`
 ---
-With `instrumentConf` you are able to setup a specific instrument.<br>
- Following settings can be applied:<br>
-  * volume<br>
-  * pan<br>
-  * voicing strategy<br>
-  * mod<br>
-  * velocity remap<br>
- ### examples<br>
- #### mixed settings<br>
- **positional:** <br>
- `instrumentConf: piano volume 100 pan 50;`<br>
- **named:**<br>
- `instrumentConf: _for=piano _set=volume _to=50 _set=pan _to=50;`<br>
- #### setup a mod<br>
- **positional:** <br>
- `instrumentConf: piano mod myLuaMod bar; --the bar argument belongs to "myLuaMod"`<br>
- **named:**<br>
- `instrumentConf: _for=piano _set=mod _use=myLuaMod _myLuaModFoo=bar;`<br>
- #### setup a velocity remap<br>
- With `remapVelocity` you are able to change the velocity values behind `ppppp..fffff` for a specific instrument.<br>
- In the example below the velcity for `p` will be set to 100 and the value for `f` will be set to 10.<br>
- The value range is 0..100. (100=127 Midi velocity)<br>
- **named:**<br>
- `instrumentConf: _set=remapVelocity _p=100 _f=10;`<br>
- **positional:**<br>
+With `instrumentConf` you are able to setup a specific instrument.
+
+ Following settings can be applied:
+
+  * volume
+
+  * pan
+
+  * voicing strategy
+
+  * mod
+
+  * velocity remap
+
+ ### examples
+
+ #### mixed settings
+
+ **positional:** 
+
+ `instrumentConf: piano volume 100 pan 50;`
+
+ **named:**
+
+ `instrumentConf: _for=piano _set=volume _to=50 _set=pan _to=50;`
+
+ #### setup a mod
+
+ **positional:** 
+
+ `instrumentConf: piano mod myLuaMod bar; --the bar argument belongs to "myLuaMod"`
+
+ **named:**
+
+ `instrumentConf: _for=piano _set=mod _use=myLuaMod _myLuaModFoo=bar;`
+
+ #### setup a velocity remap
+
+ With `remapVelocity` you are able to change the velocity values behind `ppppp..fffff` for a specific instrument.
+
+ In the example below the velcity for `p` will be set to 100 and the value for `f` will be set to 10.
+
+ The value range is 0..100. (100=127 Midi velocity)
+
+ **named:**
+
+ `instrumentConf: _set=remapVelocity _p=100 _f=10;`
+
+ **positional:**
+
  `remapVelocity` dosen't supports positional arguments
 ### parameters
 | name | position | description | range |
@@ -74,12 +106,32 @@ With `instrumentConf` you are able to setup a specific instrument.<br>
 
 ## `instrumentDef`
 ---
-Adds a new MIDI instrument.<br>
- ### examples<br>
- **positional:** <br>
- `instrumentDef: drums MyDevice 9 0 3;`<br>
- **named:**<br>
+Adds a new MIDI instrument.
+
+ ### examples
+
+ **positional:** 
+
+ `instrumentDef: drums MyDevice 9 0 3;`
+
+ **named:**
+
  `instrumentDef: _setName=drums _onDevice=MyDevice _ch=9 _cc=0 _pc=3;`
+
+ **a complete example**
+
+ define an instrument and set it to a track. (see [instrument](#instrument))
+
+ ```
+
+ instrumentDef: _setName=organ _onDevice=MyDevice _ch=0 _pc=16; 
+ [ 
+ instrument: organ; 
+ { 
+    c, c, c, c, 
+ } 
+ ] 
+ ```
 ### parameters
 | name | position | description | range |
 |:--- |:--- |:--- |:--- |
@@ -93,11 +145,16 @@ Adds a new MIDI instrument.<br>
 
 ## `signature`
 ---
-Set the time signature of the current track.<br>
- ### examples<br>
- **positional:** <br>
- `/signature: 3 4/`<br>
- **named:**<br>
+Set the time signature of the current track.
+
+ ### examples
+
+ **positional:** 
+
+ `/signature: 3 4/`
+
+ **named:**
+
  `/signature: _upper=3 _lower=4/`
 ### parameters
 | name | position | description | range |
@@ -109,17 +166,28 @@ Set the time signature of the current track.<br>
 
 ## `tempo`
 ---
-`tempo` defines or changes the current tempo.<br>
- ### examples<br>
- **positional:** <br>
- `tempo: 120;`<br>
- **named:**<br>
- `tempo: _bpm=120;`<br>
- This command can be used as document config:<br>
- `tempo: 120;`<br>
- or within a track<br>
- `/tempo: 120/`<br>
- It is also possible to set diffrent tempo values for several tracks:<br>
+`tempo` defines or changes the current tempo.
+
+ ### examples
+
+ **positional:** 
+
+ `tempo: 120;`
+
+ **named:**
+
+ `tempo: _bpm=120;`
+
+ This command can be used as document config:
+
+ `tempo: 120;`
+
+ or within a track
+
+ `/tempo: 120/`
+
+ It is also possible to set diffrent tempo values for several tracks:
+
  [see here](/manual#Tempo)
 ### parameters
 | name | position | description | range |
@@ -130,11 +198,16 @@ Set the time signature of the current track.<br>
 
 ## `volume`
 ---
-set the volume of the current track<br>
- ### examples<br>
- **positional:** <br>
- `/volume: 50/`<br>
- **named:**<br>
+set the volume of the current track
+
+ ### examples
+
+ **positional:** 
+
+ `/volume: 50/`
+
+ **named:**
+
  `/volume: _to=50/`
 ### parameters
 | name | position | description | range |

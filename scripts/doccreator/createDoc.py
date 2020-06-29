@@ -10,7 +10,12 @@ class DocParser:
         self.comment_sequence = comment_sequence
 
     def parse(self, str:str):
-        txt = lambda node: node.text.strip().replace('\n', '<br>\n')
+        txt = lambda node: node \
+            .text \
+            .strip() \
+            .replace('\\n\n', '$nl') \
+            .replace('\n', '\n\n') \
+            .replace('$nl', '\n')
         attr = lambda node, name, default="": node.attrib[name] if name in node.attrib else default
         str = str.replace(self.comment_sequence, '')
         doc_tree = ET.fromstring(f'<root>{str}</root>')
