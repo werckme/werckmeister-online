@@ -1,13 +1,46 @@
 ## Commands
+* [device](#device)
+* [instrument](#instrument)
 * [instrumentConf](#instrumentConf)
+* [instrumentDef](#instrumentDef)
 * [signature](#signature)
 * [tempo](#tempo)
 * [volume](#volume)
 
+## `device`
+---
+Defines a device which can be used when adding instruments (see [instrumentDef](#instrumentDef))<br>
+ ### examples<br>
+ **positional:** <br>
+ `device: MyDevice midi 0 offset 100;`<br>
+ **named:**<br>
+ `device: _setName=MyDevice _isType=midi _usePort=0 _withOffset=100;`
+### parameters
+| name | position | description | range |
+|:--- |:--- |:--- |:--- |
+| setName | 1 | An arbitary name. | [a-zA-Z0-9.]+ |
+| isType | 2 | The type of the device. (Currently the only supported type is `midi`) | [midi] |
+| usePort | 3 | The port id of your device. You can get a list of your connected devices, by executing `sheetp --list` | 0..N |
+| withOffset |  | Defines an offset in milliseconds. Can be used to keep different devices in sync. | 0..N |
+
+<br><br><br>
+
+## `instrument`
+---
+### examples<br>
+ **positional:** <br>
+ **named:**
+### parameters
+| name | position | description | range |
+|:--- |:--- |:--- |:--- |
+| to | 1 | The volume value. | 0..100 |
+
+<br><br><br>
+
 ## `instrumentConf`
 ---
-With `instrumentConf` you are able to config a specific instrument.<br>
- Following settings can be used:<br>
+With `instrumentConf` you are able to setup a specific instrument.<br>
+ Following settings can be applied:<br>
   * volume<br>
   * pan<br>
   * voicing strategy<br>
@@ -35,7 +68,26 @@ With `instrumentConf` you are able to config a specific instrument.<br>
 ### parameters
 | name | position | description | range |
 |:--- |:--- |:--- |:--- |
-| for | 0 | The name of the target instrument. This is the only "unique" parameter for this command. All further parameters are specific to its related setting. | - |
+| for | 1 | The name of the target instrument. This is the only "unique" parameter for this command. All further parameters are specific to its related setting. | - |
+
+<br><br><br>
+
+## `instrumentDef`
+---
+Adds a new MIDI instrument.<br>
+ ### examples<br>
+ **positional:** <br>
+ `instrumentDef: drums MyDevice 9 0 3;`<br>
+ **named:**<br>
+ `instrumentDef: _setName=drums _onDevice=MyDevice _ch=9 _cc=0 _pc=3;`
+### parameters
+| name | position | description | range |
+|:--- |:--- |:--- |:--- |
+| setName | 1 | An arbitary name. | [a-zA-Z0-9.]+ |
+| onDevice | 2 | The device which to use (The name of the device, see [device](#device)). | [a-zA-Z0-9.]+ |
+| ch | 3 | The MIDI channel. | 0..15 |
+| cc | 4 | A MIDI `control change` value. | 0..127 |
+| pc | 5 | A MIDI `program change` value. | 0..127 |
 
 <br><br><br>
 
@@ -50,8 +102,8 @@ Set the time signature of the current track.<br>
 ### parameters
 | name | position | description | range |
 |:--- |:--- |:--- |:--- |
-| upper | 0 | The upper value of the signature. | - |
-| lower | 1 | The lower value of the signature. | - |
+| upper | 1 | The upper value of the signature. | - |
+| lower | 2 | The lower value of the signature. | - |
 
 <br><br><br>
 
@@ -72,7 +124,7 @@ Set the time signature of the current track.<br>
 ### parameters
 | name | position | description | range |
 |:--- |:--- |:--- |:--- |
-| bpm | 0 | The tempo bpm value. | - |
+| bpm | 1 | The tempo bpm value. | - |
 
 <br><br><br>
 
@@ -87,7 +139,7 @@ set the volume of the current track<br>
 ### parameters
 | name | position | description | range |
 |:--- |:--- |:--- |:--- |
-| to | 0 | The volume value. | 0..100 |
+| to | 1 | The volume value. | 0..100 |
 
 <br><br><br>
 

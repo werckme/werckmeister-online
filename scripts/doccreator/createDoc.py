@@ -22,6 +22,10 @@ class DocParser:
             argument.summary = txt(param)
             argument.position = attr(param, 'position', "-")
             argument.range = attr(param, 'range', "-")
+            try:
+                posVal = int(argument.position) + 1
+                argument.position = posVal
+            except: pass
             command.args.append(argument)
         return command
         
@@ -92,13 +96,12 @@ if __name__ == '__main__':
     import argparse
     from os import listdir
     from os.path import isfile, splitext, join
-    #parser = argparse.ArgumentParser(description='generates markdown from argumentNames.h')
-    #parser.add_argument('input', help='the input file')
-    #args = parser.parse_args()
-    #processArgumentNames(args.input)
+    parser = argparse.ArgumentParser(description='generates markdown from argumentNames.h')
+    parser.add_argument('input', help='the input file')
+    args = parser.parse_args()
     is_ignore = lambda file_path: file_path[0] == '_'  
     is_header = lambda file_path: splitext(file_path)[-1] == '.h'
-    in_dir = '/home/samba/workspace/werckmeister/src/compiler/commands'
+    in_dir = args.input
     files = [join(in_dir, file) for file in listdir(in_dir) if not is_ignore(file)]
     headers = [file for file in files if isfile(file) and is_header(file)]
     commands = []
