@@ -93,9 +93,28 @@ def processHeader(file_str):
     command = comments_parser.parse(comments)
     return command
 
+def processLua(file_str):
+    comment_str = ""
+    is_comment_line = lambda str_: str_.strip().find('--') == 0
+    def get_comment_lines(f):
+        line:str = f.readline()
+        while line and is_comment_line(line):
+            yield line
+            line = f.readline()
+    with open(file_str, 'r') as f:
+        comment_lines = get_comment_lines(f)
+        comment_str = "".join(comment_lines)
+    if len(comment_str) == 0:
+        return None
+    comments_parser = DocParser('--')
+    command = comments_parser.parse(comment_str)
+    return command    
+
 def printToc(commands):
     for command in commands:
         print(f'* [{command.command_name}](#{command.command_name})')
+
+file_handler = {'.h': processHeader, '.lua': processLua}
 
 if __name__ == '__main__':
     import argparse
@@ -106,12 +125,15 @@ if __name__ == '__main__':
     args = parser.parse_args()
     is_ignore = lambda file_path: file_path[0] == '_'  
     is_header = lambda file_path: splitext(file_path)[-1] == '.h'
+    is_lua    = lambda file_path: splitext(file_path)[-1] == '.lua'
     in_dir = args.input
     files = [join(in_dir, file) for file in listdir(in_dir) if not is_ignore(file)]
-    headers = [file for file in files if isfile(file) and is_header(file)]
+    files = [file for file in files if isfile(file) and (is_header(file) or is_lua(file))]
     commands = []
-    for file in headers:
-        commands.append(processHeader(file))
+    for file in files:
+        ext = splitext(file)[1]
+        command = file_handler[ext](file)
+        commands.append(command)
     commands = [command for command in commands if command != None]
     commands.sort(key=lambda x: x.command_name)
     print('## Commands')
