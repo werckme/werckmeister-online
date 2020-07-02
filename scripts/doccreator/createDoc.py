@@ -20,6 +20,8 @@ class DocParser:
         str = str.replace(self.comment_sequence, '')
         doc_tree = ET.fromstring(f'<root>{str}</root>')
         command_node = doc_tree.find('command')
+        if command_node == None:
+            return
         command = CommandDto(attr(command_node, 'name'))
         command.summary = txt(command_node)
         for param in doc_tree.findall("param"):
@@ -121,13 +123,15 @@ if __name__ == '__main__':
     from os import listdir
     from os.path import isfile, splitext, join
     parser = argparse.ArgumentParser(description='generates markdown from argumentNames.h')
-    parser.add_argument('input', help='the input file')
+    parser.add_argument('input', help='the input file', nargs='+')
     args = parser.parse_args()
     is_ignore = lambda file_path: file_path[0] == '_'  
     is_header = lambda file_path: splitext(file_path)[-1] == '.h'
     is_lua    = lambda file_path: splitext(file_path)[-1] == '.lua'
-    in_dir = args.input
-    files = [join(in_dir, file) for file in listdir(in_dir) if not is_ignore(file)]
+    in_dirs = args.input
+    files = []
+    for in_dir in in_dirs:
+        files.extend([join(in_dir, file) for file in listdir(in_dir) if not is_ignore(file)])
     files = [file for file in files if isfile(file) and (is_header(file) or is_lua(file))]
     commands = []
     for file in files:
