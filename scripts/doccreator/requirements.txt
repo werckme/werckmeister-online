@@ -1,3 +1,0 @@
-CppHeaderParser
-markdown-generator
-luaparser
