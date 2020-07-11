@@ -84,6 +84,8 @@ tutorialsnippet {
 .ace_editor {
     @include mat-card-2;
     border-radius: 5px;
+    font-size: 16px;
+    line-height: 19px;
 }
 
 pre {
