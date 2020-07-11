@@ -10,11 +10,18 @@ class DocParser:
         self.comment_sequence = comment_sequence
 
     def parse(self, str:str):
-        txt = lambda node: node.text.strip().replace('\n', '<br>\n')
+        txt = lambda node: node \
+            .text \
+            .strip() \
+            .replace('\\n\n', '$nl') \
+            .replace('\n', '\n\n') \
+            .replace('$nl', '\n')
         attr = lambda node, name, default="": node.attrib[name] if name in node.attrib else default
         str = str.replace(self.comment_sequence, '')
         doc_tree = ET.fromstring(f'<root>{str}</root>')
         command_node = doc_tree.find('command')
+        if command_node == None:
+            return
         command = CommandDto(attr(command_node, 'name'))
         command.summary = txt(command_node)
         for param in doc_tree.findall("param"):
@@ -22,6 +29,10 @@ class DocParser:
             argument.summary = txt(param)
             argument.position = attr(param, 'position', "-")
             argument.range = attr(param, 'range', "-")
+            try:
+                posVal = int(argument.position) + 1
+                argument.position = posVal
+            except: pass
             command.args.append(argument)
         return command
         
@@ -84,26 +95,49 @@ def processHeader(file_str):
     command = comments_parser.parse(comments)
     return command
 
+def processLua(file_str):
+    comment_str = ""
+    is_comment_line = lambda str_: str_.strip().find('--') == 0
+    def get_comment_lines(f):
+        line:str = f.readline()
+        while line and is_comment_line(line):
+            yield line
+            line = f.readline()
+    with open(file_str, 'r') as f:
+        comment_lines = get_comment_lines(f)
+        comment_str = "".join(comment_lines)
+    if len(comment_str) == 0:
+        return None
+    comments_parser = DocParser('--')
+    command = comments_parser.parse(comment_str)
+    return command    
+
 def printToc(commands):
     for command in commands:
         print(f'* [{command.command_name}](#{command.command_name})')
+
+file_handler = {'.h': processHeader, '.lua': processLua}
 
 if __name__ == '__main__':
     import argparse
     from os import listdir
     from os.path import isfile, splitext, join
-    #parser = argparse.ArgumentParser(description='generates markdown from argumentNames.h')
-    #parser.add_argument('input', help='the input file')
-    #args = parser.parse_args()
-    #processArgumentNames(args.input)
+    parser = argparse.ArgumentParser(description='generates markdown from argumentNames.h')
+    parser.add_argument('input', help='the input file', nargs='+')
+    args = parser.parse_args()
     is_ignore = lambda file_path: file_path[0] == '_'  
     is_header = lambda file_path: splitext(file_path)[-1] == '.h'
-    in_dir = '/home/samba/workspace/werckmeister/src/compiler/commands'
-    files = [join(in_dir, file) for file in listdir(in_dir) if not is_ignore(file)]
-    headers = [file for file in files if isfile(file) and is_header(file)]
+    is_lua    = lambda file_path: splitext(file_path)[-1] == '.lua'
+    in_dirs = args.input
+    files = []
+    for in_dir in in_dirs:
+        files.extend([join(in_dir, file) for file in listdir(in_dir) if not is_ignore(file)])
+    files = [file for file in files if isfile(file) and (is_header(file) or is_lua(file))]
     commands = []
-    for file in headers:
-        commands.append(processHeader(file))
+    for file in files:
+        ext = splitext(file)[1]
+        command = file_handler[ext](file)
+        commands.append(command)
     commands = [command for command in commands if command != None]
     commands.sort(key=lambda x: x.command_name)
     print('## Commands')
