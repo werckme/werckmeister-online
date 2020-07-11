@@ -865,9 +865,18 @@ type: accomp;
 <h3 id="staccato"><code>staccato</code></h3>
 <p>Performs every note staccato. It is also possible to tag single notes.</p>
 <p> If a tag is given, only the tagged notes are performed staccato.</p>
-<pre><code><![CDATA[
- /mod: staccato _forTag="stac"/
- c d e "stac"@f  only f will be performed staccato]]></code></pre><h4 id="include-extension">include extension</h4>
+<tutorialsnippet lineHeight="10" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/staccato.lua";
+tempo: 140;
+device: MyDevice  midi 0;
+instrumentDef:piano  MyDevice  _ch=0 _pc=0;
+[
+instrument: piano;
+{
+   /mod: staccato _forTag=stac _amount=100/
+   c "stac"@d e f
+}
+]]]></code></pre></tutorialsnippet><p> <em>(only the <code>d</code> will be performed staccato.)</em></p>
+<h4 id="include-extension">include extension</h4>
 <p><code>using &quot;lua/mod/staccato.lua&quot;;</code></p>
 <h4 id="parameters-11">parameters</h4>
 <table class="table table-bordered">
