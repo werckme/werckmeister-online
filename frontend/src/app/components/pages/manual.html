@@ -8,6 +8,8 @@
 <p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="write-for-drums">... write for drums</a></p>
 <p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="accomp-my-melodies">... accomp my melodies</a></p>
 <p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="chords">... setup my own chord symbols</a></p>
+<p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="commands">... see an overview of all commands</a></p>
+<p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="lua-extensions">... see an overview of lua extensions</a></p>
 <h2 id="its-just-text">It&#39;s just text</h2>
 <p>The Werckmeister language knows only a few statement types. It&#39;s all about tracks, voices, and events. That&#39;s it. 
 <br>The remaining statements are just for configuration purposes.</p>
@@ -430,3 +432,473 @@ type: accomp;
 <h5 id="mods">Mods</h5>
 <h5 id="event-tags">Event Tags</h5>
 <h5 id="lua-scripts">Lua scripts</h5>
+<h2 id="references">References</h2>
+<h2 id="commands">Commands</h2>
+<ul>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentConf">instrumentConf</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="modOnce">modOnce</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pan">pan</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="signature">signature</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tempo">tempo</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicingStrategy">voicingStrategy</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="volume">volume</a></li>
+</ul>
+<h2 id="lua-extensions">Lua Extensions</h2>
+<ul>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="staccato">staccato</a></li>
+</ul>
+<h2 id="commands-1">Commands</h2>
+<h3 id="device"><code>device</code></h3>
+<p>Defines a device which can be used when adding instruments (see <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
+<h3 id="examples-1">examples</h3>
+<p> <strong>positional:</strong> </p>
+<p> <code>device: MyDevice midi 0 offset 100;</code></p>
+<p> <strong>named:</strong></p>
+<p> <code>device: _setName=MyDevice _isType=midi _usePort=0 _withOffset=100;</code>   </p>
+<p> <strong>a complete example</strong></p>
+<p> define an device, an instrument and set it to a track.</p>
+<p> see <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></p>
+<pre><code><![CDATA[
+ device: MyDevice midi 0;
+
+ instrumentDef: organ _onDevice=MyDevice _ch=0 _pc=16; 
+ [ 
+ instrument: organ; 
+ { 
+    c d e f 
+ } 
+ ] ]]></code></pre><h4 id="parameters">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">setName</td>
+<td align="left">1</td>
+<td align="left">An arbitary name.</td>
+<td align="left">word</td>
+</tr>
+<tr>
+<td align="left">isType</td>
+<td align="left">2</td>
+<td align="left">The type of the device. (Currently the only supported type is <code>midi</code>)</td>
+<td align="left">[midi]</td>
+</tr>
+<tr>
+<td align="left">usePort</td>
+<td align="left">3</td>
+<td align="left">The port id of your device. You can get a list of your connected devices, by executing <code>sheetp --list</code></td>
+<td align="left">0..N</td>
+</tr>
+<tr>
+<td align="left">withOffset</td>
+<td align="left"></td>
+<td align="left">Defines an offset in milliseconds. Can be used to keep different devices in sync.</td>
+<td align="left">0..N</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="instrument"><code>instrument</code></h3>
+<p>Set or change the instrument of a track.</p>
+<h3 id="examples-2">examples</h3>
+<p> <strong>positional:</strong> </p>
+<p> <code>instrument: myInstrument;</code></p>
+<p> <strong>named:</strong></p>
+<p> <code>instrument: _use=myInstrument;</code></p>
+<p> <strong>set an instrument for a track</strong></p>
+<pre><code><![CDATA[
+ [ 
+ instrument: myInstrument; 
+ { 
+   c d e f 
+ } 
+ ] ]]></code></pre><p> <strong>change current instrument within a track</strong></p>
+<pre><code><![CDATA[
+ [ 
+ { 
+   c d e f | 
+   /instrument: myOtherInstrument/
+
+   c d e f
+
+ } 
+ ] ]]></code></pre><h4 id="parameters-1">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">use</td>
+<td align="left">1</td>
+<td align="left">The instrument name.</td>
+<td align="left">word</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="instrumentconf"><code>instrumentConf</code></h3>
+<p>With <code>instrumentConf</code> you are able to setup a specific instrument.</p>
+<p> Following settings can be applied:</p>
+<ul>
+<li><p>volume</p>
+</li>
+<li><p>pan</p>
+</li>
+<li><p>voicing strategy</p>
+</li>
+<li><p>mod</p>
+</li>
+<li><p>velocity remap</p>
+<h3 id="examples-3">examples</h3>
+<h4 id="mixed-settings">mixed settings</h4>
+<p><strong>positional:</strong> </p>
+<p><code>instrumentConf: piano volume 100 pan 50;</code></p>
+<p><strong>named:</strong></p>
+<p><code>instrumentConf: _for=piano _set=volume _to=50 _set=pan _to=50;</code></p>
+<h4 id="setup-a-mod">setup a mod</h4>
+<p><strong>positional:</strong> </p>
+<p><code>instrumentConf: piano mod myLuaMod bar; --the bar argument belongs to &quot;myLuaMod&quot;</code></p>
+<p><strong>named:</strong></p>
+<p><code>instrumentConf: _for=piano _set=mod _use=myLuaMod _myLuaModFoo=bar;</code></p>
+<h4 id="setup-a-velocity-remap">setup a velocity remap</h4>
+<p>With <code>remapVelocity</code> you are able to change the velocity values behind <code>ppppp..fffff</code> for a specific instrument.</p>
+<p>In the example below the velcity for <code>p</code> will be set to 100 and the value for <code>f</code> will be set to 10.</p>
+<p>The value range is 0..100. (100=127 Midi velocity)</p>
+<p><strong>named:</strong></p>
+<p><code>instrumentConf: _set=remapVelocity _p=100 _f=10;</code></p>
+<p><strong>positional:</strong></p>
+<p><code>remapVelocity</code> dosen&#39;t supports positional arguments</p>
+<h4 id="parameters-2">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">for</td>
+<td align="left">1</td>
+<td align="left">The name of the target instrument. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related setting.</td>
+<td align="left">-</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p><br><br><br></p>
+<h3 id="instrumentdef"><code>instrumentDef</code></h3>
+<p>Adds a new MIDI instrument.</p>
+<h3 id="examples-4">examples</h3>
+<p> <strong>positional:</strong> </p>
+<p> <code>instrumentDef: drums MyDevice 9 0 3;</code></p>
+<p> <strong>named:</strong></p>
+<p> <code>instrumentDef: _setName=drums _onDevice=MyDevice _ch=9 _cc=0 _pc=3;</code></p>
+<p> <strong>a complete example</strong></p>
+<p> define an device, an instrument and set it to a track.</p>
+<p> see <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
+<pre><code><![CDATA[
+ device: MyDevice midi 0;
+
+ instrumentDef: organ _onDevice=MyDevice _ch=0 _pc=16; 
+ [ 
+ instrument: organ; 
+ { 
+    c d e f 
+ } 
+ ] ]]></code></pre><h4 id="parameters-3">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">setName</td>
+<td align="left">1</td>
+<td align="left">An arbitary name.</td>
+<td align="left">word</td>
+</tr>
+<tr>
+<td align="left">onDevice</td>
+<td align="left">2</td>
+<td align="left">The device which to use (The name of the device, see <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a>).</td>
+<td align="left">word</td>
+</tr>
+<tr>
+<td align="left">ch</td>
+<td align="left">3</td>
+<td align="left">The MIDI channel.</td>
+<td align="left">0..15</td>
+</tr>
+<tr>
+<td align="left">cc</td>
+<td align="left">4</td>
+<td align="left">A MIDI <code>control change</code> value.</td>
+<td align="left">0..127</td>
+</tr>
+<tr>
+<td align="left">pc</td>
+<td align="left">5</td>
+<td align="left">A MIDI <code>program change</code> value.</td>
+<td align="left">0..127</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="mod"><code>mod</code></h3>
+<p>Adds a modification to the track.</p>
+<h3 id="examples-5">examples</h3>
+<p> <strong>positional:</strong> </p>
+<p> <code>/mod: arpeggio/</code></p>
+<p> <strong>named:</strong></p>
+<p> <code>/mod: _use=arpeggio/</code>  </p>
+<p> Mods can be external lua scripts, or one of theese internal mods:</p>
+<h4 id="bend">Bend</h4>
+<p> <code>/mod: bend _from=0/</code></p>
+<h4 id="arpeggio">Arpeggio</h4>
+<p> <code>/mod: arpeggio/</code></p>
+<h4 id="parameters-4">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">use</td>
+<td align="left">1</td>
+<td align="left">The name of the modification to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
+<td align="left">word</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="modonce"><code>modOnce</code></h3>
+<p>Like <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<h3 id="examples-6">examples</h3>
+<p> <strong>positional:</strong> </p>
+<p> <code>/modOnce: arpeggio/</code></p>
+<p> <strong>named:</strong></p>
+<p> <code>/modOnce: _use=arpeggio/</code></p>
+<h4 id="parameters-5">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">use</td>
+<td align="left">1</td>
+<td align="left">The name of the modification to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
+<td align="left">word</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="pan"><code>pan</code></h3>
+<p>set the pan of the current track</p>
+<h3 id="examples-7">examples</h3>
+<p> <strong>positional:</strong> </p>
+<p> <code>/pan: 50/</code></p>
+<p> <strong>named:</strong></p>
+<p> <code>/pan: _to=50/</code></p>
+<h4 id="parameters-6">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">to</td>
+<td align="left">1</td>
+<td align="left">The pan value. Where 50 means the center</td>
+<td align="left">0..100</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="signature"><code>signature</code></h3>
+<p>Set the time signature of the current track.</p>
+<h3 id="examples-8">examples</h3>
+<p> <strong>positional:</strong> </p>
+<p> <code>/signature: 3 4/</code></p>
+<p> <strong>named:</strong></p>
+<p> <code>/signature: _upper=3 _lower=4/</code></p>
+<h4 id="parameters-7">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">upper</td>
+<td align="left">1</td>
+<td align="left">The upper value of the signature.</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left">lower</td>
+<td align="left">2</td>
+<td align="left">The lower value of the signature.</td>
+<td align="left">-</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="tempo-1"><code>tempo</code></h3>
+<p><code>tempo</code> defines or changes the current tempo.</p>
+<h3 id="examples-9">examples</h3>
+<p> <strong>positional:</strong> </p>
+<p> <code>tempo: 120;</code></p>
+<p> <strong>named:</strong></p>
+<p> <code>tempo: _bpm=120;</code></p>
+<p> This command can be used as document config:</p>
+<p> <code>tempo: 120;</code></p>
+<p> or within a track</p>
+<p> <code>/tempo: 120/</code></p>
+<p> It is also possible to set diffrent tempo values for several tracks:</p>
+<p> <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="Tempo">see here</a></p>
+<h4 id="parameters-8">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">bpm</td>
+<td align="left">1</td>
+<td align="left">The tempo bpm value.</td>
+<td align="left">-</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="voicingstrategy"><code>voicingStrategy</code></h3>
+<p>Adds a modification to the track.</p>
+<h3 id="examples-10">examples</h3>
+<p> <strong>positional:</strong> </p>
+<p> <code>/voicingStrategy: asNotated/</code> </p>
+<p> <strong>named:</strong></p>
+<p> <code>/voicingStrategy: _use=asNotated/</code>  </p>
+<p> Voicing strategies can be external lua scripts, or one of theese internal strategies:</p>
+<ul>
+<li><p>asNotated</p>
+</li>
+<li><p>simpleGuitar</p>
+<h4 id="parameters-9">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">use</td>
+<td align="left">1</td>
+<td align="left">The name of the strategy to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related strategy.</td>
+<td align="left">word</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p><br><br><br></p>
+<h3 id="volume"><code>volume</code></h3>
+<p>set the volume of the current track</p>
+<h3 id="examples-11">examples</h3>
+<p> <strong>positional:</strong> </p>
+<p> <code>/volume: 50/</code></p>
+<p> <strong>named:</strong></p>
+<p> <code>/volume: _to=50/</code></p>
+<h4 id="parameters-10">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">to</td>
+<td align="left">1</td>
+<td align="left">The volume value.</td>
+<td align="left">0..100</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h2 id="lua-extensions-1">Lua Extensions</h2>
+<h3 id="staccato"><code>staccato</code></h3>
+<p>Performs every note staccato. It is also possible to tag single notes.</p>
+<p> If a tag is given, only the tagged notes are performed staccato.</p>
+<tutorialsnippet lineHeight="10" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/staccato.lua";
+tempo: 140;
+device: MyDevice  midi 0;
+instrumentDef:piano  MyDevice  _ch=0 _pc=0;
+[
+instrument: piano;
+{
+   /mod: staccato _forTag=stac _amount=100/
+   c "stac"@d e f
+}
+]]]></code></pre></tutorialsnippet><p> <em>(only the <code>d</code> will be performed staccato.)</em></p>
+<h4 id="include-extension">include extension</h4>
+<p><code>using &quot;lua/mod/staccato.lua&quot;;</code></p>
+<h4 id="parameters-11">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">forTag</td>
+<td align="left">-</td>
+<td align="left">Specifies a tag name. If set only events with this tag name will be affected by the staccato mod.</td>
+<td align="left">word</td>
+</tr>
+<tr>
+<td align="left">amount</td>
+<td align="left">-</td>
+<td align="left">The ammount of the staccato</td>
+<td align="left">0..100</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
