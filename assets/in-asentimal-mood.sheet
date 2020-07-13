@@ -1,0 +1,48 @@
+using "./chords/default.chords";
+
+-- setup your midi device:
+-- to get a list of your available MIDI devices 
+-- and their port numbers, execute "sheetp --list"
+device: _setName=MyDevice          _isType=midi       _usePort=0;
+
+-- define your instruments:
+-- (ch= channel, pc= programm change, cc= control change)
+--             name    device    ch  cc  pc 
+instrumentDef: _setName=piano   _onDevice=MyDevice   _ch=1   _pc=3 _cc=0;
+
+tempo: 130;
+
+
+[
+type: template;
+name: myAccomp;
+{
+    \p
+    <III V  VII  II  VI>1
+}
+{
+    I,,1~
+}
+]
+
+
+
+
+
+
+
+[
+instrument: piano;
+{
+   g'4   f'8 g'  f' e' d' c'  |
+}
+]
+
+[
+type: accomp;
+{
+    D-7           D-6          |
+}
+]
+
+
