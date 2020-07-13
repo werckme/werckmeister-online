@@ -21,7 +21,21 @@ $ionicons-font-path: "~ionicons/dist/fonts";
     font-weight: normal;
     font-style: normal;
 }
- 
+
+
+.hero-image {
+  width: 65%; 
+  margin: 0 auto; 
+  display: block
+}
+
+@include if-lg-or-smaller {
+  .hero-image {
+    width: 100%; 
+    margin: 0 0; 
+  }
+}
+
 ul {
   list-style: initial;
   margin: initial;

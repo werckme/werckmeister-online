@@ -31,6 +31,18 @@
     }
 }
 
+@mixin if-md-or-smaller {
+    @media screen and (max-width: $breakpoint-md) {
+        @content
+    }
+}
+
+@mixin if-lg-or-smaller {
+    @media screen and (max-width: $breakpoint-lg) {
+        @content
+    }
+}
+
 @mixin if-sm-or-larger {
     @media screen and (min-width: $breakpoint-sm + 1) {
         @content
