@@ -36,7 +36,11 @@
               "src/theme.less",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/werckmeister-ace-build/src-min/ace.js",
+              "node_modules/werckmeister-ace-build/src-min/mode-sheet.js",
+              "node_modules/werckmeister-ace-build/src-min/theme-dracula.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

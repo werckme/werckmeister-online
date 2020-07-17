@@ -2,6 +2,16 @@ $keycolor: #ff79c6;
 @import './variables.scss';
 
 .sheet-editor {
+    
+    span {
+        filter: grayscale(50%);
+        opacity: 0.7;
+    }
+
+    .essential {
+        filter: grayscale(0%);
+        opacity: 1;
+    }
     .track-begin 
     , .track-end
     {
@@ -19,10 +29,6 @@ $keycolor: #ff79c6;
     .eob {
         color: #e0e0e0;
         //background: #004eff2b;
-    }
-
-    .metaargs {
-        opacity: 0.7;
     }
 
     .link {

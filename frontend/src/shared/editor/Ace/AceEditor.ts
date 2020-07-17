@@ -173,7 +173,7 @@ export class AceEditor implements IEditor {
     }
 
     private createAceEditor(element: any) {
-        ace.config.set('basePath', 'assets/ace/src')
+        //ace.config.set('basePath', 'ace/src')
         this.aced = ace.edit(element);
         this.aced.setTheme("ace/theme/dracula");
         this.aced.setFontSize(AppConfig.EditorFontSizePx);

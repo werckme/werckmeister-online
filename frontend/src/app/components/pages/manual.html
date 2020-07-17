@@ -437,19 +437,32 @@ type: accomp;
 <ul>
 <li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></li>
 <li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentConf">instrumentConf</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentconf">instrumentConf</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentdef">instrumentDef</a></li>
 <li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="modOnce">modOnce</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="modonce">modOnce</a></li>
 <li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pan">pan</a></li>
 <li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="signature">signature</a></li>
 <li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tempo">tempo</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicingStrategy">voicingStrategy</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicingstrategy">voicingStrategy</a></li>
 <li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="volume">volume</a></li>
 </ul>
 <h2 id="lua-extensions">Lua Extensions</h2>
+<h3 id="modifications">Modifications</h3>
 <ul>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="drumrudiments">drumRudiments</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitarstroke">guitarStroke</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="legato">legato</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a></li>
 <li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="staccato">staccato</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="swing">swing</a></li>
+</ul>
+<h2 id="lua-extensions-1">Lua Extensions</h2>
+<h3 id="voicing-strategies-1">Voicing Strategies</h3>
+<ul>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitar">guitar</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="simple">simple</a></li>
+<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicelead">voicelead</a></li>
 </ul>
 <h2 id="commands-1">Commands</h2>
 <h3 id="device"><code>device</code></h3>
@@ -581,6 +594,8 @@ type: accomp;
 <p><code>instrumentConf: _set=remapVelocity _p=100 _f=10;</code></p>
 <p><strong>positional:</strong></p>
 <p><code>remapVelocity</code> dosen&#39;t supports positional arguments</p>
+</li>
+</ul>
 <h4 id="parameters-2">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -598,8 +613,6 @@ type: accomp;
 <td align="left">-</td>
 </tr>
 </tbody></table>
-</li>
-</ul>
 <p><br><br><br></p>
 <h3 id="instrumentdef"><code>instrumentDef</code></h3>
 <p>Adds a new MIDI instrument.</p>
@@ -816,6 +829,8 @@ type: accomp;
 <li><p>asNotated</p>
 </li>
 <li><p>simpleGuitar</p>
+</li>
+</ul>
 <h4 id="parameters-9">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -833,8 +848,6 @@ type: accomp;
 <td align="left">word</td>
 </tr>
 </tbody></table>
-</li>
-</ul>
 <p><br><br><br></p>
 <h3 id="volume"><code>volume</code></h3>
 <p>set the volume of the current track</p>
@@ -861,11 +874,252 @@ type: accomp;
 </tr>
 </tbody></table>
 <p><br><br><br></p>
-<h2 id="lua-extensions-1">Lua Extensions</h2>
+<h2 id="lua-extensions-2">Lua Extensions</h2>
+<h3 id="modifications-1">Modifications</h3>
+<h3 id="drumrudiments"><code>drumRudiments</code></h3>
+<p>Implements a collection of different drum rudiments. (<a href="https://en.wikipedia.org/wiki/Drum_rudiment">see Wikipedia</a>)</p>
+<p> You can specify which notes are for <code>L</code> and <code>R</code> and the time measure.</p>
+<p> This will be achived by using an chord as source material.</p>
+<p> The Chord pitches will be used for <code>L</code> and <code>R</code>.</p>
+<p> The length of the chord event defines in which speed the rudiment will be peformed.</p>
+<p> The event tag specifies which rudiment will be performed.</p>
+<p> For example:</p>
+<p> This plays a paradiddle over a length of 1 quarter</p>
+<p> using <code>sn1</code> for R and <code>sn2</code> for L:</p>
+<pre><code><![CDATA[
+ /mod: drumRudiments/
+ "paradiddle"@<"sn1" "sn2">4
+
+                 R     L 
+ "paradiddle"@<"sn1" "sn2">4]]></code></pre><p> Examples:</p>
+<p> <strong>a paradiddle</strong></p>
+<tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
+tempo: 150;
+device: MyDevice  midi 0;
+instrumentDef:piano  MyDevice  _ch=0 _pc=0;
+[
+instrument: piano;
+{
+   /mod: drumRudiments/
+   -- a paradiddle (RLRR) with c' for R and c for L
+   "paradiddle"@<c' c>1
+}
+]]]></code></pre></tutorialsnippet><p> <strong>repeating</strong></p>
+<tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
+tempo: 120;
+device: MyDevice  midi 0;
+instrumentDef:piano  MyDevice  _ch=0 _pc=0;
+[
+instrument: piano;
+{
+   /mod: drumRudiments/
+   -- performs 4 paradiddles (RLRR) with c' for R and c for L
+   "4x paradiddle"@<c' c>1
+}
+]]]></code></pre></tutorialsnippet><p> <strong>orchestration</strong></p>
+<p> If you want to orchestrate a rudiment over a drum set,</p>
+<p> you are able to define more R &amp; L notes. The total number of the notes has to be even.</p>
+<tutorialsnippet lineHeight="14" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
+tempo: 120;
+device: MyDevice  midi 0;
+instrumentDef:piano  MyDevice  _ch=0 _pc=0;
+[
+instrument: piano;
+{
+   /mod: drumRudiments/
+   -- performs a paradiddlediddle (RLRRLL) with 
+   --      c' for R1 and c for L1
+   -- and  d' for R2 and d for L2.
+   -- The final sequence: c'(R1) c(L1) d'(R2) c(R1) d(L2) c(L1) 
+   "paradiddlediddle"@<c' c d' d>1
+}
+]]]></code></pre></tutorialsnippet><p> <strong>Supported Rudiments</strong></p>
+<ul style="font-size: 0.9em;">
+
+<li>singleStrokeRoll</li>
+
+<li>doubleStrokeRoll</li>
+
+<li>trippleStrokeRoll</li>
+
+<li>fiveStrokeRoll</li>
+
+<li>singleStrokeFour</li>
+
+<li>singleStrokeSeven</li>
+
+<li>multipleBounceRoll</li>
+
+<li>sixStrokeRoll</li>
+
+<li>sevenStrokeRoll</li>
+
+<li>nineStrokeRoll</li>
+
+<li>tenStrokeRoll</li>
+
+<li>elevenStrokeRoll</li>
+
+<li>thirteenStrokeRoll</li>
+
+<li>fifteenStrokeRoll</li>
+
+<li>seventeenStrokeRoll</li>
+
+<li>paradiddle</li>
+
+<li>doubleParadiddle</li>
+
+<li>trippleParadiddle</li>
+
+<li>paradiddlediddle</li>
+
+</ul>
+
+<h4 id="parameters-11">parameters</h4>
+<p><em>no parameters</em></p>
+<h4 id="include-extension">include extension</h4>
+<p><code>using &quot;lua/mod/drumRudiments.lua&quot;;</code></p>
+<p><br><br><br></p>
+<h3 id="guitarstroke"><code>guitarStroke</code></h3>
+<p>Simulates guitar strokes as mini arpeggios.</p>
+<p> <em>Note: the alternate mode works only if this mod is set via instrumentConf.</em></p>
+<pre><code><![CDATA[
+ -- does not work: 
+ [ 
+ { 
+   /mod: guitarStroke _mode=alternate/
+ } 
+ ] ]]></code></pre><pre><code><![CDATA[
+ -- does work: 
+ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><p> <strong>Example</strong></p>
+<tutorialsnippet lineHeight="10" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/guitarStroke.lua";
+tempo: 120;
+device: MyDevice  midi 0;
+instrumentDef:  piano  MyDevice  _ch=0 _pc=0;
+instrumentConf: piano mod guitarStroke _mode=alternate _value=8; 
+[
+instrument: piano;
+{
+  <c e g b>4 <c e g b>4 <c eb g bb>4 <c eb g bb>4
+}
+]]]></code></pre></tutorialsnippet><h4 id="parameters-12">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">direction</td>
+<td align="left">-</td>
+<td align="left">Specifies the start direction of the stroke</td>
+<td align="left">[up,down]</td>
+</tr>
+<tr>
+<td align="left">value</td>
+<td align="left">-</td>
+<td align="left">the duration of one aprgeggio event. (Default=64)</td>
+<td align="left">[1,2,4,8,...]</td>
+</tr>
+<tr>
+<td align="left">mode</td>
+<td align="left">-</td>
+<td align="left">Perform only one stroke direction (normal) or alternates between up and down. (Default=normal)</td>
+<td align="left">[normal,alternate]</td>
+</tr>
+</tbody></table>
+<h4 id="include-extension-1">include extension</h4>
+<p><code>using &quot;lua/mod/guitarStroke.lua&quot;;</code></p>
+<p><br><br><br></p>
+<h3 id="legato"><code>legato</code></h3>
+<p>Performs every note legato. It is also possible to tag single notes.</p>
+<p> If a tag is given, only the tagged notes are performed legato.</p>
+<tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/legato.lua";
+tempo: 140;
+device: MyDevice  midi 0;
+instrumentDef:piano  MyDevice  _ch=0 _pc=0;
+[
+instrument: piano;
+{
+   /mod: legato _forTag=leg _amount=100/
+   -- only the `d` will be performed legato. 
+   c "leg"@d e f
+}
+]]]></code></pre></tutorialsnippet><h4 id="parameters-13">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">forTag</td>
+<td align="left">-</td>
+<td align="left">Specifies a tag name. If set only events with this tag name will be affected by the legato mod.</td>
+<td align="left">word</td>
+</tr>
+<tr>
+<td align="left">amount</td>
+<td align="left">-</td>
+<td align="left">The ammount of the legato effect</td>
+<td align="left">0..100</td>
+</tr>
+</tbody></table>
+<h4 id="include-extension-2">include extension</h4>
+<p><code>using &quot;lua/mod/legato.lua&quot;;</code></p>
+<p><br><br><br></p>
+<h3 id="myarpeggio"><code>myArpeggio</code></h3>
+<p>A simple arpeggio implementation.</p>
+<p> <strong>Example</strong></p>
+<tutorialsnippet lineHeight="12" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/myArpeggio.lua";
+tempo: 120;
+device: MyDevice  midi 0;
+instrumentDef:  piano  MyDevice  _ch=0 _pc=0;
+[
+instrument: piano;
+{
+ /do: myArpeggio/ 
+ <c e g b>2 
+ /do: myArpeggio _direction=down/ 
+ <c eb g bb>2 
+}
+]]]></code></pre></tutorialsnippet><h4 id="parameters-14">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">style</td>
+<td align="left">-</td>
+<td align="left">Performs the arpeggio normal or legato</td>
+<td align="left">[normal,legato]</td>
+</tr>
+<tr>
+<td align="left">direction</td>
+<td align="left">-</td>
+<td align="left">the direction of the aprgeggio. (Default=up)</td>
+<td align="left">[up,down]</td>
+</tr>
+</tbody></table>
+<h4 id="include-extension-3">include extension</h4>
+<p><code>using &quot;lua/mod/myArpeggio.lua&quot;;</code></p>
+<p><br><br><br></p>
 <h3 id="staccato"><code>staccato</code></h3>
 <p>Performs every note staccato. It is also possible to tag single notes.</p>
 <p> If a tag is given, only the tagged notes are performed staccato.</p>
-<tutorialsnippet lineHeight="10" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/staccato.lua";
+<tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/staccato.lua";
 tempo: 140;
 device: MyDevice  midi 0;
 instrumentDef:piano  MyDevice  _ch=0 _pc=0;
@@ -873,12 +1127,10 @@ instrumentDef:piano  MyDevice  _ch=0 _pc=0;
 instrument: piano;
 {
    /mod: staccato _forTag=stac _amount=100/
+   -- only the `d` will be performed staccato. 
    c "stac"@d e f
 }
-]]]></code></pre></tutorialsnippet><p> <em>(only the <code>d</code> will be performed staccato.)</em></p>
-<h4 id="include-extension">include extension</h4>
-<p><code>using &quot;lua/mod/staccato.lua&quot;;</code></p>
-<h4 id="parameters-11">parameters</h4>
+]]]></code></pre></tutorialsnippet><h4 id="parameters-15">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -897,8 +1149,180 @@ instrument: piano;
 <tr>
 <td align="left">amount</td>
 <td align="left">-</td>
-<td align="left">The ammount of the staccato</td>
+<td align="left">The ammount of the staccato effect</td>
 <td align="left">0..100</td>
 </tr>
 </tbody></table>
+<h4 id="include-extension-4">include extension</h4>
+<p><code>using &quot;lua/mod/staccato.lua&quot;;</code></p>
+<p><br><br><br></p>
+<h3 id="swing"><code>swing</code></h3>
+<p>Performs a swing groove.</p>
+<tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/swing.lua";
+tempo: 120;
+device: MyDevice  midi 0;
+instrumentDef:  piano  MyDevice  _ch=0 _pc=0;
+[
+instrument: piano;
+{
+   /mod: swing/
+   c8  c   c   c   c   c   c   c
+
+}
+]]]></code></pre></tutorialsnippet><h4 id="parameters-16">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">grid</td>
+<td align="left">-</td>
+<td align="left">Performs the swing offset either on 8th or 16th. (Default=8)</td>
+<td align="left">[8, 16]</td>
+</tr>
+<tr>
+<td align="left">offset</td>
+<td align="left">-</td>
+<td align="left">The ammount of the swing offset</td>
+<td align="left">0..100</td>
+</tr>
+</tbody></table>
+<h4 id="include-extension-5">include extension</h4>
+<p><code>using &quot;lua/mod/swing.lua&quot;;</code></p>
+<p><br><br><br></p>
+<h3 id="voicing-strategies-2">Voicing Strategies</h3>
+<h3 id="guitar"><code>guitar</code></h3>
+<p>Tries to simulates the chord voicing of an guitar.</p>
+<tutorialsnippet lineHeight="21" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/voicings/guitar.lua";
+using "chords/default.chords";
+
+tempo: 120;
+device: MyDevice  midi 0;
+instrumentDef:piano  MyDevice  _ch=0 _pc=0;
+[
+type: template;
+name: myTemplate;
+instrument: piano;
+{
+   /voicingStrategy: guitar/
+   <I II III IV V VI VII>1
+}
+]
+[
+type: accomp;
+
+{
+  C | F | G | C |
+}
+]]]></code></pre></tutorialsnippet><h4 id="parameters-17">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">range</td>
+<td align="left">-</td>
+<td align="left">If given the strategy tries to keeps the range by shifting the octave of the chord.</td>
+<td align="left">[contrabass,bass,baritone,tenor,alto,mezzosoprano,soprano]</td>
+</tr>
+</tbody></table>
+<h4 id="include-extension-6">include extension</h4>
+<p><code>using &quot;lua/voicings/guitar.lua&quot;;</code></p>
+<p><br><br><br></p>
+<h3 id="simple"><code>simple</code></h3>
+<p>The simple approach with no strategy.</p>
+<tutorialsnippet lineHeight="21" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/voicings/simple.lua";
+using "chords/default.chords";
+
+tempo: 120;
+device: MyDevice  midi 0;
+instrumentDef:piano  MyDevice  _ch=0 _pc=0;
+[
+type: template;
+name: myTemplate;
+instrument: piano;
+{
+   /voicingStrategy: simple/
+   <I II III IV V VI VII>1
+}
+]
+[
+type: accomp;
+
+{
+  C | F | G | C |
+}
+]]]></code></pre></tutorialsnippet><h4 id="parameters-18">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">range</td>
+<td align="left">-</td>
+<td align="left">If given the strategy tries to keeps the range by shifting the octave of the chord.</td>
+<td align="left">[contrabass,bass,baritone,tenor,alto,mezzosoprano,soprano]</td>
+</tr>
+</tbody></table>
+<h4 id="include-extension-7">include extension</h4>
+<p><code>using &quot;lua/voicings/simple.lua&quot;;</code></p>
+<p><br><br><br></p>
+<h3 id="voicelead"><code>voicelead</code></h3>
+<p>Tries to simulates a voice leading approach:</p>
+<p> the octaves of a chord are rearranged, so that the actual pitch distance between the previous chord is kept minimal.</p>
+<tutorialsnippet lineHeight="21" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/voicings/voicelead.lua";
+using "chords/default.chords";
+
+tempo: 120;
+device: MyDevice  midi 0;
+instrumentDef:piano  MyDevice  _ch=0 _pc=0;
+[
+type: template;
+name: myTemplate;
+instrument: piano;
+{
+   /voicingStrategy: voicelead/
+   <I II III IV V VI VII>1
+}
+]
+[
+type: accomp;
+
+{
+  C | F | G | C |
+}
+]]]></code></pre></tutorialsnippet><h4 id="parameters-19">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">range</td>
+<td align="left">-</td>
+<td align="left">If given the strategy tries to keeps the range by shifting the octave of the chord.</td>
+<td align="left">[contrabass,bass,baritone,tenor,alto,mezzosoprano,soprano]</td>
+</tr>
+</tbody></table>
+<h4 id="include-extension-8">include extension</h4>
+<p><code>using &quot;lua/voicings/voicelead.lua&quot;;</code></p>
 <p><br><br><br></p>
