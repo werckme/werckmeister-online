@@ -22,20 +22,6 @@ $ionicons-font-path: "~ionicons/dist/fonts";
     font-style: normal;
 }
 
-
-.hero-image {
-  width: 65%; 
-  margin: 0 auto; 
-  display: block
-}
-
-@include if-lg-or-smaller {
-  .hero-image {
-    width: 100%; 
-    margin: 0 0; 
-  }
-}
-
 ul {
   list-style: initial;
   margin: initial;
@@ -141,6 +127,20 @@ table {
 
 th {
     text-align: inherit;
+}
+
+img.hero-image {
+  width: 65%; 
+  max-width: 850px;
+  margin: 0 auto; 
+  display: block
+}
+
+@include if-lg-or-smaller {
+  img.hero-image {
+    width: 100%; 
+    margin: 0 0; 
+  }
 }
 
 
