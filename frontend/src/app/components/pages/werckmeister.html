@@ -52,25 +52,27 @@ instrument: ex1;
 <br>Click play to start the song.</p>
 <p>For fun sake try to replace the bass template </p>
 <pre><code><![CDATA[I,,2. V,,4 |]]></code></pre><p>with this </p>
-<pre><code><![CDATA[I,,4 I,8 I,8   I,,4 I,8 I,8 |]]></code></pre><tutorialsnippet lineHeight="61" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "chords/default.chords";
+<pre><code><![CDATA[I,,4 I,8 I,8   I,,4 I,8 I,8 |]]></code></pre><tutorialsnippet lineHeight="65" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "chords/default.chords";
 tempo: 140;
-device: MyDevice  midi 0;
-instrumentDef:lead  MyDevice  0 0 0;
-instrumentDef:piano  MyDevice  0 0 0;
-instrumentDef:bass  MyDevice  0 0 0;
+device: MyDevice  midi _usePort=0;
+instrumentDef:lead  _onDevice=MyDevice  _ch=0 _pc=0;
+instrumentDef:piano _onDevice=MyDevice  _ch=0 _pc=0;
+instrumentDef:bass  _onDevice=MyDevice  _ch=0 _pc=0;
 
 -- melody track
 [
 instrument: piano;
 {
     \fff
-    r4 e f# g | c'1~ | c'4 d e f# | b2 b2~ | b4 c d e | a1~ | a4 b, c# d# | g1 |
-    -- wiederholung
-    r4 e f# g | c'1~ | c'4 d e f# | b2 b2~ | b4 c d e | a1~ | 
-    -- 2.
-    a4 f# a g | e1~ | e4 r d# e | f# b, f#2~ | f#4 f# e f# | g1~ | g4 g f# g | a1~ |
-    a4 d d' c' | b1~ | b4 r a# b | c' c' a a | f#2. c'4 | b2 b2~ | b2. e4 | a2. g4 | 
-    f#2 g4 b, | e1 
+    r4 e f# g  | c'1~       | c'4 d e f#  | b2 b2~ | 
+    b4 c d e   | a1~        | a4 b, c# d# | g1     |
+    r4 e f# g  | c'1~       | c'4 d e f#  | b2 b2~ | 
+    b4 c d e   | a1~        | a4 f# a g   | e1~    |
+    e4 r d# e  | f# b, f#2~ | f#4 f# e f# | g1~    |
+    g4 g f# g  | a1~        | a4 d d' c'  | b1~    | 
+    b4 r a# b  | c' c' a a  | f#2. c'4    | b2 b2~ | 
+    b2. e4     | a2. g4     | f#2 g4 b,   | 
+    e1 
 }
 ]
 
@@ -78,12 +80,14 @@ instrument: piano;
 [
 type: accomp;
 {   
-    r | A-7 | D7 | Gmaj7 | Cmaj7 | F#-7b5 | B7 | E- | E- |
-    -- wiederholung
-    A-7 | D7 | Gmaj7 | Cmaj7 | F#-7b5  | 
-    -- 2.
-    B7 | E- | E- | F#-7b5  | B7b9 | E- | E- | A-7 | D7 | Gmaj7 | Gmaj7 |
-    F#-7b5  | B7b9 | E-7 A7 | D-7 G7 | F#-7b5 | B7b9 | E- |
+    r      | A-7    | D7    | Gmaj7  | 
+    Cmaj7  | F#-7b5 | B7    | E-     | 
+    E-     | A-7    | D7    | Gmaj7  | 
+    Cmaj7  | F#-7b5 | B7    | E-     | 
+    E-     | F#-7b5 | B7b9  | E-     | 
+    E-     | A-7    | D7    | Gmaj7  |
+    Gmaj7  | F#-7b5 | B7b9  | E-7 A7 | 
+    D-7 G7 | F#-7b5 | B7b9  | E-     |
 }
 ]
 

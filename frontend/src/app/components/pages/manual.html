@@ -21,11 +21,11 @@
 
 -- 1)
 --      name         type portnumber
-device: MyMidiDevice midi 1;
+device: MyMidiDevice midi _usePort=1;
 
 -- 2)
---             name  device       ch  cc pc
-instrumentDef: piano MyMidiDevice  0   0  0;
+--             name         
+instrumentDef: piano _onDevice=MyMidiDevice  _ch=0   _pc=0  _cc=0;
 -- (ch= channel, pc= programm change, cc= control change)
 
 -- 3)
@@ -100,9 +100,7 @@ g a b c'
 <em>(It is recommended to use relative path values)</em></p>
 <h3 id="devices--instruments">Devices &amp; Instruments</h3>
 <h4 id="adding-a-device">Adding a device</h4>
-<p>To add a MIDI device to your project, use the device statement. With that statement, you have to choose a name and set a MIDI port for your new device.</p>
-<p>device statement format:</p>
-<p><code>device: aName midi aMidiPort [offset millis]</code></p>
+<p>To add a MIDI device to your project, use the <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a> statement. With that statement, you have to choose a name and set a MIDI port for your new device.</p>
 <p>To see which devices with what port are connected to your device run the player with the <code>--list</code> argument: </p>
 <pre><code><![CDATA[sheetp --list]]></code></pre><p>you will get a output like this:</p>
 <pre><code><![CDATA[0: Midi Through
@@ -112,59 +110,23 @@ g a b c'
 4: SC-8850 Part D
 5: USB-Midi Port]]></code></pre><p>where the first number means the port number.</p>
 <p>So lets say we want to add the <code>SC-8850 Part A</code> to our project, we write:</p>
-<pre><code><![CDATA[device: MyRoland midi 1;]]></code></pre><p>To add a further MIDI port, for example a DX7 on the USB-Midi Port we add another line:</p>
-<pre><code><![CDATA[device: MyRoland midi 1;
-device: MyDX7 midi 5;]]></code></pre><p>Imagine your USB-Midi Port is a bit cheap and laggy. Every signal to your USB-Midi port has a delay of about 20 milliseconds. We can compensate this by adding a 20 milliseconds delay to the <code>MyRoland</code> device, so that this device and your laggy USB-Midi Port should be in sync. We do this by using an optional <code>offset</code> argument.</p>
-<pre><code><![CDATA[device: MyRoland midi 1 offset 20;
-device: MyDX7 midi 5;]]></code></pre><h4 id="adding-instruments">Adding instruments</h4>
-<p>To adding instruments we using the <code>instrumentDef</code> statement, which is constructed like this:</p>
-<p><code>instrumentDef: aInstrumentName aMidiDevice midiChannel midiControlChange midiProgramChange</code></p>
+<pre><code><![CDATA[device: MyRoland midi _usePort=1;]]></code></pre><p>To add a further MIDI port, for example a DX7 on the USB-Midi Port we add another line:</p>
+<pre><code><![CDATA[device: MyRoland midi _usePort=1;
+device: MyDX7    midi _usePort=5;]]></code></pre><p>Imagine your USB-Midi Port is a bit cheap and laggy. Every signal to your USB-Midi port has a delay of about 20 milliseconds. We can compensate this by adding a 20 milliseconds delay to the <code>MyRoland</code> device, so that this device and your laggy USB-Midi Port should be in sync. We do this by using an optional <code>offset</code> argument.</p>
+<pre><code><![CDATA[device: MyRoland midi _usePort=1 _withOffset=20;
+device: MyDX7    midi _usePort=5;]]></code></pre><h4 id="adding-instruments">Adding instruments</h4>
+<p>To adding instruments we using the <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentdef">instrumentDef</a> statement, which is constructed like this:</p>
 <p>Let&#39;s add an organ instrument which uses our Roland device from above:</p>
 <p>The Roland SC-8850 offers, for example, a <code>Farf Organ</code>. So if I want to use this instrument on channel 0, I have to send a <code>cc=19 pc=17</code> sequence to the channel on this device.<br>A suitable <code>instrumentDef</code> statement would be look as follows: </p>
-<pre><code><![CDATA[--             name      device   ch   cc   pc
-instrumentDef: myFarfisa MyRoland  0   19   17;]]></code></pre><h4 id="configuring-instruments">Configuring instruments</h4>
-<p>With an instrument added there are further options to configure it.
-A config statement has as first argument the instrument name you want to configure followed by several optional config aruments.</p>
-<p><code>instrumentConf: aInstrumentName [pan aValue] [volume aValue] [voicingStrategy aStrategyName] [mod aModName];</code></p>
-<table class="table table-bordered">
-<thead>
-<tr>
-<th>option</th>
-<th>value</th>
-<th>purpose</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>volume</td>
-<td>0..100</td>
-<td>set the volume</td>
-</tr>
-<tr>
-<td>pan</td>
-<td>0..100</td>
-<td>set the pan, 0=left, 50=center, 100=right</td>
-</tr>
-<tr>
-<td>mod</td>
-<td>aName [option value]</td>
-<td>set a <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mods">mod</a></td>
-</tr>
-<tr>
-<td>voicingStrategy</td>
-<td>aName [option value]</td>
-<td>set a <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicing-strategies">voicingStrategy</a></td>
-</tr>
-<tr>
-<td>dynamics expression (ppppp-fffff)</td>
-<td>0..100</td>
-<td>overwrite default velocity mapping</td>
-</tr>
-</tbody></table>
-<p>Now, as an example we set a volume value of 80 to our Farfisa organ, also we set the pan more to the left.</p>
+<pre><code><![CDATA[--             name      device              
+instrumentDef: myFarfisa _onDevice=MyRoland  _ch=0   _cc=19   _pc=17;]]></code></pre><h4 id="configuring-instruments">Configuring instruments</h4>
+<p>With an instrument added, there are further options to configure it.
+A <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentconf">config statement</a> has as first argument the instrument name you want to configure, followed by several <em>optional</em> config aruments.</p>
+<p>As an example we set a volume value of 80 to our Farfisa organ, also we set the pan more to the left.</p>
 <p><em>(the final result of these settings is strongly dependent by your actual MIDI device)</em> </p>
 <pre><code><![CDATA[instrumentConf: myFarfisa volume 80 pan 20;]]></code></pre><h3 id="tempo">Tempo</h3>
 <p>To set the tempo of your piece, write <code>tempo: aNumber</code>.</p>
-<tutorialsnippet lineHeight="5" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[tempo 120;
+<tutorialsnippet lineHeight="5" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
 [
 {
     c d e f | g a b c'
@@ -878,21 +840,19 @@ type: accomp;
 <h3 id="modifications-1">Modifications</h3>
 <h3 id="drumrudiments"><code>drumRudiments</code></h3>
 <p>Implements a collection of different drum rudiments. (<a href="https://en.wikipedia.org/wiki/Drum_rudiment">see Wikipedia</a>)</p>
-<p> You can specify which notes are for <code>L</code> and <code>R</code> and the time measure.</p>
+<p> You can specify which notes are for <code>L</code> and <code>R</code> and performing duration.</p>
 <p> This will be achived by using an chord as source material.</p>
-<p> The Chord pitches will be used for <code>L</code> and <code>R</code>.</p>
-<p> The length of the chord event defines in which speed the rudiment will be peformed.</p>
-<p> The event tag specifies which rudiment will be performed.</p>
+<p> The chord pitches will be used for <code>L</code> and <code>R</code>.</p>
+<p> The length of the chord event defines over which time the rudiment will be peformed.</p>
+<p> An event tag specifies which rudiment will be performed.</p>
 <p> For example:</p>
-<p> This plays a paradiddle over a length of 1 quarter</p>
+<p> This plays one paradiddle over a length of 1 quarter</p>
 <p> using <code>sn1</code> for R and <code>sn2</code> for L:</p>
 <pre><code><![CDATA[
  /mod: drumRudiments/
- "paradiddle"@<"sn1" "sn2">4
-
                  R     L 
  "paradiddle"@<"sn1" "sn2">4]]></code></pre><p> Examples:</p>
-<p> <strong>a paradiddle</strong></p>
+<p> <strong>a single paradiddle</strong></p>
 <tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
 tempo: 150;
 device: MyDevice  midi 0;
@@ -918,7 +878,7 @@ instrument: piano;
 }
 ]]]></code></pre></tutorialsnippet><p> <strong>orchestration</strong></p>
 <p> If you want to orchestrate a rudiment over a drum set,</p>
-<p> you are able to define more R &amp; L notes. The total number of the notes has to be even.</p>
+<p> you are able to define more R &amp; L notes. <em>(The total number of the notes has to be even.)</em></p>
 <tutorialsnippet lineHeight="14" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
 tempo: 120;
 device: MyDevice  midi 0;
@@ -974,10 +934,87 @@ instrument: piano;
 
 <li>paradiddlediddle</li>
 
+<li>flam</li>
+
+<li>flamAccent</li>
+
+<li>flamTap</li>
+
+<li>flamacue</li>
+
+<li>flamParadiddle</li>
+
+<li>singleFlammedMill</li>
+
+<li>pataflafla</li>
+
+<li>swissArmytriplet</li>
+
+<li>invertedFlamTap</li>
+
+<li>flamDrag</li>
+
+<li>singleDragTap</li>
+
+<li>doubleDragTap</li>
+
+<li>lesson25</li>
+
+<li>singleDragadiddle</li>
+
+<li>dragParadiddle1</li>
+
+<li>dragParadiddle2</li>
+
+<li>singleRatamacue</li>
+
+<li>doubleRatamacue</li>
+
+<li>trippleRatamacue</li>
+
 </ul>
 
 <h4 id="parameters-11">parameters</h4>
-<p><em>no parameters</em></p>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">velocityFactorAccented</td>
+<td align="left">-</td>
+<td align="left">The velocity factor for accented notes (Default=1)</td>
+<td align="left">0..1</td>
+</tr>
+<tr>
+<td align="left">velocityFactorUnaccented</td>
+<td align="left">-</td>
+<td align="left">The velocity factor for unaccented notes (Default=0.7)</td>
+<td align="left">0..1</td>
+</tr>
+<tr>
+<td align="left">velocityFactorGraceNote</td>
+<td align="left">-</td>
+<td align="left">The velocity factor for accented notes (Default=1)</td>
+<td align="left">0..1</td>
+</tr>
+<tr>
+<td align="left">flamOffset</td>
+<td align="left">-</td>
+<td align="left">The offset in quartes when to perform the grace note before the actual note (Default=0.05)</td>
+<td align="left">0..N</td>
+</tr>
+<tr>
+<td align="left">dragOffset</td>
+<td align="left">-</td>
+<td align="left">The offset in quartes when to perform the two grace notes before the actual note (Default=0.05)</td>
+<td align="left">0..N</td>
+</tr>
+</tbody></table>
 <h4 id="include-extension">include extension</h4>
 <p><code>using &quot;lua/mod/drumRudiments.lua&quot;;</code></p>
 <p><br><br><br></p>
@@ -1197,7 +1234,7 @@ instrument: piano;
 <p><br><br><br></p>
 <h3 id="voicing-strategies-2">Voicing Strategies</h3>
 <h3 id="guitar"><code>guitar</code></h3>
-<p>Tries to simulates the chord voicing of an guitar.</p>
+<p>Tries to simulate the chord voicing of an guitar.</p>
 <tutorialsnippet lineHeight="21" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/voicings/guitar.lua";
 using "chords/default.chords";
 

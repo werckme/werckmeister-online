@@ -2,7 +2,7 @@ $keycolor: #ff79c6;
 @import './variables.scss';
 
 .sheet-editor {
-    
+
     span {
         filter: grayscale(50%);
         opacity: 0.7;
@@ -11,6 +11,7 @@ $keycolor: #ff79c6;
     .essential {
         filter: grayscale(0%);
         opacity: 1;
+        color: pink !important;
     }
     .track-begin 
     , .track-end
