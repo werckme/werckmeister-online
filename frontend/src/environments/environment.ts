@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   defaultMidiport: 1,
-  restEndpoint: 'http://localhost:10000/api'
+  restEndpoint: 'http://localhost:10000/api',
+  githubApi: 'https://api.github.com'
 };
 
 /*

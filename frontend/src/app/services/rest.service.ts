@@ -5,32 +5,15 @@ import { AppConfig } from 'src/config';
 import * as _ from 'lodash';
 import { TextFileContent } from 'src/shared/io/fileContent';
 import { environment } from '../../environments/environment';
+import { ARestService } from './arest.service';
 
 @Injectable({
 	providedIn: 'root'
 })
-export class RestService {
+export class RestService extends ARestService {
 	protected endpointUrl = environment.restEndpoint;
-	constructor(protected http: HttpClient) { }
-
-	protected deserialize<TDomain>(obj: TDomain, json: any): TDomain {
-		return Object.assign(obj, json);
-	}
-
-	protected get<T>(url: string): Promise<T> {
-		return this.http.get<T>(`${this.endpointUrl}/${url}`).toPromise();
-	}
-
-	protected put<T>(url: string, body: any): Promise<T> {
-		return this.http.put<T>(`${this.endpointUrl}/${url}`, body).toPromise();
-	}
-
-	protected post<T>(url: string, body: any): Promise<T> {
-		return this.http.post<T>(`${this.endpointUrl}/${url}`, body).toPromise();
-	}
-
-	protected delete<T>(url: string): Promise<T> {
-		return this.http.delete<T>(`${this.endpointUrl}/${url}`).toPromise();
+	constructor(http: HttpClient) { 
+		super(http);
 	}
 
 	fileToRequestFiles(file: IFile) {
