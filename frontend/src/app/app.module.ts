@@ -44,7 +44,7 @@ registerLocaleData(en);
 		EmbeddedPlayerComponent,
 		ContactComponent,
 		CodeExtensionComponent,
-		MobileAppMenuComponent,
+		MobileAppMenuComponent
 	],
 	imports: [
 		BrowserModule,

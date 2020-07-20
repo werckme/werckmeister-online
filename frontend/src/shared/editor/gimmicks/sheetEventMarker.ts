@@ -9,7 +9,7 @@ import { SheetInspector } from '../SheetInspector';
 
 
 export class SheetEventMarkerManager {
-	markers = {};
+	markers:any = {};
 	werckPositionObserver: any;
 	inspector: SheetInspector;
 	constructor(public file: IFile, public editor: IEditor, public werck: WerckService) {
