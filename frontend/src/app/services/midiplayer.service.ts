@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Quarters } from 'src/shared/werck/types';
 import * as _ from 'lodash';
 import { MidiEvent } from 'src/shared/midi/midiEvent';
+import { environment } from 'src/environments/environment';
 
 declare const MIDI: any;
 declare const MidiFile: any;
@@ -79,7 +80,7 @@ export class MidiplayerService {
 		}
 		return new Promise((resolve, reject) => {
 			MIDI.loadPlugin({
-				soundfontUrl: './assets/soundfont/',
+				soundfontUrl: environment.soundfontUrl,
 				instrument: 'acoustic_grand_piano',		
 				onerror: reject,
 				onsuccess: () => {

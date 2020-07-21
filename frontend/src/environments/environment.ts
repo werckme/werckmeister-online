@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   defaultMidiport: 1,
   restEndpoint: 'http://localhost:10000/api',
-  githubApi: 'https://api.github.com'
+  githubApi: 'https://api.github.com',
+  soundfontUrl: 'https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/', //'./assets/soundfont/',
 };
 
 /*

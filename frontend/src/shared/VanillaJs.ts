@@ -16,13 +16,15 @@ export function setScrollLock(val: boolean) {
 export class AnchorScrollSpy {
   headings: Element[];
   currentHeading: Element;
+  onScrolledToAnchor: (anchor: Element) => void = () => {};
   constructor(private container: HTMLElement) {
-    console.log(container);
-    window.onscroll = this.onScroll.bind(this);
-    this.headings = _(this.container.querySelectorAll(`h2[id]`))
+    const maxHeadingLevel = 5;
+    window.onscroll = _.debounce(this.onScroll.bind(this), 200);
+    this.headings = _(_.range(1, maxHeadingLevel + 1))
+      .map(level => Array.from(this.container.querySelectorAll(`h${level}[id]`)))
+      .flatten()
       .value()
     ;
-    console.log(this.container.querySelectorAll(`h2[id]`)[5]);
   }
 
   findHeading() {
@@ -30,7 +32,6 @@ export class AnchorScrollSpy {
     return heading;
   }
 
-  
   onScroll() {
     const heading = this.findHeading();
     if (!heading) {
@@ -40,6 +41,6 @@ export class AnchorScrollSpy {
       return;
     }
     this.currentHeading = heading;
-    console.log(heading.id)
+    this.onScrolledToAnchor(heading);
   }
 }
