@@ -92,7 +92,7 @@ if (typeof MIDI === 'undefined') MIDI = {};
 					} else if (xhr.totalBytes) {
 						totalBytes = xhr.totalBytes;
 					} else {
-						var rawBytes = parseInt(xhr.getResponseHeader('Content-Length-Raw'));
+						var rawBytes = parseInt(xhr.getResponseHeader('Content-Length'));
 						if (isFinite(rawBytes)) {
 							xhr.totalBytes = totalBytes = rawBytes;
 						} else {
