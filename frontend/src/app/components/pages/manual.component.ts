@@ -24,6 +24,5 @@ export class ManualComponent extends AAutoSideMenu implements OnInit, AfterViewI
 	}
 
 	onScrolledToAnchor(anchor: Element) {
-
 	}
 }
