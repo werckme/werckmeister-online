@@ -8,7 +8,7 @@ then
 fi
 ng build --prod
 cd $target
-rm *.js *css
+rm *.js *css -f
 rsync -a $cdir/dist/spa/ .
 
 
