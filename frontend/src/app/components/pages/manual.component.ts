@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ManualComponent extends AAutoSideMenu implements OnInit, AfterViewInit {
 	scrollSpy: AnchorScrollSpy;
-	constructor(elRef:ElementRef<HTMLLinkElement>, app: AppService, private router: Router) {
+	constructor(elRef: ElementRef<HTMLLinkElement>, app: AppService) {
 		super(elRef, app);
 	}
 
