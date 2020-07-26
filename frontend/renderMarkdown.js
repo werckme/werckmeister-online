@@ -83,6 +83,8 @@ const superCode = renderer.code.bind(renderer);
 const superTable = renderer.table.bind(renderer);
 const superLink = renderer.link.bind(renderer);
 
+let linkNr = 0;
+
 renderer.link = (href, title, text) => {
   if (href.indexOf('#')<0) {
     return superLink(href, title, text);
@@ -90,7 +92,7 @@ renderer.link = (href, title, text) => {
   var seg = href.split('#');
   href = !!seg[0] ? `/${seg[0]}` : "./";
   var frag = seg[1] 
-  return `<a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="${anchorPixelOffset}" [routerLink]="['${href}']" fragment="${frag}">${text}</a>`
+  return `<a pageScroll id="link-${linkNr++}" [pageScrollDuration]="0" [pageScrollOffset]="${anchorPixelOffset}" [routerLink]="['${href}']" fragment="${frag}">${text}</a>`
 }
 
 renderer.heading = (string, level, raw, slugger) => {

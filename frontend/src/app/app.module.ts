@@ -26,6 +26,7 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 import { CodeExtensionComponent } from './components/pages/visual-studio-extension';
 import { NgZorroAntdMobileModule } from 'ng-zorro-antd-mobile';
 import { MobileAppMenuComponent } from './components/partials/mobile/app-menu/app-menu.component';
+import { PushToHistoryIfOnSamePageDirective } from './directives/push-to-history-if-on-same-page.directive';
 
 registerLocaleData(en);
 @NgModule({
@@ -44,7 +45,8 @@ registerLocaleData(en);
 		EmbeddedPlayerComponent,
 		ContactComponent,
 		CodeExtensionComponent,
-		MobileAppMenuComponent
+		MobileAppMenuComponent,
+		PushToHistoryIfOnSamePageDirective
 	],
 	imports: [
 		BrowserModule,

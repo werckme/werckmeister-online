@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ManualComponent extends AAutoSideMenu implements OnInit, AfterViewInit {
 	scrollSpy: AnchorScrollSpy;
-	constructor(elRef:ElementRef, app: AppService, private router: Router) {
+	constructor(elRef:ElementRef<HTMLLinkElement>, app: AppService, private router: Router) {
 		super(elRef, app);
 	}
 
@@ -24,5 +24,6 @@ export class ManualComponent extends AAutoSideMenu implements OnInit, AfterViewI
 	}
 
 	onScrolledToAnchor(anchor: Element) {
+		history.replaceState({}, null, `manual#${anchor.id}`);
 	}
 }

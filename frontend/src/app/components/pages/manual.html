@@ -2,14 +2,14 @@
 <h1 id="manual">Manual</h1>
 
 <h2 id="i-want-to-">I want to ...</h2>
-<p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="its-just-text">... get an impression of what I have to face if I want to learn Werckmeister</a></p>
-<p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="setup-a-piece">... setup a piece</a></p>
-<p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="write-melodies">... write melodies</a></p>
-<p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="write-for-drums">... write for drums</a></p>
-<p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="accomp-my-melodies">... accomp my melodies</a></p>
-<p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="chords">... setup my own chord symbols</a></p>
-<p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="commands">... see an overview of all commands</a></p>
-<p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="lua-extensions">... see an overview of lua extensions</a></p>
+<p><a pageScroll id="link-1" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="its-just-text">... get an impression of what I have to face if I want to learn Werckmeister</a></p>
+<p><a pageScroll id="link-2" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="setup-a-piece">... setup a piece</a></p>
+<p><a pageScroll id="link-3" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="write-melodies">... write melodies</a></p>
+<p><a pageScroll id="link-4" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="write-for-drums">... write for drums</a></p>
+<p><a pageScroll id="link-5" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="accomp-my-melodies">... accomp my melodies</a></p>
+<p><a pageScroll id="link-6" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="chords">... setup my own chord symbols</a></p>
+<p><a pageScroll id="link-7" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="commands">... see an overview of all commands</a></p>
+<p><a pageScroll id="link-8" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="lua-extensions">... see an overview of lua extensions</a></p>
 <h2 id="its-just-text">It&#39;s just text</h2>
 <p>The Werckmeister language knows only a few statement types. It&#39;s all about tracks, voices, and events. That&#39;s it. 
 <br>The remaining statements are just for configuration purposes.</p>
@@ -70,10 +70,10 @@ If you want to write polyphonic melody lines, you can add more voices to your tr
 <pre><code><![CDATA[c d e f g]]></code></pre><h3 id="degree-events">Degree Events</h3>
 <p>have a relative pitch degree and a duration. In combination with a chord, degree events can be transformed into regular note events.</p>
 <pre><code><![CDATA[I II III IV V VI VII]]></code></pre><h3 id="chord-events">Chord Events</h3>
-<p>Events which are related to a name. They also store the information which interval is used for a degree. These informations are stored in a <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="chords">chord definiton file</a>.</p>
+<p>Events which are related to a name. They also store the information which interval is used for a degree. These informations are stored in a <a pageScroll id="link-9" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="chords">chord definiton file</a>.</p>
 <pre><code><![CDATA[C7 D-7 E-7 F7 Gmaj7 A-7]]></code></pre><h3 id="meta-events">Meta Events</h3>
 <p>Events to set up something or loading a mod script.</p>
-<p><em>Meta events are also called <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="commands">Commands</a></em></p>
+<p><em>Meta events are also called <a pageScroll id="link-10" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="commands">Commands</a></em></p>
 <p><br>You can recognize meta events by its slashes at the beginning and the end.</p>
 <tutorialsnippet lineHeight="5" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
 device: MyDevice  midi 1;
@@ -93,7 +93,7 @@ g a b c'
 
 }
 ]]]></code></pre></tutorialsnippet><h2 id="parameters">Parameters</h2>
-<p><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="metaevents">Meta Events</a> or Config Statements will be configurated with parameters. Parameters can be defined in two ways:</p>
+<p><a pageScroll id="link-11" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="metaevents">Meta Events</a> or Config Statements will be configurated with parameters. Parameters can be defined in two ways:</p>
 <h4 id="positional">Positional</h4>
 <p><code>/volume: 50/</code> </p>
 <h4 id="named">Named</h4>
@@ -112,7 +112,7 @@ g a b c'
 <em>(It is recommended to use relative path values)</em></p>
 <h3 id="devices--instruments">Devices &amp; Instruments</h3>
 <h4 id="adding-a-device">Adding a device</h4>
-<p>To add a MIDI device to your project, use the <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a> statement. With that statement, you have to choose a name and set a MIDI port for your new device.</p>
+<p>To add a MIDI device to your project, use the <a pageScroll id="link-12" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a> statement. With that statement, you have to choose a name and set a MIDI port for your new device.</p>
 <p>To see which devices with what port are connected to your device run the player with the <code>--list</code> argument: </p>
 <pre><code><![CDATA[sheetp --list]]></code></pre><p>you will get a output like this:</p>
 <pre><code><![CDATA[0: Midi Through
@@ -127,13 +127,13 @@ g a b c'
 device: MyDX7    midi _usePort=5;]]></code></pre><p>Imagine your USB-Midi Port is a bit cheap and laggy. Every signal to your USB-Midi port has a delay of about 20 milliseconds. We can compensate this by adding a 20 milliseconds delay to the <code>MyRoland</code> device, so that this device and your laggy USB-Midi Port should be in sync. We do this by using an optional <code>offset</code> argument.</p>
 <pre><code><![CDATA[device: MyRoland midi _usePort=1 _withOffset=20;
 device: MyDX7    midi _usePort=5;]]></code></pre><h4 id="adding-instruments">Adding instruments</h4>
-<p>To adding instruments we using the <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentdef">instrumentDef</a> statement, which is constructed like this:</p>
+<p>To adding instruments we using the <a pageScroll id="link-13" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentdef">instrumentDef</a> statement, which is constructed like this:</p>
 <p>Let&#39;s add an organ instrument which uses our Roland device from above:</p>
 <p>The Roland SC-8850 offers, for example, a <code>Farf Organ</code>. So if I want to use this instrument on channel 0, I have to send a <code>cc=19 pc=17</code> sequence to the channel on this device.<br>A suitable <code>instrumentDef</code> statement would be look as follows: </p>
 <pre><code><![CDATA[--             name      device              
 instrumentDef: myFarfisa _onDevice=MyRoland  _ch=0   _cc=19   _pc=17;]]></code></pre><h4 id="configuring-instruments">Configuring instruments</h4>
 <p>With an instrument added, there are further options to configure it.
-A <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentconf">config statement</a> has as first argument the instrument name you want to configure, followed by several <em>optional</em> config aruments.</p>
+A <a pageScroll id="link-14" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentconf">config statement</a> has as first argument the instrument name you want to configure, followed by several <em>optional</em> config aruments.</p>
 <p>As an example we set a volume value of 80 to our Farfisa organ, also we set the pan more to the left.</p>
 <p><em>(the final result of these settings is strongly dependent by your actual MIDI device)</em> </p>
 <pre><code><![CDATA[instrumentConf: myFarfisa volume 80 pan 20;]]></code></pre><h3 id="tempo">Tempo</h3>
@@ -144,7 +144,7 @@ A <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="[
     c d e f | g a b c'
 }
 ]]]></code></pre></tutorialsnippet><p>Sometimes you want to setup diffent tempi for for several voices.
-Then you have to add a tempo <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="meta-events">Meta Event</a> to your voice.</p>
+Then you have to add a tempo <a pageScroll id="link-15" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="meta-events">Meta Event</a> to your voice.</p>
 <p><em>since MIDI doesn&#39;t support simultaneous tempi, we achive this effect by streching or shrinking the note durations in relation to the main tempo (Augmentation/Diminution). As an simple example: on double time we pay eights instead of fourths.</em></p>
 <p>Here we play four voices on one track, with four different tempo configurations:</p>
 <p><strong>There seems to be a bug on the webplayer (first notes are missing)</strong></p>
@@ -185,7 +185,7 @@ Then you have to add a tempo <a pageScroll [pageScrollDuration]="0" [pageScrollO
 ]
 ]]></code></pre></tutorialsnippet><h3 id="time-signatures">Time Signatures</h3>
 <p>The time signature 4/4 by default.
-If you want to setup a different time signature than the default, you can achieve this by using the signature <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="Meta-Events">meta event</a>.
+If you want to setup a different time signature than the default, you can achieve this by using the signature <a pageScroll id="link-16" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="Meta-Events">meta event</a>.
 With this you are able to setup different time signatures during a piece.</p>
 <tutorialsnippet lineHeight="7" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[[
 {
@@ -368,7 +368,7 @@ type: accomp;
 ]
 ]]></code></pre></tutorialsnippet><p>Instead of writing absolute notes, you use relative degrees. For example <code>I4</code> means the first degree as a quarter note. </p>
 <p><em>If a degree does not appear in a chord, the degree will not played.</em></p>
-<p>There are the same rules as for writing absolute <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="notes">notes</a>:</p>
+<p>There are the same rules as for writing absolute <a pageScroll id="link-17" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="notes">notes</a>:</p>
 <p>such as:</p>
 <ul>
 <li>use <code>#</code> or <code>b</code> for sharp or flat</li>
@@ -408,40 +408,40 @@ type: accomp;
 <h2 id="references">References</h2>
 <h2 id="commands">Commands</h2>
 <ul>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="doonce">doOnce</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentconf">instrumentConf</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentdef">instrumentDef</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="modonce">modOnce</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pan">pan</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="signature">signature</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tempo">tempo</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicingstrategy">voicingStrategy</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="volume">volume</a></li>
+<li><a pageScroll id="link-18" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></li>
+<li><a pageScroll id="link-19" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a></li>
+<li><a pageScroll id="link-20" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="doonce">doOnce</a></li>
+<li><a pageScroll id="link-21" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></li>
+<li><a pageScroll id="link-22" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentconf">instrumentConf</a></li>
+<li><a pageScroll id="link-23" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentdef">instrumentDef</a></li>
+<li><a pageScroll id="link-24" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a></li>
+<li><a pageScroll id="link-25" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="modonce">modOnce</a></li>
+<li><a pageScroll id="link-26" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pan">pan</a></li>
+<li><a pageScroll id="link-27" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="signature">signature</a></li>
+<li><a pageScroll id="link-28" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tempo">tempo</a></li>
+<li><a pageScroll id="link-29" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicingstrategy">voicingStrategy</a></li>
+<li><a pageScroll id="link-30" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="volume">volume</a></li>
 </ul>
 <h2 id="lua-extensions">Lua Extensions</h2>
 <h3 id="modifications">Modifications</h3>
 <ul>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="drumrudiments">drumRudiments</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitarstroke">guitarStroke</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="legato">legato</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="staccato">staccato</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="swing">swing</a></li>
+<li><a pageScroll id="link-31" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="drumrudiments">drumRudiments</a></li>
+<li><a pageScroll id="link-32" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitarstroke">guitarStroke</a></li>
+<li><a pageScroll id="link-33" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="legato">legato</a></li>
+<li><a pageScroll id="link-34" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a></li>
+<li><a pageScroll id="link-35" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="staccato">staccato</a></li>
+<li><a pageScroll id="link-36" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="swing">swing</a></li>
 </ul>
 <h2 id="lua-extensions-1">Lua Extensions</h2>
 <h3 id="voicing-strategies-1">Voicing Strategies</h3>
 <ul>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitar">guitar</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="simple">simple</a></li>
-<li><a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicelead">voicelead</a></li>
+<li><a pageScroll id="link-37" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitar">guitar</a></li>
+<li><a pageScroll id="link-38" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="simple">simple</a></li>
+<li><a pageScroll id="link-39" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicelead">voicelead</a></li>
 </ul>
 <h2 id="commands-1">Commands</h2>
 <h3 id="device"><code>device</code></h3>
-<p>Defines a device which can be used when adding instruments (see <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
+<p>Defines a device which can be used when adding instruments (see <a pageScroll id="link-40" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
 <h3 id="examples-1">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>device: MyDevice midi 0 offset 100;</code></p>
@@ -449,7 +449,7 @@ type: accomp;
 <p> <code>device: _setName=MyDevice _isType=midi _usePort=0 _withOffset=100;</code>   </p>
 <p> <strong>a complete example</strong></p>
 <p> define an device, an instrument and set it to a track.</p>
-<p> see <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></p>
+<p> see <a pageScroll id="link-41" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-42" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></p>
 <pre><code><![CDATA[
  device: MyDevice midi 0;
 
@@ -496,7 +496,7 @@ type: accomp;
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="do"><code>do</code></h3>
-<p>Such as <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track. </p>
+<p>Such as <a pageScroll id="link-43" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track. </p>
 <p> The difference is: every <code>mod</code> command adds a further modification to a voice.</p>
 <p> <code>do</code> replaces the previous modification. </p>
 <h3 id="examples-2">examples</h3>
@@ -523,7 +523,7 @@ type: accomp;
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="doonce"><code>doOnce</code></h3>
-<p>Like <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<p>Like <a pageScroll id="link-44" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
 <h3 id="examples-3">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>/doOnce: arpeggio/</code></p>
@@ -650,7 +650,7 @@ type: accomp;
 <p> <code>instrumentDef: _setName=drums _onDevice=MyDevice _ch=9 _cc=0 _pc=3;</code></p>
 <p> <strong>a complete example</strong></p>
 <p> define an device, an instrument and set it to a track.</p>
-<p> see <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
+<p> see <a pageScroll id="link-45" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-46" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
 <pre><code><![CDATA[
  device: MyDevice midi 0;
 
@@ -679,7 +679,7 @@ type: accomp;
 <tr>
 <td align="left">onDevice</td>
 <td align="left">2</td>
-<td align="left">The device which to use (The name of the device, see <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a>).</td>
+<td align="left">The device which to use (The name of the device, see <a pageScroll id="link-47" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a>).</td>
 <td align="left">word</td>
 </tr>
 <tr>
@@ -704,7 +704,7 @@ type: accomp;
 <p><br><br><br></p>
 <h3 id="mod"><code>mod</code></h3>
 <p>Adds a modification to the track. Every <code>mod</code> statement adds a further modification to the related voice.</p>
-<p> If you want to use ony one modification at the time use <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a> instead.</p>
+<p> If you want to use ony one modification at the time use <a pageScroll id="link-48" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a> instead.</p>
 <h3 id="examples-7">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>/mod: arpeggio/</code></p>
@@ -734,7 +734,7 @@ type: accomp;
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="modonce"><code>modOnce</code></h3>
-<p>Like <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<p>Like <a pageScroll id="link-49" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
 <h3 id="examples-8">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>/modOnce: arpeggio/</code></p>
@@ -826,7 +826,7 @@ type: accomp;
 <p> or within a track</p>
 <p> <code>/tempo: 120/</code></p>
 <p> It is also possible to set diffrent tempo values for several tracks:</p>
-<p> <a pageScroll [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="Tempo">see here</a></p>
+<p> <a pageScroll id="link-50" appPushToHistoryIfOnSamePage [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="Tempo">see here</a></p>
 <h4 id="parameters-11">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -922,7 +922,7 @@ type: accomp;
 <tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
 tempo: 150;
 device: MyDevice  midi 0;
-instrumentDef:piano  MyDevice  _ch=0 _pc=118;
+instrumentDef:piano  MyDevice  _ch=0 _pc=0;
 [
 instrument: piano;
 {
@@ -934,31 +934,30 @@ instrument: piano;
 <tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
 tempo: 120;
 device: MyDevice  midi 0;
-instrumentDef:piano  MyDevice  _ch=0 _pc=118;
+instrumentDef:piano  MyDevice  _ch=0 _pc=0;
 [
 instrument: piano;
 {
    /mod: drumRudiments/
-   -- performs 4 paradiddles (RLRR LRLL RLRR LRLL) with c' for R and c for L
+   -- performs 4 paradiddles (RLRR) with c' for R and c for L
    "4x paradiddle"@<c' c>1
 }
 ]]]></code></pre></tutorialsnippet><p> <strong>orchestration</strong></p>
 <p> If you want to orchestrate a rudiment over a drum set,</p>
 <p> you are able to define more R &amp; L notes. <em>(The total number of the notes has to be even.)</em></p>
-<tutorialsnippet lineHeight="15" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
+<tutorialsnippet lineHeight="14" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
 tempo: 120;
 device: MyDevice  midi 0;
-instrumentDef:piano  MyDevice  _ch=0 _pc=118;
+instrumentDef:piano  MyDevice  _ch=0 _pc=0;
 [
 instrument: piano;
 {
    /mod: drumRudiments/
-   -- performs 4 paradiddles (RLRR LRLL RLRR LRLL) with 
+   -- performs a paradiddlediddle (RLRRLL) with 
    --      c' for R1 and c for L1
-   -- and  c, for R2 and c,, for L2.
-   -- The final sequence will be: c'(R1) c(L1) c,(R2) c,,(R1) ... 
-   "4x paradiddle"@<c' c c, c,,>1
-
+   -- and  d' for R2 and d for L2.
+   -- The final sequence: c'(R1) c(L1) d'(R2) c(R1) d(L2) c(L1) 
+   "paradiddlediddle"@<c' c d' d>1
 }
 ]]]></code></pre></tutorialsnippet><p> <strong>Supported Rudiments</strong></p>
 <ul style="font-size: 0.9em;">
@@ -1100,12 +1099,12 @@ instrument: piano;
 <tutorialsnippet lineHeight="10" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/guitarStroke.lua";
 tempo: 120;
 device: MyDevice  midi 0;
-instrumentDef:  piano  MyDevice  _ch=0 _pc=24;
-instrumentConf: piano mod guitarStroke _mode=alternate _value=16; 
+instrumentDef:  piano  MyDevice  _ch=0 _pc=0;
+instrumentConf: piano mod guitarStroke _mode=alternate _value=8; 
 [
 instrument: piano;
 {
-  <c e g b>4 <c e g b>4 <c eb g bb>2 |  <c eb g bb>2 <c eb g bb>2
+  <c e g b>4 <c e g b>4 <c eb g bb>4 <c eb g bb>4
 }
 ]]]></code></pre></tutorialsnippet><h4 id="parameters-15">parameters</h4>
 <table class="table table-bordered">
