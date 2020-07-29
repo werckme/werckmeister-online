@@ -1,7 +1,6 @@
 <div class="release">
     <h2>{{release.tag_name}}</h2>
-    <nz-divider></nz-divider>
-    <div [innerHtml]="body" class="body"></div>
+    Published at {{ release.published_at | date:'medium' }}
     <div nz-row>
         <div nz-col nzXS="24">
             <app-download-details title="Windows" [download]="windows"></app-download-details>
@@ -13,4 +12,8 @@
             <app-download-details title="Linux" [download]="linux"></app-download-details>
         </div>                
     </div>
+    <br>
+    <h4>Release Notes</h4>
+    <div [innerHtml]="body" class="body"></div>
 </div>
+<nz-divider></nz-divider>

@@ -20,7 +20,6 @@ export class DownloadComponent implements OnInit {
     this.releases = _(this.releases)
       .orderBy(x => x.published_at, 'desc')
       .value();
-    console.log(this.releases);
   }
 
 }
