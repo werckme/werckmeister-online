@@ -8,6 +8,7 @@ import { GettingStartedComponent } from './components/pages/getting-started';
 import { ExamplesComponent } from './components/pages/examples/examples.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CodeExtensionComponent } from './components/pages/visual-studio-extension';
+import { DownloadComponent } from './components/pages/download/download.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
 	{ path: 'manual', component: ManualComponent},
 	{ path: 'examples', component: ExamplesComponent},
 	{ path: 'contact', component: ContactComponent},
+	{ path: 'download', component: DownloadComponent},
 ];
 
 @NgModule({

@@ -27,6 +27,8 @@ import { CodeExtensionComponent } from './components/pages/visual-studio-extensi
 import { NgZorroAntdMobileModule } from 'ng-zorro-antd-mobile';
 import { MobileAppMenuComponent } from './components/partials/mobile/app-menu/app-menu.component';
 import { PushToHistoryIfOnSamePageDirective } from './directives/push-to-history-if-on-same-page.directive';
+import { DownloadComponent } from './components/pages/download/download.component';
+import { ReleaseComponent } from './components/pages/download/release/release.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -46,7 +48,9 @@ registerLocaleData(en);
 		ContactComponent,
 		CodeExtensionComponent,
 		MobileAppMenuComponent,
-		PushToHistoryIfOnSamePageDirective
+		PushToHistoryIfOnSamePageDirective,
+		DownloadComponent,
+		ReleaseComponent
 	],
 	imports: [
 		BrowserModule,
