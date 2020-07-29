@@ -39,17 +39,17 @@ export class ReleaseComponent implements OnInit {
     this.linux = _(this.release.assets)
       .find(x => x.name.toLowerCase().indexOf('linux') >= 0) as Download;
     this.windows.icon = 'windows';
-    this.windows.installation = this.md(`execute the installer program \`${this.windows.name}\``);
+    this.windows.installation = this.md(`Execute the installer program \`${this.windows.name}\``);
     this.mac.icon = 'apple';
     this.mac.installation = this.md(`* Open the Terminal
-* navigate to the location where the downloaded file is located. (e.g. \`cd ~/Downloads\`) 
-* run this command:
+* Navigate to the location where your downloads are located. (e.g. \`cd ~/Downloads\`) 
+* Run this command:
 
 \`\`\`sudo sh ${this.mac.name} --prefix=/usr/local --exclude-subdir\`\`\``);
     this.linux.icon = 'qq';
     this.linux.installation = this.md(`* Open the Terminal
-* navigate to the location where the downloaded file is located. (e.g. \`cd ~/Downloads\`) 
-* run this command:
+* Navigate to the location where your downloads are located. (e.g. \`cd ~/Downloads\`) 
+* Run this command:
     
 \`\`\`sudo sh ${this.linux.name} --prefix=/usr/local --exclude-subdir\`\`\``);      
   }

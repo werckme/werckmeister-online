@@ -2,7 +2,15 @@
     <h2>{{release.tag_name}}</h2>
     <nz-divider></nz-divider>
     <div [innerHtml]="body" class="body"></div>
-    <app-download-details title="Windows" [download]="windows"></app-download-details>
-    <app-download-details title="Mac" [download]="mac"></app-download-details>
-    <app-download-details title="Linux" [download]="linux"></app-download-details>
+    <div nz-row>
+        <div nz-col nzXS="24">
+            <app-download-details title="Windows" [download]="windows"></app-download-details>
+        </div>
+        <div nz-col nzXs="24">
+            <app-download-details title="Mac" [download]="mac"></app-download-details>
+        </div>
+        <div nz-col nzXs="24">
+            <app-download-details title="Linux" [download]="linux"></app-download-details>
+        </div>                
+    </div>
 </div>
