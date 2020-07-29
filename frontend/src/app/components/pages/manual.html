@@ -185,7 +185,7 @@ Then you have to add a tempo <a pageScroll id="link-15" [pageScrollDuration]="0"
 ]
 ]]></code></pre></tutorialsnippet><h3 id="time-signatures">Time Signatures</h3>
 <p>The time signature 4/4 by default.
-If you want to setup a different time signature than the default, you can achieve this by using the signature <a pageScroll id="link-16" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="Meta-Events">meta event</a>.
+If you want to setup a different time signature than the default, you can achieve this by using the signature <a pageScroll id="link-16" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="meta-events">meta event</a>.
 With this you are able to setup different time signatures during a piece.</p>
 <tutorialsnippet lineHeight="7" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[[
 {
@@ -826,7 +826,7 @@ type: accomp;
 <p> or within a track</p>
 <p> <code>/tempo: 120/</code></p>
 <p> It is also possible to set different tempo values for several tracks:</p>
-<p> <a pageScroll id="link-50" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="Tempo">see here</a></p>
+<p> <a pageScroll id="link-50" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="tempo">see here</a></p>
 <h4 id="parameters-11">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -922,7 +922,7 @@ type: accomp;
 <tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
 tempo: 150;
 device: MyDevice  midi 0;
-instrumentDef:piano  MyDevice  _ch=0 _pc=0;
+instrumentDef:piano  MyDevice  _ch=0 _pc=118;
 [
 instrument: piano;
 {
@@ -934,30 +934,31 @@ instrument: piano;
 <tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
 tempo: 120;
 device: MyDevice  midi 0;
-instrumentDef:piano  MyDevice  _ch=0 _pc=0;
+instrumentDef:piano  MyDevice  _ch=0 _pc=118;
 [
 instrument: piano;
 {
    /mod: drumRudiments/
-   -- performs 4 paradiddles (RLRR) with c' for R and c for L
+   -- performs 4 paradiddles (RLRR LRLL RLRR LRLL) with c' for R and c for L
    "4x paradiddle"@<c' c>1
 }
 ]]]></code></pre></tutorialsnippet><p> <strong>orchestration</strong></p>
 <p> If you want to orchestrate a rudiment over a drum set,</p>
 <p> you are able to define more R &amp; L notes. <em>(The total number of the notes has to be even.)</em></p>
-<tutorialsnippet lineHeight="14" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
+<tutorialsnippet lineHeight="15" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
 tempo: 120;
 device: MyDevice  midi 0;
-instrumentDef:piano  MyDevice  _ch=0 _pc=0;
+instrumentDef:piano  MyDevice  _ch=0 _pc=118;
 [
 instrument: piano;
 {
    /mod: drumRudiments/
-   -- performs a paradiddlediddle (RLRRLL) with 
+   -- performs 4 paradiddles (RLRR LRLL RLRR LRLL) with 
    --      c' for R1 and c for L1
-   -- and  d' for R2 and d for L2.
-   -- The final sequence: c'(R1) c(L1) d'(R2) c(R1) d(L2) c(L1) 
-   "paradiddlediddle"@<c' c d' d>1
+   -- and  c, for R2 and c,, for L2.
+   -- The final sequence will be: c'(R1) c(L1) c,(R2) c,,(R1) ... 
+   "4x paradiddle"@<c' c c, c,,>1
+
 }
 ]]]></code></pre></tutorialsnippet><p> <strong>Supported Rudiments</strong></p>
 <ul style="font-size: 0.9em;">
@@ -1099,12 +1100,12 @@ instrument: piano;
 <tutorialsnippet lineHeight="10" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/guitarStroke.lua";
 tempo: 120;
 device: MyDevice  midi 0;
-instrumentDef:  piano  MyDevice  _ch=0 _pc=0;
-instrumentConf: piano mod guitarStroke _mode=alternate _value=8; 
+instrumentDef:  piano  MyDevice  _ch=0 _pc=24;
+instrumentConf: piano mod guitarStroke _mode=alternate _value=16; 
 [
 instrument: piano;
 {
-  <c e g b>4 <c e g b>4 <c eb g bb>4 <c eb g bb>4
+  <c e g b>4 <c e g b>4 <c eb g bb>2 |  <c eb g bb>2 <c eb g bb>2
 }
 ]]]></code></pre></tutorialsnippet><h4 id="parameters-15">parameters</h4>
 <table class="table table-bordered">
