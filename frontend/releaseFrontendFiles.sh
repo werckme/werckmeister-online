@@ -17,4 +17,5 @@ mkdir -p manual && cp index.html manual/
 mkdir -p getting-started && cp index.html getting-started/
 mkdir -p examples && cp index.html examples/
 mkdir -p code-extension && cp index.html code-extension/
+mkdir -p getwerckmeister && cp index.html getwerckmeister/
 cd $cdir
