@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GithubService, IRelease } from 'src/app/services/github.service';
-
+import * as _ from 'lodash';
 @Component({
   selector: 'app-download',
   templateUrl: './download.component.html',
@@ -17,6 +17,9 @@ export class DownloadComponent implements OnInit {
 
   private async getReleases() {
     this.releases = await this.git.getReleases();
+    this.releases = _(this.releases)
+      .orderBy(x => x.published_at, 'desc')
+      .value();
     console.log(this.releases);
   }
 

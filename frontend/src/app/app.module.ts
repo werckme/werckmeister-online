@@ -29,6 +29,7 @@ import { MobileAppMenuComponent } from './components/partials/mobile/app-menu/ap
 import { PushToHistoryIfOnSamePageDirective } from './directives/push-to-history-if-on-same-page.directive';
 import { DownloadComponent } from './components/pages/download/download.component';
 import { ReleaseComponent } from './components/pages/download/release/release.component';
+import { DownloadDetailsComponent } from './components/pages/download/release/download-details/download-details.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -50,7 +51,8 @@ registerLocaleData(en);
 		MobileAppMenuComponent,
 		PushToHistoryIfOnSamePageDirective,
 		DownloadComponent,
-		ReleaseComponent
+		ReleaseComponent,
+		DownloadDetailsComponent
 	],
 	imports: [
 		BrowserModule,

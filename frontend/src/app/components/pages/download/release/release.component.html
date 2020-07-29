@@ -1,12 +1,8 @@
 <div class="release">
     <h2>{{release.tag_name}}</h2>
-    <nz-card *ngIf="windows" nzTitle="Windows">
-        <a [href]="windows.browser_download_url">download</a>
-    </nz-card>
-    <nz-card *ngIf="mac" nzTitle="Mac">
-        <a [href]="mac.browser_download_url">download</a>
-    </nz-card>
-    <nz-card *ngIf="linux" nzTitle="Linux">
-        <a [href]="linux.browser_download_url">download</a>
-    </nz-card>        
+    <nz-divider></nz-divider>
+    <div [innerHtml]="body" class="body"></div>
+    <app-download-details title="Windows" [download]="windows"></app-download-details>
+    <app-download-details title="Mac" [download]="mac"></app-download-details>
+    <app-download-details title="Linux" [download]="linux"></app-download-details>
 </div>
