@@ -1,10 +1,10 @@
 <div class="ccontainer">
     <div class="ctrl">
+        <nz-spin nzSimple nzSize="small" [nzSpinning]="waiting"></nz-spin>
         <a *ngIf="!justSnippet && !isPlaying" href="#" (click)="$event.preventDefault(); play($event)"><span
-                class="play ion-md-play"></span> Play</a>
+                class="play ion-md-play" *ngIf="!waiting"></span> Play</a>
         <a *ngIf="!justSnippet && isPlaying" href="#" (click)="$event.preventDefault(); stop()"><span
-                class="play ion-md-square"></span> Stop</a>
-        <nz-spin nzSimple nzSize="small" [nzDelay]="500" [nzSpinning]="waiting"></nz-spin>
+                class="play ion-md-square" *ngIf="!waiting"></span> Stop</a>
     </div>
     <nz-alert *ngIf="!!errorMessage" nzBanner nzType="error" [nzMessage]="errorMessage"></nz-alert>
     <editor [line]="lineOffset" [lineHeight]="lineHeight" class="tutorial" [file]="file" (isReady)="_onIsReady()" [errorPosition]="errorPosition"

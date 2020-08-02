@@ -62,15 +62,25 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 	}
 
 	async play(mouseEvent: MouseEvent) {
+		if (this.waiting) {
+			return;
+		}
 		try {
 			this.errorMessage = null;
 			this.errorPosition = null;
-			this.waiting = true;
+			let fetching = true;
+			setTimeout(()=>{
+				if (!fetching) {
+					return;
+				}
+				this.waiting = true;
+			}, 100)
 			if (this.werck.isPlaying) {
 				await this.werck.stop();
 			}
 			await this.werck.setSheet(this.file);
 			await this.werck.play(mouseEvent);
+			fetching = false;
 			this.waiting = false;
 		} catch (ex) {
 			this.waiting = false;
@@ -84,6 +94,9 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 	}
 
 	async stop() {
+		if (this.waiting) {
+			return;
+		}		
 		await this.werck.stop();
 	}
 
