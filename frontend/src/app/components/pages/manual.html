@@ -51,7 +51,7 @@ It is related to an instrument and contains events.</p>
 }
 ]]]></code></pre></tutorialsnippet><p>All events of a track are releated at least to one voice. A voice starts with <code>{{</code> and ends with <code>}}</code>.
 If you want to write polyphonic melody lines, you can add more voices to your track. </p>
-<p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/poly.png" alt="a polyphonic melody"></p>
+<p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/poly.png" alt="a polyphonic melody"></p>
 <p>The melody above would be written like this:</p>
 <tutorialsnippet lineHeight="10" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[-- a track with two voices
 
@@ -271,7 +271,7 @@ c2 c4 c8 c16 c32 c64 c128 r
 }
 ]]]></code></pre></tutorialsnippet><h3 id="intervals-and-chords">Intervals and Chords</h3>
 <p>Notes that have to sound simultaneous are written in angle brackets. The duration is written after the brackets.</p>
-<p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/chords.png" alt="two chords"></p>
+<p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/chords.png" alt="two chords"></p>
 <tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 80;
 device: MyDevice  midi 1;
 instrumentDef:ex1  MyDevice  0 0 0;
@@ -287,7 +287,7 @@ instrument: ex1;
 ]]]></code></pre></tutorialsnippet><h3 id="augmentation-dots--ties">Augmentation Dots &amp; Ties</h3>
 <p>To write a augmentation dot (<code>.</code>) append a dot after a note duration value.
 <br>For ties use a tilde (<code>~</code>) instead. </p>
-<p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/dotsties.png" alt="dots and ties"></p>
+<p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/dotsties.png" alt="dots and ties"></p>
 <tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
 device: MyDevice  midi 1;
 instrumentDef:ex1  MyDevice  0 0 0;
@@ -305,7 +305,7 @@ c2. c4 | c2~ c4 c
 These three notes will now be played in the time of one quarter.</p>
 <p>It doesn&#39;t matter if you write <code>(c2 c2 c2)4</code> or <code>(c8 c8 c8)4</code> because you have three notes with equal durations to be played in the time of one quarter.</p>
 <p><em>The relations between the notes are vital, not their absolute durations.</em></p>
-<p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/tuplets.png" alt="n-tole examples with 3,7 and 9"></p>
+<p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/tuplets.png" alt="n-tole examples with 3,7 and 9"></p>
 <tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 60;
 device: MyDevice  midi 1;
 instrumentDef:ex1  MyDevice  0 0 0;
@@ -320,7 +320,7 @@ instrument: ex1;
 }
 ]]]></code></pre></tutorialsnippet><h3 id="nested-tuplets">Nested Tuplets</h3>
 <p>You are also able to write nested tuplets:</p>
-<p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/master/assets/blackpages.png" alt="a example of nested tuplets"></p>
+<p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/blackpages.png" alt="a example of nested tuplets"></p>
 <tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 60;
 device: MyDevice  midi 1;
 instrumentDef:ex1  MyDevice  0 0 0;

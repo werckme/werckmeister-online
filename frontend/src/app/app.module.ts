@@ -30,6 +30,7 @@ import { PushToHistoryIfOnSamePageDirective } from './directives/push-to-history
 import { DownloadComponent } from './components/pages/download/download.component';
 import { ReleaseComponent } from './components/pages/download/release/release.component';
 import { DownloadDetailsComponent } from './components/pages/download/release/download-details/download-details.component';
+import { WerckmeisterjsService } from './services/werckmeisterjs.service';
 
 registerLocaleData(en);
 @NgModule({
@@ -64,7 +65,7 @@ registerLocaleData(en);
 		NgxPageScrollModule,
 		NgZorroAntdMobileModule
 	],
-	providers: [BackendService, ShortcutService, { provide: NZ_I18N, useValue: en_US }],
+	providers: [BackendService, ShortcutService, WerckmeisterjsService, { provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

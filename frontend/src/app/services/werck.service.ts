@@ -9,11 +9,12 @@ import { PlayerState } from 'src/shared/werck/player';
 import { IInstrument } from 'src/shared/werck/instrument';
 import { LogService } from './log.service';
 import { FileService } from './file.service';
-import { RestService } from './rest.service';
 import { MidiplayerService, IMidiplayerEvent } from './midiplayer.service';
 import { EventType } from 'src/shared/midi/midiEvent';
 import * as uuid from 'uuid-random';
 import { waitAsync } from 'src/shared/help/waitAsync';
+import { WerckmeisterjsService } from './werckmeisterjs.service';
+import { TextFileContent } from 'src/shared/io/fileContent';
 
 type _SheetFileCreator = (path: string) => Promise<ISheetFile>;
 
@@ -38,9 +39,8 @@ export class WerckService {
 	constructor(protected backend: BackendService, 
 		           protected log: LogService, 
 		           protected fileService: FileService, 
-		           protected rest: RestService,
+				   protected werckmeisterJs: WerckmeisterjsService,
 		           protected midiPlayer: MidiplayerService) {
-		this.fileService.fileSaved.subscribe({next: this.onFileSaved.bind(this)});
 		this.midiPlayer.onEOF.subscribe({next: this.onWerckEof.bind(this)});
 		this.midiPlayer.onMidiEvent.subscribe({next: this.onMidiEvent.bind(this)});
 	}
@@ -54,36 +54,7 @@ export class WerckService {
 			this.noteOnChange.emit(ev.position);
 		}
 	}
-
-	getFilesOfType(extensions: string[]): IFile[] {
-		if (!this.documentFiles) {
-			return [];
-		}
-		return this.documentFiles.filter(x => extensions.indexOf(x.extension) >= 0);
-	}
-
-	get sheetFiles(): IFile[] {
-		return this.getFilesOfType([AppConfig.knownExtensions.sheet]);
-	}
-
-	get templateFiles(): IFile[] {
-		return this.getFilesOfType([AppConfig.knownExtensions.template]);
-	}
-
-	get miscFiles(): IFile[] {
-		return this.getFilesOfType([AppConfig.knownExtensions.chordDef,
-			AppConfig.knownExtensions.pitchmap,
-			AppConfig.knownExtensions.lua
-		]);
-	}
 	
-	get defaultInstrument(): IInstrument {
-		if (!this.instruments || this.instruments.length === 0) {
-			return undefined;
-		}
-		return this.instruments[0];
-	}
-
 	get playerState(): PlayerState {
 		return this.playerState_;
 	}
@@ -121,21 +92,38 @@ export class WerckService {
 		return this.midiPlayer.position;
 	}
 
+
+	private fileToRequestFiles(file: IFile) {
+		if (!file) {
+			return null;
+		}
+		if (file.extension === AppConfig.knownExtensions.tutorial) {
+			file.extension = AppConfig.knownExtensions.sheet;
+		}
+		return {path: file.filename, data: (file.content as TextFileContent).data};
+	}
+
+	private async compile(files: IFile[]): Promise<ICompiledSheetFile> {
+		const requestFiles: any = _(files)
+			.map((file: IFile) => this.fileToRequestFiles(file))
+			.filter( x => !!x )
+			.value()
+		;
+		const sheet: any = _(files).filter(x => x.extension === '.sheet').first();
+		const response: any = await this.werckmeisterJs.compile(requestFiles);
+		sheet.eventInfos = response.eventInfos;
+		sheet.warnings = response.midi.warnings;
+		sheet.midi = {
+			bpm: response.midi.bpm,
+			duration: response.midi.duration,
+			midiData: response.midi.midiData
+		};
+		sheet.sources = response.midi.sources;
+		return sheet as ICompiledSheetFile;
+	}
+
 	async setSheet(file: IFile) {
-		this.mainSheet = await this.rest.compile([file]);
-	}
-
-	async update() {
-		
-	}
-
-	async fileChanged(file: IFile) {
-		return await this.update();
-	}
-
-	async onFileSaved(file: IFile): Promise<void> {
-		await this.fileChanged(file);
-		file.content.changed = false;
+		this.mainSheet = await this.compile([file]);
 	}
 
 	get hasError(): boolean {
@@ -148,13 +136,6 @@ export class WerckService {
 		_.pullAll(this.documentFiles, toRemove);
 		for (const x of toAdd) {
 			this.documentFiles.push(x);
-		}
-	}
-
-
-	async closeSheet() {
-		if (this.isPlaying) {
-			await this.stop();
 		}
 	}
 
@@ -214,7 +195,7 @@ export class WerckService {
 
 	/**
 	 * 
-	 * @param new brower policies require to do audio context initialization during
+	 * @param browser policies require to do audio context initialization during
 	 * an user event. Thats why we force to have a event arg.
 	 */
 	async play(event: MouseEvent | KeyboardEvent) {

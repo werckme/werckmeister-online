@@ -46,11 +46,6 @@ export class AppService {
 			const route = url.pathname.replace('/', ''); // remove first /
 			this.router.navigateByUrl(route);
 		}
-		if (url.protocol === 'tutorial:') {
-			// let path = './tutorial' + url.pathname.replace('/', ''); // remove first /
-			// this.currentFile = await this.werck.openSheet(path);
-			// this.openEditor();
-		}
 	}
 
 	get isTutorialOpen(): boolean {
