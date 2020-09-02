@@ -34,6 +34,11 @@
                 "glob": "*.wasm",
                 "input": "./node_modules/werckmeisterjs",
                 "output": "."
+              },
+              {
+                "glob": "*.json",
+                "input": "./node_modules/werckmeisterjs",
+                "output": "."
               }              
             ],
             "styles": [
