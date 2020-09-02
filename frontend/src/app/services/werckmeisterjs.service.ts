@@ -49,7 +49,9 @@ export class WerckmeisterjsService extends ARestService {
     const resultStr = wm.UTF8ToString(strPtr);
     wm._free(strPtr);
     const resultJson = JSON.parse(resultStr);
-    console.log(resultJson);
+    if (resultJson.errorMessage) {
+      throw {error: resultJson};
+    }
     return resultJson;
   }
 }
