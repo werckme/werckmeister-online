@@ -13,7 +13,7 @@ import { MidiplayerService, IMidiplayerEvent } from './midiplayer.service';
 import { EventType } from 'src/shared/midi/midiEvent';
 import * as uuid from 'uuid-random';
 import { waitAsync } from 'src/shared/help/waitAsync';
-import { WerckmeisterjsService } from './werckmeisterjs.service';
+import { WerckmeisterjsService, IRequestFile } from './werckmeisterjs.service';
 import { TextFileContent } from 'src/shared/io/fileContent';
 
 type _SheetFileCreator = (path: string) => Promise<ISheetFile>;
@@ -93,7 +93,7 @@ export class WerckService {
 	}
 
 
-	private fileToRequestFiles(file: IFile) {
+	private fileToRequestFiles(file: IFile): IRequestFile {
 		if (!file) {
 			return null;
 		}
@@ -104,13 +104,13 @@ export class WerckService {
 	}
 
 	private async compile(files: IFile[]): Promise<ICompiledSheetFile> {
-		const requestFiles: any = _(files)
+		const requestFiles: IRequestFile[] = _(files)
 			.map((file: IFile) => this.fileToRequestFiles(file))
 			.filter( x => !!x )
 			.value()
 		;
 		const sheet: any = _(files).filter(x => x.extension === '.sheet').first();
-		const response: any = await this.werckmeisterJs.compile(requestFiles);
+		const response: any = await this.werckmeisterJs.compile(requestFiles[0]);
 		sheet.eventInfos = response.eventInfos;
 		sheet.warnings = response.midi.warnings;
 		sheet.midi = {
