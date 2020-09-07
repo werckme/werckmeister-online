@@ -65,10 +65,10 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 		if (this.waiting) {
 			return;
 		}
+		let fetching = true;
 		try {
 			this.errorMessage = null;
 			this.errorPosition = null;
-			let fetching = true;
 			setTimeout(()=>{
 				if (!fetching) {
 					return;
@@ -84,6 +84,7 @@ export class TutorialsnippetComponent implements OnInit, AfterViewInit {
 			this.waiting = false;
 		} catch (ex) {
 			this.waiting = false;
+			fetching = false;
 			if (ex.error && ex.error.errorMessage) {
 				this.errorMessage = ex.error.errorMessage;
 				this.errorPosition = ex.error.positionBegin;
