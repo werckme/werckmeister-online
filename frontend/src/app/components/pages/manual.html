@@ -14,7 +14,8 @@
 <p>The Werckmeister language knows only a few statement types. It&#39;s all about tracks, voices, and events. That&#39;s it. 
 <br>The remaining statements are just for configuration purposes.</p>
 <p>A basic Werckmeister document will look like this:</p>
-<tutorialsnippet lineHeight="25" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[-- CONFIG STUFF:
+
+<werckmeister-snippet  ><pre><code><![CDATA[-- CONFIG STUFF:
 -- 1) configure your MIDI device
 -- 2) define an instrument with the name piano
 -- 3) set the tempo
@@ -39,21 +40,25 @@ instrument: piano;
 {
     c4 d e f | g1 --note events
 }
-]]]></code></pre></tutorialsnippet><h2 id="tracks-and-voices">Tracks and Voices</h2>
+]]]></code></pre></werckmeister-snippet>
+<h2 id="tracks-and-voices">Tracks and Voices</h2>
 <p>A track in Werckmeister has excactly the same meanig as it has in a MIDI file.
 It is related to an instrument and contains events.</p>
 <p>A track begins with a <code>[</code> and ends with a <code>]</code>.</p>
-<tutorialsnippet lineHeight="6" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[-- a track with one voice and an instrument setup
+
+<werckmeister-snippet  ><pre><code><![CDATA[-- a track with one voice and an instrument setup
 
 [
 {
     c d e f | g a b c'
 }
-]]]></code></pre></tutorialsnippet><p>All events of a track are releated at least to one voice. A voice starts with <code>{{</code> and ends with <code>}}</code>.
+]]]></code></pre></werckmeister-snippet>
+<p>All events of a track are releated at least to one voice. A voice starts with <code>{{</code> and ends with <code>}}</code>.
 If you want to write polyphonic melody lines, you can add more voices to your track. </p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/poly.png" alt="a polyphonic melody"></p>
 <p>The melody above would be written like this:</p>
-<tutorialsnippet lineHeight="10" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[-- a track with two voices
+
+<werckmeister-snippet  ><pre><code><![CDATA[-- a track with two voices
 
 [
 {
@@ -63,7 +68,8 @@ If you want to write polyphonic melody lines, you can add more voices to your tr
     d4   d     d    d
 }
 ]
-]]></code></pre></tutorialsnippet><h2 id="events">Events</h2>
+]]></code></pre></werckmeister-snippet>
+<h2 id="events">Events</h2>
 <p>There are a few event types:</p>
 <h3 id="note-events">Note Events</h3>
 <p>have a pitch and a duration, to be performed by a MIDI instrument.</p>
@@ -75,24 +81,14 @@ If you want to write polyphonic melody lines, you can add more voices to your tr
 <p>Events to set up something or loading a mod script.</p>
 <p><em>Meta events are also called <a pageScroll id="link-10" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="commands">Commands</a></em></p>
 <p><br>You can recognize meta events by its slashes at the beginning and the end.</p>
-<tutorialsnippet lineHeight="5" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
-device: MyDevice  midi 1;
-instrumentDef:ex1  MyDevice  0 0 0;
-[
-instrument: ex1;
-{
 
-
-/tempo: 100/ -- meta event: set tempo to 100
+<werckmeister-snippet wm-type="single" ><pre><code><![CDATA[/tempo: 100/ -- meta event: set tempo to 100
 c d e f |
 /tempo: 50/
 g a b c'
 
-
-
-
-}
-]]]></code></pre></tutorialsnippet><h2 id="parameters">Parameters</h2>
+]]></code></pre></werckmeister-snippet>
+<h2 id="parameters">Parameters</h2>
 <p><a pageScroll id="link-11" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="metaevents">Meta Events</a> or Config Statements will be configurated with parameters. Parameters can be defined in two ways:</p>
 <h4 id="positional">Positional</h4>
 <p><code>/volume: 50/</code> </p>
@@ -138,17 +134,20 @@ A <a pageScroll id="link-14" [pageScrollDuration]="0" [pageScrollOffset]="66" [r
 <p><em>(the final result of these settings is strongly dependent by your actual MIDI device)</em> </p>
 <pre><code><![CDATA[instrumentConf: myFarfisa volume 80 pan 20;]]></code></pre><h3 id="tempo">Tempo</h3>
 <p>To set the tempo of your piece, write <code>tempo: aNumber</code>.</p>
-<tutorialsnippet lineHeight="5" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
+
+<werckmeister-snippet  ><pre><code><![CDATA[tempo: 120;
 [
 {
     c d e f | g a b c'
 }
-]]]></code></pre></tutorialsnippet><p>Sometimes you want to setup diffent tempi for for several voices.
+]]]></code></pre></werckmeister-snippet>
+<p>Sometimes you want to setup diffent tempi for for several voices.
 Then you have to add a tempo <a pageScroll id="link-15" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="meta-events">Meta Event</a> to your voice.</p>
 <p><em>since MIDI doesn&#39;t support simultaneous tempi, we achive this effect by streching or shrinking the note durations in relation to the main tempo (Augmentation/Diminution). As an simple example: on double time we pay eights instead of fourths.</em></p>
 <p>Here we play four voices on one track, with four different tempo configurations:</p>
 <p><strong>There seems to be a bug on the webplayer (first notes are missing)</strong></p>
-<tutorialsnippet lineHeight="19" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
+
+<werckmeister-snippet  ><pre><code><![CDATA[tempo: 120;
 [
 {
     /tempo: double/
@@ -167,8 +166,10 @@ Then you have to add a tempo <a pageScroll id="link-15" [pageScrollDuration]="0"
     c,, d,, e,, f,, | g,, a,, b,, c,
 }
 ]
-]]></code></pre></tutorialsnippet><p>Also it is possible to change the tempo in between events:</p>
-<tutorialsnippet lineHeight="15" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
+]]></code></pre></werckmeister-snippet>
+<p>Also it is possible to change the tempo in between events:</p>
+
+<werckmeister-snippet  ><pre><code><![CDATA[tempo: 120;
 [
 {
     /tempo: double/
@@ -183,157 +184,70 @@ Then you have to add a tempo <a pageScroll id="link-15" [pageScrollDuration]="0"
     c d e f | g a b c' |
 }
 ]
-]]></code></pre></tutorialsnippet><h3 id="time-signatures">Time Signatures</h3>
+]]></code></pre></werckmeister-snippet>
+<h3 id="time-signatures">Time Signatures</h3>
 <p>The time signature 4/4 by default.
 If you want to setup a different time signature than the default, you can achieve this by using the signature <a pageScroll id="link-16" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="meta-events">meta event</a>.
 With this you are able to setup different time signatures during a piece.</p>
-<tutorialsnippet lineHeight="7" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[[
+
+<werckmeister-snippet  ><pre><code><![CDATA[[
 {
     /signature: 3 4/
     c e e | c e e |
     /signature: 4 4/
     c d e f | g a b c'
 }
-]]]></code></pre></tutorialsnippet><h3 id="key-signatures">Key Signatures</h3>
+]]]></code></pre></werckmeister-snippet>
+<h3 id="key-signatures">Key Signatures</h3>
 <p>key signatures are not supported.</p>
 <h2 id="write-melodies">Write Melodies</h2>
 <h3 id="notes">Notes</h3>
 <p>The syntax is loosely inspired by the <a href="http://lilypond.org">lilypond</a> notation syntax. A note is just a letter followed by a number for its duration.</p>
 <p><em>If a note has no duration, the last assigned duration will be used.</em></p>
-<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
-device: MyDevice  midi 1;
-instrumentDef:ex1  MyDevice  0 0 0;
-[
-instrument: ex1;
-{
 
-
-c4 d e8 f
-
-
-}
-]]]></code></pre></tutorialsnippet><p><br><em>c and d will be played as quarter notes, e and f as eighth notes</em></p>
+<werckmeister-snippet wm-type="single" ><pre><code><![CDATA[c4 d e8 f]]></code></pre></werckmeister-snippet>
+<p><br><em>c and d will be played as quarter notes, e and f as eighth notes</em></p>
 <p>the end of a bar is marked by a pipe: <code>|</code></p>
-<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
-device: MyDevice  midi 1;
-instrumentDef:ex1  MyDevice  0 0 0;
-[
-instrument: ex1;
-{
 
-
-c d e f | g a b c'
-
-
-}
-]]]></code></pre></tutorialsnippet><h3 id="octaves">Octaves</h3>
+<werckmeister-snippet wm-type="single" ><pre><code><![CDATA[c d e f | g a b c']]></code></pre></werckmeister-snippet>
+<h3 id="octaves">Octaves</h3>
 <p>Lower octaves are marked by a comma (<code>,</code>) after the note, upper octaves by a single quote (<code>&#39;</code>).</p>
-<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
-device: MyDevice  midi 1;
-instrumentDef:ex1  MyDevice  0 0 0;
-[
-instrument: ex1;
-{
 
-
-c,,  e,,  g,, b,, | c, e, g, b, | c e g b | c' e' g' b' | c'' e'' g'' b''
-
-
-}
-]]]></code></pre></tutorialsnippet><h3 id="accidentals">Accidentals</h3>
+<werckmeister-snippet wm-type="single" ><pre><code><![CDATA[c,,  e,,  g,, b,, | c, e, g, b, | c e g b | c' e' g' b' | c'' e'' g'' b'']]></code></pre></werckmeister-snippet>
+<h3 id="accidentals">Accidentals</h3>
 <p><code>#</code> raises a pitch by a half step.
 <br> A <code>b</code> lowers it. </p>
-<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
-device: MyDevice  midi 1;
-instrumentDef:ex1  MyDevice  0 0 0;
-[
-instrument: ex1;
-{
 
-
-c# d# f# g# | bb db' eb' gb'
-
-
-}
-]]]></code></pre></tutorialsnippet><h3 id="durations">Durations</h3>
+<werckmeister-snippet wm-type="single" ><pre><code><![CDATA[c# d# f# g# | bb db' eb' gb']]></code></pre></werckmeister-snippet>
+<h3 id="durations">Durations</h3>
 <p>A numeric value after a note marks its duration.</p>
-<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
-device: MyDevice  midi 1;
-instrumentDef:ex1  MyDevice  0 0 0;
-[
-instrument: ex1;
-{
 
-
-c2 c4 c8 c16 c32 c64 c128 r
-
-
-}
-]]]></code></pre></tutorialsnippet><h3 id="intervals-and-chords">Intervals and Chords</h3>
+<werckmeister-snippet wm-type="single" ><pre><code><![CDATA[c2 c4 c8 c16 c32 c64 c128 r]]></code></pre></werckmeister-snippet>
+<h3 id="intervals-and-chords">Intervals and Chords</h3>
 <p>Notes that have to sound simultaneous are written in angle brackets. The duration is written after the brackets.</p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/chords.png" alt="two chords"></p>
-<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 80;
-device: MyDevice  midi 1;
-instrumentDef:ex1  MyDevice  0 0 0;
-[
-instrument: ex1;
-{
 
-
-<g,, c e g bb>4   <c, c eb g bb>2.
-
-
-}
-]]]></code></pre></tutorialsnippet><h3 id="augmentation-dots--ties">Augmentation Dots &amp; Ties</h3>
+<werckmeister-snippet wm-type="single" wm-tempo="80"><pre><code><![CDATA[<g,, c e g bb>4   <c, c eb g bb>2.]]></code></pre></werckmeister-snippet>
+<h3 id="augmentation-dots--ties">Augmentation Dots &amp; Ties</h3>
 <p>To write a augmentation dot (<code>.</code>) append a dot after a note duration value.
 <br>For ties use a tilde (<code>~</code>) instead. </p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/dotsties.png" alt="dots and ties"></p>
-<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 120;
-device: MyDevice  midi 1;
-instrumentDef:ex1  MyDevice  0 0 0;
-[
-instrument: ex1;
-{
 
-
-c2. c4 | c2~ c4 c
-
-
-}
-]]]></code></pre></tutorialsnippet><h3 id="tuplets">Tuplets</h3>
+<werckmeister-snippet wm-type="single" ><pre><code><![CDATA[c2. c4 | c2~ c4 c]]></code></pre></werckmeister-snippet>
+<h3 id="tuplets">Tuplets</h3>
 <p>To write tuplets of any kind you just have to write notes encloded by parentheses followed by a duration value. For example: <code>(c c c)4</code>.
 These three notes will now be played in the time of one quarter.</p>
 <p>It doesn&#39;t matter if you write <code>(c2 c2 c2)4</code> or <code>(c8 c8 c8)4</code> because you have three notes with equal durations to be played in the time of one quarter.</p>
 <p><em>The relations between the notes are vital, not their absolute durations.</em></p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/tuplets.png" alt="n-tole examples with 3,7 and 9"></p>
-<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 60;
-device: MyDevice  midi 1;
-instrumentDef:ex1  MyDevice  0 0 0;
-[
-instrument: ex1;
-{
 
-
-(c8 c c)4   (c8 c c c c)4  (c8 c c c c c c)4  (c8 c c c c c c c c)4
-
-
-}
-]]]></code></pre></tutorialsnippet><h3 id="nested-tuplets">Nested Tuplets</h3>
+<werckmeister-snippet wm-type="single" wm-tempo="60"><pre><code><![CDATA[(c8 c c)4   (c8 c c c c)4  (c8 c c c c c c)4  (c8 c c c c c c c c)4]]></code></pre></werckmeister-snippet>
+<h3 id="nested-tuplets">Nested Tuplets</h3>
 <p>You are also able to write nested tuplets:</p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/blackpages.png" alt="a example of nested tuplets"></p>
-<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 60;
-device: MyDevice  midi 1;
-instrumentDef:ex1  MyDevice  0 0 0;
-[
-instrument: ex1;
-{
 
-
-b2 ((b c#' c#' b d')  (f' a a bb c')  (e' a' bb' f' c' g))2
-
-
-}
-]]]></code></pre></tutorialsnippet><h2 id="write-for-drums">Write for drums</h2>
+<werckmeister-snippet wm-type="single" wm-tempo="60"><pre><code><![CDATA[b2 ((b c#' c#' b d')  (f' a a bb c')  (e' a' bb' f' c' g))2]]></code></pre></werckmeister-snippet>
+<h2 id="write-for-drums">Write for drums</h2>
 <h3 id="pitchmaps">Pitchmaps</h3>
 <p>tbd.</p>
 <h2 id="accomp-my-melodies">Accomp My Melodies</h2>
@@ -341,7 +255,8 @@ b2 ((b c#' c#' b d')  (f' a a bb c')  (e' a' bb' f' c' g))2
 <br>You would say something like: play the 1st degree on the first beat and the 5th degree on the fourth beat. </p>
 <p>And this is what you doing when writing style templates.
 <br>So in our example above you would write:</p>
-<tutorialsnippet lineHeight="25" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[-- make sure that you have a chord definition loaded
+
+<werckmeister-snippet  ><pre><code><![CDATA[-- make sure that you have a chord definition loaded
 using "chords/default.chords";
 
 device: MyDevice  midi 0;
@@ -366,7 +281,8 @@ type: accomp;
     C | F | G | C |
 }
 ]
-]]></code></pre></tutorialsnippet><p>Instead of writing absolute notes, you use relative degrees. For example <code>I4</code> means the first degree as a quarter note. </p>
+]]></code></pre></werckmeister-snippet>
+<p>Instead of writing absolute notes, you use relative degrees. For example <code>I4</code> means the first degree as a quarter note. </p>
 <p><em>If a degree does not appear in a chord, the degree will not played.</em></p>
 <p>There are the same rules as for writing absolute <a pageScroll id="link-17" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="notes">notes</a>:</p>
 <p>such as:</p>
@@ -376,7 +292,8 @@ type: accomp;
 <li>use <code>~</code> for tied and <code>.</code> for dotted notes</li>
 <li>create tuplets using parantheses</li>
 </ul>
-<tutorialsnippet lineHeight="22" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[-- make sure that you have a chord definition loaded
+
+<werckmeister-snippet  ><pre><code><![CDATA[-- make sure that you have a chord definition loaded
 using "chords/default.chords";
 
 device: MyDevice  midi 0;
@@ -398,7 +315,8 @@ type: accomp;
     /template: simpleBass/
     C | F | G | C |
 }
-]]]></code></pre></tutorialsnippet><h2 id="advanced-techniques">Advanced techniques</h2>
+]]]></code></pre></werckmeister-snippet>
+<h2 id="advanced-techniques">Advanced techniques</h2>
 <p>(tbd.)</p>
 <h5 id="chords">Chords</h5>
 <h5 id="voicing-strategies">Voicing strategies</h5>
@@ -919,7 +837,8 @@ type: accomp;
                  R     L 
  "paradiddle"@<"sn1" "sn2">4]]></code></pre><p> Examples:</p>
 <p> <strong>a single paradiddle</strong></p>
-<tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
+
+<werckmeister-snippet  ><pre><code><![CDATA[using "lua/mods/drumRudiments.lua";
 tempo: 150;
 device: MyDevice  midi 0;
 instrumentDef:piano  MyDevice  _ch=0 _pc=118;
@@ -930,8 +849,10 @@ instrument: piano;
    -- a paradiddle (RLRR) with c' for R and c for L
    "paradiddle"@<c' c>1
 }
-]]]></code></pre></tutorialsnippet><p> <strong>repeating</strong></p>
-<tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
+]]]></code></pre></werckmeister-snippet>
+<p> <strong>repeating</strong></p>
+
+<werckmeister-snippet  ><pre><code><![CDATA[using "lua/mods/drumRudiments.lua";
 tempo: 120;
 device: MyDevice  midi 0;
 instrumentDef:piano  MyDevice  _ch=0 _pc=118;
@@ -942,10 +863,12 @@ instrument: piano;
    -- performs 4 paradiddles (RLRR LRLL RLRR LRLL) with c' for R and c for L
    "4x paradiddle"@<c' c>1
 }
-]]]></code></pre></tutorialsnippet><p> <strong>orchestration</strong></p>
+]]]></code></pre></werckmeister-snippet>
+<p> <strong>orchestration</strong></p>
 <p> If you want to orchestrate a rudiment over a drum set,</p>
 <p> you are able to define more R &amp; L notes. <em>(The total number of the notes has to be even.)</em></p>
-<tutorialsnippet lineHeight="15" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/drumRudiments.lua";
+
+<werckmeister-snippet  ><pre><code><![CDATA[using "lua/mods/drumRudiments.lua";
 tempo: 120;
 device: MyDevice  midi 0;
 instrumentDef:piano  MyDevice  _ch=0 _pc=118;
@@ -960,7 +883,8 @@ instrument: piano;
    "4x paradiddle"@<c' c c, c,,>1
 
 }
-]]]></code></pre></tutorialsnippet><p> <strong>Supported Rudiments</strong></p>
+]]]></code></pre></werckmeister-snippet>
+<p> <strong>Supported Rudiments</strong></p>
 <ul style="font-size: 0.9em;">
 
 <li>singleStrokeRoll</li>
@@ -1097,7 +1021,8 @@ instrument: piano;
  ] ]]></code></pre><pre><code><![CDATA[
  -- does work: 
  instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><p> <strong>Example</strong></p>
-<tutorialsnippet lineHeight="10" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/guitarStroke.lua";
+
+<werckmeister-snippet  ><pre><code><![CDATA[using "lua/mods/guitarStroke.lua";
 tempo: 120;
 device: MyDevice  midi 0;
 instrumentDef:  piano  MyDevice  _ch=0 _pc=24;
@@ -1107,7 +1032,8 @@ instrument: piano;
 {
   <c e g b>4 <c e g b>4 <c eb g bb>2 |  <c eb g bb>2 <c eb g bb>2
 }
-]]]></code></pre></tutorialsnippet><h4 id="parameters-15">parameters</h4>
+]]]></code></pre></werckmeister-snippet>
+<h4 id="parameters-15">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1142,7 +1068,8 @@ instrument: piano;
 <h3 id="legato"><code>legato</code></h3>
 <p>Performs every note legato. It is also possible to tag single notes.</p>
 <p> If a tag is given, only the tagged notes are performed legato.</p>
-<tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/legato.lua";
+
+<werckmeister-snippet  ><pre><code><![CDATA[using "lua/mods/legato.lua";
 tempo: 140;
 device: MyDevice  midi 0;
 instrumentDef:piano  MyDevice  _ch=0 _pc=0;
@@ -1153,7 +1080,8 @@ instrument: piano;
    -- only the `d` will be performed legato. 
    c "leg"@d e f
 }
-]]]></code></pre></tutorialsnippet><h4 id="parameters-16">parameters</h4>
+]]]></code></pre></werckmeister-snippet>
+<h4 id="parameters-16">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1182,7 +1110,8 @@ instrument: piano;
 <h3 id="myarpeggio"><code>myArpeggio</code></h3>
 <p>A simple arpeggio implementation.</p>
 <p> <strong>Example</strong></p>
-<tutorialsnippet lineHeight="12" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/myArpeggio.lua";
+
+<werckmeister-snippet  ><pre><code><![CDATA[using "lua/mods/myArpeggio.lua";
 tempo: 120;
 device: MyDevice  midi 0;
 instrumentDef:  piano  MyDevice  _ch=0 _pc=0;
@@ -1194,7 +1123,8 @@ instrument: piano;
  /do: myArpeggio _direction=down/ 
  <c eb g bb>2 
 }
-]]]></code></pre></tutorialsnippet><h4 id="parameters-17">parameters</h4>
+]]]></code></pre></werckmeister-snippet>
+<h4 id="parameters-17">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1223,7 +1153,8 @@ instrument: piano;
 <h3 id="staccato"><code>staccato</code></h3>
 <p>Performs every note staccato. It is also possible to tag single notes.</p>
 <p> If a tag is given, only the tagged notes are performed staccato.</p>
-<tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/staccato.lua";
+
+<werckmeister-snippet  ><pre><code><![CDATA[using "lua/mods/staccato.lua";
 tempo: 140;
 device: MyDevice  midi 0;
 instrumentDef:piano  MyDevice  _ch=0 _pc=0;
@@ -1234,7 +1165,8 @@ instrument: piano;
    -- only the `d` will be performed staccato. 
    c "stac"@d e f
 }
-]]]></code></pre></tutorialsnippet><h4 id="parameters-18">parameters</h4>
+]]]></code></pre></werckmeister-snippet>
+<h4 id="parameters-18">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1262,7 +1194,8 @@ instrument: piano;
 <p><br><br><br></p>
 <h3 id="swing"><code>swing</code></h3>
 <p>Performs a swing groove.</p>
-<tutorialsnippet lineHeight="11" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/mods/swing.lua";
+
+<werckmeister-snippet  ><pre><code><![CDATA[using "lua/mods/swing.lua";
 tempo: 120;
 device: MyDevice  midi 0;
 instrumentDef:  piano  MyDevice  _ch=0 _pc=0;
@@ -1273,7 +1206,8 @@ instrument: piano;
    c8  c   c   c   c   c   c   c
 
 }
-]]]></code></pre></tutorialsnippet><h4 id="parameters-19">parameters</h4>
+]]]></code></pre></werckmeister-snippet>
+<h4 id="parameters-19">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1302,7 +1236,8 @@ instrument: piano;
 <h3 id="voicing-strategies-2">Voicing Strategies</h3>
 <h3 id="guitar"><code>guitar</code></h3>
 <p>Tries to simulate the chord voicing of an guitar.</p>
-<tutorialsnippet lineHeight="21" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/voicings/guitar.lua";
+
+<werckmeister-snippet  ><pre><code><![CDATA[using "lua/voicings/guitar.lua";
 using "chords/default.chords";
 
 tempo: 120;
@@ -1323,7 +1258,8 @@ type: accomp;
 {
   C | F | G | C |
 }
-]]]></code></pre></tutorialsnippet><h4 id="parameters-20">parameters</h4>
+]]]></code></pre></werckmeister-snippet>
+<h4 id="parameters-20">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1345,7 +1281,8 @@ type: accomp;
 <p><br><br><br></p>
 <h3 id="simple"><code>simple</code></h3>
 <p>The simple approach with no strategy.</p>
-<tutorialsnippet lineHeight="21" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/voicings/simple.lua";
+
+<werckmeister-snippet  ><pre><code><![CDATA[using "lua/voicings/simple.lua";
 using "chords/default.chords";
 
 tempo: 120;
@@ -1366,7 +1303,8 @@ type: accomp;
 {
   C | F | G | C |
 }
-]]]></code></pre></tutorialsnippet><h4 id="parameters-21">parameters</h4>
+]]]></code></pre></werckmeister-snippet>
+<h4 id="parameters-21">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1389,7 +1327,8 @@ type: accomp;
 <h3 id="voicelead"><code>voicelead</code></h3>
 <p>Tries to simulates a voice leading approach:</p>
 <p> the octaves of a chord are rearranged, so that the actual pitch distance between the previous chord is kept minimal.</p>
-<tutorialsnippet lineHeight="21" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "lua/voicings/voicelead.lua";
+
+<werckmeister-snippet  ><pre><code><![CDATA[using "lua/voicings/voicelead.lua";
 using "chords/default.chords";
 
 tempo: 120;
@@ -1410,7 +1349,8 @@ type: accomp;
 {
   C | F | G | C |
 }
-]]]></code></pre></tutorialsnippet><h4 id="parameters-22">parameters</h4>
+]]]></code></pre></werckmeister-snippet>
+<h4 id="parameters-22">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>

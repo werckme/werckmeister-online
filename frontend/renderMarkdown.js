@@ -1,20 +1,3 @@
-const singleTemplate = { 
-  code:
-`tempo: $tempo;
-device: MyDevice  midi 1;
-instrumentDef:ex1  MyDevice  0 0 0;
-[
-instrument: ex1;
-{
-
-
-$code
-
-
-}
-]`
-, lineOffset: 7
-};
 const MdCodeWerckmeisterTypeSingle = 'single';
 const MdCodeWerckmeisterTypeMute = 'mute';
 const marked = require('marked');
@@ -62,19 +45,6 @@ function getLineHeight(code) {
   return lines || 1;
 }
 
-function createCodeObj(code, languageData) {
-  let lineHeight = getLineHeight(code);
-  let lineOffset = 0;
-  if (languageData.type === MdCodeWerckmeisterTypeSingle) {
-    const tempo = languageData.tempo || 120;
-    code = singleTemplate.code.replace('$code', code)
-      .replace('$tempo', tempo);
-    lineOffset = singleTemplate.lineOffset;
-    lineHeight = Math.max(lineHeight, 2);
-  }
-  return {lineHeight, lineOffset, code};
-}
-
 const inText = fs.readFileSync(filePath).toString();
 
 const renderer = new marked.Renderer();
@@ -114,12 +84,19 @@ renderer.table = (header, body) => {
 
 renderer.code = (code, language, isEscaped) => {
   let languageData = getLanguageMetaDataOrDefault(language);
+  const cdata = `<![CDATA[${code}]]>`;
   if (languageData && languageData.language && languageData.type != MdCodeWerckmeisterTypeMute) {
-    const codeObj = createCodeObj(code, languageData); 
-    return `<tutorialsnippet lineHeight="${codeObj.lineHeight}" lineOffset="${codeObj.lineOffset}"><pre><code appWerckmeisterCode><![CDATA[${codeObj.code}]]></code></pre></tutorialsnippet>`;
+    let typeAttr = "";
+    let tempoAttr = "";
+    if (languageData.type === MdCodeWerckmeisterTypeSingle) {
+      typeAttr='wm-type="single"'
+    }
+    if (languageData.tempo) {
+      tempoAttr = `wm-tempo="${languageData.tempo}"`;
+    }
+    return `\n<werckmeister-snippet ${typeAttr} ${tempoAttr}><pre><code>${cdata}</code></pre></werckmeister-snippet>\n`;
   }
-  const cdata = `![CDATA[${code}]]`;
-  return `<pre><code><${cdata}></code></pre>`;
+  return `<pre><code>${cdata}</code></pre>`;
 }
 renderer.codespan = (code) => { 
   return "<code>" + code

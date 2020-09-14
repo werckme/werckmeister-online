@@ -7,19 +7,9 @@
 <h2 id="an-open-source-sheet-music-midi-compiler">An <a href="https://github.com/werckme/werckmeister">open source</a> Sheet Music MIDI Compiler</h2>
 <p>Werckmeister compiles sheet music source code into a MIDI file.
 <br>It allows you to write sheet music a lá &quot;Real Book&quot; and Werckmeister compiles it into MIDI music.</p>
-<tutorialsnippet lineHeight="2" lineOffset="7"><pre><code appWerckmeisterCode><![CDATA[tempo: 140;
-device: MyDevice  midi 1;
-instrumentDef:ex1  MyDevice  0 0 0;
-[
-instrument: ex1;
-{
 
-
-   c'4   g8 g   a4 g~  |   g  b c'
-
-
-}
-]]]></code></pre></tutorialsnippet><h2 id="use-werckmeister-if-you-want-to">Use Werckmeister if you want to</h2>
+<werckmeister-snippet wm-type="single" wm-tempo="140"><pre><code><![CDATA[   c'4   g8 g   a4 g~  |   g  b c']]></code></pre></werckmeister-snippet>
+<h2 id="use-werckmeister-if-you-want-to">Use Werckmeister if you want to</h2>
 <ul>
 <li>translate sheet music into midi music</li>
 <li>prototype a song</li>
@@ -45,7 +35,8 @@ But it offers you a tool to create music just by writing melodies and chords.</p
 <br>Click play to start the song.</p>
 <p>For fun sake try to replace the bass template </p>
 <pre><code><![CDATA[I,,2. V,,4 |]]></code></pre><p>with this </p>
-<pre><code><![CDATA[I,,4 I,8 I,8   I,,4 I,8 I,8 |]]></code></pre><tutorialsnippet lineHeight="65" lineOffset="0"><pre><code appWerckmeisterCode><![CDATA[using "chords/default.chords";
+<pre><code><![CDATA[I,,4 I,8 I,8   I,,4 I,8 I,8 |]]></code></pre>
+<werckmeister-snippet  ><pre><code><![CDATA[using "chords/default.chords";
 tempo: 140;
 device: MyDevice  midi _usePort=0;
 instrumentDef:lead    _onDevice=MyDevice  _ch=0 _pc=0;
@@ -110,4 +101,4 @@ instrument: bass;
 
 
 
-]]></code></pre></tutorialsnippet>
+]]></code></pre></werckmeister-snippet>

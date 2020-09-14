@@ -1,11 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { BackendService } from './backend.service';
-import { IEditorViewModel } from '../components/partials/editor/viewmodels/IEditor.model';
-import { WerckService } from './werck.service';
 import { LogService } from './log.service';
 import { ShortcutService } from './shortcut.service';
-import { FileService } from './file.service';
 import { Router } from '@angular/router';
 
 export class SideMenuItem {
@@ -18,16 +14,12 @@ export class SideMenuItem {
 })
 export class AppService {
 	onBoundsChanged = new EventEmitter<void>();
-	currentEditor: IEditorViewModel;
 	version: string;
 	sideMenuItems: SideMenuItem[] = [];
 
 	constructor(protected title: Title, 
-		           protected backend: BackendService, 
 		           protected log: LogService,
-		           protected werck: WerckService,
 		           protected shortcuts: ShortcutService,
-		           protected file: FileService,
 		           protected router: Router) {
 	}
 
