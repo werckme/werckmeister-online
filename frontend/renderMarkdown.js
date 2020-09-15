@@ -94,7 +94,8 @@ renderer.code = (code, language, isEscaped) => {
     if (languageData.tempo) {
       tempoAttr = `wm-tempo="${languageData.tempo}"`;
     }
-    return `\n<werckmeister-snippet ${typeAttr} ${tempoAttr}><pre><code>${cdata}</code></pre></werckmeister-snippet>\n`;
+    const buff = Buffer.from(code, 'utf-8');
+    return `\n<werckmeister-snippet ${typeAttr} ${tempoAttr} wm-data="${buff.toString('base64')}"></werckmeister-snippet>\n`;
   }
   return `<pre><code>${cdata}</code></pre>`;
 }
