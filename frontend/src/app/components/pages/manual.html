@@ -15,19 +15,19 @@
 <br>The remaining statements are just for configuration purposes.</p>
 <p>A basic Werckmeister document will look like this:</p>
 
-<werckmeister-snippet   wm-data="LS0gQ09ORklHIFNUVUZGOgotLSAxKSBjb25maWd1cmUgeW91ciBNSURJIGRldmljZQotLSAyKSBkZWZpbmUgYW4gaW5zdHJ1bWVudCB3aXRoIHRoZSBuYW1lIHBpYW5vCi0tIDMpIHNldCB0aGUgdGVtcG8KCi0tIDEpCi0tICAgICAgbmFtZSAgICAgICAgIHR5cGUgcG9ydG51bWJlcgpkZXZpY2U6IE15TWlkaURldmljZSBtaWRpIF91c2VQb3J0PTE7CgotLSAyKQotLSAgICAgICAgICAgICBuYW1lICAgICAgICAgCmluc3RydW1lbnREZWY6IHBpYW5vIF9vbkRldmljZT1NeU1pZGlEZXZpY2UgIF9jaD0wICAgX3BjPTAgIF9jYz0wOwotLSAoY2g9IGNoYW5uZWwsIHBjPSBwcm9ncmFtbSBjaGFuZ2UsIGNjPSBjb250cm9sIGNoYW5nZSkKCi0tIDMpCnRlbXBvOiAxMzA7CgotLSBUUkFDS1MsIFZPSUNFUyAmIEVWRU5UUwotLSBub3cgdGhlIGFjdHVhbCBtdXNpY2FsIHN0YXRlbWVudCwgd2hpY2ggaXMgYSB0cmFjayBjb250YWluaW5nIG9uZSB2b2ljZSB3aXRoIHNvbWUgbm90ZSBldmVudHMKLS0gKHRoZSB0cmFjayBpcyBzZXQgdXAgdG8gdXNlIG91ciBwaWFubyBpbnN0cnVtZW50IGZyb20gYWJvdmUpClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgIGM0IGQgZSBmIHwgZzEgLS1ub3RlIGV2ZW50cwp9Cl0="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gQ09ORklHIFNUVUZGOgotLSAxKSBjb25maWd1cmUgeW91ciBNSURJIGRldmljZQotLSAyKSBkZWZpbmUgYW4gaW5zdHJ1bWVudCB3aXRoIHRoZSBuYW1lIHBpYW5vCi0tIDMpIHNldCB0aGUgdGVtcG8KCi0tIDEpCi0tICAgICAgbmFtZSAgICAgICAgIHR5cGUgcG9ydG51bWJlcgpkZXZpY2U6IE15TWlkaURldmljZSBtaWRpIF91c2VQb3J0PTE7CgotLSAyKQotLSAgICAgICAgICAgICBuYW1lICAgICAgICAgCmluc3RydW1lbnREZWY6IHBpYW5vIF9vbkRldmljZT1NeU1pZGlEZXZpY2UgIF9jaD0wICAgX3BjPTAgIF9jYz0wOwotLSAoY2g9IGNoYW5uZWwsIHBjPSBwcm9ncmFtbSBjaGFuZ2UsIGNjPSBjb250cm9sIGNoYW5nZSkKCi0tIDMpCnRlbXBvOiAxMzA7CgotLSBUUkFDS1MsIFZPSUNFUyAmIEVWRU5UUwotLSBub3cgdGhlIGFjdHVhbCBtdXNpY2FsIHN0YXRlbWVudCwgd2hpY2ggaXMgYSB0cmFjayBjb250YWluaW5nIG9uZSB2b2ljZSB3aXRoIHNvbWUgbm90ZSBldmVudHMKLS0gKHRoZSB0cmFjayBpcyBzZXQgdXAgdG8gdXNlIG91ciBwaWFubyBpbnN0cnVtZW50IGZyb20gYWJvdmUpClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgIGM0IGQgZSBmIHwgZzEgLS1ub3RlIGV2ZW50cwp9Cl0="></werckmeister-snippet>
 <h2 id="tracks-and-voices">Tracks and Voices</h2>
 <p>A track in Werckmeister has excactly the same meanig as it has in a MIDI file.
 It is related to an instrument and contains events.</p>
 <p>A track begins with a <code>[</code> and ends with a <code>]</code>.</p>
 
-<werckmeister-snippet   wm-data="LS0gYSB0cmFjayB3aXRoIG9uZSB2b2ljZSBhbmQgYW4gaW5zdHJ1bWVudCBzZXR1cAoKWwp7CiAgICBjIGQgZSBmIHwgZyBhIGIgYycKfQpd"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gYSB0cmFjayB3aXRoIG9uZSB2b2ljZSBhbmQgYW4gaW5zdHJ1bWVudCBzZXR1cAoKWwp7CiAgICBjIGQgZSBmIHwgZyBhIGIgYycKfQpd"></werckmeister-snippet>
 <p>All events of a track are releated at least to one voice. A voice starts with <code>{{</code> and ends with <code>}}</code>.
 If you want to write polyphonic melody lines, you can add more voices to your track. </p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/poly.png" alt="a polyphonic melody"></p>
 <p>The melody above would be written like this:</p>
 
-<werckmeister-snippet   wm-data="LS0gYSB0cmFjayB3aXRoIHR3byB2b2ljZXMKClsKewogICAgZzQgIGYjOCBnICBhNCAgIGcKfQp7CiAgICBkNCAgIGQgICAgIGQgICAgZAp9Cl0K"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gYSB0cmFjayB3aXRoIHR3byB2b2ljZXMKClsKewogICAgZzQgIGYjOCBnICBhNCAgIGcKfQp7CiAgICBkNCAgIGQgICAgIGQgICAgZAp9Cl0K"></werckmeister-snippet>
 <h2 id="events">Events</h2>
 <p>There are a few event types:</p>
 <h3 id="note-events">Note Events</h3>
@@ -41,7 +41,7 @@ If you want to write polyphonic melody lines, you can add more voices to your tr
 <p><em>Meta events are also called <a pageScroll id="link-10" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="commands">Commands</a></em></p>
 <p><br>You can recognize meta events by its slashes at the beginning and the end.</p>
 
-<werckmeister-snippet wm-type="single"  wm-data="L3RlbXBvOiAxMDAvIC0tIG1ldGEgZXZlbnQ6IHNldCB0ZW1wbyB0byAxMDAKYyBkIGUgZiB8Ci90ZW1wbzogNTAvCmcgYSBiIGMnCgo="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single"  wm-data="L3RlbXBvOiAxMDAvIC0tIG1ldGEgZXZlbnQ6IHNldCB0ZW1wbyB0byAxMDAKYyBkIGUgZiB8Ci90ZW1wbzogNTAvCmcgYSBiIGMnCgo="></werckmeister-snippet>
 <h2 id="parameters">Parameters</h2>
 <p><a pageScroll id="link-11" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="metaevents">Meta Events</a> or Config Statements will be configurated with parameters. Parameters can be defined in two ways:</p>
 <h4 id="positional">Positional</h4>
@@ -89,23 +89,23 @@ A <a pageScroll id="link-14" [pageScrollDuration]="0" [pageScrollOffset]="66" [r
 <pre><code><![CDATA[instrumentConf: myFarfisa volume 80 pan 20;]]></code></pre><h3 id="tempo">Tempo</h3>
 <p>To set the tempo of your piece, write <code>tempo: aNumber</code>.</p>
 
-<werckmeister-snippet   wm-data="dGVtcG86IDEyMDsKWwp7CiAgICBjIGQgZSBmIHwgZyBhIGIgYycKfQpd"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dGVtcG86IDEyMDsKWwp7CiAgICBjIGQgZSBmIHwgZyBhIGIgYycKfQpd"></werckmeister-snippet>
 <p>Sometimes you want to setup diffent tempi for for several voices.
 Then you have to add a tempo <a pageScroll id="link-15" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="meta-events">Meta Event</a> to your voice.</p>
 <p><em>since MIDI doesn&#39;t support simultaneous tempi, we achive this effect by streching or shrinking the note durations in relation to the main tempo (Augmentation/Diminution). As an simple example: on double time we pay eights instead of fourths.</em></p>
 <p>Here we play four voices on one track, with four different tempo configurations:</p>
 <p><strong>There seems to be a bug on the webplayer (first notes are missing)</strong></p>
 
-<werckmeister-snippet   wm-data="dGVtcG86IDEyMDsKWwp7CiAgICAvdGVtcG86IGRvdWJsZS8KICAgIGMgZCBlIGYgfCBnIGEgYiBjJyB8IGMgZCBlIGYgfCBnIGEgYiBjJwp9CnsKICAgIC90ZW1wbzogaGFsZi8KICAgIGMsIGQsIGUsIGYgfAp9CnsKICAgIC9zaWduYXR1cmU6IDMgNC8KICAgIC90ZW1wbzogOTYvCiAgIGMgZSBmIHwgZyBiIGMnCn0KewogICAgYywsIGQsLCBlLCwgZiwsIHwgZywsIGEsLCBiLCwgYywKfQpdCg=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dGVtcG86IDEyMDsKWwp7CiAgICAvdGVtcG86IGRvdWJsZS8KICAgIGMgZCBlIGYgfCBnIGEgYiBjJyB8IGMgZCBlIGYgfCBnIGEgYiBjJwp9CnsKICAgIC90ZW1wbzogaGFsZi8KICAgIGMsIGQsIGUsIGYgfAp9CnsKICAgIC9zaWduYXR1cmU6IDMgNC8KICAgIC90ZW1wbzogOTYvCiAgIGMgZSBmIHwgZyBiIGMnCn0KewogICAgYywsIGQsLCBlLCwgZiwsIHwgZywsIGEsLCBiLCwgYywKfQpdCg=="></werckmeister-snippet>
 <p>Also it is possible to change the tempo in between events:</p>
 
-<werckmeister-snippet   wm-data="dGVtcG86IDEyMDsKWwp7CiAgICAvdGVtcG86IGRvdWJsZS8KICAgIGMgZCBlIGYgfCBnIGEgYiBjJyB8CiAgICAvdGVtcG86IGhhbGYvCiAgICBjIGQgZSBmIHwgZyBhIGIgYycgfAogICAgL3NpZ25hdHVyZTogMyA0LwogICAgL3RlbXBvOiA5Ni8KICAgIGMgZCBlIHwgZiBnIGEgfAogICAgL3NpZ25hdHVyZTogNCA0LwogICAgL3RlbXBvOiBub3JtYWwvCiAgICBjIGQgZSBmIHwgZyBhIGIgYycgfAp9Cl0K"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dGVtcG86IDEyMDsKWwp7CiAgICAvdGVtcG86IGRvdWJsZS8KICAgIGMgZCBlIGYgfCBnIGEgYiBjJyB8CiAgICAvdGVtcG86IGhhbGYvCiAgICBjIGQgZSBmIHwgZyBhIGIgYycgfAogICAgL3NpZ25hdHVyZTogMyA0LwogICAgL3RlbXBvOiA5Ni8KICAgIGMgZCBlIHwgZiBnIGEgfAogICAgL3NpZ25hdHVyZTogNCA0LwogICAgL3RlbXBvOiBub3JtYWwvCiAgICBjIGQgZSBmIHwgZyBhIGIgYycgfAp9Cl0K"></werckmeister-snippet>
 <h3 id="time-signatures">Time Signatures</h3>
 <p>The time signature 4/4 by default.
 If you want to setup a different time signature than the default, you can achieve this by using the signature <a pageScroll id="link-16" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="meta-events">meta event</a>.
 With this you are able to setup different time signatures during a piece.</p>
 
-<werckmeister-snippet   wm-data="Wwp7CiAgICAvc2lnbmF0dXJlOiAzIDQvCiAgICBjIGUgZSB8IGMgZSBlIHwKICAgIC9zaWduYXR1cmU6IDQgNC8KICAgIGMgZCBlIGYgfCBnIGEgYiBjJwp9Cl0="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="Wwp7CiAgICAvc2lnbmF0dXJlOiAzIDQvCiAgICBjIGUgZSB8IGMgZSBlIHwKICAgIC9zaWduYXR1cmU6IDQgNC8KICAgIGMgZCBlIGYgfCBnIGEgYiBjJwp9Cl0="></werckmeister-snippet>
 <h3 id="key-signatures">Key Signatures</h3>
 <p>key signatures are not supported.</p>
 <h2 id="write-melodies">Write Melodies</h2>
@@ -113,35 +113,35 @@ With this you are able to setup different time signatures during a piece.</p>
 <p>The syntax is loosely inspired by the <a href="http://lilypond.org">lilypond</a> notation syntax. A note is just a letter followed by a number for its duration.</p>
 <p><em>If a note has no duration, the last assigned duration will be used.</em></p>
 
-<werckmeister-snippet wm-type="single"  wm-data="YzQgZCBlOCBm"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single"  wm-data="YzQgZCBlOCBm"></werckmeister-snippet>
 <p><br><em>c and d will be played as quarter notes, e and f as eighth notes</em></p>
 <p>the end of a bar is marked by a pipe: <code>|</code></p>
 
-<werckmeister-snippet wm-type="single"  wm-data="YyBkIGUgZiB8IGcgYSBiIGMn"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single"  wm-data="YyBkIGUgZiB8IGcgYSBiIGMn"></werckmeister-snippet>
 <h3 id="octaves">Octaves</h3>
 <p>Lower octaves are marked by a comma (<code>,</code>) after the note, upper octaves by a single quote (<code>&#39;</code>).</p>
 
-<werckmeister-snippet wm-type="single"  wm-data="YywsICBlLCwgIGcsLCBiLCwgfCBjLCBlLCBnLCBiLCB8IGMgZSBnIGIgfCBjJyBlJyBnJyBiJyB8IGMnJyBlJycgZycnIGInJw=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single"  wm-data="YywsICBlLCwgIGcsLCBiLCwgfCBjLCBlLCBnLCBiLCB8IGMgZSBnIGIgfCBjJyBlJyBnJyBiJyB8IGMnJyBlJycgZycnIGInJw=="></werckmeister-snippet>
 <h3 id="accidentals">Accidentals</h3>
 <p><code>#</code> raises a pitch by a half step.
 <br> A <code>b</code> lowers it. </p>
 
-<werckmeister-snippet wm-type="single"  wm-data="YyMgZCMgZiMgZyMgfCBiYiBkYicgZWInIGdiJw=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single"  wm-data="YyMgZCMgZiMgZyMgfCBiYiBkYicgZWInIGdiJw=="></werckmeister-snippet>
 <h3 id="durations">Durations</h3>
 <p>A numeric value after a note marks its duration.</p>
 
-<werckmeister-snippet wm-type="single"  wm-data="YzIgYzQgYzggYzE2IGMzMiBjNjQgYzEyOCBy"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single"  wm-data="YzIgYzQgYzggYzE2IGMzMiBjNjQgYzEyOCBy"></werckmeister-snippet>
 <h3 id="intervals-and-chords">Intervals and Chords</h3>
 <p>Notes that have to sound simultaneous are written in angle brackets. The duration is written after the brackets.</p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/chords.png" alt="two chords"></p>
 
-<werckmeister-snippet wm-type="single" wm-tempo="80" wm-data="PGcsLCBjIGUgZyBiYj40ICAgPGMsIGMgZWIgZyBiYj4yLg=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="80" wm-data="PGcsLCBjIGUgZyBiYj40ICAgPGMsIGMgZWIgZyBiYj4yLg=="></werckmeister-snippet>
 <h3 id="augmentation-dots--ties">Augmentation Dots &amp; Ties</h3>
 <p>To write a augmentation dot (<code>.</code>) append a dot after a note duration value.
 <br>For ties use a tilde (<code>~</code>) instead. </p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/dotsties.png" alt="dots and ties"></p>
 
-<werckmeister-snippet wm-type="single"  wm-data="YzIuIGM0IHwgYzJ+IGM0IGM="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single"  wm-data="YzIuIGM0IHwgYzJ+IGM0IGM="></werckmeister-snippet>
 <h3 id="tuplets">Tuplets</h3>
 <p>To write tuplets of any kind you just have to write notes encloded by parentheses followed by a duration value. For example: <code>(c c c)4</code>.
 These three notes will now be played in the time of one quarter.</p>
@@ -149,12 +149,12 @@ These three notes will now be played in the time of one quarter.</p>
 <p><em>The relations between the notes are vital, not their absolute durations.</em></p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/tuplets.png" alt="n-tole examples with 3,7 and 9"></p>
 
-<werckmeister-snippet wm-type="single" wm-tempo="60" wm-data="KGM4IGMgYyk0ICAgKGM4IGMgYyBjIGMpNCAgKGM4IGMgYyBjIGMgYyBjKTQgIChjOCBjIGMgYyBjIGMgYyBjIGMpNA=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="60" wm-data="KGM4IGMgYyk0ICAgKGM4IGMgYyBjIGMpNCAgKGM4IGMgYyBjIGMgYyBjKTQgIChjOCBjIGMgYyBjIGMgYyBjIGMpNA=="></werckmeister-snippet>
 <h3 id="nested-tuplets">Nested Tuplets</h3>
 <p>You are also able to write nested tuplets:</p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/blackpages.png" alt="a example of nested tuplets"></p>
 
-<werckmeister-snippet wm-type="single" wm-tempo="60" wm-data="YjIgKChiIGMjJyBjIycgYiBkJykgIChmJyBhIGEgYmIgYycpICAoZScgYScgYmInIGYnIGMnIGcpKTI="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="60" wm-data="YjIgKChiIGMjJyBjIycgYiBkJykgIChmJyBhIGEgYmIgYycpICAoZScgYScgYmInIGYnIGMnIGcpKTI="></werckmeister-snippet>
 <h2 id="write-for-drums">Write for drums</h2>
 <h3 id="pitchmaps">Pitchmaps</h3>
 <p>tbd.</p>
@@ -164,7 +164,7 @@ These three notes will now be played in the time of one quarter.</p>
 <p>And this is what you doing when writing style templates.
 <br>So in our example above you would write:</p>
 
-<werckmeister-snippet   wm-data="LS0gbWFrZSBzdXJlIHRoYXQgeW91IGhhdmUgYSBjaG9yZCBkZWZpbml0aW9uIGxvYWRlZAp1c2luZyAiY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKLS0gICAgICAgICAgICBuYW1lICBkZXZpY2UgICAgICAgCmluc3RydW1lbnREZWY6YmFzcyAgTXlEZXZpY2UgX2NoPTAgIF9wYz0wOwoKLS0gaGVyZSBpcyB0aGUgdGVtcGxhdGU6ClsKdHlwZTogdGVtcGxhdGU7Cm5hbWU6IHNpbXBsZUJhc3M7Cmluc3RydW1lbnQ6IGJhc3M7CnsKICAgIEksLDIuIFYsLDQgfAp9Cl0KCi0tIGhlcmUgYXJlIHNvbWUgY2hvcmRzOgpbCnR5cGU6IGFjY29tcDsKewogICAgL3RlbXBsYXRlOiBzaW1wbGVCYXNzLwogICAgQyB8IEYgfCBHIHwgQyB8Cn0KXQo="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gbWFrZSBzdXJlIHRoYXQgeW91IGhhdmUgYSBjaG9yZCBkZWZpbml0aW9uIGxvYWRlZAp1c2luZyAiY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKLS0gICAgICAgICAgICBuYW1lICBkZXZpY2UgICAgICAgCmluc3RydW1lbnREZWY6YmFzcyAgTXlEZXZpY2UgX2NoPTAgIF9wYz0wOwoKLS0gaGVyZSBpcyB0aGUgdGVtcGxhdGU6ClsKdHlwZTogdGVtcGxhdGU7Cm5hbWU6IHNpbXBsZUJhc3M7Cmluc3RydW1lbnQ6IGJhc3M7CnsKICAgIEksLDIuIFYsLDQgfAp9Cl0KCi0tIGhlcmUgYXJlIHNvbWUgY2hvcmRzOgpbCnR5cGU6IGFjY29tcDsKewogICAgL3RlbXBsYXRlOiBzaW1wbGVCYXNzLwogICAgQyB8IEYgfCBHIHwgQyB8Cn0KXQo="></werckmeister-snippet>
 <p>Instead of writing absolute notes, you use relative degrees. For example <code>I4</code> means the first degree as a quarter note. </p>
 <p><em>If a degree does not appear in a chord, the degree will not played.</em></p>
 <p>There are the same rules as for writing absolute <a pageScroll id="link-17" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="notes">notes</a>:</p>
@@ -176,7 +176,7 @@ These three notes will now be played in the time of one quarter.</p>
 <li>create tuplets using parantheses</li>
 </ul>
 
-<werckmeister-snippet   wm-data="LS0gbWFrZSBzdXJlIHRoYXQgeW91IGhhdmUgYSBjaG9yZCBkZWZpbml0aW9uIGxvYWRlZAp1c2luZyAiY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKLS0gICAgICAgICAgICAgbmFtZSAgZGV2aWNlICAgICAgIGNoIHBjIGNjCmluc3RydW1lbnREZWY6YmFzcyAgTXlEZXZpY2UgX2NoPTAgIF9wYz0wOwoKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogc2ltcGxlQmFzczsKaW5zdHJ1bWVudDogYmFzczsKewogICAgSSwsMi4gViwsNCB8IDxJLCwgSUlJLCBWLD4xCn0KXQoKWwp0eXBlOiBhY2NvbXA7CnsKICAgIC90ZW1wbGF0ZTogc2ltcGxlQmFzcy8KICAgIEMgfCBGIHwgRyB8IEMgfAp9Cl0="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gbWFrZSBzdXJlIHRoYXQgeW91IGhhdmUgYSBjaG9yZCBkZWZpbml0aW9uIGxvYWRlZAp1c2luZyAiY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKLS0gICAgICAgICAgICAgbmFtZSAgZGV2aWNlICAgICAgIGNoIHBjIGNjCmluc3RydW1lbnREZWY6YmFzcyAgTXlEZXZpY2UgX2NoPTAgIF9wYz0wOwoKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogc2ltcGxlQmFzczsKaW5zdHJ1bWVudDogYmFzczsKewogICAgSSwsMi4gViwsNCB8IDxJLCwgSUlJLCBWLD4xCn0KXQoKWwp0eXBlOiBhY2NvbXA7CnsKICAgIC90ZW1wbGF0ZTogc2ltcGxlQmFzcy8KICAgIEMgfCBGIHwgRyB8IEMgfAp9Cl0="></werckmeister-snippet>
 <h2 id="advanced-techniques">Advanced techniques</h2>
 <p>(tbd.)</p>
 <h5 id="chords">Chords</h5>
@@ -709,15 +709,15 @@ These three notes will now be played in the time of one quarter.</p>
  "paradiddle"@<"sn1" "sn2">4]]></code></pre><p> Examples:</p>
 <p> <strong>a single paradiddle</strong></p>
 
-<werckmeister-snippet   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDE1MDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOnBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTExODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBkcnVtUnVkaW1lbnRzLwogICAtLSBhIHBhcmFkaWRkbGUgKFJMUlIpIHdpdGggYycgZm9yIFIgYW5kIGMgZm9yIEwKICAgInBhcmFkaWRkbGUiQDxjJyBjPjEKfQpd"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDE1MDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOnBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTExODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBkcnVtUnVkaW1lbnRzLwogICAtLSBhIHBhcmFkaWRkbGUgKFJMUlIpIHdpdGggYycgZm9yIFIgYW5kIGMgZm9yIEwKICAgInBhcmFkaWRkbGUiQDxjJyBjPjEKfQpd"></werckmeister-snippet>
 <p> <strong>repeating</strong></p>
 
-<werckmeister-snippet   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOnBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTExODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBkcnVtUnVkaW1lbnRzLwogICAtLSBwZXJmb3JtcyA0IHBhcmFkaWRkbGVzIChSTFJSIExSTEwgUkxSUiBMUkxMKSB3aXRoIGMnIGZvciBSIGFuZCBjIGZvciBMCiAgICI0eCBwYXJhZGlkZGxlIkA8YycgYz4xCn0KXQ=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOnBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTExODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBkcnVtUnVkaW1lbnRzLwogICAtLSBwZXJmb3JtcyA0IHBhcmFkaWRkbGVzIChSTFJSIExSTEwgUkxSUiBMUkxMKSB3aXRoIGMnIGZvciBSIGFuZCBjIGZvciBMCiAgICI0eCBwYXJhZGlkZGxlIkA8YycgYz4xCn0KXQ=="></werckmeister-snippet>
 <p> <strong>orchestration</strong></p>
 <p> If you want to orchestrate a rudiment over a drum set,</p>
 <p> you are able to define more R &amp; L notes. <em>(The total number of the notes has to be even.)</em></p>
 
-<werckmeister-snippet   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOnBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTExODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBkcnVtUnVkaW1lbnRzLwogICAtLSBwZXJmb3JtcyA0IHBhcmFkaWRkbGVzIChSTFJSIExSTEwgUkxSUiBMUkxMKSB3aXRoIAogICAtLSAgICAgIGMnIGZvciBSMSBhbmQgYyBmb3IgTDEKICAgLS0gYW5kICBjLCBmb3IgUjIgYW5kIGMsLCBmb3IgTDIuCiAgIC0tIFRoZSBmaW5hbCBzZXF1ZW5jZSB3aWxsIGJlOiBjJyhSMSkgYyhMMSkgYywoUjIpIGMsLChSMSkgLi4uIAogICAiNHggcGFyYWRpZGRsZSJAPGMnIGMgYywgYywsPjEKCn0KXQ=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOnBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTExODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBkcnVtUnVkaW1lbnRzLwogICAtLSBwZXJmb3JtcyA0IHBhcmFkaWRkbGVzIChSTFJSIExSTEwgUkxSUiBMUkxMKSB3aXRoIAogICAtLSAgICAgIGMnIGZvciBSMSBhbmQgYyBmb3IgTDEKICAgLS0gYW5kICBjLCBmb3IgUjIgYW5kIGMsLCBmb3IgTDIuCiAgIC0tIFRoZSBmaW5hbCBzZXF1ZW5jZSB3aWxsIGJlOiBjJyhSMSkgYyhMMSkgYywoUjIpIGMsLChSMSkgLi4uIAogICAiNHggcGFyYWRpZGRsZSJAPGMnIGMgYywgYywsPjEKCn0KXQ=="></werckmeister-snippet>
 <p> <strong>Supported Rudiments</strong></p>
 <ul style="font-size: 0.9em;">
 
@@ -856,7 +856,7 @@ These three notes will now be played in the time of one quarter.</p>
  -- does work: 
  instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><p> <strong>Example</strong></p>
 
-<werckmeister-snippet   wm-data="dXNpbmcgImx1YS9tb2RzL2d1aXRhclN0cm9rZS5sdWEiOwp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ICBwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0yNDsKaW5zdHJ1bWVudENvbmY6IHBpYW5vIG1vZCBndWl0YXJTdHJva2UgX21vZGU9YWx0ZXJuYXRlIF92YWx1ZT0xNjsgClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICA8YyBlIGcgYj40IDxjIGUgZyBiPjQgPGMgZWIgZyBiYj4yIHwgIDxjIGViIGcgYmI+MiA8YyBlYiBnIGJiPjIKfQpd"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2d1aXRhclN0cm9rZS5sdWEiOwp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ICBwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0yNDsKaW5zdHJ1bWVudENvbmY6IHBpYW5vIG1vZCBndWl0YXJTdHJva2UgX21vZGU9YWx0ZXJuYXRlIF92YWx1ZT0xNjsgClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICA8YyBlIGcgYj40IDxjIGUgZyBiPjQgPGMgZWIgZyBiYj4yIHwgIDxjIGViIGcgYmI+MiA8YyBlYiBnIGJiPjIKfQpd"></werckmeister-snippet>
 <h4 id="parameters-15">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -893,7 +893,7 @@ These three notes will now be played in the time of one quarter.</p>
 <p>Performs every note legato. It is also possible to tag single notes.</p>
 <p> If a tag is given, only the tagged notes are performed legato.</p>
 
-<werckmeister-snippet   wm-data="dXNpbmcgImx1YS9tb2RzL2xlZ2F0by5sdWEiOwp0ZW1wbzogMTQwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBsZWdhdG8gX2ZvclRhZz1sZWcgX2Ftb3VudD0xMDAvCiAgIC0tIG9ubHkgdGhlIGBkYCB3aWxsIGJlIHBlcmZvcm1lZCBsZWdhdG8uIAogICBjICJsZWciQGQgZSBmCn0KXQ=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2xlZ2F0by5sdWEiOwp0ZW1wbzogMTQwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBsZWdhdG8gX2ZvclRhZz1sZWcgX2Ftb3VudD0xMDAvCiAgIC0tIG9ubHkgdGhlIGBkYCB3aWxsIGJlIHBlcmZvcm1lZCBsZWdhdG8uIAogICBjICJsZWciQGQgZSBmCn0KXQ=="></werckmeister-snippet>
 <h4 id="parameters-16">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -924,7 +924,7 @@ These three notes will now be played in the time of one quarter.</p>
 <p>A simple arpeggio implementation.</p>
 <p> <strong>Example</strong></p>
 
-<werckmeister-snippet   wm-data="dXNpbmcgImx1YS9tb2RzL215QXJwZWdnaW8ubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOiAgcGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogL2RvOiBteUFycGVnZ2lvLyAKIDxjIGUgZyBiPjIgCiAvZG86IG15QXJwZWdnaW8gX2RpcmVjdGlvbj1kb3duLyAKIDxjIGViIGcgYmI+MiAKfQpd"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL215QXJwZWdnaW8ubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOiAgcGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogL2RvOiBteUFycGVnZ2lvLyAKIDxjIGUgZyBiPjIgCiAvZG86IG15QXJwZWdnaW8gX2RpcmVjdGlvbj1kb3duLyAKIDxjIGViIGcgYmI+MiAKfQpd"></werckmeister-snippet>
 <h4 id="parameters-17">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -955,7 +955,7 @@ These three notes will now be played in the time of one quarter.</p>
 <p>Performs every note staccato. It is also possible to tag single notes.</p>
 <p> If a tag is given, only the tagged notes are performed staccato.</p>
 
-<werckmeister-snippet   wm-data="dXNpbmcgImx1YS9tb2RzL3N0YWNjYXRvLmx1YSI7CnRlbXBvOiAxNDA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCmluc3RydW1lbnQ6IHBpYW5vOwp7CiAgIC9tb2Q6IHN0YWNjYXRvIF9mb3JUYWc9c3RhYyBfYW1vdW50PTEwMC8KICAgLS0gb25seSB0aGUgYGRgIHdpbGwgYmUgcGVyZm9ybWVkIHN0YWNjYXRvLiAKICAgYyAic3RhYyJAZCBlIGYKfQpd"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL3N0YWNjYXRvLmx1YSI7CnRlbXBvOiAxNDA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCmluc3RydW1lbnQ6IHBpYW5vOwp7CiAgIC9tb2Q6IHN0YWNjYXRvIF9mb3JUYWc9c3RhYyBfYW1vdW50PTEwMC8KICAgLS0gb25seSB0aGUgYGRgIHdpbGwgYmUgcGVyZm9ybWVkIHN0YWNjYXRvLiAKICAgYyAic3RhYyJAZCBlIGYKfQpd"></werckmeister-snippet>
 <h4 id="parameters-18">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -985,7 +985,7 @@ These three notes will now be played in the time of one quarter.</p>
 <h3 id="swing"><code>swing</code></h3>
 <p>Performs a swing groove.</p>
 
-<werckmeister-snippet   wm-data="dXNpbmcgImx1YS9tb2RzL3N3aW5nLmx1YSI7CnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjogIHBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTA7ClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL21vZDogc3dpbmcvCiAgIGM4ICBjICAgYyAgIGMgICBjICAgYyAgIGMgICBjCgp9Cl0="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL3N3aW5nLmx1YSI7CnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjogIHBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTA7ClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL21vZDogc3dpbmcvCiAgIGM4ICBjICAgYyAgIGMgICBjICAgYyAgIGMgICBjCgp9Cl0="></werckmeister-snippet>
 <h4 id="parameters-19">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -1016,7 +1016,7 @@ These three notes will now be played in the time of one quarter.</p>
 <h3 id="guitar"><code>guitar</code></h3>
 <p>Tries to simulate the chord voicing of an guitar.</p>
 
-<werckmeister-snippet   wm-data="dXNpbmcgImx1YS92b2ljaW5ncy9ndWl0YXIubHVhIjsKdXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7Cgp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogbXlUZW1wbGF0ZTsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL3ZvaWNpbmdTdHJhdGVneTogZ3VpdGFyLwogICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS92b2ljaW5ncy9ndWl0YXIubHVhIjsKdXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7Cgp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogbXlUZW1wbGF0ZTsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL3ZvaWNpbmdTdHJhdGVneTogZ3VpdGFyLwogICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
 <h4 id="parameters-20">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -1040,7 +1040,7 @@ These three notes will now be played in the time of one quarter.</p>
 <h3 id="simple"><code>simple</code></h3>
 <p>The simple approach with no strategy.</p>
 
-<werckmeister-snippet   wm-data="dXNpbmcgImx1YS92b2ljaW5ncy9zaW1wbGUubHVhIjsKdXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7Cgp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogbXlUZW1wbGF0ZTsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL3ZvaWNpbmdTdHJhdGVneTogc2ltcGxlLwogICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS92b2ljaW5ncy9zaW1wbGUubHVhIjsKdXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7Cgp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogbXlUZW1wbGF0ZTsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL3ZvaWNpbmdTdHJhdGVneTogc2ltcGxlLwogICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
 <h4 id="parameters-21">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -1065,7 +1065,7 @@ These three notes will now be played in the time of one quarter.</p>
 <p>Tries to simulates a voice leading approach:</p>
 <p> the octaves of a chord are rearranged, so that the actual pitch distance between the previous chord is kept minimal.</p>
 
-<werckmeister-snippet   wm-data="dXNpbmcgImx1YS92b2ljaW5ncy92b2ljZWxlYWQubHVhIjsKdXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7Cgp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogbXlUZW1wbGF0ZTsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL3ZvaWNpbmdTdHJhdGVneTogdm9pY2VsZWFkLwogICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS92b2ljaW5ncy92b2ljZWxlYWQubHVhIjsKdXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7Cgp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogbXlUZW1wbGF0ZTsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL3ZvaWNpbmdTdHJhdGVneTogdm9pY2VsZWFkLwogICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
 <h4 id="parameters-22">parameters</h4>
 <table class="table table-bordered">
 <thead>
