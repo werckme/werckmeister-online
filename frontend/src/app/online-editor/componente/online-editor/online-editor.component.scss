@@ -1,0 +1,24 @@
+$edBgColor:  #1e1e1e;
+$fileListBgColor: #252526;
+
+.editor-main {
+    display: flex;
+}
+
+.filelist {
+    width: 200px;
+    min-height: 500px;
+    background-color: $fileListBgColor;
+    color: white;
+    ul {
+        padding: 5px;
+    }
+    li {
+        list-style: none;
+        cursor: pointer;
+    }
+}
+
+.editors {
+    flex-grow: 1;
+}

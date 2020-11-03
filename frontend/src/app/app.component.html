@@ -19,7 +19,10 @@
                 </ListItem>  
                 <ListItem>
                     <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['contact']">Contact</a>
-                </ListItem>                                                                                                                                                            
+                </ListItem>  
+                <ListItem>
+                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['editor']">Try Online</a>
+                </ListItem>                                                                                                                                                                            
             </List>
         </lib-mobile-app-menu>
         <img class="logo d-none d-md-block" src="assets/images/Logo.png" alt="werckmeister logo">
@@ -30,8 +33,9 @@
             </li>
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a href="/examples">Examples</a></li>
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['code-extension']">Visual Studio Code</a></li>
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['contact']">Contact</a>
-            </li>
+            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['contact']">Contact</a></li>
+            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['editor']">Try Online</a></li>
+            
         </ul>
     </nz-header>
     <nz-content>

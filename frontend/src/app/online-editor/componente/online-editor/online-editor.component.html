@@ -1,0 +1,17 @@
+<div class="werckmeister-online-editor">
+    <h1>Online Editor</h1>
+    <werckmeister-workspace #workspace></werckmeister-workspace>
+    <div class="editor-main" #editorMain>
+        <div class="filelist">
+            <ul>
+                <li (click)="onFileClicked(file)" *ngFor="let file of files">{{file.path}}</li>
+            </ul>
+        </div>
+        <div class="editors" *ngFor="let file of files">
+            <werckmeister-editor [attr.wm-filename]="file.path" wm-style="height: 100%; width: 100%;">
+                {{file.data}}
+            </werckmeister-editor>
+        </div>
+
+    </div>
+</div>

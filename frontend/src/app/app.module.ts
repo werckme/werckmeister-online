@@ -25,6 +25,7 @@ import { PushToHistoryIfOnSamePageDirective } from './directives/push-to-history
 import { DownloadComponent } from './components/pages/download/download.component';
 import { ReleaseComponent } from './components/pages/download/release/release.component';
 import { DownloadDetailsComponent } from './components/pages/download/release/download-details/download-details.component';
+import { OnlineEditorModule } from './online-editor/online-editor.module';
 
 registerLocaleData(en);
 @NgModule({
@@ -43,7 +44,7 @@ registerLocaleData(en);
 		PushToHistoryIfOnSamePageDirective,
 		DownloadComponent,
 		ReleaseComponent,
-		DownloadDetailsComponent
+		DownloadDetailsComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -53,7 +54,8 @@ registerLocaleData(en);
 		BrowserAnimationsModule,
 		NgxPageScrollCoreModule,
 		NgxPageScrollModule,
-		NgZorroAntdMobileModule
+		NgZorroAntdMobileModule,
+		OnlineEditorModule
 	],
 	providers: [ShortcutService, { provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent],
