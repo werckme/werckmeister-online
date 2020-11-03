@@ -7,11 +7,9 @@
                 <li (click)="onFileClicked(file)" *ngFor="let file of files">{{file.path}}</li>
             </ul>
         </div>
-        <div class="editors" *ngFor="let file of files">
-            <werckmeister-editor [attr.wm-filename]="file.path" wm-style="height: 100%; width: 100%;">
-                {{file.data}}
-            </werckmeister-editor>
-        </div>
+        <werckmeister-editor [ngClass]="{active: currentFile===file}" *ngFor="let file of files" [attr.wm-filename]="file.path" wm-style="height: 100%; width: 100%;">
+            {{file.data}}
+        </werckmeister-editor>
 
     </div>
 </div>

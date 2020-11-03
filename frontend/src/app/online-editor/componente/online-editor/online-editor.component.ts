@@ -90,8 +90,8 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onFileClicked() {
-
+  onFileClicked(file: IFile) {
+    this.currentFile = file;
   }
 
 }

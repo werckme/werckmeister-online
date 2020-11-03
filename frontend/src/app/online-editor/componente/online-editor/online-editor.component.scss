@@ -19,6 +19,10 @@ $fileListBgColor: #252526;
     }
 }
 
-.editors {
+werckmeister-editor {
     flex-grow: 1;
+    display: none;
+    &.active {
+        display: block;
+    }
 }
