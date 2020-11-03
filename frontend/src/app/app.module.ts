@@ -11,8 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { ManualComponent } from './components/pages/manual.component';
-import { AutumnLeavesComponent } from './components/pages/examples/autumn.component';
-import { IpanemaComponent } from './components/pages/examples/ipanema.component';
 import { GettingStartedComponent } from './components/pages/getting-started';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
@@ -25,6 +23,7 @@ import { PushToHistoryIfOnSamePageDirective } from './directives/push-to-history
 import { DownloadComponent } from './components/pages/download/download.component';
 import { ReleaseComponent } from './components/pages/download/release/release.component';
 import { DownloadDetailsComponent } from './components/pages/download/release/download-details/download-details.component';
+import { EmbeddedSoundcloudPlayerComponent } from './components/partials/embedded-soundcloud-player/embedded-soundcloud-player.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -33,8 +32,6 @@ registerLocaleData(en);
 		HeaderComponent,
 		WerckmeisterComponent,
 		ManualComponent,
-		AutumnLeavesComponent,
-		IpanemaComponent,
 		GettingStartedComponent,
 		ExamplesComponent,
 		ContactComponent,
@@ -43,7 +40,8 @@ registerLocaleData(en);
 		PushToHistoryIfOnSamePageDirective,
 		DownloadComponent,
 		ReleaseComponent,
-		DownloadDetailsComponent
+		DownloadDetailsComponent,
+		EmbeddedSoundcloudPlayerComponent
 	],
 	imports: [
 		BrowserModule,

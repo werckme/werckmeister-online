@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { WerckmeisterComponent } from './components/pages/werckmeister.component';
 import { ManualComponent } from './components/pages/manual.component';
-import { AutumnLeavesComponent } from './components/pages/examples/autumn.component';
-import { IpanemaComponent } from './components/pages/examples/ipanema.component';
 import { GettingStartedComponent } from './components/pages/getting-started';
 import { ExamplesComponent } from './components/pages/examples/examples.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
