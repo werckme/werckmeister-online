@@ -11,8 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { ManualComponent } from './components/pages/manual.component';
-import { AutumnLeavesComponent } from './components/pages/examples/autumn.component';
-import { IpanemaComponent } from './components/pages/examples/ipanema.component';
 import { GettingStartedComponent } from './components/pages/getting-started';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
@@ -34,8 +32,6 @@ registerLocaleData(en);
 		HeaderComponent,
 		WerckmeisterComponent,
 		ManualComponent,
-		AutumnLeavesComponent,
-		IpanemaComponent,
 		GettingStartedComponent,
 		ExamplesComponent,
 		ContactComponent,

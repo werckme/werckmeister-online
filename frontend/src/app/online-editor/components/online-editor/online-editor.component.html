@@ -8,7 +8,6 @@
             </ul>
         </div>
         <werckmeister-editor [ngClass]="{active: currentFile===file}" *ngFor="let file of files" [attr.wm-filename]="file.path" wm-style="height: 100%; width: 100%;">
-            {{file.data}}
         </werckmeister-editor>
 
     </div>

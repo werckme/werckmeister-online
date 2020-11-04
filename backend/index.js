@@ -3,7 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const monk = require('monk')
 const {nanoid} = require('nanoid');
-
+const EmptyWorkspace = require('./emptyWorkspace');
 require('dotenv').config();
 
 const app = express();
@@ -16,7 +16,7 @@ const port = process.env.PORT || 1337;
 function createNewWorkspace() {
     return {
         wid: nanoid(12),
-        files: [] 
+        files: EmptyWorkspace.files 
     };
 }
 

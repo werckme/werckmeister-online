@@ -6,6 +6,8 @@ $fileListBgColor: #252526;
 }
 
 .filelist {
+    font-family: monospace;
+    font-size: 14px;
     width: 200px;
     min-height: 500px;
     background-color: $fileListBgColor;
