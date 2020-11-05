@@ -1,7 +1,7 @@
 backend/config/default.json
 # Created by https://www.gitignore.io/api/node,angular,dotnetcore,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=node,angular,dotnetcore,visualstudiocode
-
+.env
 ### Angular ###
 ## Angular ##
 # compiled output
