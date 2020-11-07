@@ -23,8 +23,16 @@ export class WorkspaceStorageService extends ARestService {
     super(http);
   }
 
-  public async emptyWorkspace(): Promise<IWorkspace> {
+  public async newWorkspace(): Promise<IWorkspace> {
     return this.get<IWorkspace>();
+  }
+
+  public async loadWorkspace(id: string): Promise<IWorkspace> {
+    return this.get<IWorkspace>(id);
+  }
+
+  public async updateWorkspace(workspace: IWorkspace): Promise<IWorkspace> {
+    return this.post('', workspace);
   }
 
 }

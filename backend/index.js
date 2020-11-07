@@ -6,6 +6,7 @@ const {nanoid} = require('nanoid');
 const EmptyWorkspace = require('./emptyWorkspace');
 const slowDown = require("express-slow-down");
 const yup = require('yup');
+var bodyParser = require('body-parser')
 
 require('dotenv').config();
 const db = monk(process.env.MONGODB_URI);
@@ -28,6 +29,7 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json({ limit: '5mb' }));
 // app.use(slowDown({
 //     windowMs: 15 * 60 * 1000,
 //     delayAfter: 100,
@@ -47,6 +49,11 @@ app.get('/', async (req, res, next) => {
     try {
         const workspace = createNewWorkspace();
         await workspaces.insert(workspace);
+        delete workspace._id;
+        const isValid = await workspaceSchema.isValid(workspace, schemaOptions);
+        if (!isValid) {
+            throw new Error();
+        }                
         res.json(workspace);
     } catch(ex) {
         console.error(ex);
