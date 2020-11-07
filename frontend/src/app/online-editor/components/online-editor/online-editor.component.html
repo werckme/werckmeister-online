@@ -1,6 +1,5 @@
-<div class="werckmeister-online-editor">
-    <h1>Online Editor</h1>
-    <button (click)="save()">Save</button>
+<div class="werckmeister-online-editor" [ngClass]="{'is-dirty': !workspaceIsClean}">
+    <button class="has-dirty-workspace-mark" (click)="save()">Save</button>
     <werckmeister-workspace #workspace></werckmeister-workspace>
     <div class="editor-main" #editorMain>
         <div class="filelist">
@@ -10,6 +9,5 @@
         </div>
         <werckmeister-editor [ngClass]="{active: currentFile===file}" *ngFor="let file of files" [attr.wm-filename]="file.path" wm-style="height: 100%; width: 100%;">
         </werckmeister-editor>
-
     </div>
 </div>

@@ -3,10 +3,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { IFile, IWorkspace, WorkspaceStorageService } from 'src/app/online-editor/services/workspaceStorage';
 
-interface IEditorElement {
+const CheckIsCleanIntervalMillis = 1000;
+
+interface IEditorElement extends HTMLElement {
   setScriptText(text: string);  
   getScriptText(): string;
+  isClean(): boolean;
+  markClean();
   update();  
+}
+
+interface IWorkspaceElement extends HTMLElement {
+  registerEditor(editor: Element);
+  isClean(): boolean;
+  markClean();
+  onError: (error) => void;
+  onCompiled: (document) => void;
+}
+
+interface ICompilerError {
+  sourceId: number; 
+  positionBegin: number; 
+  sourceFile: string; 
+  errorMessage: string;
 }
 
 @Component({
@@ -18,39 +37,64 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
   @ViewChild("editorMain", { read: ViewContainerRef, static: false }) editorMain: ViewContainerRef;
   @ViewChild("workspace", { read: ViewContainerRef, static: false }) workspaceEl: ViewContainerRef;
   private fileNameEditorMap = new Map<string, IEditorElement>();
-  workspace: IWorkspace;
+  workspaceModel: IWorkspace;
+  workspaceIsClean: boolean;
+  get workspaceComponent(): IWorkspaceElement|null {
+    if (!this.workspaceEl) {
+      return null;
+    }
+    return this.workspaceEl.element.nativeElement as IWorkspaceElement;
+  }
   currentFile: IFile;
 
   get files(): IFile[] {
-    if (!this.workspace) {
+    if (!this.workspaceModel) {
       return [];
     }
-    return this.workspace.files;
+    return this.workspaceModel.files;
   }
 
   constructor(private workspaceStorage: WorkspaceStorageService,
     private notification: NzNotificationService,
     private route: ActivatedRoute,
     private router: Router) {
+      setInterval(this.onCheckIsClean.bind(this), CheckIsCleanIntervalMillis);
   }
 
+  onCheckIsClean() {
+    if (!this.workspaceComponent) {
+      return;
+    }
+    this.workspaceIsClean = this.workspaceComponent.isClean();
+  }
 
   ngAfterViewInit(): void {
     this.route.params.subscribe(async params => {
       await this.loadWorkspace(params.wid || null);
     });
+    console.log(this.workspaceComponent);
+    this.workspaceComponent.onError = this.onCompilerError.bind(this);
+    this.workspaceComponent.onCompiled = this.onWerckCompiled.bind(this);
+  }
+
+  private onCompilerError(error: ICompilerError) {
+    this.notification.error(error.sourceFile || 'Compiler error', error.errorMessage);
+  }
+
+  private onWerckCompiled(document: any) {
+    console.log(document);
   }
 
   private async loadWorkspace(id: string|null = null) {
-    if (!!this.workspace) {
+    if (!!this.workspaceModel) {
       return;
     }
     try {
       if (id === null) {
-        this.workspace = await this.workspaceStorage.newWorkspace();
-        history.replaceState({}, null, `/editor/${this.workspace.wid}`);
+        this.workspaceModel = await this.workspaceStorage.newWorkspace();
+        history.replaceState({}, null, `/editor/${this.workspaceModel.wid}`);
       } else {
-        this.workspace = await this.workspaceStorage.loadWorkspace(id);
+        this.workspaceModel = await this.workspaceStorage.loadWorkspace(id);
       }
     } catch (ex) {
       console.log(ex);
@@ -61,41 +105,42 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
       }
       return;
     }
-    this.currentFile = this.workspace.files[0];
-    setTimeout(this.updateEditors.bind(this), 500);
+    this.currentFile = this.workspaceModel.files[0];
+    setTimeout(this.registerEditorElements.bind(this), 500);
   }
 
 
   syncEditorsWithWorkspace(workspace: IWorkspace) {
     for(const file of workspace.files) {
-      const editor = this.getEditor(file.path);
-      console.log(editor);
+      const editor = this.getEditorElement(file.path);
       file.data = editor.getScriptText();
     }
   }
 
   async save() {
-    this.syncEditorsWithWorkspace(this.workspace);
-    this.workspaceStorage.updateWorkspace(this.workspace);
+    this.syncEditorsWithWorkspace(this.workspaceModel);
+    this.workspaceStorage.updateWorkspace(this.workspaceModel);
+    this.workspaceComponent.markClean();
   }
 
   ngOnInit() {
   }
 
-  private registerEditor(editorEl: Element) {
-    const workspaceNEl = this.workspaceEl.element.nativeElement as any;
+  private registerEditorElement(editorEl: IEditorElement) {
+    const workspaceNEl = this.workspaceEl.element.nativeElement as IWorkspaceElement;
     workspaceNEl.registerEditor(editorEl);
     const filename = editorEl.getAttribute('wm-filename');
     this.fileNameEditorMap.set(filename, (editorEl as any));
-    const file = this.workspace.files.find(file => file.path === filename);
-    (editorEl as any).setScriptText(file.data);
+    const file = this.workspaceModel.files.find(file => file.path === filename);
+    editorEl.setScriptText(file.data);
+    editorEl.markClean();
   }
 
-  private updateEditors() {
+  private registerEditorElements() {
     const editorsContainer:HTMLElement = this.editorMain.element.nativeElement;
     const editors = editorsContainer.getElementsByTagName('werckmeister-editor');
     for(const editor of Array.from(editors)) {
-      this.registerEditor(editor);
+      this.registerEditorElement(editor as IEditorElement);
     }
   }
 
@@ -105,7 +150,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     setTimeout(editor.update.bind(editor));
   }
 
-  getEditor(filename: string): IEditorElement {
+  getEditorElement(filename: string): IEditorElement {
     return this.fileNameEditorMap.get(filename);
   }
 

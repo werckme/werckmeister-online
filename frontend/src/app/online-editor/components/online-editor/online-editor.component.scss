@@ -28,3 +28,11 @@ werckmeister-editor {
         display: block;
     }
 }
+
+.werckmeister-online-editor.is-dirty {
+    .has-dirty-workspace-mark {
+        &::after {
+            content: '*';
+        }
+    }
+}
