@@ -3,8 +3,12 @@
     <werckmeister-workspace #workspace></werckmeister-workspace>
     <div class="editor-main" #editorMain>
         <div class="filelist">
+            <button (click)="onNewFileClicked()">+</button>
+            <hr>
             <ul>
-                <li (click)="onFileClicked(file)" *ngFor="let file of files">{{file.path}}</li>
+                <li (click)="onFileClicked(file)" *ngFor="let file of files">
+                    <ngwerckmeister-file-entry (nameChange)="onFileNameChanged(file, $event)" [name]="file.path"></ngwerckmeister-file-entry>
+                </li>
             </ul>
         </div>
         <werckmeister-editor [ngClass]="{active: currentFile===file}" *ngFor="let file of files" [attr.wm-filename]="file.path" wm-style="height: 100%; width: 100%;">

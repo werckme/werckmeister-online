@@ -1,0 +1,8 @@
+<span *ngIf="editMode===false">
+    {{name}} <i (click)="onEdit()" nz-icon nzType="edit" nzTheme="outline"></i>
+</span>
+<span *ngIf="editMode===true">
+    <input [(ngModel)]="editName" spellcheck="false" maxlength="50"> 
+    <i (click)="onSubmit()" nz-icon nzType="check" nzTheme="outline"></i>
+    <i (click)="onCancel()" nz-icon nzType="close" nzTheme="outline"></i>
+</span>

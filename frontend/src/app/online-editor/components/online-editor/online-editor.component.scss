@@ -6,9 +6,13 @@ $fileListBgColor: #252526;
 }
 
 .filelist {
+    button {
+        color: black;
+    }
     font-family: monospace;
     font-size: 14px;
-    width: 200px;
+    min-width: 200px;
+    white-space: nowrap;
     min-height: 500px;
     background-color: $fileListBgColor;
     color: white;

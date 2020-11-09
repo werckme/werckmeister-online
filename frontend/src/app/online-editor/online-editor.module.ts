@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { OnlineEditorComponent } from './components/online-editor/online-editor.component';
 import { WorkspaceStorageService } from './services/workspaceStorage';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { FileEntryComponent } from './components/online-editor/file-entry/file-entry.component';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [OnlineEditorComponent],
+  declarations: [OnlineEditorComponent, FileEntryComponent],
   imports: [
     CommonModule,
+    FormsModule,
     NgZorroAntdModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

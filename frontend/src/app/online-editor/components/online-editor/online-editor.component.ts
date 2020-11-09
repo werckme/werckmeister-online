@@ -10,11 +10,13 @@ interface IEditorElement extends HTMLElement {
   getScriptText(): string;
   isClean(): boolean;
   markClean();
-  update();  
+  update();
+  setFilename(name: string);
 }
 
 interface IWorkspaceElement extends HTMLElement {
   registerEditor(editor: Element);
+  unregisterEditor(editor: Element);
   isClean(): boolean;
   markClean();
   onError: (error) => void;
@@ -38,7 +40,11 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
   @ViewChild("workspace", { read: ViewContainerRef, static: false }) workspaceEl: ViewContainerRef;
   private fileNameEditorMap = new Map<string, IEditorElement>();
   workspaceModel: IWorkspace;
-  workspaceIsClean: boolean;
+  private _workspaceEditorsAreClean: boolean;
+  workspaceFSModified: boolean = false;
+  get workspaceIsClean(): boolean {
+    return this._workspaceEditorsAreClean && this.workspaceFSModified === false;
+  }
   get workspaceComponent(): IWorkspaceElement|null {
     if (!this.workspaceEl) {
       return null;
@@ -65,14 +71,13 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     if (!this.workspaceComponent) {
       return;
     }
-    this.workspaceIsClean = this.workspaceComponent.isClean();
+    this._workspaceEditorsAreClean = this.workspaceComponent.isClean();
   }
 
   ngAfterViewInit(): void {
     this.route.params.subscribe(async params => {
       await this.loadWorkspace(params.wid || null);
     });
-    console.log(this.workspaceComponent);
     this.workspaceComponent.onError = this.onCompilerError.bind(this);
     this.workspaceComponent.onCompiled = this.onWerckCompiled.bind(this);
   }
@@ -121,6 +126,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     this.syncEditorsWithWorkspace(this.workspaceModel);
     this.workspaceStorage.updateWorkspace(this.workspaceModel);
     this.workspaceComponent.markClean();
+    this.workspaceFSModified = false;
   }
 
   ngOnInit() {
@@ -154,4 +160,12 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     return this.fileNameEditorMap.get(filename);
   }
 
+  onFileNameChanged(file: IFile, newName: string) {
+    const editor = this.fileNameEditorMap.get(file.path);
+    this.fileNameEditorMap.delete(file.path);
+    editor.setFilename(newName);
+    file.path = newName;
+    this.fileNameEditorMap.set(newName, editor);
+    this.workspaceFSModified = true;
+  }
 }
