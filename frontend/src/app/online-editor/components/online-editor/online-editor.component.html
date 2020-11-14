@@ -3,11 +3,27 @@
     <werckmeister-workspace #workspace></werckmeister-workspace>
     <div class="editor-main" #editorMain>
         <div class="filelist">
-            <button (click)="onNewFileClicked()">+</button>
+            <div class="filemenu">
+                <button id="newFileButton" 
+                    nz-button 
+                    nzType="default" 
+                    nzShape="circle"
+                    nzSize="small"
+                    nz-popover 
+                    nzPopoverTitle="Add New File"
+                    [nzPopoverContent]="newFileTemplate">
+                    <i nz-icon nzType="plus"></i>
+                </button>
+            </div>
             <hr>
             <ul>
                 <li (click)="onFileClicked(file)" *ngFor="let file of files">
-                    <ngwerckmeister-file-entry (nameChange)="onFileNameChanged(file, $event)" [name]="file.path"></ngwerckmeister-file-entry>
+                    <ngwerckmeister-file-entry
+                        [editMode]="newFile === file"
+                        [isValidPath]="isValidPath.bind(this)" 
+                        (nameChange)="onFileNameChanged(file, $event)" 
+                        [name]="file.path">
+                    </ngwerckmeister-file-entry>
                 </li>
             </ul>
         </div>
@@ -15,3 +31,14 @@
         </werckmeister-editor>
     </div>
 </div>
+
+<ng-template #titleTemplate><i nz-icon nzType="close"></i> Title</ng-template>
+<ng-template #newFileTemplate>
+    <ul class="new-file-list">
+        <li><a (click)="onAddNewAccompaniment()">Accompaniment Template</a></li>
+        <li><a (click)="onAddNewPitchMap()">Pitch Map</a></li>
+        <li><a (click)="onAddNewChordDef()">Chord Definition</a></li>
+        <li><a (click)="onAddNewVoicingScript()">Voicing Script</a></li>
+        <li><a (click)="onAddNewModScript()">Mod Script</a></li>
+    </ul>
+</ng-template>

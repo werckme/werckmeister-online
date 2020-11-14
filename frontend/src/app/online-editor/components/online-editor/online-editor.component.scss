@@ -40,3 +40,17 @@ werckmeister-editor {
         }
     }
 }
+
+.new-file-list {
+    padding: 0px;
+    li {
+        list-style-type: none;
+    }
+}
+
+.filemenu {
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    justify-content: flex-end;
+}

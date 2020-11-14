@@ -1,3 +1,9 @@
 input {
     color: black;
 }
+
+.invalid {
+    input {
+        color: red;
+    }
+}

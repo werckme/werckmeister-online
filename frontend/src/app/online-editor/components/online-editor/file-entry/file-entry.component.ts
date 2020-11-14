@@ -11,8 +11,24 @@ export class FileEntryComponent implements OnInit {
   @Output()
   nameChange = new EventEmitter<string>();
 
+  private _editMode = false;
+
   @Input()
-  editMode: boolean = false;
+  set editMode(val: boolean) {
+    this ._editMode = val;
+    if (val) {
+      this.editName = this.name;
+    } else {
+      this.editName = "";
+    }
+  }
+
+  get editMode(): boolean {
+    return this._editMode;
+  }
+
+  @Input()
+  isValidPath: (path: string, newPath: string) => boolean = ()=>false;
 
   editName: string;
 
@@ -23,10 +39,9 @@ export class FileEntryComponent implements OnInit {
 
   onEdit() {
     this.editMode = true;
-    this.editName = this.name;
   }
 
-  get normalizedName(): string {
+  get normalizedEditName(): string {
     return this.editName
       .replace(/\//g, '')
       .trim()
@@ -34,8 +49,12 @@ export class FileEntryComponent implements OnInit {
   }
 
   onSubmit() {
-    const newName = this.normalizedName;
-    if (newName.length === 0) {
+    if (!this.isValidPath(this.name, this.normalizedEditName)) {
+      return;
+    }
+    const newName = this.normalizedEditName;
+    const anyChanges = newName !== this.name;
+    if (newName.length === 0 || !anyChanges) {
       this.onCancel();
       return;
     }
@@ -47,7 +66,6 @@ export class FileEntryComponent implements OnInit {
 
   onCancel() {
     this.editMode = false;
-    this.editName = "";
   }
   
 }

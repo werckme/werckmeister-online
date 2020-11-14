@@ -38,6 +38,7 @@ interface ICompilerError {
 export class OnlineEditorComponent implements OnInit, AfterViewInit {
   @ViewChild("editorMain", { read: ViewContainerRef, static: false }) editorMain: ViewContainerRef;
   @ViewChild("workspace", { read: ViewContainerRef, static: false }) workspaceEl: ViewContainerRef;
+
   private fileNameEditorMap = new Map<string, IEditorElement>();
   workspaceModel: IWorkspace;
   private _workspaceEditorsAreClean: boolean;
@@ -51,6 +52,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     }
     return this.workspaceEl.element.nativeElement as IWorkspaceElement;
   }
+
   currentFile: IFile;
 
   get files(): IFile[] {
@@ -59,6 +61,8 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     }
     return this.workspaceModel.files;
   }
+
+  public newFile: IFile;
 
   constructor(private workspaceStorage: WorkspaceStorageService,
     private notification: NzNotificationService,
@@ -111,7 +115,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
       return;
     }
     this.currentFile = this.workspaceModel.files[0];
-    setTimeout(this.registerEditorElements.bind(this), 500);
+    setTimeout(this.updateEditorWorkspaceRegister.bind(this), 500);
   }
 
 
@@ -136,13 +140,17 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     const workspaceNEl = this.workspaceEl.element.nativeElement as IWorkspaceElement;
     workspaceNEl.registerEditor(editorEl);
     const filename = editorEl.getAttribute('wm-filename');
+    if (this.fileNameEditorMap.has(filename)) {
+      return;
+    }
+    console.log("register " + filename)
     this.fileNameEditorMap.set(filename, (editorEl as any));
     const file = this.workspaceModel.files.find(file => file.path === filename);
     editorEl.setScriptText(file.data);
     editorEl.markClean();
   }
 
-  private registerEditorElements() {
+  private updateEditorWorkspaceRegister() {
     const editorsContainer:HTMLElement = this.editorMain.element.nativeElement;
     const editors = editorsContainer.getElementsByTagName('werckmeister-editor');
     for(const editor of Array.from(editors)) {
@@ -167,5 +175,50 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     file.path = newName;
     this.fileNameEditorMap.set(newName, editor);
     this.workspaceFSModified = true;
+  }
+
+
+  private createNewFile(filename: string) {
+    const newFile = {
+      data: "-- new file",
+      path: filename
+    };
+    this.workspaceModel.files.push(newFile);
+    setTimeout(() => {
+      this.updateEditorWorkspaceRegister();
+      const editor = this.fileNameEditorMap.get(filename);
+      editor.setFilename(filename);
+      this.workspaceFSModified = true;
+      this.newFile = newFile;
+    }, 100);
+  }
+
+  public onAddNewAccompaniment() {
+    this.createNewFile('myTemplate.template');
+  }
+
+  public onAddNewPitchMap() {
+    this.createNewFile('myPitchmap.pitchmap');
+  }
+
+  public onAddNewChordDef() {
+    this.createNewFile('myChordDef.chordDef');
+  }
+
+  public onAddNewVoicingScript()  {
+    this.createNewFile('myVoicingScript.lua');
+  }
+
+  public onAddNewModScript()  {
+    this.createNewFile('myModScript.lua');
+  }
+
+  public pathExists(path: string) {
+    return this.fileNameEditorMap.has(path);
+  }
+
+  public isValidPath(path: string, newPath: string) {
+    const pathExists = (path === newPath) ? false : this.pathExists(newPath);
+    return !pathExists;
   }
 }
