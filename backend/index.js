@@ -9,9 +9,9 @@ const yup = require('yup');
 var bodyParser = require('body-parser')
 
 require('dotenv').config();
-//const db = monk(process.env.MONGODB_URI);
-//const workspaces = db.get('workspaces');
-//workspaces.createIndex({ wid: 1 }, { unique: true });
+const db = monk(process.env.MONGODB_URI);
+const workspaces = db.get('workspaces');
+workspaces.createIndex({ wid: 1 }, { unique: true });
 
 const fileSchema = yup.object().noUnknown().shape({
     path: yup.string().trim().required(),
@@ -48,8 +48,8 @@ function createNewWorkspace() {
 app.get('/', async (req, res, next) => {
     try {
         const workspace = createNewWorkspace();
-        //await workspaces.insert(workspace);
-        //delete workspace._id;
+        await workspaces.insert(workspace);
+        delete workspace._id;
         const isValid = await workspaceSchema.isValid(workspace, schemaOptions);
         if (!isValid) {
             throw new Error();
