@@ -1,7 +1,7 @@
 const EmptyWorkspace = {
     files: [{
         path: "main.sheet",
-        data: `using "chords/default.chords";
+        data: `using "default.chords";
 using "simpleComping.template";
 tempo: 140;
 device: MyDevice  midi _usePort=0;

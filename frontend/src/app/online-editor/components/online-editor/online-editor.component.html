@@ -19,11 +19,19 @@
             <ul>
                 <li (click)="onFileClicked(file)" *ngFor="let file of files">
                     <ngwerckmeister-file-entry
-                        [editMode]="newFile === file"
                         [isValidPath]="isValidPath.bind(this)" 
                         (nameChange)="onFileNameChanged(file, $event)" 
                         [name]="file.path">
                     </ngwerckmeister-file-entry>
+                </li>
+                <li>
+                    <ngwerckmeister-file-entry *ngIf="!!newFile" 
+                        [editMode]="true"
+                        [isValidPath]="isValidPath.bind(this)" 
+                        (nameChange)="onNewFileAdded(newFile, $event)" 
+                        (oncancel)="onNewFileCancel()"
+                        [name]="newFile.path"
+                    ></ngwerckmeister-file-entry>
                 </li>
             </ul>
         </div>
@@ -37,7 +45,6 @@
     <ul class="new-file-list">
         <li><a (click)="onAddNewAccompaniment()">Accompaniment Template</a></li>
         <li><a (click)="onAddNewPitchMap()">Pitch Map</a></li>
-        <li><a (click)="onAddNewChordDef()">Chord Definition</a></li>
         <li><a (click)="onAddNewVoicingScript()">Voicing Script</a></li>
         <li><a (click)="onAddNewModScript()">Mod Script</a></li>
     </ul>

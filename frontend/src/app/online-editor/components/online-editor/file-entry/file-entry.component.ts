@@ -5,11 +5,15 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./file-entry.component.scss']
 })
 export class FileEntryComponent implements OnInit {
+  editName: string;
   @Input()
   name: string;
 
   @Output()
   nameChange = new EventEmitter<string>();
+
+  @Output()
+  oncancel = new EventEmitter<void>();
 
   private _editMode = false;
 
@@ -19,7 +23,7 @@ export class FileEntryComponent implements OnInit {
     if (val) {
       this.editName = this.name;
     } else {
-      this.editName = "";
+      this.editName = '';
     }
   }
 
@@ -28,9 +32,7 @@ export class FileEntryComponent implements OnInit {
   }
 
   @Input()
-  isValidPath: (path: string, newPath: string) => boolean = ()=>false;
-
-  editName: string;
+  isValidPath: (path: string) => boolean = () => false
 
   constructor() { }
 
@@ -44,28 +46,27 @@ export class FileEntryComponent implements OnInit {
   get normalizedEditName(): string {
     return this.editName
       .replace(/\//g, '')
-      .trim()
-      
+      .trim();
   }
 
   onSubmit() {
-    if (!this.isValidPath(this.name, this.normalizedEditName)) {
+    if (!this.isValidPath(this.normalizedEditName)) {
       return;
     }
     const newName = this.normalizedEditName;
-    const anyChanges = newName !== this.name;
-    if (newName.length === 0 || !anyChanges) {
+    if (newName.length === 0) {
       this.onCancel();
       return;
     }
     this.editMode = false;
     this.name = newName;
-    this.editName = "";
+    this.editName = '';
     this.nameChange.emit(this.name);
   }
 
   onCancel() {
     this.editMode = false;
+    this.oncancel.emit();
   }
   
 }
