@@ -1,5 +1,14 @@
 <span *ngIf="editMode===false">
-    {{name}} <i (click)="onEdit()" nz-icon nzType="edit" nzTheme="outline"></i>
+    {{name}} 
+    <i *ngIf="canEdit" (click)="onEdit()" nz-icon nzType="edit" nzTheme="outline"></i>
+    <span *ngIf="canDelete"
+      nz-popconfirm
+      nzPopconfirmTitle="Are you sure?"
+      nzPopconfirmPlacement="bottom"
+      (nzOnConfirm)="onDelete()"
+      >
+      <i nz-icon nzType="delete" nzTheme="outline"></i>
+    </span>
 </span>
 <span *ngIf="editMode===true" [ngClass]="{invalid: isValidPath === false}">
     <form (ngSubmit)="onSubmit()">

@@ -11,16 +11,20 @@
                     nzSize="small"
                     nz-popover 
                     nzPopoverTitle="Add New File"
+                    nzPopoverPlacement="bottom"
                     [nzPopoverContent]="newFileTemplate">
                     <i nz-icon nzType="plus"></i>
                 </button>
             </div>
             <hr>
             <ul>
-                <li (click)="onFileClicked(file)" *ngFor="let file of files">
+                <li (click)="onFileClicked(file)" *ngFor="let file of files; let idx=index;">
                     <ngwerckmeister-file-entry
+                        [canDelete]="idx>0"
+                        [canEdit]="idx>0"
                         [pathValidator]="isValidPath.bind(this)" 
-                        (nameChange)="onFileNameChanged(file, $event)" 
+                        (nameChange)="onFileNameChanged(file, $event)"
+                        (ondelete)="onDelete(file)"
                         [name]="file.path">
                     </ngwerckmeister-file-entry>
                 </li>

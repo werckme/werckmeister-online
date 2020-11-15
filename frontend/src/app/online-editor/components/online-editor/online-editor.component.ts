@@ -199,6 +199,18 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     };
   }
 
+  public onDelete(file: IFile) {
+    const idx = this.workspaceModel.files.indexOf(file);
+    if (idx < 0) {
+        throw new Error(`file not found: ${file.path}`);
+    }
+    this.workspaceModel.files.splice(idx, 1);
+    const editor = this.fileNameEditorMap.get(file.path);
+    this.workspaceComponent.unregisterEditor(editor);
+    this.fileNameEditorMap.delete(file.path);
+    this.currentFile = this.workspaceModel.files[0];
+  }
+
   public onAddNewAccompaniment() {
     this.createNewFile('myTemplate.template');
   }

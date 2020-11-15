@@ -5,7 +5,15 @@ import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ViewContaine
   styleUrls: ['./file-entry.component.scss']
 })
 export class FileEntryComponent implements OnInit {
+
+  @Input()
+  canDelete = true;
+
+  @Input()
+  canEdit= true;
+
   editName: string;
+
   @Input()
   name: string;
 
@@ -17,6 +25,9 @@ export class FileEntryComponent implements OnInit {
 
   @Output()
   oncancel = new EventEmitter<void>();
+
+  @Output()
+  ondelete = new EventEmitter<void>();
 
   @ViewChild('input', {static: false})
   input: ElementRef;
@@ -92,4 +103,7 @@ export class FileEntryComponent implements OnInit {
     this.oncancel.emit();
   }
   
+  onDelete() {
+    this.ondelete.emit();
+  }
 }
