@@ -120,7 +120,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
 
 
   syncEditorsWithWorkspace(workspace: IWorkspace) {
-    for(const file of workspace.files) {
+    for (const file of workspace.files) {
       const editor = this.getEditorElement(file.path);
       file.data = editor.getScriptText();
     }
@@ -182,6 +182,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
 
   onNewFileAdded(newFile: IFile, newName: string) {
     this.newFile = null;
+    newFile.path = newName;
     this.workspaceModel.files.push(newFile);
     setTimeout(() => {
       this.updateEditorWorkspaceRegister();
@@ -218,8 +219,8 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     return this.fileNameEditorMap.has(path);
   }
 
-  public isValidPath(newPath: string) {
-    const pathExists = this.pathExists(newPath);
-    return !pathExists;
+  public isValidPath(path: string) {
+    return this.pathExists(path) === false;
   }
+
 }

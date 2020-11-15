@@ -19,15 +19,16 @@
             <ul>
                 <li (click)="onFileClicked(file)" *ngFor="let file of files">
                     <ngwerckmeister-file-entry
-                        [isValidPath]="isValidPath.bind(this)" 
+                        [pathValidator]="isValidPath.bind(this)" 
                         (nameChange)="onFileNameChanged(file, $event)" 
                         [name]="file.path">
                     </ngwerckmeister-file-entry>
                 </li>
                 <li>
-                    <ngwerckmeister-file-entry *ngIf="!!newFile" 
+                    <ngwerckmeister-file-entry *ngIf="!!newFile"
+                        [isNewFile]="true"
                         [editMode]="true"
-                        [isValidPath]="isValidPath.bind(this)" 
+                        [pathValidator]="isValidPath.bind(this)" 
                         (nameChange)="onNewFileAdded(newFile, $event)" 
                         (oncancel)="onNewFileCancel()"
                         [name]="newFile.path"

@@ -106,5 +106,6 @@ app.post('/', async (req, res, next) => {
 });
 
 app.listen(port, () => {
+    console.log(GetEmptyWorkspace().files.map(x=>x.path));
     console.log(`listening at port ${port}`);
 });

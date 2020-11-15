@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ViewContainerRef, ElementRef } from '@angular/core';
 @Component({
   selector: 'ngwerckmeister-file-entry',
   templateUrl: './file-entry.component.html',
@@ -9,11 +9,17 @@ export class FileEntryComponent implements OnInit {
   @Input()
   name: string;
 
+  @Input()
+  isNewFile: boolean;
+
   @Output()
   nameChange = new EventEmitter<string>();
 
   @Output()
   oncancel = new EventEmitter<void>();
+
+  @ViewChild('input', {static: false})
+  input: ElementRef;
 
   private _editMode = false;
 
@@ -22,6 +28,7 @@ export class FileEntryComponent implements OnInit {
     this ._editMode = val;
     if (val) {
       this.editName = this.name;
+      setTimeout(this.setFocus.bind(this));
     } else {
       this.editName = '';
     }
@@ -31,8 +38,24 @@ export class FileEntryComponent implements OnInit {
     return this._editMode;
   }
 
+  private setFocus() {
+    this.input.nativeElement.focus();
+  }
+
   @Input()
-  isValidPath: (path: string) => boolean = () => false
+  pathValidator: (path: string) => boolean = () => false
+
+  get nameHasChanged(): boolean {
+    return this.isNewFile || this.name !== this.normalizedEditName;
+  }
+
+  get isValidPath(): boolean {
+    if (!this.nameHasChanged) {
+      return true;
+    }
+    const result = this.pathValidator(this.normalizedEditName);
+    return result;
+  }
 
   constructor() { }
 
@@ -50,11 +73,11 @@ export class FileEntryComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.isValidPath(this.normalizedEditName)) {
+    if (!this.isValidPath) {
       return;
     }
     const newName = this.normalizedEditName;
-    if (newName.length === 0) {
+    if (newName.length === 0 || !this.nameHasChanged) {
       this.onCancel();
       return;
     }
