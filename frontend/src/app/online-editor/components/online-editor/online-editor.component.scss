@@ -1,6 +1,6 @@
 $edBgColor:  #1e1e1e;
 $fileListBgColor: #252526;
-
+$selectedFile: rgb(55, 55, 61);
 .editor-main {
     display: flex;
 }
@@ -17,11 +17,15 @@ $fileListBgColor: #252526;
     background-color: $fileListBgColor;
     color: white;
     ul {
-        padding: 5px;
+        padding: 0px;
     }
     li {
+        padding: 5px;
         list-style: none;
         cursor: pointer;
+        &.selected {
+            background: $selectedFile;
+        }
     }
 }
 

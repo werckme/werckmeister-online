@@ -4,7 +4,7 @@
     <div class="editor-main" #editorMain>
         <div class="filelist">
             <div class="filemenu">
-                <button id="newFileButton" 
+                <button id="newFileButton"
                     nz-button 
                     nzType="default" 
                     nzShape="circle"
@@ -18,7 +18,7 @@
             </div>
             <hr>
             <ul>
-                <li (click)="onFileClicked(file)" *ngFor="let file of files; let idx=index;">
+                <li [ngClass]="{selected: currentFile===file}" (click)="onFileClicked(file)" *ngFor="let file of files; let idx=index;">
                     <ngwerckmeister-file-entry
                         [canDelete]="idx>0"
                         [canEdit]="idx>0"
