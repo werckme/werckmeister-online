@@ -43,9 +43,11 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
   workspaceModel: IWorkspace;
   private _workspaceEditorsAreClean: boolean;
   workspaceFSModified: boolean = false;
+
   get workspaceIsClean(): boolean {
     return this._workspaceEditorsAreClean && this.workspaceFSModified === false;
   }
+
   get workspaceComponent(): IWorkspaceElement|null {
     if (!this.workspaceEl) {
       return null;
@@ -80,7 +82,9 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.route.params.subscribe(async params => {
-      await this.loadWorkspace(params.wid || null);
+      const preset = this.route.snapshot.data['preset'];
+      let wid = params.wid || preset;
+      await this.loadWorkspace(wid || null);
     });
     this.workspaceComponent.onError = this.onCompilerError.bind(this);
     this.workspaceComponent.onCompiled = this.onWerckCompiled.bind(this);
@@ -101,7 +105,6 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     try {
       if (id === null) {
         this.workspaceModel = await this.workspaceStorage.newWorkspace();
-        history.replaceState({}, null, `/editor/${this.workspaceModel.wid}`);
       } else {
         this.workspaceModel = await this.workspaceStorage.loadWorkspace(id);
       }
@@ -112,6 +115,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
       } else {
         this.notification.error('Error', `Failed loading the workspace with id ${id}`);
       }
+      this.router.navigate(['editor']);
       return;
     }
     this.currentFile = this.workspaceModel.files[0];
@@ -126,9 +130,22 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     }
   }
 
+  updateWid(wid: string) {
+    if (this.workspaceModel.wid === wid) {
+      return;
+    }
+    this.workspaceModel.wid = wid;
+    history.replaceState({}, null, `/editor/${wid}`);
+  }
+
   async save() {
     this.syncEditorsWithWorkspace(this.workspaceModel);
-    this.workspaceStorage.updateWorkspace(this.workspaceModel);
+    try {
+      const result = await this.workspaceStorage.updateWorkspace(this.workspaceModel);
+      this.updateWid(result.wid);
+    } catch(ex) {
+      this.notification.error('Error', 'Saving workspace failed.');
+    }
     this.workspaceComponent.markClean();
     this.workspaceFSModified = false;
   }

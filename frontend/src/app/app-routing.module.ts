@@ -22,6 +22,7 @@ const routes: Routes = [
 	{ path: 'contact', component: ContactComponent},
 	{ path: 'getwerckmeister', component: DownloadComponent},
 	{ path: 'editor', component: OnlineEditorComponent},
+	{ path: 'editor/autumnleaves', component: OnlineEditorComponent, data: {preset: 'autumnleaves'}},
 	{ path: 'editor/:wid', component: OnlineEditorComponent},
 ];
 

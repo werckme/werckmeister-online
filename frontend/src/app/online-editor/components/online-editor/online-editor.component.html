@@ -1,6 +1,8 @@
 <div class="werckmeister-online-editor" [ngClass]="{'is-dirty': !workspaceIsClean}">
-    <button class="has-dirty-workspace-mark" (click)="save()">Save</button>
-    <werckmeister-workspace #workspace></werckmeister-workspace>
+    <div class="workspace-controls">
+        <werckmeister-workspace #workspace></werckmeister-workspace>
+        <button nzSize="large" nz-button nzType="link" [nzGhost]="true" class="has-dirty-workspace-mark" title="save" (click)="save()"><i nz-icon nzType="save" nzTheme="outline"></i>Save</button>
+    </div>
     <div class="editor-main" #editorMain>
         <div class="filelist">
             <div class="filemenu">

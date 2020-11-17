@@ -3,7 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const monk = require('monk')
 const {nanoid} = require('nanoid');
-const GetEmptyWorkspace = require('./emptyWorkspace');
+const GetWorkspace = require('./localWorkspaceBuilder');
 const slowDown = require("express-slow-down");
 const yup = require('yup');
 var bodyParser = require('body-parser')
@@ -26,34 +26,36 @@ const workspaceSchema = yup.object().noUnknown().shape({
 class UserError extends Error {}
 
 const app = express();
-app.use(helmet());
+//app.use(helmet());
 app.use(cors());
+app.use(bodyParser.json({ limit: '2mb' }));
 app.use(express.json());
-app.use(bodyParser.json({ limit: '5mb' }));
+
 // app.use(slowDown({
 //     windowMs: 15 * 60 * 1000,
 //     delayAfter: 100,
 //     delayMs: 500
 // }));
 
+const presetMap = {
+    'autumnleaves': 'autumnleaves',
+    'firstmelody': 'firstmelody',
+    'default': 'autumnleaves'
+};
+
+
 const port = process.env.PORT || 1337;
 
-function createNewWorkspace() {
+function createNewWorkspace(presetName) {
     return {
-        wid: nanoid(12),
-        files: GetEmptyWorkspace().files 
+        wid: null,
+        files: GetWorkspace(presetName).files 
     };
 }
 
 app.get('/', async (req, res, next) => {
     try {
-        const workspace = createNewWorkspace();
-        await workspaces.insert(workspace);
-        delete workspace._id;
-        const isValid = await workspaceSchema.isValid(workspace, schemaOptions);
-        if (!isValid) {
-            throw new Error();
-        }                
+        const workspace = createNewWorkspace(presetMap['default']);
         res.json(workspace);
     } catch(ex) {
         console.error(ex);
@@ -64,6 +66,11 @@ app.get('/', async (req, res, next) => {
 app.get('/:wid', async (req, res, next) => {
     try {
         const { wid } = req.params;
+        if (wid in presetMap) {
+            const workspace = createNewWorkspace(presetMap[wid]);
+            res.json(workspace);
+            return;
+        }
         let workspace = await workspaces.findOne({wid});
         delete workspace._id;
         const isValid = await workspaceSchema.isValid(workspace, schemaOptions);
@@ -84,17 +91,14 @@ const schemaOptions = {
 
 app.post('/', async (req, res, next) => {
     try {
-        const body = req.body;
-        const isValid = await workspaceSchema.isValid(body, schemaOptions);
+        const workspace = req.body;
+        workspace.wid = workspace.wid || nanoid(12);
+        const isValid = await workspaceSchema.isValid(workspace, schemaOptions);
         if (!isValid) {
             throw new UserError("invalid input");
         }
-        const workspace = await workspaces.findOne({ wid: body.wid });
-        if (!workspace) {
-            throw new UserError("workspace not found");
-        }
-        await workspaces.update({_id: workspace._id}, {$set: {"files": body.files}});
-        res.json({succeed: true});
+        await workspaces.update({wid: workspace.wid}, {$set: workspace}, {upsert: true});
+        res.json({succeed: true, wid: workspace.wid});
     } catch (ex) {
         if (ex instanceof UserError) {
             next(ex);
@@ -106,6 +110,5 @@ app.post('/', async (req, res, next) => {
 });
 
 app.listen(port, () => {
-    console.log(GetEmptyWorkspace().files.map(x=>x.path));
     console.log(`listening at port ${port}`);
 });

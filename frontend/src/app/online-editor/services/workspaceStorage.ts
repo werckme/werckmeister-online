@@ -31,7 +31,7 @@ export class WorkspaceStorageService extends ARestService {
     return this.get<IWorkspace>(id);
   }
 
-  public async updateWorkspace(workspace: IWorkspace): Promise<IWorkspace> {
+  public async updateWorkspace(workspace: IWorkspace): Promise<{succeed: boolean, wid: string}> {
     return this.post('', workspace);
   }
 
