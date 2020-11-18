@@ -26,7 +26,7 @@ const workspaceSchema = yup.object().noUnknown().shape({
 class UserError extends Error {}
 
 const app = express();
-//app.use(helmet());
+app.use(helmet());
 app.use(cors());
 app.use(bodyParser.json({ limit: '2mb' }));
 app.use(express.json());

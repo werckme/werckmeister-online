@@ -6,17 +6,50 @@
     <div class="editor-main" #editorMain>
         <div class="filelist">
             <div class="filemenu">
-                <button id="newFileButton"
+                <button
+                    (click)="onAddNewAccompaniment()"
                     nz-button 
-                    nzType="default" 
+                    nzType="link" 
                     nzShape="circle"
                     nzSize="small"
-                    nz-popover 
-                    nzPopoverTitle="Add New File"
-                    nzPopoverPlacement="bottom"
-                    [nzPopoverContent]="newFileTemplate">
+                    [nzGhost]="true"
+                    title="Accompaniment Template">
                     <i nz-icon nzType="plus"></i>
+                    <span>Accomp.</span>
                 </button>
+                <button
+                    (click)="onAddNewPitchMap()"
+                    nz-button 
+                    nzType="link" 
+                    nzShape="circle"
+                    nzSize="small"
+                    [nzGhost]="true"
+                    title="Pitch Map">
+                    <i nz-icon nzType="plus"></i>
+                    <span>Pitch</span>
+                </button>
+                <button
+                    (click)="onAddNewVoicingScript()"
+                    nz-button 
+                    nzType="link" 
+                    nzShape="circle"
+                    nzSize="small"
+                    [nzGhost]="true"
+                    title="Voicing Script">
+                    <i nz-icon nzType="plus"></i>
+                    <span>Voicing</span>
+                </button>
+                <button
+                    (click)="onAddNewModScript()"
+                    nz-button 
+                    nzType="link" 
+                    nzShape="circle"
+                    nzSize="small"
+                    [nzGhost]="true"
+                    title="Mod Script">
+                    <i nz-icon nzType="plus"></i>
+                    <span>Mod</span>
+                </button>                                     
             </div>
             <hr>
             <ul>
@@ -46,13 +79,3 @@
         </werckmeister-editor>
     </div>
 </div>
-
-<ng-template #titleTemplate><i nz-icon nzType="close"></i> Title</ng-template>
-<ng-template #newFileTemplate>
-    <ul class="new-file-list">
-        <li><a (click)="onAddNewAccompaniment()">Accompaniment Template</a></li>
-        <li><a (click)="onAddNewPitchMap()">Pitch Map</a></li>
-        <li><a (click)="onAddNewVoicingScript()">Voicing Script</a></li>
-        <li><a (click)="onAddNewModScript()">Mod Script</a></li>
-    </ul>
-</ng-template>

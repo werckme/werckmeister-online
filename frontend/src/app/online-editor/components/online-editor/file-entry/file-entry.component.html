@@ -13,7 +13,7 @@
 <span *ngIf="editMode===true" [ngClass]="{invalid: isValidPath === false}">
     <form (ngSubmit)="onSubmit()">
         <input #input name="name" [(ngModel)]="editName" spellcheck="false" maxlength="50" autocomplete="off"> 
-        <i class="ctrl" class="submit" (click)="onSubmit()" nz-icon nzType="check" nzTheme="outline"></i>
+        <i class="ctrl submit" (click)="onSubmit()" nz-icon nzType="check" nzTheme="outline"></i>
         <i class="ctrl" (click)="onCancel()" nz-icon nzType="close" nzTheme="outline"></i>
     </form>
 </span>

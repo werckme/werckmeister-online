@@ -56,7 +56,22 @@ werckmeister-editor {
     width: 100%;
     display: flex;
     padding: 5px;
-    justify-content: flex-end;
+    justify-content: space-between;
+    button {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        line-height: 8px;
+        span {
+            font-size: 10px;
+            margin-left: 0px;
+        }
+        &:hover {
+            color: #9191e8;
+        }
+    }
 }
 
 .workspace-controls {
@@ -65,5 +80,11 @@ werckmeister-editor {
     button {
         height: 100%;
         color: #5f6368;
+    }
+}
+
+::ng-deep .werckmeister-online-editor .filemenu {
+    .ant-btn > .anticon + span {
+        margin-left: 0px;
     }
 }

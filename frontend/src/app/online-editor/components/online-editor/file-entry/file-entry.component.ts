@@ -50,7 +50,12 @@ export class FileEntryComponent implements OnInit {
   }
 
   private setFocus() {
-    this.input.nativeElement.focus();
+    const input: HTMLInputElement = this.input.nativeElement;
+    const nameEndMatch = input.value.match(/(\.[^.]*)$/);
+    if (nameEndMatch) {
+      input.setSelectionRange(0, nameEndMatch.index);
+    }
+    input.focus();
   }
 
   @Input()
