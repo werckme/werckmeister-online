@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef } from '@
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { IFile, IWorkspace, WorkspaceStorageService } from 'src/app/online-editor/services/workspaceStorage';
+import { TmplLuaVoicing, TmplPitchmap, TmplSheetTemplate, TmplLuaMod } from './fileTemplates';
 
 const CheckIsCleanIntervalMillis = 1000;
 
@@ -209,9 +210,9 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     }, 100);
   }
 
-  private createNewFile(filename: string) {
+  private createNewFile(filename: string, data = '') {
     this.newFile = {
-      data: "-- new file",
+      data: data,
       path: filename
     };
   }
@@ -229,19 +230,19 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
   }
 
   public onAddNewAccompaniment() {
-    this.createNewFile('myTemplate.template');
+    this.createNewFile('myTemplate.template', TmplSheetTemplate);
   }
 
   public onAddNewPitchMap() {
-    this.createNewFile('myPitchmap.pitchmap');
+    this.createNewFile('myPitchmap.pitchmap', TmplPitchmap);
   }
 
   public onAddNewVoicingScript()  {
-    this.createNewFile('myVoicingScript.lua');
+    this.createNewFile('myVoicing.lua', TmplLuaVoicing);
   }
 
   public onAddNewModScript()  {
-    this.createNewFile('myModScript.lua');
+    this.createNewFile('myMod.lua', TmplLuaMod);
   }
 
   public pathExists(path: string) {

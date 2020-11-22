@@ -2,7 +2,7 @@
 [
 type: template;
 name: myAccomp;
-instrument: rhtythm;
+instrument: rhythm;
 {
     \p
     <III, V, VII, II>1 | 
