@@ -23,6 +23,7 @@ import { DownloadComponent } from './components/pages/download/download.componen
 import { ReleaseComponent } from './components/pages/download/release/release.component';
 import { DownloadDetailsComponent } from './components/pages/download/release/download-details/download-details.component';
 import { OnlineEditorModule } from './online-editor/online-editor.module';
+import { EmbeddedSoundcloudPlayerComponent } from './components/partials/embedded-soundcloud-player/embedded-soundcloud-player.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -40,6 +41,7 @@ registerLocaleData(en);
 		DownloadComponent,
 		ReleaseComponent,
 		DownloadDetailsComponent,
+		EmbeddedSoundcloudPlayerComponent
 	],
 	imports: [
 		BrowserModule,
