@@ -1,0 +1,5 @@
+@import "../../../../mixins.scss";
+
+iframe.classic {
+    @include mat-card-2;
+}

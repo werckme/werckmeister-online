@@ -1,0 +1,81 @@
+<div class="werckmeister-online-editor" [ngClass]="{'is-dirty': !workspaceIsClean}">
+    <div class="workspace-controls">
+        <werckmeister-workspace #workspace></werckmeister-workspace>
+        <button nzSize="large" nz-button nzType="link" [nzGhost]="true" class="has-dirty-workspace-mark" title="save" (click)="save()"><i nz-icon nzType="save" nzTheme="outline"></i>Save</button>
+    </div>
+    <div class="editor-main" #editorMain>
+        <div class="filelist">
+            <div class="filemenu">
+                <button
+                    (click)="onAddNewAccompaniment()"
+                    nz-button 
+                    nzType="link" 
+                    nzShape="circle"
+                    nzSize="small"
+                    [nzGhost]="true"
+                    title="Accompaniment Template">
+                    <i nz-icon nzType="plus"></i>
+                    <span>Accomp</span>
+                </button>
+                <button
+                    (click)="onAddNewPitchMap()"
+                    nz-button 
+                    nzType="link" 
+                    nzShape="circle"
+                    nzSize="small"
+                    [nzGhost]="true"
+                    title="Pitch Map">
+                    <i nz-icon nzType="plus"></i>
+                    <span>Pitch</span>
+                </button>
+                <button
+                    (click)="onAddNewVoicingScript()"
+                    nz-button 
+                    nzType="link" 
+                    nzShape="circle"
+                    nzSize="small"
+                    [nzGhost]="true"
+                    title="Voicing Script">
+                    <i nz-icon nzType="plus"></i>
+                    <span>Voicing</span>
+                </button>
+                <button
+                    (click)="onAddNewModScript()"
+                    nz-button 
+                    nzType="link" 
+                    nzShape="circle"
+                    nzSize="small"
+                    [nzGhost]="true"
+                    title="Mod Script">
+                    <i nz-icon nzType="plus"></i>
+                    <span>Mod</span>
+                </button>                                     
+            </div>
+            <hr>
+            <ul>
+                <li [ngClass]="{selected: currentFile===file}" (click)="onFileClicked(file)" *ngFor="let file of files; let idx=index;">
+                    <ngwerckmeister-file-entry
+                        [canDelete]="idx>0"
+                        [canEdit]="idx>0"
+                        [pathValidator]="isValidPath.bind(this)" 
+                        (nameChange)="onFileNameChanged(file, $event)"
+                        (ondelete)="onDelete(file)"
+                        [name]="file.path">
+                    </ngwerckmeister-file-entry>
+                </li>
+                <li>
+                    <ngwerckmeister-file-entry *ngIf="!!newFile"
+                        [isNewFile]="true"
+                        [editMode]="true"
+                        [pathValidator]="isValidPath.bind(this)" 
+                        (nameChange)="onNewFileAdded(newFile, $event)" 
+                        (oncancel)="onNewFileCancel()"
+                        [name]="newFile.path"
+                    ></ngwerckmeister-file-entry>
+                </li>
+            </ul>
+        </div>
+        <werckmeister-editor [ngClass]="{active: currentFile===file}" *ngFor="let file of files" [attr.wm-filename]="file.path" wm-style="height: 100%; width: 100%; border: none">
+        </werckmeister-editor>
+    </div>
+</div>

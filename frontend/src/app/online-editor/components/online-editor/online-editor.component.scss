@@ -1,0 +1,94 @@
+$edBgColor:  #1e1e1e;
+$fileListBgColor: #252526;
+$selectedFile: rgb(55, 55, 61);
+.editor-main {
+    display: flex;
+}
+
+.filelist {
+    border-right: 2px solid #1b1b1b;
+    button {
+        color: black;
+    }
+    font-family: monospace;
+    font-size: 14px;
+    min-width: 200px;
+    white-space: nowrap;
+    min-height: 500px;
+    background-color: $fileListBgColor;
+    color: white;
+    ul {
+        padding: 0px;
+    }
+    li {
+        padding: 5px;
+        list-style: none;
+        cursor: pointer;
+        &.selected {
+            background: $selectedFile;
+        }
+    }
+}
+
+werckmeister-editor {
+    flex-grow: 1;
+    display: none;
+    &.active {
+        display: block;
+    }
+}
+
+.werckmeister-online-editor.is-dirty {
+    .has-dirty-workspace-mark {
+        &::after {
+            content: '*';
+        }
+    }
+}
+
+.new-file-list {
+    padding: 0px;
+    li {
+        list-style-type: none;
+    }
+}
+
+.filemenu {
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+    button {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        line-height: 8px;
+        span {
+            font-size: 10px;
+            margin-left: 0px;
+        }
+        &:hover {
+            color: #9191e8;
+        }
+    }
+    span {
+        text-transform: uppercase;
+    }
+}
+
+.workspace-controls {
+    display: flex;
+    align-items: center;
+    button {
+        height: 100%;
+        color: #5f6368;
+    }
+}
+
+::ng-deep .werckmeister-online-editor .filemenu {
+    .ant-btn > .anticon + span {
+        margin-left: 0px;
+    }
+}

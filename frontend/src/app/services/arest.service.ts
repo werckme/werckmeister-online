@@ -10,7 +10,7 @@ export abstract class ARestService {
 		return Object.assign(obj, json);
 	}
 
-	protected get<T>(url: string): Promise<T> {
+	protected get<T>(url: string = ''): Promise<T> {
 		return this.http.get<T>(`${this.endpointUrl}/${url}`).toPromise();
 	}
 

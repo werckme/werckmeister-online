@@ -18,16 +18,22 @@ export function setScrollLock(val: boolean) {
 export class AnchorScrollSpy {
   headings: Element[];
   currentHeading: Element;
+  onScrollDebounced: () => void;
   onScrolledToAnchor: (anchor: Element) => void = () => {};
   constructor(private container: HTMLElement) {
     const maxHeadingLevel = 5;
-    window.onscroll = _.debounce(this.onScroll.bind(this), 200);
+    this.onScrollDebounced = _.debounce(this.onScroll.bind(this), 200);
+    window.addEventListener('scroll', this.onScrollDebounced);
     this.headings = _(_.range(1, maxHeadingLevel + 1))
       .map(level => Array.from(this.container.querySelectorAll(`h${level}[id]`)))
       .flatten()
       .orderBy(heading => (heading as HTMLElement).offsetTop)
       .value()
     ;
+  }
+
+  unbind() {
+    window.removeEventListener('scroll', this.onScrollDebounced);
   }
 
   findHeading() {

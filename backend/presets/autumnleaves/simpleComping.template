@@ -1,0 +1,20 @@
+-- the templates defines what the accomp track has to play
+[
+type: template;
+name: myAccomp;
+instrument: rhythm;
+{
+    \p
+    <III, V, VII, II>1 | 
+}
+]
+
+[
+type: template;
+name: myAccomp;
+instrument: bass;
+{
+    \p
+    I,,2. V,,4 |
+}
+]

@@ -1,0 +1,19 @@
+<span *ngIf="editMode===false">
+    {{name}} 
+    <i class="ctrl" *ngIf="canEdit" (click)="onEdit()" nz-icon nzType="edit" nzTheme="outline"></i>
+    <span class="ctrl" *ngIf="canDelete"
+      nz-popconfirm
+      nzPopconfirmTitle="Are you sure?"
+      nzPopconfirmPlacement="bottom"
+      (nzOnConfirm)="onDelete()"
+      >
+      <i nz-icon nzType="delete" nzTheme="outline"></i>
+    </span>
+</span>
+<span *ngIf="editMode===true" [ngClass]="{invalid: isValidPath === false}">
+    <form (ngSubmit)="onSubmit()">
+        <input #input name="name" [(ngModel)]="editName" spellcheck="false" maxlength="50" autocomplete="off"> 
+        <i class="ctrl submit" (click)="onSubmit()" nz-icon nzType="check" nzTheme="outline"></i>
+        <i class="ctrl" (click)="onCancel()" nz-icon nzType="close" nzTheme="outline"></i>
+    </form>
+</span>

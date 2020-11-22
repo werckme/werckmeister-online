@@ -1,0 +1,20 @@
+input {
+    color: black;
+}
+
+.invalid {
+    input {
+        color: red;
+    }
+    .submit {
+        pointer-events:none;
+        opacity: 0.2;
+    }
+}
+.ctrl + .ctrl {
+    margin-left: 5px;
+}
+
+.ctrl:hover {
+    color: red;
+}

@@ -7,6 +7,7 @@ import { ExamplesComponent } from './components/pages/examples/examples.componen
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CodeExtensionComponent } from './components/pages/visual-studio-extension';
 import { DownloadComponent } from './components/pages/download/download.component';
+import { OnlineEditorComponent } from './online-editor/components/online-editor/online-editor.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,9 @@ const routes: Routes = [
 	{ path: 'examples', component: ExamplesComponent},
 	{ path: 'contact', component: ContactComponent},
 	{ path: 'getwerckmeister', component: DownloadComponent},
+	{ path: 'editor', component: OnlineEditorComponent},
+	{ path: 'editor/autumnleaves', component: OnlineEditorComponent, data: {preset: 'autumnleaves'}},
+	{ path: 'editor/:wid', component: OnlineEditorComponent},
 ];
 
 @NgModule({

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ShortcutService } from './services/shortcut.service';
 import { HeaderComponent } from './components/partials/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WerckmeisterComponent } from './components/pages/werckmeister.component';
@@ -23,6 +22,7 @@ import { PushToHistoryIfOnSamePageDirective } from './directives/push-to-history
 import { DownloadComponent } from './components/pages/download/download.component';
 import { ReleaseComponent } from './components/pages/download/release/release.component';
 import { DownloadDetailsComponent } from './components/pages/download/release/download-details/download-details.component';
+import { OnlineEditorModule } from './online-editor/online-editor.module';
 import { EmbeddedSoundcloudPlayerComponent } from './components/partials/embedded-soundcloud-player/embedded-soundcloud-player.component';
 
 registerLocaleData(en);
@@ -51,9 +51,10 @@ registerLocaleData(en);
 		BrowserAnimationsModule,
 		NgxPageScrollCoreModule,
 		NgxPageScrollModule,
-		NgZorroAntdMobileModule
+		NgZorroAntdMobileModule,
+		OnlineEditorModule
 	],
-	providers: [ShortcutService, { provide: NZ_I18N, useValue: en_US }],
+	providers: [{ provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
