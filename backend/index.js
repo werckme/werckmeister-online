@@ -22,12 +22,19 @@ const workspaceSchema = yup.object().noUnknown().shape({
     wid: yup.string().trim().matches(/^[0-9A-Z_-]+$/i),
     files: yup.array().of(fileSchema).optional()
 });
-  
+
+function AllowedOrigins() {
+    const urls = process.env.ALLOWED_ORIGIN
+        .split(',')
+        .map(url => url.trim());
+    return urls;
+}
+
 class UserError extends Error {}
 
 const app = express();
 app.use(helmet());
-app.use(cors());
+app.use(cors({origin: AllowedOrigins()}));
 app.use(bodyParser.json({ limit: '2mb' }));
 app.use(express.json());
 
