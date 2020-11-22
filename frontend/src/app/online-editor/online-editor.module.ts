@@ -5,6 +5,7 @@ import { WorkspaceStorageService } from './services/workspaceStorage';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { FileEntryComponent } from './components/online-editor/file-entry/file-entry.component';
 import { FormsModule } from '@angular/forms';
+import { ShortcutService } from './services/shortcut.service';
 
 
 
@@ -16,6 +17,6 @@ import { FormsModule } from '@angular/forms';
     NgZorroAntdModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [WorkspaceStorageService]
+  providers: [WorkspaceStorageService, ShortcutService]
 })
 export class OnlineEditorModule { }

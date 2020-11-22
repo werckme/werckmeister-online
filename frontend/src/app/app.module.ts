@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ShortcutService } from './services/shortcut.service';
 import { HeaderComponent } from './components/partials/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WerckmeisterComponent } from './components/pages/werckmeister.component';
@@ -53,7 +52,7 @@ registerLocaleData(en);
 		NgZorroAntdMobileModule,
 		OnlineEditorModule
 	],
-	providers: [ShortcutService, { provide: NZ_I18N, useValue: en_US }],
+	providers: [{ provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

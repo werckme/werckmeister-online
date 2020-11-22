@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef } from '@
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { IFile, IWorkspace, WorkspaceStorageService } from 'src/app/online-editor/services/workspaceStorage';
+import { ShortcutService } from '../../services/shortcut.service';
 import { TmplLuaVoicing, TmplPitchmap, TmplSheetTemplate, TmplLuaMod } from './fileTemplates';
 
 const CheckIsCleanIntervalMillis = 1000;
@@ -70,7 +71,8 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
   constructor(private workspaceStorage: WorkspaceStorageService,
     private notification: NzNotificationService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private shortcutSerice: ShortcutService) {
       setInterval(this.onCheckIsClean.bind(this), CheckIsCleanIntervalMillis);
   }
 
@@ -89,6 +91,9 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     });
     this.workspaceComponent.onError = this.onCompilerError.bind(this);
     this.workspaceComponent.onCompiled = this.onWerckCompiled.bind(this);
+    this.shortcutSerice.when().ctrlAndChar('s').thenExecute(()=>{
+      this.save();
+    });
   }
 
   private onCompilerError(error: ICompilerError) {
