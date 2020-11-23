@@ -85,8 +85,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.route.params.subscribe(async params => {
-      const preset = this.route.snapshot.data['preset'];
-      let wid = params.wid || preset;
+      const wid = this.route.snapshot.queryParams.wid;
       await this.loadWorkspace(wid || null);
     });
     this.workspaceComponent.onError = this.onCompilerError.bind(this);
@@ -141,7 +140,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
       return;
     }
     this.workspaceModel.wid = wid;
-    history.replaceState({}, null, `/editor/${wid}`);
+    history.replaceState({}, null, `/editor?wid=${wid}`);
   }
 
   async save() {
@@ -232,6 +231,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     this.workspaceComponent.unregisterEditor(editor);
     this.fileNameEditorMap.delete(file.path);
     this.currentFile = this.workspaceModel.files[0];
+    this.workspaceFSModified = true;
   }
 
   public onAddNewAccompaniment() {
