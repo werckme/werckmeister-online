@@ -20,7 +20,8 @@ const fileSchema = yup.object().noUnknown().shape({
 
 const workspaceSchema = yup.object().noUnknown().shape({
     wid: yup.string().trim().matches(/^[0-9A-Z_-]+$/i),
-    files: yup.array().of(fileSchema).optional()
+    files: yup.array().of(fileSchema).optional(),
+    modifiedAt: yup.string()
 });
 
 function AllowedOrigins() {
@@ -80,6 +81,7 @@ app.get('/:wid', async (req, res, next) => {
         }
         let workspace = await workspaces.findOne({wid});
         delete workspace._id;
+        workspace.modifiedAt = workspace.modifiedAt.toUTCString();
         const isValid = await workspaceSchema.isValid(workspace, schemaOptions);
         if (!isValid) {
             throw new Error();
@@ -104,6 +106,7 @@ app.post('/', async (req, res, next) => {
         if (!isValid) {
             throw new UserError("invalid input");
         }
+        workspace.modifiedAt = new Date();
         await workspaces.update({wid: workspace.wid}, {$set: workspace}, {upsert: true});
         res.json({succeed: true, wid: workspace.wid});
     } catch (ex) {
