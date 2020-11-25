@@ -81,7 +81,9 @@ app.get('/:wid', async (req, res, next) => {
         }
         let workspace = await workspaces.findOne({wid});
         delete workspace._id;
-        workspace.modifiedAt = workspace.modifiedAt.toUTCString();
+        if (workspace.modifiedAt) {
+            workspace.modifiedAt = workspace.modifiedAt.toUTCString();
+        }
         const isValid = await workspaceSchema.isValid(workspace, schemaOptions);
         if (!isValid) {
             throw new Error();
