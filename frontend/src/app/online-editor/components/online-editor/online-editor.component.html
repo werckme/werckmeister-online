@@ -1,6 +1,6 @@
 <div class="werckmeister-online-editor" [ngClass]="{'is-dirty': !workspaceIsClean}">
     <div class="workspace-controls">
-        <werckmeister-workspace #workspace></werckmeister-workspace>
+        <werckmeister-workspace #workspace wm-css-url="/assets/werckmeister-workspace.css"></werckmeister-workspace>
         <button nzSize="large" nz-button nzType="link" [nzGhost]="true" title="Download MIDI" (click)="download()"><i nz-icon nzType="download" nzTheme="outline"></i>MIDI</button>
         <button nzSize="large" nz-button nzType="link" [nzGhost]="true" class="has-dirty-workspace-mark" title="Save" (click)="save()"><i nz-icon nzType="save" nzTheme="outline"></i>Save</button>
     </div>

@@ -1,0 +1,12 @@
+#btnPlay, #btnStop {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#btnPlay:hover, #btnStop:hover {
+    color: rgb(90, 90, 252);
+}
+
+.icon {
+    vertical-align: text-top;
+}

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { IFile, IWorkspace, WorkspaceStorageService } from 'src/app/online-editor/services/workspaceStorage';
 import { ShortcutService } from '../../services/shortcut.service';
@@ -74,6 +74,12 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     private router: Router,
     private shortcutSerice: ShortcutService) {
       setInterval(this.onCheckIsClean.bind(this), CheckIsCleanIntervalMillis);
+      this.router.events.subscribe((ev)=>{
+        if (ev instanceof NavigationEnd) {
+          const wid = this.route.snapshot.queryParams.wid;
+          console.log(wid);
+        }
+      });
   }
 
   onCheckIsClean() {
@@ -100,7 +106,6 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
   }
 
   private onWerckCompiled(document: any) {
-    console.log(document);
   }
 
   private async loadWorkspace(id: string|null = null) {
@@ -114,7 +119,6 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
         this.workspaceModel = await this.workspaceStorage.loadWorkspace(id);
       }
     } catch (ex) {
-      console.log(ex);
       if (!id) {
         this.notification.error('Error', `Failed creating a workspace.`);
       } else {
