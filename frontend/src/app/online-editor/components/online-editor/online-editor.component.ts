@@ -258,4 +258,9 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     return this.pathExists(path) === false;
   }
 
+  public download() {
+    const widStr = this.workspaceModel.wid ? `-${this.workspaceModel.wid}` : '';
+    (this.workspaceComponent as any).download(`Werckmeister${widStr}.mid`);
+  }
+
 }
