@@ -81,7 +81,6 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
       this.routerSubscription = this.router.events.subscribe((ev)=>{
         if (ev instanceof NavigationEnd) {
           const wid = this.route.snapshot.queryParams.wid;
-          console.log(wid)
           this.loadWorkspace(wid || null);
         }
       });
