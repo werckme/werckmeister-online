@@ -19,7 +19,7 @@ const routes: Routes = [
 	{ path: 'examples', component: ExamplesComponent},
 	{ path: 'contact', component: ContactComponent},
 	{ path: 'getwerckmeister', component: DownloadComponent},
-	{ path: 'editor', component: OnlineEditorComponent},
+	{ path: 'editor', component: OnlineEditorComponent, },
 ];
 
 @NgModule({
