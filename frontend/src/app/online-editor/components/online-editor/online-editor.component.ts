@@ -1,14 +1,17 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { Subscription } from 'rxjs';
 import { IFile, IWorkspace, WorkspaceStorageService } from 'src/app/online-editor/services/workspaceStorage';
 import { ShortcutService } from '../../services/shortcut.service';
 import { TmplLuaVoicing, TmplPitchmap, TmplSheetTemplate, TmplLuaMod } from './fileTemplates';
+import * as _ from 'lodash';
 
 const CheckIsCleanIntervalMillis = 1000;
 
 interface IEditorElement extends HTMLElement {
-  setScriptText(text: string);  
+  setScriptText(text: string);
+  clearHistory();  
   getScriptText(): string;
   isClean(): boolean;
   markClean();
@@ -37,7 +40,7 @@ interface ICompilerError {
   templateUrl: './online-editor.component.html',
   styleUrls: ['./online-editor.component.scss']
 })
-export class OnlineEditorComponent implements OnInit, AfterViewInit {
+export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("editorMain", { read: ViewContainerRef, static: false }) editorMain: ViewContainerRef;
   @ViewChild("workspace", { read: ViewContainerRef, static: false }) workspaceEl: ViewContainerRef;
 
@@ -67,19 +70,26 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
   }
 
   public newFile: IFile|null;
-
+  private routerSubscription: Subscription;
+  private checkIsCleanId: any;
   constructor(private workspaceStorage: WorkspaceStorageService,
     private notification: NzNotificationService,
     private route: ActivatedRoute,
     private router: Router,
     private shortcutSerice: ShortcutService) {
-      setInterval(this.onCheckIsClean.bind(this), CheckIsCleanIntervalMillis);
-      this.router.events.subscribe((ev)=>{
+      this.checkIsCleanId = setInterval(this.onCheckIsClean.bind(this), CheckIsCleanIntervalMillis);
+      this.routerSubscription = this.router.events.subscribe((ev)=>{
         if (ev instanceof NavigationEnd) {
           const wid = this.route.snapshot.queryParams.wid;
-          console.log(wid);
+          console.log(wid)
+          this.loadWorkspace(wid || null);
         }
       });
+  }
+
+  ngOnDestroy() {
+    this.routerSubscription.unsubscribe();
+    clearInterval(this.checkIsCleanId);
   }
 
   onCheckIsClean() {
@@ -90,10 +100,6 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.route.params.subscribe(async params => {
-      const wid = this.route.snapshot.queryParams.wid;
-      await this.loadWorkspace(wid || null);
-    });
     this.workspaceComponent.onError = this.onCompilerError.bind(this);
     this.workspaceComponent.onCompiled = this.onWerckCompiled.bind(this);
     this.shortcutSerice.when().ctrlAndChar('s').thenExecute(()=>{
@@ -110,7 +116,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
 
   private async loadWorkspace(id: string|null = null) {
     if (!!this.workspaceModel) {
-      return;
+      this.clearWorksapce();
     }
     try {
       if (id === null) {
@@ -172,6 +178,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     this.fileNameEditorMap.set(filename, (editorEl as any));
     const file = this.workspaceModel.files.find(file => file.path === filename);
     editorEl.setScriptText(file.data);
+    editorEl.clearHistory();
     editorEl.markClean();
   }
 
@@ -225,7 +232,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     };
   }
 
-  public onDelete(file: IFile) {
+  private deleteFile(file: IFile) {
     const idx = this.workspaceModel.files.indexOf(file);
     if (idx < 0) {
         throw new Error(`file not found: ${file.path}`);
@@ -235,7 +242,19 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit {
     this.workspaceComponent.unregisterEditor(editor);
     this.fileNameEditorMap.delete(file.path);
     this.currentFile = this.workspaceModel.files[0];
+  }
+
+  public onDelete(file: IFile) {
+    this.deleteFile(file);
     this.workspaceFSModified = true;
+  }
+
+  private clearWorksapce() {
+    const filesToDelete = _.clone(this.workspaceModel.files);
+    for(const file of filesToDelete) {
+      this.deleteFile(file);
+    }
+    this.workspaceModel = null;
   }
 
   public onAddNewAccompaniment() {
