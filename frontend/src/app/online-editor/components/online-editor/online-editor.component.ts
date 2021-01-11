@@ -24,6 +24,8 @@ interface IWorkspaceElement extends HTMLElement {
   unregisterEditor(editor: Element);
   isClean(): boolean;
   markClean();
+  play(): Promise<void>;
+  stop(): Promise<void>;
   onError: (error) => void;
   onCompiled: (document) => void;
 }
@@ -89,6 +91,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.routerSubscription.unsubscribe();
     clearInterval(this.checkIsCleanId);
+    this.workspaceComponent.stop();
   }
 
   onCheckIsClean() {
