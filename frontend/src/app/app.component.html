@@ -1,5 +1,5 @@
-<nz-layout>
-    <nz-header>
+<nz-layout [ngClass]="{hasOwnLayout: hasOwnLayout}">
+    <nz-header *ngIf="!hasOwnLayout">
         <lib-mobile-app-menu [(isOpen)]="mobileMenuOpen" class="d-block d-md-none">
             <List>
                 <ListItem>

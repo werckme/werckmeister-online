@@ -89,9 +89,15 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.routerSubscription.unsubscribe();
-    clearInterval(this.checkIsCleanId);
-    this.workspaceComponent.stop();
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
+    if (this.checkIsCleanId) {
+      clearInterval(this.checkIsCleanId);
+    }
+    if (this.workspaceComponent) {
+      this.workspaceComponent.stop();
+    }
   }
 
   onCheckIsClean() {
