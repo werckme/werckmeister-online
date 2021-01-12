@@ -1,11 +1,13 @@
-$edBgColor:  #1e1e1e;
-$fileListBgColor: #252526;
+$edDark: #1f2227;
+$edDarker: #1a1d21;
+$fileListBgColor: $edDark;
 $selectedFile: rgb(55, 55, 61);
 .editor-main {
     display: flex;
 }
 
 .filelist {
+    padding-top: 5px;
     border-right: 2px solid #1b1b1b;
     button {
         color: black;
@@ -78,21 +80,53 @@ werckmeister-editor {
     }
 }
 
-.workspace-controls {
-    display: flex;
-    align-items: center;
-    button {
-        height: 100%;
-        color: #5f6368;
-        padding: 0 10px;
-        &:hover {
-            color: rgb(90, 90, 252);
-        }
-    }
-}
-
 ::ng-deep .werckmeister-online-editor .filemenu {
     .ant-btn > .anticon + span {
         margin-left: 0px;
+    }
+}
+
+.logo {
+    height: 65px;
+    margin: 0 0px 0 15px;
+    margin-left: 0px;
+}
+
+nz-header {
+    padding: 0;
+    height: 67px;
+    background-color: $edDarker;
+}
+
+#editor-navbar {
+    background: $edDarker;
+    border-bottom: none;
+    button {
+        i {
+            margin-right: 0px;
+        }
+        &:hover, &:focus {
+            color: white;
+        }
+    }
+    li.ant-menu-item-selected {
+        color: white;
+        border-bottom: 2px solid transparent;
+    }
+    li:hover {
+        border-bottom: 2px solid #1890ff
+    }
+    #last-item {
+        transition: none;
+        position: absolute;
+        right: 0;
+        top: 13px;
+        &:hover {
+            color: white;
+            border: none;
+        }
+        a {
+            color: white;
+        }
     }
 }

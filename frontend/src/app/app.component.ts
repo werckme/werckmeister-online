@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
 				let ev = event as any;
 				if (ev.snapshot) {
 					this.hasOwnLayout = !!ev.snapshot.data.hasOwnLayout;
-					console.log(this.hasOwnLayout)
 				}
 			}
         });
