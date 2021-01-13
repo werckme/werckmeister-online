@@ -13,6 +13,9 @@ export class FileEntryComponent implements OnInit {
   canEdit= true;
 
   editName: string;
+  get charLength(): number {
+    return this.editName ? this.editName.length : 0;
+  }
 
   @Input()
   name: string;
