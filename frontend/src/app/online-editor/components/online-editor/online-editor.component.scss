@@ -34,6 +34,9 @@ $selectedFile: rgb(55, 55, 61);
 werckmeister-editor {
     flex-grow: 1;
     display: none;
+    height: calc(100vh - 67px);;
+    overflow: hidden;
+    font-size: 14px;
     &.active {
         display: block;
     }
