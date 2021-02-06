@@ -1,0 +1,56 @@
+-- by Koji Kondo 1985
+-- transcription by Joseph Karam
+-- http://www.mariopiano.com/mario-sheet-music-underworld-theme.html
+using "staccato.lua";
+using "drums.pitchmap";
+
+tempo: 210;
+device: MyDevice  midi _usePort=5;
+instrumentDef: bass          _onDevice=MyDevice  _ch=0 _pc=38;
+instrumentDef: bassStaccato  _onDevice=MyDevice  _ch=0 _pc=38;
+instrumentDef: drums         _onDevice=MyDevice  _ch=9 _pc=0;
+instrumentConf: bassStaccato mod staccato;
+
+[
+instrument: bass;
+{
+	/signature: 2 2/
+    /tempo: double/
+    
+    /mark: begin/
+    
+	/instrument: bass/
+    c,,4   c,  a,,, a,, |  bb,,, bb,,  r2 |  r1  |   r1 :|:
+    f,,,4 f,, d,,, d,,  |  eb,,, eb,,  r2 |  r1  
+    |^1 r1 :|^2 r2  (eb,, d,, db,,)2 |  
+    /instrument: bassStaccato/
+    c,,2    eb,,  |  
+    d,,     ab,,, |  g,,,     db,,      |
+    /instrument: bass/
+    (c,,  gb,,  f,,)2  (e,,  bb,,  a,,) |
+    /instrument: bassStaccato/
+    (ab,,     eb,,     b,,,)1           |
+    (bb,,,    a,,,    ab,,,)1           |
+    r1 | r1 | r1 | r1 | r1 | r1 |
+
+    /jump: begin/
+}
+]
+
+[
+instrument: drums;
+{
+    /mark: begin/
+
+    "ht"8 !pp&  & !pp&  & !pp&  & !pp& |
+    
+    /jump: begin _repeat=26/
+}
+{
+    /mark: begin/
+    
+    "bd"2 "sn"2 | "bd"8 &  &4 "sn" r4 |
+    
+    /jump: begin _repeat=11/
+}
+]
