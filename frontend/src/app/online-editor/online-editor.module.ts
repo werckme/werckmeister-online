@@ -6,6 +6,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { FileEntryComponent } from './components/online-editor/file-entry/file-entry.component';
 import { FormsModule } from '@angular/forms';
 import { ShortcutService } from './services/shortcut.service';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 
@@ -14,7 +15,8 @@ import { ShortcutService } from './services/shortcut.service';
   imports: [
     CommonModule,
     FormsModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    AppRoutingModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [WorkspaceStorageService, ShortcutService]

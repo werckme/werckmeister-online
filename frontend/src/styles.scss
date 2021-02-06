@@ -81,6 +81,17 @@ tutorialsnippet {
     }
 }
 
+.ant-layout.hasOwnLayout, .hasOwnLayout .ant-layout  {
+  display: block;
+}
+
+.hasOwnLayout {
+  .ant-layout-content {
+    padding: 0;
+    margin-top: 0px;
+  }
+}
+
 .ace_editor {
     @include mat-card-2;
     border-radius: 5px;

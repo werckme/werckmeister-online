@@ -16,7 +16,7 @@ Xmin7: 		I=0     		III=3 			V=7 			VII=10
 
 export const TmplPitchmap = `"bd": c,,
 "sn": d,,
-"ht": fis,, 
+"ht": f#,, 
 `;
 
 export const TmplLuaVoicing = `parameters = {}
