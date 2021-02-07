@@ -1,0 +1,54 @@
+using "default.chords";
+using "piano.template";
+using "drums.template";
+using "drums.pitchmap";
+using "bass.template";
+using "transpose.lua";
+
+tempo: 140;
+device: MyDevice  midi _usePort=0;
+instrumentDef:piano    _onDevice=MyDevice _ch=0  _pc=0;
+instrumentDef:bass    _onDevice=MyDevice  _ch=1  _pc=34;
+instrumentDef:lead    _onDevice=MyDevice  _ch=2  _pc=11;
+instrumentDef:drums    _onDevice=MyDevice _ch=9  _pc=0;
+
+instrumentConf: piano 
+	volume 75 
+    pan 25 
+    mod transpose _semitones="-12";
+instrumentConf: bass volume 85;
+
+
+-- melody track
+[
+instrument: lead;
+{
+    \ffff
+    g4. e8 e d4 g8~  | g4 e8 e4 e8 d g~ | g4 e e d8 g~ | g8 g e e4 e8 d f~ |
+    f8 d4 d4 d8 c e~ | e c4 c4 c8 bb,4 |^1 r4 c2.~ | c1 :| ^2 r4 c2.~ | 
+    c2. r4 | f1~ | (f gb f)2 (eb f eb)2 |
+    db4. eb8~ eb2~  | eb2. r8 g#~ | g#1~ | (g# a g#)2 (f# g# f#) |
+    e4. f#8~ f#2~  | f#2. r8 a~ | a1~ | (a4 bb a)2 (g a g) |
+    f4. g8~g2~ | g2 (r a bb)2 | (c' c d) (e f g) | g#2. a4 | 
+    (bb4 bb, c)2 (d e f) | f#1 | g4. e8 e d4 g8~ | g4 e8 e4 e8 d g~ |
+    g4 e e d8 g~ | g8 g e e4 e8 d a~ | a4. f8 f f d c' | c'4. e8 (e e d)2 |
+    e1~ | e4 r2. |
+}
+]
+
+-- accomp track
+[
+type: accomp;
+{   
+	/template: drums piano bass/
+	Fmaj7 | Fmaj7 | G7 | G7 |
+    G-7 | Gb7 |^1 Fmaj7 | Gb7 :|^2 Fmaj7 | 
+    Fmaj7 | Gbmaj7 | Gbmaj7 |
+    B7 | B7 | F#-7 | F#-7 |
+    D7 | D7 | G-7 | G-7 |
+    Eb7 | Eb7 | A-7 | D7b9 |
+    G-7 | C7b9 | Fmaj7 | Fmaj7 |
+    G7 | G7 | G-7 | Gb7 |
+    Fmaj7 | Gb9 |
+}
+]

@@ -4,8 +4,8 @@
 using "staccato.lua";
 using "drums.pitchmap";
 
-tempo: 210;
-device: MyDevice  midi _usePort=5;
+tempo: 220;
+device: MyDevice  midi _usePort=0;
 instrumentDef: bass          _onDevice=MyDevice  _ch=0 _pc=38;
 instrumentDef: bassStaccato  _onDevice=MyDevice  _ch=0 _pc=38;
 instrumentDef: drums         _onDevice=MyDevice  _ch=9 _pc=0;
@@ -20,12 +20,10 @@ instrument: bass;
     /mark: begin/
     
 	/instrument: bass/
-    c,,4   c,  a,,, a,, |  bb,,, bb,,  r2 |  r1  |   r1 :|:
-    f,,,4 f,, d,,, d,,  |  eb,,, eb,,  r2 |  r1  
-    |^1 r1 :|^2 r2  (eb,, d,, db,,)2 |  
+    c,,4   c,  a,,, a,, |  bb,,, bb,,  r2 |  r1  |   r1 :|: f,,,4 f,, d,,, d,,  |  
+    eb,,, eb,,  r2 |  r1  |^1 r1 :|^2 r2  (eb,, d,, db,,)2 |  
     /instrument: bassStaccato/
-    c,,2    eb,,  |  
-    d,,     ab,,, |  g,,,     db,,      |
+    c,,2    eb,,  |  d,,     ab,,, |  g,,,     db,,   |
     /instrument: bass/
     (c,,  gb,,  f,,)2  (e,,  bb,,  a,,) |
     /instrument: bassStaccato/

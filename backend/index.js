@@ -49,7 +49,8 @@ const presetMap = {
     'autumnleaves': 'autumnleaves',
     'firstmelody': 'firstmelody',
     'default': 'autumnleaves',
-    'mariounderworld': 'mariounderworld'
+    'mariounderworld': 'mariounderworld',
+    'ipanema': 'ipanema'
 };
 
 
