@@ -17,8 +17,12 @@ function loadWorkspaceFiles(presetFolder) {
     };
 }
 
-function GetWorkspace(presetName) {
+function getWorkspace(presetName) {
     return loadWorkspaceFiles(presetName);
 }
 
-module.exports = GetWorkspace;
+function listPresets() {
+    return fs.readdirSync(presetDir)
+}
+
+module.exports = { getWorkspace, listPresets }

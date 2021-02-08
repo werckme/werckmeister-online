@@ -1,0 +1,27 @@
+.hero-column {
+    margin: 3em auto;
+    div {
+        text-align: center;
+    }
+    .system-icons {
+        font-size: 40px;
+        i + i {
+            margin-left: 2em;
+        }
+    }
+}
+
+.hero-column.features {
+    ul {
+        text-align: left;
+    }
+}
+
+.examples {
+    display: grid;
+    margin: 1em auto;
+    grid-template-columns: auto auto;
+    li {
+        list-style: none;
+    }
+}

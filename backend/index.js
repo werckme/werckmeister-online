@@ -3,8 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const monk = require('monk')
 const {nanoid} = require('nanoid');
-const GetWorkspace = require('./localWorkspaceBuilder');
-const slowDown = require("express-slow-down");
+const { getWorkspace, listPresets } = require('./localWorkspaceBuilder');
 const yup = require('yup');
 var bodyParser = require('body-parser')
 
@@ -39,27 +38,18 @@ app.use(cors({origin: AllowedOrigins()}));
 app.use(bodyParser.json({ limit: '2mb' }));
 app.use(express.json());
 
-// app.use(slowDown({
-//     windowMs: 15 * 60 * 1000,
-//     delayAfter: 100,
-//     delayMs: 500
-// }));
+const presets = listPresets()
+    .map(x => [x, x]);
+const presetMap = Object.fromEntries(presets);
 
-const presetMap = {
-    'autumnleaves': 'autumnleaves',
-    'firstmelody': 'firstmelody',
-    'default': 'autumnleaves',
-    'mariounderworld': 'mariounderworld',
-    'ipanema': 'ipanema'
-};
-
+presetMap['default'] = 'autumnleaves';
 
 const port = process.env.PORT || 1337;
 
 function createNewWorkspace(presetName) {
     return {
         wid: null,
-        files: GetWorkspace(presetName).files 
+        files: getWorkspace(presetName).files 
     };
 }
 

@@ -8,11 +8,12 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 import { CodeExtensionComponent } from './components/pages/visual-studio-extension';
 import { DownloadComponent } from './components/pages/download/download.component';
 import { OnlineEditorComponent } from './online-editor/components/online-editor/online-editor.component';
+import { HomeComponent } from './components/pages/home/home.component';
 
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'werckmeister', pathMatch: 'full'},
-	{ path: 'werckmeister', component: WerckmeisterComponent},
+	{ path: 'werckmeister', component: HomeComponent},
 	{ path: 'getting-started', component: GettingStartedComponent},
 	{ path: 'code-extension', component: CodeExtensionComponent},
 	{ path: 'manual', component: ManualComponent},

@@ -1,0 +1,58 @@
+<h1 id="werckmeister">Werckmeister</h1>
+
+<img src="https://raw.githubusercontent.com/werckme/werckmeister/main/assets/hero.png" class="hero-image"
+    alt="from sheet code via Werckmeister to MIDI music">
+<br><br>
+
+<h2 id="an-open-source-sheet-music-midi-compiler">An <a href="https://github.com/werckme/werckmeister">open source</a>
+    Sheet Music MIDI Compiler</h2>
+<p>Werckmeister compiles sheet music source code into a MIDI file.
+    <br>It allows you to write sheet music a lá &quot;Real Book&quot; and Werckmeister compiles it into MIDI music.
+</p>
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="140"
+    wm-data="ICAgYyc0ICAgZzggZyAgIGE0IGd+ICB8ICAgZyAgYiBjJw=="></werckmeister-snippet>
+
+<div nz-row class="hero-column getting-started">
+    <div nz-col nzSm="24" nzMd="12">
+        <h2>Download</h2>
+        <div class="system-icons">
+            <i nz-icon nzType="windows"></i>
+            <i nz-icon nzType="apple"></i>
+            <i nz-icon nzType="qq"></i>
+        </div>
+        <a nz-button nzType="primary" [routerLink]="['/getting-started']"><i nz-icon nzType="download"></i>Download</a>
+    </div>
+    <div nz-col nzSm="24" nzMd="12">
+        <h2>Try It Online</h2>
+        <ul class="examples">
+            <li><a [routerLink]="['/editor']" [queryParams]="{wid: 'mariounderworld'}">Mario Underworld</a></li>
+            <li><a [routerLink]="['/editor']" [queryParams]="{wid: 'ipanema'}">The Girl From Ipanema</a></li>
+            <li><a [routerLink]="['/editor']" [queryParams]="{wid: 'autumnleaves'}">Autumn Leaves</a></li>
+            <li><a [routerLink]="['/examples']">more ...</a></li>
+        </ul>
+        <a nz-button nzType="primary" [routerLink]="['/editor']"><i nz-icon nzType="cloud"></i>Online Editor</a>
+    </div>
+</div>
+
+<div nz-row class="hero-column features">
+    <div nz-col nzSm="24" nzMd="12">
+        <h2 id="use-werckmeister-if-you-want-to">Use Werckmeister if you want to</h2>
+        <ul>
+            <li>translate sheet music into midi music</li>
+            <li>prototype a song</li>
+            <li>experiment with chord progressions or different accompaniment styles </li>
+            <li>compose using readable source code instead of proprietary files formats</li>
+        </ul>
+    </div>
+    <div nz-col nzSm="24" nzMd="12">
+        <h2 id="features">Features</h2>
+        <ul>
+            <li>open source</li>
+            <li>a fast sheet music MIDI compiler</li>
+            <li>a sheet music player</li>
+            <li>accompaniment template rendering engine</li>
+            <li><a href="https://www.lua.org/">Lua</a> script extensions</li>
+        </ul>
+    </div>
+</div>

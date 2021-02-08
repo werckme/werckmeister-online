@@ -4,7 +4,7 @@
 using "staccato.lua";
 using "drums.pitchmap";
 
-tempo: 220;
+tempo: 200;
 device: MyDevice  midi _usePort=0;
 instrumentDef: bass          _onDevice=MyDevice  _ch=0 _pc=38;
 instrumentDef: bassStaccato  _onDevice=MyDevice  _ch=0 _pc=38;
