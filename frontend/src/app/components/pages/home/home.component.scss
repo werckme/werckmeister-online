@@ -1,27 +1,29 @@
 .hero-column {
-    margin: 3em auto;
-    div {
-        text-align: center;
-    }
-    .system-icons {
-        font-size: 40px;
-        i + i {
-            margin-left: 2em;
-        }
-    }
-}
-
-.hero-column.features {
-    ul {
-        text-align: left;
+    min-height: 50vh;
+    .ant-btn-lg {
+        line-height: 49px;
+        font-size: 23px;
+        height: 51px;
     }
 }
 
 .examples {
     display: grid;
-    margin: 1em auto;
+    margin: 2em 0 50px 0;
     grid-template-columns: auto auto;
     li {
         list-style: none;
     }
+}
+
+.getting-started {
+    text-align: center;
+}
+
+.system-icons {
+    font-size: 40px;
+    i + i {
+        margin-left: 2em;
+    }
+    margin: 1em auto;
 }

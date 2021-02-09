@@ -140,13 +140,6 @@ th {
     text-align: inherit;
 }
 
-img.hero-image {
-  width: 65%; 
-  max-width: 850px;
-  margin: 0 auto; 
-  display: block
-}
-
 @include if-lg-or-smaller {
   img.hero-image {
     width: 100%; 
