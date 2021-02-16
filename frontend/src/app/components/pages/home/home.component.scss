@@ -5,6 +5,9 @@
         font-size: 23px;
         height: 51px;
     }
+    & > div {
+        align-self: center;
+    }
 }
 
 .examples {
