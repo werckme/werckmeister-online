@@ -30,16 +30,6 @@
                 "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
                 "output": "/assets/"
               },
-              {
-                "glob": "*.wasm",
-                "input": "./node_modules/werckmeisterjs",
-                "output": "."
-              },
-              {
-                "glob": "*.json",
-                "input": "./node_modules/werckmeisterjs",
-                "output": "."
-              }              
             ],
             "styles": [
               "node_modules/ng-zorro-antd-mobile/src/ng-zorro-antd-mobile.min.css",
@@ -47,10 +37,6 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/werckmeister-ace-build/src-min/ace.js",
-              "node_modules/werckmeister-ace-build/src-min/mode-sheet.js",
-              "node_modules/werckmeister-ace-build/src-min/theme-dracula.js",
-              "node_modules/werckmeisterjs/werckmeister.js"
             ],
             "es5BrowserSupport": true
           },
