@@ -1,11 +1,13 @@
 <div class="werckmeister-online-editor" [ngClass]="{'is-dirty': !workspaceIsClean}">
-    <nz-header *ngIf="!hasOwnLayout">
+    <nz-header>
         <ul id="editor-navbar" nz-menu nzTheme="light" nzMode="horizontal">
             <a [routerLink]="['/']">
                 <img class="logo" src="assets/images/Logo.png" alt="werckmeister logo">
             </a>
             <li nz-menu-item>
-                <werckmeister-workspace #workspace wm-css-url="/assets/werckmeister-workspace.css">
+                <werckmeister-workspace #workspace 
+                    wm-soundfont-url="https://raw.githubusercontent.com/werckme/soundfont-server/feature/splitandcompose/soundfonts/choriumreva/choriumreva.sf2.json"
+                    wm-css-url="/assets/werckmeister-workspace.css">
                 </werckmeister-workspace>
             </li>
             <li nz-menu-item>

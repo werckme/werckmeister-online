@@ -13,11 +13,12 @@ instrumentDef:lead    _onDevice=MyDevice  _ch=2  _pc=11;
 instrumentDef:drums    _onDevice=MyDevice _ch=9  _pc=0;
 
 instrumentConf: piano 
-	volume 75 
+	volume 90 
     pan 25 
     mod transpose _semitones="-12";
+    
 instrumentConf: bass volume 85;
-
+instrumentConf: lead volume 75;
 
 -- melody track
 [
