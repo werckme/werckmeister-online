@@ -1,0 +1,81 @@
+using "./chords/default.chords";
+using "./defaultMIDI.pitchmap";
+using "./drums.jazzSwing.template";
+using "./rhythm.jazzSwing.template";
+using "./bass.jazzSwing.template";
+using "./lua/mods/swing.lua";
+
+device: SC1 midi 5;
+
+tempo: 155;
+--           instrument device ch cc pc
+instrumentDef: rhythm2   SC1 2 0 0;
+instrumentDef: rhythm  SC1 3 0 25;
+instrumentDef: vibra   SC1 4 0 12;
+instrumentDef: bass    SC1 5 0 32;
+instrumentDef: drumsBrushes   SC1 9 0 40;
+instrumentDef: slide   SC1 0 0 0;
+instrumentConf: rhythm volume 70;
+instrumentConf: rhythm2 
+    volume 80 
+    pan 80;
+instrumentConf: vibra volume 85;
+instrumentConf: bass volume 70;
+instrumentConf: drumsBrushes volume 70;
+
+
+[
+instrument: vibra;
+{
+    /do: swing/
+    \f
+    bb'8 d' c' bb   eb' c#' d' f' | r4 r8 eb' r f' eb'4 | r8 d' eb' d' c' a bb d' | 
+    c'8 g bb a r4 r8 bb8~ | bb4 g8 bb d' bb r e' | r eb' r gb~gb bb c' d' |
+    f'4 r8 b r ab'4 f#'8 | g' eb' bb g d' f' r e | -- :|
+    bb'8 d' c' bb   eb' c#' d' f' | r4 r8 eb' r f' eb'4 | r8 d' eb' d' c' a bb d' | 
+    c'8 g bb a r4 r8 bb8~ | bb4 g8 bb d' bb r e' | r eb' r gb~gb bb c' d' |
+    eb' f'16 eb' d'8 f' r d' eb' g | c' g bb c' r4 r8 f#'~ |
+    f#'4 g'8 g#' a' f#' g' a'   | f#' d' r4 r4 r8 e'8 | f' e' d' b e' d' b a | r4 r8 a' r a' r a'~ |
+    a' g' e' d'~ d'4. a8 | c'16t d' c' g8 bb c' r4 r8 eb'~ | eb'4 d'8 c' b d' c' a | c'4 bb8 a r4 r8 f |
+    bb'8 d' c' bb   eb' c#' d' f' | r4 r8 eb' r f' eb'4 | r8 d' eb' d' c' a bb d' |
+    c'8 g bb a r4 r8 bb8~ | bb4 g8 bb d' bb r e' | r eb' r gb~gb bb c' d' |
+    eb' f'16 eb' d'8 f' r d' eb' g | c' bb a bb r2 |
+
+}
+]
+
+[
+type: accomp;
+{
+    /template:
+        drums.jazzSwing.normal
+        bass.jazzSwing.normal
+        rhythm.jazzSwing.normal
+    /
+
+    Bb6 | C-7 F7 | Bb6 G-7 |
+    C-7 F7 | F-7 Bb7 | Eb7 Ab7 |
+    D-7 G7 | C-7 F7 | --:|
+    Bb6 | C-7 F7 | Bb6 G-7 |
+    C-7 F7 | F-7 Bb7 | Eb7 Ab7 |
+    C-7 F7 | Bb6 |
+
+    /template:
+        drums.jazzSwing.bridge
+        bass.jazzSwing.normal
+        rhythm.jazzSwing.normal
+    /
+
+    D7 | D7 | G7 | G7 |
+    C7 | C7 | F7 | F7 |
+
+    /template:
+        drums.jazzSwing.normal
+        bass.jazzSwing.normal
+        rhythm.jazzSwing.normal
+    /
+
+    Bb6 | C-7 F7 | Bb6 G-7 | C-7 F7 |
+    F-7 Bb7 | Eb7 Ab7 | C-7 F7 | Bb6 |  C-7 | F7 | Bb | Bb
+}
+]
