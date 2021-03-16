@@ -1,3 +1,6 @@
+-- CHARLIE PARKER
+-- DIZZY GILLESIPE
+-- #jazz #swing #repeats #drum-brush-kit #style-changes
 using "./chords/default.chords";
 using "./defaultMIDI.pitchmap";
 using "./drums.jazzSwing.template";
@@ -19,7 +22,7 @@ instrumentConf: bass volume 70;
 instrumentConf: drumsBrushes volume 70;
 
 tempo: 155;
-
+ 
 [
 instrument: vibra;
 {
