@@ -1,0 +1,69 @@
+-- FRANK ZAPPA
+-- #3/4 #mod-staccato #note-tags #repeats 
+-- #voicing-strategy-voice-lead #triplets
+-- #jumps
+using "zappa.chords";
+using "./lua/mods/staccato.lua";
+using "./lua/voicings/voicelead.lua";
+
+tempo: 120;
+device: MyDevice  midi _usePort=3;
+instrumentDef:lead    _onDevice=MyDevice  _ch=0 _pc=11;
+instrumentDef:rhythm  _onDevice=MyDevice  _ch=1 _pc=6;
+
+-- forTag="st" means every note with a "st"@ tag will be performed staccato
+instrumentConf: lead   mod staccato _forTag="st" _amount=100;
+instrumentConf: rhythm 
+    mod staccato _amount=70
+    voicingStrategy voicelead
+    ;
+
+[
+instrument: lead;
+{
+    \ffff
+    /signature: 3 4/
+    r2. | r2. |: f#'8 a' e' "st"@b8  b4 | c#'16 d' c#' b c#'4.   "st"@b8 |
+    e' d'  a' b  a  e' |  d' c#'   d'  a' c#''4  | b'8  "st"@a8  a  c#'  e' d' |
+    e' d'  c#' b  d' c#' :| c''8  "st"@eb' &  "st"@d' &  "st"@c'  | &  "st"@g'  &4~  &16 d' c' bb |
+    c'8  "st"@d' &   "st"@c' bb  c' | bb'4.  eb''8  d''  g' |  eb'  d'  c'  d'  c' bb | g#8  g'16  c' f8  c'  bb c' |
+    (eb' f' eb')4 g#16 bb  g# g  f g g# bb | (g# g f)8 g2~ &8 | r2. |  r8  a'  e'  "st"@b  &4  | g'8 d'  "st"@a &4   f#'8 |
+    c#'8 e'  b  d'  a c#' |  d'16 e' f#' g'    a'2 |
+}  
+]
+
+[
+instrument: rhythm;
+{
+    \f
+    /signature: 3 4/
+    /mark: begin/ 
+    r2. |
+    /jump: begin _repeat=19/
+    
+    e,4 d, c#, |
+
+}  
+]
+
+[
+type: template;
+name: rhythm;
+instrument: rhythm;
+{
+    /signature: 3 4/
+    \f
+    <V,, I, II,>4 & & |
+}
+]
+
+[
+type: accomp;
+{
+    /signature: 3 4/
+    G2 | G2 |: G2 | G2 | G2 | G2 | G2 |
+    G2 :| Eb2 | Eb2 | Eb2 | Eb2 | Eb2 |
+    Eb2 | Eb2 | r | G2 | G2 | G2 | G2 |
+    G2  |
+}
+]
