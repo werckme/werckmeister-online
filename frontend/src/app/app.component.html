@@ -39,7 +39,7 @@
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['editor']">Try Online</a></li>
         </ul>
     </nz-header>
-    <nz-content>
+    <nz-content [ngClass]="urlSegments">
         <nz-layout>
             <nz-content class="inner-content">
                 <div>

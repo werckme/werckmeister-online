@@ -32,11 +32,15 @@ nz-header {
 }
 
 nz-content {
+    $padding: 25px;
     margin-top: 20px;
-    padding: 25px;
+    padding: $padding;
     overflow: initial;
     width: 100%;
     background: $background;
+    &.werckmeister, &.werckmeister nz-content {
+        padding: $padding 0;
+    }
 }
 
 nz-breadcrumb {

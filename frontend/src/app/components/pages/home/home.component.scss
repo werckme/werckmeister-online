@@ -1,5 +1,12 @@
+@import "../../../../mixins.scss";
+
+.root > :nth-child(2n) {
+    background-color: rgb(168, 186, 224);
+    text-align: center;
+}
+
 .hero-column {
-    min-height: 50vh;
+    min-height: 70vh;
     .ant-btn-lg {
         line-height: 49px;
         font-size: 23px;
@@ -8,6 +15,29 @@
     & > div {
         align-self: center;
     }
+    &.intro {
+        text-align: center;
+        h1 {
+            margin-bottom: 1em;
+        }
+        werckmeister-snippet {
+            text-align: left;
+            margin: 1em auto 0 auto;
+            width: 80%;
+            @include if-md-or-smaller {
+                width: 100%;
+            }    
+        }
+    }
+}
+
+.hero-image {
+    max-width: 80%;
+    margin: 0 auto;
+    display: block;
+    @include if-md-or-smaller {
+        max-width: 100%;
+    }    
 }
 
 .examples {

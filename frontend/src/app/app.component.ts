@@ -34,7 +34,9 @@ export class AppComponent implements OnInit {
 	}
 
 	get urlSegments(): string[] {
-		return this.router.url.split('/');
+		const segs = this.router.url.split('/')
+			.filter(x => x && x.length > 0);
+		return segs;
 	}
 
 	getHasOwnLayout(): boolean {

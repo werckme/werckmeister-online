@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  public gutter = {xs:0, md: 32, lg: 64, xl: 100, xxl: 100};
+  public gutter = {xs:0, md: 0, lg: 0, xl: 0, xxl: 0};
 
   constructor() { }
 
