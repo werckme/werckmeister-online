@@ -5,6 +5,7 @@
 using "zappa.chords";
 using "./lua/mods/staccato.lua";
 using "./lua/voicings/voicelead.lua";
+using "./lua/voicings/simple.lua";
 
 tempo: 120;
 device: MyDevice  midi _usePort=3;
@@ -15,7 +16,6 @@ instrumentDef:rhythm  _onDevice=MyDevice  _ch=1 _pc=6;
 instrumentConf: lead   mod staccato _forTag="st" _amount=100;
 instrumentConf: rhythm 
     mod staccato _amount=70
-    voicingStrategy voicelead
     ;
 
 [
@@ -28,7 +28,11 @@ instrument: lead;
     e' d'  c#' b  d' c#' :| c''8  "st"@eb' &  "st"@d' &  "st"@c'  | &  "st"@g'  &4~  &16 d' c' bb |
     c'8  "st"@d' &   "st"@c' bb  c' | bb'4.  eb''8  d''  g' |  eb'  d'  c'  d'  c' bb | g#8  g'16  c' f8  c'  bb c' |
     (eb' f' eb')4 g#16 bb  g# g  f g g# bb | (g# g f)8 g2~ &8 | r2. |  r8  a'  e'  "st"@b  &4  | g'8 d'  "st"@a &4   f#'8 |
-    c#'8 e'  b  d'  a c#' |  d'16 e' f#' g'    a'2 |
+    c#'8 e'  b  d'  a c#'  |  d'16 e' f#' g'    a'2~ |  &4. r8  &32 g#' f#' f' eb' d' c' b | a4.   b8 a g |
+    (f eb d)4 (c d e)4 f8 g |  a  "st"@d' & "st"@g'  & c''16 d'' | f''32 eb'' d'' eb'' "st"@d''8  b'8   bb'32 f' c' bb'  g#'8 g' |
+    f'16g'f'e'd'bc'd'e'f'a'8~ | &8.  r8. eb16 f d' c' g g# | b c' b8~  &4.   r8  |  c'16&&&  eb'd' c' bb& c'&8 |
+    d'16&&&  f'e'd'c'& d'&8 | e'16 f' e' d'& c'& d' e' d' c' bb | a16&&& c' b a g& a&8 | bb16 c' bb g# g g#& f g8 r | 
+
 }  
 ]
 
@@ -60,10 +64,15 @@ instrument: rhythm;
 [
 type: accomp;
 {
+    /voicingStrategy: voicelead/
     /signature: 3 4/
     G2 | G2 |: G2 | G2 | G2 | G2 | G2 |
     G2 :| Eb2 | Eb2 | Eb2 | Eb2 | Eb2 |
     Eb2 | Eb2 | r | G2 | G2 | G2 | G2 |
-    G2  |
+    G2  | G2  | 
+    /voicingStrategy: simple/
+    C5 | Bb5 | A5 | G#5 | C5 | Bb5 | 
+    A5 | G#5 | C5 | Bb5 | A5 | G#5 |
+    C5 | Bb5 | A5 | G#5 |
 }
 ]
