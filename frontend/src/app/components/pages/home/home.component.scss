@@ -1,20 +1,53 @@
 @import "../../../../mixins.scss";
+@import "../../../../variables.scss";
 
-.root > :nth-child(2n) {
-    background-color: rgb(168, 186, 224);
-    text-align: center;
+.root {
+    & > :nth-child(2n+1) {
+        @include color-scheme-1;
+        & [nz-col]:nth-child(2n) {
+            @include color-scheme-1b;
+        }
+    }
+    & > :nth-child(2n) {
+        @include color-scheme-2;
+        & [nz-col]:nth-child(2n) {
+            @include color-scheme-2b;
+        }
+    }
 }
 
-.hero-column {
-    min-height: 70vh;
+
+.hero-row {
+    & > [nz-col] {
+        min-height: 92vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        & > div {
+            padding: 25px;
+            align-self: center;
+            @include if-xs-or-smaller {
+                padding: 5px;
+            }
+        }
+        @include if-xs-or-smaller {
+            width: 100%;
+        }
+    }
+    ul {
+        text-align: left;
+        padding-left: 1em;
+    }
     .ant-btn-lg {
         line-height: 49px;
         font-size: 23px;
         height: 51px;
     }
-    & > div {
-        align-self: center;
+
+    .cta {
+        text-align: center;
     }
+
     &.intro {
         text-align: center;
         h1 {
@@ -24,6 +57,7 @@
             text-align: left;
             margin: 1em auto 0 auto;
             width: 80%;
+            display: block;
             @include if-md-or-smaller {
                 width: 100%;
             }    
@@ -32,7 +66,7 @@
 }
 
 .hero-image {
-    max-width: 80%;
+    max-width: 70%;
     margin: 0 auto;
     display: block;
     @include if-md-or-smaller {
@@ -42,15 +76,12 @@
 
 .examples {
     display: grid;
+    gap: 0 20px;
     margin: 2em 0 50px 0;
     grid-template-columns: auto auto;
     li {
         list-style: none;
     }
-}
-
-.getting-started {
-    text-align: center;
 }
 
 .system-icons {
