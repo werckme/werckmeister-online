@@ -6,17 +6,24 @@ using "zappa.chords";
 using "./lua/mods/staccato.lua";
 using "./lua/voicings/voicelead.lua";
 using "./lua/voicings/simple.lua";
+using "drums.pitchmap";
 
-tempo: 120;
+tempo: 140;
 device: MyDevice  midi _usePort=3;
 instrumentDef:lead    _onDevice=MyDevice  _ch=0 _pc=11;
 instrumentDef:rhythm  _onDevice=MyDevice  _ch=1 _pc=6;
+instrumentDef:bass    _onDevice=MyDevice  _ch=2 _pc=33;
+instrumentDef:drums  _onDevice=MyDevice   _ch=9 _pc=0;
 
 -- forTag="st" means every note with a "st"@ tag will be performed staccato
-instrumentConf: lead   mod staccato _forTag="st" _amount=100;
+instrumentConf: lead  volume 85 mod staccato _forTag="st" _amount=100;
 instrumentConf: rhythm 
+    volume 80
     mod staccato _amount=70
     ;
+instrumentConf: drums volume 100;
+instrumentConf: bass mod staccato _amount=30 _forTag="st"
+    voicingStrategy simple _range="contrabass";
 
 [
 instrument: lead;
@@ -30,9 +37,10 @@ instrument: lead;
     (eb' f' eb')4 g#16 bb  g# g  f g g# bb | (g# g f)8 g2~ &8 | r2. |  r8  a'  e'  "st"@b  &4  | g'8 d'  "st"@a &4   f#'8 |
     c#'8 e'  b  d'  a c#'  |  d'16 e' f#' g'    a'2~ |  &4. r8  &32 g#' f#' f' eb' d' c' b | a4.   b8 a g |
     (f eb d)4 (c d e)4 f8 g |  a  "st"@d' & "st"@g'  & c''16 d'' | f''32 eb'' d'' eb'' "st"@d''8  b'8   bb'32 f' c' bb'  g#'8 g' |
-    f'16g'f'e'd'bc'd'e'f'a'8~ | &8.  r8. eb16 f d' c' g g# | b c' b8~  &4.   r8  |  c'16&&&  eb'd' c' bb& c'&8 |
+    f'16g'f'e'd'bc'd'e'f'g'8~ | &8.  r8. eb16 f d' c' g g# | b c' b8~  &4.   r8  |  c'16&&&  eb'd' c' bb& c'&8 |
     d'16&&&  f'e'd'c'& d'&8 | e'16 f' e' d'& c'& d' e' d' c' bb | a16&&& c' b a g& a&8 | bb16 c' bb g# g g#& f g8 r | 
-
+    a8 b  g'32 d' a g' e'8   d'  &32 g' c'' e'  |  d'16 c' &4. ~&16  eb' d' g | f#16 g b c'  d' e' d'4.~ |
+    &16 c' bb g# g g g'4. | b8 & & &   &16 c#' d' e' |
 }  
 ]
 
@@ -45,7 +53,9 @@ instrument: rhythm;
     r2. |
     /jump: begin _repeat=19/
     
-    e,4 d, c#, |
+    e,4 d, c#, | r2. |
+
+    /jump: begin/
 
 }  
 ]
@@ -61,13 +71,51 @@ instrument: rhythm;
 }
 ]
 
+
+[
+type: template;
+name: bass;
+instrument: bass;
+{
+    /signature: 3 4/
+    \f
+    "st"@I,,, "st"@I,,,8 "st"@I,, V,,,4 |  "st"@I,,, "st"@I,,, I,,
+}
+]
+
+[
+type: template;
+name: bass2;
+instrument: bass;
+{
+    /signature: 3 4/
+    \f
+    "st"@I,,, "st"@I,,, "st"@I,,, |
+}
+]
+
+[
+type: template;
+name: drums;
+instrument: drums;
+{
+    /signature: 3 4/
+    \f
+    !ff"bd"4 "bd"4 "bd"4 |
+}
+]
+
+
 [
 type: accomp;
 {
+    /template: drums rhythm bass/
     /voicingStrategy: voicelead/
     /signature: 3 4/
     G2 | G2 |: G2 | G2 | G2 | G2 | G2 |
-    G2 :| Eb2 | Eb2 | Eb2 | Eb2 | Eb2 |
+    G2 :| 
+    /template: drums rhythm bass2/
+    Eb2 | Eb2 | Eb2 | Eb2 | Eb2 |
     Eb2 | Eb2 | r | G2 | G2 | G2 | G2 |
     G2  | G2  | 
     /voicingStrategy: simple/

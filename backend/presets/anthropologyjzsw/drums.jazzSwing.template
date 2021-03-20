@@ -6,7 +6,8 @@ type: template;
 name: drums.jazzSwing.bridge;
 instrument: drumsBrushes; 
 {
-    (!ff"rcym1" r r)4  ("rcym1" r !p"rcym1") (!ff"rcym1" r r) ("rcym1" r !p"rcym1")
+    \p
+    (!f"rcym1" r r)4  ("rcym1" r !pp"rcym1") (!f"rcym1" r r) ("rcym1" r !pp"rcym1")
 }
 {
     (r r "brtp")4     r4  (r r !p"brtp")4  r4 |
