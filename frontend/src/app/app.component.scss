@@ -39,7 +39,7 @@ nz-content {
     width: 100%;
     background: $background;
     &.werckmeister, &.werckmeister nz-content {
-        padding: $padding 0;
+        padding: 13px 0 0 0;
     }
 }
 
@@ -77,6 +77,6 @@ nz-footer {
         padding: 5px;
     }
     nz-content {
-        margin-top: 30px;
+        margin-top: 19px;
     }
 }
