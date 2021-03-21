@@ -79,7 +79,7 @@ instrument: bass;
 {
     /signature: 3 4/
     \f
-    "st"@I,,, "st"@I,,,8 "st"@I,, V,,,4 |  "st"@I,,, "st"@I,,, I,,
+    "st"@I,,, "st"@I,,,8 "st"@I,, V,,,4 |  "st"@I,,, "st"@I,,, V,,,
 }
 ]
 

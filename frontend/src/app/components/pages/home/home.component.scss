@@ -19,7 +19,7 @@
 
 .hero-row {
     & > [nz-col] {
-        min-height: 92vh;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -34,9 +34,16 @@
             width: 100%;
         }
     }
-    ul {
+    ul.reasons {
         text-align: left;
-        padding-left: 1em;
+        padding-left: 0px;
+        li {
+            &::before {
+                content: '+';
+                margin-right: 10px;
+            }
+            list-style-type: none;
+        }
     }
     .ant-btn-lg {
         line-height: 49px;
@@ -75,6 +82,7 @@
 }
 
 .examples {
+    text-align: left;
     display: grid;
     gap: 0 20px;
     margin: 2em 0 50px 0;
@@ -90,4 +98,22 @@
         margin-left: 2em;
     }
     margin: 1em auto;
+}
+
+.img-vscode {
+    background-image: url('/assets/images/monitor_vscode.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    .cta {
+        background-color: rgba($wm-color-3, 0.91);
+    }
+}
+
+.img-sheet {
+    background-image: url('/assets/images/sheet.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    .cta {
+        background-color: rgba($wm-color-4, 0.91);
+    }
 }
