@@ -2,18 +2,15 @@
 @import "../../../../variables.scss";
 
 .root {
-    & > :nth-child(2n+1) {
-        @include color-scheme-1;
-        & [nz-col]:nth-child(2n) {
-            @include color-scheme-1b;
-        }
-    }
-    & > :nth-child(2n) {
+    & > :nth-child(n) {
         @include color-scheme-2;
-        & [nz-col]:nth-child(2n) {
-            @include color-scheme-2b;
-        }
+        .cta {
+            background-color: rgba($wm-bg-color-2, 0.9);
+        }        
     }
+    & > :first-child {
+        @include color-scheme-1;
+    }    
 }
 
 
@@ -84,9 +81,10 @@
 .examples {
     text-align: left;
     display: grid;
-    gap: 0 20px;
+    gap: 0 80px;
     margin: 2em 0 50px 0;
     grid-template-columns: auto auto;
+    padding: 20px;
     li {
         list-style: none;
     }
@@ -94,7 +92,7 @@
 
 .system-icons {
     font-size: 40px;
-    i + i {
+    .icon + .icon {
         margin-left: 2em;
     }
     margin: 1em auto;
@@ -104,16 +102,11 @@
     background-image: url('/assets/images/monitor_vscode.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    .cta {
-        background-color: rgba($wm-color-3, 0.91);
-    }
 }
 
 .img-sheet {
     background-image: url('/assets/images/sheet.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    .cta {
-        background-color: rgba($wm-color-4, 0.91);
-    }
+
 }

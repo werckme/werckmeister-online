@@ -11,7 +11,7 @@ using "drums.pitchmap";
 tempo: 140;
 device: MyDevice  midi _usePort=3;
 instrumentDef:lead    _onDevice=MyDevice  _ch=0 _pc=11;
-instrumentDef:rhythm  _onDevice=MyDevice  _ch=1 _pc=6;
+instrumentDef:rhythm  _onDevice=MyDevice  _ch=1 _cc=4 _pc=6;
 instrumentDef:bass    _onDevice=MyDevice  _ch=2 _pc=33;
 instrumentDef:drums  _onDevice=MyDevice   _ch=9 _pc=0;
 

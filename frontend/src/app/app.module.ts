@@ -26,6 +26,7 @@ import { OnlineEditorModule } from './online-editor/online-editor.module';
 import { EmbeddedSoundcloudPlayerComponent } from './components/partials/embedded-soundcloud-player/embedded-soundcloud-player.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { HeroSnippetComponent } from './components/pages/home/hero-snippet/hero-snippet.component';
+import { TuxComponent } from './components/partials/icons/tux/tux.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -45,7 +46,8 @@ registerLocaleData(en);
 		DownloadDetailsComponent,
 		EmbeddedSoundcloudPlayerComponent,
 		HomeComponent,
-		HeroSnippetComponent
+		HeroSnippetComponent,
+		TuxComponent
 	],
 	imports: [
 		BrowserModule,
