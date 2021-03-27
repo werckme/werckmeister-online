@@ -61,7 +61,7 @@
 
     <div>
         <div nz-row class="hero-row getting-started" nzType="flex" [nzGutter]="gutter">
-            <div nz-col nzSm="24" nzMd="12" class="img-vscode">
+            <div [nzXs]="{order: 2}" [nzLg]="{order: 1}" nz-col nzSm="24" nzMd="12" class="img-vscode">
                 <div class="cta">
                     <h2>Turn sheet code into MIDI music.</h2>
                     <div class="system-icons">
@@ -73,7 +73,7 @@
                             nzType="download"></i>Free Download</a>
                 </div>
             </div>
-            <div nz-col nzSm="24" nzMd="12">
+            <div [nzXs]="{order: 1}" [nzLg]="{order: 2}"  nz-col nzSm="24" nzMd="12">
                 <div>
                     <h2 id="features">Features</h2>
                     <ul class="reasons">

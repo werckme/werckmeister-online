@@ -6,10 +6,15 @@
         @include color-scheme-2;
         .cta {
             background-color: rgba($wm-bg-color-2, 0.9);
-        }        
+        }
     }
     & > :first-child {
         @include color-scheme-1;
+        .hero-row {
+            & > [nz-col] {
+                min-height: 83vh;
+            }
+        } 
     }    
 }
 
@@ -56,6 +61,7 @@
         text-align: center;
         h1 {
             margin-bottom: 1em;
+            font-weight: bold;
         }
         werckmeister-snippet {
             text-align: left;
@@ -70,7 +76,7 @@
 }
 
 .hero-image {
-    max-width: 70%;
+    max-width: 90%;
     margin: 0 auto;
     display: block;
     @include if-md-or-smaller {

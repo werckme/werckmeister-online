@@ -11,3 +11,7 @@
 .icon {
     vertical-align: middle;
 }
+
+.wm-player-fetching #fetching {
+    font-size: 16px;
+}
