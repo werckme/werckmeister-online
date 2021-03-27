@@ -1,13 +1,14 @@
--- by Koji Kondo 1985
+-- KOJI KONDO
 -- transcription by Joseph Karam
 -- http://www.mariopiano.com/mario-sheet-music-underworld-theme.html
+-- #repeats #jumps #triplets #mod-staccato #polytempo #instrument-change #jump-repeat
 using "staccato.lua";
 using "drums.pitchmap";
 
 tempo: 200;
 device: MyDevice  midi _usePort=0;
-instrumentDef: bass          _onDevice=MyDevice  _ch=0 _pc=38;
-instrumentDef: bassStaccato  _onDevice=MyDevice  _ch=0 _pc=38;
+instrumentDef: bass          _onDevice=MyDevice  _ch=0 _pc=0;
+instrumentDef: bassStaccato  _onDevice=MyDevice  _ch=0 _pc=0;
 instrumentDef: drums         _onDevice=MyDevice  _ch=9 _pc=0;
 instrumentConf: bassStaccato mod staccato;
 

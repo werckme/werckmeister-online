@@ -1,7 +1,7 @@
 -- JOSEPH KOSMA
 -- JOHNNY MERCER
 -- JAQUES PREVERT
--- #jazz #swing #repeats #drum-brush-kit
+-- #jazz #swing #mod-swing #repeats #drum-brush-kit
 using "./chords/default.chords";
 using "./defaultMIDI.pitchmap";
 using "./drums.jazzSwing.template";
