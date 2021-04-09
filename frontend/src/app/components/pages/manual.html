@@ -172,7 +172,17 @@ In combination with its ignore argument you are able to implement - for example 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="200" wm-data="L21hcms6IGJlZ2luLwpjIGQgZSBmIHwgCi9qdW1wOiBjb2RhIF9pZ25vcmU9MS8KZyBhIGIgYycgfApkJyBlJyBmJyBnJyB8Ci9tYXJrOiBjb2RhLwpnJyBmJyBlJyBkJyB8Ci9qdW1wOiBiZWdpbi8KYycxIHw="></werckmeister-snippet>
 <h2 id="write-for-drums">Write for drums</h2>
 <h3 id="pitchmaps">Pitchmaps</h3>
-<p>tbd.</p>
+<p>With pitchmaps you are able to define own note symbols. This is useful espacially for drum notes.<br>
+In a pitchmap file you can define note symbols like that:</p>
+<pre><code><![CDATA["sn": c'  -- snare
+"bd": c,  -- bass drum]]></code></pre><p>Since a delimited string like &quot;bd&quot; is harder to read than a single character, there are the following rules:</p>
+<ul>
+<li>every single lowercase alphabetic character is allowed as note</li>
+<li>a note can also have more than one character but then a delimiter is neccessary</li>
+<li>single character notes can be followed by the octave symbols <code>&#39;</code> or <code>,</code></li>
+<li>the characters c, d, e, f, g, a, b, r, t are predefined events</li>
+<li>predefined events can <strong>not</strong> be overwritten in a pitchmap</li>
+</ul>
 <h2 id="accomp-my-melodies">Accomp My Melodies</h2>
 <p>Imagine you give your bass player some chords, and he or she asks you how to play these.
 <br>You would say something like: play the 1st degree on the first beat and the 5th degree on the fourth beat. </p>
@@ -205,39 +215,40 @@ In combination with its ignore argument you are able to implement - for example 
 <li><a pageScroll id="link-20" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></li>
 <li><a pageScroll id="link-21" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a></li>
 <li><a pageScroll id="link-22" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="doonce">doOnce</a></li>
-<li><a pageScroll id="link-23" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></li>
-<li><a pageScroll id="link-24" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentconf">instrumentConf</a></li>
-<li><a pageScroll id="link-25" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentdef">instrumentDef</a></li>
-<li><a pageScroll id="link-26" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="jump">jump</a></li>
-<li><a pageScroll id="link-27" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mark">mark</a></li>
-<li><a pageScroll id="link-28" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a></li>
-<li><a pageScroll id="link-29" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="modonce">modOnce</a></li>
-<li><a pageScroll id="link-30" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pan">pan</a></li>
-<li><a pageScroll id="link-31" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="signature">signature</a></li>
-<li><a pageScroll id="link-32" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tempo">tempo</a></li>
-<li><a pageScroll id="link-33" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicingstrategy">voicingStrategy</a></li>
-<li><a pageScroll id="link-34" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="volume">volume</a></li>
+<li><a pageScroll id="link-23" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fade">fade</a></li>
+<li><a pageScroll id="link-24" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></li>
+<li><a pageScroll id="link-25" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentconf">instrumentConf</a></li>
+<li><a pageScroll id="link-26" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentdef">instrumentDef</a></li>
+<li><a pageScroll id="link-27" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="jump">jump</a></li>
+<li><a pageScroll id="link-28" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mark">mark</a></li>
+<li><a pageScroll id="link-29" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a></li>
+<li><a pageScroll id="link-30" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="modonce">modOnce</a></li>
+<li><a pageScroll id="link-31" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pan">pan</a></li>
+<li><a pageScroll id="link-32" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="signature">signature</a></li>
+<li><a pageScroll id="link-33" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tempo">tempo</a></li>
+<li><a pageScroll id="link-34" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicingstrategy">voicingStrategy</a></li>
+<li><a pageScroll id="link-35" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="volume">volume</a></li>
 </ul>
 <h2 id="lua-extensions">Lua Extensions</h2>
 <h3 id="modifications">Modifications</h3>
 <ul>
-<li><a pageScroll id="link-35" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="drumrudiments">drumRudiments</a></li>
-<li><a pageScroll id="link-36" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitarstroke">guitarStroke</a></li>
-<li><a pageScroll id="link-37" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="legato">legato</a></li>
-<li><a pageScroll id="link-38" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a></li>
-<li><a pageScroll id="link-39" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="staccato">staccato</a></li>
-<li><a pageScroll id="link-40" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="swing">swing</a></li>
+<li><a pageScroll id="link-36" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="drumrudiments">drumRudiments</a></li>
+<li><a pageScroll id="link-37" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitarstroke">guitarStroke</a></li>
+<li><a pageScroll id="link-38" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="legato">legato</a></li>
+<li><a pageScroll id="link-39" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a></li>
+<li><a pageScroll id="link-40" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="staccato">staccato</a></li>
+<li><a pageScroll id="link-41" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="swing">swing</a></li>
 </ul>
 <h2 id="lua-extensions-1">Lua Extensions</h2>
 <h3 id="voicing-strategies-1">Voicing Strategies</h3>
 <ul>
-<li><a pageScroll id="link-41" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitar">guitar</a></li>
-<li><a pageScroll id="link-42" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="simple">simple</a></li>
-<li><a pageScroll id="link-43" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicelead">voicelead</a></li>
+<li><a pageScroll id="link-42" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitar">guitar</a></li>
+<li><a pageScroll id="link-43" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="simple">simple</a></li>
+<li><a pageScroll id="link-44" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicelead">voicelead</a></li>
 </ul>
 <h2 id="commands-1">Commands</h2>
 <h3 id="device"><code>device</code></h3>
-<p>Defines a device which can be used when adding instruments (see <a pageScroll id="link-44" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
+<p>Defines a device which can be used when adding instruments (see <a pageScroll id="link-45" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
 <h3 id="examples-1">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>device: MyDevice midi 0 offset 100;</code></p>
@@ -245,7 +256,7 @@ In combination with its ignore argument you are able to implement - for example 
 <p> <code>device: _setName=MyDevice _isType=midi _usePort=0 _withOffset=100;</code>   </p>
 <p> <strong>a complete example</strong></p>
 <p> define an device, an instrument and assign it to a track.</p>
-<p> see <a pageScroll id="link-45" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-46" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></p>
+<p> see <a pageScroll id="link-46" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-47" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></p>
 <pre><code><![CDATA[
  device: MyDevice midi 0;
 
@@ -302,7 +313,7 @@ In combination with its ignore argument you are able to implement - for example 
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="do"><code>do</code></h3>
-<p>Such as <a pageScroll id="link-47" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track. </p>
+<p>Such as <a pageScroll id="link-48" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track. </p>
 <p> The difference is: every <code>mod</code> command adds a further modification to a voice.</p>
 <p> <code>do</code> replaces the previous modification. </p>
 <h3 id="examples-2">examples</h3>
@@ -329,7 +340,7 @@ In combination with its ignore argument you are able to implement - for example 
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="doonce"><code>doOnce</code></h3>
-<p>Like <a pageScroll id="link-48" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<p>Like <a pageScroll id="link-49" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
 <h3 id="examples-3">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>/doOnce: arpeggio/</code></p>
@@ -353,9 +364,58 @@ In combination with its ignore argument you are able to implement - for example 
 </tr>
 </tbody></table>
 <p><br><br><br></p>
+<h3 id="fade"><code>fade</code></h3>
+<p>Fades the volume over a given duration in quarters.</p>
+<h3 id="examples-4">examples</h3>
+<p> <strong>positional:</strong></p>
+<p> Fades from 0 to 50 in 2 quarters:</p>
+<p> <code>/fade: 2 0 50/</code></p>
+<p> <strong>named:</strong></p>
+<p> Fades from 0 to 50 in 2 quarters:</p>
+<p> <code>/fade: _duration=2 _from=0 _to=50/</code></p>
+<p> Optionally a fade curve type can be set.</p>
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="CiBkZXZpY2U6IG15RGV2aWNlIG1pZGkgX3VzZVBvcnQ9MDsKIGluc3RydW1lbnREZWY6IG9yZ2FuICBTQzEgX2NoPTAgX3BjPTE2OwogdGVtcG86IDc1OwogWwogaW5zdHJ1bWVudDogb3JnYW47CiB7CiAgICAgXGZmZgogICAgIC9mYWRlOiBfZnJvbT0wIF90bz0xMDAgX2R1cmF0aW9uPTQvCiAgICAgYzEgfAogICAgIC9mYWRlOiBfZnJvbT0wIF90bz0xMDAgX2R1cmF0aW9uPTQgX2N1cnZlPSJxdWFkIi8KICAgICBjMSB8CiAgICAgL2ZhZGU6IF9mcm9tPTAgX3RvPTEwMCBfZHVyYXRpb249NCBfY3VydmU9ImN1YiIvCiAgICAgYzEgfAogICAgIC9mYWRlOiBfZnJvbT0wIF90bz0xMDAgX2R1cmF0aW9uPTQgX2N1cnZlPSJxdWFydCIvCiAgICAgYzEgfAogICAgIC9mYWRlOiBfZnJvbT0wIF90bz0xMDAgX2R1cmF0aW9uPTQgX2N1cnZlPSJxdWludCIvCiAgICAgYzEgfAogICAgIC9mYWRlOiBfZnJvbT0wIF90bz0xMDAgX2R1cmF0aW9uPTQgX2N1cnZlPSJleHAiLwogICAgIGMxIHwKIH0KIF0="></werckmeister-snippet>
+<p> <img src="https://raw.githubusercontent.com/werckme/werckmeister/feature/187-crescendo-and-diminuendo-performance/assets/curve-types.png" alt="supported curve types"></p>
+<h4 id="parameters-4">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">duration</td>
+<td align="left">1</td>
+<td align="left">the duration in quarters.</td>
+<td align="left">0..N</td>
+</tr>
+<tr>
+<td align="left">from</td>
+<td align="left">2</td>
+<td align="left">The source volume value.</td>
+<td align="left">0..100</td>
+</tr>
+<tr>
+<td align="left">to</td>
+<td align="left">3</td>
+<td align="left">The target volume value.</td>
+<td align="left">0..100</td>
+</tr>
+<tr>
+<td align="left">curve</td>
+<td align="left">4</td>
+<td align="left">The fade curve type.</td>
+<td align="left">lin,quad,cub,quart,quint,exp</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
 <h3 id="instrument"><code>instrument</code></h3>
 <p>Set or change the instrument of a track.</p>
-<h3 id="examples-4">examples</h3>
+<h3 id="examples-5">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>instrument: myInstrument;</code></p>
 <p> <strong>named:</strong></p>
@@ -377,7 +437,7 @@ In combination with its ignore argument you are able to implement - for example 
    c d e f
 
  } 
- ] ]]></code></pre><h4 id="parameters-4">parameters</h4>
+ ] ]]></code></pre><h4 id="parameters-5">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -408,7 +468,7 @@ In combination with its ignore argument you are able to implement - for example 
 <li><p>mod</p>
 </li>
 <li><p>velocity remap</p>
-<h3 id="examples-5">examples</h3>
+<h3 id="examples-6">examples</h3>
 <h4 id="mixed-settings">mixed settings</h4>
 <p><strong>positional:</strong> </p>
 <p><code>instrumentConf: piano volume 100 pan 50;</code></p>
@@ -429,7 +489,7 @@ In combination with its ignore argument you are able to implement - for example 
 <p><code>remapVelocity</code> dosen&#39;t supports positional arguments</p>
 </li>
 </ul>
-<h4 id="parameters-5">parameters</h4>
+<h4 id="parameters-6">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -449,14 +509,14 @@ In combination with its ignore argument you are able to implement - for example 
 <p><br><br><br></p>
 <h3 id="instrumentdef"><code>instrumentDef</code></h3>
 <p>Adds a new MIDI instrument.</p>
-<h3 id="examples-6">examples</h3>
+<h3 id="examples-7">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>instrumentDef: drums MyDevice 9 0 3;</code></p>
 <p> <strong>named:</strong></p>
 <p> <code>instrumentDef: _setName=drums _onDevice=MyDevice _ch=9 _cc=0 _pc=3;</code></p>
 <p> <strong>a complete example</strong></p>
 <p> define an device, an instrument and set it to a track.</p>
-<p> see <a pageScroll id="link-49" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-50" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
+<p> see <a pageScroll id="link-50" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-51" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
 <pre><code><![CDATA[
  device: MyDevice midi 0;
 
@@ -466,7 +526,7 @@ In combination with its ignore argument you are able to implement - for example 
  { 
     c d e f 
  } 
- ] ]]></code></pre><h4 id="parameters-6">parameters</h4>
+ ] ]]></code></pre><h4 id="parameters-7">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -485,7 +545,7 @@ In combination with its ignore argument you are able to implement - for example 
 <tr>
 <td align="left">onDevice</td>
 <td align="left">2</td>
-<td align="left">The device which to use (The name of the device, see <a pageScroll id="link-51" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a>).</td>
+<td align="left">The device which to use (The name of the device, see <a pageScroll id="link-52" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a>).</td>
 <td align="left">word</td>
 </tr>
 <tr>
@@ -509,11 +569,11 @@ In combination with its ignore argument you are able to implement - for example 
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="jump"><code>jump</code></h3>
-<p>Jumps to a previous defined mark See <a pageScroll id="link-52" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="mark">mark</a>.</p>
-<h3 id="examples-7">examples</h3>
+<p>Jumps to a previous defined mark See <a pageScroll id="link-53" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="mark">mark</a>.</p>
+<h3 id="examples-8">examples</h3>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="IGRldmljZTogX3VzZVBvcnQ9MCBfc2V0TmFtZT1NeURldmljZSAgX2lzVHlwZT1taWRpOwogaW5zdHJ1bWVudERlZjogX3NldE5hbWU9cGlhbm8gX29uRGV2aWNlPU15RGV2aWNlIF9jaD0wIF9wYz0xIF9jYz04OwogWwogaW5zdHJ1bWVudDogcGlhbm87CiB7CiAgICAgL3NpZ25hdHVyZTogNSA0LwogICAgIC9tYXJrOiBBLyAgICAgICAtLSB2YWxpZCAmIHVuaXF1ZSB0byB0aGlzIHZvaWNlCiAgICAgYzQgZCBlIGYgZyB8CiAgICAgL2p1bXA6IEEvICAgICAgIC0tIGp1bXBzIHRvIEEgb25jZQogICAgIGEgYiBjJzIKIH0KIF0="></werckmeister-snippet>
-<h4 id="parameters-7">parameters</h4>
+<h4 id="parameters-8">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -544,11 +604,11 @@ In combination with its ignore argument you are able to implement - for example 
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="mark"><code>mark</code></h3>
-<p>adds a mark to the voice. Why you want to do that? See <a pageScroll id="link-53" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="jump">jump</a>.</p>
-<h3 id="examples-8">examples</h3>
+<p>adds a mark to the voice. Why you want to do that? See <a pageScroll id="link-54" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="jump">jump</a>.</p>
+<h3 id="examples-9">examples</h3>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="IGRldmljZTogX3VzZVBvcnQ9MCBfc2V0TmFtZT1NeURldmljZSAgX2lzVHlwZT1taWRpOwogaW5zdHJ1bWVudERlZjogX3NldE5hbWU9cGlhbm8gX29uRGV2aWNlPU15RGV2aWNlIF9jaD0wIF9wYz0xIF9jYz04OwogWwogaW5zdHJ1bWVudDogcGlhbm87CiB7CiAgICAgL3NpZ25hdHVyZTogNSA0LwogICAgIC9tYXJrOiBBLyAgICAgICAtLSB2YWxpZCAmIHVuaXF1ZSB0byB0aGlzIHZvaWNlCiAgICAgYzQgZCBlIGYgZyB8CiAgICAgL2p1bXA6IEEvICAgICAgIC0tIGp1bXBzIHRvIEEgb25jZQogICAgIGEgYiBjJzIKIH0KIF0="></werckmeister-snippet>
-<h4 id="parameters-8">parameters</h4>
+<h4 id="parameters-9">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -568,18 +628,21 @@ In combination with its ignore argument you are able to implement - for example 
 <p><br><br><br></p>
 <h3 id="mod"><code>mod</code></h3>
 <p>Adds a modification to the track. Every <code>mod</code> statement adds a further modification to the related voice.</p>
-<p> If you want to use ony one modification at the time use <a pageScroll id="link-54" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a> instead.</p>
-<h3 id="examples-9">examples</h3>
+<p> If you want to use ony one modification at the time use <a pageScroll id="link-55" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a> instead.</p>
+<h3 id="examples-10">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>/mod: arpeggio/</code></p>
 <p> <strong>named:</strong></p>
 <p> <code>/mod: _use=arpeggio/</code>  </p>
 <p> Mods can be external lua scripts, or one of theese internal mods:</p>
 <h4 id="bend">Bend</h4>
-<p> <code>/mod: bend _from=0/</code></p>
+<p> Performs a pitch bend from or to the pitch of a note. The value range is 0..100 where 50 means the pichbend center.</p>
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="140" wm-data="Ci9kb09uY2U6IGJlbmQgX2Zyb209MC8gYzEgfCAvZG9PbmNlOiBiZW5kIF90bz0wLyBjMQo="></werckmeister-snippet>
 <h4 id="arpeggio">Arpeggio</h4>
-<p> <code>/mod: arpeggio/</code></p>
-<h4 id="parameters-9">parameters</h4>
+<p> Performs an arpeggio over a given chord.</p>
+<p> <strong>Arpeggio is deprecated. Use the lua mod <a pageScroll id="link-56" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a> instead.</strong></p>
+<h4 id="parameters-10">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -598,13 +661,13 @@ In combination with its ignore argument you are able to implement - for example 
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="modonce"><code>modOnce</code></h3>
-<p>Like <a pageScroll id="link-55" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
-<h3 id="examples-10">examples</h3>
+<p>Like <a pageScroll id="link-57" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<h3 id="examples-11">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>/modOnce: arpeggio/</code></p>
 <p> <strong>named:</strong></p>
 <p> <code>/modOnce: _use=arpeggio/</code></p>
-<h4 id="parameters-10">parameters</h4>
+<h4 id="parameters-11">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -624,12 +687,12 @@ In combination with its ignore argument you are able to implement - for example 
 <p><br><br><br></p>
 <h3 id="pan"><code>pan</code></h3>
 <p>set the pan of the current track</p>
-<h3 id="examples-11">examples</h3>
+<h3 id="examples-12">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>/pan: 50/</code></p>
 <p> <strong>named:</strong></p>
 <p> <code>/pan: _to=50/</code></p>
-<h4 id="parameters-11">parameters</h4>
+<h4 id="parameters-12">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -649,12 +712,12 @@ In combination with its ignore argument you are able to implement - for example 
 <p><br><br><br></p>
 <h3 id="signature"><code>signature</code></h3>
 <p>Set the time signature of the current track.</p>
-<h3 id="examples-12">examples</h3>
+<h3 id="examples-13">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>/signature: 3 4/</code></p>
 <p> <strong>named:</strong></p>
 <p> <code>/signature: _upper=3 _lower=4/</code></p>
-<h4 id="parameters-12">parameters</h4>
+<h4 id="parameters-13">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -680,7 +743,7 @@ In combination with its ignore argument you are able to implement - for example 
 <p><br><br><br></p>
 <h3 id="tempo-1"><code>tempo</code></h3>
 <p><code>tempo</code> defines or changes the current tempo.</p>
-<h3 id="examples-13">examples</h3>
+<h3 id="examples-14">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>tempo: 120;</code></p>
 <p> <strong>named:</strong></p>
@@ -690,8 +753,8 @@ In combination with its ignore argument you are able to implement - for example 
 <p> or within a track</p>
 <p> <code>/tempo: 120/</code></p>
 <p> It is also possible to set different tempo values for several tracks:</p>
-<p> <a pageScroll id="link-56" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="tempo">see here</a></p>
-<h4 id="parameters-13">parameters</h4>
+<p> <a pageScroll id="link-58" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="tempo">see here</a></p>
+<h4 id="parameters-14">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -711,7 +774,7 @@ In combination with its ignore argument you are able to implement - for example 
 <p><br><br><br></p>
 <h3 id="voicingstrategy"><code>voicingStrategy</code></h3>
 <p>Adds a modification to the track.</p>
-<h3 id="examples-14">examples</h3>
+<h3 id="examples-15">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>/voicingStrategy: asNotated/</code> </p>
 <p> <strong>named:</strong></p>
@@ -723,7 +786,7 @@ In combination with its ignore argument you are able to implement - for example 
 <li><p>simpleGuitar</p>
 </li>
 </ul>
-<h4 id="parameters-14">parameters</h4>
+<h4 id="parameters-15">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -743,12 +806,12 @@ In combination with its ignore argument you are able to implement - for example 
 <p><br><br><br></p>
 <h3 id="volume"><code>volume</code></h3>
 <p>set the volume of the current track</p>
-<h3 id="examples-15">examples</h3>
+<h3 id="examples-16">examples</h3>
 <p> <strong>positional:</strong> </p>
 <p> <code>/volume: 50/</code></p>
 <p> <strong>named:</strong></p>
 <p> <code>/volume: _to=50/</code></p>
-<h4 id="parameters-15">parameters</h4>
+<h4 id="parameters-16">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -874,7 +937,7 @@ In combination with its ignore argument you are able to implement - for example 
 
 </ul>
 
-<h4 id="parameters-16">parameters</h4>
+<h4 id="parameters-17">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -932,7 +995,7 @@ In combination with its ignore argument you are able to implement - for example 
  instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><p> <strong>Example</strong></p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2d1aXRhclN0cm9rZS5sdWEiOwp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ICBwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0yNDsKaW5zdHJ1bWVudENvbmY6IHBpYW5vIG1vZCBndWl0YXJTdHJva2UgX21vZGU9YWx0ZXJuYXRlIF92YWx1ZT0xNjsgClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICA8YyBlIGcgYj40IDxjIGUgZyBiPjQgPGMgZWIgZyBiYj4yIHwgIDxjIGViIGcgYmI+MiA8YyBlYiBnIGJiPjIKfQpd"></werckmeister-snippet>
-<h4 id="parameters-17">parameters</h4>
+<h4 id="parameters-18">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -969,7 +1032,7 @@ In combination with its ignore argument you are able to implement - for example 
 <p> If a tag is given, only the tagged notes are performed legato.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2xlZ2F0by5sdWEiOwp0ZW1wbzogMTQwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBsZWdhdG8gX2ZvclRhZz1sZWcgX2Ftb3VudD0xMDAvCiAgIC0tIG9ubHkgdGhlIGBkYCB3aWxsIGJlIHBlcmZvcm1lZCBsZWdhdG8uIAogICBjICJsZWciQGQgZSBmCn0KXQ=="></werckmeister-snippet>
-<h4 id="parameters-18">parameters</h4>
+<h4 id="parameters-19">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1000,7 +1063,7 @@ In combination with its ignore argument you are able to implement - for example 
 <p> <strong>Example</strong></p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL215QXJwZWdnaW8ubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOiAgcGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogL2RvOiBteUFycGVnZ2lvLyAKIDxjIGUgZyBiPjIgCiAvZG86IG15QXJwZWdnaW8gX2RpcmVjdGlvbj1kb3duLyAKIDxjIGViIGcgYmI+MiAKfQpd"></werckmeister-snippet>
-<h4 id="parameters-19">parameters</h4>
+<h4 id="parameters-20">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1031,7 +1094,7 @@ In combination with its ignore argument you are able to implement - for example 
 <p> If a tag is given, only the tagged notes are performed staccato.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL3N0YWNjYXRvLmx1YSI7CnRlbXBvOiAxNDA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCmluc3RydW1lbnQ6IHBpYW5vOwp7CiAgIC9tb2Q6IHN0YWNjYXRvIF9mb3JUYWc9c3RhYyBfYW1vdW50PTEwMC8KICAgLS0gb25seSB0aGUgYGRgIHdpbGwgYmUgcGVyZm9ybWVkIHN0YWNjYXRvLiAKICAgYyAic3RhYyJAZCBlIGYKfQpd"></werckmeister-snippet>
-<h4 id="parameters-20">parameters</h4>
+<h4 id="parameters-21">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1061,7 +1124,7 @@ In combination with its ignore argument you are able to implement - for example 
 <p>Performs a swing groove.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL3N3aW5nLmx1YSI7CnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjogIHBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTA7ClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL21vZDogc3dpbmcvCiAgIGM4ICBjICAgYyAgIGMgICBjICAgYyAgIGMgICBjCgp9Cl0="></werckmeister-snippet>
-<h4 id="parameters-21">parameters</h4>
+<h4 id="parameters-22">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1092,7 +1155,7 @@ In combination with its ignore argument you are able to implement - for example 
 <p>Tries to simulate the chord voicing of an guitar.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS92b2ljaW5ncy9ndWl0YXIubHVhIjsKdXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7Cgp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogbXlUZW1wbGF0ZTsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL3ZvaWNpbmdTdHJhdGVneTogZ3VpdGFyLwogICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
-<h4 id="parameters-22">parameters</h4>
+<h4 id="parameters-23">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1116,7 +1179,7 @@ In combination with its ignore argument you are able to implement - for example 
 <p>The simple approach with no strategy.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS92b2ljaW5ncy9zaW1wbGUubHVhIjsKdXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7Cgp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogbXlUZW1wbGF0ZTsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL3ZvaWNpbmdTdHJhdGVneTogc2ltcGxlLwogICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
-<h4 id="parameters-23">parameters</h4>
+<h4 id="parameters-24">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1141,7 +1204,7 @@ In combination with its ignore argument you are able to implement - for example 
 <p> the octaves of a chord are rearranged, so that the actual pitch distance between the previous chord is kept minimal.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS92b2ljaW5ncy92b2ljZWxlYWQubHVhIjsKdXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7Cgp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogbXlUZW1wbGF0ZTsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL3ZvaWNpbmdTdHJhdGVneTogdm9pY2VsZWFkLwogICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
-<h4 id="parameters-24">parameters</h4>
+<h4 id="parameters-25">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
