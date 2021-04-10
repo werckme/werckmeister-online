@@ -1,0 +1,21 @@
+-- tempo: 75
+-- signature: 4/4
+-- parts: normal
+[
+type: template;
+name: drums.rockBallad.normal;
+instrument: drums;
+{
+    \pp
+    "tmb"16!p&&!p&   !f&&!p&&    &&!p&&   !ff&&!p&& | 
+}
+{
+    "ht"8 &   !ffff& &   & &  !ffff& & |  
+}
+{
+   r4  "sn"4  r  &   |
+}
+{
+    "bd"8 !f&   r &   & r   r !f&  |
+}
+]

@@ -1,0 +1,238 @@
+-- SAMBA GODSCHYNSKI
+-- #3/4 #4/4 #polyrhythm 
+-- #several-accomp-tracks #volume-fades
+using "./myConfig.config";
+using "./default.chords";
+using "./myPitchmap.pitchmap";
+using "./drums.country.template";
+using "./bass.country.template";
+using "./drums.rockBallad.template";
+using "./rhythm.rockBallad.template";
+using "./lua/voicings/simple.lua";
+using "./lua/voicings/voicelead.lua";
+using "./lua/voicings/guitar.lua";
+using "./lua/mods/guitarStroke.lua";
+using "./lua/mods/staccato.lua";
+
+tempo: 120;
+
+instrumentDef: lead     MyDevice _ch=0 _pc=11;
+instrumentDef: rhythm   MyDevice _ch=1 _pc=24;
+instrumentDef: bass     MyDevice _ch=2 _pc=34;
+instrumentDef: bass2    MyDevice _ch=3 _pc=7;
+instrumentDef: strings  MyDevice _ch=4 _pc=49;
+instrumentDef: rhythm2  MyDevice _ch=5 _pc=0;
+instrumentDef: brass    MyDevice _ch=6 _pc=61;
+instrumentDef: sitar    MyDevice _ch=7 _pc=104;
+
+instrumentDef: drums   MyDevice _ch=9 _pc=0;
+
+instrumentConf: drums volume 57;
+
+instrumentConf: lead 
+    volume 100
+;
+
+instrumentConf: rhythm 
+    voicingStrategy guitar _range="alto"
+    pan 80
+    volume 56
+;
+
+instrumentConf: rhythm2
+    voicingStrategy guitar _range="baritone"
+    volume 46
+;
+
+instrumentConf: bass 
+    volume 70
+    mod staccato _amount=30
+    voicingStrategy simple _range="contrabass"
+;
+
+instrumentConf: bass2 
+    volume 70
+    mod staccato _amount=30
+    voicingStrategy simple _range="contrabass"
+;
+
+instrumentConf: brass 
+    voicingStrategy simple _range="baritone"
+;
+
+
+instrumentConf: sitar 
+    volume 45
+    voicingStrategy simple _range="bass"
+;
+
+
+[
+instrument: lead;
+{
+    /signature: 3 4/
+    /tempo: 90/ 
+    r2. :|: 
+    /mark: segno/
+    g'16 e' d' c' b  g4.  f#16 |  g a bb c' d' eb' g'4. | a'16 f' e' d' c' b a4    g#16 a |
+    a32 c' d'  e'16  eb'32 c' bb a8.  b16  c' a b c' |  g#2       g16 g#  b g |  bb2~  &8  r16  g# |
+    g2.   |^1 a32 c' e'  g'16   g32 b d' f'16  f32 a c'  e'16  e32 f g a16 b c' :|^2 e'4~ &16  b4  g8. |
+    f2. | g#2. | c'2    g#'4 | g'  r2 | e'8.  b16  g e' b32 g d a  g8. f#16 | f2. | g# | b |
+    /jump: segno/
+    c'2. | b16 r & f  r &  b & &  f r & | c'2. |
+}
+]
+
+[
+type: template;
+name: brass;
+instrument: brass;
+{
+    /signature: 3 4/
+    /volume: 60/
+    \fffff
+    <I V VII III>16 r r8  r2 | r2. | r | r | r |
+}
+]
+
+[
+type: template;
+name: strings;
+instrument: strings;
+{
+    /signature: 3 4/
+    \fffff
+    r2. | r | 
+    /fade: _duration=3 _from=0 _to=40 _curve="lin"/
+    <I,, I, I V VII III I' VII'>2. | 
+}
+]
+
+[
+type: template;
+name: stringsFade1;
+instrument: strings;
+{
+    /signature: 3 4/
+    \fffff
+    r2. | r | r | 
+    /fade: _duration=3 _from=0 _to=35 _curve="lin"/
+    <I,, I, I V VII III I' VII'>2. | 
+}
+]
+
+[
+type: template;
+name: stringsFade2;
+instrument: strings;
+{
+    /signature: 3 4/
+    \fffff
+    r2. | r | 
+    /fade: _duration=3 _from=0 _to=35 _curve="lin"/
+    <I,, I, I V VII III I' VII'>2. | 
+}
+]
+
+[
+type: template;
+name: sitar;
+instrument: sitar;
+{
+    /signature: 4 4/
+    I1 | r2 V2 | I1 | r | r2 V |
+}
+]
+
+
+[
+type: accomp;
+{
+    /signature: 3 4/
+    /tempo: 90/ 
+    /template: bass1/
+    C :|: 
+    /mark: segno/
+    /template: bass1 stringsFade1/
+    C | C | D- | D- | 
+    /template: bass2 brass/
+    D-7b5 | D-7b5 | 
+    /template: bass1/
+    C | C :| 
+    /template: bass2 stringsFade2/
+    D-7b5 | D-7b5 | D-7b5 | 
+    /template: bass1 brass/
+    C  | 
+    /template: bass.onehit chords.onehit/
+    C  | 
+    /template: bass2/
+    D-7b5 | D-7b5 | D-7b5 |
+    /jump: segno/
+    /template: bass1/
+    C  | C | 
+    /template: bass.onehit chords.onehit/
+    C |
+}
+]
+
+[
+type: accomp;
+{
+    /signature: 4 4/
+    /template: drums.rockBallad.normal rhythm.rockBallad.normal bass.country.normal sitar/
+    C | C |: 
+    /mark: segno/
+    C | C | D- | D-  | D-7b5 | D-7b5  | C | C :| 
+    D-7b5 | D-7b5 | D-7b5 | 
+    C  | 
+    C  |
+    D-7b5 | D-7b5 | D-7b5 |
+    /jump: segno/
+    C  | 
+    /template: drums.country.ende bass.country.ende/
+    C | 
+    /template: drums.country.ende bass.country.ende/
+    C |
+}
+]
+
+
+[
+type: template;
+name: bass1;
+instrument: bass2;
+{
+    /signature: 3 4/
+    V,,16 r &    I,, r &    V,,&&    I,, r I,, | 
+}
+]
+
+[
+type: template;
+name: bass2;
+instrument: bass2;
+{
+    /signature: 3 4/
+    V,,16 r &  I,, r &   V,, r &   I,, r I,, | 
+}
+]
+
+[
+type: template;
+name: bass.onehit;
+instrument: bass2;
+{
+    /signature: 3 4/
+    I,,2. | 
+}
+]
+
+[
+type: template;
+name: chords.onehit;
+instrument: rhythm;
+{
+    /signature: 3 4/
+    <I, III V VII>2.|
+}
+]

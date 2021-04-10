@@ -1,0 +1,20 @@
+-- tempo: 120
+-- signature: 4/4
+-- parts: normal, ende
+[
+type: template;
+name: bass.country.normal;
+instrument: bass; 
+{
+    I,,4. I,,8 V,,,4. V,,,8 |
+}   
+] 
+
+[
+type: template;
+name: bass.country.ende;
+instrument: bass; 
+{
+    I,,1 |
+}   
+] 
