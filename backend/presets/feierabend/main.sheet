@@ -1,13 +1,16 @@
 -- SAMBA GODSCHYNSKI
 -- #3/4 #4/4 #polyrhythm 
 -- #several-accomp-tracks #volume-fades
+-- NOTE: this tunes loading/compile time takes a while ¯\(°_o)/¯
 using "./myConfig.config";
 using "./default.chords";
 using "./myPitchmap.pitchmap";
 using "./drums.country.template";
 using "./bass.country.template";
+using "./34bass.template";
 using "./drums.rockBallad.template";
 using "./rhythm.rockBallad.template";
+using "./gimmicks.template";
 using "./lua/voicings/simple.lua";
 using "./lua/voicings/voicelead.lua";
 using "./lua/voicings/guitar.lua";
@@ -83,67 +86,6 @@ instrument: lead;
 }
 ]
 
-[
-type: template;
-name: brass;
-instrument: brass;
-{
-    /signature: 3 4/
-    /volume: 60/
-    \fffff
-    <I V VII III>16 r r8  r2 | r2. | r | r | r |
-}
-]
-
-[
-type: template;
-name: strings;
-instrument: strings;
-{
-    /signature: 3 4/
-    \fffff
-    r2. | r | 
-    /fade: _duration=3 _from=0 _to=40 _curve="lin"/
-    <I,, I, I V VII III I' VII'>2. | 
-}
-]
-
-[
-type: template;
-name: stringsFade1;
-instrument: strings;
-{
-    /signature: 3 4/
-    \fffff
-    r2. | r | r | 
-    /fade: _duration=3 _from=0 _to=35 _curve="lin"/
-    <I,, I, I V VII III I' VII'>2. | 
-}
-]
-
-[
-type: template;
-name: stringsFade2;
-instrument: strings;
-{
-    /signature: 3 4/
-    \fffff
-    r2. | r | 
-    /fade: _duration=3 _from=0 _to=35 _curve="lin"/
-    <I,, I, I V VII III I' VII'>2. | 
-}
-]
-
-[
-type: template;
-name: sitar;
-instrument: sitar;
-{
-    /signature: 4 4/
-    I1 | r2 V2 | I1 | r | r2 V |
-}
-]
-
 
 [
 type: accomp;
@@ -155,13 +97,13 @@ type: accomp;
     /mark: segno/
     /template: bass1 stringsFade1/
     C | C | D- | D- | 
-    /template: bass2 brass/
+    /template: bass2 brass.hit/
     D-7b5 | D-7b5 | 
     /template: bass1/
     C | C :| 
     /template: bass2 stringsFade2/
     D-7b5 | D-7b5 | D-7b5 | 
-    /template: bass1 brass/
+    /template: bass1 brass.hit/
     C  | 
     /template: bass.onehit chords.onehit/
     C  | 
@@ -193,46 +135,5 @@ type: accomp;
     C | 
     /template: drums.country.ende bass.country.ende/
     C |
-}
-]
-
-
-[
-type: template;
-name: bass1;
-instrument: bass2;
-{
-    /signature: 3 4/
-    V,,16 r &    I,, r &    V,,&&    I,, r I,, | 
-}
-]
-
-[
-type: template;
-name: bass2;
-instrument: bass2;
-{
-    /signature: 3 4/
-    V,,16 r &  I,, r &   V,, r &   I,, r I,, | 
-}
-]
-
-[
-type: template;
-name: bass.onehit;
-instrument: bass2;
-{
-    /signature: 3 4/
-    I,,2. | 
-}
-]
-
-[
-type: template;
-name: chords.onehit;
-instrument: rhythm;
-{
-    /signature: 3 4/
-    <I, III V VII>2.|
 }
 ]

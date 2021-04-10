@@ -1,0 +1,59 @@
+[
+type: template;
+name: brass.hit;
+instrument: brass;
+{
+    /signature: 3 4/
+    /volume: 70/
+    \fffff
+    <I V VII III>16 r r8  r2 | r2. | r | r | r |
+}
+]
+
+[
+type: template;
+name: sitar;
+instrument: sitar;
+{
+    /signature: 4 4/
+    I1 | r2 V2 | I1 | r | r2 V |
+}
+]
+
+[
+type: template;
+name: stringsFade1;
+instrument: strings;
+{
+    /signature: 3 4/
+    \fffff
+    r2. | r | r | 
+    /fade: _duration=3 _from=10 _to=35 _curve="lin"/
+    /do: bend _from=70/
+    <I,, I, I V VII III I' VII'>2. | 
+}
+]
+
+[
+type: template;
+name: stringsFade2;
+instrument: strings;
+{
+    /signature: 3 4/
+    \fffff
+    r2. | r | 
+    /fade: _duration=3 _from=10 _to=35 _curve="lin"/
+    /do: bend _from=70/
+    <I,, I, I V VII III I' VII'>2. | 
+}
+]
+
+[
+type: template;
+name: chords.onehit;
+instrument: rhythm;
+{
+    /signature: 3 4/
+    <I, III V VII>2.|
+}
+]
