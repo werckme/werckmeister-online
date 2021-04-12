@@ -1,14 +1,15 @@
 -- KOJI KONDO
--- transcription by Joseph Karam
+-- (transcription by Joseph Karam)
 -- http://www.mariopiano.com/mario-sheet-music-underworld-theme.html
--- #repeats #jumps #triplets #mod-staccato #polytempo #instrument-change #jump-repeat
+-- #repeats #jumps #triplets #mod-staccato #polytempo 
+-- #instrument-change #jump-repeat #velocity-accents #pitchmap-symbols
 using "staccato.lua";
 using "drums.pitchmap";
 
 tempo: 200;
 device: MyDevice  midi _usePort=0;
-instrumentDef: bass          _onDevice=MyDevice  _ch=0 _pc=0;
-instrumentDef: bassStaccato  _onDevice=MyDevice  _ch=0 _pc=0;
+instrumentDef: bass          _onDevice=MyDevice  _ch=0 _pc=38;
+instrumentDef: bassStaccato  _onDevice=MyDevice  _ch=0 _pc=38;
 instrumentDef: drums         _onDevice=MyDevice  _ch=9 _pc=0;
 instrumentConf: bassStaccato mod staccato;
 
@@ -40,15 +41,15 @@ instrument: bass;
 instrument: drums;
 {
     /mark: begin/
-
-    "ht"8 !pp&  & !pp&  & !pp&  & !pp& |
+    \pp
+    !fh8 h  !fh h  !fh h  !fh h |
     
     /jump: begin _repeat=26/
 }
 {
     /mark: begin/
     
-    "bd"2 "sn"2 | "bd"8 &  &4 "sn" r4 |
+    o2 x | o8 o o4 x r |
     
     /jump: begin _repeat=11/
 }
