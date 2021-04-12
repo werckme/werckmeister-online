@@ -1,5 +1,5 @@
 -- FRANK ZAPPA
--- #nested tuplets #grace-notes #acciaccatura
+-- #nested-tuplets #grace-notes #acciaccatura
 using "default.chords";
 using "drums.pitchmap";
 using "lua/voicings/simple.lua";

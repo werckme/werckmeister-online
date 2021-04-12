@@ -5,12 +5,16 @@ const monk = require('monk')
 const {nanoid} = require('nanoid');
 const { getWorkspace, listPresets } = require('./localWorkspaceBuilder');
 const yup = require('yup');
+const sheetParser = require('./sheetParser');
 var bodyParser = require('body-parser')
 
 require('dotenv').config();
 const db = monk(process.env.MONGODB_URI);
 const workspaces = db.get('workspaces');
 workspaces.createIndex({ wid: 1 }, { unique: true });
+
+const presets = db.get('presets');
+presets.createIndex({ wid: 1 }, { unique: true });
 
 const fileSchema = yup.object().noUnknown().shape({
     path: yup.string().trim().required(),
