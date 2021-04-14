@@ -1,9 +1,10 @@
 @import "../../../../mixins.scss";
 
-ul.sources {
+ul.tags {
     padding: 0;
     li {
         list-style: none;
+        display: inline;
     }
 }
 
@@ -12,7 +13,12 @@ nz-card {
     @include mat-card-1;
 }
 
-img {
-    width: 50%;
-    margin: auto;
+.title {
+    .song-title {
+        display: block;
+    }
+    .by {
+        font-size: 0.8em;
+        font-style: normal;
+    }
 }

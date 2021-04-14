@@ -13,9 +13,6 @@ const db = monk(process.env.MONGODB_URI);
 const workspaces = db.get('workspaces');
 workspaces.createIndex({ wid: 1 }, { unique: true });
 
-const presets = db.get('presets');
-presets.createIndex({ wid: 1 }, { unique: true });
-
 const fileSchema = yup.object().noUnknown().shape({
     path: yup.string().trim().required(),
     data: yup.string()
@@ -61,6 +58,18 @@ app.get('/', async (req, res, next) => {
     try {
         const workspace = createNewWorkspace(presetMap['default']);
         res.json(workspace);
+    } catch(ex) {
+        console.error(ex);
+        next(Error());
+    }
+});
+
+app.get('/songs', async (req, res, next) => {
+    try {
+        const dbPresets = db.get('presets');
+        let presets = await dbPresets.find({}, {sort: {'metaData.title': 1}});
+        presets = presets.map(x => { delete x._id; return x; });
+        res.json(presets);
     } catch(ex) {
         console.error(ex);
         next(Error());
