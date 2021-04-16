@@ -8,7 +8,7 @@ import { ISongInfo, SongsService } from 'src/app/services/songs.service';
 })
 export class ExamplesComponent implements OnInit {
 
-  private songs: ISongInfo[];
+  public songs: ISongInfo[];
 
   constructor(private songsService: SongsService) { }
 
