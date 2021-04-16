@@ -42,7 +42,7 @@ function getInfo(name, text, required) {
 function getMetaData(sheetFile) {
     const text = fs.readFileSync(sheetFile).toString();
     const commentSection = getHeaderCommentSection(text);
-    const tags = Array.from(commentSection.matchAll(/#(.+?)(\s|$)/g)).map(x => x[1]);
+    const tags = Array.from(commentSection.matchAll(/#(.{2,}?)(\s|$)/g)).map(x => x[1]);
     const title = getInfo('TITLE', commentSection, true);
     const by = getInfo('BY', commentSection, true).split(',').map(x => x.trim());
     return {

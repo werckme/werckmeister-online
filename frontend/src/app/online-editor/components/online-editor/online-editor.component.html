@@ -1,27 +1,32 @@
 <div class="werckmeister-online-editor" [ngClass]="{'is-dirty': !workspaceIsClean}">
     <nz-header>
-        <ul id="editor-navbar" nz-menu nzTheme="light" nzMode="horizontal">
-            <a [routerLink]="['/']">
-                <img class="logo" src="assets/images/Logo.png" alt="werckmeister logo">
-            </a>
-            <li nz-menu-item>
-                <!-- wm-soundfont-url="https://raw.githubusercontent.com/werckme/soundfont-server/main/soundfonts/choriumreva/choriumreva.sf2.json" -->
-                <werckmeister-workspace #workspace 
-                    wm-css-url="/assets/werckmeister-workspace.css">
-                </werckmeister-workspace>
-            </li>
-            <li nz-menu-item>
-                <button nzSize="large" nz-button nzType="link" [nzGhost]="true" title="Download MIDI"
-                    (click)="download()"><i nz-icon nzType="download" nzTheme="outline"></i>MIDI</button>
-            </li>
-            <li nz-menu-item>
-                <button nzSize="large" nz-button nzType="link" [nzGhost]="true" class="has-dirty-workspace-mark"
-                    title="Save" (click)="save()"><i nz-icon nzType="save" nzTheme="outline"></i>Save</button>
-            </li>
-            <li nz-menu-item id="last-item">
-               <a [routerLink]="['/']">Back To Mainpage <i nz-icon nzType="caret-right" nzTheme="outline"></i></a>
-            </li>
-        </ul>
+        <div class="top-menu">
+            <div class="left-side">
+                <div id="editor-navbar" nz-menu nzTheme="light" nzMode="horizontal">
+                    <a [routerLink]="['/']">
+                        <img class="logo" src="assets/images/Logo.png" alt="werckmeister logo">
+                    </a>
+                    <div nz-menu-item>
+                        <!-- wm-soundfont-url="https://raw.githubusercontent.com/werckme/soundfont-server/main/soundfonts/choriumreva/choriumreva.sf2.json" -->
+                        <werckmeister-workspace #workspace wm-css-url="/assets/werckmeister-workspace.css">
+                        </werckmeister-workspace>
+                    </div>
+                    <div nz-menu-item>
+                        <button nzSize="large" nz-button nzType="link" [nzGhost]="true" title="Download MIDI"
+                            (click)="download()"><i nz-icon nzType="download" nzTheme="outline"></i>MIDI</button>
+                    </div>
+                    <div nz-menu-item>
+                        <button nzSize="large" nz-button nzType="link" [nzGhost]="true" class="has-dirty-workspace-mark"
+                            title="Save" (click)="save()"><i nz-icon nzType="save" nzTheme="outline"></i>Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="right-side">
+                <a [routerLink]="['/examples']">Examples</a>
+                <a [routerLink]="['/']">Back To Mainpage <i nz-icon nzType="caret-right" nzTheme="outline"></i></a>
+                
+            </div>
+        </div>
     </nz-header>
 
     <div class="editor-main" #editorMain>

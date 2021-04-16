@@ -62,6 +62,7 @@ instrumentConf: bass2
 
 instrumentConf: brass
     pan 80
+    volume 60
     voicingStrategy simple _range="baritone"
 ;
 
@@ -97,8 +98,7 @@ type: accomp;
 {
     /signature: 3 4/
     /tempo: 90/ 
-    /template: bass1/
-    C :|: 
+    r2. :|: 
     /mark: segno/
     /template: bass1 stringsFade1/
     C | C | D- | D- | 

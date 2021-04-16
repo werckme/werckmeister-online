@@ -5,20 +5,36 @@ ul.tags {
     li {
         list-style: none;
         display: inline;
+        nz-tag {
+            margin: 5px 2.5px;
+        }
     }
 }
 
 nz-card {
     margin-bottom: 1em;
     @include mat-card-1;
+    height: 100%;
 }
 
 .title {
     .song-title {
         display: block;
+        margin-bottom: 0;
+        line-height: 15px;
     }
     .by {
         font-size: 0.8em;
         font-style: normal;
     }
+    margin-bottom: 1em;
+}
+
+.ant-row-flex-top {
+    align-items: stretch;
+}
+
+.card-wrapper {
+    height: 100%;
+    padding: 10px 0;
 }

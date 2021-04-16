@@ -1,22 +1,19 @@
 <div nz-row [nzGutter]="{xs: 0, sm: 20, md: 20, lg: 40, xl: 40, xxl: 40}" nzType="flex">
     <div nz-col *ngFor="let song of songs" [nzXs]="{ span: 24 }" [nzSm]="{ span: 12 }" [nzMd]="{ span: 8 }">
-        <nz-card [nzTitle]="title" [nzActions]="[cta]">
-            <ul class="tags">
-                <li *ngFor="let tag of song.metaData.tags">
-                    <nz-tag> {{tag}} </nz-tag>
-                </li>
-            </ul>
-        </nz-card>
-        <ng-template #title>
-            <div class="title">
-                <span class="song-title">{{song.metaData.title}}</span>
-                <span class="by"> {{ song.metaData.by.join(',') }} </span>
-            </div>
-
-        </ng-template>
-        <ng-template #cta>
-            <a [routerLink]="['/editor']" [queryParams]="{ wid:song.wid }"><i nz-icon nzType="play-circle"
-                    nzTheme="outline"></i></a>
-        </ng-template>
+        <div class="card-wrapper">
+            <a [routerLink]="['/editor']" [queryParams]="{ wid:song.wid }">
+                <nz-card [nzHoverable]="true">
+                    <div class="title">
+                        <h2 class="song-title">{{ song.metaData.title }}</h2>
+                        <span class="by">{{ song.metaData.by.join(',') }}</span>
+                    </div>
+                    <ul class="tags">
+                        <li *ngFor="let tag of song.metaData.tags">
+                            <nz-tag [nzColor]="'purple'">#{{tag}}</nz-tag>
+                        </li>
+                    </ul>
+                </nz-card>
+            </a>
+        </div>
     </div>
 </div>

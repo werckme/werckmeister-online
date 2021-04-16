@@ -4,7 +4,6 @@ name: brass.hit;
 instrument: brass;
 {
     /signature: 3 4/
-    /volume: 70/
     \fffff
     <I V VII III>16 r r8  r2 | r2. | r | r | r |
 }
