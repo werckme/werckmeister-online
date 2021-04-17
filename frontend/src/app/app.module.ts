@@ -28,6 +28,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { HeroSnippetComponent } from './components/pages/home/hero-snippet/hero-snippet.component';
 import { TuxComponent } from './components/partials/icons/tux/tux.component';
 import { SongsService } from './services/songs.service';
+import { EmbeddedHeaderComponent, EmbeddedLinkDirective } from './directives/embedded-link.directive';
 
 registerLocaleData(en);
 @NgModule({
@@ -48,7 +49,9 @@ registerLocaleData(en);
 		EmbeddedSoundcloudPlayerComponent,
 		HomeComponent,
 		HeroSnippetComponent,
-		TuxComponent
+		TuxComponent,
+		EmbeddedLinkDirective,
+		EmbeddedHeaderComponent
 	],
 	imports: [
 		BrowserModule,
@@ -65,6 +68,7 @@ registerLocaleData(en);
 		{ provide: NZ_I18N, useValue: en_US },
 		SongsService
 	],
+	entryComponents: [EmbeddedSoundcloudPlayerComponent, EmbeddedHeaderComponent],
 	bootstrap: [AppComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

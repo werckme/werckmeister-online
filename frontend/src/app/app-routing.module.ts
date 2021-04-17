@@ -9,6 +9,7 @@ import { CodeExtensionComponent } from './components/pages/visual-studio-extensi
 import { DownloadComponent } from './components/pages/download/download.component';
 import { OnlineEditorComponent } from './online-editor/components/online-editor/online-editor.component';
 import { HomeComponent } from './components/pages/home/home.component';
+import { EmbeddedSoundcloudPlayerComponent } from './components/partials/embedded-soundcloud-player/embedded-soundcloud-player.component';
 
 
 const routes: Routes = [
