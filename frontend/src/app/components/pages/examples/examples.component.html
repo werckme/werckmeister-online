@@ -3,12 +3,13 @@
         <div class="card-wrapper">
             <nz-card [nzTitle]="title" [nzExtra]="cta">
                 <p>
-                  <span [innerHtml]="song.metaData.description">
-                  </span>
+                    <span [innerHtml]="song.metaData.description">
+                    </span>
                 </p>
                 <ul class="links">
                     <li *ngFor="let link of song.metaData.links">
-                        <a appEmbeddedLink target="_blank" (click)="$event.stopPropagation()" [href]="link.url">{{link.title}}</a>
+                        <a appEmbeddedLink target="_blank" (click)="$event.stopPropagation()"
+                            [href]="link.url">{{link.title}}</a>
                     </li>
                 </ul>
                 <ul class="tags">
@@ -19,12 +20,15 @@
             </nz-card>
             <ng-template #title>
                 <div class="title">
-                    <h2 class="song-title">{{ song.metaData.title }}</h2>
+                    <a class="cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:song.wid }">
+                        <h2 class="song-title">{{ song.metaData.title }}</h2>
+                    </a>
                     <span class="by">{{ song.metaData.by.join(',') }}</span>
                 </div>
             </ng-template>
             <ng-template #cta>
-                <a class="cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:song.wid }"><i nz-icon nzType="play-circle" nzTheme="outline"></i></a>
+                <a class="cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:song.wid }"><i
+                        nz-icon nzType="play-circle" nzTheme="outline"></i></a>
             </ng-template>
         </div>
     </div>

@@ -2,10 +2,11 @@ import { Directive, ElementRef, AfterViewInit, ViewContainerRef, ComponentFactor
 import { waitAsync } from 'src/shared/help/waitAsync';
 import { IHasUrl } from 'src/shared/IHasUrl';
 import { EmbeddedSoundcloudPlayerComponent } from '../components/partials/embedded-soundcloud-player/embedded-soundcloud-player.component';
+import { EmbeddedYoutubeComponent } from '../components/partials/embedded-youtube/embedded-youtube.component';
 
 @Component({
   selector: 'app-embedded-title',
-  template: `<h5>{{title}}</h5>`,
+  template: `<h4>{{title}}</h4>`,
 })
 export class EmbeddedHeaderComponent {
   @Input()
@@ -22,6 +23,7 @@ export class EmbeddedLinkDirective implements AfterViewInit {
   constructor(private viewContainer: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver) {
     this.urlOriginElementMap.set("https://soundcloud.com", EmbeddedSoundcloudPlayerComponent); 
+    this.urlOriginElementMap.set("https://www.youtube.com", EmbeddedYoutubeComponent); 
   }
 
   protected createEmbeddedComponent<TComponent>(componentType: Type<TComponent>): TComponent {
@@ -32,12 +34,12 @@ export class EmbeddedLinkDirective implements AfterViewInit {
   async ngAfterViewInit(): Promise<void> {
     await waitAsync(0);
     const element:HTMLAnchorElement = this.viewContainer.element.nativeElement;
-    element.style.display = "none";
     const origin = element.origin
     const componentType = this.urlOriginElementMap.get(origin);
     if (!componentType) {
       return;
     }
+    element.style.display = "none";
     this.createEmbeddedComponent(EmbeddedHeaderComponent).title = element.textContent;
     this.createEmbeddedComponent(componentType).url = element.href;
   }
