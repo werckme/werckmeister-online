@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { IHasUrl } from 'src/shared/IHasUrl';
 
 const smallPlayerOptions="color=%23ff5500&inverse=false&auto_play=false&show_user=true";
 const classicPlayerOptions="color=%23ff5500&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=true";
@@ -9,7 +10,7 @@ const classicPlayerOptions="color=%23ff5500&auto_play=false&hide_related=true&sh
   templateUrl: './embedded-soundcloud-player.component.html',
   styleUrls: ['./embedded-soundcloud-player.component.scss']
 })
-export class EmbeddedSoundcloudPlayerComponent implements OnInit {
+export class EmbeddedSoundcloudPlayerComponent implements OnInit, IHasUrl {
 
   @Input()
   url: string;

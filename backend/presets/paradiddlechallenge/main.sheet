@@ -1,0 +1,116 @@
+-- TITLE: Gavin Harrison's Paradiddle Challenge
+-- BY: Gavin Harrison, Gary Husband, Drumeo
+-- #mod-drum-rudiments #pitchmap-symbols #event-tags
+-- [The Origin](https://www.youtube.com/watch?v=XEWmzQ_fJmw)
+
+using "./default.chords";
+using "./drums.pitchmap";
+using "./lua/mods/drumRudiments.lua";
+
+device: MyDevice _isType=midi _usePort=4;
+instrumentDef: drums MyDevice _ch=9 _pc=0 _cc=0;
+
+tempo: 90;
+
+[
+type: template;
+name: step1;
+instrument: drums;
+{
+    \fff
+    /signature: 3 1/
+    /mod: drumRudiments/
+    "12x paradiddle"@      <x' x,>1 ~&~&
+}
+]
+
+[
+type: template;
+name: step2;
+instrument: drums;
+{
+    /signature: 3 1/
+    \fff
+    /mod: drumRudiments/
+    "12x paradiddle"@      <x' x,>1 ~&~&
+}
+{
+    /signature: 3 1/
+    o16rr  orr  orr  orr  orr orr  
+    o  rr  orr  orr  orr  orr   
+    o  rr  orr  orr  orr  orr   | 
+}
+]
+
+[
+type: template;
+name: step3;
+instrument: drums;
+{
+    \fff
+    /signature: 3 1/
+    /mod: drumRudiments/
+    "12x paradiddle"@      <x' x,>1 ~&~&
+}
+{
+    /signature: 3 1/
+    \fff
+    h,16rr  h,rr  h,rr  h,rr  h,rr h,rr  
+    h,  rr  h,rr  h,rr  h,rr  h,rr   
+    h,  rr  h,rr  h,rr  h,rr  h,rr   | 
+}
+]
+
+[
+type: template;
+name: step4;
+instrument: drums;
+{
+    \fff
+    /signature: 3 1/
+    /mod: drumRudiments/
+    "12x paradiddle"@      <x' x,>1 ~&~&
+}
+{
+    /signature: 3 1/
+    \fff
+    o16rr  h,rr  orr  h,rr  orr h,rr  
+    o  rr  h,rr  orr  h,rr  orr   
+    h,  rr  orr  h,rr  orr  h,rr   | 
+}
+]
+
+[
+type: template;
+name: step5;
+instrument: drums;
+{
+    \fff
+    /signature: 3 1/
+    /mod: drumRudiments/
+    "12x paradiddle"@      <x' x,>1 ~&~&
+}
+{
+    /signature: 3 1/
+    /mod: drumRudiments/
+    \fff
+    "4x paradiddle"@      <o h,>1 ~&~& |  
+}
+]
+
+[
+type: accomp;
+{
+    /signature: 3 1/
+    /template: step1/
+    C |
+    /template: step2/ 
+    C |
+    /template: step3/     
+    C | 
+    /template: step4/ 
+    C |
+    /template: step5/ 
+    C | C
+}
+]

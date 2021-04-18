@@ -5,7 +5,7 @@ import { Directive, HostListener, ElementRef } from '@angular/core';
 })
 export class PushToHistoryIfOnSamePageDirective {
 
-  constructor(protected el: ElementRef<HTMLLinkElement>) { }
+  constructor(protected el: ElementRef<HTMLAnchorElement>) { }
 
   @HostListener('mousedown') 
   onClicked(ev: MouseEvent) {

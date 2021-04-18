@@ -27,6 +27,9 @@ import { EmbeddedSoundcloudPlayerComponent } from './components/partials/embedde
 import { HomeComponent } from './components/pages/home/home.component';
 import { HeroSnippetComponent } from './components/pages/home/hero-snippet/hero-snippet.component';
 import { TuxComponent } from './components/partials/icons/tux/tux.component';
+import { SongsService } from './services/songs.service';
+import { EmbeddedHeaderComponent, EmbeddedLinkDirective } from './directives/embedded-link.directive';
+import { EmbeddedYoutubeComponent } from './components/partials/embedded-youtube/embedded-youtube.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -47,7 +50,10 @@ registerLocaleData(en);
 		EmbeddedSoundcloudPlayerComponent,
 		HomeComponent,
 		HeroSnippetComponent,
-		TuxComponent
+		TuxComponent,
+		EmbeddedLinkDirective,
+		EmbeddedHeaderComponent,
+		EmbeddedYoutubeComponent
 	],
 	imports: [
 		BrowserModule,
@@ -60,7 +66,11 @@ registerLocaleData(en);
 		NgZorroAntdMobileModule,
 		OnlineEditorModule
 	],
-	providers: [{ provide: NZ_I18N, useValue: en_US }],
+	providers: [
+		{ provide: NZ_I18N, useValue: en_US },
+		SongsService
+	],
+	entryComponents: [EmbeddedSoundcloudPlayerComponent, EmbeddedHeaderComponent, EmbeddedYoutubeComponent],
 	bootstrap: [AppComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

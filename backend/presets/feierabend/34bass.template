@@ -1,0 +1,30 @@
+
+[
+type: template;
+name: bass1;
+instrument: bass2;
+{
+    /signature: 3 4/
+    V,,16 r &    I,, r &    V,,&&    I,, r I,, | 
+}
+]
+
+[
+type: template;
+name: bass2;
+instrument: bass2;
+{
+    /signature: 3 4/
+    V,,16 r &  I,, r &   V,, r &   I,, r I,, | 
+}
+]
+
+[
+type: template;
+name: bass.onehit;
+instrument: bass2;
+{
+    /signature: 3 4/
+    I,,2. | 
+}
+]

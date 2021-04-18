@@ -5,6 +5,7 @@ const monk = require('monk')
 const {nanoid} = require('nanoid');
 const { getWorkspace, listPresets } = require('./localWorkspaceBuilder');
 const yup = require('yup');
+const sheetParser = require('./sheetParser');
 var bodyParser = require('body-parser')
 
 require('dotenv').config();
@@ -57,6 +58,18 @@ app.get('/', async (req, res, next) => {
     try {
         const workspace = createNewWorkspace(presetMap['default']);
         res.json(workspace);
+    } catch(ex) {
+        console.error(ex);
+        next(Error());
+    }
+});
+
+app.get('/songs', async (req, res, next) => {
+    try {
+        const dbPresets = db.get('presets');
+        let presets = await dbPresets.find({}, {sort: {'metaData.title': 1}});
+        presets = presets.map(x => { delete x._id; return x; });
+        res.json(presets);
     } catch(ex) {
         console.error(ex);
         next(Error());
