@@ -6,6 +6,9 @@
         @include color-scheme-2;
         .cta {
             background-color: rgba($wm-bg-color-2, 0.9);
+            a {
+                color: white;
+            }
         }
     }
     & > :first-child {
