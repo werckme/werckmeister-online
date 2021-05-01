@@ -1,6 +1,9 @@
 -- TITLE: Gavin Harrison's Paradiddle Challenge
 -- BY: Gavin Harrison, Gary Husband, Drumeo
--- #mod-drum-rudiments #pitchmap-symbols #event-tags
+-- #mod-drum-rudiments #pitchmap-symbols #event-tags #drumeo
+-- DESCRIPTION: A funny exercise, performing two paradiddles simultaneously. \
+-- Also a good example of the werckmeister drum rudiments implementation.
+-- [Manual: Drum Rudiments](https://werckme.github.io/manual#drumrudiments)
 -- [The Origin](https://www.youtube.com/watch?v=XEWmzQ_fJmw)
 
 using "./default.chords";
@@ -20,7 +23,8 @@ instrument: drums;
     \fff
     /signature: 3 1/
     /mod: drumRudiments/
-    "12x paradiddle"@      <x' x,>1 ~&~&
+    -- performing 12 paradiddles over the time of 3 whole notes
+    "12x paradiddle"@      <x' x,>1 ~&~& 
 }
 ]
 
