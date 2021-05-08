@@ -31,6 +31,8 @@ import { SongsService } from './services/songs.service';
 import { EmbeddedHeaderComponent, EmbeddedLinkDirective } from './directives/embedded-link.directive';
 import { EmbeddedYoutubeComponent } from './components/partials/embedded-youtube/embedded-youtube.component';
 import { CreatorComponent } from './components/pages/creator/creator.component';
+import { SongCardComponent } from './components/partials/song-card/song-card.component';
+import { SongPreviewComponent } from './components/partials/song-preview/song-preview.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -55,7 +57,9 @@ registerLocaleData(en);
 		EmbeddedLinkDirective,
 		EmbeddedHeaderComponent,
 		EmbeddedYoutubeComponent,
-		CreatorComponent
+		CreatorComponent,
+		SongCardComponent,
+		SongPreviewComponent
 	],
 	imports: [
 		BrowserModule,
