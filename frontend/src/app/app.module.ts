@@ -30,6 +30,7 @@ import { TuxComponent } from './components/partials/icons/tux/tux.component';
 import { SongsService } from './services/songs.service';
 import { EmbeddedHeaderComponent, EmbeddedLinkDirective } from './directives/embedded-link.directive';
 import { EmbeddedYoutubeComponent } from './components/partials/embedded-youtube/embedded-youtube.component';
+import { CreatorComponent } from './components/pages/creator/creator.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -53,7 +54,8 @@ registerLocaleData(en);
 		TuxComponent,
 		EmbeddedLinkDirective,
 		EmbeddedHeaderComponent,
-		EmbeddedYoutubeComponent
+		EmbeddedYoutubeComponent,
+		CreatorComponent
 	],
 	imports: [
 		BrowserModule,

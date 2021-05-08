@@ -10,6 +10,7 @@ import { DownloadComponent } from './components/pages/download/download.componen
 import { OnlineEditorComponent } from './online-editor/components/online-editor/online-editor.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { EmbeddedSoundcloudPlayerComponent } from './components/partials/embedded-soundcloud-player/embedded-soundcloud-player.component';
+import { CreatorComponent } from './components/pages/creator/creator.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
 	{ path: 'contact', component: ContactComponent},
 	{ path: 'getwerckmeister', component: DownloadComponent},
 	{ path: 'editor', component: OnlineEditorComponent, data: {hasOwnLayout: true}},
+	{ path: 'creator', component: CreatorComponent},
 ];
 
 @NgModule({

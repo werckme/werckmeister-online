@@ -53,22 +53,29 @@ function getInfo(name, text, required) {
     return resultLines.join('\n');
 }
 
-function getMetaData(sheetFile) {
-    const text = fs.readFileSync(sheetFile).toString();
-    const commentSection = getHeaderCommentSection(text);
+
+function getMetaDataFromText(sheetFileText, required = false) {
+    const commentSection = getHeaderCommentSection(sheetFileText);
     const tags = Array.from(commentSection.matchAll(/#(.{2,}?)(\s|$)/g)).map(x => x[1]);
     const links = Array.from(commentSection.matchAll(/\[\s*(.+?)\s*\]\(\s*(.+?)\s*\)/g)).map(x => ({title: x[1], url: x[2]}));
-    const title = getInfo('TITLE', commentSection, true);
-    const by = getInfo('BY', commentSection, true).split(',').map(x => x.trim());
+    const title = getInfo('TITLE', commentSection, required);
+    const by = getInfo('BY', commentSection, required).split(',').map(x => x.trim());
     const description = getInfo('DESCRIPTION', commentSection, false);
+    const creatorid = getInfo('CREATORID', commentSection, false);
     return {
         header: commentSection,
         tags,
         title,
         by,
         links,
-        description
+        description,
+        creatorid
     };
 }
 
-module.exports = { getMetaData }
+function getMetaData(sheetFile) {
+    const text = fs.readFileSync(sheetFile).toString();
+    return getMetaDataFromText(text, true);
+}
+
+module.exports = { getMetaData, getMetaDataFromText }

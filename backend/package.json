@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npm run updatePresetIndex && nodemon index.js",
     "dev-start-all": "npm run start-database && npm run dev",
-    "updatePresetIndex": "node updatePresetIndex.js",
+    "updatePresetIndex": "node updateIndices.js",
     "start-database": "sudo docker run --name mongo -p 27017:27017 -v $HOME/mongo:/data/db --rm -d mongo:latest",
     "stop-database": "sudo docker container stop mongo"
   },

@@ -25,4 +25,8 @@ export class SongsService extends ARestService {
     return this.get<ISongInfo[]>('songs');
   }
 
+  public getCreatorsSongs(creatorid):Promise<ISongInfo[]> {
+    return this.get<ISongInfo[]>(`creator/${creatorid}`);
+  }
+
 }
