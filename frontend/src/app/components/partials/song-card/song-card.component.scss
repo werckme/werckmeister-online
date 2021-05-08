@@ -8,6 +8,26 @@ nz-card {
     }
 }
 
+p {
+    margin: 15px 0;
+}
+
+.play-cta-container {
+    position: relative;
+}
+
+.play-cta {
+    $size: 80px;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50px;
+    margin-left: -$size/2;
+    i {
+        color: white;
+        font-size: $size;
+    }
+}
 
 ul.tags, ul.links {
     padding: 0;
@@ -32,6 +52,9 @@ nz-card {
 }
 
 .title {
+    a {
+        color: $text-color;
+    }
     .song-title {
         display: block;
         margin-bottom: 0;

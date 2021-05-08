@@ -1,5 +1,9 @@
-<nz-card [nzTitle]="title" [nzExtra]="cta">
-    <!-- <app-song-preview [song]="song"></app-song-preview> -->
+<nz-card [nzTitle]="title">
+    <div class="play-cta-container">
+        <a class="play-cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:song.wid }"><i
+            nz-icon nzType="play-circle" nzTheme="outline"></i></a>
+    </div>
+    <app-song-preview [song]="song"></app-song-preview>
     <p>
         <span [innerHtml]="song.metaData.description">
         </span>
@@ -20,11 +24,7 @@
     <div class="title">
         <a class="cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:song.wid }">
             <h2 class="song-title">{{ song.metaData.title }}</h2>
+            <span class="by">{{ song.metaData.by.join(',') }}</span>
         </a>
-        <span class="by">{{ song.metaData.by.join(',') }}</span>
     </div>
-</ng-template>
-<ng-template #cta>
-    <a class="cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:song.wid }"><i
-            nz-icon nzType="play-circle" nzTheme="outline"></i></a>
 </ng-template>
