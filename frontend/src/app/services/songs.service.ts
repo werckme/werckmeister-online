@@ -9,6 +9,12 @@ export interface ISongInfo {
     title: string;
     by: string[];
     tags: string[];
+    description: string;
+    preview: string;
+    links: {
+      url: string;
+      title:string;
+    }[]
   }
 }
 
