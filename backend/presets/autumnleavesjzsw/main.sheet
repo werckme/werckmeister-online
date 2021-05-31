@@ -1,7 +1,6 @@
--- JOSEPH KOSMA
--- JOHNNY MERCER
--- JAQUES PREVERT
--- #jazz #swing #mod-swing #repeats #drum-brush-kit
+-- TITLE: Autumn Leaves (Swing Version)
+-- BY: Joseph Kosma, Johnny Mercer, Jaques Prevert
+-- #jazz #mod-swing #repeats #drum-brush-kit
 using "./chords/default.chords";
 using "./defaultMIDI.pitchmap";
 using "./drums.jazzSwing.template";

@@ -1,0 +1,24 @@
+@import "../../../../mixins.scss";
+
+.code {
+    overflow: hidden;
+    height: 166px;
+    filter: blur(1px);
+}
+
+.container {
+    @include mat-card-1;
+    border-radius: 15px;
+    padding: 15px;
+    user-select: none;
+}
+
+pre {
+    padding: 0;
+    overflow: hidden;
+}
+
+.container, pre {
+    color: #dcffb5;
+    background-color: #0f091d;
+}

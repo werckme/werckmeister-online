@@ -1,6 +1,9 @@
--- SAMBA GODSCHYNSKI
+-- TITLE: Feierabend
+-- BY: Samba Godschynski
 -- #3/4 #4/4 #polyrhythm 
 -- #several-accomp-tracks #volume-fades
+-- DESCRIPTION: A polyrhythm track: the melody is in 3/4, the backing part is in 4/4. Therefore the melody part is slightly slower. 
+-- [The final version](https://soundcloud.com/johannes-unger/feierabend)
 -- NOTE: this tunes loading/compile time takes a while ¯\(°_o)/¯
 using "./myConfig.config";
 using "./default.chords";
@@ -39,7 +42,7 @@ instrumentConf: lead
 instrumentConf: rhythm 
     voicingStrategy guitar _range="alto"
     pan 80
-    volume 56
+    volume 46
 ;
 
 instrumentConf: rhythm2
@@ -59,10 +62,15 @@ instrumentConf: bass2
     voicingStrategy simple _range="contrabass"
 ;
 
-instrumentConf: brass 
+instrumentConf: brass
+    pan 80
+    volume 60
     voicingStrategy simple _range="baritone"
 ;
 
+instrumentConf: strings
+    pan 20
+;
 
 instrumentConf: sitar 
     volume 45
@@ -92,8 +100,7 @@ type: accomp;
 {
     /signature: 3 4/
     /tempo: 90/ 
-    /template: bass1/
-    C :|: 
+    r2. :|: 
     /mark: segno/
     /template: bass1 stringsFade1/
     C | C | D- | D- | 
@@ -121,8 +128,9 @@ type: accomp;
 type: accomp;
 {
     /signature: 4 4/
+    /template: drums.rockBallad.normal rhythm.rockBallad.normal bass.country.normal/
+    C | C |:
     /template: drums.rockBallad.normal rhythm.rockBallad.normal bass.country.normal sitar/
-    C | C |: 
     /mark: segno/
     C | C | D- | D-  | D-7b5 | D-7b5  | C | C :| 
     D-7b5 | D-7b5 | D-7b5 | 

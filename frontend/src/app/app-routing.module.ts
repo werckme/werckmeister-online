@@ -9,6 +9,7 @@ import { CodeExtensionComponent } from './components/pages/visual-studio-extensi
 import { DownloadComponent } from './components/pages/download/download.component';
 import { OnlineEditorComponent } from './online-editor/components/online-editor/online-editor.component';
 import { HomeComponent } from './components/pages/home/home.component';
+import { CreatorComponent } from './components/pages/creator/creator.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
 	{ path: 'contact', component: ContactComponent},
 	{ path: 'getwerckmeister', component: DownloadComponent},
 	{ path: 'editor', component: OnlineEditorComponent, data: {hasOwnLayout: true}},
+	{ path: 'creator', component: CreatorComponent},
 ];
 
 @NgModule({

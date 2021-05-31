@@ -1,18 +1,11 @@
 @import "../../../../mixins.scss";
 
-ul.sources {
-    padding: 0;
-    li {
-        list-style: none;
-    }
+
+.ant-row-flex-top {
+    align-items: stretch;
 }
 
-nz-card {
-    margin-bottom: 1em;
-    @include mat-card-1;
-}
-
-img {
-    width: 50%;
-    margin: auto;
+.card-wrapper {
+    height: 100%;
+    padding: 10px 0;
 }

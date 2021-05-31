@@ -1,7 +1,8 @@
--- FRANK ZAPPA
+-- TITLE: Uncle Meat
+-- BY: Frank Zappa
 -- #3/4 #mod-staccato #note-tags #repeats 
 -- #voicing-strategy-voice-lead #triplets
--- #jumps #jump-ignore
+-- #jumps #conditional-jumps
 using "zappa.chords";
 using "./lua/mods/staccato.lua";
 using "./lua/voicings/voicelead.lua";
@@ -40,6 +41,8 @@ instrument: lead;
     f'16g'f'e'd'bc'd'e'f'g'8~ | &8.  r8. eb16 f d' c' g g# | b c' b8~  &4.   r8  |  c'16&&&  eb'd' c' bb& c'&8 |
     d'16&&&  f'e'd'c'& d'&8 | e'16 f' e' d'& c'& d' e' d' c' bb | a16&&& c' b a g& a&8 | bb16 c' bb g# g g#& f g8 r | 
     a8 b  g'32 d' a g' e'8   d'  &32 g' c'' e'  |  d'16 c' &4. ~&16  eb' d' g | f#16 g b c'  d' e' d'4.~ |
+    
+    
     &16 c' bb g# g g g'4. | b8 & & &   &16 c#' d' e' |
 }  
 ]
