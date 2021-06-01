@@ -3,9 +3,11 @@ require "lua/com/com"
 parameters = {}
 -- http://www.bachmusicology.com/?page_id=159
 
+local t = 0
+
 function perform(events, params, timeinfo)
     local result = {}
-    local oneTrillNoteLength = 4 / 64 -- 1 == one quarter
+    local oneTrillNoteLength = 4 / 32 -- 1 == one quarter
     local event = events[1]
     local hasTrillTag = contains(event.tags, "tr")
     if hasTrillTag == false then
@@ -27,7 +29,7 @@ function perform(events, params, timeinfo)
         local newEvent = deepcopy(event)
         newEvent.duration = oneTrillNoteLength
         newEvent.offset = offset
-        newEvent.velocity = newEvent.velocity - 0.15
+        newEvent.velocity = newEvent.velocity - 0.1 - (0.1 * math.sin(t*0.5))
         if isUpper then
         local hasHalfToneTag = contains(event.tags, "1/2")
         local upperValue = 2
@@ -38,6 +40,7 @@ function perform(events, params, timeinfo)
         end
         table.insert(result, newEvent)
         c = c + 1
+        t = t + 0.1
     end
     return result
 end

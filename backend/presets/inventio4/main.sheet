@@ -4,12 +4,16 @@
 -- [analysis](https://www.youtube.com/watch?v=ryvTeoGt4vs)
 
 using "trills.lua";
+using "fermata.lua";
 
 tempo: 60;
 device: MyDevice  midi _usePort=4;
 instrumentDef:lead    _onDevice=MyDevice  _ch=0 _pc=0;
-instrumentConf: lead mod trills;
--- melody track
+instrumentConf: lead 
+    mod trills 
+    mod fermata
+;
+
 [
 instrument: lead;
 {
@@ -23,7 +27,7 @@ instrument: lead;
     e  f#  g# a  b  c'  | f#  e' d' c'  b  a  | g#  a  b  c' d' e'|  a  f' e' d' c' b | a' g#' f#' e' a'8~ |
     &16 d' "tr 1/2"@b8.  a16 | a8.      a16 bb c'  |    d8  f#   a     |  bb16 g a bb c' d | e  d'  c'  bb a g  |
     a8  f'16 e' f'8 | g8  e'  r  |  d'16 e' f' g' a' bb' | c#' bb' a' g' f' e' | f'8 d' g~ |
-    &16 d' c#' e' a c' | d' b c#'8.  d'16 | &16 c' bb a g f | bb c# d e f g | a16 d  f8 e16 d | "ferm"@d4. |
+    &16 d' c#' e' a c' | d' b c#'8.  d'16 | &16 c' bb a g f | bb c# d e f g | a16 d  f8 e16 d | "fermata"@d4. |
 }
 {
 	/signature: 3 8/
@@ -36,6 +40,6 @@ instrument: lead;
     &~   | &~   | &8  e  d  | c  b,  a, | d  e  f | 
     d  e  e, | a,16 a,, bb,, c, d, eb, | f#,, eb, d, c, bb,, a,, | g,,8.   g,,16 a,, bb,, | c,,8 g,,  c, |
     f,16 g, a, b, c# d | e, d c# b, a, g, | f,8  a,8  d  | e,  g,  c# | d,16 e, f, g, a, bb, |
-    c#, bb, a, g, f, e, | f, e, a,8  a,, | bb,,8.   c,16 bb,, a,, |  g,, bb, a, g, f, c, | f, g, a,8   a,, |  "ferm"@d,,4. |  
+    c#, bb, a, g, f, e, | f, e, a,8  a,, | bb,,8.   c,16 bb,, a,, |  g,, bb, a, g, f, c, | f, g, a,8   a,, |  "fermata"@d,,4. |  
 }
 ]
