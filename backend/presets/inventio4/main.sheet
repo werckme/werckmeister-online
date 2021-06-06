@@ -1,7 +1,5 @@
 -- TITLE: INVENTIO 4
 -- BY: Johann Sebastian Bach
--- CREATORID: johannes.unger@vstforx.de
--- [analysis](https://www.youtube.com/watch?v=ryvTeoGt4vs)
 
 using "trills.lua";
 using "fermata.lua";

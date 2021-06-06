@@ -4,7 +4,7 @@
 -- DESCRIPTION: A funny exercise, performing two paradiddles simultaneously. \
 -- Also a good example of the werckmeister drum rudiments implementation.
 -- [Manual: Drum Rudiments](https://werckme.github.io/manual#drumrudiments)
--- [The Origin](https://www.youtube.com/watch?v=XEWmzQ_fJmw)
+-- [The Original Idea](https://www.youtube.com/watch?v=XEWmzQ_fJmw)
 
 using "./default.chords";
 using "./drums.pitchmap";

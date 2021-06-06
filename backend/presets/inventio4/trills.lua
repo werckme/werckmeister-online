@@ -7,7 +7,8 @@ local t = 0
 
 function perform(events, params, timeinfo)
     local result = {}
-    local oneTrillNoteLength = 4 / 64 -- 1 == one quarter
+    local oneWholeNote = 4 -- quarters
+    local oneTrillNoteLength = oneWholeNote / 64 -- 1 == one quarter
     local event = events[1]
     local hasTrillTag = contains(event.tags, "tr")
     if hasTrillTag == false then
