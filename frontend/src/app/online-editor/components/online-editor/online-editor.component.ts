@@ -19,6 +19,12 @@ interface IEditorElement extends HTMLElement {
   setFilename(name: string);
 }
 
+export enum PlayerState {
+  Stopped,
+  Preparing,
+  Playing
+};
+
 interface IWorkspaceElement extends HTMLElement {
   registerEditor(editor: Element);
   unregisterEditor(editor: Element);
@@ -28,6 +34,8 @@ interface IWorkspaceElement extends HTMLElement {
   stop(): Promise<void>;
   onError: (error) => void;
   onCompiled: (document) => void;
+  onStateChanged: (old: PlayerState, new_: PlayerState) => void;
+  beginQuarters: number;
 }
 
 interface ICompilerError {
@@ -49,6 +57,11 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   private fileNameEditorMap = new Map<string, IEditorElement>();
   workspaceModel: IWorkspace;
   private _workspaceEditorsAreClean: boolean;
+  private clockUpdateMillis: number = 200;
+  private clockStartTime: number = 0;
+  public elapsedQuaters: number = 0;
+  public bpm: number = 120;
+  public beginQuarters: number = 0;
   workspaceFSModified: boolean = false;
 
   get workspaceIsClean(): boolean {
@@ -74,6 +87,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   public newFile: IFile|null;
   private routerSubscription: Subscription;
   private checkIsCleanId: any;
+  private clockIntervalHandle:number|null = null;
   constructor(private workspaceStorage: WorkspaceStorageService,
     private notification: NzNotificationService,
     private route: ActivatedRoute,
@@ -110,6 +124,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.workspaceComponent.onError = this.onCompilerError.bind(this);
     this.workspaceComponent.onCompiled = this.onWerckCompiled.bind(this);
+    this.workspaceComponent.onStateChanged = this.onPlayerStateChanged.bind(this);
     this.shortcutSerice.when().ctrlAndChar('s').thenExecute(()=>{
       this.save();
     });
@@ -120,6 +135,38 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private onWerckCompiled(document: any) {
+    this.bpm = document.midi.bpm;
+  }
+
+  private onPlayerStateChanged(old: PlayerState, new_: PlayerState) {
+    if (old == new_) {
+      return;
+    }
+    if (new_ === PlayerState.Playing) {
+      this.onPlayerStarted();
+    }
+    if (new_ === PlayerState.Stopped) {
+      this.onPlayerStoped();
+    }
+  }
+
+  private onPlayerStarted() {
+    this.clockIntervalHandle = setInterval(this.updateClock.bind(this), this.clockUpdateMillis) as any;
+    this.clockStartTime = performance.now();
+  }
+
+  private onPlayerStoped() {
+    if (this.clockIntervalHandle !== null) {
+      clearInterval(this.clockIntervalHandle);
+      this.clockIntervalHandle = null;
+      this.elapsedQuaters = this.beginQuarters;
+    }
+  }
+
+
+  private updateClock() {
+    const elapsedMillis = performance.now() - this.clockStartTime;
+    this.elapsedQuaters = (this.bpm / 60 / 1000) * elapsedMillis;
   }
 
   private async loadWorkspace(id: string|null = null) {
