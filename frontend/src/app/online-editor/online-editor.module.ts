@@ -7,11 +7,12 @@ import { FileEntryComponent } from './components/online-editor/file-entry/file-e
 import { FormsModule } from '@angular/forms';
 import { ShortcutService } from './services/shortcut.service';
 import { AppRoutingModule } from '../app-routing.module';
+import { FormatDirective } from './directives/format.directive';
 
 
 
 @NgModule({
-  declarations: [OnlineEditorComponent, FileEntryComponent],
+  declarations: [OnlineEditorComponent, FileEntryComponent, FormatDirective],
   imports: [
     CommonModule,
     FormsModule,

@@ -6,6 +6,7 @@ import { IFile, IWorkspace, WorkspaceStorageService } from 'src/app/online-edito
 import { ShortcutService } from '../../services/shortcut.service';
 import { TmplLuaVoicing, TmplPitchmap, TmplSheetTemplate, TmplLuaMod } from './fileTemplates';
 import * as _ from 'lodash';
+import { DecimalPipe } from '@angular/common';
 
 const CheckIsCleanIntervalMillis = 1000;
 
@@ -60,8 +61,21 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   private clockUpdateMillis: number = 200;
   private clockStartTime: number = 0;
   public elapsedQuaters: number = 0;
+  public playerState: PlayerState = PlayerState.Stopped;
   public bpm: number = 120;
-  public beginQuarters: number = 0;
+  private beginQuarters: number = 0;
+
+  private _beginQuartersStr : string = "0";
+  public get beginQuartersStr() : string {
+    return this._beginQuartersStr;
+  }
+  public set beginQuartersStr(v : string) {
+    this._beginQuartersStr = v;
+    this.beginQuarters = Number.parseFloat(v);
+  }
+  
+
+
   workspaceFSModified: boolean = false;
 
   get workspaceIsClean(): boolean {
@@ -101,6 +115,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
   }
+
 
   ngOnDestroy() {
     if (this.routerSubscription) {
@@ -142,12 +157,17 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     if (old == new_) {
       return;
     }
+    if (new_ === PlayerState.Preparing) {
+      this.workspaceComponent.beginQuarters = this.beginQuarters;
+      this.elapsedQuaters = this.beginQuarters;
+    }
     if (new_ === PlayerState.Playing) {
       this.onPlayerStarted();
     }
     if (new_ === PlayerState.Stopped) {
       this.onPlayerStoped();
     }
+    this.playerState = new_;
   }
 
   private onPlayerStarted() {
@@ -159,14 +179,13 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.clockIntervalHandle !== null) {
       clearInterval(this.clockIntervalHandle);
       this.clockIntervalHandle = null;
-      this.elapsedQuaters = this.beginQuarters;
     }
   }
 
 
   private updateClock() {
     const elapsedMillis = performance.now() - this.clockStartTime;
-    this.elapsedQuaters = (this.bpm / 60 / 1000) * elapsedMillis;
+    this.elapsedQuaters = ((this.bpm / 60 / 1000) * elapsedMillis) + this.beginQuarters;
   }
 
   private async loadWorkspace(id: string|null = null) {
@@ -339,6 +358,12 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   public download() {
     const widStr = this.workspaceModel.wid ? `-${this.workspaceModel.wid}` : '';
     (this.workspaceComponent as any).download(`Werckmeister${widStr}.mid`);
+  }
+
+  public onFocus(event: FocusEvent) {
+    setTimeout(() => {
+      (event.target as any).select();
+    }, 100);
   }
 
 }
