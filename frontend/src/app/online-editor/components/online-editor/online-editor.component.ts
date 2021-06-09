@@ -111,6 +111,12 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
       this.routerSubscription = this.router.events.subscribe((ev)=>{
         if (ev instanceof NavigationEnd) {
           const wid = this.route.snapshot.queryParams.wid;
+          if (this.route.snapshot.queryParams.begin) {
+            const numberVal = Number.parseFloat(this.route.snapshot.queryParams.begin);
+            if (!Number.isNaN(numberVal) && !!numberVal) {
+              this.beginQuartersStr = numberVal.toString();
+            }
+          }
           this.loadWorkspace(wid || null);
         }
       });
@@ -364,6 +370,22 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       (event.target as any).select();
     }, 100);
+  }
+
+  public onBlur(event: FocusEvent) {
+    let parameter = [];
+    const wid = this.route.snapshot.queryParams.wid;
+    const hasBeginParameter = !!this.route.snapshot.queryParams.begin;
+    if (wid) {
+      parameter.push(`wid=${wid}`);
+    }
+    if (this.beginQuarters > 0 || hasBeginParameter) {
+      parameter.push(`begin=${this.beginQuarters}`);
+    }
+    if (parameter.length === 0) {
+      return;
+    }
+    history.replaceState({}, null, `/editor?${parameter.join('&')}`);
   }
 
 }
