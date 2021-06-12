@@ -373,19 +373,6 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public onBlur(event: FocusEvent) {
-    // let parameter = [];
-    // const wid = this.route.snapshot.queryParams.wid;
-    // const hasBeginParameter = !!this.route.snapshot.queryParams.begin;
-    // if (wid) {
-    //   parameter.push(`wid=${wid}`);
-    // }
-    // if (this.beginQuarters > 0 || hasBeginParameter) {
-    //   parameter.push(`begin=${this.beginQuarters}`);
-    // }
-    // if (parameter.length === 0) {
-    //   return;
-    // }
-    // history.replaceState({}, null, `/editor?${parameter.join('&')}`);
   }
 
 }
