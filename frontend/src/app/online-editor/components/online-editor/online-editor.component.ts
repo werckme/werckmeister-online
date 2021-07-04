@@ -7,6 +7,7 @@ import { ShortcutService } from '../../services/shortcut.service';
 import { TmplLuaVoicing, TmplPitchmap, TmplSheetTemplate, TmplLuaMod } from './fileTemplates';
 import * as _ from 'lodash';
 import { DecimalPipe } from '@angular/common';
+import { waitAsync } from 'src/shared/help/waitAsync';
 
 const CheckIsCleanIntervalMillis = 1000;
 
@@ -268,12 +269,18 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     for(const editor of Array.from(editors)) {
       this.registerEditorElement(editor as IEditorElement);
     }
+    this.reInitCurrentEditor();
+  }
+
+  private async reInitCurrentEditor(): Promise<void> {
+    const editor = this.fileNameEditorMap.get(this.currentFile.path);
+    await waitAsync(50);
+    await editor.update();
   }
 
   onFileClicked(file: IFile) {
     this.currentFile = file;
-    const editor = this.fileNameEditorMap.get(file.path);
-    setTimeout(editor.update.bind(editor));
+    this.reInitCurrentEditor();
   }
 
   getEditorElement(filename: string): IEditorElement {
