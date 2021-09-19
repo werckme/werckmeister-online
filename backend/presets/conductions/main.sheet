@@ -1,0 +1,40 @@
+-- TITLE: Conductions Example
+-- BY: Samba Godschynski
+-- DESCRIPTION: An example piece to demonstrate the `conductions sheet` feature.
+-- #conductions #not-listed
+
+using "default.chords";
+using "simpleComping.template";
+using "myPitchmap.pitchmap";
+using "lua/mods/swing.lua";
+using "lua/mods/staccato.lua";
+using "lua/voicings/guitar.lua";
+using "rhythm.template";
+using "drums.template";
+using "bass.template";
+
+using "./myConductions.conductions";
+
+tempo: 120;
+device: MyDevice  midi _usePort=0;
+instrumentDef:lead    _onDevice=MyDevice  _ch=0 _pc=0;
+instrumentDef:rhythm _onDevice=MyDevice  _ch=1 _pc=28;
+instrumentDef:rhythm2 _onDevice=MyDevice  _ch=3 _pc=50;
+instrumentDef:bass    _onDevice=MyDevice  _ch=2 _pc=38;
+instrumentDef:drums    _onDevice=MyDevice  _ch=9 _pc=12;
+instrumentConf: drums volume 100;
+instrumentConf: rhythm volume 95 mod staccato voicingStrategy guitar _range=alto;
+instrumentConf: rhythm2 volume 100 mod staccato _amount=100 voicingStrategy guitar _range=baritone;
+instrumentConf: bass volume 80;
+
+[
+type: accomp;
+{   
+	/template: drums bass rhythm rhythm2/
+    C | C | Cmin | Cb7 | E | D | G | F | A B |
+    /template: drums bass/
+    C | C | C | C |
+    /template: drums bass rhythm rhythm2/
+    C | C | Cmin | Cb7 | E | D | G | F | A B | 
+}
+]
