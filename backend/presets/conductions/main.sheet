@@ -16,7 +16,7 @@ using "bass.template";
 using "./myConductions.conductions";
 
 tempo: 120;
-device: MyDevice  midi _usePort=0;
+device: MyDevice  midi _usePort=3;
 instrumentDef:lead    _onDevice=MyDevice  _ch=0 _pc=0;
 instrumentDef:rhythm _onDevice=MyDevice  _ch=1 _pc=28;
 instrumentDef:rhythm2 _onDevice=MyDevice  _ch=3 _pc=50;
