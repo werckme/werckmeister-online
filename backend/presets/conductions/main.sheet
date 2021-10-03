@@ -1,0 +1,21 @@
+-- TITLE: Conductions Example
+-- BY: Samba Godschynski
+-- DESCRIPTION: An example piece to demonstrate the `conductions sheet` feature.
+-- #conductions
+
+using "myPitchmap.pitchmap";
+using "./myConductions.conductions";
+
+tempo: 120;
+device: MyDevice  midi _usePort=3;
+instrumentDef:drums    _onDevice=MyDevice  _ch=9 _pc=0;
+
+[
+instrument: drums;
+{   
+    h16 h h h h h h h  h h h h h h h h |
+    h   h h h h h h h  h h h h h h h h |
+    h   h h h h h h h  h h h h h h h h |
+    h   h h h h h h h  h h h h h h h h |
+}
+]

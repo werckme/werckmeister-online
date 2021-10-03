@@ -4,7 +4,7 @@
 instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) { 
     velocity = 90;
 }
--- emphasize a little less
+-- emphasize a little less the on beats
 instrument(drums) pitch(h) onBeat(1 2 3 4) {
     velocity = 60;
 }
