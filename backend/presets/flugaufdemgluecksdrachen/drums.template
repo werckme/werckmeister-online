@@ -1,0 +1,12 @@
+[
+type: template;
+name: drums;
+instrument: drums;
+{
+    \pp
+    h16&&&&&&&&&&&&&&& |
+}
+{
+    o4 r4 r4 r8 o8 |
+}
+]

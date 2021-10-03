@@ -5,17 +5,44 @@
 
 using "myPitchmap.pitchmap";
 using "./myConductions.conductions";
+using "lua/mods/drumRudiments.lua";
 
 tempo: 120;
 device: MyDevice  midi _usePort=3;
-instrumentDef:drums    _onDevice=MyDevice  _ch=9 _pc=0;
+instrumentDef:drums    _onDevice=MyDevice  _ch=9 _pc=50;
+instrumentConf:drums  mod drumRudiments;
 
 [
 instrument: drums;
 {   
     h16 h h h h h h h  h h h h h h h h |
-    h   h h h h h h h  h h h h h h h h |
-    h   h h h h h h h  h h h h h h h h |
-    h   h h h h h h h  h h h h h h h h |
+    h h h h h h h h  h h h h h h h h   |
+    h h h h h h h h  h h h h h h h h   |
+    ^1 !pp"cy"8 r h, r & r & r        :|
+    ^2 !pph'8 r h, r & r & r          :|
+    ^3 !ff"cy"8 r h, r & r & r         |
+    h16 h h h h h h h  h h h h h h h h |
+    h h h h h h h h  h h h h h h h h   |
+    h h h h h h h h  h h h h h h h h   |
+
+}
+{
+    r4 x r x |
+    r x "2x paradiddle"@<x x'>2 |
+    r4 x r x |
+    ^1 "sixStrokeRoll"@<u v>4 !ffffx8. x16  "2x paradiddle"@<x u x' v>2 :|
+    ^2 "sixStrokeRoll"@<u v>4 !ffffx8 !fffffx'8 "3x paradiddle"@<x u x' v>2  :|
+    ^3 !ffffx'->x2 r8 (!p"paradiddle"@<x x'> !ffff"paradiddle"@<x x'> !fffff"paradiddle"@<x x'>)4.  |
+}
+{
+    o4 r o r    |
+    o r o r     |
+    o r o r     |
+    ^1 o o o o :|
+    ^2 o o o o :|
+    ^3 o o o o  |
+    o8. o8 r2 o8.  |
+    o8. o8 r2 o8.  |
+    o8. o8 r2 o8.  |
 }
 ]

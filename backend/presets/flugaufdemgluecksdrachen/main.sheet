@@ -1,0 +1,82 @@
+-- TITLE: Flug auf dem Gluecksdrachen (Never Ending Story)
+-- BY: Klaus Doldinger
+-- CREATORID: johannes.unger@vstforx.de
+using "./piano.template";
+using "./drums.template";
+using "./myPitchmap.pitchmap";
+using "./trills.lua";
+using "./default.chords";
+using "./myConductions.conductions";
+
+tempo: 146;
+device: MyDevice  midi _usePort=3;
+-- violin 1
+instrumentDef:Vl1 		  _onDevice=MyDevice  _ch=0 _pc=48;
+-- violin 2 
+instrumentDef:Vl2 		  _onDevice=MyDevice  _ch=1 _pc=48;
+instrumentConf:Vl2 mod trills volume 100;
+-- ebass
+instrumentDef:ebass 		  _onDevice=MyDevice  _ch=4 _pc=38;
+instrumentConf:ebass volume 50;
+-- piano
+instrumentDef:pno 		  _onDevice=MyDevice  _ch=5 _pc=5;
+instrumentConf:pno volume 70;
+-- drums
+instrumentDef:drums 	  _onDevice=MyDevice  _ch=9 _pc=0;
+instrumentConf:drums volume 60;
+------------------------------------------------------------------
+-- violin 1
+[
+{
+	/instrument: Vl1/
+    \p
+    g8&&&&&&& | &&&&&&&& | &&&&&&&& | &&&&&&&&
+}
+{
+	\p
+    /instrument: Vl1/
+	d8&&&&&&& | c&&& b,& c& | d&&&&&&& | c&&& b,& c& |
+    --!ff<e, c>8 <e, c> <e, c> !ff<d, c> <e, c> <e, c> !ff<d, c>  <e, c> |  <e, c> !ff<d, c> <e, c> <e, c> !ff<d, c> <e, c> <e, c> !ff<d, c> |
+    --!ff<d, c>8 <d, c> <d, c> !ff<d, c> <d, c> <d, c> !ff<d, c>  <d, c> |  <d, c> !ff<d, c> <d, c> <d, c> !ff<d, c> <d, c> <d, c> !ff<d, c> |
+}
+]
+-- violin 2 
+[
+instrument: Vl2;
+{
+	\p
+	r1 | r1 | r2  r4 (gabc'd'e'f')4 | "tr"@g'1 | e4 e'4.  d'4. | b4 c' a' g' | f#'4.  g'4.  d'4~ | &2~   &8 e'4. |
+    e'4.  f'  c'4~  | &8 f'4.  d''4  c'' | d''1~ | &2 r | f#4 f#'4. e'8~&4 | c#'4 d' b' a' | g#'4. a'8~&4 e'~ |
+    &2   &8 f#'8~&4 | f#'4. g'8~&4  d'~ | &8  g'8~ &4  e'' d'' |  e''1  | -- seite 20
+}
+]
+
+-- e-bass
+[
+instrument: ebass;
+{
+ 	r1 | r1 | r1 | c,8&&&&&&& | c,8&&&&&&& | c,8&&&&&&& | g,,&&&&&&& | g,,&&&&&&& |
+    d,8&&&&&&& | &&&&&&&& | bb,,&&&&&&& | &&&&  a,,&  a,& | d,&&&&&&& | &&&&&&&& | a,,&&&&&&& | &&&&&&&& | e,,&&&&&&& | e,&&&&&&& |
+    c,&&&&&&& |
+}
+]
+-- piano
+[
+{
+	/instrument: pno/
+	\p
+    <d e g>8 &&&&&&& | <c e g> &&&&&&& | <d e g>8 &&&&&&& | <c e g>&&& <b, e g>& <c e g>& | 
+    /instrument: pno/
+    e4 e'4.  d'4. | b4 c' a' g' | f#'4.  g'4.  d'4~ | &2~   &8 e'4. |
+    e'4.  f'  c'4~ | &8 f'4.  d''4  c'' | d''1~ | &2 r |
+}
+]
+-- accomp
+[
+type: accomp;
+{
+  /template: piano drums/
+  r | r | r | r | C9 | C9 | G9 | G9 | D-9 | D-9 | Bb9 | Bb9 A9 | D | D | A | 
+  A9 | E-9 | E-9 | C9 | B9 | E-9 |
+}
+]

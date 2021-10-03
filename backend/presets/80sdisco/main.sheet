@@ -11,6 +11,7 @@ using "myPitchmap.pitchmap";
 using "lua/mods/swing.lua";
 using "lua/mods/staccato.lua";
 using "lua/voicings/guitar.lua";
+using "lua/voicings/simple.lua";
 using "rhythm.template";
 using "drums.template";
 using "bass.template";

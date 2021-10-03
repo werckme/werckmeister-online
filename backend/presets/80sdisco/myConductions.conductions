@@ -10,7 +10,7 @@ instrument(drums) pitch(h) onBeat(1 2 3 4) {
 }
 -- all other high hat strokes are 20 velocity units less than its predecessor
 instrument(drums) pitch(h) {
-    velocity = & - 20;
+  velocity = & - 20;
 }
 -- Snare
 -- play the snare a bit laid back on 2 and 4
