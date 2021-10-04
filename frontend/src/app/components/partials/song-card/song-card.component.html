@@ -1,0 +1,30 @@
+<nz-card [nzTitle]="title">
+    <div class="play-cta-container">
+        <a class="play-cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:song.wid }"><i
+            nz-icon nzType="play-circle" nzTheme="outline"></i></a>
+    </div>
+    <app-song-preview [song]="song"></app-song-preview>
+    <p>
+        <span [innerHtml]="song.metaData.description">
+        </span>
+    </p>
+    <ul class="links">
+        <li *ngFor="let link of song.metaData.links">
+            <a appEmbeddedLink target="_blank" (click)="$event.stopPropagation()"
+                [href]="link.url">{{link.title}}</a>
+        </li>
+    </ul>
+    <ul class="tags">
+        <li *ngFor="let tag of song.metaData.tags">
+            <nz-tag [nzColor]="'purple'">#{{tag}}</nz-tag>
+        </li>
+    </ul>
+</nz-card>
+<ng-template #title>
+    <div class="title">
+        <a class="cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:song.wid }">
+            <h2 class="song-title">{{ song.metaData.title }}</h2>
+            <span class="by">{{ song.metaData.by.join(',') }}</span>
+        </a>
+    </div>
+</ng-template>

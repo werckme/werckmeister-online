@@ -30,6 +30,11 @@
                 "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
                 "output": "/assets/"
               },
+              {
+                "glob": "*",
+                "input": "./node_modules/@werckmeister/components/",
+                "output": "/assets/werckmeister-components"
+              }
             ],
             "styles": [
               "node_modules/ng-zorro-antd-mobile/src/ng-zorro-antd-mobile.min.css",

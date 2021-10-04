@@ -9,6 +9,12 @@ export interface ISongInfo {
     title: string;
     by: string[];
     tags: string[];
+    description: string;
+    preview: string;
+    links: {
+      url: string;
+      title:string;
+    }[]
   }
 }
 
@@ -23,6 +29,10 @@ export class SongsService extends ARestService {
 
   public getSongs():Promise<ISongInfo[]> {
     return this.get<ISongInfo[]>('songs');
+  }
+
+  public getCreatorsSongs(creatorid):Promise<ISongInfo[]> {
+    return this.get<ISongInfo[]>(`creator/${creatorid}`);
   }
 
 }

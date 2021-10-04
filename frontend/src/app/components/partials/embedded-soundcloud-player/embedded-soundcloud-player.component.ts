@@ -16,7 +16,7 @@ export class EmbeddedSoundcloudPlayerComponent implements OnInit, IHasUrl {
   url: string;
 
   @Input()
-  small:boolean;
+  small:boolean = true;
 
   get soundCloudUrl(): SafeUrl {
     const encodedUrl = encodeURIComponent(this.url);

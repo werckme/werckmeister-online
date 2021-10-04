@@ -23,7 +23,7 @@ export class EmbeddedLinkDirective implements AfterViewInit {
   constructor(private viewContainer: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver) {
     this.urlOriginElementMap.set("https://soundcloud.com", EmbeddedSoundcloudPlayerComponent); 
-    this.urlOriginElementMap.set("https://www.youtube.com", EmbeddedYoutubeComponent); 
+    // this.urlOriginElementMap.set("https://www.youtube.com", EmbeddedYoutubeComponent); 
   }
 
   protected createEmbeddedComponent<TComponent>(componentType: Type<TComponent>): TComponent {

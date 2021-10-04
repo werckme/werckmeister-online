@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { WerckmeisterComponent } from './components/pages/werckmeister.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { registerLocaleData } from '@angular/common';
+import { DecimalPipe, registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { ManualComponent } from './components/pages/manual.component';
 import { GettingStartedComponent } from './components/pages/getting-started';
@@ -30,6 +30,9 @@ import { TuxComponent } from './components/partials/icons/tux/tux.component';
 import { SongsService } from './services/songs.service';
 import { EmbeddedHeaderComponent, EmbeddedLinkDirective } from './directives/embedded-link.directive';
 import { EmbeddedYoutubeComponent } from './components/partials/embedded-youtube/embedded-youtube.component';
+import { CreatorComponent } from './components/pages/creator/creator.component';
+import { SongCardComponent } from './components/partials/song-card/song-card.component';
+import { SongPreviewComponent } from './components/partials/song-preview/song-preview.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -53,7 +56,10 @@ registerLocaleData(en);
 		TuxComponent,
 		EmbeddedLinkDirective,
 		EmbeddedHeaderComponent,
-		EmbeddedYoutubeComponent
+		EmbeddedYoutubeComponent,
+		CreatorComponent,
+		SongCardComponent,
+		SongPreviewComponent
 	],
 	imports: [
 		BrowserModule,
@@ -68,7 +74,8 @@ registerLocaleData(en);
 	],
 	providers: [
 		{ provide: NZ_I18N, useValue: en_US },
-		SongsService
+		SongsService,
+		DecimalPipe
 	],
 	entryComponents: [EmbeddedSoundcloudPlayerComponent, EmbeddedHeaderComponent, EmbeddedYoutubeComponent],
 	bootstrap: [AppComponent],

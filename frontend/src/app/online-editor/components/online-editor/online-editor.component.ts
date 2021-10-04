@@ -6,6 +6,8 @@ import { IFile, IWorkspace, WorkspaceStorageService } from 'src/app/online-edito
 import { ShortcutService } from '../../services/shortcut.service';
 import { TmplLuaVoicing, TmplPitchmap, TmplSheetTemplate, TmplLuaMod } from './fileTemplates';
 import * as _ from 'lodash';
+import { DecimalPipe } from '@angular/common';
+import { waitAsync } from 'src/shared/help/waitAsync';
 
 const CheckIsCleanIntervalMillis = 1000;
 
@@ -19,6 +21,12 @@ interface IEditorElement extends HTMLElement {
   setFilename(name: string);
 }
 
+export enum PlayerState {
+  Stopped,
+  Preparing,
+  Playing
+};
+
 interface IWorkspaceElement extends HTMLElement {
   registerEditor(editor: Element);
   unregisterEditor(editor: Element);
@@ -28,6 +36,8 @@ interface IWorkspaceElement extends HTMLElement {
   stop(): Promise<void>;
   onError: (error) => void;
   onCompiled: (document) => void;
+  onStateChanged: (old: PlayerState, new_: PlayerState) => void;
+  beginQuarters: number;
 }
 
 interface ICompilerError {
@@ -49,6 +59,24 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   private fileNameEditorMap = new Map<string, IEditorElement>();
   workspaceModel: IWorkspace;
   private _workspaceEditorsAreClean: boolean;
+  private clockUpdateMillis: number = 200;
+  private clockStartTime: number = 0;
+  public elapsedQuaters: number = 0;
+  public playerState: PlayerState = PlayerState.Stopped;
+  public bpm: number = 120;
+  private beginQuarters: number = 0;
+
+  private _beginQuartersStr : string = "0";
+  public get beginQuartersStr() : string {
+    return this._beginQuartersStr;
+  }
+  public set beginQuartersStr(v : string) {
+    this._beginQuartersStr = v;
+    this.beginQuarters = Number.parseFloat(v);
+  }
+  
+
+
   workspaceFSModified: boolean = false;
 
   get workspaceIsClean(): boolean {
@@ -74,6 +102,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   public newFile: IFile|null;
   private routerSubscription: Subscription;
   private checkIsCleanId: any;
+  private clockIntervalHandle:number|null = null;
   constructor(private workspaceStorage: WorkspaceStorageService,
     private notification: NzNotificationService,
     private route: ActivatedRoute,
@@ -83,10 +112,17 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
       this.routerSubscription = this.router.events.subscribe((ev)=>{
         if (ev instanceof NavigationEnd) {
           const wid = this.route.snapshot.queryParams.wid;
+          if (this.route.snapshot.queryParams.begin) {
+            const numberVal = Number.parseFloat(this.route.snapshot.queryParams.begin);
+            if (!Number.isNaN(numberVal) && !!numberVal) {
+              this.beginQuartersStr = numberVal.toString();
+            }
+          }
           this.loadWorkspace(wid || null);
         }
       });
   }
+
 
   ngOnDestroy() {
     if (this.routerSubscription) {
@@ -110,6 +146,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.workspaceComponent.onError = this.onCompilerError.bind(this);
     this.workspaceComponent.onCompiled = this.onWerckCompiled.bind(this);
+    this.workspaceComponent.onStateChanged = this.onPlayerStateChanged.bind(this);
     this.shortcutSerice.when().ctrlAndChar('s').thenExecute(()=>{
       this.save();
     });
@@ -120,6 +157,42 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private onWerckCompiled(document: any) {
+    this.bpm = document.midi.bpm;
+  }
+
+  private onPlayerStateChanged(old: PlayerState, new_: PlayerState) {
+    if (old == new_) {
+      return;
+    }
+    if (new_ === PlayerState.Preparing) {
+      this.workspaceComponent.beginQuarters = this.beginQuarters;
+      this.elapsedQuaters = this.beginQuarters;
+    }
+    if (new_ === PlayerState.Playing) {
+      this.onPlayerStarted();
+    }
+    if (new_ === PlayerState.Stopped) {
+      this.onPlayerStoped();
+    }
+    this.playerState = new_;
+  }
+
+  private onPlayerStarted() {
+    this.clockIntervalHandle = setInterval(this.updateClock.bind(this), this.clockUpdateMillis) as any;
+    this.clockStartTime = performance.now();
+  }
+
+  private onPlayerStoped() {
+    if (this.clockIntervalHandle !== null) {
+      clearInterval(this.clockIntervalHandle);
+      this.clockIntervalHandle = null;
+    }
+  }
+
+
+  private updateClock() {
+    const elapsedMillis = performance.now() - this.clockStartTime;
+    this.elapsedQuaters = ((this.bpm / 60 / 1000) * elapsedMillis) + this.beginQuarters;
   }
 
   private async loadWorkspace(id: string|null = null) {
@@ -196,12 +269,18 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     for(const editor of Array.from(editors)) {
       this.registerEditorElement(editor as IEditorElement);
     }
+    this.reInitCurrentEditor();
+  }
+
+  private async reInitCurrentEditor(): Promise<void> {
+    const editor = this.fileNameEditorMap.get(this.currentFile.path);
+    await waitAsync(50);
+    await editor.update();
   }
 
   onFileClicked(file: IFile) {
     this.currentFile = file;
-    const editor = this.fileNameEditorMap.get(file.path);
-    setTimeout(editor.update.bind(editor));
+    this.reInitCurrentEditor();
   }
 
   getEditorElement(filename: string): IEditorElement {
@@ -292,6 +371,15 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   public download() {
     const widStr = this.workspaceModel.wid ? `-${this.workspaceModel.wid}` : '';
     (this.workspaceComponent as any).download(`Werckmeister${widStr}.mid`);
+  }
+
+  public onFocus(event: FocusEvent) {
+    setTimeout(() => {
+      (event.target as any).select();
+    }, 100);
+  }
+
+  public onBlur(event: FocusEvent) {
   }
 
 }

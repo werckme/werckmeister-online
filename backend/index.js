@@ -5,7 +5,7 @@ const monk = require('monk')
 const {nanoid} = require('nanoid');
 const { getWorkspace, listPresets } = require('./localWorkspaceBuilder');
 const yup = require('yup');
-const sheetParser = require('./sheetParser');
+const { getMetaDataFromText } = require('./sheetParser');
 var bodyParser = require('body-parser')
 
 require('dotenv').config();
@@ -21,6 +21,7 @@ const fileSchema = yup.object().noUnknown().shape({
 const workspaceSchema = yup.object().noUnknown().shape({
     wid: yup.string().trim().matches(/^[0-9A-Z_-]+$/i),
     files: yup.array().of(fileSchema).optional(),
+    metaData: yup.object().optional(),
     modifiedAt: yup.string()
 });
 
@@ -76,6 +77,21 @@ app.get('/songs', async (req, res, next) => {
     }
 });
 
+app.get('/creator/:creatorid', async (req, res, next) => {
+    try {
+        const { creatorid } = req.params;
+        let creatorWorkspaces = await workspaces.find({'metaData.creatorid': creatorid});
+        for (const workspace of creatorWorkspaces) {
+            delete workspace.files;
+            delete workspace._id;
+        }
+        res.json(creatorWorkspaces);
+    } catch(ex) {
+        console.error(ex);
+        next(Error());
+    }
+});
+
 app.get('/:wid', async (req, res, next) => {
     try {
         const { wid } = req.params;
@@ -85,6 +101,10 @@ app.get('/:wid', async (req, res, next) => {
             return;
         }
         let workspace = await workspaces.findOne({wid});
+        if (!workspace || workspaces.length === 0) {
+            res.json([]);
+            return;
+        }
         delete workspace._id;
         if (workspace.modifiedAt) {
             workspace.modifiedAt = workspace.modifiedAt.toUTCString();
@@ -114,6 +134,13 @@ app.post('/', async (req, res, next) => {
             throw new UserError("invalid input");
         }
         workspace.modifiedAt = new Date();
+        const mainSheet = workspace.files.filter(x => x.path === 'main.sheet');
+        if (mainSheet && mainSheet.length > 0) {
+            try {
+                const metaData = getMetaDataFromText(mainSheet[0].data);
+                workspace.metaData = metaData;
+            } catch {}
+        }
         await workspaces.update({wid: workspace.wid}, {$set: workspace}, {upsert: true});
         res.json({succeed: true, wid: workspace.wid});
     } catch (ex) {

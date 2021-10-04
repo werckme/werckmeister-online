@@ -53,22 +53,48 @@ function getInfo(name, text, required) {
     return resultLines.join('\n');
 }
 
-function getMetaData(sheetFile) {
-    const text = fs.readFileSync(sheetFile).toString();
-    const commentSection = getHeaderCommentSection(text);
+function getPreviewText(text, maxLines = 10) {
+    if (!text) {
+        return "";
+    }
+    const previewMatch = text.match(/\{(.*?)\}/s);
+    if (!previewMatch || previewMatch.length < 1) {
+        return "";
+    }
+    let lines = previewMatch[1].split('\n')
+        .filter(line => line.trim().length > 0)
+        .slice(0, maxLines)
+        .map(line => line.trim());
+    return lines.join('\n');
+}
+
+function getMetaDataFromText(sheetFileText, required = false) {
+    if (!sheetFileText) {
+        return {};
+    }
+    const commentSection = getHeaderCommentSection(sheetFileText);
     const tags = Array.from(commentSection.matchAll(/#(.{2,}?)(\s|$)/g)).map(x => x[1]);
     const links = Array.from(commentSection.matchAll(/\[\s*(.+?)\s*\]\(\s*(.+?)\s*\)/g)).map(x => ({title: x[1], url: x[2]}));
-    const title = getInfo('TITLE', commentSection, true);
-    const by = getInfo('BY', commentSection, true).split(',').map(x => x.trim());
+    const title = getInfo('TITLE', commentSection, required);
+    const by = getInfo('BY', commentSection, required).split(',').map(x => x.trim());
     const description = getInfo('DESCRIPTION', commentSection, false);
+    const creatorid = getInfo('CREATORID', commentSection, false);
+    const preview = getPreviewText(sheetFileText);
     return {
         header: commentSection,
         tags,
         title,
         by,
         links,
-        description
+        description,
+        creatorid,
+        preview
     };
 }
 
-module.exports = { getMetaData }
+function getMetaData(sheetFile) {
+    const text = fs.readFileSync(sheetFile).toString();
+    return getMetaDataFromText(text, true);
+}
+
+module.exports = { getMetaData, getMetaDataFromText }

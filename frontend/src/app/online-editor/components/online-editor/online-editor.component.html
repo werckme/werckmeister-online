@@ -21,10 +21,13 @@
                     </div>
                 </div>
             </div>
+            <div class="transport-display">
+                <input title="begin in quarters" (focus)="onFocus($event)" (blur)="onBlur($event)" type="number" *ngIf="playerState === 0" [(ngModel)]="beginQuartersStr" wmFormat="3.0-0">
+                <input *ngIf="playerState !== 0" [ngModel]="elapsedQuaters | number:'3.0-0' " disabled>
+            </div>
             <div class="right-side">
                 <a href="/examples">Examples</a>
                 <a [routerLink]="['/']">Back To Mainpage <i nz-icon nzType="caret-right" nzTheme="outline"></i></a>
-                
             </div>
         </div>
     </nz-header>

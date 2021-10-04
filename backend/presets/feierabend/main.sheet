@@ -2,6 +2,8 @@
 -- BY: Samba Godschynski
 -- #3/4 #4/4 #polyrhythm 
 -- #several-accomp-tracks #volume-fades
+-- DESCRIPTION: A polyrhythm track: the melody is in 3/4, the backing part is in 4/4. Therefore the melody part is slightly slower. 
+-- [The final version](https://soundcloud.com/johannes-unger/feierabend)
 -- NOTE: this tunes loading/compile time takes a while ¯\(°_o)/¯
 using "./myConfig.config";
 using "./default.chords";

@@ -2,7 +2,7 @@
 -- BY: Koji Kondo
 -- (transcription by Joseph Karam)
 -- http://www.mariopiano.com/mario-sheet-music-underworld-theme.html
--- #repeats #jumps #triplets #mod-staccato #polytempo 
+-- #repeats #jumps #triplets #mod-staccato #polytempo #best-practise-switch-modifications
 -- #instrument-change #jump-repeat #velocity-accents #pitchmap-symbols
 using "staccato.lua";
 using "drums.pitchmap";
