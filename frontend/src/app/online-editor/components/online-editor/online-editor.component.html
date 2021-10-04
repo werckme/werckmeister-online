@@ -1,4 +1,5 @@
 <div class="werckmeister-online-editor" [ngClass]="{'is-dirty': !workspaceIsClean}">
+    <nz-progress *ngIf="playerPrepareProgressPercent !== null" nzStatus="normal" [nzShowInfo]="false" [nzPercent]="playerPrepareProgressPercent"></nz-progress>
     <nz-header>
         <div class="top-menu">
             <div class="left-side">
