@@ -5,6 +5,14 @@ $selectedFile: rgb(55, 55, 61);
     display: flex;
 }
 
+
+::ng-deep .werckmeister-online-editor .ant-progress {
+    position: fixed;
+    top: -12px;
+    z-index: 100;
+    left: 2px;
+}
+
 .transport-display {
     input {
         font-family: "Roboto Condensed";

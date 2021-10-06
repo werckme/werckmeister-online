@@ -34,6 +34,7 @@ interface IWorkspaceElement extends HTMLElement {
   markClean();
   play(): Promise<void>;
   stop(): Promise<void>;
+  getPlayerImpl(): any;
   onError: (error) => void;
   onCompiled: (document) => void;
   onStateChanged: (old: PlayerState, new_: PlayerState) => void;
@@ -65,7 +66,14 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   public playerState: PlayerState = PlayerState.Stopped;
   public bpm: number = 120;
   private beginQuarters: number = 0;
-
+  private _playerPrepareProgressPercent: number | null = null;
+  public get playerPrepareProgressPercent(): number {
+    if (this._playerPrepareProgressPercent === null) {
+      return null;
+    }
+    return Math.max(this.initialProgressPercent, this._playerPrepareProgressPercent);
+  }
+  private initialProgressPercent = 5;
   private _beginQuartersStr : string = "0";
   public get beginQuartersStr() : string {
     return this._beginQuartersStr;
@@ -147,6 +155,17 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     this.workspaceComponent.onError = this.onCompilerError.bind(this);
     this.workspaceComponent.onCompiled = this.onWerckCompiled.bind(this);
     this.workspaceComponent.onStateChanged = this.onPlayerStateChanged.bind(this);
+    let numberOfTasks = 0;
+    this.workspaceComponent.getPlayerImpl().playerTaskVisitor = {
+      newTasks: (tasks) => {
+        numberOfTasks = tasks.length;
+        this._playerPrepareProgressPercent = 0;
+      },
+      done: (task) => {
+        const progress = 100 / (numberOfTasks || 1);
+        this._playerPrepareProgressPercent += progress;
+      }
+    };
     this.shortcutSerice.when().ctrlAndChar('s').thenExecute(()=>{
       this.save();
     });
@@ -167,11 +186,14 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     if (new_ === PlayerState.Preparing) {
       this.workspaceComponent.beginQuarters = this.beginQuarters;
       this.elapsedQuaters = this.beginQuarters;
+      this._playerPrepareProgressPercent = this.initialProgressPercent;
     }
     if (new_ === PlayerState.Playing) {
+      this._playerPrepareProgressPercent = null;
       this.onPlayerStarted();
     }
     if (new_ === PlayerState.Stopped) {
+      this._playerPrepareProgressPercent = null;
       this.onPlayerStoped();
     }
     this.playerState = new_;

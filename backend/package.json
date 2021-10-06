@@ -8,7 +8,9 @@
     "dev-start-all": "npm run start-database && npm run dev",
     "updatePresetIndex": "node updateIndices.js",
     "start-database": "docker run --name mongo -p 27017:27017 -v $HOME/mongo:/data/db --rm -d mongo:latest",
-    "stop-database": "docker container stop mongo"
+    "stop-database": "docker container stop mongo",
+    "start-database-win": "docker run --name mongo -p 27017:27017 -v ./mongo:/data/db --rm -d mongo:latest",
+    "stop-database-win": "docker container stop mongo"
   },
   "author": "",
   "license": "ISC",
