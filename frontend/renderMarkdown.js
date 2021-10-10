@@ -128,7 +128,7 @@ if (!splitFilesByH1) {
 files = outText.split(fileSplitSeq).filter(x => x.length !== 0);
 
 for (let idx = 0; idx < files.length; ++idx) {
-  const content = files[idx];
+  const content = `<div class="markup">${files[idx]}</div>`;
   const fileName = fileNames[idx] + '.html';
   // console.log(fileName);
   // console.log(content);

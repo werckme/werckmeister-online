@@ -1,3 +1,5 @@
+@import "../../../mixins.scss";
+
 h1 {
     font-family: Roboto,Arial,Helvetica,sans-serif;
     letter-spacing: 0;
@@ -22,4 +24,16 @@ h3 {
 
 h4 {
     font-size: 1.3rem;
+}
+
+div.markup {
+    max-width: 100%;
+    margin: 0 0;
+}
+
+@include if-xl-or-larger {
+    div.markup {
+        max-width: 75%;
+        margin: 0 auto;
+    }
 }
