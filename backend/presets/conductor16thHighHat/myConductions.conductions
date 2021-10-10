@@ -1,0 +1,9 @@
+-- High Hat
+-- the default velocity
+instrument(drumsUsingConductionRules) pitch(h) { 
+    velocity = 51;
+}
+-- emphasize the off beat
+instrument(drumsUsingConductionRules) pitch(h) onBeat(1.5 2.5 3.5 4.5) { 
+    velocity = 89;
+}

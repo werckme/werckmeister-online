@@ -1,0 +1,30 @@
+--Drums-------------------------
+--High Hat
+-- emphasize the off beat
+instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) { 
+    velocity = 90;
+}
+-- emphasize a little less the on beats
+instrument(drums) pitch(h) onBeat(1 2 3 4) {
+    velocity = 60;
+}
+-- all other high hat strokes are 20 velocity units less than its predecessor
+instrument(drums) pitch(h) {
+    velocity = & - 20;
+}
+-- Snare
+-- play the snare a bit laid back on 2 and 4
+instrument(drums) pitch(x) onBeat(2 4) {
+    velocity += 25%;
+    timeOffset += 3%;
+}
+
+-- Bass Drum
+instrument(drums) pitch(o) onBeat(1) {
+    velocity += 30%;
+}
+
+-- high hat fromPosition
+instrument(drums) pitch(h,) {
+    velocity = 50;
+}
