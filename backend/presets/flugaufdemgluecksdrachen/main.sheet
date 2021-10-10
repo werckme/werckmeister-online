@@ -1,6 +1,7 @@
 -- TITLE: Flug auf dem Gluecksdrachen (Never Ending Story)
 -- BY: Klaus Doldinger
 -- CREATORID: johannes.unger@vstforx.de
+-- #not-listed
 using "./piano.template";
 using "./drums.template";
 using "./myPitchmap.pitchmap";
@@ -9,7 +10,7 @@ using "./default.chords";
 using "./myConductions.conductions";
 
 tempo: 146;
-device: MyDevice  midi _usePort=3;
+device: MyDevice  midi _usePort=0;
 -- violin 1
 instrumentDef:Vl1 		  _onDevice=MyDevice  _ch=0 _pc=48;
 -- violin 2 

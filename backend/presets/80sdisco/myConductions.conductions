@@ -33,8 +33,11 @@ channel(1) nthBar(2) onBeat(1) {
     velocity += 60%;
 }
 --Rhythm 2 Synth-------------------------
-instrument(rhythm2) onBeat(1 2 3 4) {
-    velocity += 20%;
+instrument(rhythm2) notOnBeat(1) {
+    duration -= 75%;
+}
+instrument(rhythm2) onBeat(2 4) {
+    velocity += 35%;
 }
 --Bass Synth-------------------------
 instrument(bass) onBeat (1 3) {

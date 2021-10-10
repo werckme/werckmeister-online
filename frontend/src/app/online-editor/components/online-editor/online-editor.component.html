@@ -27,7 +27,7 @@
                 <input *ngIf="playerState !== 0" [ngModel]="elapsedQuaters | number:'3.0-0' " disabled>
             </div>
             <div class="right-side">
-                <a href="/examples">Examples</a>
+                <a [routerLink]="['/examples']">Examples</a>
                 <a [routerLink]="['/']">Back To Mainpage <i nz-icon nzType="caret-right" nzTheme="outline"></i></a>
             </div>
         </div>

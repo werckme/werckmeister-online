@@ -5,13 +5,13 @@
 -- #repeats #jumps #triplets #mod-staccato #polytempo #best-practise-switch-modifications
 -- #instrument-change #jump-repeat #velocity-accents #pitchmap-symbols #conductions
 -- #conductions-event-duration #conductions-event-position-selector #conductions-velocity
--- #conductions-staccato #conductions-highhat-velocity
+-- #conductions-staccato #conductions-highhat-velocity #conductions-follow-up
 using "staccato.lua";
 using "drums.pitchmap";
 using "./myConductions.conductions";
 
 tempo: 200;
-device: MyDevice  midi _usePort=3;
+device: MyDevice  midi _usePort=0;
 instrumentDef: bass          _onDevice=MyDevice  _ch=0 _pc=38;
 instrumentDef: drums         _onDevice=MyDevice  _ch=9 _pc=0;
 
