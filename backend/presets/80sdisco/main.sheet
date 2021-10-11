@@ -25,7 +25,7 @@ instrumentDef:bass    _onDevice=MyDevice  _ch=2 _pc=38;
 instrumentDef:drums    _onDevice=MyDevice  _ch=9 _pc=10;
 instrumentConf: drums volume 100;
 instrumentConf: rhythm pan 15 volume 85 voicingStrategy guitar _range=alto;
-instrumentConf: rhythm2 pan 90 volume 100 voicingStrategy guitar _range=baritone;
+instrumentConf: rhythm2 pan 80 volume 100 voicingStrategy guitar _range=baritone;
 instrumentConf: bass volume 80;
 
 [
