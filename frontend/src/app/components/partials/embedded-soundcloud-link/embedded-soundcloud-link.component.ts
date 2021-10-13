@@ -18,7 +18,6 @@ export class EmbeddedSoundcloudLinkComponent implements OnInit, IHasUrl {
 
   get soundCloudUrl(): SafeUrl {
     const url = this.url;
-    console.log(this.url)
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
