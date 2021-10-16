@@ -1,8 +1,10 @@
-import { AfterViewInit, ElementRef } from '@angular/core';
+import { AfterViewInit, ElementRef, Injectable } from '@angular/core';
 import $ from 'jquery';
 import { AppService, SideMenuItem } from 'src/app/services/app.service';
 import * as _ from 'lodash';
-export abstract class AAutoSideMenu implements AfterViewInit {
+
+@Injectable()
+export abstract class AAutoSideMenu  {
 	constructor(protected elRef:ElementRef, protected app: AppService) { 
 	}
 
