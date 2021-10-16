@@ -21,7 +21,7 @@
     "@angular/router": "~8.2.14",
     "@types/lodash": "^4.14.157",
     "@types/showdown": "^1.9.3",
-    "@werckmeister/components": "1.1.6-99",
+    "@werckmeister/components": "1.1.6-101",
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.4",
     "ionicons": "^4.4.3",
