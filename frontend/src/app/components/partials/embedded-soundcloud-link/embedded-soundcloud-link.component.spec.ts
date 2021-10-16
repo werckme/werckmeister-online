@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EmbeddedSoundcloudLinkComponent } from './embedded-soundcloud-link.component';
 
@@ -6,7 +6,7 @@ describe('EmbeddedSoundcloudLinkComponent', () => {
   let component: EmbeddedSoundcloudLinkComponent;
   let fixture: ComponentFixture<EmbeddedSoundcloudLinkComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ EmbeddedSoundcloudLinkComponent ]
     })
