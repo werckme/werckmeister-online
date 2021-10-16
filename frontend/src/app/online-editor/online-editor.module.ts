@@ -15,7 +15,19 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { IconDefinition } from '@ant-design/icons-angular';
+import { PlusOutline, DownloadOutline, SaveOutline, CaretRightOutline, EditOutline, DeleteOutline, CheckOutline, CloseOutline } from '@ant-design/icons-angular/icons';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
+const icons: IconDefinition[] = [ PlusOutline, 
+  DownloadOutline, 
+  SaveOutline, 
+  CaretRightOutline, 
+  EditOutline, 
+  DeleteOutline, 
+  CheckOutline,
+  CloseOutline
+];
 
 @NgModule({
   declarations: [OnlineEditorComponent, FileEntryComponent, FormatDirective],
@@ -30,6 +42,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 		NzListModule,
 		NzPageHeaderModule,
 		NzTagModule,
+    NzIconModule.forRoot(icons),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [WorkspaceStorageService, ShortcutService, NzNotificationService]

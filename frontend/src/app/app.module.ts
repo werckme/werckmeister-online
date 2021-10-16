@@ -40,9 +40,15 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzTagModule } from 'ng-zorro-antd/tag';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { IconDefinition } from '@ant-design/icons-angular';
+import { PlayCircleOutline, WindowsOutline, AppleOutline } from '@ant-design/icons-angular/icons';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
+const icons: IconDefinition[] = [ PlayCircleOutline, 
+	WindowsOutline, 
+	AppleOutline
+];
 registerLocaleData(en);
 @NgModule({
 	declarations: [
@@ -88,7 +94,8 @@ registerLocaleData(en);
 		NgxPageScrollCoreModule,
 		NgxPageScrollModule,
 		NgZorroAntdMobileModule,
-		OnlineEditorModule
+		OnlineEditorModule,
+		NzIconModule.forRoot(icons),
 	],
 	providers: [
 		//{ provide: NZ_I18N, useValue: en_US },
