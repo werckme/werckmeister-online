@@ -32,7 +32,7 @@ export class FileEntryComponent implements OnInit {
   @Output()
   ondelete = new EventEmitter<void>();
 
-  @ViewChild('input', {static: false})
+  @ViewChild('input')
   input: ElementRef;
 
   private _editMode = false;

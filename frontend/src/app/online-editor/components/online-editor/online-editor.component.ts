@@ -54,8 +54,8 @@ interface ICompilerError {
   styleUrls: ['./online-editor.component.scss']
 })
 export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild("editorMain", { read: ViewContainerRef, static: false }) editorMain: ViewContainerRef;
-  @ViewChild("workspace", { read: ViewContainerRef, static: false }) workspaceEl: ViewContainerRef;
+  @ViewChild("editorMain", { read: ViewContainerRef }) editorMain: ViewContainerRef;
+  @ViewChild("workspace", { read: ViewContainerRef }) workspaceEl: ViewContainerRef;
 
   private fileNameEditorMap = new Map<string, IEditorElement>();
   workspaceModel: IWorkspace;
