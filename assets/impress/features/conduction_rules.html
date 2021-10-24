@@ -1,0 +1,80 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="impress.css">
+<script src="https://unpkg.com/@werckmeister/components/werckmeister-components.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="impress.js"></script>
+
+<body>
+
+    <div class="page page-1">
+        <div class="content">
+            <h1 class="step step-01 fade-in">Werckmeister Conduction Rules</h1>
+            <h2 class="step step-02 fade-in from-below">Separate <b>What</b> and <b>How</b></h2>
+        </div>
+    </div>
+
+    <div class="page page-2">
+        <div class="content">
+            <h2>The raw material</h2>
+            <werckmeister-snippet wm-css-url="wm-component.css" wm-style="width: 700px; height: 100px;"
+                wm-type="single">
+                <![CDATA[
+h16 h h h  h h h h  h h h h  h h h h |
+                    ]]>
+            </werckmeister-snippet>
+        </div>
+    </div>
+
+    <div class="page page-3">
+        <div class="content">
+            <h2>Add some articulation</h2>
+            <div style="position: relative;">
+                <werckmeister-editor wm-filename="myConductions.conductions" wm-css-url="wm-component.css"
+                    wm-style="width: 820px; height: 188px;">
+                    <![CDATA[
+instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) 
+{ 
+    velocity += 50%;
+}
+                        ]]>
+                </werckmeister-editor>
+                <div class="marker step step-only step-01 fade-in"
+                    style="top: 33px; height: 26px; left: 28px; width: 158px;"></div>
+                <div class="marker step step-only step-02 fade-in"
+                    style="top: 33px; height: 26px; left: 299px; width: 123px;"></div>
+                <div class="marker step step-only step-03 fade-in"
+                    style="top: 33px; height: 26px; left: 435px; width: 95px;"></div>
+                <div class="marker step step-only step-04 fade-in"
+                    style="top: 92px; height: 26px; left: 88px; width: 248px;"></div>
+                <div class="dummy step step-only step-05"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page page-4">
+        <div class="content">
+            <h2>The result</h2>
+            <werckmeister-snippet wm-css-url="wm-component.css" wm-style="width: 700px; height: 100px;"
+                wm-type="single">
+                <![CDATA[
+h16 h h h  h h h h  h h h h  h h h h |
+                    ]]>
+            </werckmeister-snippet>            
+        </div>
+    </div>
+
+    <div class="page page-5">
+        <div class="content last-page">
+            <img height="417px" src="Logo.svg">
+            <p>werckmeister</p>
+            <p>https://werckme.github.io</p>
+        </div>
+    </div>
+
+    <footer></footer>
+</body>
+
+</html>

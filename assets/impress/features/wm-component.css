@@ -1,0 +1,11 @@
+.CodeMirror {
+    font-size: 25px;
+}
+
+.whomai {
+    display: none;
+}
+
+#editor {
+    border: 2px solid grey;
+}
