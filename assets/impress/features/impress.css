@@ -1,3 +1,13 @@
+@keyframes fade-in {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes from-below {
+    from {top: 200px;}
+    to {top: 0px;}
+}
+
 body {
     background: #1c1c1c;
     color: white;
@@ -23,11 +33,6 @@ h2 {
 }
 
 .hidden {
-    visibility: collapse;
-    height: 0;
-}
-
-.page.hidden {
     display: none;
 }
 
@@ -35,29 +40,18 @@ h2 {
     visibility: collapse;
 }
 
-.step-only.step-ended.fade-out {
-    visibility: visible;
-    opacity: 0;
-}
-
-.hidden.fade-in {
-    opacity: 0;
-}
-
 .fade-in {
-    transition: opacity 1s;
-    opacity: 1;
+    animation-name: fade-in;
+    animation-duration: 1s; 
 }
 
-.hidden.from-below {
-    position: relative;
-    top: 200px;
+.slow {
+    animation-duration: 2s;
 }
 
 .from-below {
     position: relative;
-    transition: top 0.5s ease-out;
-    top: 0;
+    animation: from-below 0.5s;
 }
 
 .marker {
