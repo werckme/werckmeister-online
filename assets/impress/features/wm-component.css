@@ -9,3 +9,7 @@
 #editor {
     border: 2px solid grey;
 }
+
+#wm-controls {
+    display: none;
+}

@@ -41,6 +41,12 @@ class Presentation {
         el.addClass(VisibleClass);
     }
 
+    editorNoContentWorkaround() {
+        $(`div.${this.pageClass()} werckmeister-snippet`).each((i, el) => {
+            el.editor.update();
+        });
+    }
+
     async setPage(pageNr) {
         this.currentStepEl = undefined;
         const body = $(document.body);
@@ -54,6 +60,7 @@ class Presentation {
         await waitAsync(100);
         this.show(this.pageElement());
         this.updateSteps();
+        this.editorNoContentWorkaround();
     }
 
     /**
@@ -65,12 +72,24 @@ class Presentation {
         this.steps = Array.from(new Set(stepClasses)).sort();
     }
 
+    playSnippet(snippetId) {
+        const snippet = $(`#${snippetId}`)[0];
+        if (!snippet) {
+            throw new Error(`snippet not found ${snippetId}`);
+        }
+        snippet.startPlayer();
+    }
+
     nextStep() {
         if (this.currentStepEl) {
             this.currentStepEl.addClass('step-ended');
         }
         const step = this.steps[0];
         this.currentStepEl = $(`div.${this.pageClass()} .${step}`);
+        if (this.currentStepEl[0].dataset?.playSnippet) {
+            const snippetName = this.currentStepEl[0].dataset?.playSnippet;
+            this.playSnippet(snippetName);
+        }
         this.show(this.currentStepEl);
         $(document.body).addClass(step);        
         this.steps.splice(0, 1);
