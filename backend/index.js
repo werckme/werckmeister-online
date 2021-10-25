@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const helmet = require('helmet');
 const monk = require('monk')
 const {nanoid} = require('nanoid');
@@ -37,6 +38,7 @@ class UserError extends Error {}
 
 const app = express();
 app.use(helmet());
+app.use(cors());
 app.use(bodyParser.json({ limit: '2mb' }));
 app.use(express.json());
 
