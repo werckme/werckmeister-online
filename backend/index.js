@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const helmet = require('helmet');
 const monk = require('monk')
 const {nanoid} = require('nanoid');
