@@ -38,7 +38,6 @@ class UserError extends Error {}
 
 const app = express();
 app.use(helmet());
-app.use(cors({origin: AllowedOrigins()}));
 app.use(bodyParser.json({ limit: '2mb' }));
 app.use(express.json());
 
