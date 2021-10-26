@@ -68,3 +68,17 @@ h2 {
     text-align: center;
     font-size: 24px;
 }
+
+.hidden.hidden-using-visibility {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.hidden.hidden-using-visibility.fade-in {
+    opacity: 0;
+}
+
+.visible.hidden-using-visibility.fade-in {
+    transition: opacity 1s;
+}
