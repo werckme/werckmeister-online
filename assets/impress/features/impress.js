@@ -5,6 +5,7 @@ function waitAsync(ms) {
 
 const HiddenClass = "hidden";
 const VisibleClass = "visible";
+const speechServerUrl = 'http://localhost:8889';
 
 class Presentation {
     page = undefined;
@@ -13,6 +14,24 @@ class Presentation {
     constructor() {
         this.setPage(1);
         $('.page, .step').addClass(HiddenClass);
+        this.initSpeakElements();
+    }
+
+    appendAudioElement(parentElement, url) {
+        const audioElement = $(`
+        <audio style="display:none;" controls preload="auto">
+            <source src="${url}">
+        <audio>`);
+        $(parentElement).append(audioElement);
+    }
+
+    initSpeakElements() {
+        const speakElements = $('div[data-speak]');
+        for(const el of speakElements) {
+            const text = encodeURIComponent(el.innerText.replace(/\s+/g, ' ').trim());
+            const url = `${speechServerUrl}/${text}`
+            this.appendAudioElement(el, url);
+        }
     }
 
     next() {
@@ -89,6 +108,11 @@ class Presentation {
         if (this.currentStepEl[0].dataset?.playSnippet) {
             const snippetName = this.currentStepEl[0].dataset?.playSnippet;
             this.playSnippet(snippetName);
+        }
+        if (this.currentStepEl[0].dataset?.speak !== undefined) {
+            console.log("PLAY")
+            const audioElement = $(`div.${this.pageClass()} .${step} audio`)[0];
+            audioElement.play();
         }
         this.show(this.currentStepEl);
         $(document.body).addClass(step);        
