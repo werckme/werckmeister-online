@@ -17,3 +17,7 @@
 .cm-wm-hidden-line {
     display: none;
 }
+
+.CodeMirror-code .CodeMirror-line:first-child {
+    display: none;
+}
