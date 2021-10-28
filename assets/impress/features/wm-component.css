@@ -17,3 +17,17 @@
 .cm-wm-hidden-line {
     display: none;
 }
+
+.CodeMirror-vscrollbar {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+
+.CodeMirror-hscrollbar {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+
+.CodeMirror-scrollbar-filler {
+    display: none !important;
+}

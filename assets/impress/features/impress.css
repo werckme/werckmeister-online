@@ -82,3 +82,13 @@ h2 {
 .visible.hidden-using-visibility.fade-in {
     transition: opacity 1s;
 }
+
+table {
+    width: 100%;
+}
+
+th {
+    font-size: 1.5em;
+    font-weight: bolder;
+    text-align: left;
+}
