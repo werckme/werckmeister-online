@@ -3,7 +3,8 @@ function waitAsync(ms) {
     return new Promise(res => setTimeout(res, ms));
 }
 
-const StartPage = 4;
+const StartPage = 1;
+const SpeechPlayback = true;
 const HiddenClass = "hidden";
 const VisibleClass = "visible";
 const speechServerUrl = 'http://localhost:8889';
@@ -13,7 +14,7 @@ class Presentation {
     currentStepEl = undefined;
     steps = [];
     constructor() {
-        this.setPage(StartPage);
+        this.setPage(StartPage || 1);
         $('.page, .step').addClass(HiddenClass);
         this.initSpeakElements();
     }
@@ -111,8 +112,10 @@ class Presentation {
             this.playSnippet(snippetName);
         }
         if (this.currentStepEl[0].dataset?.speak !== undefined) {
-            const audioElement = $(`div.${this.pageClass()} .${step} audio`)[0];
-            audioElement.play();
+            if (SpeechPlayback) {
+                const audioElement = $(`div.${this.pageClass()} .${step} audio`)[0];
+                audioElement.play();
+            }
         }
         this.show(this.currentStepEl);
         $(document.body).addClass(step);        

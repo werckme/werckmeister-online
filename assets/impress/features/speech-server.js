@@ -18,8 +18,13 @@ const TextToSpeechV1 = require('ibm-watson/text-to-speech/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
 const { response } = require('express');
 
+let lastWroteCount = 0;
 function saveCountImpl() {
+    if (!totalCharacters || lastWroteCount === totalCharacters) {
+        return;
+    }
     fs.writeFileSync('characterCount.txt', `${totalCharacters}\n`, {encoding:'utf8',flag:'a'});
+    lastWroteCount = totalCharacters;
 }
 
 const saveCount = _.debounce(saveCountImpl, 5000);

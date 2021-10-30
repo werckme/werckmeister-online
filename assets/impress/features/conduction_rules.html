@@ -6,6 +6,14 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="impress.js"></script>
+<style>
+    h3 {
+        font-size: 18px;
+    }
+    werckmeister-snippet {
+        zoom: 1.5;
+    }
+</style>
 
 <body>
 
@@ -20,23 +28,31 @@
                 The Conduction Rules allow you to separate between, what notes to play and how to perform them.
             </div>
             <div style="position: relative;">
-                <h2 class="step step-04 fade-in from-below">Separate <b>What</b> and <b>How</b></h2>
-                <div class="step step-05" style="position: absolute; top: -37px; left: 258px; color: #e96d1b">
-                    <h2 style="border-left: none; padding: 0;"><b>What</b></h2>
-                </div>
-                <div class="step step-06" style="position: absolute; top: -37px; left: 481px; color: #31df3e">
-                    <h2 style="border-left: none; padding: 0;"><b>How</b></h2>
-                </div>
+                <h2 class="step step-04 fade-in from-below">Separate 
+                    <b style="position: relative;">
+                        What
+                        <div class="step step-05" style="position: absolute; top: -52px; left: 0px; color: #e96d1b;">
+                            <h2 style="border-left: none; padding: 0; font-size: 1em; text-shadow: 0px 0px 8px #e96d1b;"><b>What</b></h2>
+                        </div>
+                    </b> 
+                    and 
+                    <b style="position: relative;">
+                        How
+                        <div class="step step-06" style="position: absolute; top: -52px; left: 0px; color: #31df3e; font-size: 1em;">
+                            <h2 style="border-left: none; padding: 0; font-size: 1em; text-shadow: 0px 0px 8px #31df3e;"><b>How</b></h2>
+                        </div>
+                    </b>
+                </h2>
             </div>
+        </div>
+        <div class="speech-only step step-07" data-speak>
+            To demonstrate, what the conduction rules are capable of, we start, with a simple, 16th, High Hat pattern.
         </div>
     </div>
 
     <div class="page page-2">
         <div class="content">
             <h2>The input material</h2>
-            <div class="speech-only step step-01" data-speak>
-                To demonstrate, what the conduction rules are capable of, we start, with this High Hat pattern.
-            </div>
             <div class="step step-02 fade-in hidden-using-visibility">
                 <werckmeister-snippet id="snippet-raw-hh" wm-css-url="wm-component-hidden-first-line.css"
                     wm-style="width: 700px; height: 185px;"
@@ -62,8 +78,9 @@
                 </div>
                 <div class="step step-02 fade-in hidden-using-visibility">
                     <werckmeister-snippet wm-type="single" wm-css-url="wm-component.css"
-                        wm-style="width: 768px; height: 75px;">\pp h16 \pp h \ff h \pp h \pp h \pp h \ff h \pp h
-                        \pp h \pp h \ff h \pp h \pp h \pp h \ff h \pp h
+                        wm-style="width: 768px; height: 75px;">
+                        <![CDATA[\pp h16 \pp h \ff h \pp h \pp h \pp h \ff h \pp h
+\pp h   \pp h \ff h \pp h \pp h \pp h \ff h \pp h]]>
                     </werckmeister-snippet>
 
                 </div>
@@ -117,10 +134,11 @@
     <div class="page page-4">
         <div class="content">
             <h2>Adding articulation</h2>
+
+            <h3 style="margin: 0; font-style: italic; opacity: 0.3;">// mySheet.sheet </h3>
             <div style="position: relative;">
-                <h3 style="margin: 0; font-style: italic; opacity: 0.3;">// SheetFile </h3>
                 <werckmeister-editor wm-filename="myConductions.conductions" wm-css-url="wm-component.css"
-                    wm-style="width: 820px; height: 180px; opacity: 0.3">
+                    wm-style="width: 860px; height: 180px; opacity: 0.3">
                     <![CDATA[[
 instrument: drums;
 {   
@@ -129,11 +147,21 @@ instrument: drums;
 ]
                     ]]>
                 </werckmeister-editor>
-                <br>
-                <br>
-                <h3 style="margin: 0; font-style: italic;">// Conduction File </h3>
+                <div class="marker step step-only step-02 fade-in fade-out"
+                    style="top: 33px; height: 26px; left: 241px; width: 95px;"></div>
+                <div class="marker step step-only step-04 fade-in fade-out"
+                    style="top: 90px; height: 28px; left: 122px; width: 551px;"></div>
+                <div class="step step-06 fade-in" style="top: 90px; left: 212px; position: absolute;">
+                    <div style="width: 20px; height: 28px;" class="marker"></div>
+                    <div style="left: 135px; width: 20px; height: 28px;" class="marker"></div>
+                    <div style="left: 272px; width: 20px; height: 28px;" class="marker"></div>
+                    <div style="left: 407px; width: 20px; height: 28px;" class="marker"></div>
+                </div>
+            </div>
+            <h3 style="margin: 40px 0 0 0; font-style: italic;">// myConductions.conductions </h3>
+            <div style="position: relative;">
                 <werckmeister-editor wm-filename="myConductions.conductions" wm-css-url="wm-component.css"
-                    wm-style="width: 820px; height: 188px;">
+                    wm-style="width: 860px; height: 188px;">
                     <![CDATA[
 instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) 
 { 
@@ -146,26 +174,26 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5)
                     In this case, we want to emphasize the high hat notes on the off beat.
                     Therefore, we select, the instrument, drums.
                 </div>
-                <div class="marker step step-only step-02 fade-in"
-                    style="top: 55; height: 26px; left: 208px; width: 95px;"></div>
-                <div class="marker step step-only step-02 fade-in"
-                    style="top: 299px; height: 26px; left: 28px; width: 256px;"></div>
+
+                <div class="marker step step-only step-02 fade-in fade-out"
+                    style="top: 33px; height: 26px; left: 64px; width: 256px;"></div>
                 <div class="speech-only step step-03" data-speak>
                     then, we select, the pitch, h. Which is related to the high hat.
                 </div>
-                <div class="marker step step-only step-04 fade-in"
-                    style="top: 299px; height: 26px; left: 299px; width: 123px;"></div>
+
+                <div class="marker step step-only step-04 fade-in fade-out"
+                    style="top: 33px; height: 26px; left: 335px; width: 123px;"></div>
                 <div class="speech-only step step-05" data-speak>
                     we select, the notes, on beat .5. Which addresses the notes on the off beat.
                 </div>
-                <div class="marker step step-only step-06 fade-in"
-                    style="top: 299px; height: 26px; left: 435px; width: 95px;"></div>
+                <div class="marker step step-only step-06 fade-in fade-out"
+                    style="top: 33px; height: 26px; left: 471px; width: 343px;"></div>
                 <div class="speech-only step step-07" data-speak>
                     And finally, we describe, what we want to do. In this case we want to emphasize. So we add 50
                     velocity units, to the selected notes.
                 </div>
                 <div class="marker step step-only step-08 fade-in"
-                    style="top: 357px; height: 26px; left: 88px; width: 248px;"></div>
+                    style="top: 91px; height: 26px; left: 124px; width: 227;"></div>
                 <div class="phony step step-only step-05"></div>
             </div>
         </div>
