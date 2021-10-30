@@ -19,7 +19,7 @@ const { IamAuthenticator } = require('ibm-watson/auth');
 const { response } = require('express');
 
 function saveCountImpl() {
-    fs.writeFileSync('characterCount.txt', totalCharacters.toString(), {encoding:'utf8',flag:'w'});
+    fs.writeFileSync('characterCount.txt', `${totalCharacters}\n`, {encoding:'utf8',flag:'a'});
 }
 
 const saveCount = _.debounce(saveCountImpl, 5000);
