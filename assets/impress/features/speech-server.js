@@ -3,13 +3,14 @@ const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 const sha256 = require('sha256');
+const _ = require('lodash');
 require('dotenv').config();
 const port = process.env.PORT || 8889;
 const speechCacheDir = process.env.SPEECH_CHACHE_DIR || '.speechcache';
 if (!fs.existsSync(speechCacheDir)) {
     fs.mkdirSync(speechCacheDir);
 }
-
+let totalCharacters = 0;
 const IbmAppId = process.env.IBM_APP_ID;
 const IbmTextToSpeechInstance = process.env.IBM_TEXT_TO_SPEECH_INSTANCE
 const IbmTextToSpeechVoice = process.env.IBM_TEXT_TO_SPEECH_VOICE || 'en-GB_KateV3Voice';
@@ -17,7 +18,11 @@ const TextToSpeechV1 = require('ibm-watson/text-to-speech/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
 const { response } = require('express');
 
+function saveCountImpl() {
+    fs.writeFileSync('characterCount.txt', totalCharacters.toString(), {encoding:'utf8',flag:'w'});
+}
 
+const saveCount = _.debounce(saveCountImpl, 5000);
 
 async function synthesize(id, text, format='audio/wav') {
     const filename = `${id}.wav`;
@@ -25,6 +30,7 @@ async function synthesize(id, text, format='audio/wav') {
     if (fs.existsSync(filePath)) {
         return filePath;
     }
+    totalCharacters += text.length;
     const textToSpeech = new TextToSpeechV1({
         authenticator: new IamAuthenticator({
             apikey: IbmAppId,
@@ -55,6 +61,7 @@ app.get('/:text', async (req, res, next) => {
         const filePath = await synthesize(id, text);
         const absPath = path.resolve(filePath);
         res.sendFile(absPath);
+        saveCount();
     } catch(ex) {
         console.error(ex);
         res.statusCode = 500;

@@ -33,9 +33,9 @@
 
     <div class="page page-2">
         <div class="content">
-            <h2>The raw material</h2>
+            <h2>The input material</h2>
             <div class="speech-only step step-01" data-speak>
-                Take, for example, this High Hat pattern.
+                To demonstrate, what the conduction rules are capable of, we start, with this High Hat pattern.
             </div>
             <div class="step step-02 fade-in hidden-using-visibility">
                 <werckmeister-snippet id="snippet-raw-hh" wm-css-url="wm-component-hidden-first-line.css"
@@ -44,11 +44,11 @@
                 </werckmeister-snippet>
             </div>
             <div class="speech-only step step-03" data-speak>
-                Without any articulation, it sounds very mechanical.
+                Without any articulation, the pattern sounds very mechanical.
             </div>
             <div class="phony step step-04" data-play-snippet="snippet-raw-hh"></div>
             <div class="speech-only step step-05" data-speak>
-                So lets add some articulation.
+                So lets add some articulation to that.
             </div>
         </div>
     </div>
@@ -62,26 +62,35 @@
                 </div>
                 <div class="step step-02 fade-in hidden-using-visibility">
                     <werckmeister-snippet wm-type="single" wm-css-url="wm-component.css"
-                        wm-style="width: 768px; height: 75px;">\pp h16 \pp h \ff h \pp h  \pp h \pp h \ff h \pp h  
-\pp h   \pp h \ff h \pp h  \pp h \pp h \ff h \pp h
+                        wm-style="width: 768px; height: 75px;">\pp h16 \pp h \ff h \pp h \pp h \pp h \ff h \pp h
+                        \pp h \pp h \ff h \pp h \pp h \pp h \ff h \pp h
                     </werckmeister-snippet>
 
                 </div>
                 <div class="speech-only step step-03" data-speak>
-                    To keep the sheet source clean, we want to separate the velocity information from the actual sheet.
-                    If you familiar with html and css, you already know the concept. We use a separate file, to describe, how to perform the notes of the sheet.
+                    Technically, this would be ok. But the sheet code, is now very hard to read.
                 </div>
-                <div class="step step-04 fade-in from-below">
+                <div class="speech-only step step-04" data-speak>
+                    In order to keep the sheet source clean, we want to separate the velocity information from the
+                    actual sheet.
+                    If you familiar with html and css, you already know the concept. We use a separate file, to
+                    describe, how to perform the notes of the sheet.
+                </div>
+                <div class="step step-05 fade-in from-below">
                     <style>
                         table {
                             margin: 4em auto;
-                            font-size: 18px; width: 500px;
+                            font-size: 18px;
+                            width: 500px;
                             border-collapse: collapse;
                         }
-                        td:nth-child(2), th:nth-child(2) {
+
+                        td:nth-child(2),
+                        th:nth-child(2) {
                             border-left: 2px solid white;
                             text-align: right;
                         }
+
                         .web {
                             opacity: 0.5;
                         }
@@ -109,6 +118,20 @@
         <div class="content">
             <h2>Adding articulation</h2>
             <div style="position: relative;">
+                <h3 style="margin: 0; font-style: italic; opacity: 0.3;">// SheetFile </h3>
+                <werckmeister-editor wm-filename="myConductions.conductions" wm-css-url="wm-component.css"
+                    wm-style="width: 820px; height: 180px; opacity: 0.3">
+                    <![CDATA[[
+instrument: drums;
+{   
+    h16 h h h  h h h h  h h h h  h h h h :|
+}
+]
+                    ]]>
+                </werckmeister-editor>
+                <br>
+                <br>
+                <h3 style="margin: 0; font-style: italic;">// Conduction File </h3>
                 <werckmeister-editor wm-filename="myConductions.conductions" wm-css-url="wm-component.css"
                     wm-style="width: 820px; height: 188px;">
                     <![CDATA[
@@ -119,27 +142,30 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5)
                         ]]>
                 </werckmeister-editor>
                 <div class="speech-only step step-01" data-speak>
-                    The first step is to select the notes we want to affect. 
+                    The first step is to select the notes we want to affect.
                     In this case, we want to emphasize the high hat notes on the off beat.
                     Therefore, we select, the instrument, drums.
                 </div>
                 <div class="marker step step-only step-02 fade-in"
-                    style="top: 33px; height: 26px; left: 28px; width: 158px;"></div>
+                    style="top: 55; height: 26px; left: 208px; width: 95px;"></div>
+                <div class="marker step step-only step-02 fade-in"
+                    style="top: 299px; height: 26px; left: 28px; width: 256px;"></div>
                 <div class="speech-only step step-03" data-speak>
                     then, we select, the pitch, h. Which is related to the high hat.
                 </div>
                 <div class="marker step step-only step-04 fade-in"
-                    style="top: 33px; height: 26px; left: 299px; width: 123px;"></div>
+                    style="top: 299px; height: 26px; left: 299px; width: 123px;"></div>
                 <div class="speech-only step step-05" data-speak>
                     we select, the notes, on beat .5. Which addresses the notes on the off beat.
                 </div>
                 <div class="marker step step-only step-06 fade-in"
-                    style="top: 33px; height: 26px; left: 435px; width: 95px;"></div>
-                    <div class="speech-only step step-07" data-speak>
-                        And finally, we describe, what we want to do. In this case we want to emphasize. So we add 50 velocity units, to the selected notes. 
-                    </div>
+                    style="top: 299px; height: 26px; left: 435px; width: 95px;"></div>
+                <div class="speech-only step step-07" data-speak>
+                    And finally, we describe, what we want to do. In this case we want to emphasize. So we add 50
+                    velocity units, to the selected notes.
+                </div>
                 <div class="marker step step-only step-08 fade-in"
-                    style="top: 92px; height: 26px; left: 88px; width: 248px;"></div>
+                    style="top: 357px; height: 26px; left: 88px; width: 248px;"></div>
                 <div class="phony step step-only step-05"></div>
             </div>
         </div>
@@ -148,17 +174,24 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5)
     <div class="page page-5">
         <div class="content">
             <h2>The result</h2>
-            <div class="step step-01 fade-in hidden-using-visibility">
+            <div class="speech-only step step-01" data-speak>
+                Let's hear, our high hat pattern again, but now with the conduction rules applied.
+            </div>
+            <div class="step step-02 fade-in hidden-using-visibility">
                 <werckmeister-snippet id="snippet-final-hh" wm-css-url="wm-component-hidden-first-line.css"
                     wm-style="width: 700px; height: 211px;"
                     wm-workspace-url="https://sambag.uber.space/api-wm/UCmp-MZoiCf1">
                 </werckmeister-snippet>
-                <div class="phony step step-02" data-play-snippet="snippet-final-hh"></div>
+                <div class="phony step step-03" data-play-snippet="snippet-final-hh"></div>
             </div>
         </div>
     </div>
 
     <div class="page page-6">
+        <div class="speech-only step step-01" data-speak>
+            To get more information, please find the links, in the description below.
+            You will also find an online editor, where you can play around with this example, and much more.
+        </div>
         <div class="content last-page fade-in slow">
             <img height="417px" src="Logo.svg">
             <p>werckmeister</p>
@@ -167,7 +200,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5)
     </div>
 
     <footer></footer>
-    
+
 </body>
 
 </html>

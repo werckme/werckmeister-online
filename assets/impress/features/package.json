@@ -14,5 +14,8 @@
     "express": "^4.17.1",
     "ibm-watson": "^6.2.1",
     "sha256": "^0.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
