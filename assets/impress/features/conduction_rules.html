@@ -13,6 +13,11 @@
     werckmeister-snippet {
         zoom: 1.5;
     }
+
+    :root {
+        --what: #e96d1b;
+        --how: #31df3e;
+    }
 </style>
 
 <body>
@@ -31,8 +36,8 @@
                 <h2 class="step step-04 fade-in from-below">Separate 
                     <b style="position: relative;">
                         What
-                        <div class="step step-05" style="position: absolute; top: -52px; left: 0px; color: #e96d1b;">
-                            <h2 style="border-left: none; padding: 0; font-size: 1em; text-shadow: 0px 0px 8px #e96d1b;"><b>What</b></h2>
+                        <div class="step step-05" style="position: absolute; top: -52px; left: 0px; color: var(--what);">
+                            <h2 style="border-left: none; padding: 0; font-size: 1em; text-shadow: 0px 0px 8px var(--what);"><b>What</b></h2>
                         </div>
                     </b> 
                     and 
@@ -76,7 +81,7 @@
                 <div class="speech-only step step-01" data-speak>
                     One way to do so, is adding velocity commands before every high hat note.
                 </div>
-                <div class="step step-02 fade-in hidden-using-visibility">
+                <div class="step step-02 step-03 step-04 fade-in fade-out hidden-using-visibility">
                     <werckmeister-snippet wm-type="single" wm-css-url="wm-component.css"
                         wm-style="width: 768px; height: 75px;">
                         <![CDATA[\pp h16 \pp h \ff h \pp h \pp h \pp h \ff h \pp h
@@ -100,6 +105,8 @@
                             font-size: 18px;
                             width: 500px;
                             border-collapse: collapse;
+                            position: relative;
+                            top: -279px;
                         }
 
                         td:nth-child(2),
@@ -114,8 +121,8 @@
                     </style>
                     <table class="table">
                         <tr>
-                            <th>What</th>
-                            <th>How</th>
+                            <th style="color: var(--what);">What</th>
+                            <th style="color: var(--how)">How</th>
                         </tr>
                         <tr class="web">
                             <td>HTML</td>
@@ -220,10 +227,22 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5)
             To get more information, please find the links, in the description below.
             You will also find an online editor, where you can play around with this example, and much more.
         </div>
+        <style>
+            .last-page {
+                display: flex;
+                flex-direction: column;
+            }
+            sub {
+                font-size: 14px;
+                text-align: center;
+            }
+        </style>
         <div class="content last-page fade-in slow">
             <img height="417px" src="Logo.svg">
-            <p>werckmeister</p>
             <p>https://werckme.github.io</p>
+            <sub>
+                Speech was created with "IBM Watson Text to Speech" service
+            </sub>
         </div>
     </div>
 

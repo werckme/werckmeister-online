@@ -79,6 +79,10 @@ h2 {
     animation: from-below 0.5s;
 }
 
+.hidden.from-below {
+    animation: none;
+}
+
 .marker {
     position: absolute;
     border: 4px solid yellow;

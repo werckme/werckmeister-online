@@ -102,19 +102,24 @@ class Presentation {
     }
 
     nextStep() {
-        if (this.currentStepEl) {
-            this.currentStepEl.addClass('step-ended');
-        }
         const step = this.steps[0];
-        this.currentStepEl = $(`div.${this.pageClass()} .${step}`);
-        if (this.currentStepEl[0].dataset?.playSnippet) {
-            const snippetName = this.currentStepEl[0].dataset?.playSnippet;
-            this.playSnippet(snippetName);
+        if (this.currentStepEl) {
+            const isStepEnded = !this.currentStepEl.hasClass(step);
+            if (isStepEnded) {
+                this.currentStepEl.addClass('step-ended');
+            }
         }
-        if (this.currentStepEl[0].dataset?.speak !== undefined) {
-            if (SpeechPlayback) {
-                const audioElement = $(`div.${this.pageClass()} .${step} audio`)[0];
-                audioElement.play();
+        this.currentStepEl = $(`div.${this.pageClass()} .${step}`);
+        for(const htmlElement of this.currentStepEl) {
+            if (htmlElement.dataset?.playSnippet) {
+                const snippetName = this.currentStepEl[0].dataset?.playSnippet;
+                this.playSnippet(snippetName);
+            }
+            if (htmlElement.dataset?.speak !== undefined) {
+                if (SpeechPlayback) {
+                    const audioElement = $(`div.${this.pageClass()} .${step} audio`)[0];
+                    audioElement.play();
+                }
             }
         }
         this.show(this.currentStepEl);
