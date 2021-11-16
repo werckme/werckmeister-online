@@ -18,12 +18,12 @@
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gQ09ORklHIFNUVUZGOgotLSAxKSBjb25maWd1cmUgeW91ciBNSURJIGRldmljZQotLSAyKSBkZWZpbmUgYW4gaW5zdHJ1bWVudCB3aXRoIHRoZSBuYW1lIHBpYW5vCi0tIDMpIHNldCB0aGUgdGVtcG8KCi0tIDEpCi0tICAgICAgbmFtZSAgICAgICAgIHR5cGUgcG9ydG51bWJlcgpkZXZpY2U6IE15TWlkaURldmljZSBtaWRpIF91c2VQb3J0PTE7CgotLSAyKQotLSAgICAgICAgICAgICBuYW1lICAgICAgICAgCmluc3RydW1lbnREZWY6IHBpYW5vIF9vbkRldmljZT1NeU1pZGlEZXZpY2UgIF9jaD0wICAgX3BjPTAgIF9jYz0wOwotLSAoY2g9IGNoYW5uZWwsIHBjPSBwcm9ncmFtbSBjaGFuZ2UsIGNjPSBjb250cm9sIGNoYW5nZSkKCi0tIDMpCnRlbXBvOiAxMzA7CgotLSBUUkFDS1MsIFZPSUNFUyAmIEVWRU5UUwotLSBub3cgdGhlIGFjdHVhbCBtdXNpY2FsIHN0YXRlbWVudCwgd2hpY2ggaXMgYSB0cmFjayBjb250YWluaW5nIG9uZSB2b2ljZSB3aXRoIHNvbWUgbm90ZSBldmVudHMKLS0gKHRoZSB0cmFjayBpcyBzZXQgdXAgdG8gdXNlIG91ciBwaWFubyBpbnN0cnVtZW50IGZyb20gYWJvdmUpClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgIGM0IGQgZSBmIHwgZzEgLS1ub3RlIGV2ZW50cwp9Cl0="></werckmeister-snippet>
 <h2 id="tracks-and-voices">Tracks and Voices</h2>
-<p>A track in Werckmeister has excactly the same meanig as it has in a MIDI file.
+<p>A track in Werckmeister has exactly the same meanig as it has in a MIDI file.
 It is related to an instrument and contains events.</p>
 <p>A track begins with a <code>[</code> and ends with a <code>]</code>.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gYSB0cmFjayB3aXRoIG9uZSB2b2ljZSBhbmQgYW4gaW5zdHJ1bWVudCBzZXR1cAoKWwp7CiAgICBjIGQgZSBmIHwgZyBhIGIgYycKfQpd"></werckmeister-snippet>
-<p>All events of a track are releated at least to one voice. A voice starts with <code>{{</code> and ends with <code>}}</code>.
+<p>All events of a track are related at least to one voice. A voice starts with <code>{{</code> and ends with <code>}}</code>.
 If you want to write polyphonic melody lines, you can add more voices to your track. </p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/poly.png" alt="a polyphonic melody"></p>
 <p>The melody above would be written like this:</p>
@@ -36,7 +36,7 @@ If you want to write polyphonic melody lines, you can add more voices to your tr
 <pre><code><![CDATA[c d e f g]]></code></pre><h3 id="degree-events">Degree Events</h3>
 <p>have a relative pitch degree and a duration. In combination with a chord, degree events can be transformed into regular note events.</p>
 <pre><code><![CDATA[I II III IV V VI VII]]></code></pre><h3 id="chord-events">Chord Events</h3>
-<p>Events which are related to a name. They also store the information which interval is used for a degree. These informations are stored in a <a pageScroll id="link-10" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="chords">chord definiton file</a>.</p>
+<p>Events which are related to a name. They also store the information which interval is used for a degree. These informations are stored in a <a pageScroll id="link-10" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="chords">chord definition file</a>.</p>
 <pre><code><![CDATA[C7 D-7 E-7 F7 Gmaj7 A-7]]></code></pre><h3 id="meta-events">Meta Events</h3>
 <p>Events to set up something or loading a mod script.</p>
 <p><em>Meta events are also called <a pageScroll id="link-11" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="commands">Commands</a></em></p>
@@ -91,9 +91,9 @@ A <a pageScroll id="link-15" [pageScrollDuration]="0" [pageScrollOffset]="66" [r
 <p>To set the tempo of your piece, write <code>tempo: aNumber</code>.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dGVtcG86IDEyMDsKWwp7CiAgICBjIGQgZSBmIHwgZyBhIGIgYycKfQpd"></werckmeister-snippet>
-<p>Sometimes you want to setup diffent tempi for for several voices.
+<p>Sometimes you want to setup different tempi for for several voices.
 Then you have to add a tempo <a pageScroll id="link-16" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="meta-events">Meta Event</a> to your voice.</p>
-<p><em>since MIDI doesn&#39;t support simultaneous tempi, we achive this effect by streching or shrinking the note durations in relation to the main tempo (Augmentation/Diminution). As an simple example: on double time we pay eights instead of fourths.</em></p>
+<p><em>since MIDI doesn&#39;t support simultaneous tempo, we achieve this effect by stretching or shrinking the note durations in relation to the main tempo (Augmentation/Diminution). As an simple example: on double time we pay eights instead of fourths.</em></p>
 <p>Here we play four voices on one track, with four different tempo configurations:</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dGVtcG86IDEyMDsKWwp7CiAgICAvdGVtcG86IGRvdWJsZS8KICAgIGMgZCBlIGYgfCBnIGEgYiBjJyB8IGMgZCBlIGYgfCBnIGEgYiBjJwp9CnsKICAgIC90ZW1wbzogaGFsZi8KICAgIGMsIGQsIGUsIGYgfAp9CnsKICAgIC9zaWduYXR1cmU6IDMgNC8KICAgIC90ZW1wbzogOTYvCiAgIGMgZSBmIHwgZyBiIGMnCn0KewogICAgYywsIGQsLCBlLCwgZiwsIHwgZywsIGEsLCBiLCwgYywKfQpdCg=="></werckmeister-snippet>
@@ -143,7 +143,7 @@ With this you are able to setup different time signatures during a piece.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single"  wm-data="YzIuIGM0IHwgYzJ+IGM0IGM="></werckmeister-snippet>
 <h3 id="tuplets">Tuplets</h3>
-<p>To write tuplets of any kind you just have to write notes encloded by parentheses followed by a duration value. For example: <code>(c c c)4</code>.
+<p>To write tuplets of any kind you just have to write notes enclosed by parentheses followed by a duration value. For example: <code>(c c c)4</code>.
 These three notes will now be played in the time of one quarter.</p>
 <p>It doesn&#39;t matter if you write <code>(c2 c2 c2)4</code> or <code>(c8 c8 c8)4</code> because you have three notes with equal durations to be played in the time of one quarter.</p>
 <p><em>The relations between the notes are vital, not their absolute durations.</em></p>
@@ -193,7 +193,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <p>The regular score notation has a set of articulations to apply to a note.</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Notation_accents1.png" alt="examples of articulation."></p>
 <p>In werckmeister you also have such options, for example: <code>!ffff c</code> to play the note c louder.</p>
-<p>Unfortunately these kind of notation has the potential to destroy the readablility of a source file.</p>
+<p>Unfortunately these kind of notation has the potential to destroy the readability of a source file.</p>
 <p>A good example is this 16th note high hat figure:</p>
 <p><em>(<code>h</code> = <code>high hat</code>, see <a pageScroll id="link-20" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitchmaps">Pitchmaps</a>)</em></p>
 <pre><code><![CDATA[h16 h h h  h h h h  h h h h  h h h h | ]]></code></pre><p>If you want to add some articulation to that, the result is much more harder to read:</p>
@@ -209,7 +209,7 @@ In a pitchmap file you can define note symbols like that:</p>
 instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) { 
     velocity = 89;
 }]]></code></pre><p>Find the full example <a href="https://werckme.github.io/editor?wid=conductor16thHighHat">here</a>.</p>
-<p>A condcution rule starts with a list of selectors, followed by a set of declartions.</p>
+<p>A conduction rule starts with a list of selectors, followed by a set of declarations.</p>
 <p>A <strong>selector</strong> defines on which notes the rule applies. </p>
 <p>A <strong>declaration</strong> describes what needs to be changed.</p>
 <p>Referring to the rules above the selector <code>instrument(drums) pitch(h)</code> selects every <code>h</code> pitch of the instrument <code>drums</code>.</p>
@@ -239,12 +239,15 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <p>such as:</p>
 <ul>
 <li>use <code>#</code> or <code>b</code> for sharp or flat</li>
-<li>to perform inervals use angle brackes. For example a triad: <code>&lt;I III V&gt;</code></li>
+<li>to perform intervals use angle brackes. For example a triad: <code>&lt;I III V&gt;</code></li>
 <li>use <code>~</code> for tied and <code>.</code> for dotted notes</li>
-<li>create tuplets using parantheses</li>
+<li>create tuplets using parentheses</li>
 </ul>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gbWFrZSBzdXJlIHRoYXQgeW91IGhhdmUgYSBjaG9yZCBkZWZpbml0aW9uIGxvYWRlZAp1c2luZyAiY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKLS0gICAgICAgICAgICAgbmFtZSAgZGV2aWNlICAgICAgIGNoIHBjIGNjCmluc3RydW1lbnREZWY6YmFzcyAgTXlEZXZpY2UgX2NoPTAgIF9wYz0wOwoKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogc2ltcGxlQmFzczsKaW5zdHJ1bWVudDogYmFzczsKewogICAgSSwsMi4gViwsNCB8IDxJLCwgSUlJLCBWLD4xCn0KXQoKWwp0eXBlOiBhY2NvbXA7CnsKICAgIC90ZW1wbGF0ZTogc2ltcGxlQmFzcy8KICAgIEMgfCBGIHwgRyB8IEMgfAp9Cl0="></werckmeister-snippet>
+<blockquote>
+<p>the <code>template</code> command should always appear at the begining of a bar, not at the end.</p>
+</blockquote>
 <h2 id="advanced-techniques">Advanced techniques</h2>
 <p>(tbd.)</p>
 <h5 id="chords">Chords</h5>
@@ -306,18 +309,19 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <li><a pageScroll id="link-59" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onbar">onBar</a></li>
 <li><a pageScroll id="link-60" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onbeat">onBeat</a></li>
 <li><a pageScroll id="link-61" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a></li>
-<li><a pageScroll id="link-62" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tobar">toBar</a></li>
-<li><a pageScroll id="link-63" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tobeat">toBeat</a></li>
-<li><a pageScroll id="link-64" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="topitch">toPitch</a></li>
-<li><a pageScroll id="link-65" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toposition">toPosition</a></li>
+<li><a pageScroll id="link-62" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a></li>
+<li><a pageScroll id="link-63" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tobar">toBar</a></li>
+<li><a pageScroll id="link-64" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tobeat">toBeat</a></li>
+<li><a pageScroll id="link-65" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="topitch">toPitch</a></li>
+<li><a pageScroll id="link-66" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toposition">toPosition</a></li>
 </ul>
 <h2 id="conductor-rules-1">Conductor Rules</h2>
 <h3 id="declarations">Declarations</h3>
 <ul>
-<li><a pageScroll id="link-66" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="duration">duration</a></li>
-<li><a pageScroll id="link-67" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a></li>
-<li><a pageScroll id="link-68" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="timeoffset">timeOffset</a></li>
-<li><a pageScroll id="link-69" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="velocity">velocity</a></li>
+<li><a pageScroll id="link-67" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="duration">duration</a></li>
+<li><a pageScroll id="link-68" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a></li>
+<li><a pageScroll id="link-69" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="timeoffset">timeOffset</a></li>
+<li><a pageScroll id="link-70" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="velocity">velocity</a></li>
 </ul>
 <h2 id="commands-1">Commands</h2>
 <h3 id="cue"><code>cue</code></h3>
@@ -343,8 +347,8 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="device"><code>device</code></h3>
-<p>Defines a device which can be used when adding instruments (see <a pageScroll id="link-70" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
-<p> see <a pageScroll id="link-71" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-72" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></p>
+<p>Defines a device which can be used when adding instruments (see <a pageScroll id="link-71" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
+<p> see <a pageScroll id="link-72" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-73" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></p>
 <h3 id="example">example</h3>
 <p> define an device, an instrument and assign it to a track.</p>
 <pre><code><![CDATA[
@@ -403,7 +407,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="do"><code>do</code></h3>
-<p>Such as <a pageScroll id="link-73" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track. </p>
+<p>Such as <a pageScroll id="link-74" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track. </p>
 <p> The difference is: every <code>mod</code> command adds a further modification to a voice.</p>
 <p> <code>do</code> replaces the previous modification. </p>
 <h3 id="example-1">example</h3>
@@ -427,7 +431,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="doonce"><code>doOnce</code></h3>
-<p>Like <a pageScroll id="link-74" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<p>Like <a pageScroll id="link-75" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
 <h3 id="example-2">example</h3>
 <p> <code>/doOnce: arpeggio/</code></p>
 <h4 id="parameters-4">parameters</h4>
@@ -571,7 +575,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <p><code>instrumentConf: piano mod myLuaMod someValue; --the</code>someValue<code>argument belongs to &quot;myLuaMod&quot;</code></p>
 <h4 id="setup-a-velocity-remap">setup a velocity remap</h4>
 <p>With <code>remapVelocity</code> you are able to change the velocity values behind <code>ppppp..fffff</code> for a specific instrument.</p>
-<p>In the example below the velcity for <code>p</code> will be set to 100 and the value for <code>f</code> will be set to 10.</p>
+<p>In the example below the velocity for <code>p</code> will be set to 100 and the value for <code>f</code> will be set to 10.</p>
 <p>The value range is 0..100. (100=127 Midi velocity)</p>
 <p><code>instrumentConf: _set=remapVelocity _p=100 _f=10;</code></p>
 </li>
@@ -596,7 +600,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <p><br><br><br></p>
 <h3 id="instrumentdef"><code>instrumentDef</code></h3>
 <p>Adds a new MIDI instrument.</p>
-<p> see <a pageScroll id="link-75" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-76" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
+<p> see <a pageScroll id="link-76" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-77" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
 <h3 id="example-4">example</h3>
 <p> define an device, an instrument and assign it to a track.</p>
 <pre><code><![CDATA[
@@ -627,7 +631,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <tr>
 <td align="left">onDevice</td>
 <td align="left">2</td>
-<td align="left">The device which to use (The name of the device, see <a pageScroll id="link-77" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a>).</td>
+<td align="left">The device which to use (The name of the device, see <a pageScroll id="link-78" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a>).</td>
 <td align="left">text</td>
 </tr>
 <tr>
@@ -637,9 +641,9 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <td align="left">0..15</td>
 </tr>
 <tr>
-<td align="left">cc</td>
+<td align="left">bankMsb</td>
 <td align="left">4</td>
-<td align="left">A MIDI <code>control change</code> value.</td>
+<td align="left">A MIDI <code>bank select MSB</code> value.</td>
 <td align="left">0..127</td>
 </tr>
 <tr>
@@ -648,11 +652,23 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <td align="left">A MIDI <code>program change</code> value.</td>
 <td align="left">0..127</td>
 </tr>
+<tr>
+<td align="left">bankLsb</td>
+<td align="left">-</td>
+<td align="left">A MIDI <code>bank select LSB</code> value.</td>
+<td align="left">0..127</td>
+</tr>
+<tr>
+<td align="left">cc</td>
+<td align="left">-</td>
+<td align="left">A MIDI <code>bank select MSB. Deprecated use bankMsb instead</code> value.</td>
+<td align="left">0..127</td>
+</tr>
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="instrumentsection"><code>instrumentSection</code></h3>
 <p>Layers arbitrary instruments into one.</p>
-<p> see <a pageScroll id="link-78" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-79" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-80" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
+<p> see <a pageScroll id="link-79" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-80" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-81" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
 <h3 id="example-5">example</h3>
 <p> create 3 instruments and assign them to the section <code>myNewInstrument</code>.</p>
 
@@ -676,7 +692,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="jump"><code>jump</code></h3>
-<p>Jumps to a previous defined mark See <a pageScroll id="link-81" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="mark">mark</a>.</p>
+<p>Jumps to a previous defined mark See <a pageScroll id="link-82" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="mark">mark</a>.</p>
 <h3 id="example-6">example</h3>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="IGRldmljZTogX3VzZVBvcnQ9MCBfc2V0TmFtZT1NeURldmljZSAgX2lzVHlwZT1taWRpOwogaW5zdHJ1bWVudERlZjogX3NldE5hbWU9cGlhbm8gX29uRGV2aWNlPU15RGV2aWNlIF9jaD0wIF9wYz0xIF9jYz04OwogWwogaW5zdHJ1bWVudDogcGlhbm87CiB7CiAgICAgL3NpZ25hdHVyZTogNSA0LwogICAgIC9tYXJrOiBBLyAgICAgICAtLSB2YWxpZCAmIHVuaXF1ZSB0byB0aGlzIHZvaWNlCiAgICAgYzQgZCBlIGYgZyB8CiAgICAgL2p1bXA6IEEvICAgICAgIC0tIGp1bXBzIHRvIEEgb25jZQogICAgIGEgYiBjJzIKIH0KIF0="></werckmeister-snippet>
@@ -711,7 +727,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="mark"><code>mark</code></h3>
-<p>adds a mark to the voice. Us it in combination with <a pageScroll id="link-82" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="jump">jump</a>.</p>
+<p>adds a mark to the voice. Us it in combination with <a pageScroll id="link-83" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="jump">jump</a>.</p>
 <h3 id="examples-4">examples</h3>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="IGRldmljZTogX3VzZVBvcnQ9MCBfc2V0TmFtZT1NeURldmljZSAgX2lzVHlwZT1taWRpOwogaW5zdHJ1bWVudERlZjogX3NldE5hbWU9cGlhbm8gX29uRGV2aWNlPU15RGV2aWNlIF9jaD0wIF9wYz0xIF9jYz04OwogWwogaW5zdHJ1bWVudDogcGlhbm87CiB7CiAgICAgL3NpZ25hdHVyZTogNSA0LwogICAgIC9tYXJrOiBBLyAgICAgICAtLSB2YWxpZCAmIHVuaXF1ZSB0byB0aGlzIHZvaWNlCiAgICAgYzQgZCBlIGYgZyB8CiAgICAgL2p1bXA6IEEvICAgICAgIC0tIGp1bXBzIHRvIEEgb25jZQogICAgIGEgYiBjJzIKIH0KIF0="></werckmeister-snippet>
@@ -735,17 +751,17 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <p><br><br><br></p>
 <h3 id="mod"><code>mod</code></h3>
 <p>Adds a modification to the track. Every <code>mod</code> statement adds a further modification to the related voice.</p>
-<p> If you want to use ony one modification at the time use <a pageScroll id="link-83" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a> instead.</p>
+<p> If you want to use ony one modification at the time use <a pageScroll id="link-84" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a> instead.</p>
 <h3 id="examples-5">examples</h3>
 <p> <code>/mod: arpeggio/</code></p>
-<p> Mods can be external lua scripts, or one of theese internal mods:</p>
+<p> Mods can be external lua scripts, or one of these internal mods:</p>
 <h4 id="bend">Bend</h4>
 <p> Performs a pitch bend from or to the pitch of a note. The value range is 0..100 where 50 means the pichbend center.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="140" wm-data="Ci9kb09uY2U6IGJlbmQgX2Zyb209MC8gYzEgfCAvZG9PbmNlOiBiZW5kIF90bz0wLyBjMQo="></werckmeister-snippet>
 <h4 id="arpeggio">Arpeggio</h4>
 <p> Performs an arpeggio over a given chord.</p>
-<p> <strong>Arpeggio is deprecated. Use the lua mod <a pageScroll id="link-84" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a> instead.</strong></p>
+<p> <strong>Arpeggio is deprecated. Use the lua mod <a pageScroll id="link-85" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a> instead.</strong></p>
 <h4 id="parameters-13">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -765,7 +781,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="modonce"><code>modOnce</code></h3>
-<p>Like <a pageScroll id="link-85" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<p>Like <a pageScroll id="link-86" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
 <h3 id="examples-6">examples</h3>
 <p> <code>/modOnce: arpeggio/</code></p>
 <h4 id="parameters-14">parameters</h4>
@@ -841,7 +857,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <h3 id="example-9">example</h3>
 <p> <code>tempo: 120;</code></p>
 <p> It is also possible to set different tempo values for several tracks:</p>
-<p> <a pageScroll id="link-86" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="tempo">see here</a></p>
+<p> <a pageScroll id="link-87" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="tempo">see here</a></p>
 <h4 id="parameters-17">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -864,7 +880,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <p>Adds a modification to the track.</p>
 <h3 id="example-10">example</h3>
 <p> <code>/voicingStrategy: asNotated/</code> </p>
-<p> Voicing strategies can be external lua scripts, or one of theese internal strategies:</p>
+<p> Voicing strategies can be external lua scripts, or one of these internal strategies:</p>
 <ul>
 <li><p>asNotated</p>
 </li>
@@ -916,7 +932,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <h3 id="drumrudiments"><code>drumRudiments</code></h3>
 <p>Implements a collection of different drum rudiments. (<a href="https://en.wikipedia.org/wiki/Drum_rudiment">see Wikipedia</a>)</p>
 <p> You can specify which notes are for <code>L</code> and <code>R</code> and performing duration.</p>
-<p> This will be achived by using an chord as source material.</p>
+<p> This will be achieved by using an chord as source material.</p>
 <p> The chord pitches will be used for <code>L</code> and <code>R</code>.</p>
 <p> The length of the chord event defines over which time the rudiment will be peformed.</p>
 <p> An event tag specifies which rudiment will be performed.</p>
@@ -1096,7 +1112,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <tr>
 <td align="left">value</td>
 <td align="left">-</td>
-<td align="left">the duration of one aprgeggio event. (Default=64)</td>
+<td align="left">the duration of one arpeggio event. (Default=64)</td>
 <td align="left">[1,2,4,8,...]</td>
 </tr>
 <tr>
@@ -1164,7 +1180,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <tr>
 <td align="left">direction</td>
 <td align="left">-</td>
-<td align="left">the direction of the aprgeggio. (Default=up)</td>
+<td align="left">the direction of the arpeggio. (Default=up)</td>
 <td align="left">[up,down]</td>
 </tr>
 </tbody></table>
@@ -1333,7 +1349,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <p>Selects an event where its bar time is equal or greater.</p>
 <pre><code><![CDATA[
  fromBar(1) {...}
-]]></code></pre><p> see also: <a pageScroll id="link-87" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-88" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>, <a pageScroll id="link-89" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.</p>
+]]></code></pre><p> see also: <a pageScroll id="link-88" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-89" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>, <a pageScroll id="link-90" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.</p>
 <h4 id="parameters-30">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -1376,7 +1392,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <p><br><br><br></p>
 <h3 id="frompitch"><code>fromPitch</code></h3>
 <p>Selects any event where its pitch is higher or equal than the given pitch.</p>
-<p> see also: <a pageScroll id="link-90" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPitch">toPitch</a>, <a pageScroll id="link-91" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
+<p> see also: <a pageScroll id="link-91" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPitch">toPitch</a>, <a pageScroll id="link-92" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
 <pre><code><![CDATA[
  fromPitch(c,) {...}
 ]]></code></pre><h4 id="parameters-32">parameters</h4>
@@ -1399,7 +1415,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <p><br><br><br></p>
 <h3 id="fromposition"><code>fromPosition</code></h3>
 <p>Selects any event where its position is after a given time.</p>
-<p> see also: <a pageScroll id="link-92" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
+<p> see also: <a pageScroll id="link-93" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
 <h2 id="example-select-the-events-after-time--8-quarters">example, select the events after time &gt;= 8 quarters:</h2>
 <pre><code><![CDATA[
  fromPosition(8) {...}
@@ -1476,7 +1492,7 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 </blockquote>
 <pre><code><![CDATA[
  nthBar(1 3 5) {...}
-]]></code></pre><p> see also: <a pageScroll id="link-93" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a pageScroll id="link-94" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-95" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>.</p>
+]]></code></pre><p> see also: <a pageScroll id="link-94" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a pageScroll id="link-95" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-96" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>.</p>
 <h4 id="parameters-36">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -1499,7 +1515,7 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 <p>Selects an event on a given bar number or a list of bar numbers</p>
 <pre><code><![CDATA[
  onBar(1 3) {...}
-]]></code></pre><p> see also: <a pageScroll id="link-96" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a pageScroll id="link-97" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-98" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.</p>
+]]></code></pre><p> see also: <a pageScroll id="link-97" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a pageScroll id="link-98" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-99" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.</p>
 <h4 id="parameters-37">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -1520,7 +1536,7 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 <p><br><br><br></p>
 <h3 id="onbeat"><code>onBeat</code></h3>
 <p>Selects an event which appears on a given beat or a list of beats</p>
-<p> see also: <a pageScroll id="link-99" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a pageScroll id="link-100" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBeat">toBeat</a>.</p>
+<p> see also: <a pageScroll id="link-100" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a pageScroll id="link-101" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBeat">toBeat</a>.</p>
 <h2 id="example-select-the-events-at-beat-1-and-3">example, select the events at beat 1 and 3:</h2>
 <pre><code><![CDATA[
  onBeat(1 3) {...}
@@ -1543,13 +1559,37 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="pitch"><code>pitch</code></h3>
+<p>Select events via its applied expressions.</p>
+<pre><code><![CDATA[
+ expression(p) {...}
+
+ expression(p f ff) {...}
+]]></code></pre><h4 id="parameters-39">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">expression</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">expression+</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="pitch-1"><code>pitch</code></h3>
 <p>Selects any event where its pitch is equal to one of the given pitches.</p>
-<p> see also: <a pageScroll id="link-101" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a pageScroll id="link-102" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPitch">toPitch</a>.</p>
+<p> see also: <a pageScroll id="link-102" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a pageScroll id="link-103" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPitch">toPitch</a>.</p>
 <pre><code><![CDATA[
  pitch(c) {...}
 
  pitch(c, c c') {...}
-]]></code></pre><h4 id="parameters-39">parameters</h4>
+]]></code></pre><h4 id="parameters-40">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1571,8 +1611,8 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 <p>Selects an event where its bar time is equal or less.</p>
 <pre><code><![CDATA[
  toBar(4) {...}
-]]></code></pre><p> see also: <a pageScroll id="link-103" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a pageScroll id="link-104" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>, <a pageScroll id="link-105" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.</p>
-<h4 id="parameters-40">parameters</h4>
+]]></code></pre><p> see also: <a pageScroll id="link-104" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a pageScroll id="link-105" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>, <a pageScroll id="link-106" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.</p>
+<h4 id="parameters-41">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1592,10 +1632,10 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 <p><br><br><br></p>
 <h3 id="tobeat"><code>toBeat</code></h3>
 <p>Selects an event where its beat time is equal or less.</p>
-<p> see also: <a pageScroll id="link-106" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a pageScroll id="link-107" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBeat">onBeat</a>.</p>
+<p> see also: <a pageScroll id="link-107" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a pageScroll id="link-108" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBeat">onBeat</a>.</p>
 <pre><code><![CDATA[
  toBeat(4) {...}
-]]></code></pre><h4 id="parameters-41">parameters</h4>
+]]></code></pre><h4 id="parameters-42">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1615,10 +1655,10 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 <p><br><br><br></p>
 <h3 id="topitch"><code>toPitch</code></h3>
 <p>Selects any event where its pitch is lower or equal than the given pitch.</p>
-<p> see also: <a pageScroll id="link-108" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a pageScroll id="link-109" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
+<p> see also: <a pageScroll id="link-109" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a pageScroll id="link-110" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
 <pre><code><![CDATA[
  toPitch(c,) {...}
-]]></code></pre><h4 id="parameters-42">parameters</h4>
+]]></code></pre><h4 id="parameters-43">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1638,11 +1678,11 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 <p><br><br><br></p>
 <h3 id="toposition"><code>toPosition</code></h3>
 <p>Selects any event where its position is after a given time.</p>
-<p> see also: <a pageScroll id="link-110" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
+<p> see also: <a pageScroll id="link-111" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
 <h2 id="example-select-the-events-before-time--8-quarters">example, select the events before time &lt;= 8 quarters:</h2>
 <pre><code><![CDATA[
  toPosition(8) {...}
-]]></code></pre><h4 id="parameters-43">parameters</h4>
+]]></code></pre><h4 id="parameters-44">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1697,7 +1737,7 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 </tr>
 </tbody></table>
 <p><br><br><br></p>
-<h3 id="pitch-1"><code>pitch</code></h3>
+<h3 id="pitch-2"><code>pitch</code></h3>
 <p>Changes the pitch of an event.</p>
 <h2 id="example-13">example:</h2>
 <pre><code><![CDATA[
