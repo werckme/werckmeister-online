@@ -1,0 +1,20 @@
+-- TITLE: Conductions Example: Follow Up
+-- BY: Samba Godschynski
+-- DESCRIPTION: An example piece to demonstrate the `conductions sheet` follow up feature.
+-- #conductions #conductions-follow-up
+
+using "myPitchmap.pitchmap";
+using "./myConductions.conductions"; -- comment this line, to hear what it sounds like without the conductions rules
+
+tempo: 110;
+device: MyDevice  midi _usePort=0;
+instrumentDef:drums    _onDevice=MyDevice  _ch=9 _pc=50;
+[
+{   
+    /instrument: drums/
+    h16 h h h  h h h h  h h h h  h h h h |
+    h16 h h h  h h h h  h h h h  h h h h |
+    h16 h h h  h h h h  h h h h  h h h h |
+    h16 h h h  h h h h  h h h h  h h h h |
+}
+]

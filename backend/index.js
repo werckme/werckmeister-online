@@ -8,6 +8,8 @@ const yup = require('yup');
 const { getMetaDataFromText } = require('./sheetParser');
 var bodyParser = require('body-parser')
 
+const NotListedTag = 'not-listed';
+
 require('dotenv').config();
 const db = monk(process.env.MONGODB_URI);
 const workspaces = db.get('workspaces');
@@ -69,7 +71,9 @@ app.get('/songs', async (req, res, next) => {
     try {
         const dbPresets = db.get('presets');
         let presets = await dbPresets.find({}, {sort: {'metaData.title': 1}});
-        presets = presets.map(x => { delete x._id; return x; });
+        presets = presets
+            .filter(x => !x.metaData.tags || x.metaData.tags.indexOf(NotListedTag) < 0)
+            .map(x => { delete x._id; return x; });
         res.json(presets);
     } catch(ex) {
         console.error(ex);

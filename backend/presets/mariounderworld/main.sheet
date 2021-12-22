@@ -3,16 +3,17 @@
 -- (transcription by Joseph Karam)
 -- http://www.mariopiano.com/mario-sheet-music-underworld-theme.html
 -- #repeats #jumps #triplets #mod-staccato #polytempo #best-practise-switch-modifications
--- #instrument-change #jump-repeat #velocity-accents #pitchmap-symbols
+-- #instrument-change #jump-repeat #velocity-accents #pitchmap-symbols #conductions
+-- #conductions-event-duration #conductions-event-position-selector #conductions-velocity
+-- #conductions-staccato #conductions-highhat-velocity #conductions-follow-up
 using "staccato.lua";
 using "drums.pitchmap";
+using "./myConductions.conductions";
 
 tempo: 200;
 device: MyDevice  midi _usePort=0;
 instrumentDef: bass          _onDevice=MyDevice  _ch=0 _pc=38;
-instrumentDef: bassStaccato  _onDevice=MyDevice  _ch=0 _pc=38;
 instrumentDef: drums         _onDevice=MyDevice  _ch=9 _pc=0;
-instrumentConf: bassStaccato mod staccato;
 
 [
 instrument: bass;
@@ -21,15 +22,12 @@ instrument: bass;
     /tempo: double/
     
     /mark: begin/
-    
+     
 	/instrument: bass/
     c,,4   c,  a,,, a,, |  bb,,, bb,,  r2 |  r1  |   r1 :|: f,,,4 f,, d,,, d,,  |  
     eb,,, eb,,  r2 |  r1  |^1 r1 :|^2 r2  (eb,, d,, db,,)2 |  
-    /instrument: bassStaccato/
-    c,,2    eb,,  |  d,,     ab,,, |  g,,,     db,,   |
-    /instrument: bass/
+    c,,2    eb,,  |  d,,     ab,,, |  g,,,     db,,   | 
     (c,,  gb,,  f,,)2  (e,,  bb,,  a,,) |
-    /instrument: bassStaccato/
     (ab,,     eb,,     b,,,)1           |
     (bb,,,    a,,,    ab,,,)1           |
     r1 | r1 | r1 | r1 | r1 | r1 |
@@ -42,8 +40,7 @@ instrument: bass;
 instrument: drums;
 {
     /mark: begin/
-    \pp
-    !fh8 h  !fh h  !fh h  !fh h |
+    h8 h  h h  h h  h h |
     
     /jump: begin _repeat=26/
 }

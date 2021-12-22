@@ -1,0 +1,28 @@
+-- bass staccato
+instrument(bass) fromPosition(32) toPosition(38) 
+{
+    duration -= 70%;
+}
+instrument(bass) fromPosition(40) toPosition(44) 
+{
+    duration -= 70%;
+}
+instrument(bass) fromPosition(88) toPosition(94) 
+{
+    duration -= 70%;
+}
+instrument(bass) fromPosition(96) toPosition(100) 
+{
+    duration -= 70%;
+}
+
+-- high hat velocity
+-- emphasize beat 1 2 3 4 ...
+instrument(drums) pitch(h) onBeat(1 2 3 4) {
+    velocity = 70;
+}
+
+-- ... otherwise 35% less than its predecessor
+instrument(drums) pitch(h) {
+    velocity = & - 35%; -- 
+}

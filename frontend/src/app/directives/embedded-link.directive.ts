@@ -1,6 +1,7 @@
 import { Directive, ElementRef, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, ComponentRef, Type, Component, Input } from '@angular/core';
 import { waitAsync } from 'src/shared/help/waitAsync';
 import { IHasUrl } from 'src/shared/IHasUrl';
+import { EmbeddedSoundcloudLinkComponent } from '../components/partials/embedded-soundcloud-link/embedded-soundcloud-link.component';
 import { EmbeddedSoundcloudPlayerComponent } from '../components/partials/embedded-soundcloud-player/embedded-soundcloud-player.component';
 import { EmbeddedYoutubeComponent } from '../components/partials/embedded-youtube/embedded-youtube.component';
 
@@ -22,7 +23,7 @@ export class EmbeddedLinkDirective implements AfterViewInit {
 
   constructor(private viewContainer: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver) {
-    this.urlOriginElementMap.set("https://soundcloud.com", EmbeddedSoundcloudPlayerComponent); 
+    this.urlOriginElementMap.set("https://soundcloud.com", EmbeddedSoundcloudLinkComponent); 
     // this.urlOriginElementMap.set("https://www.youtube.com", EmbeddedYoutubeComponent); 
   }
 

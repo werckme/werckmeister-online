@@ -1,0 +1,20 @@
+-- TITLE: Conductions Example 16th High Hat
+-- BY: Samba Godschynski
+-- DESCRIPTION: An example piece to demonstrate the `conductions sheet` feature.
+-- #conductions #conductions-velocity
+
+using "myPitchmap.pitchmap";
+using "./myConductions.conductions"; -- comment this line, to hear what it sounds like without the conductions rules
+
+tempo: 110;
+device: MyDevice  midi _usePort=0;
+instrumentDef:drumsWithoutConductionRules    _onDevice=MyDevice  _ch=9 _pc=50;
+instrumentDef:drumsUsingConductionRules    _onDevice=MyDevice  _ch=9 _pc=50;
+[
+{   
+    /instrument: drumsWithoutConductionRules/
+    !pph16 !pph !ffh !pph  !pph !pph !ffh !pph  !pph !pph !ffh !pph  !pph !pph !ffh !pph |
+    /instrument: drumsUsingConductionRules/
+    h16 h h h  h h h h  h h h h  h h h h |
+}
+]

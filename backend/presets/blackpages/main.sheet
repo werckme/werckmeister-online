@@ -8,7 +8,8 @@ using "default.chords";
 using "drums.pitchmap";
 using "lua/voicings/simple.lua";
 
-device: MyDevice          midi       0;
+
+device: MyDevice          midi       3;
 
 -- define your instruments:
 -- (ch= channel, pc= programm change, cc= control change)

@@ -1,0 +1,12 @@
+[
+type: template;
+name: bass;
+instrument: bass;
+{
+	
+	I,,8 I,  I,, I, |
+    I,,8 I,, V,, I, |
+    I,,8 I,  I,, I, |
+    I,,8 I,  V,, I,16 I, |
+}
+]

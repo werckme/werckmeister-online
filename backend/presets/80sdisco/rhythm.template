@@ -1,0 +1,26 @@
+[
+type: template;
+name: rhythm2;
+instrument: rhythm2;
+{
+	\ppp
+	<I II III IV V VI VII>4
+    <I II III IV V VI VII>4
+    <I II III IV V VI VII>4
+    <I II III IV V VI VII>4
+}
+]
+
+
+
+[
+type: template;
+name: rhythm;
+instrument: rhythm;
+{
+	\p
+	<I II III IV V VI VII>16&&&&&&& &8&8 r4 | 
+    &16&&&&&&& &8&8 r8 !f& | 
+    &16&&&&&&& &8&8 r8 !f&16 & | 
+}
+]

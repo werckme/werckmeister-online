@@ -1,0 +1,9 @@
+-- High Hat
+-- emphasize the on beats
+instrument(drums) pitch(h) onBeat(1 2 3 4) { 
+    velocity = 127;
+}
+-- all other notes, 30 units less that its predecessor
+instrument(drums) pitch(h) { 
+    velocity = & - 30;
+}

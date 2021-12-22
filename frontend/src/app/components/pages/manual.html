@@ -1,4 +1,4 @@
-
+<div class="markup">
 <h1 id="manual">Manual</h1>
 
 <h2 id="i-want-to-">I want to ...</h2>
@@ -6,10 +6,11 @@
 <p><a pageScroll id="link-2" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="setup-a-piece">... setup a piece</a></p>
 <p><a pageScroll id="link-3" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="write-melodies">... write melodies</a></p>
 <p><a pageScroll id="link-4" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="write-for-drums">... write for drums</a></p>
-<p><a pageScroll id="link-5" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="accomp-my-melodies">... accomp my melodies</a></p>
-<p><a pageScroll id="link-6" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="chords">... setup my own chord symbols</a></p>
-<p><a pageScroll id="link-7" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="commands">... see an overview of all commands</a></p>
-<p><a pageScroll id="link-8" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="lua-extensions">... see an overview of lua extensions</a></p>
+<p><a pageScroll id="link-5" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="conduction-rules">... applying articulation while remaining readable</a></p>
+<p><a pageScroll id="link-6" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="accomp-my-melodies">... accomp my melodies</a></p>
+<p><a pageScroll id="link-7" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="chords">... setup my own chord symbols</a></p>
+<p><a pageScroll id="link-8" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="commands">... see an overview of all commands</a></p>
+<p><a pageScroll id="link-9" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="lua-extensions">... see an overview of lua extensions</a></p>
 <h2 id="its-just-text">It&#39;s just text</h2>
 <p>The Werckmeister language knows only a few statement types. It&#39;s all about tracks, voices, and events. That&#39;s it. 
 <br>The remaining statements are just for configuration purposes.</p>
@@ -17,12 +18,12 @@
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gQ09ORklHIFNUVUZGOgotLSAxKSBjb25maWd1cmUgeW91ciBNSURJIGRldmljZQotLSAyKSBkZWZpbmUgYW4gaW5zdHJ1bWVudCB3aXRoIHRoZSBuYW1lIHBpYW5vCi0tIDMpIHNldCB0aGUgdGVtcG8KCi0tIDEpCi0tICAgICAgbmFtZSAgICAgICAgIHR5cGUgcG9ydG51bWJlcgpkZXZpY2U6IE15TWlkaURldmljZSBtaWRpIF91c2VQb3J0PTE7CgotLSAyKQotLSAgICAgICAgICAgICBuYW1lICAgICAgICAgCmluc3RydW1lbnREZWY6IHBpYW5vIF9vbkRldmljZT1NeU1pZGlEZXZpY2UgIF9jaD0wICAgX3BjPTAgIF9jYz0wOwotLSAoY2g9IGNoYW5uZWwsIHBjPSBwcm9ncmFtbSBjaGFuZ2UsIGNjPSBjb250cm9sIGNoYW5nZSkKCi0tIDMpCnRlbXBvOiAxMzA7CgotLSBUUkFDS1MsIFZPSUNFUyAmIEVWRU5UUwotLSBub3cgdGhlIGFjdHVhbCBtdXNpY2FsIHN0YXRlbWVudCwgd2hpY2ggaXMgYSB0cmFjayBjb250YWluaW5nIG9uZSB2b2ljZSB3aXRoIHNvbWUgbm90ZSBldmVudHMKLS0gKHRoZSB0cmFjayBpcyBzZXQgdXAgdG8gdXNlIG91ciBwaWFubyBpbnN0cnVtZW50IGZyb20gYWJvdmUpClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgIGM0IGQgZSBmIHwgZzEgLS1ub3RlIGV2ZW50cwp9Cl0="></werckmeister-snippet>
 <h2 id="tracks-and-voices">Tracks and Voices</h2>
-<p>A track in Werckmeister has excactly the same meanig as it has in a MIDI file.
+<p>A track in Werckmeister has exactly the same meanig as it has in a MIDI file.
 It is related to an instrument and contains events.</p>
 <p>A track begins with a <code>[</code> and ends with a <code>]</code>.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gYSB0cmFjayB3aXRoIG9uZSB2b2ljZSBhbmQgYW4gaW5zdHJ1bWVudCBzZXR1cAoKWwp7CiAgICBjIGQgZSBmIHwgZyBhIGIgYycKfQpd"></werckmeister-snippet>
-<p>All events of a track are releated at least to one voice. A voice starts with <code>{{</code> and ends with <code>}}</code>.
+<p>All events of a track are related at least to one voice. A voice starts with <code>{{</code> and ends with <code>}}</code>.
 If you want to write polyphonic melody lines, you can add more voices to your track. </p>
 <p><img src="https://raw.githubusercontent.com/SambaGodschynski/werckmeister/main/assets/poly.png" alt="a polyphonic melody"></p>
 <p>The melody above would be written like this:</p>
@@ -35,21 +36,21 @@ If you want to write polyphonic melody lines, you can add more voices to your tr
 <pre><code><![CDATA[c d e f g]]></code></pre><h3 id="degree-events">Degree Events</h3>
 <p>have a relative pitch degree and a duration. In combination with a chord, degree events can be transformed into regular note events.</p>
 <pre><code><![CDATA[I II III IV V VI VII]]></code></pre><h3 id="chord-events">Chord Events</h3>
-<p>Events which are related to a name. They also store the information which interval is used for a degree. These informations are stored in a <a pageScroll id="link-9" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="chords">chord definiton file</a>.</p>
+<p>Events which are related to a name. They also store the information which interval is used for a degree. These informations are stored in a <a pageScroll id="link-10" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="chords">chord definition file</a>.</p>
 <pre><code><![CDATA[C7 D-7 E-7 F7 Gmaj7 A-7]]></code></pre><h3 id="meta-events">Meta Events</h3>
 <p>Events to set up something or loading a mod script.</p>
-<p><em>Meta events are also called <a pageScroll id="link-10" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="commands">Commands</a></em></p>
+<p><em>Meta events are also called <a pageScroll id="link-11" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="commands">Commands</a></em></p>
 <p><br>You can recognize meta events by its slashes at the beginning and the end.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single"  wm-data="L3RlbXBvOiAxMDAvIC0tIG1ldGEgZXZlbnQ6IHNldCB0ZW1wbyB0byAxMDAKYyBkIGUgZiB8Ci90ZW1wbzogNTAvCmcgYSBiIGMnCgo="></werckmeister-snippet>
 <h2 id="parameters">Parameters</h2>
-<p><a pageScroll id="link-11" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="metaevents">Meta Events</a> or Config Statements will be configurated with parameters. Parameters can be defined in two ways:</p>
+<p><a pageScroll id="link-12" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="metaevents">Meta Events</a> or Config Statements will be configurated with parameters. Parameters can be defined in two ways:</p>
 <h4 id="positional">Positional</h4>
 <p><code>/volume: 50/</code> </p>
 <h4 id="named">Named</h4>
 <p><code>/volume: _to=50/</code></p>
 <p>For sake of understanding the meaning of statements, it&#39;s recommended to use named parameters if the meaning of a parameter isn&#39;t obvious.</p>
-<p><strong>do&#39;nt</strong><br>
+<p><strong>don&#39;t</strong><br>
 <code>instrumentDef: piano MyMidiDevice 1 2 3;</code></p>
 <p><strong>do</strong><br>
 <code>instrumentDef: piano MyMidiDevice  _ch=1  _pc=2 _cc=3;</code></p>
@@ -62,7 +63,7 @@ If you want to write polyphonic melody lines, you can add more voices to your tr
 <em>(It is recommended to use relative path values)</em></p>
 <h3 id="devices--instruments">Devices &amp; Instruments</h3>
 <h4 id="adding-a-device">Adding a device</h4>
-<p>To add a MIDI device to your project, use the <a pageScroll id="link-12" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a> statement. With that statement, you have to choose a name and set a MIDI port for your new device.</p>
+<p>To add a MIDI device to your project, use the <a pageScroll id="link-13" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a> statement. With that statement, you have to choose a name and set a MIDI port for your new device.</p>
 <p>To see which devices with what port are connected to your device run the player with the <code>--list</code> argument: </p>
 <pre><code><![CDATA[sheetp --list]]></code></pre><p>you will get a output like this:</p>
 <pre><code><![CDATA[0: Midi Through
@@ -77,24 +78,23 @@ If you want to write polyphonic melody lines, you can add more voices to your tr
 device: MyDX7    midi _usePort=5;]]></code></pre><p>Imagine your USB-Midi Port is a bit cheap and laggy. Every signal to your USB-Midi port has a delay of about 20 milliseconds. We can compensate this by adding a 20 milliseconds delay to the <code>MyRoland</code> device, so that this device and your laggy USB-Midi Port should be in sync. We do this by using an optional <code>offset</code> argument.</p>
 <pre><code><![CDATA[device: MyRoland midi _usePort=1 _withOffset=20;
 device: MyDX7    midi _usePort=5;]]></code></pre><h4 id="adding-instruments">Adding instruments</h4>
-<p>To adding instruments we using the <a pageScroll id="link-13" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentdef">instrumentDef</a> statement, which is constructed like this:</p>
+<p>To adding instruments we using the <a pageScroll id="link-14" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentdef">instrumentDef</a> statement, which is constructed like this:</p>
 <p>Let&#39;s add an organ instrument which uses our Roland device from above:</p>
 <p>The Roland SC-8850 offers, for example, a <code>Farf Organ</code>. So if I want to use this instrument on channel 0, I have to send a <code>cc=19 pc=17</code> sequence to the channel on this device.<br>A suitable <code>instrumentDef</code> statement would be look as follows: </p>
 <pre><code><![CDATA[--             name      device              
 instrumentDef: myFarfisa _onDevice=MyRoland  _ch=0   _cc=19   _pc=17;]]></code></pre><h4 id="configuring-instruments">Configuring instruments</h4>
 <p>With an instrument added, there are further options to configure it.
-A <a pageScroll id="link-14" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentconf">config statement</a> has as first argument the instrument name you want to configure, followed by several <em>optional</em> config aruments.</p>
+A <a pageScroll id="link-15" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentconf">config statement</a> has as first argument the instrument name you want to configure, followed by several <em>optional</em> config aruments.</p>
 <p>As an example we set a volume value of 80 to our Farfisa organ, also we set the pan more to the left.</p>
 <p><em>(the final result of these settings is strongly dependent by your actual MIDI device)</em> </p>
 <pre><code><![CDATA[instrumentConf: myFarfisa volume 80 pan 20;]]></code></pre><h3 id="tempo">Tempo</h3>
 <p>To set the tempo of your piece, write <code>tempo: aNumber</code>.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dGVtcG86IDEyMDsKWwp7CiAgICBjIGQgZSBmIHwgZyBhIGIgYycKfQpd"></werckmeister-snippet>
-<p>Sometimes you want to setup diffent tempi for for several voices.
-Then you have to add a tempo <a pageScroll id="link-15" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="meta-events">Meta Event</a> to your voice.</p>
-<p><em>since MIDI doesn&#39;t support simultaneous tempi, we achive this effect by streching or shrinking the note durations in relation to the main tempo (Augmentation/Diminution). As an simple example: on double time we pay eights instead of fourths.</em></p>
+<p>Sometimes you want to setup different tempi for for several voices.
+Then you have to add a tempo <a pageScroll id="link-16" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="meta-events">Meta Event</a> to your voice.</p>
+<p><em>since MIDI doesn&#39;t support simultaneous tempo, we achieve this effect by stretching or shrinking the note durations in relation to the main tempo (Augmentation/Diminution). As an simple example: on double time we pay eights instead of fourths.</em></p>
 <p>Here we play four voices on one track, with four different tempo configurations:</p>
-<p><strong>There seems to be a bug on the webplayer (first notes are missing)</strong></p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dGVtcG86IDEyMDsKWwp7CiAgICAvdGVtcG86IGRvdWJsZS8KICAgIGMgZCBlIGYgfCBnIGEgYiBjJyB8IGMgZCBlIGYgfCBnIGEgYiBjJwp9CnsKICAgIC90ZW1wbzogaGFsZi8KICAgIGMsIGQsIGUsIGYgfAp9CnsKICAgIC9zaWduYXR1cmU6IDMgNC8KICAgIC90ZW1wbzogOTYvCiAgIGMgZSBmIHwgZyBiIGMnCn0KewogICAgYywsIGQsLCBlLCwgZiwsIHwgZywsIGEsLCBiLCwgYywKfQpdCg=="></werckmeister-snippet>
 <p>Also it is possible to change the tempo in between events:</p>
@@ -102,7 +102,7 @@ Then you have to add a tempo <a pageScroll id="link-15" [pageScrollDuration]="0"
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dGVtcG86IDEyMDsKWwp7CiAgICAvdGVtcG86IGRvdWJsZS8KICAgIGMgZCBlIGYgfCBnIGEgYiBjJyB8CiAgICAvdGVtcG86IGhhbGYvCiAgICBjIGQgZSBmIHwgZyBhIGIgYycgfAogICAgL3NpZ25hdHVyZTogMyA0LwogICAgL3RlbXBvOiA5Ni8KICAgIGMgZCBlIHwgZiBnIGEgfAogICAgL3NpZ25hdHVyZTogNCA0LwogICAgL3RlbXBvOiBub3JtYWwvCiAgICBjIGQgZSBmIHwgZyBhIGIgYycgfAp9Cl0K"></werckmeister-snippet>
 <h3 id="time-signatures">Time Signatures</h3>
 <p>The time signature 4/4 by default.
-If you want to setup a different time signature than the default, you can achieve this by using the signature <a pageScroll id="link-16" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="meta-events">meta event</a>.
+If you want to setup a different time signature than the default, you can achieve this by using the signature <a pageScroll id="link-17" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="meta-events">meta event</a>.
 With this you are able to setup different time signatures during a piece.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="Wwp7CiAgICAvc2lnbmF0dXJlOiAzIDQvCiAgICBjIGUgZSB8IGMgZSBlIHwKICAgIC9zaWduYXR1cmU6IDQgNC8KICAgIGMgZCBlIGYgfCBnIGEgYiBjJwp9Cl0="></werckmeister-snippet>
@@ -143,7 +143,7 @@ With this you are able to setup different time signatures during a piece.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single"  wm-data="YzIuIGM0IHwgYzJ+IGM0IGM="></werckmeister-snippet>
 <h3 id="tuplets">Tuplets</h3>
-<p>To write tuplets of any kind you just have to write notes encloded by parentheses followed by a duration value. For example: <code>(c c c)4</code>.
+<p>To write tuplets of any kind you just have to write notes enclosed by parentheses followed by a duration value. For example: <code>(c c c)4</code>.
 These three notes will now be played in the time of one quarter.</p>
 <p>It doesn&#39;t matter if you write <code>(c2 c2 c2)4</code> or <code>(c8 c8 c8)4</code> because you have three notes with equal durations to be played in the time of one quarter.</p>
 <p><em>The relations between the notes are vital, not their absolute durations.</em></p>
@@ -166,7 +166,7 @@ These three notes will now be played in the time of one quarter.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="200" wm-data="YzIgZDIgfF4xIGMjMiBkIyA6fF4yIGUyIGYyIDp8XjMgYyMnMiBkIycyIHwgYycyIGQnMiB8IGMsLDIgZCwsIDp8"></werckmeister-snippet>
 <h5 id="markjump">Mark/Jump</h5>
-<p>For more complex musical navigation you can use the <a pageScroll id="link-17" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mark">mark</a>/<a pageScroll id="link-18" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="jump">jump</a> commands.
+<p>For more complex musical navigation you can use the <a pageScroll id="link-18" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mark">mark</a>/<a pageScroll id="link-19" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="jump">jump</a> commands.
 In combination with its ignore argument you are able to implement - for example - a coda:</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="200" wm-data="L21hcms6IGJlZ2luLwpjIGQgZSBmIHwgCi9qdW1wOiBjb2RhIF9pZ25vcmU9MS8KZyBhIGIgYycgfApkJyBlJyBmJyBnJyB8Ci9tYXJrOiBjb2RhLwpnJyBmJyBlJyBkJyB8Ci9qdW1wOiBiZWdpbi8KYycxIHw="></werckmeister-snippet>
@@ -183,6 +183,49 @@ In a pitchmap file you can define note symbols like that:</p>
 <li>the characters c, d, e, f, g, a, b, r, t are predefined events</li>
 <li>predefined events can <strong>not</strong> be overwritten in a pitchmap</li>
 </ul>
+<h2 id="conduction-rules">Conduction Rules</h2>
+<h3 id="the-problem">The Problem</h3>
+<p>A score document contains basically two informations:</p>
+<ul>
+<li>what notes to play</li>
+<li>and how to perform these notes</li>
+</ul>
+<p>The regular score notation has a set of articulations to apply to a note.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Notation_accents1.png" alt="examples of articulation."></p>
+<p>In werckmeister you also have such options, for example: <code>!ffff c</code> to play the note c louder.</p>
+<p>Unfortunately these kind of notation has the potential to destroy the readability of a source file.</p>
+<p>A good example is this 16th note high hat figure:</p>
+<p><em>(<code>h</code> = <code>high hat</code>, see <a pageScroll id="link-20" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitchmaps">Pitchmaps</a>)</em></p>
+<pre><code><![CDATA[h16 h h h  h h h h  h h h h  h h h h | ]]></code></pre><p>If you want to add some articulation to that, the result is much more harder to read:</p>
+<pre><code><![CDATA[!pph16 !pph !ffh !pph  !pph !pph !ffh !pph  !pph !pph !ffh !pph  !pph !pph !ffh !pph |]]></code></pre><h3 id="conduction-rules-trying-to-fix-that">Conduction Rules trying to fix that.</h3>
+<p>The conduction rules separate between <strong>what</strong> and <strong>how</strong>. </p>
+<blockquote>
+<p>If you are familiar with HTML and CSS, you already know the concept. Conduction rules are what CSS is for HTML.</p>
+</blockquote>
+<p>You can achieve the same result, from above, using these rules:</p>
+<pre><code><![CDATA[instrument(drums) pitch(h) { 
+    velocity = 51;
+}
+instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) { 
+    velocity = 89;
+}]]></code></pre><p>Find the full example <a href="https://werckme.github.io/editor?wid=conductor16thHighHat">here</a>.</p>
+<p>A conduction rule starts with a list of selectors, followed by a set of declarations.</p>
+<p>A <strong>selector</strong> defines on which notes the rule applies. </p>
+<p>A <strong>declaration</strong> describes what needs to be changed.</p>
+<p>Referring to the rules above the selector <code>instrument(drums) pitch(h)</code> selects every <code>h</code> pitch of the instrument <code>drums</code>.</p>
+<p>The declaration <code>velocity = 51;</code> set the velocity to the value <code>51</code> to the selected notes.</p>
+<p>Find <a pageScroll id="link-21" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="conductor-rules">here</a> a complete list of all supported selectors and declarations.</p>
+<p>A declaration knows 3 types of value assignment:</p>
+<h3 id="assign">Assign</h3>
+<pre><code><![CDATA[  aDeclaration = newValue; ]]></code></pre><h3 id="add">Add</h3>
+<pre><code><![CDATA[  aDeclaration = newValue; ]]></code></pre><h3 id="substract">Substract</h3>
+<pre><code><![CDATA[  aDeclaration -= newValue; ]]></code></pre><h3 id="follow-up">Follow Up</h3>
+<pre><code><![CDATA[  aDeclaration = & - newValue; ]]></code></pre><p>The <code>Follow Up</code> assignment allows you to refer to the prevoious event of the same pitch. </p>
+<p>Example:</p>
+<pre><code><![CDATA[velocity = & - 10;]]></code></pre><p>Means: the new velocity value is 10 units less than the velocity of its predecessor.</p>
+<p>This usefull if you want to achieve something like this:
+<img src="https://raw.githubusercontent.com/werckme/werckmeister/main/assets/follow-up-velocity.png" alt="linear decreasing velocity values"></p>
+<p>Find the full example <a href="https://werckme.github.io/editor?wid=conductor16thHighHatFollowUp">here</a>.</p>
 <h2 id="accomp-my-melodies">Accomp My Melodies</h2>
 <p>Imagine you give your bass player some chords, and he or she asks you how to play these.
 <br>You would say something like: play the 1st degree on the first beat and the 5th degree on the fourth beat. </p>
@@ -192,16 +235,19 @@ In a pitchmap file you can define note symbols like that:</p>
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gbWFrZSBzdXJlIHRoYXQgeW91IGhhdmUgYSBjaG9yZCBkZWZpbml0aW9uIGxvYWRlZAp1c2luZyAiY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKLS0gICAgICAgICAgICBuYW1lICBkZXZpY2UgICAgICAgCmluc3RydW1lbnREZWY6YmFzcyAgTXlEZXZpY2UgX2NoPTAgIF9wYz0wOwoKLS0gaGVyZSBpcyB0aGUgdGVtcGxhdGU6ClsKdHlwZTogdGVtcGxhdGU7Cm5hbWU6IHNpbXBsZUJhc3M7Cmluc3RydW1lbnQ6IGJhc3M7CnsKICAgIEksLDIuIFYsLDQgfAp9Cl0KCi0tIGhlcmUgYXJlIHNvbWUgY2hvcmRzOgpbCnR5cGU6IGFjY29tcDsKewogICAgL3RlbXBsYXRlOiBzaW1wbGVCYXNzLwogICAgQyB8IEYgfCBHIHwgQyB8Cn0KXQo="></werckmeister-snippet>
 <p>Instead of writing absolute notes, you use relative degrees. For example <code>I4</code> means the first degree as a quarter note. </p>
 <p><em>If a degree does not appear in a chord, the degree will not played.</em></p>
-<p>There are the same rules as for writing absolute <a pageScroll id="link-19" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="notes">notes</a>:</p>
+<p>There are the same rules as for writing absolute <a pageScroll id="link-22" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="notes">notes</a>:</p>
 <p>such as:</p>
 <ul>
 <li>use <code>#</code> or <code>b</code> for sharp or flat</li>
-<li>to perform inervals use angle brackes. For example a triad: <code>&lt;I III V&gt;</code></li>
+<li>to perform intervals use angle brackes. For example a triad: <code>&lt;I III V&gt;</code></li>
 <li>use <code>~</code> for tied and <code>.</code> for dotted notes</li>
-<li>create tuplets using parantheses</li>
+<li>create tuplets using parentheses</li>
 </ul>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gbWFrZSBzdXJlIHRoYXQgeW91IGhhdmUgYSBjaG9yZCBkZWZpbml0aW9uIGxvYWRlZAp1c2luZyAiY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKLS0gICAgICAgICAgICAgbmFtZSAgZGV2aWNlICAgICAgIGNoIHBjIGNjCmluc3RydW1lbnREZWY6YmFzcyAgTXlEZXZpY2UgX2NoPTAgIF9wYz0wOwoKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogc2ltcGxlQmFzczsKaW5zdHJ1bWVudDogYmFzczsKewogICAgSSwsMi4gViwsNCB8IDxJLCwgSUlJLCBWLD4xCn0KXQoKWwp0eXBlOiBhY2NvbXA7CnsKICAgIC90ZW1wbGF0ZTogc2ltcGxlQmFzcy8KICAgIEMgfCBGIHwgRyB8IEMgfAp9Cl0="></werckmeister-snippet>
+<blockquote>
+<p>the <code>template</code> command should always appear at the begining of a bar, not at the end.</p>
+</blockquote>
 <h2 id="advanced-techniques">Advanced techniques</h2>
 <p>(tbd.)</p>
 <h5 id="chords">Chords</h5>
@@ -212,51 +258,99 @@ In a pitchmap file you can define note symbols like that:</p>
 <h2 id="references">References</h2>
 <h2 id="commands">Commands</h2>
 <ul>
-<li><a pageScroll id="link-20" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></li>
-<li><a pageScroll id="link-21" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a></li>
-<li><a pageScroll id="link-22" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="doonce">doOnce</a></li>
-<li><a pageScroll id="link-23" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fade">fade</a></li>
-<li><a pageScroll id="link-24" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></li>
-<li><a pageScroll id="link-25" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentconf">instrumentConf</a></li>
-<li><a pageScroll id="link-26" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentdef">instrumentDef</a></li>
-<li><a pageScroll id="link-27" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="jump">jump</a></li>
-<li><a pageScroll id="link-28" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mark">mark</a></li>
-<li><a pageScroll id="link-29" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a></li>
-<li><a pageScroll id="link-30" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="modonce">modOnce</a></li>
-<li><a pageScroll id="link-31" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pan">pan</a></li>
-<li><a pageScroll id="link-32" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="signature">signature</a></li>
-<li><a pageScroll id="link-33" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tempo">tempo</a></li>
-<li><a pageScroll id="link-34" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicingstrategy">voicingStrategy</a></li>
-<li><a pageScroll id="link-35" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="volume">volume</a></li>
+<li><a pageScroll id="link-23" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="cue">cue</a></li>
+<li><a pageScroll id="link-24" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></li>
+<li><a pageScroll id="link-25" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a></li>
+<li><a pageScroll id="link-26" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="doonce">doOnce</a></li>
+<li><a pageScroll id="link-27" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fade">fade</a></li>
+<li><a pageScroll id="link-28" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fill">fill</a></li>
+<li><a pageScroll id="link-29" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></li>
+<li><a pageScroll id="link-30" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentconf">instrumentConf</a></li>
+<li><a pageScroll id="link-31" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentdef">instrumentDef</a></li>
+<li><a pageScroll id="link-32" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentsection">instrumentSection</a></li>
+<li><a pageScroll id="link-33" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="jump">jump</a></li>
+<li><a pageScroll id="link-34" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mark">mark</a></li>
+<li><a pageScroll id="link-35" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a></li>
+<li><a pageScroll id="link-36" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="modonce">modOnce</a></li>
+<li><a pageScroll id="link-37" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pan">pan</a></li>
+<li><a pageScroll id="link-38" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="signature">signature</a></li>
+<li><a pageScroll id="link-39" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tempo">tempo</a></li>
+<li><a pageScroll id="link-40" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicingstrategy">voicingStrategy</a></li>
+<li><a pageScroll id="link-41" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="volume">volume</a></li>
 </ul>
 <h2 id="lua-extensions">Lua Extensions</h2>
 <h3 id="modifications">Modifications</h3>
 <ul>
-<li><a pageScroll id="link-36" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="drumrudiments">drumRudiments</a></li>
-<li><a pageScroll id="link-37" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitarstroke">guitarStroke</a></li>
-<li><a pageScroll id="link-38" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="legato">legato</a></li>
-<li><a pageScroll id="link-39" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a></li>
-<li><a pageScroll id="link-40" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="staccato">staccato</a></li>
-<li><a pageScroll id="link-41" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="swing">swing</a></li>
+<li><a pageScroll id="link-42" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="drumrudiments">drumRudiments</a></li>
+<li><a pageScroll id="link-43" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitarstroke">guitarStroke</a></li>
+<li><a pageScroll id="link-44" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="legato">legato</a></li>
+<li><a pageScroll id="link-45" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a></li>
+<li><a pageScroll id="link-46" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="staccato">staccato</a></li>
+<li><a pageScroll id="link-47" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="swing">swing</a></li>
 </ul>
 <h2 id="lua-extensions-1">Lua Extensions</h2>
 <h3 id="voicing-strategies-1">Voicing Strategies</h3>
 <ul>
-<li><a pageScroll id="link-42" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitar">guitar</a></li>
-<li><a pageScroll id="link-43" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="simple">simple</a></li>
-<li><a pageScroll id="link-44" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicelead">voicelead</a></li>
+<li><a pageScroll id="link-48" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="guitar">guitar</a></li>
+<li><a pageScroll id="link-49" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="simple">simple</a></li>
+<li><a pageScroll id="link-50" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="voicelead">voicelead</a></li>
+</ul>
+<h2 id="conductor-rules">Conductor Rules</h2>
+<h3 id="selectors">Selectors</h3>
+<ul>
+<li><a pageScroll id="link-51" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="channel">channel</a></li>
+<li><a pageScroll id="link-52" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="expression">expression</a></li>
+<li><a pageScroll id="link-53" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="frombar">fromBar</a></li>
+<li><a pageScroll id="link-54" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="frombeat">fromBeat</a></li>
+<li><a pageScroll id="link-55" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="frompitch">fromPitch</a></li>
+<li><a pageScroll id="link-56" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromposition">fromPosition</a></li>
+<li><a pageScroll id="link-57" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentselector">instrumentSelector</a></li>
+<li><a pageScroll id="link-58" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="notonbeat">notOnBeat</a></li>
+<li><a pageScroll id="link-59" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthbar">nthBar</a></li>
+<li><a pageScroll id="link-60" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onbar">onBar</a></li>
+<li><a pageScroll id="link-61" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onbeat">onBeat</a></li>
+<li><a pageScroll id="link-62" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a></li>
+<li><a pageScroll id="link-63" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tobar">toBar</a></li>
+<li><a pageScroll id="link-64" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="tobeat">toBeat</a></li>
+<li><a pageScroll id="link-65" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="topitch">toPitch</a></li>
+<li><a pageScroll id="link-66" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toposition">toPosition</a></li>
+</ul>
+<h2 id="conductor-rules-1">Conductor Rules</h2>
+<h3 id="declarations">Declarations</h3>
+<ul>
+<li><a pageScroll id="link-67" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="duration">duration</a></li>
+<li><a pageScroll id="link-68" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a></li>
+<li><a pageScroll id="link-69" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="timeoffset">timeOffset</a></li>
+<li><a pageScroll id="link-70" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="velocity">velocity</a></li>
 </ul>
 <h2 id="commands-1">Commands</h2>
-<h3 id="device"><code>device</code></h3>
-<p>Defines a device which can be used when adding instruments (see <a pageScroll id="link-45" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
+<h3 id="cue"><code>cue</code></h3>
+<p>adds a cue meta message to the corresponding midi track</p>
 <h3 id="examples-1">examples</h3>
-<p> <strong>positional:</strong> </p>
-<p> <code>device: MyDevice midi 0 offset 100;</code></p>
-<p> <strong>named:</strong></p>
-<p> <code>device: _setName=MyDevice _isType=midi _usePort=0 _withOffset=100;</code>   </p>
-<p> <strong>a complete example</strong></p>
+<p> <code>/cue: _text=&quot;cue text&quot;/</code></p>
+<h4 id="parameters-1">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">text</td>
+<td align="left">-</td>
+<td align="left">the text which appears in the MIDI message</td>
+<td align="left">text</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="device"><code>device</code></h3>
+<p>Defines a device which can be used when adding instruments (see <a pageScroll id="link-71" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
+<p> see <a pageScroll id="link-72" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-73" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></p>
+<h3 id="example">example</h3>
 <p> define an device, an instrument and assign it to a track.</p>
-<p> see <a pageScroll id="link-46" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-47" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></p>
 <pre><code><![CDATA[
  device: MyDevice midi 0;
 
@@ -270,7 +364,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <p> If you want to use <a href="http://www.fluidsynth.org">fluidSynth</a> as output device, you can achieve this with a command like this:</p>
 <p> <code>device: MyDevice fluidSynth _useFont=&quot;PATH OF A SOUNDFONT FILE&quot;;</code></p>
 <p> On mac, make sure that you have fluidsynth installed.</p>
-<h4 id="parameters-1">parameters</h4>
+<h4 id="parameters-2">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -284,7 +378,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">setName</td>
 <td align="left">1</td>
 <td align="left">An arbitary name.</td>
-<td align="left">word</td>
+<td align="left">text</td>
 </tr>
 <tr>
 <td align="left">isType</td>
@@ -313,39 +407,11 @@ In a pitchmap file you can define note symbols like that:</p>
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="do"><code>do</code></h3>
-<p>Such as <a pageScroll id="link-48" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track. </p>
+<p>Such as <a pageScroll id="link-74" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track. </p>
 <p> The difference is: every <code>mod</code> command adds a further modification to a voice.</p>
 <p> <code>do</code> replaces the previous modification. </p>
-<h3 id="examples-2">examples</h3>
-<p> <strong>positional:</strong> </p>
+<h3 id="example-1">example</h3>
 <p> <code>/do: arpeggio/</code></p>
-<p> <strong>named:</strong></p>
-<p> <code>/do: _use=arpeggio/</code></p>
-<h4 id="parameters-2">parameters</h4>
-<table class="table table-bordered">
-<thead>
-<tr>
-<th align="left">name</th>
-<th align="left">position</th>
-<th align="left">description</th>
-<th align="left">type</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">use</td>
-<td align="left">1</td>
-<td align="left">The name of the modification to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
-<td align="left">word</td>
-</tr>
-</tbody></table>
-<p><br><br><br></p>
-<h3 id="doonce"><code>doOnce</code></h3>
-<p>Like <a pageScroll id="link-49" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
-<h3 id="examples-3">examples</h3>
-<p> <strong>positional:</strong> </p>
-<p> <code>/doOnce: arpeggio/</code></p>
-<p> <strong>named:</strong></p>
-<p> <code>/doOnce: _use=arpeggio/</code></p>
 <h4 id="parameters-3">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -360,24 +426,39 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">use</td>
 <td align="left">1</td>
 <td align="left">The name of the modification to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
-<td align="left">word</td>
+<td align="left">text</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="doonce"><code>doOnce</code></h3>
+<p>Like <a pageScroll id="link-75" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<h3 id="example-2">example</h3>
+<p> <code>/doOnce: arpeggio/</code></p>
+<h4 id="parameters-4">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">use</td>
+<td align="left">1</td>
+<td align="left">The name of the modification to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
+<td align="left">text</td>
 </tr>
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="fade"><code>fade</code></h3>
 <p>Fades the volume over a given duration in quarters.</p>
-<h3 id="examples-4">examples</h3>
-<p> <strong>positional:</strong></p>
-<p> Fades from 0 to 50 in 2 quarters:</p>
-<p> <code>/fade: 2 0 50/</code></p>
-<p> <strong>named:</strong></p>
-<p> Fades from 0 to 50 in 2 quarters:</p>
-<p> <code>/fade: _duration=2 _from=0 _to=50/</code></p>
-<p> Optionally a fade curve type can be set.</p>
+<h3 id="example-3">example</h3>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="CiBkZXZpY2U6IG15RGV2aWNlIG1pZGkgX3VzZVBvcnQ9MDsKIGluc3RydW1lbnREZWY6IG9yZ2FuICBteURldmljZSBfY2g9MCBfcGM9MTY7CiB0ZW1wbzogNzU7CiBbCiBpbnN0cnVtZW50OiBvcmdhbjsKIHsKICAgICBcZmZmCiAgICAgL2ZhZGU6IF9mcm9tPTAgX3RvPTEwMCBfZHVyYXRpb249NC8KICAgICBjMSB8CiAgICAgL2ZhZGU6IF9mcm9tPTAgX3RvPTEwMCBfZHVyYXRpb249NCBfY3VydmU9InF1YWQiLwogICAgIGMxIHwKICAgICAvZmFkZTogX2Zyb209MCBfdG89MTAwIF9kdXJhdGlvbj00IF9jdXJ2ZT0iY3ViIi8KICAgICBjMSB8CiAgICAgL2ZhZGU6IF9mcm9tPTAgX3RvPTEwMCBfZHVyYXRpb249NCBfY3VydmU9InF1YXJ0Ii8KICAgICBjMSB8CiAgICAgL2ZhZGU6IF9mcm9tPTAgX3RvPTEwMCBfZHVyYXRpb249NCBfY3VydmU9InF1aW50Ii8KICAgICBjMSB8CiAgICAgL2ZhZGU6IF9mcm9tPTAgX3RvPTEwMCBfZHVyYXRpb249NCBfY3VydmU9ImV4cCIvCiAgICAgYzEgfAogfQogXQ=="></werckmeister-snippet>
 <p> <img src="https://raw.githubusercontent.com/werckme/werckmeister/main/assets/curve-types.png" alt="supported curve types"></p>
-<h4 id="parameters-4">parameters</h4>
+<h4 id="parameters-5">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -413,13 +494,32 @@ In a pitchmap file you can define note symbols like that:</p>
 </tr>
 </tbody></table>
 <p><br><br><br></p>
+<h3 id="fill"><code>fill</code></h3>
+<p>Plays a template only once. Is also able to replace the performance of another template during its playback.</p>
+<p> Useful for fill ins.</p>
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7CnRlbXBvOiA5MDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSBfdXNlUG9ydD0wOwppbnN0cnVtZW50RGVmOmRydW1zICAgIF9vbkRldmljZT1NeURldmljZSAgX2NoPTkgX3BjPTA7CgpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBkcnVtcy5maWxsOwppbnN0cnVtZW50OiBkcnVtczsKewogIChjLCAmICYpNCAoYiwsICYgJik0IChhLCwgJiAmKTQgKGcsLCAmICYpNCB8Cn0KXQoKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogZHJ1bXMubWFpbjsKaW5zdHJ1bWVudDogZHJ1bXM7CnsKICByOCBmIywsIHIgJiByICYgciAmIHwKfQp7CiAgIHI0IGQsLCByNCAmIHwgCn0KewogIGMsLDQgciAmIHIgfAp9Cl0KClsKdHlwZTogYWNjb21wOwp7CiAvdGVtcGxhdGU6IGRydW1zLm1haW4vCiBDIHwKIC9maWxsOiBkcnVtcy5maWxsLyAtLSBwbGF5IGZpbGwgYW5kIGRydW0gYmVhdCB0b2dldGhlcgogQyB8IEMgfAogL2ZpbGw6IGRydW1zLmZpbGwgX3JlcGxhY2U9ImRydW1zLm1haW4iLyAtLSBwbGF5IG9ubHkgdGhlIGZpbGwgaW4KIEMgfCBDIHwKfQpd"></werckmeister-snippet>
+<h4 id="parameters-6">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">replace</td>
+<td align="left">-</td>
+<td align="left">the name of the template to be replaced by the fill</td>
+<td align="left">text</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
 <h3 id="instrument"><code>instrument</code></h3>
 <p>Set or change the instrument of a track.</p>
-<h3 id="examples-5">examples</h3>
-<p> <strong>positional:</strong> </p>
-<p> <code>instrument: myInstrument;</code></p>
-<p> <strong>named:</strong></p>
-<p> <code>instrument: _use=myInstrument;</code></p>
+<h3 id="examples-2">examples</h3>
 <p> <strong>set an instrument for a track</strong></p>
 <pre><code><![CDATA[
  [ 
@@ -437,7 +537,7 @@ In a pitchmap file you can define note symbols like that:</p>
    c d e f
 
  } 
- ] ]]></code></pre><h4 id="parameters-5">parameters</h4>
+ ] ]]></code></pre><h4 id="parameters-7">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -451,7 +551,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">use</td>
 <td align="left">1</td>
 <td align="left">The instrument name.</td>
-<td align="left">word</td>
+<td align="left">text</td>
 </tr>
 </tbody></table>
 <p><br><br><br></p>
@@ -468,28 +568,19 @@ In a pitchmap file you can define note symbols like that:</p>
 <li><p>mod</p>
 </li>
 <li><p>velocity remap</p>
-<h3 id="examples-6">examples</h3>
+<h3 id="examples-3">examples</h3>
 <h4 id="mixed-settings">mixed settings</h4>
-<p><strong>positional:</strong> </p>
 <p><code>instrumentConf: piano volume 100 pan 50;</code></p>
-<p><strong>named:</strong></p>
-<p><code>instrumentConf: _for=piano _set=volume _to=50 _set=pan _to=50;</code></p>
 <h4 id="setup-a-mod">setup a mod</h4>
-<p><strong>positional:</strong> </p>
-<p><code>instrumentConf: piano mod myLuaMod bar; --the bar argument belongs to &quot;myLuaMod&quot;</code></p>
-<p><strong>named:</strong></p>
-<p><code>instrumentConf: _for=piano _set=mod _use=myLuaMod _myLuaModFoo=bar;</code></p>
+<p><code>instrumentConf: piano mod myLuaMod someValue; --the</code>someValue<code>argument belongs to &quot;myLuaMod&quot;</code></p>
 <h4 id="setup-a-velocity-remap">setup a velocity remap</h4>
 <p>With <code>remapVelocity</code> you are able to change the velocity values behind <code>ppppp..fffff</code> for a specific instrument.</p>
-<p>In the example below the velcity for <code>p</code> will be set to 100 and the value for <code>f</code> will be set to 10.</p>
+<p>In the example below the velocity for <code>p</code> will be set to 100 and the value for <code>f</code> will be set to 10.</p>
 <p>The value range is 0..100. (100=127 Midi velocity)</p>
-<p><strong>named:</strong></p>
 <p><code>instrumentConf: _set=remapVelocity _p=100 _f=10;</code></p>
-<p><strong>positional:</strong></p>
-<p><code>remapVelocity</code> dosen&#39;t supports positional arguments</p>
 </li>
 </ul>
-<h4 id="parameters-6">parameters</h4>
+<h4 id="parameters-8">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -509,14 +600,9 @@ In a pitchmap file you can define note symbols like that:</p>
 <p><br><br><br></p>
 <h3 id="instrumentdef"><code>instrumentDef</code></h3>
 <p>Adds a new MIDI instrument.</p>
-<h3 id="examples-7">examples</h3>
-<p> <strong>positional:</strong> </p>
-<p> <code>instrumentDef: drums MyDevice 9 0 3;</code></p>
-<p> <strong>named:</strong></p>
-<p> <code>instrumentDef: _setName=drums _onDevice=MyDevice _ch=9 _cc=0 _pc=3;</code></p>
-<p> <strong>a complete example</strong></p>
-<p> define an device, an instrument and set it to a track.</p>
-<p> see <a pageScroll id="link-50" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-51" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
+<p> see <a pageScroll id="link-76" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-77" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
+<h3 id="example-4">example</h3>
+<p> define an device, an instrument and assign it to a track.</p>
 <pre><code><![CDATA[
  device: MyDevice midi 0;
 
@@ -526,7 +612,7 @@ In a pitchmap file you can define note symbols like that:</p>
  { 
     c d e f 
  } 
- ] ]]></code></pre><h4 id="parameters-7">parameters</h4>
+ ] ]]></code></pre><h4 id="parameters-9">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -540,13 +626,13 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">setName</td>
 <td align="left">1</td>
 <td align="left">An arbitary name.</td>
-<td align="left">word</td>
+<td align="left">text</td>
 </tr>
 <tr>
 <td align="left">onDevice</td>
 <td align="left">2</td>
-<td align="left">The device which to use (The name of the device, see <a pageScroll id="link-52" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a>).</td>
-<td align="left">word</td>
+<td align="left">The device which to use (The name of the device, see <a pageScroll id="link-78" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a>).</td>
+<td align="left">text</td>
 </tr>
 <tr>
 <td align="left">ch</td>
@@ -555,9 +641,9 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">0..15</td>
 </tr>
 <tr>
-<td align="left">cc</td>
+<td align="left">bankMsb</td>
 <td align="left">4</td>
-<td align="left">A MIDI <code>control change</code> value.</td>
+<td align="left">A MIDI <code>bank select MSB</code> value.</td>
 <td align="left">0..127</td>
 </tr>
 <tr>
@@ -566,14 +652,51 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">A MIDI <code>program change</code> value.</td>
 <td align="left">0..127</td>
 </tr>
+<tr>
+<td align="left">bankLsb</td>
+<td align="left">-</td>
+<td align="left">A MIDI <code>bank select LSB</code> value.</td>
+<td align="left">0..127</td>
+</tr>
+<tr>
+<td align="left">cc</td>
+<td align="left">-</td>
+<td align="left">A MIDI <code>bank select MSB. Deprecated use bankMsb instead</code> value.</td>
+<td align="left">0..127</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="instrumentsection"><code>instrumentSection</code></h3>
+<p>Layers arbitrary instruments into one.</p>
+<p> see <a pageScroll id="link-79" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-80" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-81" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
+<h3 id="example-5">example</h3>
+<p> create 3 instruments and assign them to the section <code>myNewInstrument</code>.</p>
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="IHRlbXBvOiAxMjA7CiBkZXZpY2U6IE15RGV2aWNlICBtaWRpIF91c2VQb3J0PTA7CiBpbnN0cnVtZW50RGVmOnBpYW5vICAgIF9vbkRldmljZT1NeURldmljZSAgX2NoPTAgX3BjPTA7CiBpbnN0cnVtZW50RGVmOmd1aXRhciAgIF9vbkRldmljZT1NeURldmljZSBfY2g9MSAgX3BjPTI5OwogaW5zdHJ1bWVudERlZjpvcmdhbiAgIF9vbkRldmljZT1NeURldmljZSBfY2g9MiAgX3BjPTE2OwogaW5zdHJ1bWVudFNlY3Rpb246IG15TmV3SW5zdHJ1bWVudCBwaWFubyBndWl0YXIgb3JnYW47CgogWwogaW5zdHJ1bWVudDogbXlOZXdJbnN0cnVtZW50OwogewogIGEsLDEgfCBhLCB8IGQjLH4gfCAmCiB9CiBd"></werckmeister-snippet>
+<h4 id="parameters-10">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">setName</td>
+<td align="left">1</td>
+<td align="left">An arbitary name.</td>
+<td align="left">text</td>
+</tr>
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="jump"><code>jump</code></h3>
-<p>Jumps to a previous defined mark See <a pageScroll id="link-53" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="mark">mark</a>.</p>
-<h3 id="examples-8">examples</h3>
+<p>Jumps to a previous defined mark See <a pageScroll id="link-82" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="mark">mark</a>.</p>
+<h3 id="example-6">example</h3>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="IGRldmljZTogX3VzZVBvcnQ9MCBfc2V0TmFtZT1NeURldmljZSAgX2lzVHlwZT1taWRpOwogaW5zdHJ1bWVudERlZjogX3NldE5hbWU9cGlhbm8gX29uRGV2aWNlPU15RGV2aWNlIF9jaD0wIF9wYz0xIF9jYz04OwogWwogaW5zdHJ1bWVudDogcGlhbm87CiB7CiAgICAgL3NpZ25hdHVyZTogNSA0LwogICAgIC9tYXJrOiBBLyAgICAgICAtLSB2YWxpZCAmIHVuaXF1ZSB0byB0aGlzIHZvaWNlCiAgICAgYzQgZCBlIGYgZyB8CiAgICAgL2p1bXA6IEEvICAgICAgIC0tIGp1bXBzIHRvIEEgb25jZQogICAgIGEgYiBjJzIKIH0KIF0="></werckmeister-snippet>
-<h4 id="parameters-8">parameters</h4>
+<h4 id="parameters-11">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -587,7 +710,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">to</td>
 <td align="left">1</td>
 <td align="left">the destination marker</td>
-<td align="left">word</td>
+<td align="left">text</td>
 </tr>
 <tr>
 <td align="left">ignore</td>
@@ -596,7 +719,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">0..100</td>
 </tr>
 <tr>
-<td align="left">repreat</td>
+<td align="left">repeat</td>
 <td align="left"></td>
 <td align="left">Repeats the jump N times. (A repeat value of 1 performs 2 jumps)</td>
 <td align="left">0..100</td>
@@ -604,11 +727,11 @@ In a pitchmap file you can define note symbols like that:</p>
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="mark"><code>mark</code></h3>
-<p>adds a mark to the voice. Why you want to do that? See <a pageScroll id="link-54" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="jump">jump</a>.</p>
-<h3 id="examples-9">examples</h3>
+<p>adds a mark to the voice. Us it in combination with <a pageScroll id="link-83" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="jump">jump</a>.</p>
+<h3 id="examples-4">examples</h3>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="IGRldmljZTogX3VzZVBvcnQ9MCBfc2V0TmFtZT1NeURldmljZSAgX2lzVHlwZT1taWRpOwogaW5zdHJ1bWVudERlZjogX3NldE5hbWU9cGlhbm8gX29uRGV2aWNlPU15RGV2aWNlIF9jaD0wIF9wYz0xIF9jYz04OwogWwogaW5zdHJ1bWVudDogcGlhbm87CiB7CiAgICAgL3NpZ25hdHVyZTogNSA0LwogICAgIC9tYXJrOiBBLyAgICAgICAtLSB2YWxpZCAmIHVuaXF1ZSB0byB0aGlzIHZvaWNlCiAgICAgYzQgZCBlIGYgZyB8CiAgICAgL2p1bXA6IEEvICAgICAgIC0tIGp1bXBzIHRvIEEgb25jZQogICAgIGEgYiBjJzIKIH0KIF0="></werckmeister-snippet>
-<h4 id="parameters-9">parameters</h4>
+<h4 id="parameters-12">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -628,21 +751,18 @@ In a pitchmap file you can define note symbols like that:</p>
 <p><br><br><br></p>
 <h3 id="mod"><code>mod</code></h3>
 <p>Adds a modification to the track. Every <code>mod</code> statement adds a further modification to the related voice.</p>
-<p> If you want to use ony one modification at the time use <a pageScroll id="link-55" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a> instead.</p>
-<h3 id="examples-10">examples</h3>
-<p> <strong>positional:</strong> </p>
+<p> If you want to use ony one modification at the time use <a pageScroll id="link-84" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a> instead.</p>
+<h3 id="examples-5">examples</h3>
 <p> <code>/mod: arpeggio/</code></p>
-<p> <strong>named:</strong></p>
-<p> <code>/mod: _use=arpeggio/</code>  </p>
-<p> Mods can be external lua scripts, or one of theese internal mods:</p>
+<p> Mods can be external lua scripts, or one of these internal mods:</p>
 <h4 id="bend">Bend</h4>
 <p> Performs a pitch bend from or to the pitch of a note. The value range is 0..100 where 50 means the pichbend center.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="140" wm-data="Ci9kb09uY2U6IGJlbmQgX2Zyb209MC8gYzEgfCAvZG9PbmNlOiBiZW5kIF90bz0wLyBjMQo="></werckmeister-snippet>
 <h4 id="arpeggio">Arpeggio</h4>
 <p> Performs an arpeggio over a given chord.</p>
-<p> <strong>Arpeggio is deprecated. Use the lua mod <a pageScroll id="link-56" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a> instead.</strong></p>
-<h4 id="parameters-10">parameters</h4>
+<p> <strong>Arpeggio is deprecated. Use the lua mod <a pageScroll id="link-85" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a> instead.</strong></p>
+<h4 id="parameters-13">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -656,18 +776,15 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">use</td>
 <td align="left">1</td>
 <td align="left">The name of the modification to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
-<td align="left">word</td>
+<td align="left">text</td>
 </tr>
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="modonce"><code>modOnce</code></h3>
-<p>Like <a pageScroll id="link-57" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
-<h3 id="examples-11">examples</h3>
-<p> <strong>positional:</strong> </p>
+<p>Like <a pageScroll id="link-86" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<h3 id="examples-6">examples</h3>
 <p> <code>/modOnce: arpeggio/</code></p>
-<p> <strong>named:</strong></p>
-<p> <code>/modOnce: _use=arpeggio/</code></p>
-<h4 id="parameters-11">parameters</h4>
+<h4 id="parameters-14">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -681,18 +798,15 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">use</td>
 <td align="left">1</td>
 <td align="left">The name of the modification to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
-<td align="left">word</td>
+<td align="left">text</td>
 </tr>
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="pan"><code>pan</code></h3>
 <p>set the pan of the current track</p>
-<h3 id="examples-12">examples</h3>
-<p> <strong>positional:</strong> </p>
+<h3 id="example-7">example</h3>
 <p> <code>/pan: 50/</code></p>
-<p> <strong>named:</strong></p>
-<p> <code>/pan: _to=50/</code></p>
-<h4 id="parameters-12">parameters</h4>
+<h4 id="parameters-15">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -712,12 +826,9 @@ In a pitchmap file you can define note symbols like that:</p>
 <p><br><br><br></p>
 <h3 id="signature"><code>signature</code></h3>
 <p>Set the time signature of the current track.</p>
-<h3 id="examples-13">examples</h3>
-<p> <strong>positional:</strong> </p>
+<h3 id="example-8">example</h3>
 <p> <code>/signature: 3 4/</code></p>
-<p> <strong>named:</strong></p>
-<p> <code>/signature: _upper=3 _lower=4/</code></p>
-<h4 id="parameters-13">parameters</h4>
+<h4 id="parameters-16">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -743,18 +854,11 @@ In a pitchmap file you can define note symbols like that:</p>
 <p><br><br><br></p>
 <h3 id="tempo-1"><code>tempo</code></h3>
 <p><code>tempo</code> defines or changes the current tempo.</p>
-<h3 id="examples-14">examples</h3>
-<p> <strong>positional:</strong> </p>
+<h3 id="example-9">example</h3>
 <p> <code>tempo: 120;</code></p>
-<p> <strong>named:</strong></p>
-<p> <code>tempo: _bpm=120;</code></p>
-<p> This command can be used as document config:</p>
-<p> <code>tempo: 120;</code></p>
-<p> or within a track</p>
-<p> <code>/tempo: 120/</code></p>
 <p> It is also possible to set different tempo values for several tracks:</p>
-<p> <a pageScroll id="link-58" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="tempo">see here</a></p>
-<h4 id="parameters-14">parameters</h4>
+<p> <a pageScroll id="link-87" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="tempo">see here</a></p>
+<h4 id="parameters-17">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -774,19 +878,16 @@ In a pitchmap file you can define note symbols like that:</p>
 <p><br><br><br></p>
 <h3 id="voicingstrategy"><code>voicingStrategy</code></h3>
 <p>Adds a modification to the track.</p>
-<h3 id="examples-15">examples</h3>
-<p> <strong>positional:</strong> </p>
+<h3 id="example-10">example</h3>
 <p> <code>/voicingStrategy: asNotated/</code> </p>
-<p> <strong>named:</strong></p>
-<p> <code>/voicingStrategy: _use=asNotated/</code>  </p>
-<p> Voicing strategies can be external lua scripts, or one of theese internal strategies:</p>
+<p> Voicing strategies can be external lua scripts, or one of these internal strategies:</p>
 <ul>
 <li><p>asNotated</p>
 </li>
 <li><p>simpleGuitar</p>
 </li>
 </ul>
-<h4 id="parameters-15">parameters</h4>
+<h4 id="parameters-18">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -800,18 +901,15 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">use</td>
 <td align="left">1</td>
 <td align="left">The name of the strategy to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related strategy.</td>
-<td align="left">word</td>
+<td align="left">text</td>
 </tr>
 </tbody></table>
 <p><br><br><br></p>
 <h3 id="volume"><code>volume</code></h3>
 <p>set the volume of the current track</p>
-<h3 id="examples-16">examples</h3>
-<p> <strong>positional:</strong> </p>
+<h3 id="examples-7">examples</h3>
 <p> <code>/volume: 50/</code></p>
-<p> <strong>named:</strong></p>
-<p> <code>/volume: _to=50/</code></p>
-<h4 id="parameters-16">parameters</h4>
+<h4 id="parameters-19">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -834,7 +932,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <h3 id="drumrudiments"><code>drumRudiments</code></h3>
 <p>Implements a collection of different drum rudiments. (<a href="https://en.wikipedia.org/wiki/Drum_rudiment">see Wikipedia</a>)</p>
 <p> You can specify which notes are for <code>L</code> and <code>R</code> and performing duration.</p>
-<p> This will be achived by using an chord as source material.</p>
+<p> This will be achieved by using an chord as source material.</p>
 <p> The chord pitches will be used for <code>L</code> and <code>R</code>.</p>
 <p> The length of the chord event defines over which time the rudiment will be peformed.</p>
 <p> An event tag specifies which rudiment will be performed.</p>
@@ -937,7 +1035,7 @@ In a pitchmap file you can define note symbols like that:</p>
 
 </ul>
 
-<h4 id="parameters-17">parameters</h4>
+<h4 id="parameters-20">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -995,7 +1093,7 @@ In a pitchmap file you can define note symbols like that:</p>
  instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><p> <strong>Example</strong></p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2d1aXRhclN0cm9rZS5sdWEiOwp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ICBwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0yNDsKaW5zdHJ1bWVudENvbmY6IHBpYW5vIG1vZCBndWl0YXJTdHJva2UgX21vZGU9YWx0ZXJuYXRlIF92YWx1ZT0xNjsgClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICA8YyBlIGcgYj40IDxjIGUgZyBiPjQgPGMgZWIgZyBiYj4yIHwgIDxjIGViIGcgYmI+MiA8YyBlYiBnIGJiPjIKfQpd"></werckmeister-snippet>
-<h4 id="parameters-18">parameters</h4>
+<h4 id="parameters-21">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1014,7 +1112,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <tr>
 <td align="left">value</td>
 <td align="left">-</td>
-<td align="left">the duration of one aprgeggio event. (Default=64)</td>
+<td align="left">the duration of one arpeggio event. (Default=64)</td>
 <td align="left">[1,2,4,8,...]</td>
 </tr>
 <tr>
@@ -1032,7 +1130,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <p> If a tag is given, only the tagged notes are performed legato.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2xlZ2F0by5sdWEiOwp0ZW1wbzogMTQwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBsZWdhdG8gX2ZvclRhZz1sZWcgX2Ftb3VudD0xMDAvCiAgIC0tIG9ubHkgdGhlIGBkYCB3aWxsIGJlIHBlcmZvcm1lZCBsZWdhdG8uIAogICBjICJsZWciQGQgZSBmCn0KXQ=="></werckmeister-snippet>
-<h4 id="parameters-19">parameters</h4>
+<h4 id="parameters-22">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1046,7 +1144,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">forTag</td>
 <td align="left">-</td>
 <td align="left">Specifies a tag name. If set only events with this tag name will be affected by the legato mod.</td>
-<td align="left">word</td>
+<td align="left">text</td>
 </tr>
 <tr>
 <td align="left">amount</td>
@@ -1063,7 +1161,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <p> <strong>Example</strong></p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL215QXJwZWdnaW8ubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOiAgcGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogL2RvOiBteUFycGVnZ2lvLyAKIDxjIGUgZyBiPjIgCiAvZG86IG15QXJwZWdnaW8gX2RpcmVjdGlvbj1kb3duLyAKIDxjIGViIGcgYmI+MiAKfQpd"></werckmeister-snippet>
-<h4 id="parameters-20">parameters</h4>
+<h4 id="parameters-23">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1082,7 +1180,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <tr>
 <td align="left">direction</td>
 <td align="left">-</td>
-<td align="left">the direction of the aprgeggio. (Default=up)</td>
+<td align="left">the direction of the arpeggio. (Default=up)</td>
 <td align="left">[up,down]</td>
 </tr>
 </tbody></table>
@@ -1094,7 +1192,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <p> If a tag is given, only the tagged notes are performed staccato.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL3N0YWNjYXRvLmx1YSI7CnRlbXBvOiAxNDA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCmluc3RydW1lbnQ6IHBpYW5vOwp7CiAgIC9tb2Q6IHN0YWNjYXRvIF9mb3JUYWc9c3RhYyBfYW1vdW50PTEwMC8KICAgLS0gb25seSB0aGUgYGRgIHdpbGwgYmUgcGVyZm9ybWVkIHN0YWNjYXRvLiAKICAgYyAic3RhYyJAZCBlIGYKfQpd"></werckmeister-snippet>
-<h4 id="parameters-21">parameters</h4>
+<h4 id="parameters-24">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1108,7 +1206,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <td align="left">forTag</td>
 <td align="left">-</td>
 <td align="left">Specifies a tag name. If set only events with this tag name will be affected by the staccato mod.</td>
-<td align="left">word</td>
+<td align="left">text</td>
 </tr>
 <tr>
 <td align="left">amount</td>
@@ -1124,7 +1222,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <p>Performs a swing groove.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL3N3aW5nLmx1YSI7CnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjogIHBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTA7ClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL21vZDogc3dpbmcvCiAgIGM4ICBjICAgYyAgIGMgICBjICAgYyAgIGMgICBjCgp9Cl0="></werckmeister-snippet>
-<h4 id="parameters-22">parameters</h4>
+<h4 id="parameters-25">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1155,7 +1253,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <p>Tries to simulate the chord voicing of an guitar.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS92b2ljaW5ncy9ndWl0YXIubHVhIjsKdXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7Cgp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogbXlUZW1wbGF0ZTsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL3ZvaWNpbmdTdHJhdGVneTogZ3VpdGFyLwogICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
-<h4 id="parameters-23">parameters</h4>
+<h4 id="parameters-26">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1179,7 +1277,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <p>The simple approach with no strategy.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS92b2ljaW5ncy9zaW1wbGUubHVhIjsKdXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7Cgp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogbXlUZW1wbGF0ZTsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL3ZvaWNpbmdTdHJhdGVneTogc2ltcGxlLwogICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
-<h4 id="parameters-24">parameters</h4>
+<h4 id="parameters-27">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1204,7 +1302,7 @@ In a pitchmap file you can define note symbols like that:</p>
 <p> the octaves of a chord are rearranged, so that the actual pitch distance between the previous chord is kept minimal.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS92b2ljaW5ncy92b2ljZWxlYWQubHVhIjsKdXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7Cgp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwp0eXBlOiB0ZW1wbGF0ZTsKbmFtZTogbXlUZW1wbGF0ZTsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgL3ZvaWNpbmdTdHJhdGVneTogdm9pY2VsZWFkLwogICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
-<h4 id="parameters-25">parameters</h4>
+<h4 id="parameters-28">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1224,3 +1322,528 @@ In a pitchmap file you can define note symbols like that:</p>
 <h4 id="include-extension-8">include extension</h4>
 <p><code>using &quot;lua/voicings/voicelead.lua&quot;;</code></p>
 <p><br><br><br></p>
+<h3 id="conductor-selectors">Conductor Selectors</h3>
+<h3 id="channel"><code>channel</code></h3>
+<p>Selects an event where its channel is equal to one the given numbers.</p>
+<pre><code><![CDATA[
+ channel(0 1 2) {...}
+]]></code></pre><h4 id="parameters-29">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">channel</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">midi channel+</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="expression"><code>expression</code></h3>
+<p>Select events via its applied expressions.</p>
+<pre><code><![CDATA[
+ expression(p) {...}
+
+ expression(p f ff) {...}
+]]></code></pre><h4 id="parameters-30">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">expression</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">expression+</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="frombar"><code>fromBar</code></h3>
+<p>Selects an event where its bar time is equal or greater.</p>
+<pre><code><![CDATA[
+ fromBar(1) {...}
+]]></code></pre><p> see also: <a pageScroll id="link-88" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-89" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>, <a pageScroll id="link-90" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.</p>
+<h4 id="parameters-31">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">bar</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">bar number</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="frombeat"><code>fromBeat</code></h3>
+<p>Selects an event where its beat time is equal or greater.</p>
+<pre><code><![CDATA[
+ fromBeat(1) {...}
+]]></code></pre><h4 id="parameters-32">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">beat</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">quarters</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="frompitch"><code>fromPitch</code></h3>
+<p>Selects any event where its pitch is higher or equal than the given pitch.</p>
+<p> see also: <a pageScroll id="link-91" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPitch">toPitch</a>, <a pageScroll id="link-92" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
+<pre><code><![CDATA[
+ fromPitch(c,) {...}
+]]></code></pre><h4 id="parameters-33">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">pitch</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">pitch</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="fromposition"><code>fromPosition</code></h3>
+<p>Selects any event where its position is after a given time.</p>
+<p> see also: <a pageScroll id="link-93" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
+<h2 id="example-select-the-events-after-time--8-quarters">example, select the events after time &gt;= 8 quarters:</h2>
+<pre><code><![CDATA[
+ fromPosition(8) {...}
+]]></code></pre><h4 id="parameters-34">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">beat</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">quarters</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="instrumentselector"><code>instrumentSelector</code></h3>
+<p>Selects any event which belongs to one of the given instruments.</p>
+<p> <em>there is a known <a href="https://github.com/werckme/werckmeister/issues/230">issue</a> related to instrumentSection</em></p>
+<h2 id="example-11">example:</h2>
+<pre><code><![CDATA[
+ instrument(bass) {...}
+ instrument(bass drums) {...}]]></code></pre><h4 id="parameters-35">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">instrument name</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">instrumentName+</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="notonbeat"><code>notOnBeat</code></h3>
+<p>Selects an event which does not appear on a given beat or a list of beats</p>
+<pre><code><![CDATA[
+ notOnBeat(1 3) {...}
+]]></code></pre><h4 id="parameters-36">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">beat</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">quarters+</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="nthbar"><code>nthBar</code></h3>
+<p>Selects an event which is located within in one of the give n-th bar.</p>
+<blockquote>
+<p>Heads Up:  The nth bar is not affected by any other selector.
+Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
+ will consider its decision counting from bar 0, not from the selected bar 1.</p>
+</blockquote>
+<pre><code><![CDATA[
+ nthBar(1 3 5) {...}
+]]></code></pre><p> see also: <a pageScroll id="link-94" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a pageScroll id="link-95" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-96" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>.</p>
+<h4 id="parameters-37">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">beat</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">bar number+</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="onbar"><code>onBar</code></h3>
+<p>Selects an event on a given bar number or a list of bar numbers</p>
+<pre><code><![CDATA[
+ onBar(1 3) {...}
+]]></code></pre><p> see also: <a pageScroll id="link-97" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a pageScroll id="link-98" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-99" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.</p>
+<h4 id="parameters-38">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">beat</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">bar number+</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="onbeat"><code>onBeat</code></h3>
+<p>Selects an event which appears on a given beat or a list of beats</p>
+<p> see also: <a pageScroll id="link-100" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a pageScroll id="link-101" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBeat">toBeat</a>.</p>
+<h2 id="example-select-the-events-at-beat-1-and-3">example, select the events at beat 1 and 3:</h2>
+<pre><code><![CDATA[
+ onBeat(1 3) {...}
+]]></code></pre><h4 id="parameters-39">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">beat</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">quarters+</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="pitch"><code>pitch</code></h3>
+<p>Selects any event where its pitch is equal to one of the given pitches.</p>
+<p> see also: <a pageScroll id="link-102" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a pageScroll id="link-103" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPitch">toPitch</a>.</p>
+<pre><code><![CDATA[
+ pitch(c) {...}
+
+ pitch(c, c c') {...}
+]]></code></pre><h4 id="parameters-40">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">pitch</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">pitch+</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="tobar"><code>toBar</code></h3>
+<p>Selects an event where its bar time is equal or less.</p>
+<pre><code><![CDATA[
+ toBar(4) {...}
+]]></code></pre><p> see also: <a pageScroll id="link-104" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a pageScroll id="link-105" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>, <a pageScroll id="link-106" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.</p>
+<h4 id="parameters-41">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">bar</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">bar number</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="tobeat"><code>toBeat</code></h3>
+<p>Selects an event where its beat time is equal or less.</p>
+<p> see also: <a pageScroll id="link-107" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a pageScroll id="link-108" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBeat">onBeat</a>.</p>
+<pre><code><![CDATA[
+ toBeat(4) {...}
+]]></code></pre><h4 id="parameters-42">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">beat</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">quarters</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="topitch"><code>toPitch</code></h3>
+<p>Selects any event where its pitch is lower or equal than the given pitch.</p>
+<p> see also: <a pageScroll id="link-109" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a pageScroll id="link-110" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
+<pre><code><![CDATA[
+ toPitch(c,) {...}
+]]></code></pre><h4 id="parameters-43">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">pitch</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">pitch</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="toposition"><code>toPosition</code></h3>
+<p>Selects any event where its position is after a given time.</p>
+<p> see also: <a pageScroll id="link-111" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
+<h2 id="example-select-the-events-before-time--8-quarters">example, select the events before time &lt;= 8 quarters:</h2>
+<pre><code><![CDATA[
+ toPosition(8) {...}
+]]></code></pre><h4 id="parameters-44">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">beat</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">quarters</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="conductor-declarations">Conductor Declarations</h3>
+<h3 id="duration"><code>duration</code></h3>
+<p>Changes the duration of an event. </p>
+<h2 id="example-12">example:</h2>
+<pre><code><![CDATA[
+ onBeat(1) {
+
+   duration += 0.125; -- 1/8 longer
+
+ }
+
+ onBeat(3) {
+
+   duration -= 25%;
+
+ }        
+]]></code></pre><h4 id="value-types">Value Types</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">absolute</td>
+<td align="left"></td>
+<td align="left">0..N</td>
+</tr>
+<tr>
+<td align="left">percent</td>
+<td align="left">percent base value is the events length</td>
+<td align="left">0..N%</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="pitch-1"><code>pitch</code></h3>
+<p>Changes the pitch of an event.</p>
+<h2 id="example-13">example:</h2>
+<pre><code><![CDATA[
+ onBeat(1) {
+
+   pitch = 60;
+
+ }
+
+ onBeat(3) {
+
+   pitch += 25%;
+
+ }        
+]]></code></pre><h4 id="value-types-1">Value Types</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">absolute</td>
+<td align="left"></td>
+<td align="left">0..127</td>
+</tr>
+<tr>
+<td align="left">percent</td>
+<td align="left">percent base value is events pitch</td>
+<td align="left">0%..100%</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="timeoffset"><code>timeOffset</code></h3>
+<p>Changes the time position of an event. </p>
+<p> <strong>Since this is an offset value, the set operation(=) has the same effect as the add(+=) or substract(-=) operation.</strong> </p>
+<h2 id="example-14">example:</h2>
+<pre><code><![CDATA[
+ onBeat(1) {
+
+   timeOffset += 0.125; -- 1/8 offset
+
+ }
+
+ onBeat(3) {
+
+   timeOffset -= 25%;
+
+ }        
+]]></code></pre><h4 id="value-types-2">Value Types</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">absolute</td>
+<td align="left"></td>
+<td align="left">0..N</td>
+</tr>
+<tr>
+<td align="left">percent</td>
+<td align="left">percent base value is the events length</td>
+<td align="left">0%..N%</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+<h3 id="velocity"><code>velocity</code></h3>
+<p>Changes the velocity of an event.</p>
+<h2 id="example-15">example:</h2>
+<pre><code><![CDATA[
+ onBeat(1) {
+
+   velocity = 127;
+
+ }
+
+ onBeat(3) {
+
+   velocity += 25%;
+
+ }        
+]]></code></pre><h4 id="value-types-3">Value Types</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">absolute</td>
+<td align="left"></td>
+<td align="left">0..127</td>
+</tr>
+<tr>
+<td align="left">percent</td>
+<td align="left">percent base value is events velocity</td>
+<td align="left">0%..100%</td>
+</tr>
+</tbody></table>
+<p><br><br><br></p>
+</div>

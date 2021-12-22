@@ -33,6 +33,7 @@ import { EmbeddedYoutubeComponent } from './components/partials/embedded-youtube
 import { CreatorComponent } from './components/pages/creator/creator.component';
 import { SongCardComponent } from './components/partials/song-card/song-card.component';
 import { SongPreviewComponent } from './components/partials/song-preview/song-preview.component';
+import { EmbeddedSoundcloudLinkComponent } from './components/partials/embedded-soundcloud-link/embedded-soundcloud-link.component';
 
 registerLocaleData(en);
 @NgModule({
@@ -59,7 +60,8 @@ registerLocaleData(en);
 		EmbeddedYoutubeComponent,
 		CreatorComponent,
 		SongCardComponent,
-		SongPreviewComponent
+		SongPreviewComponent,
+		EmbeddedSoundcloudLinkComponent
 	],
 	imports: [
 		BrowserModule,
@@ -77,7 +79,7 @@ registerLocaleData(en);
 		SongsService,
 		DecimalPipe
 	],
-	entryComponents: [EmbeddedSoundcloudPlayerComponent, EmbeddedHeaderComponent, EmbeddedYoutubeComponent],
+	entryComponents: [EmbeddedSoundcloudPlayerComponent, EmbeddedHeaderComponent, EmbeddedYoutubeComponent, EmbeddedSoundcloudLinkComponent],
 	bootstrap: [AppComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

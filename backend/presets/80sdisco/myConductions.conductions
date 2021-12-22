@@ -1,0 +1,48 @@
+--Drums-------------------------
+--High Hat
+-- emphasize the off beat
+instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) { 
+    velocity = 90;
+}
+-- emphasize a little less the on beats
+instrument(drums) pitch(h) onBeat(1 2 3 4) {
+    velocity = 60;
+}
+-- all other high hat strokes are 20 velocity units less than its predecessor
+instrument(drums) pitch(h) {
+  velocity = & - 20;
+}
+-- Snare
+-- play the snare a bit laid back on 2 and 4
+instrument(drums) pitch(x) onBeat(2 4) {
+    timeOffset += 3%;
+}
+
+
+--Rhythm 1 Synth-------------------------
+-- the base velocity
+instrument(rhythm) {
+    velocity = 60;
+}
+-- increase the velocity by 40% on the down beats 
+instrument(rhythm) onBeat(1.5 2.5 3.5 4.5) {
+    velocity += 40%;
+}
+-- increase the velocity by 60% on every second bar on beat 1
+channel(1) nthBar(2) onBeat(1) {
+    velocity += 60%;
+}
+--Rhythm 2 Synth-------------------------
+instrument(rhythm2) onBeat(1) {
+    duration -= 30%;
+}
+instrument(rhythm2) notOnBeat(1) {
+    duration -= 75%;
+}
+instrument(rhythm2) onBeat(2 4) {
+    velocity += 35%;
+}
+--Bass Synth-------------------------
+instrument(bass) onBeat (1 3) {
+    velocity += 30%;
+}

@@ -1,0 +1,41 @@
+-- TITLE: 80s Disco
+-- BY: Samba Godschynski
+-- DESCRIPTION: A 80s Style Disco tune, to demonstrate the `conductions sheet` feature.
+-- #conductions-event-duration #conductions-event-position-selector #conductions-velocity
+-- #conductions-staccato #conductions-highhat-velocity #conductions-emphasize
+-- #conductions-snare-laid-back #conductions-follow-up
+
+using "default.chords";
+using "simpleComping.template";
+using "myPitchmap.pitchmap";
+using "lua/voicings/guitar.lua";
+using "lua/voicings/simple.lua";
+using "rhythm.template";
+using "drums.template";
+using "bass.template";
+
+using "./myConductions.conductions"; -- comment this line, to hear what it sounds like without the conductions rules
+
+tempo: 120;
+device: MyDevice  midi _usePort=0;
+instrumentDef:lead    _onDevice=MyDevice  _ch=0 _pc=0;
+instrumentDef:rhythm _onDevice=MyDevice  _ch=1 _pc=28;
+instrumentDef:rhythm2 _onDevice=MyDevice  _ch=3 _pc=50;
+instrumentDef:bass    _onDevice=MyDevice  _ch=2 _pc=38;
+instrumentDef:drums    _onDevice=MyDevice  _ch=9 _pc=10;
+instrumentConf: drums volume 100;
+instrumentConf: rhythm pan 15 volume 85 voicingStrategy guitar _range=alto;
+instrumentConf: rhythm2 pan 80 volume 100 voicingStrategy guitar _range=baritone;
+instrumentConf: bass volume 80;
+
+[
+type: accomp;
+{   
+	/template: drums bass rhythm rhythm2/
+    C | C | Cmin | Cb7 | E | D | G | F | A B |
+    /template: drums bass/
+    C | C | C | C |
+    /template: drums bass rhythm rhythm2/
+    C | C | Cmin | Cb7 | E | D | G | F | A B | 
+}
+]

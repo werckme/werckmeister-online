@@ -59,6 +59,12 @@ body {
     }
 }
 
+blockquote {
+  padding-left: 0.5em;
+  border-left: 10px solid;
+  font-style: italic;
+}
+
 @include if-xs-or-smaller {
   h1 {
     font-size: 2.7rem !important;

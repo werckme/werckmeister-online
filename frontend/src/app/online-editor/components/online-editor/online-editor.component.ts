@@ -7,6 +7,7 @@ import { ShortcutService } from '../../services/shortcut.service';
 import { TmplLuaVoicing, TmplPitchmap, TmplSheetTemplate, TmplLuaMod } from './fileTemplates';
 import * as _ from 'lodash';
 import { DecimalPipe } from '@angular/common';
+import { waitAsync } from 'src/shared/help/waitAsync';
 
 const CheckIsCleanIntervalMillis = 1000;
 
@@ -33,6 +34,7 @@ interface IWorkspaceElement extends HTMLElement {
   markClean();
   play(): Promise<void>;
   stop(): Promise<void>;
+  getPlayerImpl(): any;
   onError: (error) => void;
   onCompiled: (document) => void;
   onStateChanged: (old: PlayerState, new_: PlayerState) => void;
@@ -64,7 +66,14 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   public playerState: PlayerState = PlayerState.Stopped;
   public bpm: number = 120;
   private beginQuarters: number = 0;
-
+  private _playerPrepareProgressPercent: number | null = null;
+  public get playerPrepareProgressPercent(): number {
+    if (this._playerPrepareProgressPercent === null) {
+      return null;
+    }
+    return Math.max(this.initialProgressPercent, this._playerPrepareProgressPercent);
+  }
+  private initialProgressPercent = 5;
   private _beginQuartersStr : string = "0";
   public get beginQuartersStr() : string {
     return this._beginQuartersStr;
@@ -146,6 +155,17 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     this.workspaceComponent.onError = this.onCompilerError.bind(this);
     this.workspaceComponent.onCompiled = this.onWerckCompiled.bind(this);
     this.workspaceComponent.onStateChanged = this.onPlayerStateChanged.bind(this);
+    let numberOfTasks = 0;
+    this.workspaceComponent.getPlayerImpl().playerTaskVisitor = {
+      newTasks: (tasks) => {
+        numberOfTasks = tasks.length;
+        this._playerPrepareProgressPercent = 0;
+      },
+      done: (task) => {
+        const progress = 100 / (numberOfTasks || 1);
+        this._playerPrepareProgressPercent += progress;
+      }
+    };
     this.shortcutSerice.when().ctrlAndChar('s').thenExecute(()=>{
       this.save();
     });
@@ -166,11 +186,14 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     if (new_ === PlayerState.Preparing) {
       this.workspaceComponent.beginQuarters = this.beginQuarters;
       this.elapsedQuaters = this.beginQuarters;
+      this._playerPrepareProgressPercent = this.initialProgressPercent;
     }
     if (new_ === PlayerState.Playing) {
+      this._playerPrepareProgressPercent = null;
       this.onPlayerStarted();
     }
     if (new_ === PlayerState.Stopped) {
+      this._playerPrepareProgressPercent = null;
       this.onPlayerStoped();
     }
     this.playerState = new_;
@@ -268,12 +291,18 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     for(const editor of Array.from(editors)) {
       this.registerEditorElement(editor as IEditorElement);
     }
+    this.reInitCurrentEditor();
+  }
+
+  private async reInitCurrentEditor(): Promise<void> {
+    const editor = this.fileNameEditorMap.get(this.currentFile.path);
+    await waitAsync(50);
+    await editor.update();
   }
 
   onFileClicked(file: IFile) {
     this.currentFile = file;
-    const editor = this.fileNameEditorMap.get(file.path);
-    setTimeout(editor.update.bind(editor));
+    this.reInitCurrentEditor();
   }
 
   getEditorElement(filename: string): IEditorElement {
@@ -373,19 +402,6 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public onBlur(event: FocusEvent) {
-    // let parameter = [];
-    // const wid = this.route.snapshot.queryParams.wid;
-    // const hasBeginParameter = !!this.route.snapshot.queryParams.begin;
-    // if (wid) {
-    //   parameter.push(`wid=${wid}`);
-    // }
-    // if (this.beginQuarters > 0 || hasBeginParameter) {
-    //   parameter.push(`begin=${this.beginQuarters}`);
-    // }
-    // if (parameter.length === 0) {
-    //   return;
-    // }
-    // history.replaceState({}, null, `/editor?${parameter.join('&')}`);
   }
 
 }
