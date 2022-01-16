@@ -10,7 +10,7 @@ using "./default.chords";
 using "./drums.pitchmap";
 using "./lua/mods/drumRudiments.lua";
 
-device: MyDevice _isType=midi _usePort=4;
+device: MyDevice _isType=midi _usePort=0;
 instrumentDef: drums MyDevice _ch=9 _pc=50 _cc=0;
 
 tempo: 90;
