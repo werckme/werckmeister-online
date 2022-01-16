@@ -5,7 +5,7 @@
 -- #repeats #jumps #triplets #mod-staccato #polytempo #best-practise-switch-modifications
 -- #instrument-change #jump-repeat #velocity-accents #pitchmap-symbols #conductions
 -- #conductions-event-duration #conductions-event-position-selector #conductions-velocity
--- #conductions-staccato #conductions-highhat-velocity #conductions-follow-up
+-- #conductions-staccato #conductions-highhat-velocity #conductions-follow-up #cue-marker
 using "drums.pitchmap";
 using "./myConductions.conductions";
 
