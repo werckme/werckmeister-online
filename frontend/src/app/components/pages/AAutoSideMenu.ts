@@ -20,7 +20,6 @@ export abstract class AAutoSideMenu  {
         const createMenuItem = function(el) {
             const item = new SideMenuItem(el.innerText);
             item.onClick = (ev: MouseEvent) => {
-                console.log(content[0] );
                 el.scrollIntoView({block: "center", behavior: "smooth"});
                 
             };
