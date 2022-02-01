@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ISongInfo } from 'src/app/services/songs.service';
 
 @Component({
@@ -10,6 +10,9 @@ export class SongCardComponent implements OnInit {
 
   @Input()
   public song: ISongInfo;
+
+  @Output()
+  public onTagClicked = new EventEmitter<string>();
   
   constructor() { }
 

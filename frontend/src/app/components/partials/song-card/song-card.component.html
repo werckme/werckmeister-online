@@ -16,7 +16,9 @@
     </ul>
     <ul class="tags">
         <li *ngFor="let tag of song.metaData.tags">
-            <nz-tag [nzColor]="'purple'">#{{tag}}</nz-tag>
+            <a (click)="onTagClicked.emit(tag)"> 
+                <nz-tag [nzColor]="'purple'">#{{tag}}</nz-tag>
+            </a>
         </li>
     </ul>
 </nz-card>
