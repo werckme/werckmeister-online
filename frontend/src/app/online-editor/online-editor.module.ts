@@ -18,6 +18,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { PlusOutline, DownloadOutline, SaveOutline, CaretRightOutline, EditOutline, DeleteOutline, CheckOutline, CloseOutline } from '@ant-design/icons-angular/icons';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 const icons: IconDefinition[] = [ PlusOutline, 
   DownloadOutline, 
@@ -42,6 +43,7 @@ const icons: IconDefinition[] = [ PlusOutline,
 		NzListModule,
 		NzPageHeaderModule,
 		NzTagModule,
+    NzProgressModule,
     NzIconModule.forRoot(icons),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
