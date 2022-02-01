@@ -39,6 +39,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { IconDefinition } from '@ant-design/icons-angular';
