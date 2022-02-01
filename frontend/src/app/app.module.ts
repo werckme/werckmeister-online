@@ -44,6 +44,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { PlayCircleOutline, WindowsOutline, AppleOutline } from '@ant-design/icons-angular/icons';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 
 const icons: IconDefinition[] = [ PlayCircleOutline, 
 	WindowsOutline, 
@@ -98,7 +99,7 @@ registerLocaleData(en);
 		NzIconModule.forRoot(icons),
 	],
 	providers: [
-		//{ provide: NZ_I18N, useValue: en_US },
+		{ provide: NZ_I18N, useValue: en_US },
 		SongsService,
 		DecimalPipe
 	],

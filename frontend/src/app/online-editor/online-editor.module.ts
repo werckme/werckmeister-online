@@ -19,6 +19,8 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import { PlusOutline, DownloadOutline, SaveOutline, CaretRightOutline, EditOutline, DeleteOutline, CheckOutline, CloseOutline } from '@ant-design/icons-angular/icons';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+
 
 const icons: IconDefinition[] = [ PlusOutline, 
   DownloadOutline, 
@@ -44,6 +46,7 @@ const icons: IconDefinition[] = [ PlusOutline,
 		NzPageHeaderModule,
 		NzTagModule,
     NzProgressModule,
+    NzPopconfirmModule,
     NzIconModule.forRoot(icons),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -17,8 +17,18 @@ export class FileEntryComponent implements OnInit {
     return this.editName ? this.editName.length : 0;
   }
 
+   private _name : string;
+  public get name() : string {
+    return this._name;
+  }
   @Input()
-  name: string;
+  public set name(v : string) {
+    this._name = v;
+    if (this._editMode) {
+      this.activateEditMode();
+    }
+  }
+  
 
   @Input()
   isNewFile: boolean;
@@ -41,11 +51,18 @@ export class FileEntryComponent implements OnInit {
   set editMode(val: boolean) {
     this ._editMode = val;
     if (val) {
-      this.editName = this.name;
-      setTimeout(this.setFocus.bind(this));
+      this.activateEditMode();
     } else {
       this.editName = '';
     }
+  }
+
+  private activateEditMode() {
+    if (!this.name) {
+      return;
+    }
+    this.editName = this.name;
+    setTimeout(this.setFocus.bind(this));
   }
 
   get editMode(): boolean {
@@ -86,7 +103,7 @@ export class FileEntryComponent implements OnInit {
   }
 
   get normalizedEditName(): string {
-    return this.editName
+    return (this.editName || "")
       .replace(/\//g, '')
       .trim();
   }
