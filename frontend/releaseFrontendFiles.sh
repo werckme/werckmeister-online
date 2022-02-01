@@ -6,7 +6,7 @@ then
     echo "missing target directory"
     exit 1
 fi
-ng build --prod
+ng build --configuration production
 cd $target
 rm *.js *css -f
 rsync -a $cdir/dist/spa/ .
