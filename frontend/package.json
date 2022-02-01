@@ -21,7 +21,11 @@
     "@angular/router": "~11.2.14",
     "@types/lodash": "^4.14.157",
     "@types/showdown": "^1.9.3",
+<<<<<<< HEAD
     "@werckmeister/components": "1.1.6-102",
+=======
+    "@werckmeister/components": "1.1.6-118",
+>>>>>>> master
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.4",
     "ionicons": "^4.4.3",
