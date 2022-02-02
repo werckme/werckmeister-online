@@ -1,7 +1,7 @@
 
 <div class="search-bar">
   <nz-select nzMode="tags" [nzAllowClear]="true" nzPlaceHolder="Filter" [(ngModel)]="filters" nzSize="large" (ngModelChange)="filter($event)">
-    <nz-option *ngFor="let tag of tags" [nzLabel]="'#'+tag" [nzValue]="tag"></nz-option>
+    <nz-option *ngFor="let tag of allTags" [nzLabel]="'#'+tag" [nzValue]="tag"></nz-option>
   </nz-select>
 </div>
 
