@@ -2,8 +2,8 @@
 -- BY: Samba Godschynski
 -- DESCRIPTION: Shows drum rudiments in action
 -- #conductions-event-duration #conductions-event-position-selector #conductions-velocity
--- #conductions-staccato #conductions-highhat-velocity #conductions-emphasize
--- #conductions-snare-laid-back #conductions-follow-up
+-- #conductions-staccato #conductions-highhat-velocity #conductions-emphasize #repeats #event-annotation
+-- #conductions-snare-laid-back #conductions-follow-up-operator #mod-drum-rudiments #4/4 #grace-notes
 
 using "myPitchmap.pitchmap";
 using "./myConductions.conductions";

@@ -1,6 +1,6 @@
 -- TITLE: Autumn Leaves
 -- BY: Joseph Kosma, Johnny Mercer, Jaques Prevert
--- #jazz #repeats
+-- #jazz #4/4
 using "default.chords";
 using "simpleComping.template";
 tempo: 140;
