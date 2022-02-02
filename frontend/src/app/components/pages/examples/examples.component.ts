@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router, RouterEvent, RouterState } from '@angular/router';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
 import { ISongInfo, SongsService } from 'src/app/services/songs.service';
+import { songCardHtmlName } from '../../partials/song-card/song-card.component';
 
 @Component({
   selector: 'app-examples',
@@ -17,7 +18,7 @@ export class ExamplesComponent implements OnInit, OnDestroy {
   public filters: string[] = [];
   private routerSubscription: Subscription;
 
-  constructor(private songsService: SongsService, private route: ActivatedRoute) { }
+  constructor(private songsService: SongsService, private route: ActivatedRoute, private ref: ElementRef<HTMLElement>) { }
 
   private getSongOrderField(song: ISongInfo) {
     return song.metaData.title;
@@ -81,7 +82,21 @@ export class ExamplesComponent implements OnInit, OnDestroy {
     this.applyFilter(filters);
   }
 
+  private updateSongCardTagDisplayImpl() {
+    const filteredClassName = 'filtered';
+    const parent = this.ref.nativeElement;
+    parent.querySelectorAll(`.song-card .tag.filtered`)
+      .forEach(tag => tag.classList.remove(filteredClassName));    
+    for(const filter of this.filters) {
+      parent.querySelectorAll(`.song-card .tag.${songCardHtmlName(filter)}`)
+        .forEach(x => x.classList.add(filteredClassName));
+    }
+  }
+
+  updateSongCardTagDisplay = _.debounce(this.updateSongCardTagDisplayImpl.bind(this), 50);
+
   private applyFilter(filters: string[]) {
+    this.updateSongCardTagDisplay();
     if (filters.length === 0) {
       this.filteredSongs = this.songs;
       return;

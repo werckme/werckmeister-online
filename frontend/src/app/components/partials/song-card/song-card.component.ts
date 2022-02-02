@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import * as _ from 'lodash';
 import { ISongInfo } from 'src/app/services/songs.service';
+
+
+export function songCardHtmlName(txt: string) {
+  return 'songcard-' + _.kebabCase(txt);
+}
 
 @Component({
   selector: 'app-song-card',
@@ -7,6 +13,10 @@ import { ISongInfo } from 'src/app/services/songs.service';
   styleUrls: ['./song-card.component.scss']
 })
 export class SongCardComponent implements OnInit {
+
+  htmlName(text: string) {
+    return songCardHtmlName(text);
+  }
 
   @Input()
   public song: ISongInfo;

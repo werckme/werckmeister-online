@@ -1,7 +1,7 @@
 -- TITLE: 80s Disco
 -- BY: Samba Godschynski
 -- DESCRIPTION: A 80s Style Disco tune, to demonstrate the `conductions sheet` feature.
--- #conductions-event-duration #conductions-event-position-selector #conductions-velocity
+-- #conductions #conductions-event-duration #conductions-event-position-selector #conductions-velocity
 -- #conductions-staccato #conductions-highhat-velocity #conductions-emphasize
 -- #conductions-snare-laid-back #conductions-follow-up #4/4
 
