@@ -9,3 +9,12 @@
     height: 100%;
     padding: 10px 0;
 }
+
+.search-bar {
+    width: 100%;
+    display: flex;
+    nz-select {
+        margin: 2em auto;
+        width: 50vw;
+    }
+}

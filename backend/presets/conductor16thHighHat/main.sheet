@@ -1,7 +1,7 @@
 -- TITLE: Conductions Example 16th High Hat
 -- BY: Samba Godschynski
 -- DESCRIPTION: An example piece to demonstrate the `conductions sheet` feature.
--- #conductions #conductions-velocity
+-- #conductions #conductions-velocity #conductions-highhat-velocity #4/4
 
 using "myPitchmap.pitchmap";
 using "./myConductions.conductions"; -- comment this line, to hear what it sounds like without the conductions rules
