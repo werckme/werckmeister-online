@@ -2,7 +2,7 @@
 -- BY: Samba Godschynski
 -- DESCRIPTION: A lot of features where developed around this piece, such as tracks with different tempi and the guitar stroke mod.
 -- [Roland SC-8850 Version](https://soundcloud.com/johannes-unger/iris-im-fernseh)
--- #repeats #style-changes #tempo-changes #double-time #jumps #polyrhythm #2/4 #4/4 
+-- #repeats #style-changes #tempo-changes #double-time #jumps #polyrhythm #2/4 #4/4  #repeats #volta-brackets
 
 using "./myConfig.config";
 using "default.chords";
