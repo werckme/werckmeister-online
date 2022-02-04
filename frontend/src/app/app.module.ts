@@ -48,6 +48,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { FormsModule } from '@angular/forms';
 import { SortedPipe } from './pipes/sorted.pipe';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 
 const icons: IconDefinition[] = [ PlayCircleOutline, 
 	WindowsOutline, 
@@ -101,6 +102,7 @@ registerLocaleData(en);
         NgxPageScrollCoreModule,
         NgxPageScrollModule,
         NgZorroAntdMobileModule,
+        NzDescriptionsModule,
         OnlineEditorModule,
         NzIconModule.forRoot(icons),
     ],
