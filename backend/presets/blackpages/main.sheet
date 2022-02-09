@@ -3,7 +3,7 @@
 -- DESCRIPTION: A good example of how to use nested tuplets. <br>\
 -- This piece is full of it!
 -- [Roland SC-8850 Version](https://soundcloud.com/johannes-unger/nested-tuplets)
--- #nested-tuplets #grace-notes #acciaccatura
+-- #nested-tuplets #grace-notes #4/4
 using "default.chords";
 using "drums.pitchmap";
 using "lua/voicings/simple.lua";

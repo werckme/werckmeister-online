@@ -73,7 +73,7 @@ function getMetaDataFromText(sheetFileText, required = false) {
         return {};
     }
     const commentSection = getHeaderCommentSection(sheetFileText);
-    const tags = Array.from(commentSection.matchAll(/#(.{2,}?)(\s|$)/g)).map(x => x[1]);
+    const tags = Array.from(commentSection.matchAll(/#([a-zA-Z0-9/-]{2,}?)(\s|$)/g)).map(x => x[1]);
     const links = Array.from(commentSection.matchAll(/\[\s*(.+?)\s*\]\(\s*(.+?)\s*\)/g)).map(x => ({title: x[1], url: x[2]}));
     const title = getInfo('TITLE', commentSection, required);
     const by = getInfo('BY', commentSection, required).split(',').map(x => x.trim());

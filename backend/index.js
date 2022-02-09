@@ -27,18 +27,20 @@ const workspaceSchema = yup.object().noUnknown().shape({
     modifiedAt: yup.string()
 });
 
-function AllowedOrigins() {
-    const urls = process.env.ALLOWED_ORIGIN
-        .split(',')
-        .map(url => url.trim());
-    return urls;
+function handleError(error, next) {
+    if (error instanceof UserError) {
+        next(error.message)
+    } else {
+        console.log(error);
+        next("failed");
+    }
 }
 
 class UserError extends Error {}
 
 const app = express();
 app.use(helmet());
-app.use(cors({origin: AllowedOrigins()}));
+app.use(cors());
 app.use(bodyParser.json({ limit: '2mb' }));
 app.use(express.json());
 
@@ -57,13 +59,25 @@ function createNewWorkspace(presetName) {
     };
 }
 
+async function getWorkspaceOrPreset(wid) {
+    if (wid in presetMap) {
+        const workspace = createNewWorkspace(presetMap[wid]);
+        return workspace;
+    }
+    let workspace = await workspaces.findOne({wid});
+    if (!workspace || workspaces.length === 0) {
+        throw new UserError(`workspace ${wid} not found`);
+    }
+    delete workspace._id;
+    return workspace;
+}
+
 app.get('/', async (req, res, next) => {
     try {
         const workspace = createNewWorkspace(presetMap['default']);
         res.json(workspace);
     } catch(ex) {
-        console.error(ex);
-        next(Error());
+        handleError(ex, next);
     }
 });
 
@@ -76,8 +90,7 @@ app.get('/songs', async (req, res, next) => {
             .map(x => { delete x._id; return x; });
         res.json(presets);
     } catch(ex) {
-        console.error(ex);
-        next(Error());
+        handleError(ex, next);
     }
 });
 
@@ -91,36 +104,38 @@ app.get('/creator/:creatorid', async (req, res, next) => {
         }
         res.json(creatorWorkspaces);
     } catch(ex) {
-        console.error(ex);
-        next(Error());
+        handleError(ex, next);
+    }
+});
+
+app.get('/clone/:wid', async (req, res, next) => {
+    try {
+        const { wid } = req.params;
+        const workspace = await getWorkspaceOrPreset(wid);
+        workspace.wid = nanoid(12);
+        workspace.modifiedAt = undefined;
+        const isValid = await workspaceSchema.isValid(workspace, schemaOptions);
+        if (!isValid) {
+            throw new UserError("workspace schema invalid");
+        }        
+        workspace.modifiedAt = new Date();
+        await workspaces.insert(workspace);
+        res.json(workspace);
+    } catch(ex) {
+        handleError(ex, next);
     }
 });
 
 app.get('/:wid', async (req, res, next) => {
     try {
         const { wid } = req.params;
-        if (wid in presetMap) {
-            const workspace = createNewWorkspace(presetMap[wid]);
-            res.json(workspace);
-            return;
-        }
-        let workspace = await workspaces.findOne({wid});
-        if (!workspace || workspaces.length === 0) {
-            res.json([]);
-            return;
-        }
-        delete workspace._id;
+        const workspace = await getWorkspaceOrPreset(wid);
         if (workspace.modifiedAt) {
             workspace.modifiedAt = workspace.modifiedAt.toUTCString();
-        }
-        const isValid = await workspaceSchema.isValid(workspace, schemaOptions);
-        if (!isValid) {
-            throw new Error();
-        }        
+        }     
         res.json(workspace);
     } catch(ex) {
-        console.error(ex);
-        next(Error());
+        handleError(ex, next);
     }
 });
 
@@ -148,12 +163,7 @@ app.post('/', async (req, res, next) => {
         await workspaces.update({wid: workspace.wid}, {$set: workspace}, {upsert: true});
         res.json({succeed: true, wid: workspace.wid});
     } catch (ex) {
-        if (ex instanceof UserError) {
-            next(ex);
-        } else {
-            console.log(ex);
-            next(Error());
-        }
+        handleError(ex, next);
     }
 });
 

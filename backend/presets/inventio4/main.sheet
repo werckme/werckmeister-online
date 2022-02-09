@@ -1,6 +1,7 @@
 -- TITLE: INVENTIO 4 (Organ)
 -- BY: Johann Sebastian Bach
 -- CREATORID: johannes.unger@vstforx.de
+-- #custom-lua-mod #mod-trills #mod-fermata #3/8 #event-annotation
 using "trills.lua";
 using "fermata.lua";
 

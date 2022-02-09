@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/partials/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WerckmeisterComponent } from './components/pages/werckmeister.component';
-import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DecimalPipe, registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
@@ -34,53 +33,85 @@ import { CreatorComponent } from './components/pages/creator/creator.component';
 import { SongCardComponent } from './components/partials/song-card/song-card.component';
 import { SongPreviewComponent } from './components/partials/song-preview/song-preview.component';
 import { EmbeddedSoundcloudLinkComponent } from './components/partials/embedded-soundcloud-link/embedded-soundcloud-link.component';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { IconDefinition } from '@ant-design/icons-angular';
+import { PlayCircleOutline, WindowsOutline, AppleOutline } from '@ant-design/icons-angular/icons';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
+import { FormsModule } from '@angular/forms';
+import { SortedPipe } from './pipes/sorted.pipe';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 
+const icons: IconDefinition[] = [ PlayCircleOutline, 
+	WindowsOutline, 
+	AppleOutline
+];
 registerLocaleData(en);
 @NgModule({
-	declarations: [
-		AppComponent,
-		HeaderComponent,
-		WerckmeisterComponent,
-		ManualComponent,
-		GettingStartedComponent,
-		ExamplesComponent,
-		ContactComponent,
-		CodeExtensionComponent,
-		MobileAppMenuComponent,
-		PushToHistoryIfOnSamePageDirective,
-		DownloadComponent,
-		ReleaseComponent,
-		DownloadDetailsComponent,
-		EmbeddedSoundcloudPlayerComponent,
-		HomeComponent,
-		HeroSnippetComponent,
-		TuxComponent,
-		EmbeddedLinkDirective,
-		EmbeddedHeaderComponent,
-		EmbeddedYoutubeComponent,
-		CreatorComponent,
-		SongCardComponent,
-		SongPreviewComponent,
-		EmbeddedSoundcloudLinkComponent
-	],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		HttpClientModule,
-		NgZorroAntdModule,
-		BrowserAnimationsModule,
-		NgxPageScrollCoreModule,
-		NgxPageScrollModule,
-		NgZorroAntdMobileModule,
-		OnlineEditorModule
-	],
-	providers: [
-		{ provide: NZ_I18N, useValue: en_US },
-		SongsService,
-		DecimalPipe
-	],
-	entryComponents: [EmbeddedSoundcloudPlayerComponent, EmbeddedHeaderComponent, EmbeddedYoutubeComponent, EmbeddedSoundcloudLinkComponent],
-	bootstrap: [AppComponent],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        WerckmeisterComponent,
+        ManualComponent,
+        GettingStartedComponent,
+        ExamplesComponent,
+        ContactComponent,
+        CodeExtensionComponent,
+        MobileAppMenuComponent,
+        PushToHistoryIfOnSamePageDirective,
+        DownloadComponent,
+        ReleaseComponent,
+        DownloadDetailsComponent,
+        EmbeddedSoundcloudPlayerComponent,
+        HomeComponent,
+        HeroSnippetComponent,
+        TuxComponent,
+        EmbeddedLinkDirective,
+        EmbeddedHeaderComponent,
+        EmbeddedYoutubeComponent,
+        CreatorComponent,
+        SongCardComponent,
+        SongPreviewComponent,
+        EmbeddedSoundcloudLinkComponent,
+        SortedPipe
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        NzButtonModule,
+        NzGridModule,
+        NzLayoutModule,
+        NzMenuModule,
+        NzListModule,
+        NzCardModule,
+        NzPageHeaderModule,
+        NzTagModule,
+        NzIconModule,
+        NzSelectModule,
+        BrowserAnimationsModule,
+        NgxPageScrollCoreModule,
+        NgxPageScrollModule,
+        NgZorroAntdMobileModule,
+        NzDescriptionsModule,
+        OnlineEditorModule,
+        NzIconModule.forRoot(icons),
+    ],
+    providers: [
+        { provide: NZ_I18N, useValue: en_US },
+        SongsService,
+        DecimalPipe
+    ],
+    bootstrap: [AppComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

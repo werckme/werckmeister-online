@@ -149,7 +149,9 @@ nz-header {
 #editor-navbar {
     background: $edDarker;
     border-bottom: none;
+    white-space: nowrap;
     button {
+        color: white;
         i {
             margin-right: 0px;
         }

@@ -30,7 +30,6 @@ export class ReleaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    const parser = new Converter();
     this.parseBody();
     this.windows = _(this.release.assets)
       .find(x => !!x.name.toLowerCase().match(/win32|64/)) as Download;

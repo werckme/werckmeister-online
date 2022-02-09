@@ -1,6 +1,6 @@
 -- TITLE: Anthropology
 -- BY: Charlie Parker, Dizzy Gillesipe
--- #jazz #mod-swing #repeats #drum-brush-kit #style-changes
+-- #jazz #mod-swing #repeats #volta-brackets #drum-brush-kit #style-changes #4/4
 
 using "./chords/default.chords";
 using "./defaultMIDI.pitchmap";

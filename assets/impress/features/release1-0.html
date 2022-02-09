@@ -1,0 +1,72 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="impress.css">
+<script src="https://unpkg.com/@werckmeister/components/werckmeister-components.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="impress.js"></script>
+<style>
+    h2 {
+        font-size: 35px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li+li {
+        margin-top: 1em;
+    }
+
+    werckmeister-snippet {
+        zoom: 1.5;
+    }
+
+    :root {
+        --what: #e96d1b;
+        --how: #31df3e;
+    }
+</style>
+
+<body>
+
+    <div class="page page-1">
+
+        <div class="content">
+            <div style="position: relative;">
+                <h1 class="step step-01 fade-in">Werckmeister 1.0</h1>
+                <h2 class="step step-02 fade-in from-below">
+                    <ul>
+                        <li>🎉&nbsp; NEW conduction selectors</li>
+                        <li>🎉&nbsp; Template Rendering improvement</li>
+                        <li>🎉&nbsp; Minor Bugfix</li>
+                    </ul>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="page page-2">
+        <style>
+            .last-page {
+                display: flex;
+                flex-direction: column;
+            }
+
+            sub {
+                font-size: 14px;
+                text-align: center;
+            }
+        </style>
+        <div class="content last-page fade-in slow">
+            <img height="417px" src="Logo.svg">
+            <p>https://werckme.github.io</p>
+        </div>
+    </div>
+
+    <footer></footer>
+
+</body>
+
+</html>
