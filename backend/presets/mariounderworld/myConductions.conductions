@@ -1,17 +1,10 @@
 -- bass staccato
-instrument(bass) fromPosition(32) toPosition(38) 
+instrument(bass) fromPosition(@staccato1) toPosition(@endStaccato1) 
 {
     duration -= 70%;
 }
-instrument(bass) fromPosition(40) toPosition(44) 
-{
-    duration -= 70%;
-}
-instrument(bass) fromPosition(88) toPosition(94) 
-{
-    duration -= 70%;
-}
-instrument(bass) fromPosition(96) toPosition(100) 
+
+instrument(bass) fromPosition(@staccato2)
 {
     duration -= 70%;
 }

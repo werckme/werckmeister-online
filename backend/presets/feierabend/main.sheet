@@ -1,6 +1,6 @@
 -- TITLE: Feierabend
 -- BY: Samba Godschynski
--- #3/4 #4/4 #polyrhythm 
+-- #3/4 #4/4 #polyrhythm #volta-brackets #repeats
 -- #several-accomp-tracks #volume-fades
 -- DESCRIPTION: A polyrhythm track: the melody is in 3/4, the backing part is in 4/4. Therefore the melody part is slightly slower. 
 -- [The final version](https://soundcloud.com/johannes-unger/feierabend)
@@ -94,35 +94,6 @@ instrument: lead;
 }
 ]
 
-
-[
-type: accomp;
-{
-    /signature: 3 4/
-    /tempo: 90/ 
-    r2. :|: 
-    /mark: segno/
-    /template: bass1 stringsFade1/
-    C | C | D- | D- | 
-    /template: bass2 brass.hit/
-    D-7b5 | D-7b5 | 
-    /template: bass1/
-    C | C :| 
-    /template: bass2 stringsFade2/
-    D-7b5 | D-7b5 | D-7b5 | 
-    /template: bass1 brass.hit/
-    C  | 
-    /template: bass.onehit chords.onehit/
-    C  | 
-    /template: bass2/
-    D-7b5 | D-7b5 | D-7b5 |
-    /jump: segno/
-    /template: bass1/
-    C  | C | 
-    /template: bass.onehit chords.onehit/
-    C |
-}
-]
 
 [
 type: accomp;

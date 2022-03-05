@@ -7,8 +7,6 @@ $ionicons-font-path: "~ionicons/dist/fonts";
 @import "./mixins.scss";
 @import "./bootstrap-display-utility.scss";
 
-// remove "?version=xyz" from ionic urls
-// our cef app scheme handler canot handle this  
 @import "node_modules/ionicons/dist/scss/ionicons-variables";
 @font-face {
     font-family: "Ionicons";
@@ -20,6 +18,11 @@ $ionicons-font-path: "~ionicons/dist/fonts";
         url("#{$ionicons-font-path}/ionicons.svg#Ionicons") format("svg");
     font-weight: normal;
     font-style: normal;
+}
+
+.ant-menu-item {
+  margin: 0 !important;
+  padding: 0 20px !important;
 }
 
 a[href^="https://www.youtube.com"] {

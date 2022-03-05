@@ -1,0 +1,33 @@
+.CodeMirror {
+    font-size: 25px;
+}
+
+.whomai {
+    display: none;
+}
+
+#editor {
+    border: 2px solid grey;
+}
+
+#wm-controls {
+    display: none;
+}
+
+.wm-hidden-line {
+    display: none;
+}
+
+.CodeMirror-vscrollbar {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+
+.CodeMirror-hscrollbar {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+
+.CodeMirror-scrollbar-filler {
+    display: none !important;
+}

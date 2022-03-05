@@ -65,3 +65,9 @@ nz-card {
         font-style: normal;
     }
 }
+
+.tag.filtered {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}

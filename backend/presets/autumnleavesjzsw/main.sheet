@@ -1,6 +1,6 @@
 -- TITLE: Autumn Leaves (Swing Version)
 -- BY: Joseph Kosma, Johnny Mercer, Jaques Prevert
--- #jazz #mod-swing #repeats #drum-brush-kit
+-- #jazz #mod-swing #repeats #volta-brackets #drum-brush-kit #4/4
 using "./chords/default.chords";
 using "./defaultMIDI.pitchmap";
 using "./drums.jazzSwing.template";
@@ -8,7 +8,7 @@ using "./rhythm.jazzSwing.template";
 using "./bass.jazzSwing.template";
 using "./lua/mods/swing.lua";
 
-device: MyDevice midi 3;
+device: MyDevice midi 0;
 
 -- instrument definitions
 instrumentDef: rhythm        MyDevice _ch=3 _pc=0;
@@ -32,8 +32,7 @@ instrument: vibra;
     | r4 e f# g :|^2 a4 f# a g |  e1~ | e4 r d# e 
     | f# b, f#2~ | f#4 f# e f# |  g1~ | g4 g f# g | a1~ 
     | a4 d d' c' |   b1~  | b4 r a# b | c' c' a a | f#2. c'4 
-    |   b2 b2~   | b2. e4 | a2. g4 | f#2 g4 b, | e1 | r1 |
-
+    |   b2 b2~   | b2. e4 | a2. g4 | f#2 g4 b, | e1 | 
 }
 ]
 

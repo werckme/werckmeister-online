@@ -2,7 +2,7 @@
 -- BY: Frank Zappa
 -- #3/4 #mod-staccato #note-tags #repeats 
 -- #voicing-strategy-voice-lead #triplets
--- #jumps #conditional-jumps
+-- #jumps #conditional-jumps #event-annotation
 using "zappa.chords";
 using "./lua/mods/staccato.lua";
 using "./lua/voicings/voicelead.lua";

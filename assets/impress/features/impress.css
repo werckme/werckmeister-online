@@ -1,0 +1,119 @@
+@keyframes fade-in {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fade-out {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@keyframes from-below {
+    from {top: 200px;}
+    to {top: 0px;}
+}
+
+body {
+    background: #1c1c1c;
+    color: white;
+    font-family: Roboto;
+    font-size: 90px;
+    zoom: 1.3;
+    overflow: hidden;
+}
+
+h1 {
+    font-weight: 100;
+    font-size: 1em;
+}
+
+h2 {
+    border-left: 30px solid #a7074b;
+    padding: 5px 0px 5px 18px;
+    font-weight: 100;
+    font-size: 0.7em;
+}
+
+.speech-only {
+    display: none;
+}
+
+.page {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.page.hidden {
+    display: none;
+}
+
+.step-only.step-ended {
+    visibility: collapse;
+}
+
+.fade-in {
+    animation-name: fade-in;
+    animation-duration: 1s; 
+}
+
+.step-ended.fade-out {
+    animation-name: fade-out;
+    animation-duration: 1s;
+    visibility: visible;
+    opacity: 0;
+}
+
+.slow {
+    animation-duration: 2s;
+}
+
+.from-below {
+    position: relative;
+    animation: from-below 0.5s;
+}
+
+.hidden.from-below {
+    animation: none;
+}
+
+.marker {
+    position: absolute;
+    border: 4px solid yellow;
+    z-index: 10;
+}
+
+.last-page p {
+    text-align: center;
+    font-size: 0.5em;
+}
+
+.hidden.hidden-using-visibility {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.hidden.fade-in {
+    opacity: 0;
+}
+
+.visible.fade-in {
+    transition: opacity 1s;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    font-size: 1.5em;
+    font-weight: bolder;
+    text-align: left;
+}

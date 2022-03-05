@@ -1,7 +1,8 @@
 -- TITLE: Conductions Example: Follow Up
 -- BY: Samba Godschynski
 -- DESCRIPTION: An example piece to demonstrate the `conductions sheet` follow up feature.
--- #conductions #conductions-follow-up
+-- #conductions #conductions-follow-up-operator #conductions-highhat-velocity #4/4
+-- [follow up feature](https://werckme.github.io/manual#follow-up)
 
 using "myPitchmap.pitchmap";
 using "./myConductions.conductions"; -- comment this line, to hear what it sounds like without the conductions rules

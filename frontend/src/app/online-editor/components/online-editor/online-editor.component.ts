@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Subscription } from 'rxjs';
 import { IFile, IWorkspace, WorkspaceStorageService } from 'src/app/online-editor/services/workspaceStorage';
 import { ShortcutService } from '../../services/shortcut.service';
@@ -54,8 +54,8 @@ interface ICompilerError {
   styleUrls: ['./online-editor.component.scss']
 })
 export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild("editorMain", { read: ViewContainerRef, static: false }) editorMain: ViewContainerRef;
-  @ViewChild("workspace", { read: ViewContainerRef, static: false }) workspaceEl: ViewContainerRef;
+  @ViewChild("editorMain", { read: ViewContainerRef }) editorMain: ViewContainerRef;
+  @ViewChild("workspace", { read: ViewContainerRef }) workspaceEl: ViewContainerRef;
 
   private fileNameEditorMap = new Map<string, IEditorElement>();
   workspaceModel: IWorkspace;

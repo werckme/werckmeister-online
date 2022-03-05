@@ -1,6 +1,6 @@
 -- TITLE: Gavin Harrison's Paradiddle Challenge
 -- BY: Gavin Harrison, Gary Husband, Drumeo
--- #mod-drum-rudiments #pitchmap-symbols #event-tags #drumeo
+-- #mod-drum-rudiments #pitchmap-symbols #event-annotation #drumeo #3/1
 -- DESCRIPTION: A funny exercise, performing two paradiddles simultaneously. \
 -- Also a good example of the werckmeister drum rudiments implementation.
 -- [Manual: Drum Rudiments](https://werckme.github.io/manual#drumrudiments)
@@ -10,7 +10,7 @@ using "./default.chords";
 using "./drums.pitchmap";
 using "./lua/mods/drumRudiments.lua";
 
-device: MyDevice _isType=midi _usePort=4;
+device: MyDevice _isType=midi _usePort=0;
 instrumentDef: drums MyDevice _ch=9 _pc=50 _cc=0;
 
 tempo: 90;
