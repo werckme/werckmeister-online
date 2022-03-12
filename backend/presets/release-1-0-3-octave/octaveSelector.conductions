@@ -1,0 +1,18 @@
+octave(5) {
+    velocity = 20;
+}
+
+octave(6) {
+    velocity = 50;
+    duration -= 50%;
+}
+
+octave(7) {
+    velocity = 90;
+    duration -= 80%;
+}
+
+octave(8) {
+    velocity = 127;
+    duration -= 99%;
+}

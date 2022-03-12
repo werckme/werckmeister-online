@@ -1,0 +1,4 @@
+chord(Xmaj7 X-7) {
+    velocity -= 50%;
+    duration -= 25%;
+}
