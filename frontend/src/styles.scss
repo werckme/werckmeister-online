@@ -25,7 +25,7 @@ $ionicons-font-path: "~ionicons/dist/fonts";
   padding: 0 20px !important;
 }
 
-a[href^="https://www.youtube.com"] {
+a[href^="https://www.youtube.com"], a[href^="https://youtu.be"] {
   &::after {
     content: ' ';
     width: 16px;

@@ -1,6 +1,6 @@
 -- TITLE: Feature Octave Selector
 -- BY: Release 1.0.3
--- https://youtu.be/5S0fB-Jpfgs 
+-- DESCRIPTION: [Release Video](https://youtu.be/5S0fB-Jpfgs)
 -- #4/4 #release #release-1-0-3 #conductions-octave-selector
 
 using "./octaveSelector.conductions";
