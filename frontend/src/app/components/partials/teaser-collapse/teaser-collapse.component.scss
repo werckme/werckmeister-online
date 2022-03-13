@@ -5,13 +5,13 @@ $heightClosed: 60px;
     max-height: $heightClosed;
     overflow: hidden;
     mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 42%, rgba(0, 0, 0, 0) 100%);
-    transition: max-height 1s;
+    transition: max-height 2s;
 }
 
 .container.isOpen {
     height: fit-content;
-    max-height: 100px;
+    max-height: 100vh;
     mask-image: none;
     overflow: hidden;
-    transition: max-height 1s;
+    transition: max-height 2s;
 }
