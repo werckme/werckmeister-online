@@ -5,6 +5,9 @@ import { Subscription } from 'rxjs';
 import { ISongInfo, SongsService } from 'src/app/services/songs.service';
 import { songCardHtmlName } from '../../partials/song-card/song-card.component';
 
+type Orders = "asc" | "desc" | undefined;
+type SongOrderBy = {iteratees: ((song: ISongInfo) => string | number | boolean)[], orders:Orders[]};
+
 @Component({
   selector: 'app-examples',
   templateUrl: './examples.component.html',
@@ -20,13 +23,20 @@ export class ExamplesComponent implements OnInit, OnDestroy {
 
   constructor(private songsService: SongsService, private route: ActivatedRoute, private ref: ElementRef<HTMLElement>) { }
 
-  private getSongOrderField(song: ISongInfo) {
-    return song.metaData.title;
+  private isFeatured(song: ISongInfo): boolean {
+    return song.metaData.tags.includes("featured");
+  }
+
+  private getSongOrderBy(): SongOrderBy {
+    const iteratees = [song => this.isFeatured(song), song => song.metaData.title];
+    const orders: Orders[] = ["desc", "asc"]
+    return {iteratees, orders};
   }
 
   private async loadSongs() {
+    const songOrderBy = this.getSongOrderBy();
     this.songs = _(await this.songsService.getSongs())
-      .orderBy(song => this.getSongOrderField(song))
+      .orderBy(songOrderBy.iteratees, songOrderBy.orders)
       .value();
 
     this.allTags = _(this.songs)
@@ -101,9 +111,10 @@ export class ExamplesComponent implements OnInit, OnDestroy {
       this.filteredSongs = this.songs;
       return;
     }
+    const songOrderBy = this.getSongOrderBy();
     this.filteredSongs = _(this.songs)
       .filter(song => _(song.metaData.tags).intersection(filters).some())
-      .orderBy(song => this.getSongOrderField(song))
+      .orderBy(songOrderBy.iteratees, songOrderBy.orders)
       .value()
       ;
   }
