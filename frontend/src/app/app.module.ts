@@ -47,7 +47,9 @@ import { PlayCircleOutline, WindowsOutline, AppleOutline } from '@ant-design/ico
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { FormsModule } from '@angular/forms';
-import { SortedPipe } from './src/app/pipes/sorted.pipe';
+import { SortedPipe } from './pipes/sorted.pipe';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { TeaserCollapseComponent } from './components/partials/teaser-collapse/teaser-collapse.component';
 
 const icons: IconDefinition[] = [ PlayCircleOutline, 
 	WindowsOutline, 
@@ -80,7 +82,8 @@ registerLocaleData(en);
         SongCardComponent,
         SongPreviewComponent,
         EmbeddedSoundcloudLinkComponent,
-        SortedPipe
+        SortedPipe,
+        TeaserCollapseComponent
     ],
     imports: [
         BrowserModule,

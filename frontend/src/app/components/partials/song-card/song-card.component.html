@@ -15,11 +15,13 @@
         </li>
     </ul>
     <ul class="tags">
-        <li *ngFor="let tag of song.metaData.tags | sorted">
-            <a (click)="onTagClicked.emit(tag)" class="tag" [ngClass]="htmlName(tag)"> 
-                <nz-tag [nzColor]="'purple'">#{{tag}}</nz-tag>
-            </a>
-        </li>
+        <app-teaser-collapse>
+            <li *ngFor="let tag of song.metaData.tags | sorted">
+                <a (click)="onTagClicked.emit(tag)" class="tag" [ngClass]="htmlName(tag)"> 
+                    <nz-tag [nzColor]="'purple'">#{{tag}}</nz-tag>
+                </a>
+            </li>
+        </app-teaser-collapse>
     </ul>
 </nz-card>
 <ng-template #title>

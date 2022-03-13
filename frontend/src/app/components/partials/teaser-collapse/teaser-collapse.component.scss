@@ -1,0 +1,7 @@
+$heightClosed: 60px;
+
+.container {
+    height: $heightClosed;
+    overflow: hidden;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 42%, rgba(0, 0, 0, 0) 100%);
+}
