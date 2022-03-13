@@ -1,0 +1,30 @@
+-- TITLE: Feature Degree Selector
+-- BY: Release 1.0.3
+-- DESCRIPTION: 
+-- [Release Video](https://youtu.be/5S0fB-Jpfgs)
+-- #4/4 #release #release-1-0-3 #conductions-degree-selector
+
+using "/chords/default.chords";
+using "./degreeSelector.conductions";
+
+device: MyDevice _isType="midi" _usePort=0;
+instrumentDef: piano _onDevice="MyDevice" _ch=0 _pc=5;
+
+[
+type: template;
+name: myTemplate;
+instrument: piano;
+{
+    I III V VII |
+}
+]
+
+
+[
+type: accomp;
+{
+   /template: myTemplate/
+   Fmaj7 | Fmaj7 | G7    | G7   |
+   G-7   | Gb7   | Fmaj7 | Gb7  |
+}
+]

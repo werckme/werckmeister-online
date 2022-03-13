@@ -2,11 +2,11 @@
 -- BY: Koji Kondo
 -- (transcription by Joseph Karam)
 -- http://www.mariopiano.com/mario-sheet-music-underworld-theme.html
--- #repeats #jumps #triplets #mod-staccato #polytempo #best-practise-switch-modifications
--- #instrument-change #jump-repeat #velocity-accents #pitchmap-symbols #conductions
+-- #repeats #volta-brackets #jumps #triplets #polytempo
+-- #jump-repeat #velocity-accents #pitchmap-symbols #conductions
 -- #conductions-event-duration #conductions-event-position-selector #conductions-velocity
 -- #conductions-staccato #conductions-highhat-velocity #conductions-follow-up #cue-marker
--- #4/4 #double-time
+-- #4/4 #double-time #featured
 using "drums.pitchmap";
 using "./myConductions.conductions";
 

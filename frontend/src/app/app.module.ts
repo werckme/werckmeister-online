@@ -104,6 +104,7 @@ registerLocaleData(en);
         NgxPageScrollCoreModule,
         NgxPageScrollModule,
         NgZorroAntdMobileModule,
+        NzDescriptionsModule,
         OnlineEditorModule,
         NzIconModule.forRoot(icons),
     ],

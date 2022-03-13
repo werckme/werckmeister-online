@@ -1,6 +1,6 @@
 -- TITLE: The Girl From Ipanema
 -- BY: Antonio Carlos Jobim
--- #jazz #bossa-nova #mod-transpose #custom-lua-mod #mod-transpose #4/4
+-- #jazz #bossa-nova #mod-transpose #custom-lua-mod #mod-transpose #4/4 #repeats #volta-brackets
 using "default.chords";
 using "piano.template";
 using "drums.template";

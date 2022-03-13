@@ -1,0 +1,32 @@
+-- TITLE: Feature Chord Selector
+-- BY: Release 1.0.3
+-- DESCRIPTION:   
+-- [Release Video](https://youtu.be/5S0fB-Jpfgs)
+-- #4/4 #release #release-1-0-3 #conductions-chord-selector
+
+using "/chords/default.chords";
+using "./chordSelector.conductions";
+
+device: MyDevice _isType="midi" _usePort=0;
+instrumentDef: piano _onDevice="MyDevice" _ch=0 _pc=5;
+
+tempo: 190;
+
+[
+type: template;
+name: myTemplate;
+instrument: piano;
+{
+    <I III V VII>1 |
+}
+]
+
+
+[
+type: accomp;
+{
+   /template: myTemplate/
+   Fmaj7 | Fmaj7 | G7    | G7   |
+   G-7   | Gb7   | Fmaj7 | Gb7  |
+}
+]

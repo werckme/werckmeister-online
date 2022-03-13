@@ -1,0 +1,77 @@
+-- TITLE: 50s Chord Progression
+-- BY: Samba Godschynski
+-- DESCRIPTION: A classical 50s chord progression for guitar, bass and drums.
+-- #conductions-bar-selector
+-- #conductions-staccato #conductions-emphasize #4/4 #doo-wop
+-- ["Making of" Tutorial](https://youtu.be/DME50L0P584)
+
+using "/chords/default.chords";
+using "/lua/mods/myArpeggio.lua";
+using "./guitar.conductions";
+using "./drums.pitchmap";
+
+tempo: 140;
+device: MyDevice  midi _usePort=0;
+instrumentDef: piano _onDevice="MyDevice" _ch=0 _pc=0;
+instrumentDef: guitar _onDevice="MyDevice" _ch=1 _pc=26;
+instrumentConf: guitar volume 80;
+instrumentDef: drums _onDevice="MyDevice" _ch=9 _pc=0;
+instrumentDef: bass _onDevice="MyDevice" _ch=2 _pc=33;
+
+
+[
+type: template;
+name: guitarTemplate;
+instrument: guitar;
+{
+   I,8. /modOnce: myArpeggio/ "ghost emph"@<V, I III V I'>16 r8 
+   /modOnce: myArpeggio _direction="down"/<III V I'>32 r16. 
+   r8 I, /modOnce: myArpeggio _direction="down"/ "ghost"@<III V I'>32~ &16 r32 VII,,4 |
+}
+]
+
+[
+type: template;
+name: guitarEnding;
+instrument: guitar;
+{
+   /modOnce: myArpeggio/ <V, I III V I'>2~ &~ | &1 |
+}
+]
+
+
+[
+type: template;
+name: drumsTemplate;
+instrument: drums;
+{
+   h8 &&&&&& |
+}
+{
+   r4 x8 & r4 & |
+}
+{
+   o2 r8 o4 r8 |
+}
+]
+
+[
+type: template;
+name: bassTemplate;
+instrument: bass;
+{
+   I,,2. V,,4 |
+}
+]
+
+[
+type: accomp;
+{
+   /template: guitarTemplate drumsTemplate bassTemplate/
+   Cmaj7 | A-7 | F7 | G7 | Cmaj7 | A-7 | F7 | G7 |
+   ^1 F-7 | Cmaj7 | F-7 | Cmaj7 | F-7 | D-7 | G7 | G7 :|
+   ^2 C | C | C | C |
+   /template: guitarEnding/
+   C | C
+}
+]
