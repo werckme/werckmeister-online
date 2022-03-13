@@ -1,4 +1,3 @@
-<div class="container" [ngClass]="{isOpen: isOpen}">
-    <ng-content>
-    </ng-content>
+<div class="container" [ngClass]="{isOpen: isOpen}" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseExit($event)">
+    <ng-content></ng-content>
 </div>

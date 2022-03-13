@@ -14,4 +14,11 @@ export class TeaserCollapseComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public onMouseEnter(event: MouseEvent): void {
+    this.isOpen = true;
+  }
+
+  public onMouseExit(event: MouseEvent): void {
+    this.isOpen = false;
+  }
 }
