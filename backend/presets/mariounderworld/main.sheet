@@ -26,13 +26,14 @@ instrument: bass;
 	/instrument: bass/
     c,,4   c,  a,,, a,, |  bb,,, bb,,  r2 |  r1  |   r1 :|: f,,,4 f,, d,,, d,,  |  
     eb,,, eb,,  r2 |  r1  |^1 r1 :|^2 r2  (eb,, d,, db,,)2 |
-    /cue: staccato1/
+    /cue: staccatoA/
     c,,2    eb,,  |  d,,     ab,,, |  g,,,     db,,   | 
-    /cue: endStaccato1/
+    /cue: endStaccatoA/
     (c,,  gb,,  f,,)2  (e,,  bb,,  a,,) |
-    /cue: staccato2/
+    /cue: staccatoB/
     (ab,,     eb,,     b,,,)1           |
     (bb,,,    a,,,    ab,,,)1           |
+    /cue: endStaccatoB/
     r1 | r1 | r1 | r1 | r1 | r1 |
 
     /jump: begin/

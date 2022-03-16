@@ -1,10 +1,22 @@
 -- bass staccato
-instrument(bass) fromPosition(@staccato1) toPosition(@endStaccato1) 
+instrument(bass) fromPosition(@staccatoA) toPosition(@endStaccatoA) 
 {
     duration -= 70%;
 }
 
-instrument(bass) fromPosition(@staccato2)
+instrument(bass) fromPosition(@staccatoB) toPosition(@endStaccatoB)
+{
+    duration -= 70%;
+}
+
+-- consider cue behaviour in combination with repeats
+-- https://werckme.github.io/manual#cue
+instrument(bass) fromPosition(@staccatoA2) toPosition(@endStaccatoA2) 
+{
+    duration -= 70%;
+}
+
+instrument(bass) fromPosition(@staccatoB2) toPosition(@endStaccatoB2)
 {
     duration -= 70%;
 }
