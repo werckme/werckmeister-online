@@ -1,0 +1,5 @@
+<div class="list-of-contents-entry">
+    <div [ngClass]="'list-of-contents-entry level-'+entry.level" *ngFor="let entry of toc">
+        <a routerLink="." [fragment]="entry.anchorId">{{entry.title}}</a>
+    </div>
+</div>

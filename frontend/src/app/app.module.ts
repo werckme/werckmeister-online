@@ -50,6 +50,8 @@ import { FormsModule } from '@angular/forms';
 import { SortedPipe } from './pipes/sorted.pipe';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { TeaserCollapseComponent } from './components/partials/teaser-collapse/teaser-collapse.component';
+import { ListOfContentsComponent } from './components/partials/list-of-contents/list-of-contents.component';
+import { ManualPageComponent } from './components/pages/manual-page/manual-page.component';
 
 const icons: IconDefinition[] = [ PlayCircleOutline, 
 	WindowsOutline, 
@@ -83,7 +85,9 @@ registerLocaleData(en);
         SongPreviewComponent,
         EmbeddedSoundcloudLinkComponent,
         SortedPipe,
-        TeaserCollapseComponent
+        TeaserCollapseComponent,
+        ListOfContentsComponent,
+        ManualPageComponent
     ],
     imports: [
         BrowserModule,

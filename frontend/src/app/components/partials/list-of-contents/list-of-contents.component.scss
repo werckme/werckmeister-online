@@ -1,0 +1,15 @@
+
+.list-of-contents-entry {
+    $indent: 5px;
+    font-size: 12px;
+
+    &.level-1 {
+        font-weight: bolder;
+    }
+
+    @for $i from 2 through 6 {
+        &.level-#{$i} {
+          margin-left: $indent * $i;
+        }
+      }
+}

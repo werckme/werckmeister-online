@@ -10,6 +10,7 @@ import { DownloadComponent } from './components/pages/download/download.componen
 import { OnlineEditorComponent } from './online-editor/components/online-editor/online-editor.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { CreatorComponent } from './components/pages/creator/creator.component';
+import { ManualPageComponent } from './components/pages/manual-page/manual-page.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
 	{ path: 'werckmeister', component: HomeComponent},
 	{ path: 'getting-started', component: GettingStartedComponent},
 	{ path: 'code-extension', component: CodeExtensionComponent},
-	{ path: 'manual', component: ManualComponent},
+	{ path: 'manual', component: ManualPageComponent},
 	{ path: 'examples', component: ExamplesComponent},
 	{ path: 'contact', component: ContactComponent},
 	{ path: 'getwerckmeister', component: DownloadComponent},
