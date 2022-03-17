@@ -20,8 +20,7 @@ export class AnchorScrollSpy {
   currentHeading: Element;
   onScrollDebounced: () => void;
   onScrolledToAnchor: (anchor: Element) => void = () => {};
-  constructor(private container: HTMLElement) {
-    const maxHeadingLevel = 5;
+  constructor(private container: HTMLElement, maxHeadingLevel: number = 3) {
     this.onScrollDebounced = _.debounce(this.onScroll.bind(this), 200);
     window.addEventListener('scroll', this.onScrollDebounced);
     this.headings = _(_.range(1, maxHeadingLevel + 1))

@@ -1,15 +1,23 @@
 
 .list-of-contents-entry {
-    $indent: 5px;
-    font-size: 12px;
+  $indent: 5px;
+  font-size: 12px;
 
-    &.level-1 {
-        font-weight: bolder;
+  @for $i from 1 through 6 {
+    &.level-#{$i} {
+      margin-left: $indent * $i;
     }
+  }
+}
 
-    @for $i from 2 through 6 {
-        &.level-#{$i} {
-          margin-left: $indent * $i;
-        }
-      }
+$transition-time: 0.7s;
+
+a {
+  transition: padding-left $transition-time, color $transition-time;
+}
+a.active {
+  transition: padding-left $transition-time, color $transition-time;
+  color: rgb(231, 8, 83);
+  border-left: 2px solid rgb(231, 8, 83);
+  padding-left: 5px;
 }

@@ -10,8 +10,9 @@ import { IListOfContentsEntry } from '../../partials/list-of-contents/list-of-co
 })
 export class ManualPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
-	scrollSpy: AnchorScrollSpy;
-	toc: IListOfContentsEntry[] = [];
+	public activeAnchorId: string;
+	public scrollSpy: AnchorScrollSpy;
+	public toc: IListOfContentsEntry[] = [];
 	constructor(private elRef: ElementRef<HTMLLinkElement>) {
 	}
 	ngOnDestroy(): void {
@@ -19,6 +20,16 @@ export class ManualPageComponent implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	ngOnInit() {
+		this.scrollSpy = new AnchorScrollSpy(this.elRef.nativeElement);
+		this.toc = this.scrollSpy
+			.headings
+			.map(x => ({
+				title: x.textContent,
+				level: this.getHLevel(x) - 1,
+				anchorId: x.getAttribute('id')
+			}))
+			.filter(x => x.level <= 2 && x.level >= 0);
+		this.scrollSpy.onScrolledToAnchor = this.onScrolledToAnchor.bind(this);
 	}
 
 	private getHLevel(el: Element): number {
@@ -35,20 +46,12 @@ export class ManualPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
 	ngAfterViewInit() {
-		this.scrollSpy = new AnchorScrollSpy(this.elRef.nativeElement);
-		this.toc = this.scrollSpy
-			.headings
-			.map(x => ({
-				title: x.textContent,
-				level: this.getHLevel(x),
-				anchorId: x.getAttribute('id')
-			}))
-			.filter(x => x.level <= 2);
-		this.scrollSpy.onScrolledToAnchor = this.onScrolledToAnchor.bind(this);
+
 	}
 
 	onScrolledToAnchor(anchor: Element) {
 		history.replaceState({}, null, `manual#${anchor.id}`);
+		this.activeAnchorId = anchor.id;
 	}
 
 }

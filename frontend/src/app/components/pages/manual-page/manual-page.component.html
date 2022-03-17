@@ -1,8 +1,8 @@
-<div nz-row>
-    <div nz-col nzSpan="4">
-        <app-list-of-contents [toc]="toc"></app-list-of-contents>
+<div nz-row class="page-manual">
+    <div nz-col nzXs="0" nzMd="4">
+        <app-list-of-contents [activeAnchorId]="activeAnchorId" [toc]="toc"></app-list-of-contents>
     </div>
-    <div nz-col nzSpan="20">
+    <div nz-col nzXs="24" nzMd="20">
         <app-manual></app-manual>
     </div>
 </div>
