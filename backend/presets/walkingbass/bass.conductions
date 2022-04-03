@@ -1,0 +1,3 @@
+instrument(bass) chord(Cmaj7 F#-7b5) degree(Vb) {
+    pitch -= 1;
+}

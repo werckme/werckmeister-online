@@ -1,0 +1,50 @@
+-- TITLE: Walking Bass
+-- BY: Samba Godschynski
+-- DESCRIPTION: A typical Jazz Walking Bass
+-- #conductions-chord-selector #conductions-degree-selector
+-- #4/4 #jazz #tutorial
+-- ["Making of" Tutorial](https://youtu.be/xK5Dmy0gcbU)
+-- source where I've got the "walking bass formular" from:
+-- [Scott's Bass Lessons](https://www.youtube.com/watch?v=Iuqti5Nq4_o)
+
+using "/chords/default.chords";
+using "./bass.conductions";
+
+device: MyDevice _isType="midi" _usePort=0;
+instrumentDef: piano _onDevice="MyDevice" _ch=0 _pc=0;
+instrumentDef: bass _onDevice="MyDevice" _ch=1 _pc=32;
+
+[
+type: template;
+name: piano;
+instrument: piano;
+{
+    <I, V, VII, III>1 |
+}
+]
+
+
+[
+type: template;
+name: walkingBass;
+instrument: bass;
+{
+    I,,4 III,, V,, Vb,, | 
+}
+]
+
+
+[
+type: accomp;
+{   
+    /template: piano walkingBass/
+             A-7    | D7    | Gmaj7  | 
+    Cmaj7  | F#-7b5 | B7    | E-     | 
+    E-     | A-7    | D7    | Gmaj7  | 
+    Cmaj7  | F#-7b5 | B7    | E-     | 
+    E-     | F#-7b5 | B7b9  | E-     | 
+    E-     | A-7    | D7    | Gmaj7  |
+    Gmaj7  | F#-7b5 | B7b9  | E-7 A7 | 
+    D-7 G7 | F#-7b5 | B7b9  | E-     |
+}
+]
