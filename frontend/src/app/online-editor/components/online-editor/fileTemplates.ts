@@ -55,3 +55,7 @@ export const TmplLuaMod = `parameters = {}
 function perform(events, params, timeinfo)
     return events
 end`;
+
+export const TmplConductionRules = `all() {
+    velocity += 0;
+}`;

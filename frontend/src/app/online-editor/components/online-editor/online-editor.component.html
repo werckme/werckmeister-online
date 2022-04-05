@@ -46,16 +46,16 @@
                     <i nz-icon nzType="plus" nzTheme="outline"></i>
                     <span>Pitch</span>
                 </button>
-                <button (click)="onAddNewVoicingScript()" nz-button nzType="link" nzShape="circle" nzSize="small"
-                    title="Voicing Script">
-                    <i nz-icon nzType="plus"></i>
-                    <span>Voicing</span>
-                </button>
                 <button (click)="onAddNewModScript()" nz-button nzType="link" nzShape="circle" nzSize="small"
                     title="Mod Script">
                     <i nz-icon nzType="plus"></i>
                     <span>Mod</span>
                 </button>
+                <button (click)="onAddNewConductionRules()" nz-button nzType="link" nzShape="circle" nzSize="small"
+                title="Voicing Script">
+                <i nz-icon nzType="plus"></i>
+                <span>Cond. Rules</span>
+            </button>
             </div>
             <hr>
             <ul>
@@ -63,7 +63,7 @@
                     *ngFor="let file of files; let idx=index;">
                     <ngwerckmeister-file-entry [canDelete]="idx>0" [canEdit]="idx>0"
                         [pathValidator]="isValidPath.bind(this)" (nameChange)="onFileNameChanged(file, $event)"
-                        (ondelete)="onDelete(file)" [name]="file.path">
+                        (ondelete)="onDelete(file)" [name]="file.path" [ngClass]="{dimished: isDimished(file)}">
                     </ngwerckmeister-file-entry>
                 </li>
                 <li>

@@ -50,6 +50,7 @@ export class FormatDirective implements ControlValueAccessor {
 
   private _formatValue(value: any): string {
     let formattedValue: string = '';
+    value = Number.parseFloat(value) || 0;
     if (value !== undefined && value !== null && value !== '') {
       formattedValue = this.decimalPipe.transform(value, this.wmFormat);
     }
@@ -57,7 +58,7 @@ export class FormatDirective implements ControlValueAccessor {
   }
 
   private _parseValue(value: string): number {
-    return Number.parseFloat(value);
+    return Number.parseFloat(value) || 0;
   }
 
   private _parseFormat(value: string): string {

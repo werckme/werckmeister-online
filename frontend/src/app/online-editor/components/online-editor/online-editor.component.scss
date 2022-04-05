@@ -181,3 +181,6 @@ nz-header {
     }
 }
 
+::ng-deep ngwerckmeister-file-entry.dimished span {
+    opacity: 0.5;
+}

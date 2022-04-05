@@ -4,9 +4,8 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Subscription } from 'rxjs';
 import { IFile, IWorkspace, WorkspaceStorageService } from 'src/app/online-editor/services/workspaceStorage';
 import { ShortcutService } from '../../services/shortcut.service';
-import { TmplLuaVoicing, TmplPitchmap, TmplSheetTemplate, TmplLuaMod } from './fileTemplates';
+import { TmplLuaVoicing, TmplPitchmap, TmplSheetTemplate, TmplLuaMod, TmplConductionRules } from './fileTemplates';
 import * as _ from 'lodash';
-import { DecimalPipe } from '@angular/common';
 import { waitAsync } from 'src/shared/help/waitAsync';
 
 const CheckIsCleanIntervalMillis = 1000;
@@ -80,7 +79,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   public set beginQuartersStr(v : string) {
     this._beginQuartersStr = v;
-    this.beginQuarters = Number.parseFloat(v);
+    this.beginQuarters = Number.parseFloat(v) || 0;
   }
   
 
@@ -217,6 +216,24 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     this.elapsedQuaters = ((this.bpm / 60 / 1000) * elapsedMillis) + this.beginQuarters;
   }
 
+  private sortWorkspaceFiles() {
+    this.workspaceModel.files = this.workspaceModel.files.sort((a, b) => {
+      if (a.path.startsWith('_')) {
+        return 1;
+      }
+      if (b.path.startsWith('_')) {
+        return -1;
+      }
+      if (a.path === 'main.sheet') {
+        return -1;
+      }
+      if (b.path === 'main.sheet') {
+        return 1;
+      }
+      return a.path.localeCompare(b.path);
+    });
+  }
+
   private async loadWorkspace(id: string|null = null) {
     if (!!this.workspaceModel) {
       this.clearWorksapce();
@@ -225,7 +242,8 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
       if (id === null) {
         this.workspaceModel = await this.workspaceStorage.newWorkspace();
       } else {
-        this.workspaceModel = await this.workspaceStorage.loadWorkspace(id);
+        this.workspaceModel = await this.workspaceStorage.loadWorkspace(id); 
+        this.sortWorkspaceFiles();
       }
     } catch (ex) {
       if (!id) {
@@ -382,6 +400,10 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     this.createNewFile('myMod.lua', TmplLuaMod);
   }
 
+  public onAddNewConductionRules() {
+    this.createNewFile('myRules.conductions', TmplConductionRules);
+  }
+
   public pathExists(path: string) {
     return this.fileNameEditorMap.has(path);
   }
@@ -404,4 +426,7 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   public onBlur(event: FocusEvent) {
   }
 
+  isDimished(file: IFile) {
+    return file.path.startsWith('_');
+  }
 }
