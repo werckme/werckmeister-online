@@ -100,7 +100,8 @@ function getSheetMetaData(sheetFile) {
 function getExternalResourceMetaData(resourceInfoFile) {
     const text = fs.readFileSync(resourceInfoFile).toString();
     const result = getMetaDataFromText(text, true);
-    console.log(result);
+    result.type = "external";
+    return result;
 
 }
 

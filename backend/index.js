@@ -88,6 +88,13 @@ app.get('/resources', async (req, res, next) => {
         presets = presets
             .filter(x => !x.metaData.tags || x.metaData.tags.indexOf(NotListedTag) < 0)
             .map(x => { delete x._id; return x; });
+
+        const dbExternalResources = db.get('externalResources');
+        let externalResources = await dbExternalResources.find({}, {sort: {'metaData.title': 1}});
+        externalResources.map(x => { delete x._id; return x; })
+        
+        presets = presets.concat(externalResources);
+        
         res.json(presets);
     } catch(ex) {
         handleError(ex, next);
