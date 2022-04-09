@@ -175,7 +175,8 @@ In combination with its ignore argument you are able to implement - for example 
 <p>With pitchmaps you are able to define own note symbols. This is useful espacially for drum notes.<br>
 In a pitchmap file you can define note symbols like that:</p>
 <pre><code><![CDATA["sn": c'  -- snare
-"bd": c,  -- bass drum]]></code></pre><p>Since a delimited string like &quot;bd&quot; is harder to read than a single character, there are the following rules:</p>
+"bd": c,  -- bass drum]]></code></pre><p><em>(a custom note symbol is also called alias)</em></p>
+<p>Since a delimited string like &quot;bd&quot; is harder to read than a single character, there are the following rules:</p>
 <ul>
 <li>every single lowercase alphabetic character is allowed as note</li>
 <li>a note can also have more than one character but then a delimiter is neccessary</li>
@@ -249,12 +250,126 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <p>the <code>template</code> command should always appear at the begining of a bar, not at the end.</p>
 </blockquote>
 <h2 id="advanced-techniques">Advanced techniques</h2>
-<p>(tbd.)</p>
+<h2 id="mods">Mods</h2>
+<p>If you want do write your own modification you need to:</p>
+<ul>
+<li>create a lua file</li>
+<li>define parameters</li>
+<li>implement a <code>perform</code> function</li>
+<li>include mod file</li>
+<li>apply mod</li>
+</ul>
+<p><a href="https://werckme.github.io/examples?tag=custom-lua-mod">find some example implementations</a></p>
+<h3 id="create-a-lua-file">create a lua file</h3>
+<p>Since the name of the lua file is also the name of the modification in werckmeister you can not use any name you want for that file.</p>
+<ul>
+<li>don&#39;t use special characters</li>
+<li>avoid naming conflicts</li>
+</ul>
+<h3 id="define-mod-parameters">Define Mod Parameters</h3>
+<p>If you want to use parameters in your modification, you need to define a global <code>parameters</code> table in your lua file. You can make a parameter optional by adding a default value.</p>
+<pre><code><![CDATA[parameters = {
+    { name="myMandatoryParameter" },
+    { name="myOptionalParameter", default="50" }
+}]]></code></pre><pre><code><![CDATA[/mod: myMod _myMandatoryParameter=100/]]></code></pre><h3 id="the-perform-function">The Perform Function</h3>
+<p>In the <code>perform</code> function you can implement your modification. Werckmeister expects a table with event informations to be returned from that function. This is the most minimalistic implementation you could write:</p>
+<pre><code><![CDATA[function perform(events, params, timeinfo)
+    return events
+end]]></code></pre><p>The perform function has 3 arguments:</p>
+<h3 id="events-argument"><code>events</code> argument</h3>
+<p>This table contains all input events.</p>
+<pre><code><![CDATA[{
+    {
+        -- the duration of the event
+        duration = number,
+
+        -- whether event is tied or not
+        isTied = boolean,
+
+         -- offset in quarters, affecting the position, 
+         -- can be used to let events appear earlier or later  
+        offset = number, 
+
+        -- a table containing event tags (see Event Tags)
+        tags = { tag1, ..., tagN },
+
+        -- a table containing the events pitches, 
+        -- contains several if event is a chord
+        pitches = {
+            {
+                -- pitch alias if any. (see Pitchmaps)
+                alias = string,
+                -- the octave number of the pitch
+                octave = number,
+                -- the pitch number
+                pitch = number
+            },
+            ...
+        },
+
+        -- if notes are tied together the tiedDuration gives you the remaining
+        -- duration of the current event in that "tie chain"
+        -- for example: "c4~c" 
+        -- the tiedDuration here would be 2 for the first event 
+        -- and 1 for the second
+        tiedDuration = number, 
+
+        -- the total duration of a "tie chain"
+        totalTiedDuration = number,
+
+        -- the event type
+        type = string,
+
+        -- the events velocity value in a range from 0 to 1
+        velocity = number   
+    }
+    ...
+}]]></code></pre><h3 id="params-argument"><code>params</code> argument</h3>
+<p>Contains the params if any. See <a pageScroll id="link-23" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="define-mod-parameters">Define Mod Parameters</a></p>
+<h3 id="timeinfo-argument"><code>timeinfo</code> argument</h3>
+<p>Contains a table with informations about the current musical time.</p>
+<pre><code><![CDATA[{
+    -- the position of the current event in quarters
+    quarterPostion = number,
+
+    -- the numerator of the current time signature
+    signatureNumerator = number,
+
+    -- the denominator of the current time signature
+    sinatureDenominator = number
+}]]></code></pre><h3 id="return-value">return value</h3>
+<p>Returns a table containing events. See <a pageScroll id="link-24" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="events-argument">events</a></p>
+<h3 id="include-mod-file">include mod file</h3>
+<p>To use your modification you need to include your lua file.</p>
+<pre><code><![CDATA[using "<<path to lua file>>"; -- path can be relative or absolute]]></code></pre><h3 id="apply-mod">apply mod</h3>
+<p>You have two options to apply a mod: </p>
+<ul>
+<li>apply to a voice</li>
+<li>apply to an instrument</li>
+</ul>
+<h4 id="apply-to-a-voice">apply to a voice</h4>
+<p>Use the mod command with the mod name. The mod name is also the <a pageScroll id="link-25" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="create-a-lua-file">file</a> name of the lua script.
+<strong>syntax</strong></p>
+<pre><code><![CDATA[[
+{
+    /mod: <<modName>> [mod arguments]/
+}
+]]]></code></pre><h4 id="apply-to-an-instrument">apply to an instrument</h4>
+<p><strong>syntax</strong></p>
+<pre><code><![CDATA[instrumentConf <<instrumentName>> mod <<modName>> [mod arguments]]]></code></pre><p><strong>example</strong></p>
+<pre><code><![CDATA[instrumentConf: myInstrument 
+    mod myModX _modXParameter=1 
+    mod myModY _modYParameter=2;]]></code></pre><h2 id="event-tags">Event Tags</h2>
+<p>You can add additional annotations to an event in werckmeister. These informations can be used in <a pageScroll id="link-26" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="conduction-rules">conduction rules</a> or <a pageScroll id="link-27" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mods">modifications</a>.</p>
+<p><strong>syntax</strong></p>
+<pre><code><![CDATA["tag1 tag2 ..."@<<event>>]]></code></pre><p><strong>example</strong></p>
+<p>sheet file:</p>
+<pre><code><![CDATA[    c d e f | g a b "mytag"@c']]></code></pre><p>conduction rules file:</p>
+<pre><code><![CDATA[withTag(myTag) {
+    velocity = 127;
+}]]></code></pre><h4 id="tbd">TBD</h4>
 <h5 id="chords">Chords</h5>
 <h5 id="voicing-strategies">Voicing strategies</h5>
-<h5 id="mods">Mods</h5>
-<h5 id="event-tags">Event Tags</h5>
-<h5 id="lua-scripts">Lua scripts</h5>
 <h2 id="references">References</h2>
 <h2 id="commands">Commands</h2>
 <h3 id="cue"><code>cue</code></h3>
@@ -328,8 +443,8 @@ For example:
 <td align="left">a file path</td>
 </tr>
 </tbody></table>
-<p>Defines a device which can be used when adding instruments (see <a pageScroll id="link-23" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
-<p> see <a pageScroll id="link-24" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-25" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></p>
+<p>Defines a device which can be used when adding instruments (see <a pageScroll id="link-28" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
+<p> see <a pageScroll id="link-29" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-30" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a></p>
 <h4 id="example">example</h4>
 <p> define an device, an instrument and assign it to a track.</p>
 <pre><code><![CDATA[
@@ -364,7 +479,7 @@ For example:
 <td align="left">text</td>
 </tr>
 </tbody></table>
-<p>Such as <a pageScroll id="link-26" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track.</p>
+<p>Such as <a pageScroll id="link-31" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track.</p>
 <p> The difference is: every <code>mod</code> command adds a further modification to a voice.</p>
 <p> <code>do</code> replaces the previous modification.</p>
 <h4 id="example-1">example</h4>
@@ -388,7 +503,7 @@ For example:
 <td align="left">text</td>
 </tr>
 </tbody></table>
-<p>Like <a pageScroll id="link-27" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<p>Like <a pageScroll id="link-32" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
 <h4 id="example-2">example</h4>
 <p> <code>/doOnce: arpeggio/</code>
 <br><br><br></p>
@@ -558,7 +673,7 @@ For example:
 <tr>
 <td align="left">onDevice</td>
 <td align="left">2</td>
-<td align="left">The device which to use (The name of the device, see <a pageScroll id="link-28" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a>).</td>
+<td align="left">The device which to use (The name of the device, see <a pageScroll id="link-33" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a>).</td>
 <td align="left">text</td>
 </tr>
 <tr>
@@ -593,7 +708,7 @@ For example:
 </tr>
 </tbody></table>
 <p>Adds a new MIDI instrument.</p>
-<p> see <a pageScroll id="link-29" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-30" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
+<p> see <a pageScroll id="link-34" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-35" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
 <h4 id="example-4">example</h4>
 <p> define an device, an instrument and assign it to a track.</p>
 <pre><code><![CDATA[
@@ -625,7 +740,7 @@ For example:
 </tr>
 </tbody></table>
 <p>Layers arbitrary instruments into one.</p>
-<p> see <a pageScroll id="link-31" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-32" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-33" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
+<p> see <a pageScroll id="link-36" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a pageScroll id="link-37" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="instrument">instrument</a>, <a pageScroll id="link-38" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="device">device</a></p>
 <h4 id="example-5">example</h4>
 <p> create 3 instruments and assign them to the section <code>myNewInstrument</code>.</p>
 
@@ -661,7 +776,7 @@ For example:
 <td align="left">0..100</td>
 </tr>
 </tbody></table>
-<p>Jumps to a previous defined mark See <a pageScroll id="link-34" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="mark">mark</a>.</p>
+<p>Jumps to a previous defined mark See <a pageScroll id="link-39" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="mark">mark</a>.</p>
 <h4 id="example-6">example</h4>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="IGRldmljZTogX3VzZVBvcnQ9MCBfc2V0TmFtZT1NeURldmljZSAgX2lzVHlwZT1taWRpOwogaW5zdHJ1bWVudERlZjogX3NldE5hbWU9cGlhbm8gX29uRGV2aWNlPU15RGV2aWNlIF9jaD0wIF9wYz0xIF9jYz04OwogWwogaW5zdHJ1bWVudDogcGlhbm87CiB7CiAgICAgL3NpZ25hdHVyZTogNSA0LwogICAgIC9tYXJrOiBBLyAgICAgICAtLSB2YWxpZCAmIHVuaXF1ZSB0byB0aGlzIHZvaWNlCiAgICAgYzQgZCBlIGYgZyB8CiAgICAgL2p1bXA6IEEvICAgICAgIC0tIGp1bXBzIHRvIEEgb25jZQogICAgIGEgYiBjJzIKIH0KIF0="></werckmeister-snippet>
@@ -684,7 +799,7 @@ For example:
 <td align="left">word</td>
 </tr>
 </tbody></table>
-<p>adds a mark to the voice. Us it in combination with <a pageScroll id="link-35" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="jump">jump</a>.</p>
+<p>adds a mark to the voice. Us it in combination with <a pageScroll id="link-40" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['/manual/']" fragment="jump">jump</a>.</p>
 <h4 id="examples-4">examples</h4>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="IGRldmljZTogX3VzZVBvcnQ9MCBfc2V0TmFtZT1NeURldmljZSAgX2lzVHlwZT1taWRpOwogaW5zdHJ1bWVudERlZjogX3NldE5hbWU9cGlhbm8gX29uRGV2aWNlPU15RGV2aWNlIF9jaD0wIF9wYz0xIF9jYz04OwogWwogaW5zdHJ1bWVudDogcGlhbm87CiB7CiAgICAgL3NpZ25hdHVyZTogNSA0LwogICAgIC9tYXJrOiBBLyAgICAgICAtLSB2YWxpZCAmIHVuaXF1ZSB0byB0aGlzIHZvaWNlCiAgICAgYzQgZCBlIGYgZyB8CiAgICAgL2p1bXA6IEEvICAgICAgIC0tIGp1bXBzIHRvIEEgb25jZQogICAgIGEgYiBjJzIKIH0KIF0="></werckmeister-snippet>
@@ -708,7 +823,7 @@ For example:
 </tr>
 </tbody></table>
 <p>Adds a modification to the track. Every <code>mod</code> statement adds a further modification to the related voice.</p>
-<p> If you want to use ony one modification at the time use <a pageScroll id="link-36" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a> instead.</p>
+<p> If you want to use ony one modification at the time use <a pageScroll id="link-41" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="do">do</a> instead.</p>
 <h4 id="examples-5">examples</h4>
 <p> <code>/mod: arpeggio/</code></p>
 <p> Mods can be external lua scripts, or one of these internal mods:</p>
@@ -718,7 +833,7 @@ For example:
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="140" wm-data="Ci9kb09uY2U6IGJlbmQgX2Zyb209MC8gYzEgfCAvZG9PbmNlOiBiZW5kIF90bz0wLyBjMQo="></werckmeister-snippet>
 <h5 id="arpeggio">Arpeggio</h5>
 <p> Performs an arpeggio over a given chord.</p>
-<p> <strong>Arpeggio is deprecated. Use the lua mod <a pageScroll id="link-37" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a> instead.</strong>
+<p> <strong>Arpeggio is deprecated. Use the lua mod <a pageScroll id="link-42" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a> instead.</strong>
 <br><br><br></p>
 <h3 id="modonce"><code>modOnce</code></h3>
 <h4 id="parameters-14">parameters</h4>
@@ -738,7 +853,7 @@ For example:
 <td align="left">text</td>
 </tr>
 </tbody></table>
-<p>Like <a pageScroll id="link-38" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<p>Like <a pageScroll id="link-43" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
 <h4 id="examples-6">examples</h4>
 <p> <code>/modOnce: arpeggio/</code>
 <br><br><br></p>
@@ -814,7 +929,7 @@ For example:
 <h4 id="example-9">example</h4>
 <p> <code>tempo: 120;</code></p>
 <p> It is also possible to set different tempo values for several tracks:</p>
-<p> <a pageScroll id="link-39" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="tempo">see here</a>
+<p> <a pageScroll id="link-44" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['//manual']" fragment="tempo">see here</a>
 <br><br><br></p>
 <h3 id="voicingstrategy"><code>voicingStrategy</code></h3>
 <h4 id="parameters-18">parameters</h4>
@@ -1376,7 +1491,7 @@ For example:
 <p>Selects an event where its bar time is equal or greater.</p>
 <pre><code><![CDATA[
  fromBar(1) {...}
-]]></code></pre><p> see also: <a pageScroll id="link-40" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-41" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>, <a pageScroll id="link-42" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
+]]></code></pre><p> see also: <a pageScroll id="link-45" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-46" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>, <a pageScroll id="link-47" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="frombeat"><code>fromBeat</code></h3>
 <h4 id="parameters-34">parameters</h4>
@@ -1419,7 +1534,7 @@ For example:
 </tr>
 </tbody></table>
 <p>Selects any event where its pitch is higher or equal than the given pitch.</p>
-<p> see also: <a pageScroll id="link-43" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPitch">toPitch</a>, <a pageScroll id="link-44" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
+<p> see also: <a pageScroll id="link-48" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPitch">toPitch</a>, <a pageScroll id="link-49" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
 <pre><code><![CDATA[
  fromPitch(c,) {...}
 ]]></code></pre><p><br><br><br></p>
@@ -1442,14 +1557,14 @@ For example:
 </tr>
 </tbody></table>
 <p>Selects any event where its position is equal or after a given position.</p>
-<p> see also: <a pageScroll id="link-45" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
+<p> see also: <a pageScroll id="link-50" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
 <h4 id="example-select-the-events-postion-8-quarters">example, select the events postion &gt;=8 quarters:</h4>
 <pre><code><![CDATA[ fromPosition(8) {...}]]></code></pre><h4 id="using-cue-markers-instead-of-quarter-numbers">using cue markers instead of quarter numbers</h4>
 <pre><code><![CDATA[ c d e f | /cue: myMark/ g a b 'c]]></code></pre><pre><code><![CDATA[ fromPosition(@myMark) {...}]]></code></pre><blockquote>
 <p>In order to work properly, a cue name must occur only once in a document.</p>
 </blockquote>
 <blockquote>
-<p>Please mind the <a pageScroll id="link-46" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
+<p>Please mind the <a pageScroll id="link-51" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
 <br><br><br></p>
 </blockquote>
 <h3 id="instrumentselector"><code>instrumentSelector</code></h3>
@@ -1524,7 +1639,7 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 </blockquote>
 <pre><code><![CDATA[
  nthBar(1 3 5) {...}
-]]></code></pre><p> see also: <a pageScroll id="link-47" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a pageScroll id="link-48" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-49" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>.
+]]></code></pre><p> see also: <a pageScroll id="link-52" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a pageScroll id="link-53" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-54" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>.
 <br><br><br></p>
 <h3 id="octave"><code>octave</code></h3>
 <h4 id="parameters-40">parameters</h4>
@@ -1569,7 +1684,7 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 <p>Selects an event on a given bar number or a list of bar numbers</p>
 <pre><code><![CDATA[
  onBar(1 3) {...}
-]]></code></pre><p> see also: <a pageScroll id="link-50" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a pageScroll id="link-51" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-52" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
+]]></code></pre><p> see also: <a pageScroll id="link-55" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a pageScroll id="link-56" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a pageScroll id="link-57" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="onbeat"><code>onBeat</code></h3>
 <h4 id="parameters-42">parameters</h4>
@@ -1590,7 +1705,7 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 </tr>
 </tbody></table>
 <p>Selects an event which appears on a given beat or a list of beats</p>
-<p> see also: <a pageScroll id="link-53" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a pageScroll id="link-54" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBeat">toBeat</a>.</p>
+<p> see also: <a pageScroll id="link-58" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a pageScroll id="link-59" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBeat">toBeat</a>.</p>
 <h4 id="example-select-the-events-at-beat-1-and-3">example, select the events at beat 1 and 3:</h4>
 <pre><code><![CDATA[
  onBeat(1 3) {...}
@@ -1614,7 +1729,7 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 </tr>
 </tbody></table>
 <p>Selects any event where its pitch is equal to one of the given pitches.</p>
-<p> see also: <a pageScroll id="link-55" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a pageScroll id="link-56" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPitch">toPitch</a>.</p>
+<p> see also: <a pageScroll id="link-60" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a pageScroll id="link-61" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toPitch">toPitch</a>.</p>
 <pre><code><![CDATA[
  pitch(c) {...}
 
@@ -1641,7 +1756,7 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 <p>Selects an event where its bar time is equal or less.</p>
 <pre><code><![CDATA[
  toBar(4) {...}
-]]></code></pre><p> see also: <a pageScroll id="link-57" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a pageScroll id="link-58" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>, <a pageScroll id="link-59" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
+]]></code></pre><p> see also: <a pageScroll id="link-62" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a pageScroll id="link-63" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBar">onBar</a>, <a pageScroll id="link-64" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="tobeat"><code>toBeat</code></h3>
 <h4 id="parameters-45">parameters</h4>
@@ -1662,7 +1777,7 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 </tr>
 </tbody></table>
 <p>Selects an event where its beat time is equal or less.</p>
-<p> see also: <a pageScroll id="link-60" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a pageScroll id="link-61" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBeat">onBeat</a>.</p>
+<p> see also: <a pageScroll id="link-65" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a pageScroll id="link-66" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="onBeat">onBeat</a>.</p>
 <pre><code><![CDATA[
  toBeat(4) {...}
 ]]></code></pre><p><br><br><br></p>
@@ -1685,7 +1800,7 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 </tr>
 </tbody></table>
 <p>Selects any event where its pitch is lower or equal than the given pitch.</p>
-<p> see also: <a pageScroll id="link-62" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a pageScroll id="link-63" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
+<p> see also: <a pageScroll id="link-67" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a pageScroll id="link-68" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
 <pre><code><![CDATA[
  toPitch(c,) {...}
 ]]></code></pre><p><br><br><br></p>
@@ -1708,14 +1823,14 @@ Here for example: <code>fromBar(1) nthBar(2) ...</code>, the nth bar selector
 </tr>
 </tbody></table>
 <p>Selects any event where its position is before a given position.</p>
-<p> see also: <a pageScroll id="link-64" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromPosition">fromPosition</a>.</p>
+<p> see also: <a pageScroll id="link-69" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="fromPosition">fromPosition</a>.</p>
 <h4 id="example-select-the-events-position--8-quarters">example, select the events position &lt; 8 quarters:</h4>
 <pre><code><![CDATA[ toPosition(8) {...}]]></code></pre><h4 id="using-cue-markers-instead-of-quarter-numbers-1">using cue markers instead of quarter numbers</h4>
 <pre><code><![CDATA[ c d e f | /cue: myMark/ g a b 'c]]></code></pre><pre><code><![CDATA[ toPosition(@myMark) {...}]]></code></pre><blockquote>
 <p>In order to work properly, a cue name must occur only once in a document.</p>
 </blockquote>
 <blockquote>
-<p>Please mind the <a pageScroll id="link-65" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
+<p>Please mind the <a pageScroll id="link-70" [pageScrollDuration]="0" [pageScrollOffset]="66" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
 <br><br><br></p>
 </blockquote>
 <h3 id="withtag"><code>withTag</code></h3>
