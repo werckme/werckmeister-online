@@ -1,0 +1,7 @@
+TITLE: 50s Chord Progression
+BY: Samba Godschynski
+DESCRIPTION: A classical 50s chord progression for guitar, bass and drums.
+URL: https://youtu.be/DME50L0P584
+#conductions-bar-selector #tutorial
+#conductions-staccato #conductions-emphasize #4/4 #doo-wop
+

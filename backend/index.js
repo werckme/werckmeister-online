@@ -5,7 +5,7 @@ const monk = require('monk')
 const {nanoid} = require('nanoid');
 const { getWorkspace, listPresets } = require('./localWorkspaceBuilder');
 const yup = require('yup');
-const { getMetaDataFromText } = require('./sheetParser');
+const { getMetaDataFromText } = require('./metaDataParser');
 var bodyParser = require('body-parser')
 
 const NotListedTag = 'not-listed';
