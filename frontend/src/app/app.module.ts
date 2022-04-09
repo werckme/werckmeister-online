@@ -26,7 +26,7 @@ import { EmbeddedSoundcloudPlayerComponent } from './components/partials/embedde
 import { HomeComponent } from './components/pages/home/home.component';
 import { HeroSnippetComponent } from './components/pages/home/hero-snippet/hero-snippet.component';
 import { TuxComponent } from './components/partials/icons/tux/tux.component';
-import { SongsService } from './services/songs.service';
+import { ResourcesService } from './services/resources.service';
 import { EmbeddedHeaderComponent, EmbeddedLinkDirective } from './directives/embedded-link.directive';
 import { EmbeddedYoutubeComponent } from './components/partials/embedded-youtube/embedded-youtube.component';
 import { CreatorComponent } from './components/pages/creator/creator.component';
@@ -114,7 +114,7 @@ registerLocaleData(en);
     ],
     providers: [
         { provide: NZ_I18N, useValue: en_US },
-        SongsService,
+        ResourcesService,
         DecimalPipe
     ],
     bootstrap: [AppComponent],

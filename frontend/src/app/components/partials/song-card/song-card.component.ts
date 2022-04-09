@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as _ from 'lodash';
-import { ISongInfo } from 'src/app/services/songs.service';
+import { IResourcesInfo } from 'src/app/services/resources.service';
 
 
 export function songCardHtmlName(txt: string) {
@@ -19,7 +19,7 @@ export class SongCardComponent implements OnInit {
   }
 
   @Input()
-  public song: ISongInfo;
+  public song: IResourcesInfo;
 
   @Output()
   public onTagClicked = new EventEmitter<string>();

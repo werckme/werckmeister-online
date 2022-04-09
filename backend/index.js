@@ -81,7 +81,7 @@ app.get('/', async (req, res, next) => {
     }
 });
 
-app.get('/songs', async (req, res, next) => {
+app.get('/resources', async (req, res, next) => {
     try {
         const dbPresets = db.get('presets');
         let presets = await dbPresets.find({}, {sort: {'metaData.title': 1}});

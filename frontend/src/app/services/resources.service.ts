@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ARestService } from './arest.service';
 
-export interface ISongInfo {
+export interface IResourcesInfo {
   wid: string;
   metaData: {
     title: string;
@@ -21,18 +21,18 @@ export interface ISongInfo {
 @Injectable({
   providedIn: 'root'
 })
-export class SongsService extends ARestService {
+export class ResourcesService extends ARestService {
   protected endpointUrl = environment.workspaceStorage;
   constructor(http: HttpClient) { 
     super(http);
   }
 
-  public getSongs():Promise<ISongInfo[]> {
-    return this.get<ISongInfo[]>('songs');
+  public getResources():Promise<IResourcesInfo[]> {
+    return this.get<IResourcesInfo[]>('resources');
   }
 
-  public getCreatorsSongs(creatorid):Promise<ISongInfo[]> {
-    return this.get<ISongInfo[]>(`creator/${creatorid}`);
+  public getCreatorsSongs(creatorid):Promise<IResourcesInfo[]> {
+    return this.get<IResourcesInfo[]>(`creator/${creatorid}`);
   }
 
 }

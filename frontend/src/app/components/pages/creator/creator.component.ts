@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ISongInfo, SongsService } from 'src/app/services/songs.service';
+import { IResourcesInfo, ResourcesService } from 'src/app/services/resources.service';
 
 @Component({
   selector: 'app-creator',
@@ -10,10 +10,10 @@ import { ISongInfo, SongsService } from 'src/app/services/songs.service';
 })
 export class CreatorComponent implements OnInit, OnDestroy {
 
-  public songs: ISongInfo[];
+  public songs: IResourcesInfo[];
   private creatorid: string;
   private routerSubscription: Subscription;
-  constructor(private songsService: SongsService, private router: Router, private route: ActivatedRoute,) { 
+  constructor(private songsService: ResourcesService, private router: Router, private route: ActivatedRoute,) { 
     this.routerSubscription = this.router.events.subscribe((ev)=>{
       if (ev instanceof NavigationEnd) {
         this.creatorid = this.route.snapshot.queryParams.id;

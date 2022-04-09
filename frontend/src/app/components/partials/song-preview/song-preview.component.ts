@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ISongInfo } from 'src/app/services/songs.service';
+import { IResourcesInfo } from 'src/app/services/resources.service';
 
 @Component({
   selector: 'app-song-preview',
@@ -9,7 +9,7 @@ import { ISongInfo } from 'src/app/services/songs.service';
 export class SongPreviewComponent implements OnInit {
 
   @Input()
-  public song: ISongInfo;
+  public song: IResourcesInfo;
 
   constructor() { }
 
