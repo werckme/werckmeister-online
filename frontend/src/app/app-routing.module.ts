@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { WerckmeisterComponent } from './components/pages/werckmeister.component';
 import { ManualComponent } from './components/pages/manual.component';
 import { GettingStartedComponent } from './components/pages/getting-started';
-import { ExamplesComponent } from './components/pages/examples/examples.component';
+import { ResourcesComponent } from './components/pages/resources/resources.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CodeExtensionComponent } from './components/pages/visual-studio-extension';
 import { DownloadComponent } from './components/pages/download/download.component';
@@ -19,7 +19,8 @@ const routes: Routes = [
 	{ path: 'getting-started', component: GettingStartedComponent},
 	{ path: 'code-extension', component: CodeExtensionComponent},
 	{ path: 'manual', component: ManualPageComponent},
-	{ path: 'examples', component: ExamplesComponent},
+	{ path: 'resources', component: ResourcesComponent},
+	{ path: 'examples', component: ResourcesComponent},
 	{ path: 'contact', component: ContactComponent},
 	{ path: 'getwerckmeister', component: DownloadComponent},
 	{ path: 'editor', component: OnlineEditorComponent, data: {hasOwnLayout: true}},

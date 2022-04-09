@@ -12,7 +12,7 @@ import { ManualComponent } from './components/pages/manual.component';
 import { GettingStartedComponent } from './components/pages/getting-started';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
-import { ExamplesComponent } from './components/pages/examples/examples.component';
+import { ResourcesComponent } from './components/pages/resources/resources.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CodeExtensionComponent } from './components/pages/visual-studio-extension';
 import { NgZorroAntdMobileModule } from 'ng-zorro-antd-mobile';
@@ -65,7 +65,7 @@ registerLocaleData(en);
         WerckmeisterComponent,
         ManualComponent,
         GettingStartedComponent,
-        ExamplesComponent,
+        ResourcesComponent,
         ContactComponent,
         CodeExtensionComponent,
         MobileAppMenuComponent,

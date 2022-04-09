@@ -16,6 +16,7 @@ mkdir -p werckmeister && cp index.html werckmeister/
 mkdir -p manual && cp index.html manual/
 mkdir -p getting-started && cp index.html getting-started/
 mkdir -p examples && cp index.html examples/
+mkdir -p resources && cp index.html resources/
 mkdir -p code-extension && cp index.html code-extension/
 mkdir -p getwerckmeister && cp index.html getwerckmeister/
 mkdir -p editor && cp index.html editor/

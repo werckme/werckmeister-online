@@ -9,11 +9,11 @@ type Orders = "asc" | "desc" | undefined;
 type SongOrderBy = {iteratees: ((song: ISongInfo) => string | number | boolean)[], orders:Orders[]};
 
 @Component({
-  selector: 'app-examples',
-  templateUrl: './examples.component.html',
-  styleUrls: ['./examples.component.scss']
+  selector: 'app-resources',
+  templateUrl: './resources.component.html',
+  styleUrls: ['./resources.component.scss']
 })
-export class ExamplesComponent implements OnInit, OnDestroy {
+export class ResourcesComponent implements OnInit, OnDestroy {
 
   public songs: ISongInfo[] = [];
   public filteredSongs: ISongInfo[] = [];
