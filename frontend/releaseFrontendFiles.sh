@@ -19,6 +19,7 @@ mkdir -p examples && cp index.html examples/
 mkdir -p resources && cp index.html resources/
 mkdir -p code-extension && cp index.html code-extension/
 mkdir -p getwerckmeister && cp index.html getwerckmeister/
+mkdir -p extras && cp index.html extras/
 mkdir -p editor && cp index.html editor/
 mkdir -p creator && cp index.html creator/
 cd $cdir

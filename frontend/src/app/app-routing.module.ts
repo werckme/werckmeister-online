@@ -11,6 +11,7 @@ import { OnlineEditorComponent } from './online-editor/components/online-editor/
 import { HomeComponent } from './components/pages/home/home.component';
 import { CreatorComponent } from './components/pages/creator/creator.component';
 import { ManualPageComponent } from './components/pages/manual-page/manual-page.component';
+import { ExtrasComponent } from './components/pages/extras/extras.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
 	{ path: 'getwerckmeister', component: DownloadComponent},
 	{ path: 'editor', component: OnlineEditorComponent, data: {hasOwnLayout: true}},
 	{ path: 'creator', component: CreatorComponent},
+	{ path: 'extras', component: ExtrasComponent},
 ];
 
 @NgModule({
