@@ -68,33 +68,41 @@ function getPreviewText(text, maxLines = 10) {
     return lines.join('\n');
 }
 
-function getMetaDataFromText(sheetFileText, required = false) {
-    if (!sheetFileText) {
-        return {};
-    }
-    const commentSection = getHeaderCommentSection(sheetFileText);
-    const tags = Array.from(commentSection.matchAll(/#([a-zA-Z0-9/-]{2,}?)(\s|$)/g)).map(x => x[1]);
-    const links = Array.from(commentSection.matchAll(/\[\s*(.+?)\s*\]\(\s*(.+?)\s*\)/g)).map(x => ({title: x[1], url: x[2]}));
-    const title = getInfo('TITLE', commentSection, required);
-    const by = getInfo('BY', commentSection, required).split(',').map(x => x.trim());
-    const description = getInfo('DESCRIPTION', commentSection, false);
-    const creatorid = getInfo('CREATORID', commentSection, false);
-    const preview = getPreviewText(sheetFileText);
+function getMetaDataFromText(text, required = false) {
+    const tags = Array.from(text.matchAll(/#([a-zA-Z0-9/-]{2,}?)(\s|$)/g)).map(x => x[1]);
+    const links = Array.from(text.matchAll(/\[\s*(.+?)\s*\]\(\s*(.+?)\s*\)/g)).map(x => ({title: x[1], url: x[2]}));
+    const title = getInfo('TITLE', text, required);
+    const url = getInfo('URL', text);
+    const by = getInfo('BY', text, required).split(',').map(x => x.trim());
+    const description = getInfo('DESCRIPTION', text, false);
+    const creatorid = getInfo('CREATORID', text, false);
     return {
-        header: commentSection,
+        header: text,
         tags,
         title,
         by,
         links,
         description,
         creatorid,
-        preview
+        url
     };
 }
 
-function getMetaData(sheetFile) {
+function getSheetMetaData(sheetFile) {
     const text = fs.readFileSync(sheetFile).toString();
-    return getMetaDataFromText(text, true);
+    const commentSection = getHeaderCommentSection(text);
+    const result = getMetaDataFromText(commentSection, true);
+    const preview = getPreviewText(text);
+    result.preview = preview;
+    return result;
 }
 
-module.exports = { getMetaData, getMetaDataFromText }
+function getExternalResourceMetaData(resourceInfoFile) {
+    const text = fs.readFileSync(resourceInfoFile).toString();
+    const result = getMetaDataFromText(text, true);
+    result.type = "external";
+    return result;
+
+}
+
+module.exports = { getSheetMetaData, getMetaDataFromText, getExternalResourceMetaData }

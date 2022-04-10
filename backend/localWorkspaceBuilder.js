@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require('path');
 const presetDir = './presets';
+const externalResourcesDir = './externalResources';
 
 function loadWorkspaceFiles(presetFolder) {
     const target = path.join(presetDir, presetFolder);
@@ -25,4 +26,8 @@ function listPresets() {
     return fs.readdirSync(presetDir)
 }
 
-module.exports = { getWorkspace, listPresets }
+function listExternalResources() {
+    return fs.readdirSync(externalResourcesDir)
+}
+
+module.exports = { getWorkspace, listPresets, listExternalResources }

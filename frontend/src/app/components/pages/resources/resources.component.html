@@ -6,9 +6,9 @@
 </div>
 
 <div nz-row [nzGutter]="{xs: 0, sm: 20, md: 20, lg: 40, xl: 40, xxl: 40}" >
-    <div nz-col *ngFor="let song of filteredSongs" [nzXs]="{ span: 24 }" [nzSm]="{ span: 12 }" [nzMd]="{ span: 8 }">
+    <div nz-col *ngFor="let resource of filteredSongs" [nzXs]="{ span: 24 }" [nzSm]="{ span: 12 }" [nzMd]="{ span: 8 }">
         <div class="card-wrapper">
-          <app-song-card [song]="song" (onTagClicked)="addTagFilter($event)"></app-song-card>
+          <app-resource-card [resource]="resource" (onTagClicked)="addTagFilter($event)"></app-resource-card>
         </div>
     </div>
 </div>

@@ -1,0 +1,11 @@
+<ng-container [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'youtube'">
+        <ng-container *ngTemplateOutlet="youtube"></ng-container>
+    </ng-container>
+</ng-container>
+
+<ng-template #youtube>
+    <a target="blank" [href]="resource.metaData.url">
+        <img height="200px" [src]="ytPreviewUrl">
+    </a>
+</ng-template>

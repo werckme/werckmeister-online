@@ -2,28 +2,28 @@ import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
-import { ISongInfo, SongsService } from 'src/app/services/songs.service';
-import { songCardHtmlName } from '../../partials/song-card/song-card.component';
+import { IResourcesInfo, ResourcesService } from 'src/app/services/resources.service';
+import { songCardHtmlName } from '../../partials/resource-card/resource-card.component';
 
 type Orders = "asc" | "desc" | undefined;
-type SongOrderBy = {iteratees: ((song: ISongInfo) => string | number | boolean)[], orders:Orders[]};
+type SongOrderBy = {iteratees: ((song: IResourcesInfo) => string | number | boolean)[], orders:Orders[]};
 
 @Component({
-  selector: 'app-examples',
-  templateUrl: './examples.component.html',
-  styleUrls: ['./examples.component.scss']
+  selector: 'app-resources',
+  templateUrl: './resources.component.html',
+  styleUrls: ['./resources.component.scss']
 })
-export class ExamplesComponent implements OnInit, OnDestroy {
+export class ResourcesComponent implements OnInit, OnDestroy {
 
-  public songs: ISongInfo[] = [];
-  public filteredSongs: ISongInfo[] = [];
+  public songs: IResourcesInfo[] = [];
+  public filteredSongs: IResourcesInfo[] = [];
   public allTags: string[] = [];
   public filters: string[] = [];
   private routerSubscription: Subscription;
 
-  constructor(private songsService: SongsService, private route: ActivatedRoute, private ref: ElementRef<HTMLElement>) { }
+  constructor(private songsService: ResourcesService, private route: ActivatedRoute, private ref: ElementRef<HTMLElement>) { }
 
-  private isFeatured(song: ISongInfo): boolean {
+  private isFeatured(song: IResourcesInfo): boolean {
     return song.metaData.tags.includes("featured");
   }
 
@@ -35,7 +35,7 @@ export class ExamplesComponent implements OnInit, OnDestroy {
 
   private async loadSongs() {
     const songOrderBy = this.getSongOrderBy();
-    this.songs = _(await this.songsService.getSongs())
+    this.songs = _(await this.songsService.getResources())
       .orderBy(songOrderBy.iteratees, songOrderBy.orders)
       .value();
 

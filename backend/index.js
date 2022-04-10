@@ -5,7 +5,7 @@ const monk = require('monk')
 const {nanoid} = require('nanoid');
 const { getWorkspace, listPresets } = require('./localWorkspaceBuilder');
 const yup = require('yup');
-const { getMetaDataFromText } = require('./sheetParser');
+const { getMetaDataFromText } = require('./metaDataParser');
 var bodyParser = require('body-parser')
 
 const NotListedTag = 'not-listed';
@@ -81,13 +81,20 @@ app.get('/', async (req, res, next) => {
     }
 });
 
-app.get('/songs', async (req, res, next) => {
+app.get('/resources', async (req, res, next) => {
     try {
         const dbPresets = db.get('presets');
         let presets = await dbPresets.find({}, {sort: {'metaData.title': 1}});
         presets = presets
             .filter(x => !x.metaData.tags || x.metaData.tags.indexOf(NotListedTag) < 0)
             .map(x => { delete x._id; return x; });
+
+        const dbExternalResources = db.get('externalResources');
+        let externalResources = await dbExternalResources.find({}, {sort: {'metaData.title': 1}});
+        externalResources.map(x => { delete x._id; return x; })
+        
+        presets = presets.concat(externalResources);
+        
         res.json(presets);
     } catch(ex) {
         handleError(ex, next);

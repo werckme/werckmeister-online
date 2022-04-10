@@ -1,7 +1,7 @@
 <div nz-row [nzGutter]="{xs: 0, sm: 20, md: 20, lg: 40, xl: 40, xxl: 40}" >
     <div nz-col *ngFor="let song of songs" [nzXs]="{ span: 24 }" [nzSm]="{ span: 12 }" [nzMd]="{ span: 8 }">
         <div class="card-wrapper">
-            <app-song-card [song]="song"></app-song-card>
+            <app-resource-card [resource]="song"></app-resource-card>
         </div>
     </div>
 </div>

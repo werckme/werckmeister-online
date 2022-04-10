@@ -1,0 +1,7 @@
+TITLE: Tutorial "50s Chord Progression"
+BY: Samba Godschynski
+DESCRIPTION: This tutorial shows you how to implement a 50s chord progression using werckmeister.
+URL: https://youtu.be/DME50L0P584
+#conductions-bar-selector #tutorial #video #featured
+#conductions-staccato #conductions-emphasize #4/4 #doo-wop
+

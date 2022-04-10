@@ -12,7 +12,7 @@ import { ManualComponent } from './components/pages/manual.component';
 import { GettingStartedComponent } from './components/pages/getting-started';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
-import { ExamplesComponent } from './components/pages/examples/examples.component';
+import { ResourcesComponent } from './components/pages/resources/resources.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CodeExtensionComponent } from './components/pages/visual-studio-extension';
 import { NgZorroAntdMobileModule } from 'ng-zorro-antd-mobile';
@@ -26,11 +26,11 @@ import { EmbeddedSoundcloudPlayerComponent } from './components/partials/embedde
 import { HomeComponent } from './components/pages/home/home.component';
 import { HeroSnippetComponent } from './components/pages/home/hero-snippet/hero-snippet.component';
 import { TuxComponent } from './components/partials/icons/tux/tux.component';
-import { SongsService } from './services/songs.service';
+import { ResourcesService } from './services/resources.service';
 import { EmbeddedHeaderComponent, EmbeddedLinkDirective } from './directives/embedded-link.directive';
 import { EmbeddedYoutubeComponent } from './components/partials/embedded-youtube/embedded-youtube.component';
 import { CreatorComponent } from './components/pages/creator/creator.component';
-import { SongCardComponent } from './components/partials/song-card/song-card.component';
+import { ResourceCardComponent } from './components/partials/resource-card/resource-card.component';
 import { SongPreviewComponent } from './components/partials/song-preview/song-preview.component';
 import { EmbeddedSoundcloudLinkComponent } from './components/partials/embedded-soundcloud-link/embedded-soundcloud-link.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -56,6 +56,7 @@ import { ExtrasComponent } from './components/pages/extras/extras.component';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { ExternalModule } from './external/external.module';
 import { DonateComponent } from './external/donate/donate.component';
+import { ResourcePreviewComponent } from './components/partials/resource-preview/resource-preview.component';
 
 const icons: IconDefinition[] = [ PlayCircleOutline, 
 	WindowsOutline, 
@@ -69,7 +70,7 @@ registerLocaleData(en);
         WerckmeisterComponent,
         ManualComponent,
         GettingStartedComponent,
-        ExamplesComponent,
+        ResourcesComponent,
         ContactComponent,
         CodeExtensionComponent,
         MobileAppMenuComponent,
@@ -85,7 +86,7 @@ registerLocaleData(en);
         EmbeddedHeaderComponent,
         EmbeddedYoutubeComponent,
         CreatorComponent,
-        SongCardComponent,
+        ResourceCardComponent,
         SongPreviewComponent,
         EmbeddedSoundcloudLinkComponent,
         SortedPipe,
@@ -93,6 +94,7 @@ registerLocaleData(en);
         ListOfContentsComponent,
         ManualPageComponent,
         ExtrasComponent,
+        ResourcePreviewComponent,
     ],
     imports: [
         BrowserModule,
@@ -121,7 +123,7 @@ registerLocaleData(en);
     ],
     providers: [
         { provide: NZ_I18N, useValue: en_US },
-        SongsService,
+        ResourcesService,
         DecimalPipe
     ],
     bootstrap: [AppComponent],
