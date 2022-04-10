@@ -3,6 +3,10 @@
         <a class="play-cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:resource.wid }"><i
             nz-icon nzType="play-circle" nzTheme="outline"></i></a>
     </div>
+    <div class="play-cta-container" *ngIf="resource.eid">
+        <a class="play-cta" title="open in editor" target="_blank" [href]="url"><i
+            nz-icon nzType="play-circle" nzTheme="outline"></i></a>
+    </div>    
     <app-song-preview *ngIf="resource.wid" [song]="resource"></app-song-preview>
     <app-resource-preview *ngIf="resource.eid" [resource]="resource"></app-resource-preview>
     <p>
@@ -27,7 +31,11 @@
 </nz-card>
 <ng-template #title>
     <div class="title">
-        <a class="cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:resource.wid }">
+        <a *ngIf="resource.wid" class="cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:resource.wid }">
+            <h2 class="song-title">{{ resource.metaData.title }}</h2>
+            <span class="by">{{ resource.metaData.by.join(',') }}</span>
+        </a>
+        <a *ngIf="resource.eid" class="cta" title="open in editor" target="_blank" [href]="url">
             <h2 class="song-title">{{ resource.metaData.title }}</h2>
             <span class="by">{{ resource.metaData.by.join(',') }}</span>
         </a>

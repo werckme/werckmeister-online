@@ -26,6 +26,10 @@ export class ResourceCardComponent implements OnInit {
   
   constructor() { }
 
+  public get url(): string|undefined {
+    return this.resource.metaData.url;
+  }
+
   ngOnInit() {
   }
 

@@ -65,3 +65,12 @@ ul.tags {
     cursor: default;
     pointer-events: none;
 }
+
+a[href^="https://www.youtube.com"]::after, 
+a[href^="https://youtu.be"]::after {
+    content: none;
+}
+
+::ng-deep .resource-card .play-cta i {
+    filter: drop-shadow(6px 6px 1px black);
+}
