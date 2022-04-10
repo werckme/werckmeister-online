@@ -15,4 +15,5 @@ export class ExtrasComponent implements OnInit {
   public confSm = {span: 24};
   public confMd = {span: 12};
   public confXl = {span: 8};
+  public confXXl = {span: 8};
 }
