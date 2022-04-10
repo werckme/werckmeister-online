@@ -45,12 +45,6 @@ ul.tags {
     }
 }
 
-nz-card {
-    margin-bottom: 1em;
-    @include mat-card-1;
-    height: 100%;
-}
-
 .title {
     a {
         color: $text-color;

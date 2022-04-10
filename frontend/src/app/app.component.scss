@@ -81,3 +81,9 @@ nz-footer {
         margin-top: 19px;
     }
 }
+
+nz-card {
+    margin-bottom: 1em;
+    @include mat-card-1;
+    height: 100%;
+}

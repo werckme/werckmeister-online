@@ -52,6 +52,8 @@ import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { TeaserCollapseComponent } from './components/partials/teaser-collapse/teaser-collapse.component';
 import { ListOfContentsComponent } from './components/partials/list-of-contents/list-of-contents.component';
 import { ManualPageComponent } from './components/pages/manual-page/manual-page.component';
+import { ExtrasComponent } from './components/pages/extras/extras.component';
+import { NzImageModule } from 'ng-zorro-antd/image';
 
 const icons: IconDefinition[] = [ PlayCircleOutline, 
 	WindowsOutline, 
@@ -87,7 +89,8 @@ registerLocaleData(en);
         SortedPipe,
         TeaserCollapseComponent,
         ListOfContentsComponent,
-        ManualPageComponent
+        ManualPageComponent,
+        ExtrasComponent
     ],
     imports: [
         BrowserModule,
@@ -110,6 +113,7 @@ registerLocaleData(en);
         NgZorroAntdMobileModule,
         NzDescriptionsModule,
         OnlineEditorModule,
+        NzImageModule,
         NzIconModule.forRoot(icons),
     ],
     providers: [

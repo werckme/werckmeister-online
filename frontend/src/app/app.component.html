@@ -22,7 +22,10 @@
                 </ListItem>  
                 <ListItem>
                     <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['editor']">Try Online</a>
-                </ListItem>                                                                                                                                                                            
+                </ListItem>    
+                <ListItem>
+                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['extras']">Extras</a>
+                </ListItem>                                                                                                                                                                                        
             </List>
         </lib-mobile-app-menu>
         <a [routerLink]="['/']">
@@ -37,6 +40,7 @@
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['code-extension']">Visual Studio Code</a></li>
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['contact']">Contact</a></li>
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['editor']">Try Online</a></li>
+            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['extras']">Extras</a></li>
         </ul>
     </nz-header>
     <nz-content [ngClass]="urlSegments">
