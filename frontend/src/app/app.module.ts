@@ -54,6 +54,8 @@ import { ListOfContentsComponent } from './components/partials/list-of-contents/
 import { ManualPageComponent } from './components/pages/manual-page/manual-page.component';
 import { ExtrasComponent } from './components/pages/extras/extras.component';
 import { NzImageModule } from 'ng-zorro-antd/image';
+import { ExternalModule } from './external/external.module';
+import { DonateComponent } from './external/donate/donate.component';
 
 const icons: IconDefinition[] = [ PlayCircleOutline, 
 	WindowsOutline, 
@@ -90,7 +92,7 @@ registerLocaleData(en);
         TeaserCollapseComponent,
         ListOfContentsComponent,
         ManualPageComponent,
-        ExtrasComponent
+        ExtrasComponent,
     ],
     imports: [
         BrowserModule,
@@ -115,6 +117,7 @@ registerLocaleData(en);
         OnlineEditorModule,
         NzImageModule,
         NzIconModule.forRoot(icons),
+        ExternalModule
     ],
     providers: [
         { provide: NZ_I18N, useValue: en_US },
