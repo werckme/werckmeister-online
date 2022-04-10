@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
 import { IResourcesInfo, ResourcesService } from 'src/app/services/resources.service';
-import { songCardHtmlName } from '../../partials/song-card/song-card.component';
+import { songCardHtmlName } from '../../partials/resource-card/resource-card.component';
 
 type Orders = "asc" | "desc" | undefined;
 type SongOrderBy = {iteratees: ((song: IResourcesInfo) => string | number | boolean)[], orders:Orders[]};

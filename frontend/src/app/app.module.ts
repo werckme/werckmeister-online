@@ -30,7 +30,7 @@ import { ResourcesService } from './services/resources.service';
 import { EmbeddedHeaderComponent, EmbeddedLinkDirective } from './directives/embedded-link.directive';
 import { EmbeddedYoutubeComponent } from './components/partials/embedded-youtube/embedded-youtube.component';
 import { CreatorComponent } from './components/pages/creator/creator.component';
-import { SongCardComponent } from './components/partials/song-card/song-card.component';
+import { ResourceCardComponent } from './components/partials/resource-card/resource-card.component';
 import { SongPreviewComponent } from './components/partials/song-preview/song-preview.component';
 import { EmbeddedSoundcloudLinkComponent } from './components/partials/embedded-soundcloud-link/embedded-soundcloud-link.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -85,7 +85,7 @@ registerLocaleData(en);
         EmbeddedHeaderComponent,
         EmbeddedYoutubeComponent,
         CreatorComponent,
-        SongCardComponent,
+        ResourceCardComponent,
         SongPreviewComponent,
         EmbeddedSoundcloudLinkComponent,
         SortedPipe,

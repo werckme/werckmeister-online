@@ -8,18 +8,18 @@ export function songCardHtmlName(txt: string) {
 }
 
 @Component({
-  selector: 'app-song-card',
-  templateUrl: './song-card.component.html',
-  styleUrls: ['./song-card.component.scss']
+  selector: 'app-resource-card',
+  templateUrl: './resource-card.component.html',
+  styleUrls: ['./resource-card.component.scss']
 })
-export class SongCardComponent implements OnInit {
+export class ResourceCardComponent implements OnInit {
 
   htmlName(text: string) {
     return songCardHtmlName(text);
   }
 
   @Input()
-  public song: IResourcesInfo;
+  public resource: IResourcesInfo;
 
   @Output()
   public onTagClicked = new EventEmitter<string>();
