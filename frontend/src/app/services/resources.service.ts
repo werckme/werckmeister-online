@@ -4,13 +4,15 @@ import { environment } from 'src/environments/environment';
 import { ARestService } from './arest.service';
 
 export interface IResourcesInfo {
-  wid: string;
+  wid?: string;
+  eid?: string;
   metaData: {
     title: string;
     by: string[];
     tags: string[];
     description: string;
     preview: string;
+    url?: string;
     links: {
       url: string;
       title:string;

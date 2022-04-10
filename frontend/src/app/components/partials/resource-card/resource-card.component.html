@@ -1,9 +1,10 @@
 <nz-card [nzTitle]="title" class="resource-card">
-    <div class="play-cta-container">
+    <div class="play-cta-container" *ngIf="resource.wid">
         <a class="play-cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:resource.wid }"><i
             nz-icon nzType="play-circle" nzTheme="outline"></i></a>
     </div>
-    <app-song-preview [song]="resource"></app-song-preview>
+    <app-song-preview *ngIf="resource.wid" [song]="resource"></app-song-preview>
+    <app-resource-preview *ngIf="resource.eid" [resource]="resource"></app-resource-preview>
     <p>
         <span [innerHtml]="resource.metaData.description">
         </span>

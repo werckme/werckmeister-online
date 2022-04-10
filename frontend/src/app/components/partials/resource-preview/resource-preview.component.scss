@@ -1,0 +1,14 @@
+a[href^="https://www.youtube.com"]::after, 
+a[href^="https://youtu.be"]::after {
+    content: none;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+    height: 200px;
+    width: 500px;
+    border-radius: 15px;
+}
