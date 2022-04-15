@@ -1,0 +1,101 @@
+-- TITLE: Teaser
+-- BY: Samba Godschynski
+-- DESCRIPTION: The Song used in the werckmeister tease video
+-- CREATORID: johannes.unger@vstforx.de
+-- #not-listed
+using "myPitchmap.pitchmap";
+using "lua/mods/drumRudiments.lua";
+using "./drums.conductions";
+using "./bass.conductions";
+using "./guitar.conductions";
+using "/lua/mods/swing.lua";
+using "/chords/default.chords";
+using "./piano.conductions";
+
+tempo: 100;
+device: MyDevice  midi _usePort=17;
+instrumentDef:drums  _onDevice=MyDevice  _ch=9 _pc=50;
+instrumentDef: mutedGuitar _onDevice=MyDevice _ch=1 _pc=28;
+instrumentConf:drums  mod drumRudiments;
+instrumentDef: bass _onDevice=MyDevice _ch=0 _pc=35;
+instrumentDef: piano _onDevice=MyDevice _ch=2 _pc=4;
+
+[
+type: template;
+name: drums;
+instrument: drums;
+{
+    \pp
+    h,8& && && && |
+}
+{
+    \p
+    x16&&&&&&&&&&&&&&& |
+    x16&&&&&&&&&&&&&&& |
+    x16&&&&&&&&&&&&&&& |
+    ^1 "4x sixStrokeRoll"@<x x'>1 :|
+    ^2 "4x paradiddle"@<x u v x'>1 :|
+}
+{
+    o8. o8 r2 o8.  |
+}
+]
+
+[
+type: template;
+name: bass;
+instrument: bass;
+{
+	c16& r  a,8&  g,8&    d,16 "legato"@e,  g,16&    r16 | g,16 & r  e,8 &   g,,16 "legato"@g,, a,,16 c,8 g,,8. &16 |
+} 
+]
+
+[
+type: template;
+name: guitar;
+instrument: mutedGuitar;
+{
+    \f
+    c16 & r8 c16 r r4 \pc16&&&& r16 | r1 |
+} 
+]
+
+
+[
+type: template;
+name: piano;
+instrument: piano;
+{
+    \pp
+    <I,, VII, III>2. r8 & | <I, III, VII,>1
+} 
+]
+
+[
+type: accomp;
+{
+    /template: 
+        bass 
+        guitar 
+        drums
+    /
+    C | C |
+    C | C |
+    C7 | F7 |
+    C7 | Bb-7 |
+    C7 | F7 |
+}
+]
+
+
+
+
+-- [
+-- instrument: bass;
+-- {
+--     /mark: x/
+
+--     c,,16&   g,,&   c,&   g,,&  c,&   g,,&  e,,&  d,,& |
+--     /jump: x _repeat=15/
+-- }
+-- ]

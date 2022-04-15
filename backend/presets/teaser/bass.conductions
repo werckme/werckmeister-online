@@ -1,0 +1,21 @@
+instrument(bass) {
+    velocity=90;
+    duration -=80%;
+    pitch -= 12;
+}
+
+instrument(bass) onBeat(1) {
+    velocity=120;
+    duration = 50%; 
+}
+
+instrument(bass) withTag(legato) {
+    velocity=50;
+    duration = 100%; 
+}
+
+
+instrument(bass) onBeat(2.5 3.5 4.5) {
+    velocity= 100;
+    duration = 50%; 
+}
