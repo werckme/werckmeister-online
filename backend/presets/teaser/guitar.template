@@ -1,0 +1,9 @@
+[
+type: template;
+name: guitar;
+instrument: mutedGuitar;
+{
+    \f
+    c16 & r8 c16 r r4 \pc16&&&& r16 | r1 |
+} 
+]
