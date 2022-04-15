@@ -21,17 +21,27 @@ type: template;
 name: bass2a;
 instrument: bass;
 {
+	/mod: swing _grid=16 _offset=50/
 	I,,16 I#,, r V,,8   V,,,16& & I,,16 I#,, r V,,8   I,,,16& & |
 } 
 ]
 
+
+[
+type: template;
+name: bass3;
+instrument: bass;
+{
+	c,,16&   g,,&   c,&   g,,&  c,&   g,,&  e,,&  d,,& |
+} 
+]
 
 -- [
 -- instrument: bass;
 -- {
 --     /mark: x/
 
---     c,,16&   g,,&   c,&   g,,&  c,&   g,,&  e,,&  d,,& |
+--     
 --     /jump: x _repeat=15/
 -- }
 -- ]

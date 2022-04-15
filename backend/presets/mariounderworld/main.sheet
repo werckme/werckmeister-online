@@ -22,7 +22,7 @@ instrument: bass;
     /tempo: double/
     /mark: begin/
 	/instrument: bass/
-	
+
 	c,,4   c,  a,,, a,, |  bb,,, bb,,  r2 |  r1  |   r1 :|: f,,,4 f,, d,,, d,,  |  
     eb,,, eb,,  r2 |  r1  |^1 r1 :|^2 r2  (eb,, d,, db,,)2 |
     /cue: staccatoA/

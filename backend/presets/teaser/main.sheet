@@ -14,24 +14,25 @@ using "./piano.conductions";
 using "./bass.template";
 using "./drums.template";
 using "./guitar.template";
+using "./piano.template";
+using "/lua/mods/guitarStroke.lua";
 
 tempo: 100;
-device: MyDevice  midi _usePort=17;
+--device: MyDevice  midi _usePort=17;
+device: MyDevice _isType="fluidSynth" _useFont="E:\Users\samba\Soundfonts\FluidR3_GM_EX.sf2";
 instrumentDef:drums  _onDevice=MyDevice  _ch=9 _pc=50;
-instrumentDef: mutedGuitar _onDevice=MyDevice _ch=1 _pc=28;
-instrumentConf:drums  mod drumRudiments;
-instrumentDef: bass _onDevice=MyDevice _ch=0 _pc=35;
-instrumentDef: piano _onDevice=MyDevice _ch=2 _pc=4;
+instrumentConf:drums  mod drumRudiments volume 100;
 
-[
-type: template;
-name: piano;
-instrument: piano;
-{
-    \pp
-    <I,, VII, III>2. r8 & | <I, III, VII,>1
-} 
-]
+instrumentDef: mutedGuitar _onDevice=MyDevice _ch=1 _pc=28;
+instrumentConf: mutedGuitar pan 90;
+
+
+instrumentDef: bass _onDevice=MyDevice _ch=0 _pc=35;
+instrumentConf: bass volume 100;
+
+instrumentDef: piano _onDevice=MyDevice _ch=2 _pc=4;
+instrumentConf: piano volume 100 pan 10;
+
 
 [
 type: accomp;
@@ -41,15 +42,13 @@ type: accomp;
         guitar 
         drums
     /
-    C | C |
-    C | C |
-    C7 | F7 |
-    C7 | Bb-7 |
+    C | F |
+    C | F |
+    C7 | Fmaj7 |
+    C7 | F |
     /template: 
         bass2
         drums2
-        --guitar 
-        --drums
     /
     /cue: beginB/ 
     G7 | F7 | 
@@ -57,8 +56,6 @@ type: accomp;
     /template: 
         bass2a
         drums2a
-        --guitar 
-        --drums
     /    
     G7 | F7 | 
     G7 | F7 |
@@ -67,10 +64,20 @@ type: accomp;
         bass 
         guitar 
         drums
+        piano
     /
-    C | C |
-    C | C |
+    C | F |
+    C | F |
+    C7 | Fmaj7 |
     C7 | F7 |
-    C7 | Bb-7 |
+    /template: 
+        bass3
+        drums
+        guitar2
+    /
+    C | F |
+    C | F |
+    C7 | Fmaj7 |
+    C7 | F7 |
 }
 ]

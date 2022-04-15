@@ -12,7 +12,7 @@ instrument: drums;
     x16&&&&&&&&&&&&&&& |
     x16&&&&&&&&&&&&&&& |
     ^1 "4x sixStrokeRoll"@<x x'>1 :|
-    ^2 "4x paradiddle"@<x u v x'>1 :|
+    ^2 "4x paradiddle"@<x w v x u v v w>1 :|
 }
 {
     o8. o8 r2 o8.  |
@@ -41,7 +41,7 @@ type: template;
 name: drums2a;
 instrument: drums;
 {
-    \pp
+    \ppp
     (h x h)8 (h x h)8 (<x h> r h)8 (h x h)8  (h x h)8 (h x h)8 (<x h> r h)8 (h x h)8  |
 }
 {

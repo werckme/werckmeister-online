@@ -47,7 +47,6 @@ instrument(bass) fromPosition(@beginB) {
 instrument(bass) fromPosition(@beginB) toPosition(@endB) onBeat(1.750 3.750) {
     velocity = 110%;
     duration = 30%;
-    timeOffset = 5%;
 }
 
 
