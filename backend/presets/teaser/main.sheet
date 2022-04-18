@@ -30,9 +30,9 @@ instrumentDef: piano _onDevice=MyDevice _ch=2 _pc=4;
 instrumentConf: piano volume 100 pan 10;
 
 instrumentDef: guide _onDevice=MyDevice _ch=3 _pc=12;
-instrumentConf: guide volume 0;
+instrumentConf: guide volume 80;
 
-instrumentDef: lead _onDevice=MyDevice _ch=4 _pc=12;
+instrumentDef: lead _onDevice=MyDevice _ch=4 _pc=4;
 instrumentConf: lead  volume 80;
 
 instrumentDef:drums  _onDevice=MyDevice  _ch=9 _pc=50;
@@ -51,13 +51,41 @@ instrumentConf:drums  mod drumRudiments volume 100;
 [
 instrument: guide;
 {
-    r1 |
     "Werckmeister: a MIDI compiler for sheet music "@c''1 |
     r1 |
     "create your music with source code"@c''1 |
     r1 |
-    "CSS like separation between what to play"@c''1 |
-    "and how to play"@c''1 |
+    r1 |
+    r1 |
+    r1 | 
+    r1 |
+    r1 |
+    "tuplets"@c''1 |
+    r1 |
+    !p "nested tuplets"@c''1 |
+    r1 |
+    r1 |
+    "template accompaniment rendering"@c''1 |
+    r1 | 
+    r1 |
+    r1 |
+    r1 |
+    r1 |
+    "lua modifications"@c''1 |
+    r1 |
+    "paradiddle library"@c''1 |
+    r1 |
+    r1 |
+    "CSS like separation between what to play"@c''2 
+    "and how to play"@c''2 |
+    r1 |
+    "visual studio code extension"@c''1 |
+    "come visit werckme.gihub.io"@c''2 
+    "play around in the online editor"@c''2 |
+    r1 |
+    r1 |
+    "this tune: https://werckme.github.io/editor?wid=teaser"@c''1 |
+
 }
 ]
 
@@ -66,7 +94,7 @@ instrument: lead;
 {
     r1 | r1 | r1 | r1 
     |: g16. g# a8 a# c'8 r8  a#16 a g a a |^1 c8. c  r2 r8   :|
-    |^2 !p<a# e' g'>4 r2.   |
+    |^2 !pp<a# e' g'>4 r2.   |
 }
 ]
 

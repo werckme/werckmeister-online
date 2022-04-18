@@ -21,7 +21,7 @@ type: template;
 name: bass2a;
 instrument: bass;
 {
-	/mod: swing _grid=16 _offset=50/
+	/mod: swing _grid=16 _offset=70/
 	I,,16 I#,, r V,,8   V,,,16& & I,,16 I#,, r V,,8   I,,,16& & |
 } 
 ]
