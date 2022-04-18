@@ -18,6 +18,6 @@ instrument: mutedGuitar;
     r8 I r I   r I r I  |
     ^1 r16r I& rr I&   r16r I& rr I&  :|
     ^2 \ff
-    r16r I& I& rr I& rr I& rr  :|
+    r16r I& I& rr I& rr I&& r  :|
 } 
 ]
