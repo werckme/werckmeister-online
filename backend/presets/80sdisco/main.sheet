@@ -3,7 +3,7 @@
 -- DESCRIPTION: A 80s Style Disco tune, to demonstrate the `conductions sheet` feature.
 -- #conductions #conductions-event-duration #conductions-event-position-selector #conductions-velocity
 -- #conductions-staccato #conductions-highhat-velocity #conductions-emphasize
--- #conductions-snare-laid-back #conductions-follow-up #4/4
+-- #conductions-snare-laid-back #conductions-follow-up-operator #4/4
 
 using "default.chords";
 using "simpleComping.template";

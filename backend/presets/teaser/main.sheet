@@ -1,8 +1,11 @@
 -- TITLE: Teaser
 -- BY: Samba Godschynski
--- DESCRIPTION: The Song used in the werckmeister tease video
+-- DESCRIPTION: This is the tune which is used in the werckmeister teaser video
 -- CREATORID: johannes.unger@vstforx.de
--- #not-listed
+-- #not-listed #mod-drum-rudiments #conductions-bar-selector #conductions-emphasize
+-- #conductions-event-position-selector #conductions-follow-up-operator
+-- #conductions-highhat-velocity #mod-swing #puride-shuffle #cue-marker
+-- #tripplets #volta-brackets
 using "myPitchmap.pitchmap";
 using "lua/mods/drumRudiments.lua";
 using "./drums.conductions";
@@ -32,22 +35,12 @@ instrumentConf: piano volume 100 pan 10;
 instrumentDef: guide _onDevice=MyDevice _ch=3 _pc=12;
 instrumentConf: guide volume 80;
 
-instrumentDef: lead _onDevice=MyDevice _ch=4 _pc=4;
-instrumentConf: lead  volume 80;
+instrumentDef: lead _onDevice=MyDevice _ch=4 _pc=25;
+instrumentConf: lead  volume 55;
 
 instrumentDef:drums  _onDevice=MyDevice  _ch=9 _pc=50;
 instrumentConf:drums  mod drumRudiments volume 100;
 
--- Werckmeister: a MIDI compiler for sheet music 
--- simple notation
--- tuplets
--- template accompaniment rendering
--- lua modifications
--- paradiddle library
--- visual studio code extension
--- come visit werckme.gihub.io
--- play around in the online editor
--- this tune: https://werckme.github.io/editor?wid=teaser
 [
 instrument: guide;
 {
@@ -76,16 +69,15 @@ instrument: guide;
     "paradiddle library"@c''1 |
     r1 |
     r1 |
+    r1 |
+    r1 |
     "CSS like separation between what to play"@c''2 
     "and how to play"@c''2 |
     r1 |
     "visual studio code extension"@c''1 |
     "come visit werckme.gihub.io"@c''2 
     "play around in the online editor"@c''2 |
-    r1 |
-    r1 |
     "this tune: https://werckme.github.io/editor?wid=teaser"@c''1 |
-
 }
 ]
 
@@ -94,7 +86,7 @@ instrument: lead;
 {
     r1 | r1 | r1 | r1 
     |: g16. g# a8 a# c'8 r8  a#16 a g a a |^1 c8. c  r2 r8   :|
-    |^2 !pp<a# e' g'>4 r2.   |
+    |^2 <a# e' g'>8. &16  r2. |
 }
 ]
 
@@ -127,7 +119,7 @@ type: accomp;
     /template: 
         bass 
         guitar 
-        drums
+        drums1a
         piano
     /
     C | F |
