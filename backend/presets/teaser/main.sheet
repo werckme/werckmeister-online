@@ -33,7 +33,7 @@ instrumentDef: piano _onDevice=MyDevice _ch=2 _pc=4;
 instrumentConf: piano volume 100 pan 10;
 
 instrumentDef: guide _onDevice=MyDevice _ch=3 _pc=12;
-instrumentConf: guide volume 80;
+instrumentConf: guide volume 0;
 
 instrumentDef: lead _onDevice=MyDevice _ch=4 _pc=25;
 instrumentConf: lead  volume 55;
