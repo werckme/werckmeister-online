@@ -93,44 +93,33 @@ instrument: lead;
 [
 type: accomp;
 {
-    /template: 
-        bass 
-        guitar 
-        drums
-    /
+    /template: bass guitar drums/ -- Part A1
     C | F |
     C | F |
     C7 | Fmaj7 |
     C7 | F |
-    /template: 
-        bass2
-        drums2
-    /
+
+    /template: bass2 drums2/ -- Part B1
     /cue: beginB/ 
+    
     G7 | F7 | 
     G7 | F7 | 
-    /template: 
-        bass2a
-        drums2a
-    /    
+    
+    /template: bass2a drums2a/ -- Part B2
+    
     G7 | F7 | 
     G7 | F7 |
+    
     /cue: endB/ 
-    /template: 
-        bass 
-        guitar 
-        drums1a
-        piano
-    /
+    /template: bass guitar drums1a piano/ -- Part A2
+    
     C | F |
     C | F |
     C7 | Fmaj7 |
     C7 | F7 |
-    /template: 
-        bass3
-        drums
-        guitar2
-    /
+    
+    /template: bass3 drums guitar2/ -- Part C
+    
     C | C |
     C | C |
     C | C |
