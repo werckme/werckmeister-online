@@ -1,7 +1,7 @@
 -- TITLE: Flug auf dem Gluecksdrachen (Never Ending Story)
 -- BY: Klaus Doldinger
 -- CREATORID: johannes.unger@vstforx.de
--- #not-listed
+-- #not-listed #time-signature-change
 using "./piano.template";
 using "./drums.template";
 using "./myPitchmap.pitchmap";
@@ -10,7 +10,7 @@ using "./default.chords";
 using "./myConductions.conductions";
 
 tempo: 146;
-device: MyDevice  midi _usePort=0;
+device: MyDevice  midi _usePort=17;
 -- violin 1
 instrumentDef:Vl1 		  _onDevice=MyDevice  _ch=0 _pc=48;
 -- violin 2 
@@ -48,7 +48,16 @@ instrument: Vl2;
 	\p
 	r1 | r1 | r2  r4 (gabc'd'e'f')4 | "tr"@g'1 | e4 e'4.  d'4. | b4 c' a' g' | f#'4.  g'4.  d'4~ | &2~   &8 e'4. |
     e'4.  f'  c'4~  | &8 f'4.  d''4  c'' | d''1~ | &2 r | f#4 f#'4. e'8~&4 | c#'4 d' b' a' | g#'4. a'8~&4 e'~ |
-    &2   &8 f#'8~&4 | f#'4. g'8~&4  d'~ | &8  g'8~ &4  e'' d'' |  e''1  | -- seite 20
+    &2   &8 f#'8~&4 | f#'4. g'8~&4  d'~ | &8  g'8~ &4  e'' d'' |  e''1~  |  &2  f#'4  g'  |  a'2  g'2  |
+    f#'8 e' d' c'  c'2  |  bb2   c'4 d' |  g'2  f'2  |  e'8  d' c' bb   bb2  |  ab2  bb4 c'  |  bb  ab  g  ab  |
+    c' f'  eb'  d' | c#'  d'  f#' d''  |  c''2.  b'4  |  a'8  g' a' b' c''2~  | &4  b'  a'8 g' a' b' | c''2   b' | 
+    -- /signature: 2 4/  a'4  g' |
+    a'2  g' |
+    e4  e'4.  d'4.  |  b4  c'  a'  g' | f#'4.   g'4.  d'4~  | &8  b'4.  d''4  c''  |  a'4.  bb'4. f'4~ | &8  d''4.  g''4  f'' | d'' eb''  bb' eb' |   
+    --/signature: 2 4/  c''  bb'  |
+    c''2  bb'2  |
+    --/signature: 4 4/
+    c''1~ |  &1  |  r8 g'8  & &  & &  &16 & & & | &4 &2. | 
 }
 ]
 
@@ -78,6 +87,12 @@ type: accomp;
 {
   /template: piano drums/
   r | r | r | r | C9 | C9 | G9 | G9 | D-9 | D-9 | Bb9 | Bb9 A9 | D | D | A | 
-  A9 | E-9 | E-9 | C9 | B9 | E-9 |
+  A9 | E-9 | E-9 | C9 | B9 | E-9 | 
+  E-9 Bb9 | Bb9 | D-9 | D-9 Ab9 | Ab9 | F- |
+  F-9 D7b9 |  D7b9 | C-/5  G |  G  C-/5 | C-/5  G | 
+   -- /signature: 2 4/  F/2 G | 
+  F/2 | G | 
+  C9 | C9 | G9 | G9 | Bb9 | Bb9 | Eb9 |
+  Eb9 |  Ab9 |  F9 | C |
 }
 ]
