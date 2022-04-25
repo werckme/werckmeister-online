@@ -21,8 +21,7 @@ using "./piano.template";
 using "/lua/mods/guitarStroke.lua";
 
 tempo: 100;
-device: MyDevice  midi _usePort=17;
---device: MyDevice _isType="fluidSynth" _useFont="E:\Users\samba\Soundfonts\FluidR3_GM_EX.sf2";
+device: MyDevice  midi _usePort=0;
 instrumentDef: bass _onDevice=MyDevice _ch=0 _pc=35;
 instrumentConf: bass volume 100;
 
@@ -41,45 +40,6 @@ instrumentConf: lead  volume 55;
 instrumentDef:drums  _onDevice=MyDevice  _ch=9 _pc=50;
 instrumentConf:drums  mod drumRudiments volume 100;
 
-[
-instrument: guide;
-{
-    "Werckmeister: a MIDI compiler for sheet music "@c''1 |
-    r1 |
-    "create your music with source code"@c''1 |
-    r1 |
-    r1 |
-    r1 |
-    r1 | 
-    r1 |
-    r1 |
-    "tuplets"@c''1 |
-    r1 |
-    !p "nested tuplets"@c''1 |
-    r1 |
-    r1 |
-    "template accompaniment rendering"@c''1 |
-    r1 | 
-    r1 |
-    r1 |
-    r1 |
-    r1 |
-    "lua modifications"@c''1 |
-    r1 |
-    "paradiddle library"@c''1 |
-    r1 |
-    r1 |
-    r1 |
-    r1 |
-    "CSS like separation between what to play"@c''2 
-    "and how to play"@c''2 |
-    r1 |
-    "visual studio code extension"@c''1 |
-    "come visit werckme.gihub.io"@c''2 
-    "play around in the online editor"@c''2 |
-    "this tune: https://werckme.github.io/editor?wid=teaser"@c''1 |
-}
-]
 
 [
 instrument: lead;
