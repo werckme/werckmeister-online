@@ -6,19 +6,18 @@
 -- #conductions-event-position-selector #conductions-follow-up-operator
 -- #conductions-highhat-velocity #mod-swing #puride-shuffle #cue-marker
 -- #tripplets #volta-brackets
-using "myPitchmap.pitchmap";
-using "lua/mods/drumRudiments.lua";
+using "/lua/mods/swing.lua";
+using "/lua/mods/drumRudiments.lua";
+using "/chords/default.chords";
+using "./myPitchmap.pitchmap";
 using "./drums.conductions";
 using "./bass.conductions";
 using "./guitar.conductions";
-using "/lua/mods/swing.lua";
-using "/chords/default.chords";
 using "./piano.conductions";
 using "./bass.template";
 using "./drums.template";
 using "./guitar.template";
 using "./piano.template";
-using "/lua/mods/guitarStroke.lua";
 
 tempo: 100;
 device: MyDevice  midi _usePort=0;
