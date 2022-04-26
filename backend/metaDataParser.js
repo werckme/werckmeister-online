@@ -89,12 +89,16 @@ function getMetaDataFromText(text, required = false) {
 }
 
 function getSheetMetaData(sheetFile) {
-    const text = fs.readFileSync(sheetFile).toString();
-    const commentSection = getHeaderCommentSection(text);
-    const result = getMetaDataFromText(commentSection, true);
-    const preview = getPreviewText(text);
-    result.preview = preview;
-    return result;
+    try {
+        const text = fs.readFileSync(sheetFile).toString();
+        const commentSection = getHeaderCommentSection(text);
+        const result = getMetaDataFromText(commentSection, true);
+        const preview = getPreviewText(text);
+        result.preview = preview;
+        return result;
+    } catch(ex) {
+        throw new Error(`in file ${sheetFile}: ${ex.message}`)
+    }
 }
 
 function getExternalResourceMetaData(resourceInfoFile) {
