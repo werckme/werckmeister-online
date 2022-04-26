@@ -1,0 +1,9 @@
+-- TITLE: Teaser
+-- BY: Samba Godschynski
+-- DESCRIPTION: The werckmeister teaser video
+-- URL: https://youtu.be/jJeUW72IcH4
+-- #mod-drum-rudiments #conductions-bar-selector #conductions-emphasize
+-- #conductions-event-position-selector #conductions-follow-up-operator
+-- #conductions-highhat-velocity #mod-swing #puride-shuffle #cue-marker
+-- #tripplets #volta-brackets
+-- #video #featured

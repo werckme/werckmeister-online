@@ -280,6 +280,10 @@ end]]></code></pre><p>The perform function has 3 arguments:</p>
 <p>This table contains all input events.</p>
 <pre><code><![CDATA[{
     {
+        -- a track id
+        trackId = number,
+        -- a voice id
+        voiceId = number,
         -- the duration of the event
         duration = number,
 
@@ -1042,93 +1046,245 @@ For example:
  "paradiddle"@<"sn1" "sn2">4]]></code></pre><p> Examples:</p>
 <p> <strong>a single paradiddle</strong></p>
 
-<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDE1MDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOnBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTExODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBkcnVtUnVkaW1lbnRzLwogICAtLSBhIHBhcmFkaWRkbGUgKFJMUlIpIHdpdGggYycgZm9yIFIgYW5kIGMgZm9yIEwKICAgInBhcmFkaWRkbGUiQDxjJyBjPjEKfQpd"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDE1MDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOmRydW1zICBNeURldmljZSAgX2NoPTkgX3BjPTUwOwpbCmluc3RydW1lbnQ6IGRydW1zOwp7CiAgIC9tb2Q6IGRydW1SdWRpbWVudHMvCiAgIC0tIGEgcGFyYWRpZGRsZSAoUkxSUikgd2l0aCBkLCwgZm9yIFIgYW5kIGUsLCBmb3IgTCAoPXNuYXJlIEwvUikKICAgInBhcmFkaWRkbGUiQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
 <p> <strong>repeating</strong></p>
 
-<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOnBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTExODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBkcnVtUnVkaW1lbnRzLwogICAtLSBwZXJmb3JtcyA0IHBhcmFkaWRkbGVzIChSTFJSIExSTEwgUkxSUiBMUkxMKSB3aXRoIGMnIGZvciBSIGFuZCBjIGZvciBMCiAgICI0eCBwYXJhZGlkZGxlIkA8YycgYz4xCn0KXQ=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOmRydW1zICBNeURldmljZSAgX2NoPTkgX3BjPTUwOwpbCmluc3RydW1lbnQ6IGRydW1zOwp7CiAgIC9tb2Q6IGRydW1SdWRpbWVudHMvCiAgIC0tIHBlcmZvcm1zIDQgcGFyYWRpZGRsZXMgKFJMUlIgTFJMTCBSTFJSIExSTEwpIHdpdGggZCwsIGZvciBSIGFuZCBlLCwgZm9yIEwgKD1zbmFyZSBML1IpCiAgICI0eCBwYXJhZGlkZGxlIkA8ZCwsIGUsLD4xCn0KXQ=="></werckmeister-snippet>
 <p> <strong>orchestration</strong></p>
 <p> If you want to orchestrate a rudiment over a drum set,</p>
 <p> you are able to define more R &amp; L notes. <em>(The total number of the notes has to be even.)</em></p>
 
-<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOnBpYW5vICBNeURldmljZSAgX2NoPTAgX3BjPTExODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAvbW9kOiBkcnVtUnVkaW1lbnRzLwogICAtLSBwZXJmb3JtcyA0IHBhcmFkaWRkbGVzIChSTFJSIExSTEwgUkxSUiBMUkxMKSB3aXRoIAogICAtLSAgICAgIGMnIGZvciBSMSBhbmQgYyBmb3IgTDEKICAgLS0gYW5kICBjLCBmb3IgUjIgYW5kIGMsLCBmb3IgTDIuCiAgIC0tIFRoZSBmaW5hbCBzZXF1ZW5jZSB3aWxsIGJlOiBjJyhSMSkgYyhMMSkgYywoUjIpIGMsLChSMSkgLi4uIAogICAiNHggcGFyYWRpZGRsZSJAPGMnIGMgYywgYywsPjEKCn0KXQ=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOmRydW1zICBNeURldmljZSAgX2NoPTkgX3BjPTUwOwpbCmluc3RydW1lbnQ6IGRydW1zOwp7CiAgIC9tb2Q6IGRydW1SdWRpbWVudHMvCiAgIC0tIHBlcmZvcm1zIDQgcGFyYWRpZGRsZXMgKFJMUlIgTFJMTCBSTFJSIExSTEwpIHdpdGggCiAgIC0tICAgICAgZCwsIGZvciBSMSBhbmQgZSwsIGZvciBMMSAoPXNuYXJlIEwvUikKICAgLS0gYW5kICBnLCwgZm9yIFIyIGFuZCBhLCwgZm9yIEwyLig9dG9tICYgZmxvb3IgdG9tKQogICAtLSBUaGUgZmluYWwgc2VxdWVuY2Ugd2lsbCBiZTogYycoUjEpIGMoTDEpIGMsKFIyKSBjLCwoUjEpIC4uLiAKICAgIjR4IHBhcmFkaWRkbGUiQDxkLCwgZSwsIGcsLCBhLCw+MQp9Cl0="></werckmeister-snippet>
 <p> <strong>Supported Rudiments</strong></p>
 <ul style="font-size: 0.9em;">
 
-<li>singleStrokeRoll</li>
+<li>singleStrokeRoll
 
-<li>doubleStrokeRoll</li>
 
-<li>trippleStrokeRoll</li>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggc2luZ2xlU3Ryb2tlUm9sbCJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
 
-<li>fiveStrokeRoll</li>
+<li>doubleStrokeRoll
 
-<li>singleStrokeFour</li>
 
-<li>singleStrokeSeven</li>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZG91YmxlU3Ryb2tlUm9sbCJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
 
-<li>multipleBounceRoll</li>
+<li>trippleStrokeRoll
 
-<li>sixStrokeRoll</li>
 
-<li>sevenStrokeRoll</li>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggdHJpcHBsZVN0cm9rZVJvbGwiQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
+</li>
 
-<li>nineStrokeRoll</li>
+<li>fiveStrokeRoll
 
-<li>tenStrokeRoll</li>
 
-<li>elevenStrokeRoll</li>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZml2ZVN0cm9rZVJvbGwiQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
+</li>
 
-<li>thirteenStrokeRoll</li>
+<li>singleStrokeFour
 
-<li>fifteenStrokeRoll</li>
 
-<li>seventeenStrokeRoll</li>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggc2luZ2xlU3Ryb2tlRm91ciJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
 
-<li>paradiddle</li>
+<li>singleStrokeSeven
 
-<li>doubleParadiddle</li>
 
-<li>trippleParadiddle</li>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggc2luZ2xlU3Ryb2tlU2V2ZW4iQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
+</li>
 
-<li>paradiddlediddle</li>
+<li>multipleBounceRoll
 
-<li>flam</li>
 
-<li>flamAccent</li>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggbXVsdGlwbGVCb3VuY2VSb2xsIkA8ZCwsIGUsLD4xCn0KXQ=="></werckmeister-snippet>
+</li>
 
-<li>flamTap</li>
+<li>sixStrokeRoll
 
-<li>flamacue</li>
 
-<li>flamParadiddle</li>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggc2l4U3Ryb2tlUm9sbCJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
 
-<li>singleFlammedMill</li>
+<li>sevenStrokeRoll
 
-<li>pataflafla</li>
 
-<li>swissArmytriplet</li>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggc2V2ZW5TdHJva2VSb2xsIkA8ZCwsIGUsLD4xCn0KXQ=="></werckmeister-snippet>
+</li>
 
-<li>invertedFlamTap</li>
+<li>nineStrokeRoll
 
-<li>flamDrag</li>
 
-<li>singleDragTap</li>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggbmluZVN0cm9rZVJvbGwiQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
+</li>
 
-<li>doubleDragTap</li>
+<li>tenStrokeRoll
 
-<li>lesson25</li>
 
-<li>singleDragadiddle</li>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggdGVuU3Ryb2tlUm9sbCJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
 
-<li>dragParadiddle1</li>
+<li>elevenStrokeRoll
 
-<li>dragParadiddle2</li>
 
-<li>singleRatamacue</li>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZWxldmVuU3Ryb2tlUm9sbCJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
 
-<li>doubleRatamacue</li>
+<li>thirteenStrokeRoll
 
-<li>trippleRatamacue</li>
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggdGhpcnRlZW5TdHJva2VSb2xsIkA8ZCwsIGUsLD4xCn0KXQ=="></werckmeister-snippet>
+</li>
+
+<li>fifteenStrokeRoll
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZmlmdGVlblN0cm9rZVJvbGwiQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
+</li>
+
+<li>seventeenStrokeRoll
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggc2V2ZW50ZWVuU3Ryb2tlUm9sbCJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
+
+<li>paradiddle
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggcGFyYWRpZGRsZSJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
+
+<li>doubleParadiddle
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZG91YmxlUGFyYWRpZGRsZSJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
+
+<li>trippleParadiddle
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggdHJpcHBsZVBhcmFkaWRkbGUiQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
+</li>
+
+<li>paradiddlediddle
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggcGFyYWRpZGRsZWRpZGRsZSJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
+
+<li>flam
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZmxhbSJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
+
+<li>flamAccent
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZmxhbUFjY2VudCJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
+
+<li>flamTap
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZmxhbVRhcCJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
+
+<li>flamacue
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZmxhbWFjdWUiQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
+</li>
+
+<li>flamParadiddle
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZmxhbVBhcmFkaWRkbGUiQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
+</li>
+
+<li>singleFlammedMill
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggc2luZ2xlRmxhbW1lZE1pbGwiQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
+</li>
+
+<li>pataflafla
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggcGF0YWZsYWZsYSJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
+
+<li>swissArmytriplet
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggc3dpc3NBcm15dHJpcGxldCJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
+
+<li>invertedFlamTap
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggaW52ZXJ0ZWRGbGFtVGFwIkA8ZCwsIGUsLD4xCn0KXQ=="></werckmeister-snippet>
+</li>
+
+<li>flamDrag
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZmxhbURyYWciQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
+</li>
+
+<li>singleDragTap
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggc2luZ2xlRHJhZ1RhcCJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
+
+<li>doubleDragTap
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZG91YmxlRHJhZ1RhcCJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
+
+<li>lesson25
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggbGVzc29uMjUiQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
+</li>
+
+<li>singleDragadiddle
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggc2luZ2xlRHJhZ2FkaWRkbGUiQDxkLCwgZSwsPjEKfQpd"></werckmeister-snippet>
+</li>
+
+<li>dragParadiddle1
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZHJhZ1BhcmFkaWRkbGUxIkA8ZCwsIGUsLD4xCn0KXQ=="></werckmeister-snippet>
+</li>
+
+<li>dragParadiddle2
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZHJhZ1BhcmFkaWRkbGUyIkA8ZCwsIGUsLD4xCn0KXQ=="></werckmeister-snippet>
+</li>
+
+<li>singleRatamacue
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggc2luZ2xlUmF0YW1hY3VlIkA8ZCwsIGUsLD4xCn0KXQ=="></werckmeister-snippet>
+</li>
+
+<li>doubleRatamacue
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggZG91YmxlUmF0YW1hY3VlIkA8ZCwsIGUsLD4xCn0KXQ=="></werckmeister-snippet>
+</li>
+
+<li>trippleRatamacue
+
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2RydW1SdWRpbWVudHMubHVhIjsKdGVtcG86IDUwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ZHJ1bXMgIE15RGV2aWNlICBfY2g9OSBfcGM9NTA7Cmluc3RydW1lbnRDb25mOmRydW1zIG1vZCBkcnVtUnVkaW1lbnRzOwpbCmluc3RydW1lbnQ6IGRydW1zOwoKewogICAiNHggdHJpcHBsZVJhdGFtYWN1ZSJAPGQsLCBlLCw+MQp9Cl0="></werckmeister-snippet>
+</li>
 
 </ul>
 <br><br><br>
