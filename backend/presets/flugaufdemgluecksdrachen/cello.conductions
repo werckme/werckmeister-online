@@ -10,6 +10,11 @@ instrument(Vcl) fromPosition(@partA) toPosition(@partB) nthBar(2) onBeat(1 2.5 4
     velocity = 90;
 }
 
+instrument(Vcl) fromPosition(@partA) toPosition(@partB) nthBar(2) onBeat(1.5 3 4.5) {
+  velocity = 64;
+}
+
+
 
 instrument(Vcl) fromPosition(@partA2) onBeat(1 2.5 4) {
     -- doesn't work since: https://github.com/werckme/werckmeister/issues/313

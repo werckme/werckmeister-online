@@ -14,7 +14,28 @@ using "./instrument.config";
 tempo: 146;
 device: MyDevice  midi _usePort=18;
 
-
+-- lead voice = Vl2 + piano 
+[
+instrument: lead;
+{
+	\f
+    -- p. 18
+	r1 | r1 | r1 | r1 | 
+    e4 e'4.  d'4. | b4 c' a' g' | f#'4.  g'4.  d'4~ | &2~   &8 e'4. |
+    e'4.  f'  c'4~  | &8 f'4.  d''4  c'' | d''1~ | &2 r | f#4 f#'4. e'8~&4 | c#'4 d' b' a' | g#'4. a'8~&4 e'~ |
+    &2~   &8 f#'8~&4 | f#'4. g'8~&4  d'~ | &8  g'8~ &4  e'' d'' |  e''1~  |  &2  f#'4  g'  |  a'2  g'2  |
+    f#'8 e' d' c'  c'2  |  bb2   c'4 d' |  g'2  f'2  |  e'8  d' c' bb   bb2  |  ab2  bb4 c'  |  bb  ab  g  ab  |
+    c' f'  eb'  d' | c#'  d'  f#' d''  |  c''2.  b'4  |  a'8  g' a' b' c''2~  | &4  b'  a'8 g' a' b' | c''2   b' | 
+    /signature: 2 4/  
+    a'4  g' |
+    /signature: 4 4/
+    e4  e'4.  d'4.  |  b4  c'  a'  g' | f#'4.   g'4.  d'4~  | &8  b'4.  d''4  c''  |  a'4.  bb'4. f'4~ | &8  d''4.  g''4  f'' | d'' eb''  bb' eb'' |   
+    /signature: 2 4/  
+    c'''  bb''  |
+    /signature: 4 4/
+    c'''1~ |  &1  |  r8 g'8  & &  & &  &16 & & & | &4 &2. | 
+}
+]
 ------------------------------------------------------------------
 -- violin 1
 [
@@ -76,28 +97,7 @@ instrument: pno;
 }
 ]
 
--- lead voice = Vl2 + piano 
-[
-instrument: lead;
-{
-	\f
-    -- p. 18
-	r1 | r1 | r1 | r1 | 
-    e4 e'4.  d'4. | b4 c' a' g' | f#'4.  g'4.  d'4~ | &2~   &8 e'4. |
-    e'4.  f'  c'4~  | &8 f'4.  d''4  c'' | d''1~ | &2 r | f#4 f#'4. e'8~&4 | c#'4 d' b' a' | g#'4. a'8~&4 e'~ |
-    &2~   &8 f#'8~&4 | f#'4. g'8~&4  d'~ | &8  g'8~ &4  e'' d'' |  e''1~  |  &2  f#'4  g'  |  a'2  g'2  |
-    f#'8 e' d' c'  c'2  |  bb2   c'4 d' |  g'2  f'2  |  e'8  d' c' bb   bb2  |  ab2  bb4 c'  |  bb  ab  g  ab  |
-    c' f'  eb'  d' | c#'  d'  f#' d''  |  c''2.  b'4  |  a'8  g' a' b' c''2~  | &4  b'  a'8 g' a' b' | c''2   b' | 
-    /signature: 2 4/  
-    a'4  g' |
-    /signature: 4 4/
-    e4  e'4.  d'4.  |  b4  c'  a'  g' | f#'4.   g'4.  d'4~  | &8  b'4.  d''4  c''  |  a'4.  bb'4. f'4~ | &8  d''4.  g''4  f'' | d'' eb''  bb' eb'' |   
-    /signature: 2 4/  
-    c'''  bb''  |
-    /signature: 4 4/
-    c'''1~ |  &1  |  r8 g'8  & &  & &  &16 & & & | &4 &2. | 
-}
-]
+
 
 -- e-bass
 [
