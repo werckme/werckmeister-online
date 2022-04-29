@@ -2,10 +2,22 @@ instrument(Vcl) {
     duration = 30%;
 }
 
-instrument(Vcl) fromPosition(@introEnd) onBeat(1.5 3 4.5) {
-    velocity = 100;
+instrument(Vcl) fromPosition(@partA) toPosition(@partB) onBeat(1.5 3 4.5) {
+  velocity = 90;
 }
 
-instrument(Vcl) fromPosition(@introEnd) nthBar(2) onBeat(1 2.5 4) {
-    velocity = 100;
+instrument(Vcl) fromPosition(@partA) toPosition(@partB) nthBar(2) onBeat(1 2.5 4) {
+    velocity = 90;
+}
+
+
+instrument(Vcl) fromPosition(@partA2) onBeat(1 2.5 4) {
+    -- doesn't work since: https://github.com/werckme/werckmeister/issues/313
+    -- velocity = 90;
+     -- pitch+=12;
+}
+
+instrument(Vcl) fromPosition(@partA2) nthBar(2) onBeat(1.5 3 4.5) {
+-- doesn't work since: https://github.com/werckme/werckmeister/issues/313
+  -- velocity = 90;
 }

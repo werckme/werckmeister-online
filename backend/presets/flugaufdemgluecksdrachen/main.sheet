@@ -49,7 +49,20 @@ instrument: Vcl;
     <e, c#> & & <e, b,>   <e, c#> & <e, b,>  <e, c#> | & <e, b,> <e, c#>   & <e, b,> <e, c#> & <e, b,> |
     <g, e> & & <f#, e>   <g, e> & <f#, e>  <g, e> | & <f#, e> <g, e>   & <f#, e> <g, e> & <f#, e> |
     <e, c> & & <d, c>   <e, c> & <d, c>  <e, c> | & <d, c> <e, c> <d, c>   <d#, b,> <d#, b,> <c# g,> <d#, b,> |
-    
+    <g, b,> & & &  & & & & | & & & &  <d, f,> & & & | & & & &   & & & &  | <f, a,> & & &  & & & &  |
+    & & & &  <eb, bb,> & & & | <eb, ab,> & & &   <eb, bb,> & <eb, ab,> & | <f, bb,>& <f, ab,>&   <f, g,>& <f, ab,>&  |
+    <f, ab,> & & &  <f#, a,> & & &  | & & & &  & & & & | <g, eb> & & &  & &  <g, d> & | & & & &  <g, eb> & & & |
+    & & <g, d> &  & & & & | <g, eb> & & &   <g, b,> & & &  |
+    /signature: 2 4/
+    <f, c> &  <d, b,>& |
+    /signature: 4 4/
+    <e, c> & & &   & & & & | & & & &  & & & & | <d, b,> & &   <d, a,>   <d, b,> &  <d, a,> <d, b,>  | & <d, a,> <d, b,> &    <d, a,> <d, b,> & <g, d> |
+    <bb, f> & & &  & & & & | & & & &  & & & & | <g, eb> & & &  & & & & | 
+    /signature: 2 4/
+    <g, eb> &   &  &  |
+    /signature: 4 4/
+    <c eb> & & &  & & & & |  <a, f> & & &   & & & & |
+    r8 <g, e>8  & &  & &  &16 & & & | &4 &2. | 
 }
 ]
 
@@ -114,14 +127,16 @@ type: accomp;
     piano 
     drums/
   r | r | r | r | 
-  /cue: introEnd/ 
+  /cue: partA/ 
   C9 | C9 | G9 | G9 | D-9 | D-9 | Bb9 | Bb9 A9 | D | D | A | 
-  A9 | E-9 | E-9 | C9 | C9 B9 | E-9 | 
-  E-9 Bb9 | Bb9 | D-9 | D-9 Ab9 | Ab9 | F- |
-  F-9 D7b9 |  D7 | C-/5  G | G  C-/5 | C-/5  G | G  C-/5 |
+  A9 | E-9 | E-9 | C9 | C9 B9 | 
+  /cue: partB/ 
+  E-9 | E-9 Bb9 | Bb9 | D-9 | D-9 Ab9 | Ab9 | F- |
+  F-9 D7b9 | D7 | C-/5  G | G  C-/5 | C-/5  G | G  C-/5 |
   /signature: 2 4/  
   F/2 G | 
   /signature: 4 4/
+  /cue: partA2/ 
   C9 | C9 | G9 | G9 | Bb9 | Bb9 | Eb9 |
   /signature: 2 4/
   Eb9 |
