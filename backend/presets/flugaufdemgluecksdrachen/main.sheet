@@ -8,8 +8,9 @@ using "./myPitchmap.pitchmap";
 using "./trills.lua";
 using "./default.chords";
 using "./myConductions.conductions";
-using "./cello.conductions";
+using "./strings.conductions";
 using "./instrument.config";
+
 
 tempo: 146;
 device: MyDevice  midi _usePort=18;
@@ -141,6 +142,7 @@ type: accomp;
   /signature: 2 4/
   Eb9 |
   /signature: 4 4/
+  /cue: fine/ 
   Ab9 |  F9 | C |
 }
 ]
