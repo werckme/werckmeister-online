@@ -1,4 +1,4 @@
-<div nz-row [nzGutter]="{xs: 0, sm: 20, md: 20, lg: 40, xl: 40, xxl: 40}">
+<div nz-row [nzGutter]="[{xs: 0, sm: 20, md: 20, lg: 40, xl: 40, xxl: 40}, {xs: 0, sm: 20, md: 20, lg: 40, xl: 40, xxl: 40}]">
 
 
     <div nz-col [nzXs]="confXs" [nzSm]="confSm" [nzMd]="confMd" [nzXl]="confXl" [nzXXl]="confXXl">
@@ -70,10 +70,29 @@
             <h2>Herr Müller Online</h2>
         </ng-template>
         <ng-template #hmuellerOnlineCover>
-            <img alt="hmueller teaser image" width="568px" height="320px"  src="/assets/images/herrMuellerOnline.png">
+            <a href="https://dx7.vstforx.de" target="_blank">
+                <img alt="hmueller teaser image" width="568px" height="320px"  src="/assets/images/herrMuellerOnline.png">
+            </a>
         </ng-template>
         <ng-template #hmuellerOnlineOnlineVisit>
             <a nz-button target="_blank" href="https://dx7.vstforx.de">Visit Herr Müller Online</a>
+        </ng-template>
+    </div>
+
+    <div nz-col [nzXs]="confXs" [nzSm]="confSm" [nzMd]="confMd" [nzXl]="confXl" [nzXXl]="confXXl">
+        <nz-card [nzTitle]="welleTitle" class="song-card" [nzCover]="welleCover" [nzActions]="[welleVisit]">
+            WELLE is a text-based 8-step sequencer with predefined sample sounds crated by <a href="https://jensvetter.de/">Jens Vetter</a>.
+        </nz-card>
+        <ng-template #welleTitle>
+            <h2>WELLE</h2>
+        </ng-template>
+        <ng-template #welleCover>
+            <a href="https://welle.live/" target="_blank">
+                <img alt="hmueller teaser image" width="568px" height="320px"  src="/assets/images/Welle-Screenshot.png">
+            </a>
+        </ng-template>
+        <ng-template #welleVisit>
+            <a nz-button target="_blank" href="https://welle.live/">Visit WELLE</a>
         </ng-template>
     </div>
 
