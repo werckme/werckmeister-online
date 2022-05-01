@@ -57,6 +57,39 @@ instrument: Vl2;
 }
 ]
 
+-- viola
+[
+instrument: Vla;
+{
+	\pp
+	e'8&&&&&&& | &&&&&&&& | &&&&&&&& | &&&&&&&& |
+    \p
+    <e' g'>8 & & <d' g'> <e' g'> & <d' g'>  <e' g'> | & <d' g'> <e' g'> &    <d' g'> <e' g'> & <d' g'> |
+    <d' g'> & & & & & & & |  & & & & & & & &  |
+    <f' a'> & & <e' a'>   <f' a'> & <e' a'>  <f' a'> | & <e' a'> <f' a'> &   <e' a'> <f' a'> & <e' a'> |
+    <d' f'> & & <c' f'>   <d' f'> & <c' f'>  <d' f'> | & <c' f'> <d' f'> &   <c#' e'> & <bb e'> <c#' e'> |
+    <f#' a'> & & <e' a'>   <f#' a'> & <e' a'>  <f#' a'> | & <e' a'> <f#' a'>   & <e' a'> <f#' a'> & <e' a'> |
+    <e' a'> & & <e' a'>   <e' a'> & <e' a'>  <e' a'> | & <e' a'> <e' a'>   & <e' a'> <e' a'> & <e' a'> |
+    <g' b'> & & <f#' b'>   <g' b'> & <f#' b'>  <g' b'> | & <f#' b'> <g' b'>  &   <f#' b'> <g' b'> & <f#' b'> |
+    <e' g'> & & <d' g'>   <e' g'> & <d' g'>  <e' g'> | & <d' g'> <e' g'> <d' g'>   <d#' f#'> <d#' f#'> <c# f#'> <d#' f#'> |
+    <e' a'> & & &  <e' g'> & & & | <e' f#'> & & &  <bb c'> & & & | <bb' d'> & & &  <bb' c'> & <bb' d'> & | <d' g'> & & &  <d' f'> & & &  |
+    <d' e'> & <d' f'> &  <c' eb'> & & & | <c' eb'> & & &   & & & & | <c' f'> & & &   & & & &   |
+    & & & &    <c' eb'> & <c' d'> &  | <c#' f#'> & & &   <d' f#> & <d' a'> & | <g' c''> & & &  & &  <g' b'> & | & & & &  <g' c''> & & & |
+    & & <g' b'> &  & & & & | <g' c''> & & &   <g' b'> & & &  |
+    /signature: 2 4/
+    <f' a'> &  <d' g'>& |
+    /signature: 4 4/
+    <e' g'> & & <d' g'> <e' g'> & <d' g'> <e' g'> | & <d' g'> <e' g'> &  <d' g'> <e' g'> & <d' g'> | & & & &  & & & &  | & & & &   & & &  <g' b'> |
+    <bb' d''> & & <bb' c''>  <bb' d''> &  <bb' c''> <bb' d''>  | &  <bb' c''> <bb' d''> &  <bb' c''> <bb' d''> &  <bb' c''> | <g' bb'> & &  <f' bb'>    <g' bb'> & <f' bb'> <g' bb'>  | 
+    /signature: 2 4/
+    <g' c''> <f' c''> <g' bb'>  &  |
+    /signature: 4 4/
+    <ab' c''> & & &  & & & & |  <a' c''> & & &   & & & & |
+    r8 <c'' e''>8  & &  & &  &16 & & & | &4 &2. | 
+}
+]
+
+-- cello
 [
 instrument: Vcl;
 {
@@ -87,6 +120,7 @@ instrument: Vcl;
     r8 <g, e>8  & &  & &  &16 & & & | &4 &2. | 
 }
 ]
+
 
 -- piano
 [
@@ -124,25 +158,25 @@ instrument: ebass;
 [
 type: accomp;
 {
-  /template:  
-    piano 
-    drums/
-  r | r | r | r | 
-  /cue: partA/ 
-  C9 | C9 | G9 | G9 | D-9 | D-9 | Bb9 | Bb9 A9 | D | D | A | 
-  A9 | E-9 | E-9 | C9 | C9 B9 | 
-  /cue: partB/ 
-  E-9 | E-9 Bb9 | Bb9 | D-9 | D-9 Ab9 | Ab9 | F- |
-  F-9 D7b9 | D7 | C-/5  G | G  C-/5 | C-/5  G | G  C-/5 |
-  /signature: 2 4/  
-  F/2 G | 
-  /signature: 4 4/
-  /cue: partA2/ 
-  C9 | C9 | G9 | G9 | Bb9 | Bb9 | Eb9 |
-  /signature: 2 4/
-  Eb9 |
-  /signature: 4 4/
-  /cue: fine/ 
-  Ab9 |  F9 | C |
+    /template: piano drums/
+    r | r | r | r | 
+    /cue: partA/ 
+    C9 | C9 | G9 | G9 | D-9 | D-9 | Bb9 | Bb9 A9 | D | D | A | 
+    A9 | E-9 | E-9 | C9 | C9 B9 |
+    /cue: partB/ 
+    /template: piano drums2/
+    E-9 | E-9 Bb9 | Bb9 | D-9 | D-9 Ab9 | Ab9 | F- |
+    F-9 D7b9 | D7 | C-/5  G | G  C-/5 | C-/5  G | G  C-/5 |
+    /template: piano drums3/
+    /signature: 2 4/  
+    F/2 G | 
+    /signature: 4 4/
+    /cue: partA2/ 
+    C9 | C9 | G9 | G9 | Bb9 | Bb9 | Eb9 |
+    /signature: 2 4/
+    Eb9 |
+    /signature: 4 4/
+    /cue: fine/ 
+    Ab9 |  F9 | C |
 }
 ]
