@@ -132,6 +132,16 @@ instrument: pno;
 }
 ]
 
+-- synth
+[
+instrument: syn;
+{
+
+	\pp
+    d8 e g d e g d e | d8 e g d e g d e | d8 e g d e g d e | d8 e g d e g d e
+}
+]
+
 
 
 -- e-bass
