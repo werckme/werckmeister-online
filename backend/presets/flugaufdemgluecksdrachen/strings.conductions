@@ -31,3 +31,8 @@ instrument(Vcl Vla) fromPosition(@partA2) toPosition(@fine) nthBar(2) onBeat(1 2
 instrument(Vcl Vla) fromPosition(@partA2) toPosition(@fine) nthBar(2) onBeat(1.5 3 4.5) {
   velocity = 64;
 }
+
+
+instrument(Vla) {
+  pitch -= 12;
+}

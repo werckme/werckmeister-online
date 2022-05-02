@@ -8,8 +8,3 @@ instrument(drums) pitch(h) onBeat(1 2 3 4) {
 instrument(drums) pitch(h) {
     velocity = & - 5;
 }
-
-
-instrument(Vl1) {
-    duration -= 70%;
-}
