@@ -5,7 +5,7 @@ const monk = require('monk')
 const {nanoid} = require('nanoid');
 const { getWorkspace, listPresets } = require('./localWorkspaceBuilder');
 const yup = require('yup');
-const { getMetaDataFromText } = require('./metaDataParser');
+const { getSheetMetaDataFromText } = require('./metaDataParser');
 var bodyParser = require('body-parser')
 
 const NotListedTag = 'not-listed';
@@ -163,9 +163,12 @@ app.post('/', async (req, res, next) => {
         const mainSheet = workspace.files.filter(x => x.path === 'main.sheet');
         if (mainSheet && mainSheet.length > 0) {
             try {
-                const metaData = getMetaDataFromText(mainSheet[0].data);
+                const mainSheetText = mainSheet[0].data;
+                const metaData = getSheetMetaDataFromText(mainSheetText);
                 workspace.metaData = metaData;
-            } catch {}
+            } catch(ex) {
+                console.error(ex)
+            }
         }
         await workspaces.update({wid: workspace.wid}, {$set: workspace}, {upsert: true});
         res.json({succeed: true, wid: workspace.wid});

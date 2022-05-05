@@ -30,6 +30,10 @@ export class ResourceCardComponent implements OnInit {
     return this.resource.metaData.url;
   }
 
+  public get hasThumbnail(): boolean {
+    return !!this.resource.metaData.thumbnail;
+  }
+
   ngOnInit() {
   }
 

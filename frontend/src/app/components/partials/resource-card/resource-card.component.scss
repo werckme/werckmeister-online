@@ -74,3 +74,9 @@ a[href^="https://youtu.be"]::after {
 ::ng-deep .resource-card .play-cta i {
     filter: drop-shadow(6px 6px 1px black);
 }
+
+img.thumbnail {
+    width: 500px;
+    height: 200px;
+    object-fit: cover;
+}

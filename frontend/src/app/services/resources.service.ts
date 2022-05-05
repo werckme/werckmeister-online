@@ -13,6 +13,7 @@ export interface IResourcesInfo {
     description: string;
     preview: string;
     url?: string;
+    thumbnail?: string;
     links: {
       url: string;
       title:string;

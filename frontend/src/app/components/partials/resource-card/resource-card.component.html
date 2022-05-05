@@ -6,9 +6,12 @@
     <div class="play-cta-container" *ngIf="resource.eid">
         <a class="play-cta" title="open in editor" target="_blank" [href]="url"><i
             nz-icon nzType="play-circle" nzTheme="outline"></i></a>
-    </div>    
-    <app-song-preview *ngIf="resource.wid" [song]="resource"></app-song-preview>
-    <app-resource-preview *ngIf="resource.eid" [resource]="resource"></app-resource-preview>
+    </div>
+    <a [routerLink]="['/editor']" [queryParams]="{ wid:resource.wid }">
+        <img class="thumbnail" *ngIf="hasThumbnail" [src]="resource.metaData.thumbnail">
+        <app-song-preview *ngIf="!hasThumbnail && resource.wid" [song]="resource"></app-song-preview>
+        <app-resource-preview *ngIf="!hasThumbnail && resource.eid" [resource]="resource"></app-resource-preview>
+    </a>
     <p>
         <span [innerHtml]="resource.metaData.description">
         </span>
