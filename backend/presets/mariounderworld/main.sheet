@@ -11,7 +11,7 @@ using "drums.pitchmap";
 using "./myConductions.conductions";
 
 tempo: 200;
-device: MyDevice  midi _usePort=0;
+device: MyDevice  midi _usePort=18;
 instrumentDef: bass          _onDevice=MyDevice  _ch=0 _pc=38;
 instrumentDef: drums         _onDevice=MyDevice  _ch=9 _pc=0;
 
