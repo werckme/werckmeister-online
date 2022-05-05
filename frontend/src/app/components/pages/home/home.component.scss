@@ -119,3 +119,10 @@
     background-size: cover;
 
 }
+
+a[href^="https://www.youtube.com"], a[href^="https://youtu.be"] {
+    &::after {
+      content: none;
+      background-image: none;
+    }
+  }
