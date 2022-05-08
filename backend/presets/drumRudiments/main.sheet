@@ -10,7 +10,7 @@ using "./myConductions.conductions";
 using "lua/mods/drumRudiments.lua";
 
 tempo: 110;
-device: MyDevice  midi _usePort=0;
+device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
 instrumentDef:drums    _onDevice=MyDevice  _ch=9 _pc=50;
 instrumentConf:drums  mod drumRudiments;
 

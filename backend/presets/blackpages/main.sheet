@@ -9,7 +9,7 @@ using "drums.pitchmap";
 using "lua/voicings/simple.lua";
 
 
-device: MyDevice          midi       3;
+device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
 
 -- define your instruments:
 -- (ch= channel, pc= programm change, cc= control change)

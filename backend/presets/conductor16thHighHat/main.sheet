@@ -7,7 +7,7 @@ using "myPitchmap.pitchmap";
 using "./myConductions.conductions"; -- comment this line, to hear what it sounds like without the conductions rules
 
 tempo: 110;
-device: MyDevice  midi _usePort=0;
+device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
 instrumentDef:drumsWithoutConductionRules    _onDevice=MyDevice  _ch=9 _pc=50;
 instrumentDef:drumsUsingConductionRules    _onDevice=MyDevice  _ch=9 _pc=50;
 [

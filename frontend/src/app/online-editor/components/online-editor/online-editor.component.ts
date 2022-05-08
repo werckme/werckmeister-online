@@ -163,6 +163,9 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
       done: (task) => {
         const progress = 100 / (numberOfTasks || 1);
         this._playerPrepareProgressPercent += progress;
+      },
+      message: (text: string, title?: string) => {
+        this.notification.info(title || "", text)
       }
     };
     this.shortcutSerice.when().ctrlAndChar('s').thenExecute(()=>{

@@ -11,7 +11,7 @@ using "./guitar.conductions";
 using "./drums.pitchmap";
 
 tempo: 140;
-device: MyDevice  midi _usePort=0;
+device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
 instrumentDef: piano _onDevice="MyDevice" _ch=0 _pc=0;
 instrumentDef: guitar _onDevice="MyDevice" _ch=1 _pc=26;
 instrumentConf: guitar volume 80;

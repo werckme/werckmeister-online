@@ -7,7 +7,7 @@
 using "/chords/default.chords";
 using "./chordSelector.conductions";
 
-device: MyDevice _isType="midi" _usePort=0;
+device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
 instrumentDef: piano _onDevice="MyDevice" _ch=0 _pc=5;
 
 tempo: 190;

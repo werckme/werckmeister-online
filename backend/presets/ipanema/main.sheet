@@ -9,7 +9,7 @@ using "bass.template";
 using "transpose.lua";
 
 tempo: 140;
-device: MyDevice  midi _usePort=0;
+device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
 instrumentDef:piano    _onDevice=MyDevice _ch=0  _pc=0;
 instrumentDef:bass    _onDevice=MyDevice  _ch=1  _pc=34;
 instrumentDef:lead    _onDevice=MyDevice  _ch=2  _pc=11;

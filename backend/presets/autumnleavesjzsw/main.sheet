@@ -8,7 +8,7 @@ using "./rhythm.jazzSwing.template";
 using "./bass.jazzSwing.template";
 using "./lua/mods/swing.lua";
 
-device: MyDevice midi 0;
+device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
 
 -- instrument definitions
 instrumentDef: rhythm        MyDevice _ch=3 _pc=0;

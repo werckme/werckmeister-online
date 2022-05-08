@@ -13,7 +13,7 @@ using "./instrument.config";
 
 
 tempo: 146;
-device: MyDevice  midi _usePort=18;
+device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
 
 -- lead voice = Vl2 + piano 
 [

@@ -6,7 +6,7 @@ using "trills.lua";
 using "fermata.lua";
 
 tempo: 60;
-device: MyDevice  midi _usePort=0;
+device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
 instrumentDef:lead    _onDevice=MyDevice  _ch=0 _pc="20";
 instrumentConf: lead 
     mod trills 
