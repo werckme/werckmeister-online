@@ -1,19 +1,20 @@
--- TITLE: Flug auf dem Gluecksdrachen (Never Ending Story)
+-- TITLE: Bastian's Happy Flight (Flug auf dem Glücksdrachen)
 -- BY: Klaus Doldinger
--- CREATORID: johannes.unger@vstforx.de
--- #not-listed #time-signature-change #conductions-nthbar-selector
+-- #time-signature-change #conductions-nthbar-selector #featured #instrument-section
+-- #conductions-event-position-selector #conductions-nth-bar-selector
+using "./instrument.config";
 using "./piano.template";
 using "./drums.template";
 using "./myPitchmap.pitchmap";
 using "./trills.lua";
 using "./default.chords";
-using "./myConductions.conductions";
+using "./drums.conductions";
+using "./synth.conductions";
 using "./strings.conductions";
-using "./instrument.config";
 
 
 tempo: 146;
-device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
+device: MyDevice _isType=webPlayer _useFont="Live-HQ-Natural-SoundFont-GM";
 
 -- lead voice = Vl2 + piano 
 [
@@ -51,7 +52,6 @@ instrument: Vl1;
 [
 instrument: Vl2;
 {
-	\pp
     -- p. 18
 	r1 | r1 | r2  r4 \p (gabc'd'e'f')4 | "tr"@g'1 | 
 }
@@ -136,8 +136,7 @@ instrument: pno;
 [
 instrument: syn;
 {
-
-	\pp
+	\p
     d8 e g d e g d e | d8 e g d e g d e | d8 e g d e g d e | d8 e g d e g d e
 }
 ]
