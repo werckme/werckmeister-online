@@ -1,5 +1,5 @@
 const monk = require('monk')
-const { listPresets, listExternalResources } = require('./localWorkspaceBuilder');
+const { listPresets, listExternalResources } = require('./presetScanner');
 const { getSheetMetaData, getExternalResourceMetaData } = require('./metaDataParser');
 
 require('dotenv').config();
