@@ -62,16 +62,16 @@ presetMap['default'] = 'autumnleaves';
 
 const port = process.env.PORT || 1337;
 
-async function createNewWorkspace(presetName) {
+function createNewWorkspace(presetName) {
     return {
         wid: null,
-        files: await getWorkspace(presetName).files 
+        files: getWorkspace(presetName).files 
     };
 }
 
 async function getWorkspaceOrPreset(wid) {
     if (wid in presetMap) {
-        const workspace = await createNewWorkspace(presetMap[wid]);
+        const workspace = createNewWorkspace(presetMap[wid]);
         return workspace;
     }
     let workspace = await workspaces.findOne({wid});

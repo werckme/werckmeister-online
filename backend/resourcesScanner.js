@@ -5,17 +5,17 @@ const presetDir = './presets';
 const externalResourcesDir = './externalResources';
 const templateDir = './style-templates';
 
-async function loadWorkspaceFiles(presetFolder) {
+function loadWorkspaceFiles(presetFolder) {
     const target = path.join(presetDir, presetFolder);
-    const dir = await fsp.readdir(target).sort((a, b) => {
+    const dir = fs.readdirSync(target).sort((a, b) => {
         if (a === 'main.sheet') return -1;
         if (b === 'main.sheet') return 1;
         return a.localeCompare(b);
     });
     return {
-        files: dir.map(async (file) =>  ({
+        files: dir.map((file) => ({
             path: file,
-            data: await fsp.readFile(`${target}/${file}`).toString()
+            data: fs.readFileSync(`${target}/${file}`).toString()
         }))
     };
 }

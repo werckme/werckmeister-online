@@ -20,6 +20,7 @@ import { PlusOutline, DownloadOutline, SaveOutline, CaretRightOutline, EditOutli
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { WizzardComponent } from './wizzard/wizzard.component';
 
 
 const icons: IconDefinition[] = [ PlusOutline, 
@@ -33,7 +34,7 @@ const icons: IconDefinition[] = [ PlusOutline,
 ];
 
 @NgModule({
-  declarations: [OnlineEditorComponent, FileEntryComponent, FormatDirective],
+  declarations: [OnlineEditorComponent, FileEntryComponent, FormatDirective, WizzardComponent],
   imports: [
     CommonModule,
     FormsModule,
