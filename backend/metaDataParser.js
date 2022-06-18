@@ -35,7 +35,7 @@ function getInfo(name, text, required) {
             takeNext = false;
             resultLines.push(line);
         }
-        const regex = new RegExp(`\s*${name}:\s*(.*)`);
+        const regex = new RegExp(`\s*${name.toLowerCase()}:\s*(.*)`, "i");
         const match = line.match(regex, text);
         if (match === null) {
            continue;
@@ -99,6 +99,33 @@ function getSheetMetaData(sheetFile) {
     }
 }
 
+function getStyleTemplateMetaData(templateFilePath) {
+    try {
+        const fileName = path.basename(templateFilePath);
+        const text = fs.readFileSync(templateFilePath).toString();
+        const metaData = getSheetMetaDataFromText(text);
+        metaData.id = fileName;
+        metaData.signature = getInfo('SIGNATURE', metaData.header);
+        metaData.parts = getInfo('PARTS', metaData.header).split(',').map(x => x.trim());
+        metaData.tempo = getInfo('TEMPO', metaData.header);
+        metaData.instrumentConfigs = getInfo('INSTRUMENTCONFS', metaData.header);
+        if (metaData.instrumentConfigs) {
+            metaData.instrumentConfigs = JSON.parse(metaData.instrumentConfigs);
+        }
+        const fileNameMatch = fileName.match(/(?<instrument>\w+)\.(?<name>\w+).\w+/)
+        if (!fileNameMatch.groups || !fileNameMatch.groups.instrument || !fileNameMatch.groups.name) {
+            throw new Error("invalid file name: " + fileName);
+        }
+        metaData.title = fileNameMatch.groups.name;
+        metaData.instrument = fileNameMatch.groups.instrument;
+        delete metaData.creatorid;
+        delete metaData.preview;
+        return metaData;
+    } catch(ex) {
+        throw new Error(`in file ${templateFilePath}: ${ex.message}`)
+    }
+}
+
 function getSheetMetaDataFromText(text) {
     const commentSection = getHeaderCommentSection(text);
     const result = getMetaDataFromCommentText(commentSection, true);
@@ -115,4 +142,4 @@ function getExternalResourceMetaData(resourceInfoFile) {
 
 }
 
-module.exports = { getSheetMetaData, getExternalResourceMetaData, getSheetMetaDataFromText }
+module.exports = { getSheetMetaData, getExternalResourceMetaData, getSheetMetaDataFromText, getStyleTemplateMetaData }
