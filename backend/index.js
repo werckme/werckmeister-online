@@ -8,6 +8,16 @@ const yup = require('yup');
 const { getSheetMetaDataFromText } = require('./metaDataParser');
 var bodyParser = require('body-parser')
 
+const templateFields =  [
+    "id", 
+    "metaData.tags", 
+    "metaData.title", 
+    "metaData.signature", 
+    "metaData.tempo", 
+    "metaData.instrument",
+    "metaData.instrumentConfigs"
+]
+
 const NotListedTag = 'not-listed';
 
 require('dotenv').config();
@@ -80,6 +90,20 @@ app.get('/', async (req, res, next) => {
         handleError(ex, next);
     }
 });
+
+app.get('/templates', async (req, res, next) => {
+    try {
+        const dbStyleTemplates = db.get('styleTemplates');
+        const templates = await dbStyleTemplates.find({}, templateFields);
+        for(const template of templates) {
+            delete template._id;
+        }
+        return res.json(templates);
+    } catch(ex) {
+        handleError(ex, next);
+    }
+});
+
 
 app.get('/resources', async (req, res, next) => {
     try {
