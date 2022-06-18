@@ -11,7 +11,6 @@ cd $target
 rm * -rf
 rsync -a $cdir/dist/spa/ .
 
-
 mkdir -p werckmeister && cp index.html werckmeister/
 mkdir -p manual && cp index.html manual/
 mkdir -p getting-started && cp index.html getting-started/
@@ -22,4 +21,5 @@ mkdir -p getwerckmeister && cp index.html getwerckmeister/
 mkdir -p extras && cp index.html extras/
 mkdir -p editor && cp index.html editor/
 mkdir -p creator && cp index.html creator/
+mkdir -p wizzard && cp index.html wizzard/
 cd $cdir

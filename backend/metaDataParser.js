@@ -107,7 +107,7 @@ function getStyleTemplateMetaData(templateFilePath) {
         metaData.id = fileName;
         metaData.signature = getInfo('SIGNATURE', metaData.header);
         metaData.parts = getInfo('PARTS', metaData.header).split(',').map(x => x.trim());
-        metaData.tempo = getInfo('TEMPO', metaData.header);
+        metaData.tempo = Number.parseFloat(getInfo('TEMPO', metaData.header));
         metaData.instrumentConfigs = getInfo('INSTRUMENTCONFS', metaData.header);
         if (metaData.instrumentConfigs) {
             metaData.instrumentConfigs = JSON.parse(metaData.instrumentConfigs);

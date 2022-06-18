@@ -21,6 +21,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { WizzardComponent } from './wizzard/wizzard.component';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { SortedPipe } from '../pipes/sorted.pipe';
 
 
 const icons: IconDefinition[] = [ PlusOutline, 
@@ -34,7 +36,10 @@ const icons: IconDefinition[] = [ PlusOutline,
 ];
 
 @NgModule({
-  declarations: [OnlineEditorComponent, FileEntryComponent, FormatDirective, WizzardComponent],
+  declarations: [OnlineEditorComponent, 
+    FileEntryComponent, 
+    FormatDirective, 
+    WizzardComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -48,6 +53,7 @@ const icons: IconDefinition[] = [ PlusOutline,
 		NzTagModule,
     NzProgressModule,
     NzPopconfirmModule,
+    NzSelectModule,
     NzIconModule.forRoot(icons),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

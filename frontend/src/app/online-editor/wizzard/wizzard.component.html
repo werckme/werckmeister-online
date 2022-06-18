@@ -1,0 +1,9 @@
+<div class="configurator">
+    <nz-select
+    nzShowSearch
+    nzPlaceHolder="input search text"
+    [nzShowArrow]="false"
+    >
+        <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.key" [nzLabel]="style.key"></nz-option>
+    </nz-select>
+</div>
