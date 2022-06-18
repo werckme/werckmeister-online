@@ -7,52 +7,16 @@ import { ShortcutService } from '../../services/shortcut.service';
 import { TmplLuaVoicing, TmplPitchmap, TmplSheetTemplate, TmplLuaMod, TmplConductionRules } from './fileTemplates';
 import * as _ from 'lodash';
 import { waitAsync } from 'src/shared/help/waitAsync';
+import { AWorkspacePlayerComponent, ICompilerError, IEditorElement, IWorkspaceElement, PlayerState } from './AWorkspacePlayerComponent';
 
 const CheckIsCleanIntervalMillis = 1000;
-
-interface IEditorElement extends HTMLElement {
-  setScriptText(text: string);
-  clearHistory();  
-  getScriptText(): string;
-  isClean(): boolean;
-  markClean();
-  update();
-  setFilename(name: string);
-}
-
-export enum PlayerState {
-  Stopped,
-  Preparing,
-  Playing
-};
-
-interface IWorkspaceElement extends HTMLElement {
-  registerEditor(editor: Element);
-  unregisterEditor(editor: Element);
-  isClean(): boolean;
-  markClean();
-  play(): Promise<void>;
-  stop(): Promise<void>;
-  getPlayerImpl(): any;
-  onError: (error) => void;
-  onCompiled: (document) => void;
-  onStateChanged: (old: PlayerState, new_: PlayerState) => void;
-  beginQuarters: number;
-}
-
-interface ICompilerError {
-  sourceId: number; 
-  positionBegin: number; 
-  sourceFile: string; 
-  errorMessage: string;
-}
 
 @Component({
   selector: 'ngwerckmeister-online-editor',
   templateUrl: './online-editor.component.html',
   styleUrls: ['./online-editor.component.scss']
 })
-export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
+export class OnlineEditorComponent extends AWorkspacePlayerComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("editorMain", { read: ViewContainerRef }) editorMain: ViewContainerRef;
   @ViewChild("workspace", { read: ViewContainerRef }) workspaceEl: ViewContainerRef;
 
@@ -65,14 +29,6 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   public playerState: PlayerState = PlayerState.Stopped;
   public bpm: number = 120;
   private beginQuarters: number = 0;
-  private _playerPrepareProgressPercent: number | null = null;
-  public get playerPrepareProgressPercent(): number {
-    if (this._playerPrepareProgressPercent === null) {
-      return null;
-    }
-    return Math.max(this.initialProgressPercent, this._playerPrepareProgressPercent);
-  }
-  private initialProgressPercent = 5;
   private _beginQuartersStr : string = "0";
   public get beginQuartersStr() : string {
     return this._beginQuartersStr;
@@ -81,22 +37,12 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     this._beginQuartersStr = v;
     this.beginQuarters = Number.parseFloat(v) || 0;
   }
-  
-
 
   workspaceFSModified: boolean = false;
 
   get workspaceIsClean(): boolean {
     return this._workspaceEditorsAreClean && this.workspaceFSModified === false;
   }
-
-  get workspaceComponent(): IWorkspaceElement|null {
-    if (!this.workspaceEl) {
-      return null;
-    }
-    return this.workspaceEl.element.nativeElement as IWorkspaceElement;
-  }
-
   currentFile: IFile;
 
   get files(): IFile[] {
@@ -111,10 +57,11 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   private checkIsCleanId: any;
   private clockIntervalHandle:number|null = null;
   constructor(private workspaceStorage: WorkspaceStorageService,
-    private notification: NzNotificationService,
+    notification: NzNotificationService,
     private route: ActivatedRoute,
     private router: Router,
     private shortcutSerice: ShortcutService) {
+      super(notification);
       this.checkIsCleanId = setInterval(this.onCheckIsClean.bind(this), CheckIsCleanIntervalMillis);
       this.routerSubscription = this.router.events.subscribe((ev)=>{
         if (ev instanceof NavigationEnd) {
@@ -151,51 +98,33 @@ export class OnlineEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.workspaceComponent.onError = this.onCompilerError.bind(this);
-    this.workspaceComponent.onCompiled = this.onWerckCompiled.bind(this);
-    this.workspaceComponent.onStateChanged = this.onPlayerStateChanged.bind(this);
-    let numberOfTasks = 0;
-    this.workspaceComponent.getPlayerImpl().playerTaskVisitor = {
-      newTasks: (tasks) => {
-        numberOfTasks = tasks.length;
-        this._playerPrepareProgressPercent = 0;
-      },
-      done: (task) => {
-        const progress = 100 / (numberOfTasks || 1);
-        this._playerPrepareProgressPercent += progress;
-      },
-      message: (text: string, title?: string) => {
-        this.notification.info(title || "", text)
-      }
-    };
-    this.shortcutSerice.when().ctrlAndChar('s').thenExecute(()=>{
+    this.initWorkspace();
+    this.shortcutSerice.when().ctrlAndChar('s').thenExecute(() => {
       this.save();
-    });
+  });
   }
 
-  private onCompilerError(error: ICompilerError) {
+  protected onCompilerError(error: ICompilerError) {
     this.notification.error(error.sourceFile || 'Compiler error', error.errorMessage);
   }
 
-  private onWerckCompiled(document: any) {
+  protected onWerckCompiled(document: any) {
     this.bpm = document.midi.bpm;
   }
 
-  private onPlayerStateChanged(old: PlayerState, new_: PlayerState) {
+  protected onPlayerStateChanged(old: PlayerState, new_: PlayerState) {
+    super.onPlayerStateChanged(old, new_);
     if (old == new_) {
       return;
     }
     if (new_ === PlayerState.Preparing) {
       this.workspaceComponent.beginQuarters = this.beginQuarters;
       this.elapsedQuaters = this.beginQuarters;
-      this._playerPrepareProgressPercent = this.initialProgressPercent;
     }
     if (new_ === PlayerState.Playing) {
-      this._playerPrepareProgressPercent = null;
       this.onPlayerStarted();
     }
     if (new_ === PlayerState.Stopped) {
-      this._playerPrepareProgressPercent = null;
       this.onPlayerStoped();
     }
     this.playerState = new_;

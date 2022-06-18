@@ -1,0 +1,18 @@
+<div class="werckmeister-wizzard">
+
+    <nz-progress *ngIf="playerPrepareProgressPercent !== null" nzStatus="normal" [nzShowInfo]="false"
+        [nzPercent]="playerPrepareProgressPercent"></nz-progress>
+    <div class="configurator">
+        <nz-select nzShowSearch nzPlaceHolder="input search text" [nzShowArrow]="false">
+            <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.key" [nzLabel]="style.key"></nz-option>
+        </nz-select>
+    </div>
+    <div class="editor">
+        <werckmeister-workspace #workspace>
+        </werckmeister-workspace>
+        <werckmeister-editor #editor [attr.wm-filename]="'main.sheet'"
+            wm-style="height: 100%; width: 100%; border: none">
+        </werckmeister-editor>
+    </div>
+
+</div>

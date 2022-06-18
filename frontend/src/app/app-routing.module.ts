@@ -12,7 +12,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { CreatorComponent } from './components/pages/creator/creator.component';
 import { ManualPageComponent } from './components/pages/manual-page/manual-page.component';
 import { ExtrasComponent } from './components/pages/extras/extras.component';
-import { WizzardComponent } from './online-editor/wizzard/wizzard.component';
+import { WizzardComponent } from './online-editor/components/wizzard/wizzard.component';
 
 
 const routes: Routes = [

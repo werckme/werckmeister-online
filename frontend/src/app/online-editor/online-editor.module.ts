@@ -20,7 +20,7 @@ import { PlusOutline, DownloadOutline, SaveOutline, CaretRightOutline, EditOutli
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
-import { WizzardComponent } from './wizzard/wizzard.component';
+import { WizzardComponent } from './components/wizzard/wizzard.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { SortedPipe } from '../pipes/sorted.pipe';
 
