@@ -3,7 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const monk = require('monk')
 const {nanoid} = require('nanoid');
-const { getWorkspace, listPresets } = require('./resourcesScanner');
+const { getWorkspace, listPresets, loadTemplate } = require('./resourcesScanner');
 const yup = require('yup');
 const { getSheetMetaDataFromText } = require('./metaDataParser');
 var bodyParser = require('body-parser')
@@ -62,16 +62,16 @@ presetMap['default'] = 'autumnleaves';
 
 const port = process.env.PORT || 1337;
 
-function createNewWorkspace(presetName) {
+async function createNewWorkspace(presetName) {
     return {
         wid: null,
-        files: getWorkspace(presetName).files 
+        files: await getWorkspace(presetName).files 
     };
 }
 
 async function getWorkspaceOrPreset(wid) {
     if (wid in presetMap) {
-        const workspace = createNewWorkspace(presetMap[wid]);
+        const workspace = await createNewWorkspace(presetMap[wid]);
         return workspace;
     }
     let workspace = await workspaces.findOne({wid});
@@ -84,14 +84,14 @@ async function getWorkspaceOrPreset(wid) {
 
 app.get('/', async (req, res, next) => {
     try {
-        const workspace = createNewWorkspace(presetMap['default']);
+        const workspace = await createNewWorkspace(presetMap['default']);
         res.json(workspace);
     } catch(ex) {
         handleError(ex, next);
     }
 });
 
-app.get('/templates', async (req, res, next) => {
+app.get('/styleTemplates', async (req, res, next) => {
     try {
         const dbStyleTemplates = db.get('styleTemplates');
         const templates = await dbStyleTemplates.find({}, templateFields);
@@ -99,6 +99,16 @@ app.get('/templates', async (req, res, next) => {
             delete template._id;
         }
         return res.json(templates);
+    } catch(ex) {
+        handleError(ex, next);
+    }
+});
+
+app.get('/styleTemplate/:id', async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const data = await loadTemplate(id);
+        return res.json({id, data});
     } catch(ex) {
         handleError(ex, next);
     }

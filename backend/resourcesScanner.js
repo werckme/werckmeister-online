@@ -1,22 +1,29 @@
 const fs = require("fs");
+const fsp = require("fs/promises");
 const path = require('path');
 const presetDir = './presets';
 const externalResourcesDir = './externalResources';
 const templateDir = './style-templates';
 
-function loadWorkspaceFiles(presetFolder) {
+async function loadWorkspaceFiles(presetFolder) {
     const target = path.join(presetDir, presetFolder);
-    const dir = fs.readdirSync(target).sort((a, b) => {
+    const dir = await fsp.readdir(target).sort((a, b) => {
         if (a === 'main.sheet') return -1;
         if (b === 'main.sheet') return 1;
         return a.localeCompare(b);
     });
     return {
-        files: dir.map(file => ({
+        files: dir.map(async (file) =>  ({
             path: file,
-            data: fs.readFileSync(`${target}/${file}`).toString()
+            data: await fsp.readFile(`${target}/${file}`).toString()
         }))
     };
+}
+
+async function loadTemplate(id) {
+    const target = path.join(templateDir, id);
+    const data = await fsp.readFile(target);
+    return data.toString();
 }
 
 function getWorkspace(presetName) {
@@ -37,4 +44,4 @@ function listTemplates() {
 
 
 
-module.exports = { getWorkspace, listPresets, listExternalResources, listTemplates }
+module.exports = { getWorkspace, listPresets, listExternalResources, listTemplates, loadTemplate }
