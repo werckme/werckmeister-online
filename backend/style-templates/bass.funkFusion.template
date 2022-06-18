@@ -1,0 +1,17 @@
+-- tempo: 100
+-- signature: 4/4
+-- parts: normal
+-- instrumentConfs: {"bass": "mod swing _grid=16"}
+
+using "./lua/mods/staccato.lua";
+
+[
+type: template;
+name: bass.funkFusion.normal;
+instrument: bass; 
+{
+   /mod: staccato _amount=60/
+   I,,4  r16 r V,,16  I,8 r8 r16 r4     |
+   I,,4 I,,16 &  V,, I, r4 r16  I,,16 V,, I, |
+}
+]

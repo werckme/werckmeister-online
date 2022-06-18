@@ -1,0 +1,15 @@
+-- tempo: 80
+-- signature: 4/4
+-- parts: normal
+using "./lua/mods/staccato.lua";
+
+[
+type: template;
+name: bass.popSmoothJazz.normal;
+instrument: bass;
+{
+    /mod: staccato _amount=70/
+    I,,16 &8.  r16 V,,,16  VII,,, I,, I,,8 r4.    | r4  V,,16 VII,,8. I,,16 & r2 |
+    I,,16 &8.  r16 V,,,16  VII,,, I,, I,,16 & r4. | r4  V,,16 VII,,8. I,,,2 |
+}   
+]

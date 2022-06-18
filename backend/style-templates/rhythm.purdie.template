@@ -1,0 +1,15 @@
+-- tempo: 120
+-- signature: 4/4
+-- parts: normal
+[
+type: template;
+name: rhythm.purdie.normal;
+instrument: rhythm; 
+{
+    /voicingStrategy: simpleGuitar/
+    I4t r8t <III VII I' IV>4t I,,8t r4t <V, II, IV, I,,>8t r4t r8t |
+    I4t r8t <III VII I' IV>4t I,,8t r4t <V, II, IV, I,,>8t r4t r8t |
+    I4t r8t <III VII I' IV>4t I,,8t r4t <V, II, IV, I,,>8t r4t r8t |
+    I4t r8t <III VII I' IV>4t I,,8t r4t <I II III IV V VI VII >2t  |
+}
+]

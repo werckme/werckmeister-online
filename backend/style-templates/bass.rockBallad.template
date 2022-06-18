@@ -1,0 +1,13 @@
+-- tempo: 75
+-- signature: 4/4
+-- parts: normal
+
+[
+type: template;
+name: bass.rockBallad.normal;
+instrument: bass; 
+{
+    I,,4.  V,,,8  I,,4.  V,,,8 |
+    I,,4.  &8 &4.        V,,,8 |
+}
+]

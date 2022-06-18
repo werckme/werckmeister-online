@@ -1,0 +1,19 @@
+-- tempo: 120
+-- signature: 4/4
+-- parts: normal
+-- instrumentConfs: { "rhythm": "voicingStrategy simple _importantDegree=VI" }
+
+using "lua/mods/swing.lua";
+
+[
+type: template;
+name: rhythm.blues.normal;    
+instrument: rhythm;
+{
+    /do: swing _grid=8 _offset=60/
+    <I, V,>8 & <I, VI,> & <I, V,>8 & <I, VI,> &     |
+    <I, V,>8 & <I, VI,> & <I, V,>8 & <I, VI,> &     |
+    <I, V,>8 & <I, VI,> & <I, V,>8 & <I, VI,> &     |
+    <I, V,>8 & <I, VI,> & <I, VII,>8 & <I, VI,> &  |
+}
+]

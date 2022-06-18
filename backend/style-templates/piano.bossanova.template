@@ -1,0 +1,11 @@
+-- tempo: 120
+-- signature: 4/4
+-- parts: normal
+[
+type: template;
+name: piano.bossanova.normal;
+instrument: piano; 
+{
+    <VII, VII>4 <III, V,>8 <V, V>8 r8 <III, V,>8 r8 <V, V> | r8 <III, V,>8 r8 <V, V> r8 <III, V,> r8 <VII, VII> |
+}    
+] 

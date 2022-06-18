@@ -1,0 +1,13 @@
+-- tempo: 115
+-- signature: 4/4
+-- parts: normal
+
+[
+type: template;
+name: bass.countryShuffle.normal;
+instrument: bass; 
+{
+    \ff
+    I,,4  III,,  V,,  (III,,4   V,,8)4
+}
+]

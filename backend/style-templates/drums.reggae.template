@@ -1,0 +1,60 @@
+-- tempo: 120
+-- signature: 4/4
+-- parts: normal, fill1, fill2
+
+using "lua/mods/swing.lua";
+
+[
+type: template;
+name: drums.reggae.normal;
+instrument: drums; 
+{
+
+}
+{
+    /do: swing _grid=8 _offset=50/
+    !f"ht"4     &8 !p&                "ht"4        &8 !p&|
+    !f"ht"4     "ht"8t & &          "ht"4        &8 !p&|
+    !f"ht"4     !pp"ho1"4           "ht"4        &8 !p&|
+}
+{
+    r           r         "bd"4           r |
+    r           r         "sn"4           r |
+}
+]
+
+--
+
+[
+type: template;
+name: drums.reggae.fill1;
+instrument: drums; 
+{
+
+}
+{
+    /do: swing _grid=8 _offset=50/
+    !f"ht"4     !p"ho2"4             r2      |
+}
+{
+    /do: swing _grid=8 _offset=50/
+    r   "hto1"64->"hto1"4.       "mto1"8       "mto1"8t r "mto1"   |
+}
+]
+
+[
+type: template;
+name: drums.reggae.fill2;
+instrument: drums; 
+{
+
+}
+{
+    /do: swing _grid=8 _offset=50/
+    !f"ht"4     "ht"4            r2      |
+}
+{
+    /do: swing _grid=16 _offset=50/
+   !f"tim1"32->!p"tim2"8t & &  "hto1"4  r2  |
+}
+]

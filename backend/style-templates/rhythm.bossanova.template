@@ -1,0 +1,15 @@
+-- tempo: 120
+-- signature: 4/4
+-- parts: normal
+[
+type: template;
+name: rhythm.bossanova.normal;
+instrument: rhythm; 
+{
+    \f
+    <I II III IV V VI VII>4 <I II III IV V VI VII>4 r8 <I II III IV V VI VII>8 r8 <I II III IV V VI VII>8  |
+    r8 <I II III IV V VI VII>8 r8 <I II III IV V VI VII>8 r4 <I II III IV V VI VII>4 |
+    <I II III IV V VI VII>4 <I II III IV V VI VII>4 r8 <I II III IV V VI VII>8 r8 <I II III IV V VI VII>8  |
+    r4 r8 <I II III IV V VI VII>8 r8 <I II III IV V VI VII>4. |
+}    
+] 

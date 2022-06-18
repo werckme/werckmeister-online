@@ -1,0 +1,27 @@
+-- tempo: 140
+-- signature: 3/4
+-- parts: normal
+-- instrumentConfs: { "bass": "voicingStrategy simple _importantDegree=IV", "piano": "voicingStrategy simple _importantDegree=IV" }
+
+using "lua/mods/staccato.lua";
+[
+type: template;
+name: bass.clickclack.normal;
+instrument: piano;
+{
+    /mod: staccato _amount=50 _forTag=x/ 
+    /signature: 3 4/
+    <IV,,,>4. <III,,,>8 "x"@<I,,,>4 |
+}
+]
+
+[
+type: template;
+name: bass.clickclack.normal;
+instrument: bass;
+{
+    /mod: staccato _amount=50 _forTag=x/ 
+    /signature: 3 4/
+    <IV,,,>4. <III,,,>8 "x"@<I,,,>4 |
+}
+]

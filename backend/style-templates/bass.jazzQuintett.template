@@ -1,0 +1,16 @@
+-- tempo: 200
+-- signature: 4/4
+-- parts: normal
+
+using "./lua/mods/staccato.lua";
+
+[
+type: template;
+name: bass.jazzQuintett.normal;
+instrument: bass; 
+{
+    /mod: staccato _amount=40/
+    \p
+    I,2 V,, |
+}
+]

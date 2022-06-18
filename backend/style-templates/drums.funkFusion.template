@@ -1,0 +1,46 @@
+-- tempo: 100
+-- signature: 4/4
+-- parts: normal, fill1
+-- instrumentConfs: {"drums": "mod swing _grid=16"}
+
+[
+type: template;
+name: drums.funkFusion.normal;
+instrument: drums; 
+{
+    !ff"cy"1 | r2. r8 "spl" | 
+     r1      | r1           | 
+     r1      | r2. r8 "spl" | 
+}
+{
+   "ht"8 &   & &   &16& "ho"8   "ht" & |
+}
+{
+    \f
+    r4  "sn2"  r  &  |   
+}
+{
+    "bd"4 r  r8 &  r &     |
+}
+]
+
+
+[
+type: template;
+name: drums.funkFusion.fill1;
+instrument: drums; 
+{
+
+
+}
+{
+   "ht"8 &   &  &16 &   & & "ho" r r  & "hf" r |
+}
+{
+    \f
+    r4  "sn2"16 r8 &16 & r8 &16 & r4  |   
+}
+{
+    "bd"4   r    r16 & rrr & rr     |
+}
+]

@@ -1,0 +1,51 @@
+-- tempo: 80
+-- signature: 4/4
+-- parts: normal, bridge
+[
+type: template;
+name: drums.popSmoothJazz.normal;
+instrument: drums;
+{
+    \f
+    !f"rcym2"16  !pp"rcym1" !pp"rcym2" "rcym1"        !f"rcym2"  !pp"rcym1"  !pp"rcym2" "rcym1"     !f"rcym2"  !pp"rcym1" "rcym2" !f"rcym1"   !f"rcym2"  !pp"rcym1" "rcym2" !f"rcym1"
+}
+{
+    \p
+    r16 "lcon" r16 "lcon"    !f"mcon"4       r16 "lcon" r16 "lcon"    !f"mcon"8  "lcon"8
+}
+{
+    r2 r8. "mtr"16  "otr"16 r8.
+}
+{
+    \ff
+    r4 "hf"4 r4 "hf"4
+}   
+{
+   \f
+   "bd"4  r8. !p"bd"16   "bd"8 !p"bd"8   r4  | 
+}      
+]
+
+[
+type: template;
+name: drums.popSmoothJazz.bridge;
+instrument: drums;
+{
+    \ff
+   r16 !f"mtr" r16 !f<"mtr" "tmb">  <"otr" "tmb">4     r16 !f"mtr" r16 <"mtr" "tmb">    !p<"otr" "tmb">16  <"mtr" "otr"> r !ppp"mtr"
+}
+{
+    \f
+    "lcon"8. "ocon"16    r16  "lcon" <"lcon" "mcon">8    r16 "lcon" r16 !fff"lcon"   r16 !p"ocon" <"lcon" "mcon">8 
+}
+{
+    !ff"ht"16 !pppp&  !f&  !p&    r !ff"ho" !f"ht" !pp&   !fff"ht"16 !p&  !pp&  !p&    !ff"ht"16 !pppp&  !f&  !p&
+}
+{
+    r4 !fff"ss"  r  !fff"ss"   
+}
+{
+   \f
+   "bd"4  r8. !p"bd"16   "bd"8 !p"bd"8   r8 "bd"8  | 
+}      
+] 

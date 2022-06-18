@@ -1,0 +1,17 @@
+-- tempo: 115
+-- signature: 4/4
+-- parts: normal
+
+
+[
+type: template;
+name: drums.countryShuffle.normal;
+instrument: drums; 
+{
+    ("ht" r !p"ht")4  ("ht" r !p"ht")4  ("ht" r !p"ht")4  ("ht" r !p"ht")1
+}
+{
+    \ff
+    ("bd" r r)4   (r r !f"bd")4  ("bd" r r)4  (r r !f"bd")4 |
+}
+]

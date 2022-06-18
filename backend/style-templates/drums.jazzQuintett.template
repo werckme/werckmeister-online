@@ -1,0 +1,21 @@
+-- tempo: 200
+-- signature: 4/4
+-- parts: normal
+
+using "./lua/mods/swing.lua";
+
+[
+type: template;
+name: drums.jazzQuintett.normal;
+instrument: drums; 
+{
+    /mod: swing _offset=70/
+    
+    \p
+    "ht"4   !f&8 &    &4     !f&8 & |
+}
+{
+    \pp
+    "bd"2 !ppp& |
+}
+]

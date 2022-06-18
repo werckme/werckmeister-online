@@ -1,0 +1,21 @@
+-- tempo: 100
+-- signature: 4/4
+-- parts: normal
+-- instrumentConfs: {"rhythm": "volume 75 mod swing _grid=16 _set=mod _use=guitarStroke", "rhythm2": "volume 60 mod swing _grid=16"}
+
+using "./lua/mods/staccato.lua";
+using "./lua/mods/guitarStroke.lua";
+
+[
+type: template;
+name: rhythm.funkFusion.normal;
+instrument: rhythm; 
+{
+    <I V>8.  I16 r8  <I V>16 V  r4  I16  <I V>16 r8 |
+    <I V>8.  I16 r8. <I V>16~ & &8.   I16 I8.  |
+}
+{
+    <III, VII,>8.  &16 r8  VII,16 &  r4  <III,, VII,>16  VII,16 r8 |
+    <III, VII,>8.  &16 r8. <III, VII,>16~ VII, VII,8.   <III, VII,>16 VII,,8.
+}
+]
