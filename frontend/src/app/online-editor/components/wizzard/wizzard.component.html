@@ -3,8 +3,8 @@
     <nz-progress *ngIf="playerPrepareProgressPercent !== null" nzStatus="normal" [nzShowInfo]="false"
         [nzPercent]="playerPrepareProgressPercent"></nz-progress>
     <div class="configurator">
-        <nz-select nzShowSearch nzPlaceHolder="input search text" [nzShowArrow]="false">
-            <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.key" [nzLabel]="style.key"></nz-option>
+        <nz-select nzShowSearch nzPlaceHolder="input search text" [nzShowArrow]="false" [(ngModel)]="selectedStyleTemplates" (ngModelChange)="onStyleSelected($event)">
+            <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.value" [nzLabel]="style.key"></nz-option>
         </nz-select>
     </div>
     <div class="editor">

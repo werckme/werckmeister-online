@@ -1,9 +1,19 @@
-export const text = `device: MyMidiDevice midi _usePort=1; --WM-HIDDEN-LINE
-instrumentDef: piano _onDevice=MyMidiDevice  _ch=0   _pc=0  _cc=0;
-tempo: 130;
+export const text = `$USINGS
+using "./myPitchmap.pitchmap";
+using "./default.chords";
+device: MyDevice midi _isType=webPlayer _useFont="FluidR3-GM"; 
+
+instrumentDef: rhythm _onDevice=MyDevice _ch=0 _pc=0;
+instrumentDef: rhythm2 _onDevice=MyDevice _ch=0 _pc=0;
+instrumentDef: bass _onDevice=MyDevice _ch=1 _pc=0;
+instrumentDef: drums _onDevice=MyDevice _ch=9 _pc=0;
+instrumentDef: piano _onDevice=MyDevice _ch=3 _pc=0; -- workaround
+
+tempo: $TEMPO;
 [
-instrument: piano;
+type: accomp;
 {
-    c4 d e f | g1 
+    $TEMPLATES
+    C7 | C7 | Fmaj7 | Fmaj7 | C7 | C7 | G7 | F7 | C7 | G7 |
 }
 ]`;

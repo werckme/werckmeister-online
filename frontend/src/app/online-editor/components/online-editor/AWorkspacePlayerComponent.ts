@@ -29,6 +29,8 @@ export interface IWorkspaceElement extends HTMLElement {
     onCompiled: (document) => void;
     onStateChanged: (old: PlayerState, new_: PlayerState) => void;
     beginQuarters: number;
+    addFile(path: string, data: string): Promise<void>;
+    removeFile(path: string): Promise<void>;
 }
 
 export interface ICompilerError {
@@ -60,8 +62,8 @@ export abstract class AWorkspacePlayerComponent {
         return this.workspaceEl.element.nativeElement as IWorkspaceElement;
     }
 
-    protected abstract onCompilerError(error: ICompilerError);
-    protected abstract onWerckCompiled(document: any);
+    protected onCompilerError(error: ICompilerError) {}
+    protected onWerckCompiled(document: any) {}
     protected onPlayerStateChanged(old: PlayerState, new_: PlayerState) {
         if (old == new_) {
             return;

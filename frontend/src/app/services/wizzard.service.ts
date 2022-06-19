@@ -3,7 +3,7 @@ import { ARestService } from './arest.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
-export interface ITemplateInfo {
+export interface IStyleFileInfo {
   id: string;
   metaData: {
     title: string;
@@ -15,7 +15,7 @@ export interface ITemplateInfo {
   }
 }
 
-export interface ITemplate {
+export interface IStyleFile {
   id: string;
   data: string;
 }
@@ -30,11 +30,11 @@ export class WizzardService extends ARestService{
     super(http);
   }
 
-  public async getTemplates(): Promise<ITemplateInfo[]> {
-    return this.get<ITemplateInfo[]>('styleTemplates');
+  public async getStyles(): Promise<IStyleFileInfo[]> {
+    return this.get<IStyleFileInfo[]>('styleTemplates');
   }
 
-  public async getTemplate(id: string): Promise<ITemplate> {
-    return this.get<ITemplate>(`styleTemplate/${id}`);
+  public async getStyleFile(id: string): Promise<IStyleFile> {
+    return this.get<IStyleFile>(`styleTemplate/${id}`);
   }
 }

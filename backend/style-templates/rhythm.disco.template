@@ -3,8 +3,8 @@
 -- parts: normal
 [
 type: template;
-name: piano.disco.normal;
-instrument: piano;
+name: rhythm.disco.normal;
+instrument: rhythm;
 { 
     \fff <I II III IV V VI VII>2. r16  \ff<I II III IV V VI VII>16 r8 |
 }   
