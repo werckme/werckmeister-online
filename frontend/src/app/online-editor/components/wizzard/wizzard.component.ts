@@ -7,8 +7,15 @@ import { text as mainSheetText } from './main.sheet';
 import { text as pitchmapText } from './myPitchmap.pitchmap';
 import { text as chordsText } from './default.chords';
 import { waitAsync } from 'src/shared/help/waitAsync';
+import { IWorkspace, IFile } from '../../services/workspaceStorage';
 
 type Styles = { [key: string]: IStyleFileInfo[] };
+
+class WizzardWorkspace implements IWorkspace {
+	wid: string;
+	files: IFile[] = [];
+	styleInfos: IStyleFileInfo[] = [];
+}
 
 @Component({
 	selector: 'app-wizzard',
@@ -18,7 +25,8 @@ type Styles = { [key: string]: IStyleFileInfo[] };
 export class WizzardComponent extends AWorkspacePlayerComponent implements AfterViewInit {
 	public selectedStyleTemplates: IStyleFileInfo[]; 
 	public styles: Styles = {}
-	private currentStyleFiles: {file:IStyleFile, info: IStyleFileInfo}[] = [];
+	private currenWorkspace: WizzardWorkspace = new WizzardWorkspace();
+
 	@ViewChild("workspace", { read: ViewContainerRef }) workspaceEl: ViewContainerRef;
 	@ViewChild("editor", { read: ViewContainerRef }) editor: ViewContainerRef;
 	constructor(private service: WizzardService, notification: NzNotificationService) {
@@ -38,14 +46,14 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	}
 
 	private updateSheet(): void {
-		const styleInfo = _.first(this.currentStyleFiles)?.info;
+		const styleInfo = _.first(this.currenWorkspace.styleInfos);
 		if (!styleInfo) {
 			return;
 		}
-		const usings = this.currentStyleFiles.map(x => `using "./${x.file.id}";`)
-		const templates = this.currentStyleFiles.map(x => x.info.metaData).map(x => `${x.instrument}.${x.title}.normal`)
+		const usings = this.currenWorkspace.files.map(x => `using "./${x.path}";`)
+		const templates = this.currenWorkspace.styleInfos.map(x => x.metaData).map(x => `${x.instrument}.${x.title}.normal`)
 		const sheetText = mainSheetText
-			.replace(/\$TEMPLATES/g, `/template: ${templates.join('\n')}/`)
+			.replace(/\$TEMPLATES/g, `/template: ${templates.join('\n\t')}/`)
 			.replace(/\$USINGS/g, usings.join('\n'))
 			.replace(/\$TEMPO/g, (styleInfo.metaData.tempo || 120).toString());
 		this.editor.element.nativeElement.setScriptText(sheetText);
@@ -56,21 +64,25 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	}
 
 	private async clearWorkspace(): Promise<void> {
-		this.currentStyleFiles = [];
-		for(const styleFile of this.currentStyleFiles) {
-			await this.workspaceComponent.removeFile(styleFile.file.id);
+		for(const workspaceFile of this.currenWorkspace.files) {
+			await this.workspaceComponent.removeFile(workspaceFile.path);
 		}
+		this.currenWorkspace = new WizzardWorkspace();
 	}
 
-	public async onStyleSelected(styleFiles: IStyleFileInfo[]): Promise<void> {
+	public async onStyleSelected(styleFileInfos: IStyleFileInfo[]): Promise<void> {
+		const addFile = async (path: string, data: string) => {
+			this.currenWorkspace.files.push({path, data});
+			await this.workspaceComponent.addFile(path, data);
+		};
 		await this.clearWorkspace();
-		for(const styleFile of styleFiles) {
-			const file = await this.service.getStyleFile(styleFile.id);
-			this.currentStyleFiles.push({file, info: styleFile});
-			await this.workspaceComponent.addFile(file.id, file.data);
+		for(const styleFileInfo of styleFileInfos) {
+			const file = await this.service.getStyleFile(styleFileInfo.id);
+			this.currenWorkspace.styleInfos.push(styleFileInfo);
+			await addFile(file.id, file.data);
 		}
-		await this.workspaceComponent.addFile("myPitchmap.pitchmap", pitchmapText);
-		await this.workspaceComponent.addFile("default.chords", chordsText);
+		await addFile("myPitchmap.pitchmap", pitchmapText);
+		await addFile("default.chords", chordsText);
 		this.updateSheet();
 	}
 
