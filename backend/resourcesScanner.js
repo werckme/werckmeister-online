@@ -1,5 +1,4 @@
 const fs = require("fs");
-const fsp = require("fs/promises");
 const path = require('path');
 const presetDir = './presets';
 const externalResourcesDir = './externalResources';
@@ -22,7 +21,7 @@ function loadWorkspaceFiles(presetFolder) {
 
 async function loadTemplate(id) {
     const target = path.join(templateDir, id);
-    const data = await fsp.readFile(target);
+    const data = fs.readFileSync(target);
     return data.toString();
 }
 
