@@ -22,8 +22,7 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { WizzardComponent } from './components/wizzard/wizzard.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { SortedPipe } from '../pipes/sorted.pipe';
-
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 const icons: IconDefinition[] = [ PlusOutline, 
   DownloadOutline, 
@@ -54,6 +53,7 @@ const icons: IconDefinition[] = [ PlusOutline,
     NzProgressModule,
     NzPopconfirmModule,
     NzSelectModule,
+    NzAlertModule,
     NzIconModule.forRoot(icons),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -8,6 +8,8 @@ import { TmplLuaVoicing, TmplPitchmap, TmplSheetTemplate, TmplLuaMod, TmplConduc
 import * as _ from 'lodash';
 import { waitAsync } from 'src/shared/help/waitAsync';
 import { AWorkspacePlayerComponent, ICompilerError, IEditorElement, IWorkspaceElement, PlayerState } from './AWorkspacePlayerComponent';
+import * as JSZip from 'jszip';
+import * as FileSaver from 'file-saver';
 
 const CheckIsCleanIntervalMillis = 1000;
 
@@ -344,9 +346,21 @@ export class OnlineEditorComponent extends AWorkspacePlayerComponent implements 
     return this.pathExists(path) === false;
   }
 
+  public get widStr(): string {
+    return this.workspaceModel.wid ? `-${this.workspaceModel.wid}` : '';
+  }
+
   public download() {
-    const widStr = this.workspaceModel.wid ? `-${this.workspaceModel.wid}` : '';
-    (this.workspaceComponent as any).download(`Werckmeister${widStr}.mid`);
+    (this.workspaceComponent as any).download(`Werckmeister${this.widStr}.mid`);
+  }
+
+  public async downloadProject() {
+    const zip = new JSZip();
+    for(const file of this.workspaceModel.files) {
+      zip.file(file.path, file.data);
+    }
+    const data = await zip.generateAsync({type: "blob"});
+    FileSaver.saveAs(data, `Werckmeister${this.widStr}.zip`);
   }
 
   public onFocus(event: FocusEvent) {
@@ -361,4 +375,5 @@ export class OnlineEditorComponent extends AWorkspacePlayerComponent implements 
   isDimished(file: IFile) {
     return file.path.startsWith('_');
   }
+  
 }
