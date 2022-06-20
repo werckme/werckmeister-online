@@ -12,6 +12,6 @@ tempo: $TEMPO;
 type: accomp;
 {
     $TEMPLATES
-    C7 | C7 | Fmaj7 | Fmaj7 | C7 | C7 | G7 | F7 | C7 | G7 |
+    $CHORDS
 }
 ]`;

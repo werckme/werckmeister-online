@@ -29,7 +29,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	private workspaceModel: WizzardWorkspace = new WizzardWorkspace();
 
 	@ViewChild("workspace", { read: ViewContainerRef }) workspaceEl: ViewContainerRef;
-	@ViewChild("editor", { read: ViewContainerRef }) editor: ViewContainerRef;
+	@ViewChild("chords", { read: ViewContainerRef }) chords: ViewContainerRef;
 	constructor(private service: WizzardService, 
 		notification: NzNotificationService, 
 		private router: Router, 
@@ -44,26 +44,12 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 			.groupBy(x => x.metaData.title)
 			.value();
 		const workspaceNEl = this.workspaceComponent;
-		workspaceNEl.registerEditor(this.editor.element.nativeElement);
+		//workspaceNEl.registerEditor(this.editor.element.nativeElement);
 		await waitAsync(10);
 		this.selectedGenre = _(this.styles).keys().sort().first();
 		this.switchGenre(this.selectedGenre);
 	}
 
-	private updateSheet(): void {
-		const styleInfo = _.first(this.workspaceModel.styleInfos);
-		if (!styleInfo) {
-			return;
-		}
-		const usings = this.workspaceModel.files.map(x => `using "./${x.path}";`)
-		const templates = this.workspaceModel.styleInfos.map(x => x.metaData).map(x => `${x.instrument}.${x.title}.normal`)
-		const sheetText = mainSheetText
-			.replace(/\$TEMPLATES/g, `/template: ${templates.join('\n\t')}\n\t/`)
-			.replace(/\$USINGS/g, usings.join('\n'))
-			.replace(/\$TEMPO/g, (styleInfo.metaData.tempo || 120).toString());
-		this.workspaceModel.files.push({path: "main.sheet", data: sheetText});
-		this.editor.element.nativeElement.setScriptText(sheetText);
-	}
 
 	protected onCompilerError(error: ICompilerError): void {
 		this.notification.error("", error.errorMessage)
@@ -91,18 +77,40 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 			}
 			await addFile("myPitchmap.pitchmap", pitchmapText);
 			await addFile("default.chords", chordsText);
-			this.updateSheet();
 		} catch {
 			this.notification.error("", `failed to fetch style infos`);
 		}
 	}
 
+	public createMainSheet(): string {
+		const styleInfo = _.first(this.workspaceModel.styleInfos);
+		if (!styleInfo) {
+			return;
+		}
+		const usings = this.workspaceModel.files.map(x => `using "./${x.path}";`)
+		const templates = this.workspaceModel.styleInfos.map(x => x.metaData).map(x => `${x.instrument}.${x.title}.normal`)
+		const sheetText = mainSheetText
+			.replace(/\$TEMPLATES/g, `/template: ${templates.join('\n\t')}\n\t/`)
+			.replace(/\$USINGS/g, usings.join('\n'))
+			.replace(/\$TEMPO/g, (styleInfo.metaData.tempo || 120).toString())
+			.replace(/\$CHORDS/g, this.chords.element.nativeElement.value);
+		return sheetText;
+	}
+
 	public async createProject(): Promise<void> {
+		const sheetText = this.createMainSheet();
+		this.workspaceModel.files.push({path: "main.sheet", data: sheetText});
 		const request = {
 			wid: null,
 			files: this.workspaceModel.files
 		};
 		const response = await this.workspaceService.updateWorkspace(request);
 		this.router.navigate(['/editor'], {queryParams: {wid: response.wid}});
+	}
+
+	public async play(): Promise<void> {
+		const text = this.createMainSheet();
+		await this.workspaceComponent.addFile("main.sheet", text);
+		this.workspaceComponent.play();
 	}
 }

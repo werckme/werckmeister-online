@@ -8,12 +8,11 @@
             <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.key" [nzLabel]="style.key"></nz-option>
         </nz-select>
     </div>
+    <button nz-button nzType="primary" (click)="play()">Play</button>
     <div class="editor">
-        <werckmeister-workspace #workspace>
+        <werckmeister-workspace #workspace wm-css-url="/assets/werckmeister-wizzard.css">
         </werckmeister-workspace>
-        <werckmeister-editor #editor [attr.wm-filename]="'main.sheet'"
-            wm-style="height: 100%; width: 100%; border: none">
-        </werckmeister-editor>
+        <textarea #chords id="w3review" name="w3review" rows="4" cols="50">C7 | C7 | Fmaj7 | Fmaj7 | C7 | C7 | G7 | F7 | C7 | G7 |</textarea>
     </div>
     <button nz-button nzType="primary" (click)="createProject()">Create Project</button>
 </div>
