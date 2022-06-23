@@ -108,10 +108,8 @@ function getStyleTemplateMetaData(templateFilePath) {
         metaData.signature = getInfo('SIGNATURE', metaData.header);
         metaData.parts = getInfo('PARTS', metaData.header).split(',').map(x => x.trim());
         metaData.tempo = Number.parseFloat(getInfo('TEMPO', metaData.header));
-        metaData.instrumentConfigs = getInfo('INSTRUMENTCONFS', metaData.header);
-        if (metaData.instrumentConfigs) {
-            metaData.instrumentConfigs = JSON.parse(metaData.instrumentConfigs);
-        }
+        metaData.instrumentDef = getInfo('INSTRUMENTDEF', metaData.header);
+        metaData.instrumentConfig = getInfo('INSTRUMENTCONF', metaData.header);
         const fileNameMatch = fileName.match(/(?<instrument>\w+)\.(?<name>\w+).\w+/)
         if (!fileNameMatch.groups || !fileNameMatch.groups.instrument || !fileNameMatch.groups.name) {
             throw new Error("invalid file name: " + fileName);

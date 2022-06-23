@@ -1,6 +1,6 @@
 -- tempo: 120
 -- signature: 4/4
--- parts: normal, ende
+-- parts: normal, end
 using "lua/voicings/guitar.lua";
 
 [
@@ -16,7 +16,7 @@ instrument: rhythm;
 
 [
 type: template;
-name: rhythm.country.ende;
+name: rhythm.country.end;
 instrument: rhythm; 
 {
     /doOnce: arpeggio/

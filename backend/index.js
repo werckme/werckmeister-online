@@ -15,7 +15,8 @@ const templateFields =  [
     "metaData.signature", 
     "metaData.tempo", 
     "metaData.instrument",
-    "metaData.instrumentConfigs"
+    "metaData.instrumentConfig",
+    "metaData.instrumentDef"
 ]
 
 const NotListedTag = 'not-listed';

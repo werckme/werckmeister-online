@@ -43,8 +43,6 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		this.styles = _(templates)
 			.groupBy(x => x.metaData.title)
 			.value();
-		const workspaceNEl = this.workspaceComponent;
-		//workspaceNEl.registerEditor(this.editor.element.nativeElement);
 		await waitAsync(10);
 		this.selectedGenre = _(this.styles).keys().sort().first();
 		this.switchGenre(this.selectedGenre);
@@ -64,6 +62,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 
 	public async switchGenre(style: string): Promise<void> {
 		try {
+			await this.workspaceComponent.stop();
 			const styleFileInfos = this.styles[style];
 			const addFile = async (path: string, data: string) => {
 				this.workspaceModel.files.push({path, data});
@@ -82,6 +81,29 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		}
 	}
 
+	private getInstrumentConfParams(styleInfo: IStyleFileInfo) {
+		const hasDefInfo = styleInfo.metaData.instrumentDef;
+		const instrumentName = styleInfo.metaData.instrument;
+		return hasDefInfo ? `${instrumentName} ${styleInfo.metaData.instrumentDef}` : `${instrumentName} _pc=0`;
+	}
+
+	private getInstrumentDefParams(styleInfo: IStyleFileInfo) {
+		return styleInfo.metaData.instrumentConf || `${styleInfo.metaData.instrument} volume 100`;
+	}
+
+	private createInstruments(): string[] {
+		const result:string[] = []
+		let midiChannel = 0;
+		for(const styleInfo of this.workspaceModel.styleInfos) {
+			const isDrums = styleInfo.metaData.instrument === 'drums';
+			const instrumentChannel = isDrums ? 9 : midiChannel++;
+			const instrumentDef = `instrumentDef: ${this.getInstrumentConfParams(styleInfo)} _onDevice="MyDevice" _ch=${instrumentChannel};`;
+			const instrumentConf = `instrumentConf: ${this.getInstrumentDefParams(styleInfo)};`;
+			result.push(instrumentDef, instrumentConf);
+		}
+		return result;
+	}
+
 	public createMainSheet(): string {
 		const styleInfo = _.first(this.workspaceModel.styleInfos);
 		if (!styleInfo) {
@@ -89,11 +111,13 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		}
 		const usings = this.workspaceModel.files.map(x => `using "./${x.path}";`)
 		const templates = this.workspaceModel.styleInfos.map(x => x.metaData).map(x => `${x.instrument}.${x.title}.normal`)
+		const instruments = this.createInstruments();
 		const sheetText = mainSheetText
 			.replace(/\$TEMPLATES/g, `/template: ${templates.join('\n\t')}\n\t/`)
 			.replace(/\$USINGS/g, usings.join('\n'))
 			.replace(/\$TEMPO/g, (styleInfo.metaData.tempo || 120).toString())
-			.replace(/\$CHORDS/g, this.chords.element.nativeElement.value);
+			.replace(/\$CHORDS/g, this.chords.element.nativeElement.value)
+			.replace(/\$INSTRUMENTS/g, instruments.join("\n"));
 		return sheetText;
 	}
 
