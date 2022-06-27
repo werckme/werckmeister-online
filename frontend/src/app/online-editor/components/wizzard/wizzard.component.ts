@@ -142,7 +142,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 
 	public findInstuments(instrument: string) {
 		return this.allStyleFileInfos
-			.filter(x => x.id.startsWith(instrument));
+			.filter(x => x.id.startsWith(`${instrument}.`));
 	}
 
 	public async play(): Promise<void> {
