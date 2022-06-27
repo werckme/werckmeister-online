@@ -28,7 +28,6 @@ export class OnlineEditorComponent extends AWorkspacePlayerComponent implements 
   private clockUpdateMillis: number = 200;
   private clockStartTime: number = 0;
   public elapsedQuaters: number = 0;
-  public playerState: PlayerState = PlayerState.Stopped;
   public bpm: number = 120;
   private beginQuarters: number = 0;
   private _beginQuartersStr : string = "0";
@@ -129,7 +128,6 @@ export class OnlineEditorComponent extends AWorkspacePlayerComponent implements 
     if (new_ === PlayerState.Stopped) {
       this.onPlayerStoped();
     }
-    this.playerState = new_;
   }
 
   private onPlayerStarted() {

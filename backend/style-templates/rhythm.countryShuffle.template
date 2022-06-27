@@ -2,19 +2,6 @@
 -- signature: 4/4
 -- parts: normal
 -- instrumentConfs: { "rhythm2": "voicingStrategy simple _importantDegree=\"II VI\"" }
-
-[
-type: template;
-name: rhythm.countryShuffle.normal;
-instrument: rhythm2; 
-{
-    <II V VII>4 r2.         |  (r r I~)4 I4  &4  &4  |
-}
-{
-   <III, V,>2  !f&4  r | (r r V,)4  (I,, r V,,)4  (<III, V,>  r  I,,)4  (VI,  r I,)4 |
-}
-]
-
 [
 type: template;
 name: rhythm.countryShuffle.normal;

@@ -41,9 +41,14 @@ export interface ICompilerError {
 }
 
 export abstract class AWorkspacePlayerComponent {
+    public playerState: PlayerState = PlayerState.Stopped;
     private _playerPrepareProgressPercent: number | null = null;
     protected initialProgressPercent = 5;
     public abstract workspaceEl: ViewContainerRef;
+
+    public get isPlaying(): boolean {
+        return this.playerState !== PlayerState.Stopped;
+    }
 
     constructor(protected notification: NzNotificationService) {
 
@@ -77,6 +82,7 @@ export abstract class AWorkspacePlayerComponent {
         if (new_ === PlayerState.Stopped) {
             this._playerPrepareProgressPercent = null;
         }
+        this.playerState = new_;
     }
 
     protected initWorkspace() {

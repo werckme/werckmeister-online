@@ -1,18 +1,49 @@
 <div class="werckmeister-wizzard">
+    
     <h2>Werckmeister Wizzard</h2>
-    <h3><nz-alert nzType="warning" nzMessage="work in progress"></nz-alert></h3>
+    
+    <h3>
+        <nz-alert nzType="warning" nzMessage="work in progress"></nz-alert>
+    </h3>
+
     <nz-progress *ngIf="playerPrepareProgressPercent !== null" nzStatus="normal" [nzShowInfo]="false"
         [nzPercent]="playerPrepareProgressPercent"></nz-progress>
+
     <div class="configurator">
-        <nz-select nzShowSearch nzPlaceHolder="input search text" [nzShowArrow]="false" [(ngModel)]="selectedGenre" (ngModelChange)="switchGenre($event)">
-            <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.key" [nzLabel]="style.key"></nz-option>
-        </nz-select>
+    
+        <div class="genre">
+
+            <span class="label">Genre</span>
+            <nz-select nzShowSearch nzPlaceHolder="find genre" [nzShowArrow]="false" [(ngModel)]="selectedGenre"
+                (ngModelChange)="switchGenre($event)">
+                <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.key" [nzLabel]="style.key">
+                </nz-option>
+            </nz-select>
+
+        </div>
+    
+        <div class="details">
+    
+            <div *ngFor="let instrument of workspaceModel.instruments; index as index">
+                <span class="label">{{instrument.metaData.instrument}}</span>
+                <nz-select [compareWith]="styleComparer" nzShowSearch nzPlaceHolder="find instrument"
+                    [nzShowArrow]="false" [ngModel]="workspaceModel.instruments[index]"
+                    (ngModelChange)="instrumentChange($event, index)">
+                    <nz-option *ngFor="let style of findInstuments(instrument.metaData.instrument)" [nzValue]="style" [nzLabel]="style.id">
+                    </nz-option>
+                </nz-select>
+            </div>
+
+        </div>
     </div>
-    <button nz-button nzType="primary" (click)="play()">Play</button>
+    
+    <button *ngIf="!isPlaying" nz-button nzType="primary" (click)="play()">Play</button>
+    <button *ngIf="isPlaying" nz-button nzType="primary" (click)="stop()">Stop</button>
+
     <div class="editor">
         <werckmeister-workspace #workspace wm-css-url="/assets/werckmeister-wizzard.css">
         </werckmeister-workspace>
-        <textarea #chords rows="4" cols="50">A-7    | D7    | Gmaj7  | 
+        <textarea #chords rows="4" cols="50" spellcheck="false">A-7    | D7    | Gmaj7  | 
 Cmaj7  | F#-7b5 | B7    | E- </textarea>
     </div>
     <button nz-button nzType="primary" (click)="createProject()">Create Project</button>
