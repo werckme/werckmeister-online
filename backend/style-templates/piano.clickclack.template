@@ -1,14 +1,14 @@
 -- TEMPO: 140
 -- SIGNATURE: 3/4
 -- PARTS: normal
--- INSTRUMENTDEF: _pc=33
--- INSTRUMENTCONF: volume 100 voicingStrategy simple _importantDegree=IV
+-- INSTRUMENTDEF: _pc=0
+-- INSTRUMENTCONF: volume 75 voicingStrategy simple _importantDegree=IV
 -- USINGS: ["/lua/voicings/simple.lua"]
 
 [
 type: template;
-name: bass.clickclack.normal;
-instrument: bass;
+name: piano.clickclack.normal;
+instrument: piano;
 {
     /signature: 3 4/
     <IV,,,>4. <III,,,>8 <I,,,>4 |

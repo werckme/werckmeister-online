@@ -1,6 +1,8 @@
--- tempo: 120
--- signature: 4/4
--- parts: normal, ende
+-- TEMPO: 120
+-- SIGNATURE: 4/4
+-- PARTS: normal, end
+-- INSTRUMENTDEF: _pc=33
+-- INSTRUMENTCONF: volume 100
 [
 type: template;
 name: bass.country.normal;
@@ -12,7 +14,7 @@ instrument: bass;
 
 [
 type: template;
-name: bass.country.ende;
+name: bass.country.end;
 instrument: bass; 
 {
     I,,1 |

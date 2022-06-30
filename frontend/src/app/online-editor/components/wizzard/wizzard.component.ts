@@ -89,14 +89,15 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		}
 	}
 
-	private getInstrumentConfParams(styleInfo: IStyleFileInfo) {
+	private getInstrumentDefParams(styleInfo: IStyleFileInfo) {
 		const hasDefInfo = styleInfo.metaData.instrumentDef;
 		const instrumentName = styleInfo.metaData.instrument;
 		return hasDefInfo ? `${instrumentName} ${styleInfo.metaData.instrumentDef}` : `${instrumentName} _pc=0`;
 	}
 
-	private getInstrumentDefParams(styleInfo: IStyleFileInfo) {
-		return styleInfo.metaData.instrumentConf || `${styleInfo.metaData.instrument} volume 100`;
+	private getInstrumentConfigParams(styleInfo: IStyleFileInfo) {
+		const hasConfInfo = styleInfo.metaData.instrumentConfig;
+		return hasConfInfo ? `${styleInfo.metaData.instrument} ${styleInfo.metaData.instrumentConfig}` : `${styleInfo.metaData.instrument} volume 100`;
 	}
 
 	private createInstruments(): string[] {
@@ -105,8 +106,8 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		for(const styleInfo of this.workspaceModel.instruments) {
 			const isDrums = styleInfo.metaData.instrument === 'drums';
 			const instrumentChannel = isDrums ? 9 : midiChannel++;
-			const instrumentDef = `instrumentDef: ${this.getInstrumentConfParams(styleInfo)} _onDevice="MyDevice" _ch=${instrumentChannel};`;
-			const instrumentConf = `instrumentConf: ${this.getInstrumentDefParams(styleInfo)};`;
+			const instrumentDef = `instrumentDef: ${this.getInstrumentDefParams(styleInfo)} _onDevice="MyDevice" _ch=${instrumentChannel};`;
+			const instrumentConf = `instrumentConf: ${this.getInstrumentConfigParams(styleInfo)};`;
 			result.push(instrumentDef, instrumentConf);
 		}
 		return result;
@@ -117,7 +118,12 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		if (!styleInfo) {
 			return;
 		}
-		const usings = this.workspaceModel.files.map(x => `using "./${x.path}";`)
+		let templateUsings = _(this.workspaceModel.instruments)
+			.map(x => x.metaData.usings)
+			.flatten()
+			.map(x => `using "${x}";`)
+			.value();
+		const usings = templateUsings.concat(this.workspaceModel.files.map(x => `using "./${x.path}";`));
 		const templates = this.workspaceModel.instruments.map(x => x.metaData).map(x => `${x.instrument}.${x.title}.normal`)
 		const instruments = this.createInstruments();
 		const sheetText = mainSheetText

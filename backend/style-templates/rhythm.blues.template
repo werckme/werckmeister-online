@@ -1,6 +1,9 @@
--- tempo: 120
--- signature: 4/4
--- parts: normal
+-- TEMPO: 120
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=27
+-- INSTRUMENTCONF: volume 70
+
 -- instrumentConfs: { "rhythm": "voicingStrategy simple _importantDegree=VI" }
 
 using "lua/mods/swing.lua";

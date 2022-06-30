@@ -16,7 +16,8 @@ const templateFields =  [
     "metaData.tempo", 
     "metaData.instrument",
     "metaData.instrumentConfig",
-    "metaData.instrumentDef"
+    "metaData.instrumentDef",
+    "metaData.usings"
 ]
 
 const NotListedTag = 'not-listed';

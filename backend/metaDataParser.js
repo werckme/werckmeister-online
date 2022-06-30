@@ -3,7 +3,7 @@ const path = require('path');
 const _ = require('lodash');
 
 function getHeaderCommentSection(text) {
-    const lines = text.split('\n');
+    const lines = text.split(/\n|\r\n/);
     let resultLines = [];
     let inCommentSeciton = false;
     for (const line of lines) {
@@ -27,7 +27,7 @@ function getHeaderCommentSection(text) {
 }
 
 function getInfo(name, text, required) {
-    const lines = text.split('\n');
+    const lines = text.split(/\n|\r\n/);
     const resultLines = [];
     let takeNext = false;
     for (const line of lines) {
@@ -61,7 +61,7 @@ function getPreviewText(text, maxLines = 10) {
     if (!previewMatch || previewMatch.length < 1) {
         return "";
     }
-    let lines = previewMatch[1].split('\n')
+    let lines = previewMatch[1].split(/\n|\r\n/)
         .filter(line => line.trim().length > 0)
         .slice(0, maxLines)
         .map(line => line.trim());
@@ -110,6 +110,7 @@ function getStyleTemplateMetaData(templateFilePath) {
         metaData.tempo = Number.parseFloat(getInfo('TEMPO', metaData.header));
         metaData.instrumentDef = getInfo('INSTRUMENTDEF', metaData.header);
         metaData.instrumentConfig = getInfo('INSTRUMENTCONF', metaData.header);
+        metaData.usings = JSON.parse(getInfo('USINGS', metaData.header) || "[]");
         const fileNameMatch = fileName.match(/(?<instrument>\w+)\.(?<name>\w+).\w+/)
         if (!fileNameMatch.groups || !fileNameMatch.groups.instrument || !fileNameMatch.groups.name) {
             throw new Error("invalid file name: " + fileName);

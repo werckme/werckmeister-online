@@ -25,18 +25,3 @@ instrument: rhythm;
     !f"x"@<I II III IV V VI VII> 
 }
 ]
-
-[
-type: template;
-name: rhythm.jazzQuintett.normal;
-instrument: rhythm2; 
-{
-   
-    /mod: swing/
-    
-    \pp
-    <I II III IV V VI VII>2 !p(r r <I II III IV V VI VII>~)4 <I II III IV V VI VII>8 r |
-    <I II III IV V VI VII>1~ |
-    <I II III IV V VI VII>1
-}
-]

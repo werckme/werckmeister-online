@@ -19,19 +19,3 @@ instrument: rhythm;
     <I II III IV V VI VII>8  !p"x"@<III IV V VI VII>16 r |
 }
 ]
-
-
-
-[
-type: template;
-name: rhythm.rockBallad.normal;
-instrument: rhythm2; 
-{
-    /mod: staccato/
-    <I II III IV V VI VII>4 &&& | &&& &8 I |
-}
-{
-    <I,,, VII>8  I,,  VII  V,,,    <I,,, VII>8  I,,  VII  V,,, |
-    <I,,, VII>8  I,,  VII  V,,,    <I,,, VII>8  I,,  VII  V,,,16 VII |
-}
-]

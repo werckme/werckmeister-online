@@ -4,7 +4,7 @@
 [
 type: template;
 name: rhythm.jazzSwing.normal;
-instrument: rhythm2; 
+instrument: rhythm; 
 {
    \f
    <I,, V, VII, I III>1~    |   &4  (r r &) r2 |

@@ -5,8 +5,8 @@ using "lua/voicings/simple.lua";
 
 [
 type: template;
-name: piano.jazz.normal;
-instrument: piano;
+name: rhythm.jazz.normal;
+instrument: rhythm;
 {
     /voicingStrategy: simple _range=baritone/
      I,,2. r8 V,,8 |

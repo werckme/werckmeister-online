@@ -31,6 +31,7 @@ async function updateTemplate(template, docs) {
 
     const dbStyleTemplates = db.get('styleTemplates');
     await dbStyleTemplates.createIndex({ id: 1 }, { unique: true });
+    dbStyleTemplates.drop();
 
     let promises = listPresets() 
         .map(x => ({metaData: getSheetMetaData(`./presets/${x}/main.sheet`), wid: x}))

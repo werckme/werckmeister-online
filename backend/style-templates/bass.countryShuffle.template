@@ -1,6 +1,8 @@
--- tempo: 115
--- signature: 4/4
--- parts: normal
+-- TEMPO: 115
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=33
+-- INSTRUMENTCONF: volume 100
 
 [
 type: template;

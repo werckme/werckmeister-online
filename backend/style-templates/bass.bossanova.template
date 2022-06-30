@@ -1,6 +1,8 @@
--- tempo: 120
--- signature: 4/4
--- parts: normal
+-- TEMPO: 120
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=33
+-- INSTRUMENTCONF: volume 100
 [
 type: template;
 name: bass.bossanova.normal;

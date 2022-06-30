@@ -12,7 +12,8 @@ export interface IStyleFileInfo {
     signature: string;
     tempo: number;
     instrumentDef?: string;
-    instrumentConf?: string;
+    instrumentConfig?: string;
+    usings: string[];
   }
 }
 

@@ -1,4 +1,5 @@
-export const text = `"bd": c,,,,
+export const text = `"bd": c,,
+"bd2": b,,,
 "o": c,,
 "sn": d,,
 "sn2": d,,
@@ -29,6 +30,8 @@ export const text = `"bd": c,,,,
 "lto": g,,      -- low tom
 "lto1": g,,
 "lto2": f,,
+"rcym1": eb,,,  -- ride cymbal 1
+"rcym2": b,,,  -- ride cymbal 2
 "rdbell": b,
 "mtr": ab'    -- muted triangle
 "otr": a'     -- open triangle
@@ -42,9 +45,15 @@ export const text = `"bd": c,,,,
 "cui2": g'    -- cuica 2
 "cwb": g#,   -- cowbell
 "cla": d#'   -- claves
-
+"mcon":d      -- mute high conga
+"ocon":d#     -- open conga
+"lcon":e      -- low conga
+"tmb":f#,    -- tambourine 
 "cr": c#,      -- crash cymal
 "t1": c,       -- high tom 
 "t2": b,,      -- middle tom
 "t3": g,,      -- low tom
-"t4": f,,`;
+"t4": f,,
+"brsw": e,,     -- brush swirl
+"brtp": d,,     -- brush tap
+"brsp": d#,,     -- brush slap`;
