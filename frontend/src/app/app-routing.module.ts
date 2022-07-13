@@ -13,6 +13,7 @@ import { CreatorComponent } from './components/pages/creator/creator.component';
 import { ManualPageComponent } from './components/pages/manual-page/manual-page.component';
 import { ExtrasComponent } from './components/pages/extras/extras.component';
 import { WizzardComponent } from './online-editor/components/wizzard/wizzard.component';
+import { WerckmeisterVstComponent } from './components/pages/werckmeister-vst';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'werckmeister', pathMatch: 'full'},
@@ -28,7 +29,7 @@ const routes: Routes = [
 	{ path: 'creator', component: CreatorComponent},
 	{ path: 'extras', component: ExtrasComponent},
 	{ path: 'wizzard', component: WizzardComponent},
-	{ path: 'vst', component: WizzardComponent},
+	{ path: 'vst', component: WerckmeisterVstComponent},
 ];
 
 @NgModule({
