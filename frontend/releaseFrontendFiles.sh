@@ -22,4 +22,5 @@ mkdir -p extras && cp index.html extras/
 mkdir -p editor && cp index.html editor/
 mkdir -p creator && cp index.html creator/
 mkdir -p wizzard && cp index.html wizzard/
+mkdir -p vst && cp index.html vst/
 cd $cdir

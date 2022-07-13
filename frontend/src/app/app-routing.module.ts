@@ -13,6 +13,7 @@ import { CreatorComponent } from './components/pages/creator/creator.component';
 import { ManualPageComponent } from './components/pages/manual-page/manual-page.component';
 import { ExtrasComponent } from './components/pages/extras/extras.component';
 import { WizzardComponent } from './online-editor/components/wizzard/wizzard.component';
+import { VstComponent } from './components/pages/vst/vst.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
 	{ path: 'creator', component: CreatorComponent},
 	{ path: 'extras', component: ExtrasComponent},
 	{ path: 'wizzard', component: WizzardComponent},
+	{ path: 'vst', component: VstComponent},
 ];
 
 @NgModule({

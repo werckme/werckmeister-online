@@ -15,6 +15,9 @@
                     <a (click)="onMobileMenuItemClicked($event)" href="/examples">Examples</a>
                 </ListItem>
                 <ListItem>
+                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['vst']">VST Plugin</a>
+                </ListItem>                  
+                <ListItem>
                     <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['code-extension']">Visual Studio Code</a>
                 </ListItem>  
                 <ListItem>
@@ -40,6 +43,7 @@
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['manual']">Manual</a>
             </li>
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['resources']">Resources</a></li>
+            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['vst']">VST Plugin</a></li>
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['code-extension']">Visual Studio Code</a></li>
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['contact']">Contact</a></li>
             <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['editor']">Try Online</a></li>
