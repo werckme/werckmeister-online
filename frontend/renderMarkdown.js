@@ -1,6 +1,6 @@
 const MdCodeWerckmeisterTypeSingle = 'single';
 const MdCodeWerckmeisterTypeMute = 'mute';
-const marked = require('marked');
+const {marked} = require('marked');
 const _ = require('lodash');
 var fs = require('fs');
 const splitFilesByH1 = true;

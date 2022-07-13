@@ -57,7 +57,6 @@ import { NzImageModule } from 'ng-zorro-antd/image';
 import { ExternalModule } from './external/external.module';
 import { DonateComponent } from './external/donate/donate.component';
 import { ResourcePreviewComponent } from './components/partials/resource-preview/resource-preview.component';
-import { VstComponent } from './components/pages/vst/vst.component';
 
 const icons: IconDefinition[] = [ PlayCircleOutline, 
 	WindowsOutline, 
@@ -96,7 +95,6 @@ registerLocaleData(en);
         ManualPageComponent,
         ExtrasComponent,
         ResourcePreviewComponent,
-        VstComponent,
     ],
     imports: [
         BrowserModule,
