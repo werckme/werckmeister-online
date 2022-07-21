@@ -10,6 +10,7 @@ import { GithubService, IRelease } from 'src/app/services/github.service';
 export class GetVstComponent implements OnInit {
 
   latestRelease: IRelease;
+  fetchingFailed: boolean = false;
   constructor(private git: GithubService) { }
 
   async ngOnInit() {
@@ -17,10 +18,14 @@ export class GetVstComponent implements OnInit {
   }
 
   private async getReleases() {
-    const releases = await this.git.getVstReleases();
-    this.latestRelease = _(releases)
-      .orderBy(x => x.published_at, 'desc')
-      .first();
+    try {
+      const releases = await this.git.getVstReleases();
+      this.latestRelease = _(releases)
+        .orderBy(x => x.published_at, 'desc')
+        .first();
+    } catch (ex) {
+      this.fetchingFailed = true;
+    }
   }
 
 }

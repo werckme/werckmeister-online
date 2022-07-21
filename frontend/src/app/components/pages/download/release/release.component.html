@@ -1,15 +1,20 @@
 <div class="release">
     <h2>{{release.tag_name}}</h2>
-    Published at {{ release.published_at | date:'medium' }}
-    <div nz-row>
-        <div nz-col [nzMd]="24 / numberOfColumns" *ngFor="let download of windows">
-            <app-download-details title="Windows" [download]="download"></app-download-details>
+    <span>Published at {{ release.published_at | date:'medium' }}</span>
+    <br>
+    <br>
+    <div nz-row class="downloads">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="8">
+            <h3><i nz-icon nzType="windows" nzTheme="fill"></i>Windows</h3>
+            <app-download-details *ngFor="let download of windows" title="Windows" [download]="download"></app-download-details>
         </div>
-        <div nz-col [nzMd]="24 / numberOfColumns" *ngFor="let download of mac">
-            <app-download-details title="Mac" [download]="download"></app-download-details>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="8">
+            <h3><i nz-icon nzType="apple" nzTheme="fill"></i>Mac</h3>
+            <app-download-details *ngFor="let download of mac" title="Mac" [download]="download"></app-download-details>
         </div>
-        <div nz-col [nzMd]="24 / numberOfColumns" *ngFor="let download of linux">
-            <app-download-details title="Linux" [download]="download"></app-download-details>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="8">
+            <h3><app-icon-tux class="icon"></app-icon-tux> <span>Linux</span></h3>
+            <app-download-details *ngFor="let download of linux" title="Linux" [download]="download"></app-download-details>
         </div>                
     </div>
     <br>

@@ -1,4 +1,9 @@
 <h1>Get Werckmeister</h1>
-<div *ngFor="let release of releases">
-    <app-download-release [release]="release"></app-download-release>
+<div *ngIf="!fetchingFailed">
+    <app-download-release *ngIf="latestRelease" [release]="latestRelease"></app-download-release>
+    <a target="_blank" href="https://github.com/werckme/werckmeister/releases">Older Releases</a>
 </div>
+<p *ngIf="fetchingFailed">
+    Failed to fetch github releases.
+    You can find them <a target="_blank" href="https://github.com/werckme/werckmeister/releases">here.</a>
+</p>

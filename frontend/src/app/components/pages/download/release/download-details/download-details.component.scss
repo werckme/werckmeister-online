@@ -6,11 +6,37 @@ h4 {
     margin: 0;
 }
 
-.installation-text {
+::ng-deep .installation-text {
     margin-bottom: 1em;
+    font-size: 0.7em;
+    ul {
+        padding-left: 0px;
+    }
+    li {
+        list-style: none;
+    }
+    code {
+        font-size: 0.7em;
+        font-family: monospace;
+        background: darkslategrey;
+        color: white;
+        padding: 5px;
+    }
+    li:nth-last-child(1) code {
+        width: calc( 100% - 25px );
+        max-width: 547px;
+        overflow-x: auto;
+        display: block;
+        white-space: nowrap;
+        margin-top: 5px;
+    }
 }
 
 a i[nz-icon] {
     font-size: 20px;
     vertical-align: middle;
+}
+
+b {
+    font-size: 0.8em;
 }

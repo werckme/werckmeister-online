@@ -8,7 +8,8 @@ import * as _ from 'lodash';
 })
 export class DownloadComponent implements OnInit {
 
-  releases: IRelease[];
+  latestRelease: IRelease;
+  fetchingFailed: boolean = false;
   constructor(private git: GithubService) { }
 
   ngOnInit() {
@@ -16,10 +17,14 @@ export class DownloadComponent implements OnInit {
   }
 
   private async getReleases() {
-    this.releases = await this.git.getWerckmeisterReleases();
-    this.releases = _(this.releases)
-      .orderBy(x => x.published_at, 'desc')
-      .value();
+    try {
+      const releases = await this.git.getWerckmeisterReleases();
+      this.latestRelease = _(releases)
+        .orderBy(x => x.published_at, 'desc')
+        .first();
+    } catch {
+      this.fetchingFailed = true;
+    }
   }
 
 }

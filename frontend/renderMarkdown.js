@@ -56,7 +56,7 @@ const superLink = renderer.link.bind(renderer);
 let linkNr = 0;
 
 renderer.link = (href, title, text) => {
-  if (href.indexOf('#')<0) {
+  if (href.indexOf('#')<0 || href.indexOf('http') === 0) {
     return superLink(href, title, text);
   }
   var seg = href.split('#');

@@ -1,11 +1,8 @@
-<ng-template #titleTmpl>
-    <h4>{{title}}</h4>
-</ng-template>
-<nz-card *ngIf="download" [nzTitle]="titleTmpl">
-    <nz-descriptions [nzTitle]="download.name" [nzColumn]="1">
-        <nz-descriptions-item nzTitle="File Size">{{ (download.size / 1024 / 1024).toFixed(2) }} MB</nz-descriptions-item>
-    </nz-descriptions>
-    <b *ngIf="download.installation">Installation:</b><br>
-    <div *ngIf="download.installation" class="installation-text" [innerHtml]="download.installation"></div>
-    <a nz-button nzType="primary" [href]="download.browser_download_url"><i nz-icon [nzType]="download.icon"></i> Download</a>
-</nz-card>
+<div *ngIf="download">
+    <a [href]="download.browser_download_url">{{download.name}}</a>
+    <ng-container *ngIf="download.installation">
+        <br>
+        <b >Installation:</b><br>
+        <div class="installation-text" [innerHtml]="download.installation"></div>
+    </ng-container>
+</div>

@@ -41,7 +41,6 @@ export class ReleaseComponent implements OnInit {
     if (!this.showInstallationHelp) {
       return download;
     }
-    download.installation = this.md(`Execute the installer program \`${download.name}\``);
     return download;
   }
 
@@ -51,10 +50,8 @@ export class ReleaseComponent implements OnInit {
       return download;
     }
     download.installation = this.md(`* Open the Terminal
-* Navigate to the location where your downloads are located. (e.g. \`cd ~/Downloads\`) 
-* Run this command:
-
-\`\`\`sudo sh ${download.name} --prefix=/usr/local --exclude-subdir\`\`\``);
+* \`cd ~/Downloads\` 
+* \`\`\`sudo sh ${download.name} --prefix=/usr/local --exclude-subdir\`\`\``);
     return download;
   }
 
@@ -64,10 +61,8 @@ export class ReleaseComponent implements OnInit {
       return download;
     }
     download.installation = this.md(`* Open the Terminal
-* Navigate to the location where your downloads are located. (e.g. \`cd ~/Downloads\`) 
-* Run this command:
-    
-\`\`\`sudo sh ${download.name} --prefix=/usr/local --exclude-subdir\`\`\``);    
+* \`cd ~/Downloads\`
+* \`\`\`sudo sh ${download.name} --prefix=/usr/local --exclude-subdir\`\`\``);    
   return download;  
   }
 
