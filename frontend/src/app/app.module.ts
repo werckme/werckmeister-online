@@ -58,6 +58,8 @@ import { ExternalModule } from './external/external.module';
 import { DonateComponent } from './external/donate/donate.component';
 import { ResourcePreviewComponent } from './components/partials/resource-preview/resource-preview.component';
 import { WerckmeisterVstComponent } from './components/pages/werckmeister-vst';
+import { WerckmeisterVstMainComponent } from './components/pages/werckmeister-vst-main/werckmeister-vst-main.component';
+import { GetVstComponent } from './components/pages/werckmeister-vst-main/get-vst/get-vst.component';
 
 const icons: IconDefinition[] = [ PlayCircleOutline, 
 	WindowsOutline, 
@@ -96,7 +98,9 @@ registerLocaleData(en);
         ManualPageComponent,
         ExtrasComponent,
         ResourcePreviewComponent,
-        WerckmeisterVstComponent
+        WerckmeisterVstComponent,
+        WerckmeisterVstMainComponent,
+        GetVstComponent
     ],
     imports: [
         BrowserModule,

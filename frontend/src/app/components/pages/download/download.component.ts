@@ -16,7 +16,7 @@ export class DownloadComponent implements OnInit {
   }
 
   private async getReleases() {
-    this.releases = await this.git.getReleases();
+    this.releases = await this.git.getWerckmeisterReleases();
     this.releases = _(this.releases)
       .orderBy(x => x.published_at, 'desc')
       .value();

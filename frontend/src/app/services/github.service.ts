@@ -29,8 +29,12 @@ export class GithubService extends ARestService {
     super(http);
   }
 
-  public async getReleases(): Promise<IRelease[]> {
+  public async getWerckmeisterReleases(): Promise<IRelease[]> {
     return this.get(`repos/werckme/werckmeister/releases`);
+  }
+
+  public async getVstReleases(): Promise<IRelease[]> {
+    return this.get(`repos/werckme/werckmeister-vst/releases`);
   }
 
 }

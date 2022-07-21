@@ -2,14 +2,14 @@
     <h2>{{release.tag_name}}</h2>
     Published at {{ release.published_at | date:'medium' }}
     <div nz-row>
-        <div nz-col nzXS="24">
-            <app-download-details title="Windows" [download]="windows"></app-download-details>
+        <div nz-col [nzMd]="24 / numberOfColumns" *ngFor="let download of windows">
+            <app-download-details title="Windows" [download]="download"></app-download-details>
         </div>
-        <div nz-col nzXs="24">
-            <app-download-details title="Mac" [download]="mac"></app-download-details>
+        <div nz-col [nzMd]="24 / numberOfColumns" *ngFor="let download of mac">
+            <app-download-details title="Mac" [download]="download"></app-download-details>
         </div>
-        <div nz-col nzXs="24">
-            <app-download-details title="Linux" [download]="linux"></app-download-details>
+        <div nz-col [nzMd]="24 / numberOfColumns" *ngFor="let download of linux">
+            <app-download-details title="Linux" [download]="download"></app-download-details>
         </div>                
     </div>
     <br>

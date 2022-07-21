@@ -13,44 +13,82 @@ export class ReleaseComponent implements OnInit {
 
   @Input()
   release: IRelease;
-  windows: Download;
-  mac: Download;
-  linux: Download;
+
+  @Input()
+  showInstallationHelp: boolean = true;
+
+  @Input()
+  numberOfColumns:number = 1;
+
+  windows: Download[];
+  mac: Download[];
+  linux: Download[];
   body: string;
   mdParser = new Converter();
   
   constructor() { }
 
   private parseBody() {
-    this.body = this.md(this.release.body);
+    this.body = this.md(this.release.body || "");
   }
 
   private md(str: string) {
     return this.mdParser.makeHtml(str);
   }
 
-  ngOnInit() {
-    this.parseBody();
-    this.windows = _(this.release.assets)
-      .find(x => !!x.name.toLowerCase().match(/win32|64/)) as Download;
-    this.mac = _(this.release.assets)
-      .find(x => x.name.toLowerCase().indexOf('darwin') >= 0) as Download;
-    this.linux = _(this.release.assets)
-      .find(x => x.name.toLowerCase().indexOf('linux') >= 0) as Download;
-    this.windows.icon = 'windows';
-    this.windows.installation = this.md(`Execute the installer program \`${this.windows.name}\``);
-    this.mac.icon = 'apple';
-    this.mac.installation = this.md(`* Open the Terminal
+  processWindowsDownload(download: Download): Download {
+    download.icon = 'windows';
+    if (!this.showInstallationHelp) {
+      return download;
+    }
+    download.installation = this.md(`Execute the installer program \`${download.name}\``);
+    return download;
+  }
+
+  processMacDownload(download: Download): Download {
+    download.icon = 'apple';
+    if (!this.showInstallationHelp) {
+      return download;
+    }
+    download.installation = this.md(`* Open the Terminal
 * Navigate to the location where your downloads are located. (e.g. \`cd ~/Downloads\`) 
 * Run this command:
 
-\`\`\`sudo sh ${this.mac.name} --prefix=/usr/local --exclude-subdir\`\`\``);
-    this.linux.icon = 'qq';
-    this.linux.installation = this.md(`* Open the Terminal
+\`\`\`sudo sh ${download.name} --prefix=/usr/local --exclude-subdir\`\`\``);
+    return download;
+  }
+
+  processLinuxDownload(download: Download): Download {
+    download.icon = 'qq';
+    if (!this.showInstallationHelp) {
+      return download;
+    }
+    download.installation = this.md(`* Open the Terminal
 * Navigate to the location where your downloads are located. (e.g. \`cd ~/Downloads\`) 
 * Run this command:
     
-\`\`\`sudo sh ${this.linux.name} --prefix=/usr/local --exclude-subdir\`\`\``);      
+\`\`\`sudo sh ${download.name} --prefix=/usr/local --exclude-subdir\`\`\``);    
+  return download;  
+  }
+
+
+  ngOnInit() {
+    this.parseBody();
+    this.windows = _(this.release.assets)
+      .filter(x => !!x.name.toLowerCase().match(/win32|64/))
+      .map(x => x as Download)
+      .map(x => this.processWindowsDownload(x))
+      .value();
+    this.mac = _(this.release.assets)
+      .filter(x => !!x.name.toLowerCase().match(/darwin|mac/))
+      .map(x => x as Download)
+      .map(x => this.processMacDownload(x))
+      .value();
+    this.linux = _(this.release.assets)
+      .filter(x => x.name.toLowerCase().indexOf('linux') >= 0)
+      .map(x => x as Download)
+      .map(x => this.processLinuxDownload(x))
+      .value();
   }
 
 }
