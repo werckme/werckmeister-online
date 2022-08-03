@@ -12,8 +12,6 @@
     <div class="configurator">
     
         <div class="genre">
-
-            <span class="label">Genre</span>
             <nz-select nzShowSearch nzPlaceHolder="find genre" [nzShowArrow]="false" [(ngModel)]="selectedGenre"
                 (ngModelChange)="switchGenre($event)">
                 <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.key" [nzLabel]="style.key">
@@ -25,10 +23,13 @@
         <div class="details">
     
             <div *ngFor="let instrument of workspaceModel.instruments; index as index">
-                <span class="label">{{instrument.metaData.instrument}}</span>
+                <nz-select [ngModel]="instrument.metaData.instrument" (ngModelChange)="resetInstrumentSelection(index, $event)">
+                    <nz-option *ngFor="let instrumentName of allInstruments" [nzLabel]="instrumentName" [nzValue]="instrumentName">
+                    </nz-option>
+                </nz-select>
                 <nz-select [compareWith]="styleComparer" nzShowSearch nzPlaceHolder="find instrument"
                     [nzShowArrow]="false" [ngModel]="workspaceModel.instruments[index]"
-                    (ngModelChange)="instrumentChange($event, index)">
+                    (ngModelChange)="changeTemplate($event, index)">
                     <nz-option *ngFor="let style of findInstuments(instrument.metaData.instrument)" [nzValue]="style" [nzLabel]="style.id">
                     </nz-option>
                 </nz-select>

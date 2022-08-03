@@ -146,9 +146,31 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		this.router.navigate(['/editor'], {queryParams: {wid: response.wid}});
 	}
 
-	public findInstuments(instrument: string) {
+	public findInstuments(instrument: string): IStyleFileInfo[] {
 		return this.allStyleFileInfos
 			.filter(x => x.id.startsWith(`${instrument}.`));
+	}
+
+
+	public parseTemplateName(fileName: string) : {instrument: string, name: string} {
+		const fileNameMatch = fileName.match(/(?<instrument>\w+)\.(?<name>\w+).\w+/)
+        if (!fileNameMatch.groups || !fileNameMatch.groups.instrument || !fileNameMatch.groups.name) {
+            throw new Error("invalid file name: " + fileName);
+        }
+		return fileNameMatch.groups as {instrument: string, name: string};
+	}
+
+	public getInstrumentName(fileInfo: IStyleFileInfo): string {
+		return fileInfo.metaData.instrument;
+	}
+
+	public get allInstruments(): string[] {
+		return _(this.allStyleFileInfos)
+			.map(x => this.getInstrumentName(x))
+			.uniq()
+			.sort()
+			.value();
+			
 	}
 
 	public async play(): Promise<void> {
@@ -161,13 +183,29 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		await this.workspaceComponent.stop();
 	}
 
-	public async instrumentChange(newInstrument: IStyleFileInfo, instrumentIndex: number): Promise<void> {
+	private removeUnusedTemplateFiles():void {
+		let toRemove = this.workspaceModel.files
+			.filter(x => x.path.endsWith(".template"))
+			.map(x => x.path);
+		for(const instrument of this.workspaceModel.instruments) {
+			toRemove = _.without(toRemove, instrument.id);
+		}
+		this.workspaceModel.files = this.workspaceModel.files.filter(x => !toRemove.includes(x.path));
+		console.log(toRemove, this.workspaceModel.files)
+	}
+
+	public async changeTemplate(newInstrument: IStyleFileInfo, instrumentIndex: number): Promise<void> {
 		const oldInstrument = this.workspaceModel.instruments[instrumentIndex];
 		await this.workspaceComponent.removeFile(oldInstrument.id);
-		this.workspaceModel.files = this.workspaceModel.files.filter(x => x.path !== oldInstrument.id);
 		const file = await this.service.getStyleFile(newInstrument.id);
 		await this.workspaceComponent.addFile(file.id, file.data);
 		this.workspaceModel.files.push({path: file.id, data: file.data});
 		this.workspaceModel.instruments[instrumentIndex] = newInstrument;
+		this.removeUnusedTemplateFiles();
+	}
+
+	public resetInstrumentSelection(instrumentIndex: number, newInstrumentName: string): void {
+		const newInstrument =  _.first(this.findInstuments(newInstrumentName));
+		this.changeTemplate(newInstrument, instrumentIndex);
 	}
 }
