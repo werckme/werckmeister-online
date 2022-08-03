@@ -46,12 +46,6 @@ export class ReleaseComponent implements OnInit {
 
   processMacDownload(download: Download): Download {
     download.icon = 'apple';
-    if (!this.showInstallationHelp) {
-      return download;
-    }
-    download.installation = this.md(`* Open the Terminal
-* \`cd ~/Downloads\` 
-* \`\`\`sudo sh ${download.name} --prefix=/usr/local --exclude-subdir\`\`\``);
     return download;
   }
 
