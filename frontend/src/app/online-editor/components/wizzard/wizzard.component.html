@@ -11,7 +11,7 @@
 
     <div class="configurator">
     
-        <div class="genre" nz-row>
+        <div class="genre" nz-row [nzGutter]="[15, 15]">
             <nz-select nz-col [nzSpan]="22" nzShowSearch nzPlaceHolder="find genre" [nzShowArrow]="false" [(ngModel)]="selectedGenre"
                 (ngModelChange)="switchGenre($event)">
                 <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.key" [nzLabel]="style.key">
@@ -22,7 +22,7 @@
     
         <div class="details">
     
-            <div nz-row [nzGutter]="16+8" *ngFor="let instrument of workspaceModel.instruments; index as index">
+            <div nz-row [nzGutter]="[15, 15]" nzAlign="middle" *ngFor="let instrument of workspaceModel.instruments; index as index">
                 <nz-select nz-col [nzSpan]="11" nzShowSearch nzPlaceHolder="find instrument" [nzShowArrow]="false" [ngModel]="instrument.metaData.instrument" (ngModelChange)="resetInstrumentSelection(index, $event)">
                     <nz-option *ngFor="let instrumentName of allInstruments" [nzLabel]="instrumentName" [nzValue]="instrumentName">
                     </nz-option>
@@ -33,10 +33,10 @@
                     <nz-option *ngFor="let style of findInstuments(instrument.metaData.instrument)" [nzValue]="style" [nzLabel]="style.id">
                     </nz-option>
                 </nz-select>
-                <a nz-col [nzSpan]="1" nz-button nzType="link"><i nz-icon nzType="minus" nzTheme="outline"></i></a>
+                <a [disabled]="!canRemove" (click)="removeInstrument(index)" nz-col [nzSpan]="1" nz-button nzType="link"><i nz-icon nzType="minus" nzTheme="outline"></i></a>
             </div>
-            <div nz-row [nzGutter]="16+8">
-                <a nz-col [nzSpan]="1" [nzOffset]="22" nz-button nzType="link"><i nz-icon nzType="plus" nzTheme="outline"></i></a>
+            <div nz-row [nzGutter]="[15, 15]">
+                <a (click)="addNewInstrument()" nz-col [nzSpan]="1" [nzOffset]="22" nz-button nzType="link"><i nz-icon nzType="plus" nzTheme="outline"></i></a>
             </div>
         </div>
     </div>

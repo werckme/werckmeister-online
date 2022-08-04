@@ -208,4 +208,24 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		const newInstrument =  _.first(this.findInstuments(newInstrumentName));
 		this.changeTemplate(newInstrument, instrumentIndex);
 	}
+
+	public async addNewInstrument():Promise<void> {
+		const newInstrument = _.cloneDeep(_.first(this.workspaceModel.instruments));
+		this.workspaceModel.instruments.push(newInstrument);
+		const file = await this.service.getStyleFile(newInstrument.id);
+		await this.workspaceComponent.addFile(file.id, file.data);
+		this.workspaceModel.files.push({path: file.id, data: file.data});
+	}
+
+	public removeInstrument(instrumentIndex: number): void {
+		if (!this.canRemove) {
+			return;
+		}
+		this.workspaceModel.instruments.splice(instrumentIndex, 1);
+		this.removeUnusedTemplateFiles();
+	}
+
+	public get canRemove(): boolean {
+		return this.workspaceModel.instruments.length > 1;
+	}
 }
