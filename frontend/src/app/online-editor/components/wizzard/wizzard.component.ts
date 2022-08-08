@@ -68,52 +68,93 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		this.workspaceModel = new WizzardWorkspace();
 	}
 
+	private async removeTemplates(): Promise<void> {
+		for(const workspaceFile of this.workspaceModel.files) {
+			if (!workspaceFile.path.endsWith(`.template`)) {
+				continue;
+			}
+			await this.workspaceComponent.removeFile(workspaceFile.path);
+			this.workspaceModel.files = this.workspaceModel.files.filter(x => x.path !== workspaceFile.path);
+		}
+	}
+
 	public async switchGenre(style: string): Promise<void> {
 		try {
 			await this.workspaceComponent.stop();
-			const styleFileInfos = this.styles[style];
-			const addFile = async (path: string, data: string) => {
-				this.workspaceModel.files.push({path, data});
-				await this.workspaceComponent.addFile(path, data);
-			};
+			const styleFileInfos = _.orderBy(this.styles[style], x => x.metaData.instrument);
 			await this.clearWorkspace();
 			for(const styleFileInfo of styleFileInfos) {
 				const file = await this.service.getStyleFile(styleFileInfo.id);
 				this.workspaceModel.instruments.push(styleFileInfo);
-				await addFile(file.id, file.data);
+				await this.addFile(file.id, file.data);
 			}
-			await addFile("myPitchmap.pitchmap", pitchmapText);
-			await addFile("default.chords", chordsText);
+			await this.addFile("myPitchmap.pitchmap", pitchmapText);
+			await this.addFile("default.chords", chordsText);
 		} catch {
 			this.notification.error("", `failed to fetch style infos`);
 		}
 	}
 
-	private getInstrumentDefParams(styleInfo: IStyleFileInfo) {
-		const hasDefInfo = styleInfo.metaData.instrumentDef;
-		const instrumentName = styleInfo.metaData.instrument;
-		return hasDefInfo ? `${instrumentName} ${styleInfo.metaData.instrumentDef}` : `${instrumentName} _pc=0`;
-	}
 
 	private getInstrumentConfigParams(styleInfo: IStyleFileInfo) {
 		const hasConfInfo = styleInfo.metaData.instrumentConfig;
 		return hasConfInfo ? `${styleInfo.metaData.instrument} ${styleInfo.metaData.instrumentConfig}` : `${styleInfo.metaData.instrument} volume 100`;
 	}
 
-	private createInstruments(): string[] {
+
+	private async addFile(id: string, data: string):Promise<void> {
+		await this.workspaceComponent.addFile(id, data);
+		this.workspaceModel.files.push({path: id, data: data});
+	}
+
+	private async addStyleFile(file: IStyleFile):Promise<void> {
+		this.addFile(file.id, file.data);
+	}
+
+	private async getStyleFileForInstrument(id: string, instrumentName: string): Promise<IStyleFile> {
+		const file = await this.service.getStyleFile(id);
+		const hasNumberPostfix:boolean = !!instrumentName.match(/.+\.\d+$/);
+		if (hasNumberPostfix) {
+			file.data = file.data.replace(/instrument:.*;/, `instrument: ${instrumentName};`);
+		}
+		return file;
+	}
+
+	private async createInstruments(): Promise<string[]> {
 		const result:string[] = []
 		let midiChannel = 0;
+		const usedInstruments = new Map<string, number>();
+		await this.removeTemplates();
+		const getNextInstrumentName = function(instrumentName: string) {
+			let instrumentCount = 1;
+			if (usedInstruments.has(instrumentName)) {
+				instrumentCount = usedInstruments.get(instrumentName) + 1;
+			}
+			usedInstruments.set(instrumentName, instrumentCount);
+			if (instrumentCount === 1) {
+				return `${instrumentName}`;
+			}
+			return `${instrumentName}.${instrumentCount}`;
+		}
+		const getInstrumentDefParams = function(styleInfo: IStyleFileInfo, instrumentName: string) {
+			const hasDefInfo = styleInfo.metaData.instrumentDef;
+			return hasDefInfo ? `${instrumentName} ${styleInfo.metaData.instrumentDef}` : `${instrumentName} _pc=0`;
+		}
 		for(const styleInfo of this.workspaceModel.instruments) {
+			const instrumentName = getNextInstrumentName(styleInfo.metaData.instrument);
+			const file = await this.getStyleFileForInstrument(styleInfo.id, instrumentName);
+			await this.addStyleFile(file);
+
 			const isDrums = styleInfo.metaData.instrument === 'drums';
 			const instrumentChannel = isDrums ? 9 : midiChannel++;
-			const instrumentDef = `instrumentDef: ${this.getInstrumentDefParams(styleInfo)} _onDevice="MyDevice" _ch=${instrumentChannel};`;
+			const instrumentDef = `instrumentDef: ${getInstrumentDefParams(styleInfo, instrumentName)} _onDevice="MyDevice" _ch=${instrumentChannel};`;
 			const instrumentConf = `instrumentConf: ${this.getInstrumentConfigParams(styleInfo)};`;
 			result.push(instrumentDef, instrumentConf);
 		}
 		return result;
 	}
 
-	public createMainSheet(): string {
+	public async createMainSheet(): Promise<string> {
 		const styleInfo = _.first(this.workspaceModel.instruments);
 		if (!styleInfo) {
 			return;
@@ -123,9 +164,9 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 			.flatten()
 			.map(x => `using "${x}";`)
 			.value();
+		const instruments = await this.createInstruments();
 		const usings = templateUsings.concat(this.workspaceModel.files.map(x => `using "./${x.path}";`));
 		const templates = this.workspaceModel.instruments.map(x => x.metaData).map(x => `${x.instrument}.${x.title}.normal`)
-		const instruments = this.createInstruments();
 		const sheetText = mainSheetText
 			.replace(/\$TEMPLATES/g, `/template: ${templates.join('\n\t')}\n\t/`)
 			.replace(/\$USINGS/g, usings.join('\n'))
@@ -136,7 +177,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	}
 
 	public async createProject(): Promise<void> {
-		const sheetText = this.createMainSheet();
+		const sheetText = await this.createMainSheet();
 		this.workspaceModel.files.push({path: "main.sheet", data: sheetText});
 		const request = {
 			wid: null,
@@ -174,7 +215,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	}
 
 	public async play(): Promise<void> {
-		const text = this.createMainSheet();
+		const text = await this.createMainSheet();
 		await this.workspaceComponent.addFile("main.sheet", text);
 		this.workspaceComponent.play();
 	}
@@ -183,25 +224,8 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		await this.workspaceComponent.stop();
 	}
 
-	private removeUnusedTemplateFiles():void {
-		let toRemove = this.workspaceModel.files
-			.filter(x => x.path.endsWith(".template"))
-			.map(x => x.path);
-		for(const instrument of this.workspaceModel.instruments) {
-			toRemove = _.without(toRemove, instrument.id);
-		}
-		this.workspaceModel.files = this.workspaceModel.files.filter(x => !toRemove.includes(x.path));
-		console.log(toRemove, this.workspaceModel.files)
-	}
-
 	public async changeTemplate(newInstrument: IStyleFileInfo, instrumentIndex: number): Promise<void> {
-		const oldInstrument = this.workspaceModel.instruments[instrumentIndex];
-		await this.workspaceComponent.removeFile(oldInstrument.id);
-		const file = await this.service.getStyleFile(newInstrument.id);
-		await this.workspaceComponent.addFile(file.id, file.data);
-		this.workspaceModel.files.push({path: file.id, data: file.data});
 		this.workspaceModel.instruments[instrumentIndex] = newInstrument;
-		this.removeUnusedTemplateFiles();
 	}
 
 	public resetInstrumentSelection(instrumentIndex: number, newInstrumentName: string): void {
@@ -212,9 +236,6 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	public async addNewInstrument():Promise<void> {
 		const newInstrument = _.cloneDeep(_.first(this.workspaceModel.instruments));
 		this.workspaceModel.instruments.push(newInstrument);
-		const file = await this.service.getStyleFile(newInstrument.id);
-		await this.workspaceComponent.addFile(file.id, file.data);
-		this.workspaceModel.files.push({path: file.id, data: file.data});
 	}
 
 	public removeInstrument(instrumentIndex: number): void {
@@ -222,7 +243,6 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 			return;
 		}
 		this.workspaceModel.instruments.splice(instrumentIndex, 1);
-		this.removeUnusedTemplateFiles();
 	}
 
 	public get canRemove(): boolean {
