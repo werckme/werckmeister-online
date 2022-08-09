@@ -3,18 +3,20 @@ import { ARestService } from './arest.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
+export interface IMetaData {
+  title: string;
+  tags: string[];
+  instrument: string;
+  signature: string;
+  tempo: number;
+  instrumentDef?: string;
+  instrumentConfig?: string;
+  usings: string[];
+}
+
 export interface IStyleFileInfo {
   id: string;
-  metaData: {
-    title: string;
-    tags: string[];
-    instrument: string;
-    signature: string;
-    tempo: number;
-    instrumentDef?: string;
-    instrumentConfig?: string;
-    usings: string[];
-  }
+  metaData: IMetaData;
 }
 
 export interface IStyleFile {

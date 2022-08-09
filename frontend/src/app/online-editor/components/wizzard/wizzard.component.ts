@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { IStyleFile, IStyleFileInfo, WizzardService } from 'src/app/services/wizzard.service';
+import { IMetaData, IStyleFile, IStyleFileInfo, WizzardService } from 'src/app/services/wizzard.service';
 import * as _ from 'lodash';
 import { AWorkspacePlayerComponent, ICompilerError, PlayerState } from '../online-editor/AWorkspacePlayerComponent';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
@@ -9,13 +9,40 @@ import { text as chordsText } from './default.chords';
 import { waitAsync } from 'src/shared/help/waitAsync';
 import { IWorkspace, IFile, WorkspaceStorageService } from '../../services/workspaceStorage';
 import { Router } from '@angular/router';
+import { GMInstruments } from '../../shared/GmInstruments';
 
-type Styles = { [key: string]: IStyleFileInfo[] };
+type Styles = { [key: string]: StyleFileInfo[] };
+
+class StyleFileInfo implements IStyleFileInfo {
+	public get id(): string { return this.origin.id; }
+	public get metaData(): IMetaData { return this.origin.metaData; }
+	private get parsedPcStr(): string|null {
+		const defStr: string = this.metaData.instrumentDef;
+		const match = defStr.match(/_pc=(?<pc>\d+)/);
+		return match?.groups?.pc ?? null;
+	}
+	public get pcNumber(): number {  
+		const pc = this.parsedPcStr;
+		if (pc === null) {
+			return 0;
+		}
+		return Number.parseInt(pc);
+	}
+	public set pcNumber(newVal: number) {
+		const currentPcStr = this.parsedPcStr;
+		if (currentPcStr === null) {
+			this.metaData.instrumentDef = (this.metaData.instrumentDef||'') + `_pc=${newVal}`;
+			return;
+		}
+		this.metaData.instrumentDef = this.metaData.instrumentDef.replace(/_pc=\d+/, `_pc=${newVal}`);
+	}
+	constructor(private origin: IStyleFileInfo) {}
+}
 
 class WizzardWorkspace implements IWorkspace {
 	wid: string;
 	files: IFile[] = [];
-	instruments: IStyleFileInfo[] = [];
+	instruments: StyleFileInfo[] = [];
 }
 
 @Component({
@@ -26,9 +53,9 @@ class WizzardWorkspace implements IWorkspace {
 export class WizzardComponent extends AWorkspacePlayerComponent implements AfterViewInit {
 	public selectedGenre: string;
 	public styles: Styles = {}
-	public allStyleFileInfos: IStyleFileInfo[];
+	public allStyleFileInfos: StyleFileInfo[];
 	public workspaceModel: WizzardWorkspace = new WizzardWorkspace();
-
+	public gmInstruments = GMInstruments;
 	public styleComparer(a: IStyleFileInfo, b: IStyleFileInfo): boolean {
 		if (!a || !b) {
 			return false;
@@ -47,7 +74,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 
 	async ngAfterViewInit(): Promise<void> {
 		this.initWorkspace();
-		this.allStyleFileInfos = await this.service.getStyles();
+		this.allStyleFileInfos = (await this.service.getStyles()).map(x => new StyleFileInfo(x));
 		this.styles = _(this.allStyleFileInfos)
 			.groupBy(x => x.metaData.title)
 			.value();
@@ -187,7 +214,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		this.router.navigate(['/editor'], {queryParams: {wid: response.wid}});
 	}
 
-	public findInstuments(instrument: string): IStyleFileInfo[] {
+	public findInstruments(instrument: string): StyleFileInfo[] {
 		return this.allStyleFileInfos
 			.filter(x => x.id.startsWith(`${instrument}.`));
 	}
@@ -224,12 +251,12 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		await this.workspaceComponent.stop();
 	}
 
-	public async changeTemplate(newInstrument: IStyleFileInfo, instrumentIndex: number): Promise<void> {
+	public async changeTemplate(newInstrument: StyleFileInfo, instrumentIndex: number): Promise<void> {
 		this.workspaceModel.instruments[instrumentIndex] = newInstrument;
 	}
 
 	public resetInstrumentSelection(instrumentIndex: number, newInstrumentName: string): void {
-		const newInstrument =  _.first(this.findInstuments(newInstrumentName));
+		const newInstrument =  _.first(this.findInstruments(newInstrumentName));
 		this.changeTemplate(newInstrument, instrumentIndex);
 	}
 

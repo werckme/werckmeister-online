@@ -1,7 +1,7 @@
 <div class="werckmeister-wizzard">
-    
+
     <h2>Werckmeister Wizzard</h2>
-    
+
     <h3>
         <nz-alert nzType="warning" nzMessage="work in progress"></nz-alert>
     </h3>
@@ -10,37 +10,50 @@
         [nzPercent]="playerPrepareProgressPercent"></nz-progress>
 
     <div class="configurator">
-    
+
         <div class="genre" nz-row [nzGutter]="[15, 15]">
-            <nz-select nz-col [nzSpan]="22" nzShowSearch nzPlaceHolder="find genre" [nzShowArrow]="false" [(ngModel)]="selectedGenre"
-                (ngModelChange)="switchGenre($event)">
+            <nz-select nz-col [nzSpan]="22" nzShowSearch nzPlaceHolder="find genre" [nzShowArrow]="false"
+                [(ngModel)]="selectedGenre" (ngModelChange)="switchGenre($event)">
                 <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.key" [nzLabel]="style.key">
                 </nz-option>
             </nz-select>
 
         </div>
-    
+
         <div class="details">
-    
-            <div nz-row [nzGutter]="[15, 15]" nzAlign="middle" *ngFor="let instrument of workspaceModel.instruments; index as index">
-                <nz-select nz-col [nzSpan]="11" nzShowSearch nzPlaceHolder="find instrument" [nzShowArrow]="false" [ngModel]="instrument.metaData.instrument" (ngModelChange)="resetInstrumentSelection(index, $event)">
-                    <nz-option *ngFor="let instrumentName of allInstruments" [nzLabel]="instrumentName" [nzValue]="instrumentName">
+
+            <div nz-row [nzGutter]="[15, 15]" nzAlign="middle"
+                *ngFor="let instrument of workspaceModel.instruments; index as index">
+                <nz-select nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find instrument" [nzShowArrow]="false"
+                    [ngModel]="instrument.metaData.instrument"
+                    (ngModelChange)="resetInstrumentSelection(index, $event)">
+                    <nz-option *ngFor="let instrumentName of allInstruments" [nzLabel]="instrumentName"
+                        [nzValue]="instrumentName">
                     </nz-option>
                 </nz-select>
-                <nz-select nz-col [nzSpan]="11" [compareWith]="styleComparer" nzShowSearch nzPlaceHolder="find template"
+                <nz-select nz-col [nzSpan]="7" [compareWith]="styleComparer" nzShowSearch nzPlaceHolder="find template"
                     [nzShowArrow]="false" [ngModel]="workspaceModel.instruments[index]"
                     (ngModelChange)="changeTemplate($event, index)">
-                    <nz-option *ngFor="let style of findInstuments(instrument.metaData.instrument)" [nzValue]="style" [nzLabel]="style.id">
+                    <nz-option *ngFor="let style of findInstruments(instrument.metaData.instrument)" [nzValue]="style"
+                        [nzLabel]="style.id">
                     </nz-option>
                 </nz-select>
-                <a [disabled]="!canRemove" (click)="removeInstrument(index)" nz-col [nzSpan]="1" nz-button nzType="link"><i nz-icon nzType="minus" nzTheme="outline"></i></a>
+                <nz-select nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find GM instrument"
+                    [nzShowArrow]="false" [(ngModel)]="instrument.pcNumber">
+                    <nz-option *ngFor="let gmInstrumentName of gmInstruments; index as gmId" [nzValue]="gmId"
+                        [nzLabel]="gmInstrumentName">
+                    </nz-option>
+                </nz-select>
+                <a [disabled]="!canRemove" (click)="removeInstrument(index)" nz-col [nzSpan]="1" nz-button
+                    nzType="link"><i nz-icon nzType="minus" nzTheme="outline"></i></a>
             </div>
             <div nz-row [nzGutter]="[15, 15]">
-                <a (click)="addNewInstrument()" nz-col [nzSpan]="1" [nzOffset]="22" nz-button nzType="link"><i nz-icon nzType="plus" nzTheme="outline"></i></a>
+                <a (click)="addNewInstrument()" nz-col [nzSpan]="1" [nzOffset]="22" nz-button nzType="link"><i nz-icon
+                        nzType="plus" nzTheme="outline"></i></a>
             </div>
         </div>
     </div>
-    
+
     <button *ngIf="!isPlaying" nz-button nzType="primary" (click)="play()">Play</button>
     <button *ngIf="isPlaying" nz-button nzType="primary" (click)="stop()">Stop</button>
 
