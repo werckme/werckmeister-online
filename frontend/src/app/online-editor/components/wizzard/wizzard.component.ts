@@ -31,10 +31,30 @@ class StyleFileInfo implements IStyleFileInfo {
 	public set pcNumber(newVal: number) {
 		const currentPcStr = this.parsedPcStr;
 		if (currentPcStr === null) {
-			this.metaData.instrumentDef = (this.metaData.instrumentDef||'') + `_pc=${newVal}`;
+			this.metaData.instrumentDef = (this.metaData.instrumentDef||'') + ` _pc=${newVal}`;
 			return;
 		}
 		this.metaData.instrumentDef = this.metaData.instrumentDef.replace(/_pc=\d+/, `_pc=${newVal}`);
+	}
+	private get parsedVolumeStr(): string|null {
+		const defStr: string = this.metaData.instrumentConfig;
+		const match = defStr.match(/volume (?<vol>\d+)/);
+		return match?.groups?.vol ?? null;
+	}
+	public get volNumber(): number {  
+		const vol = this.parsedVolumeStr;
+		if (vol === null) {
+			return 100;
+		}
+		return Number.parseInt(vol);
+	}
+	public set volNumber(newVal: number) {
+		const currentVolStr = this.parsedVolumeStr;
+		if (currentVolStr === null) {
+			this.metaData.instrumentConfig = (this.metaData.instrumentConfig||'') + ` volume ${newVal}`;
+			return;
+		}
+		this.metaData.instrumentConfig = this.metaData.instrumentConfig.replace(/volume \d+/, `volume ${newVal}`);
 	}
 	constructor(private origin: IStyleFileInfo) {}
 }

@@ -12,7 +12,7 @@
     <div class="configurator">
 
         <div class="genre" nz-row [nzGutter]="[15, 15]">
-            <nz-select nz-col [nzSpan]="22" nzShowSearch nzPlaceHolder="find genre" [nzShowArrow]="false"
+            <nz-select [disabled]="isPlaying" nz-col [nzSpan]="24" nzShowSearch nzPlaceHolder="find genre" [nzShowArrow]="false"
                 [(ngModel)]="selectedGenre" (ngModelChange)="switchGenre($event)">
                 <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.key" [nzLabel]="style.key">
                 </nz-option>
@@ -24,31 +24,34 @@
 
             <div nz-row [nzGutter]="[15, 15]" nzAlign="middle"
                 *ngFor="let instrument of workspaceModel.instruments; index as index">
-                <nz-select nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find instrument" [nzShowArrow]="false"
+                <nz-select [disabled]="isPlaying" nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find instrument" [nzShowArrow]="false"
                     [ngModel]="instrument.metaData.instrument"
                     (ngModelChange)="resetInstrumentSelection(index, $event)">
                     <nz-option *ngFor="let instrumentName of allInstruments" [nzLabel]="instrumentName"
                         [nzValue]="instrumentName">
                     </nz-option>
                 </nz-select>
-                <nz-select nz-col [nzSpan]="7" [compareWith]="styleComparer" nzShowSearch nzPlaceHolder="find template"
+                <nz-select [disabled]="isPlaying" nz-col [nzSpan]="7" [compareWith]="styleComparer" nzShowSearch nzPlaceHolder="find template"
                     [nzShowArrow]="false" [ngModel]="workspaceModel.instruments[index]"
                     (ngModelChange)="changeTemplate($event, index)">
                     <nz-option *ngFor="let style of findInstruments(instrument.metaData.instrument)" [nzValue]="style"
                         [nzLabel]="style.id">
                     </nz-option>
                 </nz-select>
-                <nz-select nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find GM instrument"
-                    [nzShowArrow]="false" [(ngModel)]="instrument.pcNumber">
+                <nz-select [disabled]="isPlaying" nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find GM instrument" [nzShowArrow]="false"
+                    [(ngModel)]="instrument.pcNumber">
                     <nz-option *ngFor="let gmInstrumentName of gmInstruments; index as gmId" [nzValue]="gmId"
                         [nzLabel]="gmInstrumentName">
                     </nz-option>
                 </nz-select>
-                <a [disabled]="!canRemove" (click)="removeInstrument(index)" nz-col [nzSpan]="1" nz-button
+                <nz-input-group class="volume-control" nz-col [nzSpan]="2" [nzPrefix]="volumeIcon">
+                    <input [disabled]="isPlaying" nz-input type="number" [(ngModel)]="instrument.volNumber" />
+                </nz-input-group>
+                <a [disabled]="!canRemove || isPlaying" (click)="removeInstrument(index)" nz-col [nzSpan]="1" nz-button
                     nzType="link"><i nz-icon nzType="minus" nzTheme="outline"></i></a>
             </div>
             <div nz-row [nzGutter]="[15, 15]">
-                <a (click)="addNewInstrument()" nz-col [nzSpan]="1" [nzOffset]="22" nz-button nzType="link"><i nz-icon
+                <a [disabled]="isPlaying" (click)="addNewInstrument()" nz-col [nzSpan]="1" [nzOffset]="23" nz-button nzType="link"><i nz-icon
                         nzType="plus" nzTheme="outline"></i></a>
             </div>
         </div>
@@ -65,3 +68,10 @@ Cmaj7  | F#-7b5 | B7    | E- </textarea>
     </div>
     <button nz-button nzType="primary" (click)="createProject()">Create Project</button>
 </div>
+
+<ng-template #volumeIcon>
+    <svg class="volume-icon" alt="volume" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M264 416.19a23.92 23.92 0 01-14.21-4.69l-.66-.51-91.46-75H88a24 24 0 01-24-24V200a24 24 0 0124-24h69.65l91.46-75 .66-.51A24 24 0 01288 119.83v272.34a24 24 0 01-24 24zM352 336a16 16 0 01-14.29-23.18c9.49-18.9 14.3-38 14.3-56.82 0-19.36-4.66-37.92-14.25-56.73a16 16 0 0128.5-14.54C378.2 208.16 384 231.47 384 256c0 23.83-6 47.78-17.7 71.18A16 16 0 01352 336z" />
+        <path d="M400 384a16 16 0 01-13.87-24C405 327.05 416 299.45 416 256c0-44.12-10.94-71.52-29.83-103.95A16 16 0 01413.83 136C434.92 172.16 448 204.88 448 256c0 50.36-13.06 83.24-34.12 120a16 16 0 01-13.88 8z" />
+    </svg>
+</ng-template>
