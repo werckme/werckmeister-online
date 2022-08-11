@@ -143,12 +143,6 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	}
 
 
-	private getInstrumentConfigParams(styleInfo: IStyleFileInfo) {
-		const hasConfInfo = styleInfo.metaData.instrumentConfig;
-		return hasConfInfo ? `${styleInfo.metaData.instrument} ${styleInfo.metaData.instrumentConfig}` : `${styleInfo.metaData.instrument} volume 100`;
-	}
-
-
 	private async addFile(id: string, data: string):Promise<void> {
 		await this.workspaceComponent.addFile(id, data);
 		this.workspaceModel.files.push({path: id, data: data});
@@ -187,6 +181,10 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 			const hasDefInfo = styleInfo.metaData.instrumentDef;
 			return hasDefInfo ? `${instrumentName} ${styleInfo.metaData.instrumentDef}` : `${instrumentName} _pc=0`;
 		}
+		const getInstrumentConfigParams = function(styleInfo: IStyleFileInfo, instrumentName: string) {
+			const hasConfInfo = styleInfo.metaData.instrumentConfig;
+			return hasConfInfo ? `${instrumentName} ${styleInfo.metaData.instrumentConfig}` : `${styleInfo.metaData.instrument} volume 100`;
+		}
 		for(const styleInfo of this.workspaceModel.instruments) {
 			const instrumentName = getNextInstrumentName(styleInfo.metaData.instrument);
 			const file = await this.getStyleFileForInstrument(styleInfo.id, instrumentName);
@@ -195,7 +193,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 			const isDrums = styleInfo.metaData.instrument === 'drums';
 			const instrumentChannel = isDrums ? 9 : midiChannel++;
 			const instrumentDef = `instrumentDef: ${getInstrumentDefParams(styleInfo, instrumentName)} _onDevice="MyDevice" _ch=${instrumentChannel};`;
-			const instrumentConf = `instrumentConf: ${this.getInstrumentConfigParams(styleInfo)};`;
+			const instrumentConf = `instrumentConf: ${getInstrumentConfigParams(styleInfo, instrumentName)};`;
 			result.push(instrumentDef, instrumentConf);
 		}
 		return result;
