@@ -1,0 +1,44 @@
+-- TEMPO: 100
+-- SIGNATURE: 4/4
+-- PARTS: normal, break
+-- AUX: ["drums.cumbia.conductions"]
+[
+type: template;
+name: drums.cumbia.normal;
+instrument: drums;
+{
+	"cbsa"16  r &&&  rr  && r &&&  rr  &&  | r &&&  rr  && r &&&  rr  & |
+}
+{
+	\p
+	"hwblck"4 & & & |
+}
+{
+	r2 "lcon"4 &8 & |
+}
+{
+	r8 h,  r &  r &  r &   |      
+}
+{
+	\ffff
+	o o o o |
+}
+{
+	\p
+	"cwb"2 & |
+}
+]
+
+[
+type: template;
+name: drums.cumbia.break;
+instrument: drums;
+{
+	\p
+	"tim1"->"tim2"4  &8 &&  r ("cwb" & & & &)4 
+}
+{
+	\ffff
+	o4 o8 o o   r4 |
+}
+]

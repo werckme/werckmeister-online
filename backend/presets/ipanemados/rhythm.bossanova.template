@@ -1,0 +1,13 @@
+-- TEMPO: 120
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=0
+-- INSTRUMENTCONF: volume 75 pan 25
+[
+type: template;
+name: rhythm.bossanova.normal;
+instrument: rhythm.2; 
+{
+    <VII, VII>4 <III, V,>8 <V, V>8 r8 <III, V,>8 r8 <V, V> | r8 <III, V,>8 r8 <V, V> r8 <III, V,> r8 <VII, VII> |
+}    
+]

@@ -1,0 +1,76 @@
+-- TITLE: The Girl From Ipanema (D.O.S. Version)
+-- BY: Antonio Carlos Jobim, Arr: Samba Godschynski  
+-- DESCRIPTION: Discolina Oscilla Sempre
+-- #jazz #bossa-nova #4/4 #repeats #volta-brackets #instrument-section #conductions #featured #real-book
+-- CREATORID: johannes.unger@vstforx.de
+
+using "./myPitchmap.pitchmap";
+using "./default.chords";
+using "./bass.disco.template";
+using "./drums.disco.template";
+using "./rhythm.soca.template";
+using "./rhythm2.soca.template";
+using "./rhythm.bossanova.template";
+using "./myRules.conductions";
+using "/lua/mods/guitarStroke.lua";
+
+device: MyDevice midi _isType=webPlayer _useFont="Live-HQ-Natural-SoundFont-GM"; 
+
+instrumentDef: bass1 _pc=33 _onDevice="MyDevice" _ch=0;
+instrumentDef: bass2 _pc=34 _onDevice="MyDevice" _ch=1;
+instrumentSection: bass bass1 bass2;
+instrumentConf: bass volume 100;
+instrumentDef: drums _pc=0 _onDevice="MyDevice" _ch=9;
+instrumentConf: drums volume 100;
+instrumentDef: rhythm _pc=28 _onDevice="MyDevice" _ch=2;
+instrumentConf: rhythm volume 75 pan 100;
+instrumentDef: rhythm2 _pc=23 _onDevice="MyDevice" _ch=3;
+instrumentConf: rhythm2 volume 60 pan 85 mod guitarStroke;
+instrumentDef: rhythm.2 _pc=4 _onDevice="MyDevice" _ch=4;
+instrumentConf: rhythm.2 volume 100 pan 0;
+instrumentDef:lead1 _pc=11 _onDevice=MyDevice  _ch=5;
+instrumentDef:lead2 _pc=7  _onDevice=MyDevice  _ch=6;
+instrumentConf: lead2 volume 90 pan 0;
+instrumentSection: lead lead1 lead2;
+tempo: 135;
+
+
+[
+instrument: lead;
+{
+    \ffff
+    g4. e8 e d4 g8~  | g4 e8 e4 e8 d g~ | g4 e e d8 g~ | g8 g e e4 e8 d f~ |
+    f8 d4 d4 d8 c e~ | e c4 c4 c8 bb,4 |^1 r4 c2.~ | c1 :| ^2 r4 c2.~ | 
+    c2. r4 | f1~ | (f gb f)2 (eb f eb)2 |
+    db4. eb8~ eb2~  | eb2. r8 g#~ | g#1~ | (g# a g#)2 (f# g# f#) |
+    e4. f#8~ f#2~  | f#2. r8 a~ | a1~ | (a4 bb a)2 (g a g) |
+    f4. g8~g2~ | g2 (r a bb)2 | (c' c d) (e f g) | g#2. a4 | 
+    (bb4 bb, c)2 (d e f) | f#1 | g4. e8 e d4 g8~ | g4 e8 e4 e8 d g~ |
+    g4 e e d8 g~ | g8 g e e4 e8 d a~ | a4. f8 f f d c' | c'4. e8 (e e d)2 |
+    e1~ | e4. e8 (e e d)2 | e1~ | e4. e8 (e e d)2 | e1 |
+}
+]
+
+[
+type: accomp;
+{
+    /template: bass.disco.normal drums.disco.normal rhythm.soca.normal rhythm2.soca.normal rhythm.bossanova.normal/
+    Fmaj7 | Fmaj7 | G7 | G7 |
+    G-7 | Gb7 |^1 Fmaj7 | Gb7 :|^2  Fmaj7 | Fmaj7 | 
+    /template: bass.disco.normal drums.disco.solo rhythm.soca.normal/    
+    Gbmaj7 | Gbmaj7 |
+    B7 | B7 | F#-7 | F#-7 |
+    D7 | 
+    /fill: drums.disco.snareFill/
+    D7 | 
+    /template: bass.disco.normal drums.disco.solo2 rhythm.soca.normal rhythm.bossanova.normal/    
+    G-7 | G-7 |
+    Eb7 | 
+    Eb7 | 
+    /template: bass.disco.normal drums.disco.normal rhythm.soca.normal rhythm2.soca.normal rhythm.bossanova.normal/
+    A-7 | D7b9 |
+    G-7 | C7b9 | Fmaj7 | Fmaj7 |
+    G7 | G7 | G-7 | Gb7 |
+    Fmaj7 | Gb9 | Fmaj7 | Gb9 | Fmaj7 | Gb9 | Fmaj7 | Gb9 | Fmaj7
+}
+]

@@ -1,0 +1,24 @@
+-- TEMPO: 100
+-- SIGNATURE: 4/4
+-- PARTS: normal, break
+-- AUX: ["accordion.cumbia.conductions"]
+-- INSTRUMENTDEF: _pc=23
+-- INSTRUMENTCONF: volume 60
+
+[
+type: template;
+name: accordion.cumbia.normal;
+instrument: accordion; 
+{
+    r8 <I II III IV V VI VII> r &  r &  r & |
+}   
+]
+
+[
+type: template;
+name: accordion.cumbia.break;
+instrument: accordion; 
+{
+	<I II III IV V VI VII>8r &16r &r &r  r4. | 
+}   
+]

@@ -1,0 +1,27 @@
+-- TEMPO: 100
+-- SIGNATURE: 4/4
+-- PARTS: normal, break
+-- AUX: ["piano.cumbia.conductions"]
+-- INSTRUMENTDEF: _pc=0
+-- INSTRUMENTCONF: volume 60
+
+[
+type: template;
+name: piano.cumbia.normal;
+instrument: piano; 
+{
+	<V V'>16 <I I'>8  <III III'>16 <!VI !VI'> I III <V V'>8  <I I'>16 <III III'>  <!VI !VI'>8 III8 III'8 | 
+}
+{
+	r4								!VI8.			    V16~&8.                         !VI8.  r8		 |
+}
+] 
+
+[
+type: template;
+name: piano.cumbia.break;
+instrument: piano; 
+{
+	<I' II' III' IV' V' VI' VII'>8r &16r &r &r  r4. | 
+}   
+]

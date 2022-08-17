@@ -1,0 +1,8 @@
+instrument(lead2) {
+	duration -= 30%;
+    pitch-=12;
+}
+
+instrument(lead1) {
+    timeOffset = 1/16;
+}

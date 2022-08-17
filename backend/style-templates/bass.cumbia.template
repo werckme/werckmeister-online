@@ -1,0 +1,25 @@
+-- TEMPO: 100
+-- SIGNATURE: 4/4
+-- PARTS: normal, break
+-- AUX: ["bass.cumbia.conductions"]
+-- INSTRUMENTDEF: _pc=33
+-- INSTRUMENTCONF: volume 100
+
+[
+type: template;
+name: bass.cumbia.normal;
+instrument: bass;
+{
+	I,,4 V,,8 !VI,,  I,,4  V,,8 !VI,, | 
+}
+]
+
+[
+type: template;
+name: bass.cumbia.break;
+instrument: bass;
+{
+	\ffff
+	I,,8r I,,16r I,,r I,,r  r4. |
+}
+]

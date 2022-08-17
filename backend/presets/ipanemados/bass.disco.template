@@ -1,0 +1,15 @@
+-- TEMPO: 120
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=33
+-- INSTRUMENTCONF: volume 100
+
+[
+type: template;
+name: bass.disco.normal;
+instrument: bass;
+{
+    \ffff
+    I,,8 I,16 I,16  I,,8 I,16 I,16  I,,8 I,16 I,16  I,,8 I,16 I,16 |
+}   
+]
