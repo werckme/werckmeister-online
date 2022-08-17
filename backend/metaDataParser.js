@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require('path');
 const _ = require('lodash');
+const { templateDir } = require('./resourcesScanner')
 
 function getHeaderCommentSection(text) {
     const lines = text.split(/\n|\r\n/);
@@ -99,6 +100,18 @@ function getSheetMetaData(sheetFile) {
     }
 }
 
+function loadAuxFiles(metaData) {
+    if (!metaData.aux) {
+        return;
+    }
+    for(const aux of metaData.aux) {
+        const auxPath = path.join(templateDir, aux);
+        const fileText = fs.readFileSync(auxPath).toString();
+        metaData.auxFiles = metaData.auxFiles || [];
+        metaData.auxFiles.push({path: aux, data: fileText});
+    }
+}
+
 function getStyleTemplateMetaData(templateFilePath) {
     try {
         const fileName = path.basename(templateFilePath);
@@ -111,12 +124,14 @@ function getStyleTemplateMetaData(templateFilePath) {
         metaData.instrumentDef = getInfo('INSTRUMENTDEF', metaData.header);
         metaData.instrumentConfig = getInfo('INSTRUMENTCONF', metaData.header);
         metaData.usings = JSON.parse(getInfo('USINGS', metaData.header) || "[]");
+        metaData.aux = JSON.parse(getInfo('AUX', metaData.header) || "[]");
         const fileNameMatch = fileName.match(/(?<instrument>\w+)\.(?<name>\w+).\w+/)
         if (!fileNameMatch.groups || !fileNameMatch.groups.instrument || !fileNameMatch.groups.name) {
             throw new Error("invalid file name: " + fileName);
         }
         metaData.title = fileNameMatch.groups.name;
         metaData.instrument = fileNameMatch.groups.instrument;
+        loadAuxFiles(metaData);
         delete metaData.creatorid;
         delete metaData.preview;
         return metaData;

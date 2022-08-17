@@ -108,35 +108,26 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		this.notification.error("", error.errorMessage)
 	}
 
+
 	private async clearWorkspace(): Promise<void> {
 		for(const workspaceFile of this.workspaceModel.files) {
 			await this.workspaceComponent.removeFile(workspaceFile.path);
 		}
-		this.workspaceModel = new WizzardWorkspace();
-	}
-
-	private async removeTemplates(): Promise<void> {
-		for(const workspaceFile of this.workspaceModel.files) {
-			if (!workspaceFile.path.endsWith(`.template`)) {
-				continue;
-			}
-			await this.workspaceComponent.removeFile(workspaceFile.path);
-			this.workspaceModel.files = this.workspaceModel.files.filter(x => x.path !== workspaceFile.path);
-		}
+		this.workspaceModel.files = [];
+		await this.addFile("myPitchmap.pitchmap", pitchmapText);
+		await this.addFile("default.chords", chordsText);
 	}
 
 	public async switchGenre(style: string): Promise<void> {
 		try {
+			this.workspaceModel = new WizzardWorkspace();
 			await this.workspaceComponent.stop();
 			const styleFileInfos = _.orderBy(this.styles[style], x => x.metaData.instrument);
 			await this.clearWorkspace();
 			for(const styleFileInfo of styleFileInfos) {
 				const file = await this.service.getStyleFile(styleFileInfo.id);
 				this.workspaceModel.instruments.push(styleFileInfo);
-				await this.addFile(file.id, file.data);
 			}
-			await this.addFile("myPitchmap.pitchmap", pitchmapText);
-			await this.addFile("default.chords", chordsText);
 		} catch {
 			this.notification.error("", `failed to fetch style infos`);
 		}
@@ -161,11 +152,19 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		return file;
 	}
 
+	private async addAuxFiles(instrumentDef: IStyleFileInfo): Promise<void> {
+		if (!instrumentDef.metaData.auxFiles) {
+			return;
+		}
+		for(const aux of instrumentDef.metaData.auxFiles) {
+			await this.addFile(aux.path, aux.data);
+		}
+	}
+
 	private async createInstruments(): Promise<string[]> {
 		const result:string[] = []
 		let midiChannel = 0;
 		const usedInstruments = new Map<string, number>();
-		await this.removeTemplates();
 		const getNextInstrumentName = function(instrumentName: string) {
 			let instrumentCount = 1;
 			if (usedInstruments.has(instrumentName)) {
@@ -189,7 +188,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 			const instrumentName = getNextInstrumentName(styleInfo.metaData.instrument);
 			const file = await this.getStyleFileForInstrument(styleInfo.id, instrumentName);
 			await this.addStyleFile(file);
-
+			await this.addAuxFiles(styleInfo);
 			const isDrums = styleInfo.metaData.instrument === 'drums';
 			const instrumentChannel = isDrums ? 9 : midiChannel++;
 			const instrumentDef = `instrumentDef: ${getInstrumentDefParams(styleInfo, instrumentName)} _onDevice="MyDevice" _ch=${instrumentChannel};`;
@@ -204,6 +203,8 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		if (!styleInfo) {
 			return;
 		}
+		this.clearWorkspace();
+
 		let templateUsings = _(this.workspaceModel.instruments)
 			.map(x => x.metaData.usings)
 			.flatten()
@@ -212,11 +213,13 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		const instruments = await this.createInstruments();
 		const usings = templateUsings.concat(this.workspaceModel.files.map(x => `using "./${x.path}";`));
 		const templates = this.workspaceModel.instruments.map(x => x.metaData).map(x => `${x.instrument}.${x.title}.normal`)
+		const chords = '\t' + (this.chords.element.nativeElement.value as string)
+			.replace(/\n/g, '\n\t');
 		const sheetText = mainSheetText
 			.replace(/\$TEMPLATES/g, `/template: ${templates.join('\n\t')}\n\t/`)
 			.replace(/\$USINGS/g, usings.join('\n'))
 			.replace(/\$TEMPO/g, (styleInfo.metaData.tempo || 120).toString())
-			.replace(/\$CHORDS/g, this.chords.element.nativeElement.value)
+			.replace(/\$CHORDS/g, chords)
 			.replace(/\$INSTRUMENTS/g, instruments.join("\n"));
 		return sheetText;
 	}

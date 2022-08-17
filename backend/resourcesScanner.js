@@ -38,9 +38,10 @@ function listExternalResources() {
 }
 
 function listTemplates() {
-    return fs.readdirSync(templateDir);
+    return fs.readdirSync(templateDir)
+        .filter(x => x.endsWith('.template'));
 }
 
 
 
-module.exports = { getWorkspace, listPresets, listExternalResources, listTemplates, loadTemplate }
+module.exports = { getWorkspace, listPresets, listExternalResources, listTemplates, loadTemplate, templateDir }

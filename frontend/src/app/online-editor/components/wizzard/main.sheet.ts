@@ -8,6 +8,6 @@ tempo: $TEMPO;
 type: accomp;
 {
     $TEMPLATES
-    $CHORDS
+$CHORDS
 }
 ]`;

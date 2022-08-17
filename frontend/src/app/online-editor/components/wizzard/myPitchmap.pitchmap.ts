@@ -56,4 +56,8 @@ export const text = `"bd": c,,
 "t4": f,,
 "brsw": e,,     -- brush swirl
 "brtp": d,,     -- brush tap
-"brsp": d#,,     -- brush slap`;
+"brsp": d#,,     -- brush slap
+"cbsa": a		-- cabasa
+"hwblck": e'	-- high wood block
+"lwblck": f'	-- low wood block
+`;

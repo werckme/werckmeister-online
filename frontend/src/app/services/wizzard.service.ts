@@ -12,6 +12,7 @@ export interface IMetaData {
   instrumentDef?: string;
   instrumentConfig?: string;
   usings: string[];
+  auxFiles?: {path: string, data: string}[];
 }
 
 export interface IStyleFileInfo {

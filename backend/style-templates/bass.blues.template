@@ -11,6 +11,6 @@ name: bass.blues.normal;
 instrument: bass;
 {
     /do: swing _grid=8 _offset=60/
-    I,,,8 &  I,,&  VII,,,&  V,,,&  |
+    I,,,8 &  I,,&  !VII,,,&  V,,,&  |
 }
 ]
