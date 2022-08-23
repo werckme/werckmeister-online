@@ -1,0 +1,23 @@
+-- TEMPO: 140
+-- SIGNATURE: 4/4
+-- PARTS: normal, end
+-- INSTRUMENTDEF: _pc=33
+-- INSTRUMENTCONF: volume 100
+
+[
+type: template;
+name: bass.50sRock.normal;
+instrument: bass;
+{
+   I,,4. I,,8 V,,4 III,,8 V,,8 |
+}
+]
+
+[
+type: template;
+name: bass.50sRock.end;
+instrument: bass;
+{
+   I,,2. r4 |
+}
+]

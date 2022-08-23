@@ -1,0 +1,31 @@
+-- TEMPO: 140
+-- SIGNATURE: 4/4
+-- PARTS: normal, end
+-- INSTRUMENTCONF: volume 100
+-- AUX: ["drums.50sRock.conductions"]
+[
+type: template;
+name: drums.50sRock.normal;
+instrument: drums;
+{
+   h8 &&&&&& |
+}
+{
+   r4 x8 & r4 & |
+}
+{
+   o2 r8 o4 r8 |
+}
+]
+
+[
+type: template;
+name: drums.50sRock.end;
+instrument: drums;
+{
+   "cy"2. r4 |
+}
+{
+   o2. r4 |
+}
+]

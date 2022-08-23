@@ -1,6 +1,7 @@
 -- tempo: 120
 -- signature: 4/4
 -- parts: normal, cymbal, ende
+-- #not-listed
 [
 type: template;
 name: drums.country.normal;

@@ -1,0 +1,27 @@
+-- TEMPO: 140
+-- SIGNATURE: 4/4
+-- PARTS: normal, end
+-- INSTRUMENTDEF: _pc=26
+-- INSTRUMENTCONF: volume 100
+-- USINGS: ["/lua/mods/myArpeggio.lua"]
+-- AUX: ["guitar.50sRock.conductions"]
+
+[
+type: template;
+name: guitar.50sRock.normal;
+instrument: guitar;
+{
+   I,8. /modOnce: myArpeggio/ "ghost emph"@<V, I III V I'>16. r16. 
+   /modOnce: myArpeggio _direction="down"/<III V I'>32 r16. 
+   r8 I, /modOnce: myArpeggio _direction="down"/ "ghost"@<III V I'>32~ &16 r32 VII,,4 |
+}
+]
+
+[
+type: template;
+name: guitar.50sRock.end;
+instrument: guitar;
+{
+   /modOnce: myArpeggio/ <V, I III V I'>2~ &~ | &1 |
+}
+]

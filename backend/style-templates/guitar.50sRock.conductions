@@ -1,0 +1,7 @@
+instrument(guitar) withTag(ghost) {
+    duration -= 70%;
+}
+
+instrument(guitar) withTag(emph) {
+    velocity += 15;
+}

@@ -1,6 +1,7 @@
 -- tempo: 140
 -- signature: 3/4
 -- parts: normal
+-- #not-listed
 [
 type: template;
 name: drums.clickclack.normal;

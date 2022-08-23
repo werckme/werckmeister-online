@@ -3,6 +3,7 @@
 -- PARTS: normal, end
 -- INSTRUMENTDEF: _pc=33
 -- INSTRUMENTCONF: volume 100
+-- #not-listed
 [
 type: template;
 name: bass.country.normal;

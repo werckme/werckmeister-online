@@ -4,6 +4,7 @@
 -- INSTRUMENTDEF: _pc=0
 -- INSTRUMENTCONF: volume 75 voicingStrategy simple _importantDegree=IV
 -- USINGS: ["/lua/voicings/simple.lua"]
+-- #not-listed
 
 [
 type: template;

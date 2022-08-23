@@ -4,7 +4,7 @@
 -- INSTRUMENTDEF: _pc=33
 -- INSTRUMENTCONF: volume 100 voicingStrategy simple _importantDegree=IV
 -- USINGS: ["/lua/voicings/simple.lua"]
-
+-- #not-listed
 [
 type: template;
 name: bass.clickclack.normal;

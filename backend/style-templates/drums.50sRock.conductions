@@ -1,0 +1,3 @@
+instrument (drums) onBeat(2 4) {
+    velocity += 30;
+}

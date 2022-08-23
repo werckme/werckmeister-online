@@ -97,7 +97,8 @@ app.get('/', async (req, res, next) => {
 app.get('/styleTemplates', async (req, res, next) => {
     try {
         const dbStyleTemplates = db.get('styleTemplates');
-        const templates = await dbStyleTemplates.find({}, templateFields);
+        const templates = (await dbStyleTemplates.find({}, templateFields))
+            .filter(x => !x.metaData.tags || x.metaData.tags.indexOf(NotListedTag) < 0)
         for(const template of templates) {
             delete template._id;
         }
