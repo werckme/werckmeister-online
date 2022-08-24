@@ -40,9 +40,11 @@
                 </nz-select>
                 <nz-select [disabled]="isPlaying" nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find GM instrument" [nzShowArrow]="false"
                     [(ngModel)]="instrument.pcNumber">
-                    <nz-option *ngFor="let gmInstrumentName of gmInstruments; index as gmId" [nzValue]="gmId"
-                        [nzLabel]="gmInstrumentName">
-                    </nz-option>
+                    <ng-container *ngFor="let gmInstrumentName of instrument.metaData.instrument === 'drums' ? fluidSynthGmDrums : gmInstruments; index as gmId">
+                        <nz-option  *ngIf="gmInstrumentName !== null" [nzValue]="gmId"
+                            [nzLabel]="gmInstrumentName">
+                        </nz-option>
+                    </ng-container>
                 </nz-select>
                 <nz-input-group class="volume-control" nz-col [nzSpan]="2" [nzPrefix]="volumeIcon">
                     <input [disabled]="isPlaying" nz-input type="number" min="0" max="100" [(ngModel)]="instrument.volNumber" />

@@ -9,7 +9,7 @@ import { text as chordsText } from './default.chords';
 import { waitAsync } from 'src/shared/help/waitAsync';
 import { IWorkspace, IFile, WorkspaceStorageService } from '../../services/workspaceStorage';
 import { Router } from '@angular/router';
-import { GMInstruments } from '../../shared/GmInstruments';
+import { FluidSynthGmDrums, GMInstruments } from '../../shared/GmInstruments';
 
 type Styles = { [key: string]: StyleFileInfo[] };
 
@@ -76,6 +76,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	public allStyleFileInfos: StyleFileInfo[];
 	public workspaceModel: WizzardWorkspace = new WizzardWorkspace();
 	public gmInstruments = GMInstruments;
+	public fluidSynthGmDrums = FluidSynthGmDrums;
 	public styleComparer(a: IStyleFileInfo, b: IStyleFileInfo): boolean {
 		if (!a || !b) {
 			return false;
