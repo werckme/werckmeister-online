@@ -297,4 +297,24 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	public get canRemove(): boolean {
 		return this.workspaceModel.instruments.length > 1;
 	}
+
+	public getGenreDisplayName(name: string) {
+		return _.capitalize(name);
+	}
+
+	public getInstrumentDisplayName(name: string) {
+		return _.capitalize(name);
+	}
+
+	public getTemplateDisplayName(name: string) {
+		if (!name) {
+			return "";
+		}
+		const match = name.match(/.+\.(.+)\..+/);
+		if (!match) {
+			return "";
+		}
+		name = match[1];
+		return _.capitalize(name);
+	}
 }

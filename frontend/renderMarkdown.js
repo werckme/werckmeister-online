@@ -62,7 +62,7 @@ renderer.link = (href, title, text) => {
   var seg = href.split('#');
   href = !!seg[0] ? `/${seg[0]}` : "./";
   var frag = seg[1] 
-  return `<a pageScroll id="link-${linkNr++}" [pageScrollDuration]="0" [pageScrollOffset]="${anchorPixelOffset}" [routerLink]="['${href}']" fragment="${frag}">${text}</a>`
+  return `<a id="link-${linkNr++}" [routerLink]="['${href}']" fragment="${frag}">${text}</a>`
 }
 
 renderer.heading = (string, level, raw, slugger) => {

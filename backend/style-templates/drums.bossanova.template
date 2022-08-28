@@ -6,13 +6,12 @@ type: template;
 name: drums.bossanova.normal;
 instrument: drums;
 {
-    "ht"8 !f"ht" "ht" !f"ht"   "ht" "ht" "ht" !f"ht" |
+    h8 !fh h !fh   h h h !fh |
 }    
 {
-    \fff
-    r4 "ss"8 r4 "ss"8 r4 | "ss"4. "ss"8 r4 "ss" |
+    r4 x'8 r4 x'8 r4 | x'4. x'8 r4 x' |
 }    
 {
-    "bd"4. "bd"8 "bd"4. "bd"8 |
+    o4. &8 &4. &8 |
 }      
 ]

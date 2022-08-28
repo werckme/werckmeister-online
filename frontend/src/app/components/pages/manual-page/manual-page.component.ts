@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, AfterViewInit, OnDestroy, ViewContainerRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
 import { AnchorScrollSpy } from 'src/shared/VanillaJs';
 import { IListOfContentsEntry } from '../../partials/list-of-contents/list-of-contents.component';
@@ -13,7 +14,7 @@ export class ManualPageComponent implements OnInit, AfterViewInit, OnDestroy {
 	public activeAnchorId: string;
 	public scrollSpy: AnchorScrollSpy;
 	public toc: IListOfContentsEntry[] = [];
-	constructor(private elRef: ElementRef<HTMLLinkElement>) {
+	constructor(private elRef: ElementRef<HTMLLinkElement>, private route: ActivatedRoute) {
 	}
 	ngOnDestroy(): void {
 		this.scrollSpy.unbind();
@@ -44,8 +45,20 @@ export class ManualPageComponent implements OnInit, AfterViewInit, OnDestroy {
 		}
 	}
 
+	private async currentFragment(): Promise<string> {
+		return new Promise<string>(resolve => {
+			this.route.fragment.subscribe(x => {
+				resolve(x);
+			});
+		});
+	}
 
-	ngAfterViewInit() {
+	async ngAfterViewInit() {
+		const fragment = await this.currentFragment();
+		setTimeout(() => {
+			const el = document.querySelector(`[id=${fragment}]`)
+			el.scrollIntoView();
+		});
 
 	}
 

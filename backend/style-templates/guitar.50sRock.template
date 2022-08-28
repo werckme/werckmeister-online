@@ -5,6 +5,7 @@
 -- INSTRUMENTCONF: volume 100
 -- USINGS: ["/lua/mods/myArpeggio.lua"]
 -- AUX: ["guitar.50sRock.conductions"]
+-- PROG: Cmaj7 | A-7 | F7 | G7 | Cmaj7 | A-7 | F7 | G7 |
 
 [
 type: template;

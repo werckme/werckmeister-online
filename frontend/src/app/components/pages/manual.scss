@@ -10,6 +10,7 @@ h1 {
 }
 
 h2 {
+    padding-top: 60px; // header offset to fix anchor navigation
     font-size: 2rem;
     line-height: 2.5rem;
     margin: 56px 0 24px;
@@ -17,6 +18,7 @@ h2 {
 }
 
 h3 {
+    padding-top: 60px; // header offset fix anchor navigation
     border-bottom: 1px solid lightgrey;
     font-size: 1.5rem;
     margin: 28px 0 12px;

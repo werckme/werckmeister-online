@@ -1,0 +1,16 @@
+instrument(drums) pitch(h) {
+    velocity = 55;
+}
+
+instrument(drums) pitch(h) onBeat(2 4) {
+    velocity += 20%;
+}
+
+instrument(drums) pitch(h) onBeat(1 3) {
+    velocity += 10%;
+}
+
+instrument(drums) pitch(x) onBeat(2 4) {
+	timeOffset = 1/32; -- snare a bit laid back
+}
+

@@ -2,19 +2,17 @@
 -- SIGNATURE: 4/4
 -- PARTS: normal
 -- INSTRUMENTDEF: _pc=27
--- INSTRUMENTCONF: volume 70
-
-using "lua/mods/swing.lua";
-
+-- INSTRUMENTCONF: volume 70 mod swing _grid=8 _offset=60
+-- USINGS: ["/lua/mods/swing.lua"]
+-- PROG: C7 | F7 | C7 | F7 | G7 | F7 | C7 | G7
 [
 type: template;
-name: rhythm.blues.normal;    
-instrument: rhythm;
+name: guitar.blues.normal;    
+instrument: guitar;
 {
-    /do: swing _grid=8 _offset=60/
     <I, V,>8 & <I, !VI,> & <I, V,>8 & <I, !VI,> &     |
     <I, V,>8 & <I, !VI,> & <I, V,>8 & <I, !VI,> &     |
     <I, V,>8 & <I, !VI,> & <I, V,>8 & <I, !VI,> &     |
-    <I, V,>8 & <I, !VI,> & <I, VII,>8 & <I, !VI,> &  |
+    <I, V,>8 & <I, !VI,> & <I, VII,>8 & <I, !VI,> &   |
 }
 ]

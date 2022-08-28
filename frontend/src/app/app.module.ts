@@ -10,8 +10,6 @@ import { DecimalPipe, registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { ManualComponent } from './components/pages/manual.component';
 import { GettingStartedComponent } from './components/pages/getting-started';
-import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
-import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { ResourcesComponent } from './components/pages/resources/resources.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CodeExtensionComponent } from './components/pages/visual-studio-extension';
@@ -118,8 +116,6 @@ registerLocaleData(en);
         NzIconModule,
         NzSelectModule,
         BrowserAnimationsModule,
-        NgxPageScrollCoreModule,
-        NgxPageScrollModule,
         NgZorroAntdMobileModule,
         NzDescriptionsModule,
         OnlineEditorModule,

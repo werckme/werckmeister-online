@@ -14,7 +14,7 @@
         <div class="genre" nz-row [nzGutter]="[15, 15]">
             <nz-select [disabled]="isPlaying" nz-col [nzSpan]="24" nzShowSearch nzPlaceHolder="find genre" [nzShowArrow]="false"
                 [(ngModel)]="selectedGenre" (ngModelChange)="switchGenre($event)">
-                <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.key" [nzLabel]="style.key">
+                <nz-option *ngFor="let style of styles | keyvalue" [nzValue]="style.key" [nzLabel]="getGenreDisplayName(style.key)">
                 </nz-option>
             </nz-select>
 
@@ -27,7 +27,7 @@
                 <nz-select [disabled]="isPlaying" nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find instrument" [nzShowArrow]="false"
                     [ngModel]="instrument.metaData.instrument"
                     (ngModelChange)="resetInstrumentSelection(index, $event)">
-                    <nz-option *ngFor="let instrumentName of allInstruments" [nzLabel]="instrumentName"
+                    <nz-option *ngFor="let instrumentName of allInstruments" [nzLabel]="getInstrumentDisplayName(instrumentName)"
                         [nzValue]="instrumentName">
                     </nz-option>
                 </nz-select>
@@ -35,7 +35,7 @@
                     [nzShowArrow]="false" [ngModel]="workspaceModel.instruments[index]"
                     (ngModelChange)="changeTemplate($event, index)">
                     <nz-option *ngFor="let style of findInstruments(instrument.metaData.instrument)" [nzValue]="style"
-                        [nzLabel]="style.id">
+                        [nzLabel]="getTemplateDisplayName(style.id)">
                     </nz-option>
                 </nz-select>
                 <nz-select [disabled]="isPlaying" nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find GM instrument" [nzShowArrow]="false"

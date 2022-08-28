@@ -7,9 +7,9 @@ type: template;
 name: rhythm.countryShuffle.normal;
 instrument: rhythm; 
 {
-    r4  <I III>2   &4~ | &  &2       &4  
+    r4  <I III>2   &4~ | &  &2       &4  |
 }
 {
-    I,   V,  V,,  V,   | I,  V,  V,, V,
+    I,   V,  V,,  V,   | I,  V,  V,, V,  |
 }
 ]

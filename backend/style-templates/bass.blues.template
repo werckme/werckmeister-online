@@ -2,15 +2,14 @@
 -- SIGNATURE: 4/4
 -- PARTS: normal
 -- INSTRUMENTDEF: _pc=33
--- INSTRUMENTCONF: volume 100
+-- INSTRUMENTCONF: volume 100 mod swing _grid=8 _offset=60
+-- USINGS: ["/lua/mods/swing.lua"]
 
-using "lua/mods/swing.lua";
 [
 type: template;
 name: bass.blues.normal;    
 instrument: bass;
 {
-    /do: swing _grid=8 _offset=60/
     I,,,8 &  I,,&  !VII,,,&  V,,,&  |
 }
 ]

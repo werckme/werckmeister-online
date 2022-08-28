@@ -33,8 +33,6 @@
     "moment": "^2.29.4",
     "ng-zorro-antd": "^13.0.1",
     "ng-zorro-antd-mobile": "^3.0.3",
-    "ngx-page-scroll": "^7.0.5",
-    "ngx-page-scroll-core": "^7.0.5",
     "rxjs": "~6.5.4",
     "showdown": "^1.9.1",
     "tslib": "^2.0.0",
