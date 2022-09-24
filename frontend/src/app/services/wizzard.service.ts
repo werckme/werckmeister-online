@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 export interface IMetaData {
   title: string;
   tags: string[];
-  instrumentGroup: string;
+  instrument: string;
   signature: string;
   tempo: number;
   instrumentDef?: string;

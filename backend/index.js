@@ -14,7 +14,7 @@ const templateFields =  [
     "metaData.title", 
     "metaData.signature", 
     "metaData.tempo", 
-    "metaData.instrumentGroup",
+    "metaData.instrument",
     "metaData.instrumentConfig",
     "metaData.instrumentDef",
     "metaData.usings",

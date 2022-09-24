@@ -62,7 +62,7 @@ class StyleFileInfo implements IStyleFileInfo {
 class WizzardWorkspace implements IWorkspace {
 	wid: string;
 	files: IFile[] = [];
-	instrumentGroups: StyleFileInfo[] = [];
+	instruments: StyleFileInfo[] = [];
 }
 
 @Component({
@@ -123,11 +123,11 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		try {
 			this.workspaceModel = new WizzardWorkspace();
 			await this.workspaceComponent.stop();
-			const styleFileInfos = _.orderBy(this.styles[style], x => x.metaData.instrumentGroup);
+			const styleFileInfos = _.orderBy(this.styles[style], x => x.metaData.instrument);
 			await this.clearWorkspace();
 			for(const styleFileInfo of styleFileInfos) {
 				const file = await this.service.getStyleFile(styleFileInfo.id);
-				this.workspaceModel.instrumentGroups.push(styleFileInfo);
+				this.workspaceModel.instruments.push(styleFileInfo);
 			}
 		} catch {
 			this.notification.error("", `failed to fetch style infos`);
@@ -183,14 +183,14 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		}
 		const getInstrumentConfigParams = function(styleInfo: IStyleFileInfo, instrumentName: string) {
 			const hasConfInfo = styleInfo.metaData.instrumentConfig;
-			return hasConfInfo ? `${instrumentName} ${styleInfo.metaData.instrumentConfig}` : `${styleInfo.metaData.instrumentGroup} volume 100`;
+			return hasConfInfo ? `${instrumentName} ${styleInfo.metaData.instrumentConfig}` : `${styleInfo.metaData.instrument} volume 100`;
 		}
-		for(const styleInfo of this.workspaceModel.instrumentGroups) {
-			const instrumentName = getNextInstrumentName(styleInfo.metaData.instrumentGroup);
+		for(const styleInfo of this.workspaceModel.instruments) {
+			const instrumentName = getNextInstrumentName(styleInfo.metaData.instrument);
 			const file = await this.getStyleFileForInstrument(styleInfo.id, instrumentName);
 			await this.addStyleFile(file);
 			await this.addAuxFiles(styleInfo);
-			const isDrums = styleInfo.metaData.instrumentGroup === 'drums';
+			const isDrums = styleInfo.metaData.instrument === 'drums';
 			const instrumentChannel = isDrums ? 9 : midiChannel++;
 			const instrumentDef = `instrumentDef: ${getInstrumentDefParams(styleInfo, instrumentName)} _onDevice="MyDevice" _ch=${instrumentChannel};`;
 			const instrumentConf = `instrumentConf: ${getInstrumentConfigParams(styleInfo, instrumentName)};`;
@@ -200,20 +200,20 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	}
 
 	public async createMainSheet(): Promise<string> {
-		const styleInfo = _.first(this.workspaceModel.instrumentGroups);
+		const styleInfo = _.first(this.workspaceModel.instruments);
 		if (!styleInfo) {
 			return;
 		}
 		this.clearWorkspace();
 
-		let templateUsings = _(this.workspaceModel.instrumentGroups)
+		let templateUsings = _(this.workspaceModel.instruments)
 			.map(x => x.metaData.usings)
 			.flatten()
 			.map(x => `using "${x}";`)
 			.value();
 		const instruments = await this.createInstruments();
 		const usings = templateUsings.concat(this.workspaceModel.files.map(x => `using "./${x.path}";`));
-		const templates = this.workspaceModel.instrumentGroups.map(x => x.metaData).map(x => `${x.instrumentGroup}.${x.title}.normal`)
+		const templates = this.workspaceModel.instruments.map(x => x.metaData).map(x => `${x.instrument}.${x.title}.normal`)
 		const chords = '\t' + (this.chords.element.nativeElement.value as string)
 			.replace(/\n/g, '\n\t');
 		const sheetText = mainSheetText
@@ -251,7 +251,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	}
 
 	public getInstrumentName(fileInfo: IStyleFileInfo): string {
-		return fileInfo.metaData.instrumentGroup;
+		return fileInfo.metaData.instrument;
 	}
 
 	public get allInstruments(): string[] {
@@ -274,7 +274,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	}
 
 	public async changeTemplate(newInstrument: StyleFileInfo, instrumentIndex: number): Promise<void> {
-		this.workspaceModel.instrumentGroups[instrumentIndex] = newInstrument;
+		this.workspaceModel.instruments[instrumentIndex] = newInstrument;
 	}
 
 	public resetInstrumentSelection(instrumentIndex: number, newInstrumentName: string): void {
@@ -283,19 +283,19 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	}
 
 	public async addNewInstrument():Promise<void> {
-		const newInstrument = _.cloneDeep(_.first(this.workspaceModel.instrumentGroups));
-		this.workspaceModel.instrumentGroups.push(newInstrument);
+		const newInstrument = _.cloneDeep(_.first(this.workspaceModel.instruments));
+		this.workspaceModel.instruments.push(newInstrument);
 	}
 
 	public removeInstrument(instrumentIndex: number): void {
 		if (!this.canRemove) {
 			return;
 		}
-		this.workspaceModel.instrumentGroups.splice(instrumentIndex, 1);
+		this.workspaceModel.instruments.splice(instrumentIndex, 1);
 	}
 
 	public get canRemove(): boolean {
-		return this.workspaceModel.instrumentGroups.length > 1;
+		return this.workspaceModel.instruments.length > 1;
 	}
 
 	public getGenreDisplayName(name: string) {
