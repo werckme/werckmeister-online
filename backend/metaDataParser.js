@@ -125,12 +125,13 @@ function getStyleTemplateMetaData(templateFilePath) {
         metaData.instrumentConfig = getInfo('INSTRUMENTCONF', metaData.header);
         metaData.usings = JSON.parse(getInfo('USINGS', metaData.header) || "[]");
         metaData.aux = JSON.parse(getInfo('AUX', metaData.header) || "[]");
-        const fileNameMatch = fileName.match(/(?<instrument>\w+)\.(?<name>\w+).\w+/)
-        if (!fileNameMatch.groups || !fileNameMatch.groups.instrument || !fileNameMatch.groups.name) {
+        const fileNameMatch = fileName.match(/(?<instrumentGroup>\w+)\.(?<name>\w+).\w+/)
+        if (!fileNameMatch.groups || !fileNameMatch.groups.instrumentGroup || !fileNameMatch.groups.name) {
             throw new Error("invalid file name: " + fileName);
         }
         metaData.title = fileNameMatch.groups.name;
-        metaData.instrument = fileNameMatch.groups.instrument;
+        metaData.instrumentGroup = fileNameMatch.groups.instrumentGroup;
+        console.log(metaData.instrument);
         loadAuxFiles(metaData);
         delete metaData.creatorid;
         delete metaData.preview;

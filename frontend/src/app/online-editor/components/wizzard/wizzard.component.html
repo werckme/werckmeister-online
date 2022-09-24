@@ -23,24 +23,24 @@
         <div class="details">
 
             <div nz-row [nzGutter]="[15, 15]" nzAlign="middle"
-                *ngFor="let instrument of workspaceModel.instruments; index as index">
-                <nz-select [disabled]="isPlaying" nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find instrument" [nzShowArrow]="false"
-                    [ngModel]="instrument.metaData.instrument"
+                *ngFor="let instrument of workspaceModel.instrumentGroups; index as index">
+                <nz-select [disabled]="isPlaying" nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find instrument group" [nzShowArrow]="false"
+                    [ngModel]="instrument.metaData.instrumentGroup"
                     (ngModelChange)="resetInstrumentSelection(index, $event)">
                     <nz-option *ngFor="let instrumentName of allInstruments" [nzLabel]="getInstrumentDisplayName(instrumentName)"
                         [nzValue]="instrumentName">
                     </nz-option>
                 </nz-select>
                 <nz-select [disabled]="isPlaying" nz-col [nzSpan]="7" [compareWith]="styleComparer" nzShowSearch nzPlaceHolder="find template"
-                    [nzShowArrow]="false" [ngModel]="workspaceModel.instruments[index]"
+                    [nzShowArrow]="false" [ngModel]="workspaceModel.instrumentGroups[index]"
                     (ngModelChange)="changeTemplate($event, index)">
-                    <nz-option *ngFor="let style of findInstruments(instrument.metaData.instrument)" [nzValue]="style"
+                    <nz-option *ngFor="let style of findInstruments(instrument.metaData.instrumentGroup)" [nzValue]="style"
                         [nzLabel]="getTemplateDisplayName(style.id)">
                     </nz-option>
                 </nz-select>
                 <nz-select [disabled]="isPlaying" nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find GM instrument" [nzShowArrow]="false"
                     [(ngModel)]="instrument.pcNumber">
-                    <ng-container *ngFor="let gmInstrumentName of instrument.metaData.instrument === 'drums' ? fluidSynthGmDrums : gmInstruments; index as gmId">
+                    <ng-container *ngFor="let gmInstrumentName of instrument.metaData.instrumentGroup === 'drums' ? fluidSynthGmDrums : gmInstruments; index as gmId">
                         <nz-option  *ngIf="gmInstrumentName !== null" [nzValue]="gmId"
                             [nzLabel]="gmInstrumentName">
                         </nz-option>
