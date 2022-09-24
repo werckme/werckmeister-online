@@ -1,6 +1,10 @@
--- tempo: 80
--- signature: 4/4
--- parts: normal, bridge
+-- TEMPO: 80
+-- SIGNATURE: 4/4
+-- PARTS: normal, bridge
+-- INSTRUMENTCONF: volume 100 pan 0 mod swing
+-- USINGS: ["/lua/mods/swing.lua"]
+
+
 [
 type: template;
 name: drums.popSmoothJazz.normal;

@@ -1,0 +1,18 @@
+-- TEMPO: 200
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=0
+-- INSTRUMENTCONF: volume 100 pan 80 mod swing
+-- USINGS: ["/lua/mods/swing.lua"]
+
+[
+type: template;
+name: piano.jazzQuintett.normal;
+instrument: piano; 
+{
+    \pp
+    <I II III IV V VI VII>2 !p(r r <I II III IV V VI VII>~)4 <I II III IV V VI VII>8 r |
+    <I II III IV V VI VII>1~ |
+    <I II III IV V VI VII>1
+}
+]

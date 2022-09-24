@@ -1,11 +1,13 @@
 -- tempo: 115
 -- signature: 4/4
 -- parts: normal
--- instrumentConfs: { "rhythm2": "voicingStrategy simple _importantDegree=\"II VI\"" }
+-- INSTRUMENTDEF: _pc=25
+-- INSTRUMENTCONF: volume 100 pan 80
+
 [
 type: template;
-name: rhythm.countryShuffle.normal;
-instrument: rhythm; 
+name: guitar.countryShuffle.normal;
+instrument: guitar; 
 {
     r4  <I III>2   &4~ | &  &2       &4  |
 }

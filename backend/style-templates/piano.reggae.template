@@ -1,16 +1,16 @@
--- tempo: 120
--- signature: 4/4
--- parts: normal
-using "lua/mods/swing.lua";
-using "lua/mods/staccato.lua";
+-- TEMPO: 120
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=18
+-- INSTRUMENTCONF: volume 75 mod swing _grid=8 _offset=40
+-- USINGS: ["/lua/mods/swing.lua", "/lua/mods/staccato.lua"]
 
 [
 type: template;
-name: rhythm.reggae.normal;
-instrument: rhythm;
+name: piano.reggae.normal;
+instrument: piano;
 {
     \f
-    /do: swing _grid=8 _offset=40/
     r4   /modOnce: staccato _amount=100/ <I II III IV V VI VII>8  /modOnce: staccato _amount=40/ <I II III IV V VI VII>8 
     r4   /modOnce: staccato _amount=100/ <I II III IV V VI VII>8  /modOnce: staccato _amount=40/ <I II III IV V VI VII>8  
     |

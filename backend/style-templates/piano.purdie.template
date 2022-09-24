@@ -1,12 +1,15 @@
--- tempo: 120
--- signature: 4/4
--- parts: normal
+-- TEMPO: 150
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=7
+-- INSTRUMENTCONF: volume 100 voicingStrategy guitar
+-- USINGS: ["/lua/voicings/guitar.lua"]
+
 [
 type: template;
-name: rhythm.purdie.normal;
-instrument: rhythm; 
+name: piano.purdie.normal;
+instrument: piano; 
 {
-    /voicingStrategy: simpleGuitar/
     I4t r8t <III VII I' IV>4t I,,8t r4t <V, II, IV, I,,>8t r4t r8t |
     I4t r8t <III VII I' IV>4t I,,8t r4t <V, II, IV, I,,>8t r4t r8t |
     I4t r8t <III VII I' IV>4t I,,8t r4t <V, II, IV, I,,>8t r4t r8t |

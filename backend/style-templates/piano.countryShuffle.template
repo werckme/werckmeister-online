@@ -1,0 +1,17 @@
+-- TEMPO: 115
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=0
+-- INSTRUMENTCONF: volume 100 pan 20
+
+[
+type: template;
+name: piano.countryShuffle.normal;
+instrument: piano; 
+{
+    <!II V VII>4 r2.         |  (r r I~)4 I4  &4  &4  |
+}
+{
+   <III, V,>2  !f&4  r | (r r V,)4  (I,, r V,,)4  (<III, V,>  r  I,,)4  (!VI,  r I,)4 |
+}
+]

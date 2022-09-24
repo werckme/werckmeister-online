@@ -1,0 +1,16 @@
+-- TEMPO: 120
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=24
+-- INSTRUMENTCONF: volume 70 mod guitarStroke _value=64 voicingStrategy guitar _range="mezzosoprano"
+-- USINGS: ["/lua/mods/guitarStroke.lua", "/lua/voicings/guitar.lua"]
+
+[
+type: template;
+name: guitar.soca.normal;
+instrument: guitar; 
+{
+    r16 !p<I II III IV V VI VII> !f& !ff&     !pI  !p<I II III IV V VI VII> !f& !ff&
+    !ppI!p<I II III IV V VI VII> !f& !ff&     !pI  !p<I II III IV V VI VII> !f& !p&| 
+}
+]

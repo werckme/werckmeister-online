@@ -1,0 +1,19 @@
+-- TEMPO: 75
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=24
+-- INSTRUMENTCONF: volume 100 mod guitarStroke voicingStrategy simple _range="baritone"
+-- USINGS: ["/lua/mods/guitarStroke.lua", "/lua/voicings/simple.lua"]
+
+[
+type: template;
+name: guitar.rockBallad.normal;
+instrument: guitar; 
+{
+    \f
+    <I II III IV V VI VII>8  !p"x"@<III IV V VI VII>16 r
+    <I II III IV V VI VII>8  !p"x"@<III IV V VI VII>16 r
+    <I II III IV V VI VII>8  !p"x"@<III IV V VI VII>16 r
+    <I II III IV V VI VII>8  !p"x"@<III IV V VI VII>16 r |
+}
+]

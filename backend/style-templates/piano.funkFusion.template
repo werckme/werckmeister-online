@@ -1,0 +1,19 @@
+-- TEMPO: 100
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=0
+-- INSTRUMENTCONF: volume 75 
+
+[
+type: template;
+name: piano.funkFusion.normal;
+instrument: piano; 
+{
+    <I V>8.  I16 r8  <I V>16 V  r4  I16  <I V>16 r8 |
+    <I V>8.  I16 r8. <I V>16~ & &8.   I16 I8.  |
+}
+{
+    <III, VII,>8.  &16 r8  VII,16 &  r4  <III,, VII,>16  VII,16 r8 |
+    <III, VII,>8.  &16 r8. <III, VII,>16~ VII, VII,8.   <III, VII,>16 VII,,8.
+}
+]

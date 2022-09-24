@@ -1,0 +1,22 @@
+-- tempo: 200
+-- signature: 4/4
+-- parts: normal
+-- INSTRUMENTDEF: _pc=24
+-- INSTRUMENTCONF: volume 85 pan 20 mod staccato _forTag="stacc" mod guitarStroke _value=64 voicingStrategy guitar
+-- USINGS: ["/lua/mods/guitarStroke.lua", "/lua/mods/staccato.lua", "/lua/voicings/guitar.lua"]
+
+[
+type: template;
+name: guitar.jazzQuintett.normal;
+instrument: guitar; 
+{
+    \pp
+    <I II III IV V VI VII>4
+
+    !f"stacc"@<I II III IV V VI VII> 
+
+    <I II III IV V VI VII> 
+
+    !ff"stacc"@<I II III IV V VI VII> 
+}
+]

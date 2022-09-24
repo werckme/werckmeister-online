@@ -1,11 +1,13 @@
 -- TEMPO: 120
 -- SIGNATURE: 4/4
 -- INSTRUMENTDEF: _pc=23
--- INSTRUMENTCONF: volume 75 pan 85
+-- INSTRUMENTCONF: volume 100 voicingStrategy simple _range="tenor" mod staccato _value=90 mod swing _grid=16 _offset=50
+-- USINGS: ["/lua/mods/staccato.lua", "/lua/mods/swing.lua", "/lua/voicings/simple.lua"]
+
 [
 type: template;
-name: rhythm2.soca.normal;
-instrument: rhythm2;
+name: accordion.soca.normal;
+instrument: accordion;
 {
     <I II III IV V VI VII>16 r8   
     <I II III IV V VI VII>16 r8 
@@ -17,8 +19,8 @@ instrument: rhythm2;
 
 [
 type: template;
-name: rhythm2.soca.bridge;
-instrument: rhythm2;
+name: accordion.soca.bridge;
+instrument: accordion;
 {
     <I II III IV V VI VII>16 r8   
     <I II III IV V VI VII>16 r8 
