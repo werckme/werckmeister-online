@@ -18,10 +18,15 @@ nz-input-group {
     padding: 4.5px !important;
 }
 
-svg.volume-icon {
+svg.prefix-icon {
     fill: #a7a7a7;
 }
 
-.volume-control input {
+.volume-control input, .tempo-control input {
     text-align: right;
+}
+
+.tempo-control {
+    height: 33px;
+    margin-top: 6px;
 }

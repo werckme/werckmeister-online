@@ -1,18 +1,15 @@
 -- TEMPO: 200
 -- SIGNATURE: 4/4
 -- PARTS: normal
--- INSTRUMENTDEF: _pc=33
--- INSTRUMENTCONF: volume 100
-
-using "./lua/mods/staccato.lua";
+-- INSTRUMENTDEF: _pc=32
+-- INSTRUMENTCONF: volume 100 mod staccato _amount=40
+-- USINGS: ["/lua/mods/staccato.lua"]
 
 [
 type: template;
 name: bass.jazzQuintett.normal;
 instrument: bass; 
 {
-    /mod: staccato _amount=40/
-    \p
     I,2 V,, |
 }
 ]

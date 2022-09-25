@@ -219,10 +219,26 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		const sheetText = mainSheetText
 			.replace(/\$TEMPLATES/g, `/template: ${templates.join('\n\t')}\n\t/`)
 			.replace(/\$USINGS/g, usings.join('\n'))
-			.replace(/\$TEMPO/g, (styleInfo.metaData.tempo || 120).toString())
+			.replace(/\$TEMPO/g, (this.tempo).toString())
 			.replace(/\$CHORDS/g, chords)
 			.replace(/\$INSTRUMENTS/g, instruments.join("\n"));
 		return sheetText;
+	}
+
+	private ownTempo: number|null = null;
+	public get tempo(): number {
+		if (this.ownTempo !== null) {
+			return this.ownTempo;
+		}
+		const styleInfo = _.find(this.workspaceModel.instruments, x => x.metaData.instrument.includes("drum"));
+		return styleInfo?.metaData?.tempo || 120;
+	}
+
+	public set tempo(val: number) {
+		if (!val) {
+			val = null;
+		}
+		this.ownTempo = val;
 	}
 
 	public async createProject(): Promise<void> {
