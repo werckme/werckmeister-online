@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { IMetaData, IStyleFile, IStyleFileInfo, WizzardService } from 'src/app/services/wizzard.service';
 import * as _ from 'lodash';
 import { AWorkspacePlayerComponent, ICompilerError, PlayerState } from '../online-editor/AWorkspacePlayerComponent';
@@ -8,7 +8,7 @@ import { text as pitchmapText } from './myPitchmap.pitchmap';
 import { text as chordsText } from './default.chords';
 import { waitAsync } from 'src/shared/help/waitAsync';
 import { IWorkspace, IFile, WorkspaceStorageService } from '../../services/workspaceStorage';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
 import { FluidSynthGmDrums, GMInstruments } from '../../shared/GmInstruments';
 
 type Styles = { [key: string]: StyleFileInfo[] };
@@ -65,18 +65,33 @@ class WizzardWorkspace implements IWorkspace {
 	instruments: StyleFileInfo[] = [];
 }
 
+class InstrumentConfig{
+	t: string; // template id
+	p: number; // pc number
+	v: number; // volume
+}
+
+class WizzardConfig {
+	g: string; // genre
+	i: InstrumentConfig[];
+	c: string; // chords text
+	t: number; // tempo
+}
+
 @Component({
 	selector: 'app-wizzard',
 	templateUrl: './wizzard.component.html',
 	styleUrls: ['./wizzard.component.scss']
 })
-export class WizzardComponent extends AWorkspacePlayerComponent implements AfterViewInit {
+export class WizzardComponent extends AWorkspacePlayerComponent implements AfterViewInit, OnDestroy {
 	public selectedGenre: string;
 	public styles: Styles = {}
 	public allStyleFileInfos: StyleFileInfo[];
 	public workspaceModel: WizzardWorkspace = new WizzardWorkspace();
 	public gmInstruments = GMInstruments;
 	public fluidSynthGmDrums = FluidSynthGmDrums;
+	private config: WizzardConfig;
+	public isLoading = true;
 	public styleComparer(a: IStyleFileInfo, b: IStyleFileInfo): boolean {
 		if (!a || !b) {
 			return false;
@@ -88,20 +103,47 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	@ViewChild("chords", { read: ViewContainerRef }) chords: ViewContainerRef;
 	constructor(private service: WizzardService, 
 		notification: NzNotificationService, 
-		private router: Router, 
+		private router: Router,
+		private route: ActivatedRoute,
 		private workspaceService: WorkspaceStorageService) {
 		super(notification);
+		this.router.events.subscribe(ev => {
+			if (ev instanceof NavigationEnd) {
+				this.config  = this.parseWizzardConfig(this.route.snapshot.queryParams.c);
+			  }
+		});
+	}
+
+	async ngOnDestroy(): Promise<void> {
+		await this.stop();
+	}
+
+	private parseWizzardConfig(str:string): WizzardConfig {
+		try {
+			return JSON.parse(atob(str));
+		} catch {
+			return new WizzardConfig();
+		}
 	}
 
 	async ngAfterViewInit(): Promise<void> {
-		this.initWorkspace();
-		this.allStyleFileInfos = (await this.service.getStyles()).map(x => new StyleFileInfo(x));
-		this.styles = _(this.allStyleFileInfos)
-			.groupBy(x => x.metaData.title)
-			.value();
-		await waitAsync(10);
-		this.selectedGenre = _(this.styles).keys().sort().first();
-		this.switchGenre(this.selectedGenre);
+		try {
+			this.initWorkspace();
+			this.allStyleFileInfos = (await this.service.getStyles()).map(x => new StyleFileInfo(x));
+			this.styles = _(this.allStyleFileInfos)
+				.groupBy(x => x.metaData.title)
+				.value();
+			await waitAsync(10);
+			if (!this.applyConfig()) {
+				this.selectedGenre = _(this.styles).keys().sort().first();
+				this.switchGenre(this.selectedGenre);
+			}
+		} catch(ex) {
+			this.notification.error("", "failed to fetch styles, please try again later")
+		} 
+		finally {
+			this.isLoading = false;
+		}
 	}
 
 
@@ -119,6 +161,43 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		await this.addFile("default.chords", chordsText);
 	}
 
+	public updateConfigUrl() {
+		const config = new WizzardConfig();
+		config.g = this.selectedGenre;
+		config.c = this.chordsText;
+		config.t = this.manualTempo;
+		config.i = this.workspaceModel.instruments.map(x => ({
+			p: x.pcNumber,
+			t: x.id,
+			v: x.volNumber,
+		}));
+		const decoded = btoa(JSON.stringify(config));
+		history.replaceState({}, null, `/wizzard?c=${decoded}`);
+	}
+
+	private applyConfig(): boolean {
+		if (this.config.g) {
+			this.selectedGenre = this.config.g;
+		}
+		if (this.config.c) {
+			this.chordsText = this.config.c;
+		}
+		if(this.config.t) {
+			this.tempo = this.config.t;
+		}
+		if (!this.config.i) {
+			return false;
+		}
+		this.workspaceModel.instruments = [];
+		for(const iConf of this.config.i) {
+			const instrument = _.cloneDeep(this.allStyleFileInfos.find(x => x.id === iConf.t));
+			instrument.pcNumber = iConf.p;
+			instrument.volNumber = iConf.v;
+			this.workspaceModel.instruments.push(instrument);
+		}
+		return true;
+	}
+
 	public async switchGenre(style: string): Promise<void> {
 		try {
 			this.workspaceModel = new WizzardWorkspace();
@@ -129,6 +208,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 				const file = await this.service.getStyleFile(styleFileInfo.id);
 				this.workspaceModel.instruments.push(styleFileInfo);
 			}
+			this.updateConfigUrl();
 		} catch {
 			this.notification.error("", `failed to fetch style infos`);
 		}
@@ -199,6 +279,14 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		return result;
 	}
 
+	private get chordsText(): string {
+		return this.chords.element.nativeElement.value as string;
+	}
+
+	private set chordsText(val: string) {
+		this.chords.element.nativeElement.value = val;
+	}
+
 	public async createMainSheet(): Promise<string> {
 		const styleInfo = _.first(this.workspaceModel.instruments);
 		if (!styleInfo) {
@@ -214,7 +302,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		const instruments = await this.createInstruments();
 		const usings = templateUsings.concat(this.workspaceModel.files.map(x => `using "./${x.path}";`));
 		const templates = this.workspaceModel.instruments.map(x => x.metaData).map(x => `${x.instrument}.${x.title}.normal`)
-		const chords = '\t' + (this.chords.element.nativeElement.value as string)
+		const chords = '\t' + (this.chordsText)
 			.replace(/\n/g, '\n\t');
 		const sheetText = mainSheetText
 			.replace(/\$TEMPLATES/g, `/template: ${templates.join('\n\t')}\n\t/`)
@@ -225,10 +313,10 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		return sheetText;
 	}
 
-	private ownTempo: number|null = null;
+	private manualTempo: number|null = null;
 	public get tempo(): number {
-		if (this.ownTempo !== null) {
-			return this.ownTempo;
+		if (this.manualTempo !== null) {
+			return this.manualTempo;
 		}
 		const styleInfo = _.find(this.workspaceModel.instruments, x => x.metaData.instrument.includes("drum"));
 		return styleInfo?.metaData?.tempo || 120;
@@ -238,17 +326,18 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		if (!val) {
 			val = null;
 		}
-		this.ownTempo = val;
+		this.manualTempo = val;
 	}
 
 	public async createProject(): Promise<void> {
+		await this.stop();
 		const sheetText = await this.createMainSheet();
 		this.workspaceModel.files.push({path: "main.sheet", data: sheetText});
 		const request = {
 			wid: null,
 			files: this.workspaceModel.files
 		};
-		const response = await this.workspaceService.updateWorkspace(request);
+		const response = await this.workspaceService.setTmpWorkspace(request);
 		this.router.navigate(['/editor'], {queryParams: {wid: response.wid}});
 	}
 
@@ -291,6 +380,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 
 	public async changeTemplate(newInstrument: StyleFileInfo, instrumentIndex: number): Promise<void> {
 		this.workspaceModel.instruments[instrumentIndex] = newInstrument;
+		this.updateConfigUrl();
 	}
 
 	public resetInstrumentSelection(instrumentIndex: number, newInstrumentName: string): void {
@@ -301,6 +391,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	public async addNewInstrument():Promise<void> {
 		const newInstrument = _.cloneDeep(_.first(this.workspaceModel.instruments));
 		this.workspaceModel.instruments.push(newInstrument);
+		this.updateConfigUrl();
 	}
 
 	public removeInstrument(instrumentIndex: number): void {
@@ -308,6 +399,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 			return;
 		}
 		this.workspaceModel.instruments.splice(instrumentIndex, 1);
+		this.updateConfigUrl();
 	}
 
 	public get canRemove(): boolean {

@@ -181,7 +181,11 @@ export class OnlineEditorComponent extends AWorkspacePlayerComponent implements 
       if (!id) {
         this.notification.error('Error', `Failed creating a workspace.`);
       } else {
-        this.notification.error('Error', `Failed loading the workspace with id ${id}`);
+        if (ex.userFriendlyMessage) {
+          this.notification.error('Error', ex.userFriendlyMessage, {nzDuration: null});
+        } else {
+          this.notification.error('Error', `Failed loading the workspace with id ${id}`, {nzDuration: null});
+        }
       }
       this.router.navigate(['editor']);
       return;

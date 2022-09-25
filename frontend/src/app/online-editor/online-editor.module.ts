@@ -25,6 +25,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 const icons: IconDefinition[] = [ PlusOutline, 
   DownloadOutline, 
@@ -58,6 +59,7 @@ const icons: IconDefinition[] = [ PlusOutline,
     NzAlertModule,
     NzInputNumberModule,
     NzInputModule,
+    NzSpinModule,
     NzIconModule.forRoot(icons),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
