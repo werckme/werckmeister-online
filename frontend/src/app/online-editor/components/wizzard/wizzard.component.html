@@ -11,7 +11,7 @@
             [nzPercent]="playerPrepareProgressPercent"></nz-progress>
     
         <div class="configurator">
-    
+            <span class="label">Preset</span>
             <div class="genre" nz-row [nzGutter]="[15, 15]">
                 <nz-select [disabled]="isPlaying" nz-col [nzSpan]="21" nzShowSearch nzPlaceHolder="find genre" [nzShowArrow]="false"
                     [(ngModel)]="selectedGenre" (ngModelChange)="switchGenre($event)">
@@ -23,8 +23,16 @@
                 </nz-input-group>
             </div>
 
-            <div class="details">
+            <div class="labels">
+                <div nz-row [nzGutter]="[15, 15]">
+                    <span nz-col [nzSpan]="7">Instrument Group</span>
+                    <span nz-col [nzSpan]="7">Style</span>
+                    <span nz-col [nzSpan]="7">MIDI Instrument</span>
+                </div>
+            </div>
 
+
+            <div class="details">
                 <div nz-row [nzGutter]="[15, 15]" nzAlign="middle"
                     *ngFor="let instrument of workspaceModel.instruments; index as index">
                     <nz-select [disabled]="isPlaying" nz-col [nzSpan]="7" nzShowSearch nzPlaceHolder="find instrument" [nzShowArrow]="false"
@@ -68,10 +76,14 @@
         <div class="editor">
             <werckmeister-workspace #workspace wm-css-url="/assets/werckmeister-wizzard.css">
             </werckmeister-workspace>
-            <textarea #chords (blur)="updateConfigUrl()" rows="4" cols="50" spellcheck="false">A-7    | D7    | Gmaj7  | 
+            <textarea #chords (blur)="updateConfigUrl()" rows="4" cols="50" spellcheck="false">-- which chord symbols I can use?
+A-7    | D7    | Gmaj7  | 
 Cmaj7  | F#-7b5 | B7    | E- </textarea>
         </div>
-        <button nz-button nzType="primary" (click)="createProject()">Create Project</button>
+        <div class="next-actions">
+            <a href="/editor">skip</a>
+            <button nz-button nzType="primary" (click)="createProject()">Create Project</button>
+        </div>
     </div>
     
     <ng-template #volumeIcon>
