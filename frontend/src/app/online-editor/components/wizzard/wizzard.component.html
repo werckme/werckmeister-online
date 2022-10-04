@@ -1,11 +1,7 @@
 <nz-spin nzTip="Loading..." [nzSpinning]="isLoading" [nzDelay]="1000">
     <div class="werckmeister-wizzard">
 
-        <h2>Werckmeister Wizzard</h2>
-    
-        <h3>
-            <nz-alert nzType="warning" nzMessage="work in progress"></nz-alert>
-        </h3>
+        <h2>Project Wizzard</h2>
     
         <nz-progress *ngIf="playerPrepareProgressPercent !== null" nzStatus="normal" [nzShowInfo]="false"
             [nzPercent]="playerPrepareProgressPercent"></nz-progress>
@@ -70,19 +66,21 @@
             </div>
         </div>
     
-        <button *ngIf="!isPlaying" nz-button nzType="primary" (click)="play()">Play</button>
-        <button *ngIf="isPlaying" nz-button nzType="primary" (click)="stop()">Stop</button>
-    
         <div class="editor">
             <werckmeister-workspace #workspace wm-css-url="/assets/werckmeister-wizzard.css">
             </werckmeister-workspace>
-            <textarea #chords (blur)="updateConfigUrl()" rows="4" cols="50" spellcheck="false">-- which chord symbols I can use?
-A-7    | D7    | Gmaj7  | 
+            <textarea #chords (blur)="updateConfigUrl()" rows="4" cols="50" spellcheck="false">A-7    | D7    | Gmaj7  | 
 Cmaj7  | F#-7b5 | B7    | E- </textarea>
         </div>
-        <div class="next-actions">
-            <a href="/editor">skip</a>
-            <button nz-button nzType="primary" (click)="createProject()">Create Project</button>
+        <div class="actions">
+            <div class="playback-ctrl">
+                <button *ngIf="!isPlaying" nz-button nzType="primary" nzShape="round" (click)="play()"><i nz-icon nzType="play-circle" nzTheme="fill"></i>Play</button>
+                <button *ngIf="isPlaying" nz-button nzType="primary" nzShape="round" (click)="stop()"><i nz-icon nzType="play-circle" nzTheme="fill"></i>Stop</button>
+            </div>
+            <div>
+                <a nz-button nzType="link" nzSize="large" [routerLink]="['/editor']">Skip</a>
+                <button nz-button nzType="primary" (click)="createProject()">Create Project</button>
+            </div>
         </div>
     </div>
     

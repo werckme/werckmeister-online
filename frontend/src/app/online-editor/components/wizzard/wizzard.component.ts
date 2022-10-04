@@ -161,7 +161,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		await this.addFile("default.chords", chordsText);
 	}
 
-	public updateConfigUrl() {
+	private updateConfigUrlImpl():void {
 		const config = new WizzardConfig();
 		config.g = this.selectedGenre;
 		config.c = this.chordsText;
@@ -174,6 +174,8 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		const decoded = btoa(JSON.stringify(config));
 		history.replaceState({}, null, `/wizzard?c=${decoded}`);
 	}
+
+	public updateConfigUrl = _.debounce(this.updateConfigUrlImpl.bind(this), 1000);
 
 	private applyConfig(): boolean {
 		if (this.config.g) {
