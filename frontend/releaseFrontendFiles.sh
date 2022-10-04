@@ -6,6 +6,7 @@ then
     echo "missing target directory"
     exit 1
 fi
+npm install
 ng build --configuration production
 cd $target
 rm * -rf
