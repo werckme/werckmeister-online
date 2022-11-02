@@ -14,7 +14,7 @@ using "./strings.conductions";
 
 
 tempo: 146;
-device: MyDevice _isType=webPlayer _useFont="Live-HQ-Natural-SoundFont-GM";
+device: MyDevice _isType="midi" _usePort=0;
 
 -- lead voice = Vl2 + piano 
 [
