@@ -1,4 +1,9 @@
-export const text = `------------------------------------------------------------------
+export const text = `-------------------------------------------------------------------------
+-- Here you can define your chord symbols, containing its degrees and its semitones.
+-- A degree in parantheses specifies chord adjunct degrees. 
+-- Those degrees are not being rendered, unless your force them to appear using a leading !.
+-- see https://werckme.github.io/manual#adjunct-chord-tones
+-------------------------------------------------------------------------
 X: 			I=0	    		III=4 			V=7   (VI=9)	(VII=11)
 Xmin: 		I=0     		III=3 			V=7   (VI=9)	(VII=10)
 X-: 		I=0     		III=3 			V=7   (VI=9)	(VII=10)

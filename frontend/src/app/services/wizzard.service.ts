@@ -25,6 +25,11 @@ export interface IStyleFile {
   data: string;
 }
 
+export interface ISoundFont {
+  name: string;
+  path: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -42,4 +47,11 @@ export class WizzardService extends ARestService{
   public async getStyleFile(id: string): Promise<IStyleFile> {
     return this.get<IStyleFile>(`styleTemplate/${id}`);
   }
+
+  public async getSoundFonts(): Promise<ISoundFont[]> {
+    return [
+      { name: "FluidR3", path: "FluidR3-GM" },
+      { name: "Live HQ Natural SoundFont", path: "Live-HQ-Natural-SoundFont-GM" }
+    ];
+  } 
 }

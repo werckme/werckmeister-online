@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { IMetaData, IStyleFile, IStyleFileInfo, WizzardService } from 'src/app/services/wizzard.service';
+import { IMetaData, ISoundFont, IStyleFile, IStyleFileInfo, WizzardService } from 'src/app/services/wizzard.service';
 import * as _ from 'lodash';
 import { AWorkspacePlayerComponent, ICompilerError, PlayerState } from '../online-editor/AWorkspacePlayerComponent';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
@@ -9,7 +9,9 @@ import { text as chordsText } from './default.chords';
 import { waitAsync } from 'src/shared/help/waitAsync';
 import { IWorkspace, IFile, WorkspaceStorageService } from '../../services/workspaceStorage';
 import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
-import { FluidSynthGmDrums, GMInstruments } from '../../shared/GmInstruments';
+import { FluidSynthGmDrums, GMInstruments, LiveHqGmDrums } from '../../shared/GmInstruments';
+
+const liveHqSoundFontPath = "Live-HQ-Natural-SoundFont-GM";
 
 type Styles = { [key: string]: StyleFileInfo[] };
 
@@ -76,6 +78,7 @@ class WizzardConfig {
 	i: InstrumentConfig[];
 	c: string; // chords text
 	t: number; // tempo
+	s: string; // soundfont
 }
 
 @Component({
@@ -89,7 +92,14 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	public allStyleFileInfos: StyleFileInfo[];
 	public workspaceModel: WizzardWorkspace = new WizzardWorkspace();
 	public gmInstruments = GMInstruments;
-	public fluidSynthGmDrums = FluidSynthGmDrums;
+	public get gmDrums(): string[] {
+		if (this.soundFont.path === liveHqSoundFontPath) {
+			return LiveHqGmDrums;
+		}
+		return FluidSynthGmDrums;
+	};
+	public soundFonts: ISoundFont[] = [];
+	public soundFont: ISoundFont;
 	private config: WizzardConfig;
 	public isLoading = true;
 	public styleComparer(a: IStyleFileInfo, b: IStyleFileInfo): boolean {
@@ -133,6 +143,8 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 			this.styles = _(this.allStyleFileInfos)
 				.groupBy(x => x.metaData.title)
 				.value();
+			this.soundFonts = await this.service.getSoundFonts();
+			this.soundFont = this.soundFonts[0];
 			await waitAsync(10);
 			if (!this.applyConfig()) {
 				this.selectedGenre = _(this.styles).keys().sort().first();
@@ -166,6 +178,7 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		config.g = this.selectedGenre;
 		config.c = this.chordsText;
 		config.t = this.manualTempo;
+		config.s = this.soundFont.path;
 		config.i = this.workspaceModel.instruments.map(x => ({
 			p: x.pcNumber,
 			t: x.id,
@@ -186,6 +199,12 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 		}
 		if(this.config.t) {
 			this.tempo = this.config.t;
+		}
+		if(this.config.s) {
+			const sf = this.soundFonts.find(x => x.path === this.config.s);
+			if (sf) {
+				this.soundFont = sf;
+			}
 		}
 		if (!this.config.i) {
 			return false;
@@ -311,7 +330,8 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 			.replace(/\$USINGS/g, usings.join('\n'))
 			.replace(/\$TEMPO/g, (this.tempo).toString())
 			.replace(/\$CHORDS/g, chords)
-			.replace(/\$INSTRUMENTS/g, instruments.join("\n"));
+			.replace(/\$INSTRUMENTS/g, instruments.join("\n"))
+			.replace(/\$FONT/g, this.soundFont.path);
 		return sheetText;
 	}
 
@@ -393,6 +413,14 @@ export class WizzardComponent extends AWorkspacePlayerComponent implements After
 	public async addNewInstrument():Promise<void> {
 		const newInstrument = _.cloneDeep(_.first(this.workspaceModel.instruments));
 		this.workspaceModel.instruments.push(newInstrument);
+		this.updateConfigUrl();
+	}
+
+	public soundFontChanged(val: ISoundFont): void {
+		const isDrums = styleInfo => styleInfo.metaData.instrument === 'drums';
+		this.workspaceModel.instruments
+			.filter(x => isDrums(x))
+			.forEach(x => x.pcNumber = 0);
 		this.updateConfigUrl();
 	}
 
