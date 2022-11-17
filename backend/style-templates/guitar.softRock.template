@@ -1,0 +1,21 @@
+-- TEMPO: 175
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=33
+-- INSTRUMENTCONF: volume 100
+-- AUX: ["guitar.softRock.conductions"]
+-- INSTRUMENTCONF: volume 100 mod guitarStroke _value=28 voicingStrategy simple _range="alto"
+-- USINGS: ["/lua/mods/guitarStroke.lua", "/lua/voicings/simple.lua"]
+
+
+[
+type: template;
+name: guitar.softRock.normal;
+instrument: guitar;
+{
+   \pp
+    <I VII III' II>8 I  r8   <I VII III' II>8 r   I8  <I VII III' II>4  |
+    ^1 <I VII III' II>8 I r I8  <I V III' II>2                         :|
+    ^2 <I VII III' II>8 I I I8  I2                                     :|
+}
+]

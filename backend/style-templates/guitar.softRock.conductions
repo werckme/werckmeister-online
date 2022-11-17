@@ -1,0 +1,17 @@
+instrument(guitar) fromBeat(1) toBeat(1.5) {
+    velocity += 10;
+}
+
+instrument(guitar) fromBeat(3) toBeat(3.5) {
+    velocity += 40;
+}
+
+instrument(guitar) fromBeat(4) toBeat(4.5) {
+    velocity += 20;
+}
+
+
+instrument(guitar) onBeat(1.5 2.5 3.5 4.5) {
+    velocity -= 20;
+}
+

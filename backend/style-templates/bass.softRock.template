@@ -1,0 +1,17 @@
+-- TEMPO: 175
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=33
+-- INSTRUMENTCONF: volume 100
+
+[
+type: template;
+name: bass.softRock.normal;
+instrument: bass;
+{
+   \pp
+    I,,8 r  r8  V,,8 r   r8 !IV,,4 |
+    I,,8 r  r4  I,,4  r2 |
+
+}
+]

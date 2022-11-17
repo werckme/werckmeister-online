@@ -1,0 +1,27 @@
+instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
+    velocity = 44%;
+}
+
+instrument(drums) pitch(h) onBeat(1 3) {
+    velocity = 80;
+}
+
+instrument(drums) pitch(x) onBeat(3) {
+    velocity = 60;
+}
+
+instrument(drums) pitch(x) onBeat(4) {
+    velocity = 40;
+}
+
+instrument(drums) pitch(x) withTag(flam) {
+    velocity = 20;
+}
+
+instrument(drums) pitch(m' m m,) withTag(flam fill) {
+    velocity = 60;
+}
+
+instrument(drums) pitch(x) onBeat(1.5 2.5 3.5 4.5) {
+    velocity = 10;
+}
