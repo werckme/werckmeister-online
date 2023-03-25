@@ -1,0 +1,14 @@
+-- TEMPO: 146
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=5
+-- INSTRUMENTCONF: volume 60 pan 20
+-- PROG: C9 | C9 | G9 | G9 | D-9 | D-9 | Bb9 | Bb9 A9 | D | D | A | A9 | E-9 | E-9 | C9 | C9 B9 |
+[
+type: template;
+name: piano.neverendingDoldinger.normal;
+instrument: piano;
+{
+    I,,8  V,,  I,  V,,  !II,  V,,  III, r8  |
+}   
+]

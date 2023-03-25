@@ -1,0 +1,15 @@
+instrument(viola) {
+    duration = 30%;
+}
+
+instrument(viola) {
+  velocity = 64;
+}
+
+-- this section implements the following articulation pattern
+--  >           >            >             >            >           > 
+-- 8th 8th 8th 8th  8th 8th 8th 8th | 8th 8th 8th 8th  8th 8th 8th 8th
+instrument(viola) onBeat(1.5 3 4.5),
+instrument(viola) onBeat(1.5 3 4.5) {
+  velocity = 90;
+}

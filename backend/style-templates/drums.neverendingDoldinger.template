@@ -1,0 +1,35 @@
+-- TEMPO: 146
+-- SIGNATURE: 4/4
+-- PARTS: normal, part2
+-- INSTRUMENTDEF: _ch=9 _pc=0
+-- INSTRUMENTCONF: volume 80
+-- AUX: ["drums.neverendingDoldinger.conductions"]
+
+[
+type: template;
+name: drums.neverendingDoldinger.normal;
+instrument: drums;
+{
+    \pp
+    h16&&&&&&&&&&&&&&& |
+}
+{
+    o4 r4 r4 r8 o8 |
+}
+]
+
+[
+type: template;
+name: drums.neverendingDoldinger.part2;
+instrument: drums;
+{
+    \pp
+    h16&&&&&&&&&&&&&&& |
+}
+{
+    r4 x r x |
+}
+{
+    o4 r4 o4 r8 o8 |
+}
+]
