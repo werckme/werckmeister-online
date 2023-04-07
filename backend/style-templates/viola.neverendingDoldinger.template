@@ -1,0 +1,16 @@
+-- TEMPO: 146
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=41
+-- INSTRUMENTCONF: volume 100 pan 0
+-- AUX: ["viola.neverendingDoldinger.conductions"]
+
+[
+type: template;
+name: viola.neverendingDoldinger.normal;
+instrument: viola;
+{
+    <III V>8 & & <!II V> <III V> & <!II V>  <III V>  |
+    & <!II V> <III V> &    <!II V> <III V> & <!II V> |
+}
+]
