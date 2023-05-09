@@ -1,0 +1,28 @@
+-- TEMPO: 120
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=8
+-- INSTRUMENTCONF: volume 100
+-- AUX: ["drums.funkytown.conductions"]
+[
+type: template;
+name: drums.funkytown.normal;
+instrument: drums;
+{
+	\p
+	"ago2"8  &16&&& r8  "ago1"8 &16&&& r8
+}
+{
+	\fff
+	h8& && && && |
+}
+{
+	r x r x  |
+}
+{
+	r4 r r8 "tmb" r4  |
+}
+{
+	o4 & & & |
+}
+]

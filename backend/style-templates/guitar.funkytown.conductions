@@ -1,0 +1,9 @@
+instrument(guitar) withTag(ghost) {
+	duration = 0.01;
+    timeOffset = 1/16;
+}
+
+instrument(guitar) withTag(emph) {
+	velocity += 8%;
+    timeOffset = 1/32;
+}

@@ -1,0 +1,14 @@
+-- TEMPO: 120
+-- SIGNATURE: 4/4
+-- PARTS: normal
+-- INSTRUMENTDEF: _pc=38
+-- INSTRUMENTCONF: volume 100
+
+[
+type: template;
+name: bass.funkytown.normal;
+instrument: bass;
+{
+   I,,,8 I,,   I,,, I,,    I,,, I,,    I,,, I,,   |
+}
+]
