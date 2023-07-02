@@ -27,6 +27,7 @@ instrument: lead;
 [
 type: accomp;
 {   
+    /template: myAccomp/
     r1
     |: A-7 | D7 | Gmaj7 
     | Cmaj7 | F#-7b5  |^1 B7 | E- 
