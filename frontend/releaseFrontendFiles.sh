@@ -10,6 +10,7 @@ npm install
 ng build --configuration production
 cd $target
 rm * -rf
+git checkout CNAME
 rsync -a $cdir/dist/spa/ .
 
 mkdir -p werckmeister && cp index.html werckmeister/
