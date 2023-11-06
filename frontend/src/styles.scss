@@ -34,6 +34,7 @@ $ionicons-font-path: "~ionicons/dist/fonts";
        url('assets/fonts/gloria-halleujah/gloria-hallelujah-v17-latin-regular.svg#GloriaHallelujah') format('svg'); /* Legacy iOS */
 }
 
+
 .ant-menu-item {
   margin: 0 !important;
   padding: 0 20px !important;
@@ -140,6 +141,14 @@ tutorialsnippet {
     line-height: 19px;
 }
 
+code {
+  background: black;
+  color: white;
+  padding: 5px 5px;
+  font-size: 0.9em;
+}
+
+
 pre {
     padding: 16px;
     overflow: auto;
@@ -156,8 +165,10 @@ pre {
         overflow: visible;
         line-height: inherit;
         word-wrap: normal;
-        background-color: initial;
+        background: inherit;
         border: 0;
+        color: inherit;
+        padding: initial;
     }
 }
 
