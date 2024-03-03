@@ -17,7 +17,12 @@
 <p>A basic Werckmeister document will look like this:</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gQ09ORklHIFNUVUZGOgotLSAxKSBjb25maWd1cmUgeW91ciBNSURJIGRldmljZQotLSAyKSBkZWZpbmUgYW4gaW5zdHJ1bWVudCB3aXRoIHRoZSBuYW1lIHBpYW5vCi0tIDMpIHNldCB0aGUgdGVtcG8KCi0tIDEpCi0tICAgICAgbmFtZSAgICAgICAgIHR5cGUgcG9ydG51bWJlcgpkZXZpY2U6IE15TWlkaURldmljZSBtaWRpIF91c2VQb3J0PTE7CgotLSAyKQotLSAgICAgICAgICAgICBuYW1lICAgICAgICAgCmluc3RydW1lbnREZWY6IHBpYW5vIF9vbkRldmljZT1NeU1pZGlEZXZpY2UgIF9jaD0wICAgX3BjPTAgIF9jYz0wOwotLSAoY2g9IGNoYW5uZWwsIHBjPSBwcm9ncmFtbSBjaGFuZ2UsIGNjPSBjb250cm9sIGNoYW5nZSkKCi0tIDMpCnRlbXBvOiAxMzA7CgotLSBUUkFDS1MsIFZPSUNFUyAmIEVWRU5UUwotLSBub3cgdGhlIGFjdHVhbCBtdXNpY2FsIHN0YXRlbWVudCwgd2hpY2ggaXMgYSB0cmFjayBjb250YWluaW5nIG9uZSB2b2ljZSB3aXRoIHNvbWUgbm90ZSBldmVudHMKLS0gKHRoZSB0cmFjayBpcyBzZXQgdXAgdG8gdXNlIG91ciBwaWFubyBpbnN0cnVtZW50IGZyb20gYWJvdmUpClsKaW5zdHJ1bWVudDogcGlhbm87CnsKICAgIGM0IGQgZSBmIHwgZzEgLS1ub3RlIGV2ZW50cwp9Cl0="></werckmeister-snippet>
-<h2 id="tracks-and-voices">Tracks and Voices</h2>
+<h3 id="comments">Comments</h3>
+<p>Werckmeister knows two types of comments:</p>
+<pre><code><![CDATA[-- a single line comment]]></code></pre><pre><code><![CDATA[/*
+  multi line comments
+  ...
+*/]]></code></pre><h2 id="tracks-and-voices">Tracks and Voices</h2>
 <p>A track in Werckmeister has exactly the same meaning as it has in a MIDI file.
 It is related to an instrument and contains events.</p>
 <p>A track begins with a <code>[</code> and ends with a <code>]</code>.</p>
@@ -240,7 +245,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <p>And this is what you doing when writing style templates.
 <br>So in our example above you would write:</p>
 
-<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gbWFrZSBzdXJlIHRoYXQgeW91IGhhdmUgYSBjaG9yZCBkZWZpbml0aW9uIGxvYWRlZAp1c2luZyAiL2Nob3Jkcy9kZWZhdWx0LmNob3JkcyI7CgpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Ci0tICAgICAgICAgICAgbmFtZSAgZGV2aWNlICAgICAgIAppbnN0cnVtZW50RGVmOmJhc3MgIE15RGV2aWNlIF9jaD0wICBfcGM9MDsKCi0tIGhlcmUgaXMgdGhlIHRlbXBsYXRlOgpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBzaW1wbGVCYXNzOwppbnN0cnVtZW50OiBiYXNzOwp7CiAgICBJLCwyLiBWLCw0IHwKfQpdCgotLSBoZXJlIGFyZSBzb21lIGNob3JkczoKWwp0eXBlOiBhY2NvbXA7CnsKICAgIC90ZW1wbGF0ZTogc2ltcGxlQmFzcy8KICAgIEMgfCBGIHwgRyB8IEMgfAp9Cl0K"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gbWFrZSBzdXJlIHRoYXQgeW91IGhhdmUgYSBjaG9yZCBkZWZpbml0aW9uIGxvYWRlZAp1c2luZyAiL2Nob3Jkcy9kZWZhdWx0LmNob3JkcyI7CgpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Ci0tICAgICAgICAgICAgbmFtZSAgZGV2aWNlICAgICAgIAppbnN0cnVtZW50RGVmOmJhc3MgIE15RGV2aWNlIF9jaD0wICBfcGM9MDsKCi0tIGhlcmUgaXMgdGhlIHRlbXBsYXRlOgpbCnRlbXBsYXRlOiBzaW1wbGVCYXNzOwppbnN0cnVtZW50OiBiYXNzOwp7CiAgICBJLCwyLiBWLCw0IHwKfQpdCgotLSBoZXJlIGFyZSBzb21lIGNob3JkczoKWwp0eXBlOiBhY2NvbXA7CnsKICAgIC90ZW1wbGF0ZTogc2ltcGxlQmFzcy8KICAgIEMgfCBGIHwgRyB8IEMgfAp9Cl0K"></werckmeister-snippet>
 <p>Instead of writing absolute notes, you use relative degrees. For example <code>I4</code> means the first degree as a quarter note. </p>
 <p><em>If a degree does not appear in a chord, the degree will not played.</em></p>
 <p>There are the same rules as for writing absolute <a id="link-24" [routerLink]="['./']" fragment="notes">notes</a>:</p>
@@ -252,7 +257,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <li>create tuplets using parentheses</li>
 </ul>
 
-<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gbWFrZSBzdXJlIHRoYXQgeW91IGhhdmUgYSBjaG9yZCBkZWZpbml0aW9uIGxvYWRlZAp1c2luZyAiL2Nob3Jkcy9kZWZhdWx0LmNob3JkcyI7CgpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Ci0tICAgICAgICAgICAgIG5hbWUgIGRldmljZSAgICAgICBjaCBwYyBjYwppbnN0cnVtZW50RGVmOmJhc3MgIE15RGV2aWNlIF9jaD0wICBfcGM9MDsKClsKdHlwZTogdGVtcGxhdGU7Cm5hbWU6IHNpbXBsZUJhc3M7Cmluc3RydW1lbnQ6IGJhc3M7CnsKICAgIEksLDIuIFYsLDQgfCA8SSwsIElJSSwgViw+MQp9Cl0KClsKdHlwZTogYWNjb21wOwp7CiAgICAvdGVtcGxhdGU6IHNpbXBsZUJhc3MvCiAgICBDIHwgRiB8IEcgfCBDIHwKfQpd"></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="LS0gbWFrZSBzdXJlIHRoYXQgeW91IGhhdmUgYSBjaG9yZCBkZWZpbml0aW9uIGxvYWRlZAp1c2luZyAiL2Nob3Jkcy9kZWZhdWx0LmNob3JkcyI7CgpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Ci0tICAgICAgICAgICAgIG5hbWUgIGRldmljZSAgICAgICBjaCBwYyBjYwppbnN0cnVtZW50RGVmOmJhc3MgIE15RGV2aWNlIF9jaD0wICBfcGM9MDsKClsKdGVtcGxhdGU6IHNpbXBsZUJhc3M7Cmluc3RydW1lbnQ6IGJhc3M7CnsKICAgIEksLDIuIFYsLDQgfCA8SSwsIElJSSwgViw+MQp9Cl0KClsKdHlwZTogYWNjb21wOwp7CiAgICAvdGVtcGxhdGU6IHNpbXBsZUJhc3MvCiAgICBDIHwgRiB8IEcgfCBDIHwKfQpd"></werckmeister-snippet>
 <blockquote>
 <p>the <code>template</code> command should always appear at the begining of a bar, not at the end.</p>
 </blockquote>
@@ -278,7 +283,7 @@ A degree in parantheses specifies chord adjunct degrees.
 Those degrees are not being rendered, unless your force them to appear using a leading <code>!</code>.</p>
 <p>Here in this example we force the 6th degree to appear, even if the current chord has no 6th.</p>
 
-<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7CgpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6Ymx1ZXMgIE15RGV2aWNlIF9jaD0wICBfcGM9MDsKClsKdHlwZTogdGVtcGxhdGU7Cm5hbWU6IG15Qmx1ZXNUZW1wbGF0ZTsKaW5zdHJ1bWVudDogYmx1ZXM7CnsKICAgIC0tIGZvcmNlIHRoZSBWSSB0byBhcHBlYXIgYnkgcHJlcGVuZGluZyBhICIhIiB0byB0aGUgZGVncmVlLgogICAgViw4ICYgICAhVkksICYgICBWLCAmICAhVkksICYgICB8Cn0KewogICAgSSw4ICYgICAgSSwgJiAgICBJLDggJiAgSSwgICYgICB8Cn0KXQoKWwp0eXBlOiBhY2NvbXA7CnsKICAgIC90ZW1wbGF0ZTogbXlCbHVlc1RlbXBsYXRlLwogICAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7CgpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6Ymx1ZXMgIE15RGV2aWNlIF9jaD0wICBfcGM9MDsKClsKdGVtcGxhdGU6IG15Qmx1ZXNUZW1wbGF0ZTsKaW5zdHJ1bWVudDogYmx1ZXM7CnsKICAgIC0tIGZvcmNlIHRoZSBWSSB0byBhcHBlYXIgYnkgcHJlcGVuZGluZyBhICIhIiB0byB0aGUgZGVncmVlLgogICAgViw4ICYgICAhVkksICYgICBWLCAmICAhVkksICYgICB8Cn0KewogICAgSSw4ICYgICAgSSwgJiAgICBJLDggJiAgSSwgICYgICB8Cn0KXQoKWwp0eXBlOiBhY2NvbXA7CnsKICAgIC90ZW1wbGF0ZTogbXlCbHVlc1RlbXBsYXRlLwogICAgQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
 <h2 id="advanced-techniques">Advanced techniques</h2>
 <h2 id="phrases">Phrases</h2>
 <p>A phrase is a sequence of events, you can use arbitary in your piece. </p>
@@ -2160,8 +2165,39 @@ pitch(c) {...}
 
 pitch(c, c c') {...}
 ]]></code></pre><p><br><br><br></p>
-<h3 id="tobar"><code>toBar</code></h3>
+<h3 id="templateselector"><code>templateSelector</code></h3>
 <h4 id="parameters-51">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">template name</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">templateName+</td>
+</tr>
+</tbody></table>
+<p>Selects any event which belongs to one of the given template names.</p>
+<h4 id="example-13">example:</h4>
+<pre><code><![CDATA[
+------------ sheet file
+[
+  template: myTemplate;
+{
+  ...
+}
+]
+------------ conductions file
+template(myTemplate) {...}
+template(partI partII) {...}]]></code></pre><p><br><br><br></p>
+<h3 id="tobar"><code>toBar</code></h3>
+<h4 id="parameters-52">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2184,7 +2220,7 @@ toBar(4) {...}
 ]]></code></pre><p> see also: <a id="link-67" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a id="link-68" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-69" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="tobeat"><code>toBeat</code></h3>
-<h4 id="parameters-52">parameters</h4>
+<h4 id="parameters-53">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2207,7 +2243,7 @@ toBar(4) {...}
 toBeat(4) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="topitch"><code>toPitch</code></h3>
-<h4 id="parameters-53">parameters</h4>
+<h4 id="parameters-54">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2230,7 +2266,7 @@ toBeat(4) {...}
 toPitch(c,) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="toposition"><code>toPosition</code></h3>
-<h4 id="parameters-54">parameters</h4>
+<h4 id="parameters-55">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2258,8 +2294,41 @@ toPitch(c,) {...}
 <p>Please mind the <a id="link-75" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
 <br><br><br></p>
 </blockquote>
+<h3 id="voiceselector"><code>voiceSelector</code></h3>
+<h4 id="parameters-56">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">voice number</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">number+</td>
+</tr>
+</tbody></table>
+<p>Selects any event which is located in one of the given voice numbers.</p>
+<h4 id="example-14">example:</h4>
+<pre><code><![CDATA[
+------------ sheet file
+[
+{
+  -- voice 1
+}
+{
+ -- voice 1
+}
+]
+------------ conductions file:
+voice(1) {...}
+voice(1 2) {...}]]></code></pre><p><br><br><br></p>
 <h3 id="withtag"><code>withTag</code></h3>
-<h4 id="parameters-55">parameters</h4>
+<h4 id="parameters-57">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2302,7 +2371,7 @@ toPitch(c,) {...}
 </tr>
 </tbody></table>
 <p>Changes the duration of an event.</p>
-<h4 id="example-13">example:</h4>
+<h4 id="example-15">example:</h4>
 <pre><code><![CDATA[
 onBeat(1) {
 
@@ -2338,7 +2407,7 @@ onBeat(3) {
 </tr>
 </tbody></table>
 <p>Changes the pitch of an event.</p>
-<h4 id="example-14">example:</h4>
+<h4 id="example-16">example:</h4>
 <pre><code><![CDATA[
 onBeat(1) {
 
@@ -2375,7 +2444,7 @@ onBeat(3) {
 </tbody></table>
 <p>Changes the time position of an event.</p>
 <p> <strong>Since this is an offset value, the set operation(=) has the same effect as the add(+=) or substract(-=) operation.</strong></p>
-<h4 id="example-15">example:</h4>
+<h4 id="example-17">example:</h4>
 <pre><code><![CDATA[
 onBeat(1) {
 
@@ -2411,7 +2480,7 @@ onBeat(3) {
 </tr>
 </tbody></table>
 <p>Changes the velocity of an event.</p>
-<h4 id="example-16">example:</h4>
+<h4 id="example-18">example:</h4>
 <pre><code><![CDATA[
 onBeat(1) {
 
