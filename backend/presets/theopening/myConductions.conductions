@@ -1,0 +1,3 @@
+instrument(piano) voice(1) onBeat(1 2 3 4) {
+	velocity += 20%;
+}

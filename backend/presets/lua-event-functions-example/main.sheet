@@ -1,0 +1,19 @@
+-- TITLE: Lua Event Functions Example
+-- BY: Samba Godschynski
+-- #lua #lua-event-functions #custom-lua-mod
+
+using "./myConductions.conductions";
+using "./doSomeMusic.lua";
+
+device: MyDevice _isType=webPlayer _useFont="Live-HQ-Natural-SoundFont-GM";
+instrumentDef:piano    _onDevice=MyDevice  _ch=0 _pc=0;
+
+[
+instrument: piano;
+{
+    -- lua event functions does not consume any time, so we need to add an rest after the call to 
+    -- set the "Play Head" on to the correct position
+     /call: doSomeMusic/ r1 | g4 a b c' |
+     /call: doSomeMusic _octave=1/ r1 | g'4 a' b' c'' |
+}
+]

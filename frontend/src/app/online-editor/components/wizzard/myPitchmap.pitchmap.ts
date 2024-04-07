@@ -23,8 +23,8 @@ export const text = `------------------------------------------
 "ho1": bb,,         -- hihat half open1
 "ho2": bb,,         -- hihat half open2
 "ho2": bb,,         -- hihat half open3
-"cy": c#,           -- crash cymal
-"spl": g,           -- splash cymal
+"cy": c#,           -- crash cymbal
+"spl": g,           -- splash cymbal
 "hto": c,           -- high tom 
 "hto1": c,
 "hto2": d,
@@ -53,7 +53,7 @@ export const text = `------------------------------------------
 "ocon":d#           -- open conga
 "lcon":e            -- low conga
 "tmb":f#,           -- tambourine 
-"cr": c#,           -- crash cymal
+"cr": c#,           -- crash cymbal
 "t1": c,            -- high tom 
 "t2": b,,           -- middle tom
 "t3": g,,           -- low tom

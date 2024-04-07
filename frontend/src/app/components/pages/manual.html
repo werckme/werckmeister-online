@@ -221,7 +221,7 @@ In a pitchmap file you can define note symbols like that:</p>
 }
 instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) { 
     velocity = 89;
-}]]></code></pre><p>Find the full example <a href="https://werckme.github.io/editor?wid=conductor16thHighHat">here</a>.</p>
+}]]></code></pre><p>Find the full example <a href="https://www.werckme.org/editor?wid=conductor16thHighHat">here</a>.</p>
 <p>A conduction rule starts with a list of selectors, followed by a set of declarations.</p>
 <p>A <strong>selector</strong> defines on which notes the rule applies. </p>
 <p>A <strong>declaration</strong> describes what needs to be changed.</p>
@@ -238,7 +238,7 @@ instrument(drums) pitch(h) onBeat(1.5 2.5 3.5 4.5) {
 <pre><code><![CDATA[velocity = & - 10;]]></code></pre><p>Means: the new velocity value is 10 units less than the velocity of its predecessor.</p>
 <p>This usefull if you want to achieve something like this:
 <img src="https://raw.githubusercontent.com/werckme/werckmeister/main/assets/follow-up-velocity.png" alt="linear decreasing velocity values"></p>
-<p>Find the full example <a href="https://werckme.github.io/editor?wid=conductor16thHighHatFollowUp">here</a>.</p>
+<p>Find the full example <a href="https://www.werckme.org/editor?wid=conductor16thHighHatFollowUp">here</a>.</p>
 <h2 id="accomp-my-melodies">Accomp My Melodies</h2>
 <p>Imagine you give your bass player some chords, and he or she asks you how to play these.
 <br>You would say something like: play the 1st degree on the first beat and the 5th degree on the fourth beat. </p>
@@ -303,8 +303,8 @@ Those degrees are not being rendered, unless your force them to appear using a l
 <li>include mod file</li>
 <li>apply mod</li>
 </ul>
-<p><a href="https://werckme.github.io/examples?tag=custom-lua-mod">find some example implementations</a></p>
-<h3 id="create-a-lua-file">create a lua file</h3>
+<p><a href="https://www.werckme.org/examples?tag=custom-lua-mod">find some example implementations</a></p>
+<h3 id="create-a-lua-file">Create A Lua File</h3>
 <p>Since the name of the lua file is also the name of the modification in werckmeister you can not use any name you want for that file.</p>
 <ul>
 <li>don&#39;t use special characters</li>
@@ -430,7 +430,7 @@ end]]></code></pre><p>The perform function has 3 arguments:</p>
 <pre><code><![CDATA[instrumentConf <<instrumentName>> mod <<modName>> [mod arguments]]]></code></pre><p><strong>example</strong></p>
 <pre><code><![CDATA[instrumentConf: myInstrument 
     mod myModX _modXParameter=1 
-    mod myModY _modYParameter=2;]]></code></pre><h3 id="the-excute-function">The Excute Function</h3>
+    mod myModY _modYParameter=2;]]></code></pre><h3 id="the-execute-function">The Execute Function</h3>
 <p>The <code>execute</code> function works the same way as the <code>perform</code> function does. Except the <code>peform</code> function modifies existing events, the <code>execute</code> function can be used to create new events. Therefore the function signature is slightly different:</p>
 <pre><code><![CDATA[function execute(params, timeinfo)
     return {
@@ -441,7 +441,8 @@ end]]></code></pre><pre><code><![CDATA[[
     /call: <<modName>> [mod arguments]/ -- creates some events
     c d e f | -- will not be affected by the (execute) mod
 }
-]]]></code></pre><h2 id="event-tags">Event Tags</h2>
+]]]></code></pre><p>See <a href="https://www.werckme.org/editor?wid=lua-event-functions-example">Example</a>.</p>
+<h2 id="event-tags">Event Tags</h2>
 <p>You can add additional annotations to an event in werckmeister. These informations can be used in <a id="link-28" [routerLink]="['./']" fragment="conduction-rules">conduction rules</a> or <a id="link-29" [routerLink]="['./']" fragment="mods">modifications</a>.</p>
 <p><strong>syntax</strong></p>
 <pre><code><![CDATA["tag1 tag2 ..."@<<event>>]]></code></pre><p><strong>example</strong></p>
@@ -453,8 +454,50 @@ end]]></code></pre><pre><code><![CDATA[[
 <h5 id="voicing-strategies">Voicing strategies</h5>
 <h2 id="references">References</h2>
 <h2 id="commands">Commands</h2>
-<h3 id="cc"><code>cc</code></h3>
+<h3 id="begintag"><code>beginTag</code></h3>
 <h4 id="parameters-1">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">tags</td>
+<td align="left">1</td>
+<td align="left">a space separated list of tag names</td>
+<td align="left">text</td>
+</tr>
+</tbody></table>
+<p>Begins a tag region where its including events will receive the given tags. See <a id="link-30" [routerLink]="['//manual']" fragment="endtag">endTag</a>.</p>
+<p> <a href="https://www.werckme.org/editor?wid=mariounderworld">Example</a>
+<br><br><br></p>
+<h3 id="call"><code>call</code></h3>
+<h4 id="parameters-2">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">name</td>
+<td align="left">1</td>
+<td align="left">The name of the lua function. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related implementation (see <a id="link-31" [routerLink]="['//manual']" fragment="the-execute-function">The Execute Function</a>).</td>
+<td align="left">text</td>
+</tr>
+</tbody></table>
+<p>Executes a lua function.</p>
+<p> See <a href="https://www.werckme.org/editor?wid=lua-event-functions-example">Example</a>
+<br><br><br></p>
+<h3 id="cc"><code>cc</code></h3>
+<h4 id="parameters-3">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -556,7 +599,7 @@ end]]></code></pre><pre><code><![CDATA[[
 </li>
 </ul>
 <h3 id="cue"><code>cue</code></h3>
-<h4 id="parameters-2">parameters</h4>
+<h4 id="parameters-4">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -585,7 +628,7 @@ For example:
 </blockquote>
 <p><br><br><br></p>
 <h3 id="device"><code>device</code></h3>
-<h4 id="parameters-3">parameters</h4>
+<h4 id="parameters-5">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -632,8 +675,8 @@ For example:
 <td align="left">a file path</td>
 </tr>
 </tbody></table>
-<p>Defines a device which can be used when adding instruments (see <a id="link-30" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
-<p> see <a id="link-31" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a id="link-32" [routerLink]="['./']" fragment="instrument">instrument</a></p>
+<p>Defines a device which can be used when adding instruments (see <a id="link-32" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
+<p> see <a id="link-33" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a id="link-34" [routerLink]="['./']" fragment="instrument">instrument</a></p>
 <h4 id="example">example</h4>
 <p> define an device, an instrument and assign it to a track.</p>
 <pre><code><![CDATA[
@@ -651,52 +694,6 @@ instrument: organ;
 <p> On mac, make sure that you have fluidsynth installed.
 <br><br><br></p>
 <h3 id="do"><code>do</code></h3>
-<h4 id="parameters-4">parameters</h4>
-<table class="table table-bordered">
-<thead>
-<tr>
-<th align="left">name</th>
-<th align="left">position</th>
-<th align="left">description</th>
-<th align="left">type</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">use</td>
-<td align="left">1</td>
-<td align="left">The name of the modification to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
-<td align="left">text</td>
-</tr>
-</tbody></table>
-<p>Such as <a id="link-33" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track.</p>
-<p> The difference is: every <code>mod</code> command adds a further modification to a voice.</p>
-<p> <code>do</code> replaces the previous modification.</p>
-<h4 id="example-1">example</h4>
-<p> <code>/do: arpeggio/</code>
-<br><br><br></p>
-<h3 id="doonce"><code>doOnce</code></h3>
-<h4 id="parameters-5">parameters</h4>
-<table class="table table-bordered">
-<thead>
-<tr>
-<th align="left">name</th>
-<th align="left">position</th>
-<th align="left">description</th>
-<th align="left">type</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">use</td>
-<td align="left">1</td>
-<td align="left">The name of the modification to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
-<td align="left">text</td>
-</tr>
-</tbody></table>
-<p>Like <a id="link-34" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
-<h4 id="example-2">example</h4>
-<p> <code>/doOnce: arpeggio/</code>
-<br><br><br></p>
-<h3 id="execute"><code>execute</code></h3>
 <h4 id="parameters-6">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -708,18 +705,63 @@ instrument: organ;
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">name</td>
+<td align="left">use</td>
 <td align="left">1</td>
-<td align="left">The name of the lua function. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
+<td align="left">The name of the modification to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
 <td align="left">text</td>
 </tr>
 </tbody></table>
-<p>Executes a lua function.</p>
-<h4 id="examples-3">examples</h4>
-<p> tbd.
+<p>Such as <a id="link-35" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track.</p>
+<p> The difference is: every <code>mod</code> command adds a further modification to a voice.</p>
+<p> <code>do</code> replaces the previous modification.</p>
+<h4 id="example-1">example</h4>
+<p> <code>/do: arpeggio/</code>
+<br><br><br></p>
+<h3 id="doonce"><code>doOnce</code></h3>
+<h4 id="parameters-7">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">use</td>
+<td align="left">1</td>
+<td align="left">The name of the modification to load. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
+<td align="left">text</td>
+</tr>
+</tbody></table>
+<p>Like <a id="link-36" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<h4 id="example-2">example</h4>
+<p> <code>/doOnce: arpeggio/</code>
+<br><br><br></p>
+<h3 id="endtag"><code>endTag</code></h3>
+<h4 id="parameters-8">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">tags</td>
+<td align="left">1</td>
+<td align="left">a space separated list of tag names</td>
+<td align="left">text</td>
+</tr>
+</tbody></table>
+<p>Ends a tag region where its including events will receive the given tags. See <a id="link-37" [routerLink]="['/manual/']" fragment="begintag">beginTag</a>.</p>
+<p> <a href="https://www.werckme.org/editor?wid=mariounderworld">Example</a>
 <br><br><br></p>
 <h3 id="fade"><code>fade</code></h3>
-<h4 id="parameters-7">parameters</h4>
+<h4 id="parameters-9">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -761,7 +803,7 @@ instrument: organ;
 <p> <img src="https://raw.githubusercontent.com/werckme/werckmeister/main/assets/curve-types.png" alt="supported curve types">
 <br><br><br></p>
 <h3 id="fadecc"><code>fadeCC</code></h3>
-<h4 id="parameters-8">parameters</h4>
+<h4 id="parameters-10">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -803,9 +845,9 @@ instrument: organ;
 </tr>
 </tbody></table>
 <p>Fades a CC value from a start to an end value.</p>
-<h4 id="examples-4">examples</h4>
-<p> <code>/cc: _nr=1 _value=10/ --modulation by controller number</code></p>
-<p> <code>/cc: _name=&quot;modulation&quot; _value=10/ --modulation value by controller name</code></p>
+<h4 id="examples-3">examples</h4>
+<p> <code>/fadeCC: _nr=1 _from=0 _to=100 _duration=2/ --modulation by controller number</code></p>
+<p> <code>/fadeCC: _name=&quot;Modulation&quot; _from=0 _to=100 _duration=2/ --modulation value by controller name</code></p>
 <h4 id="supported-cc-names-1">supported CC names</h4>
 <ul>
 <li><p>BankSelectMSB</p>
@@ -876,7 +918,7 @@ instrument: organ;
 <p> <img src="https://raw.githubusercontent.com/werckme/werckmeister/main/assets/curve-types.png" alt="supported curve types">
 <br><br><br></p>
 <h3 id="fill"><code>fill</code></h3>
-<h4 id="parameters-9">parameters</h4>
+<h4 id="parameters-11">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -899,7 +941,7 @@ instrument: organ;
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImNob3Jkcy9kZWZhdWx0LmNob3JkcyI7CnRlbXBvOiA5MDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSBfdXNlUG9ydD0wOwppbnN0cnVtZW50RGVmOmRydW1zICAgIF9vbkRldmljZT1NeURldmljZSAgX2NoPTkgX3BjPTA7CgpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBkcnVtcy5maWxsOwppbnN0cnVtZW50OiBkcnVtczsKewogKGMsICYgJik0IChiLCwgJiAmKTQgKGEsLCAmICYpNCAoZywsICYgJik0IHwKfQpdCgpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBkcnVtcy5tYWluOwppbnN0cnVtZW50OiBkcnVtczsKewogcjggZiMsLCByICYgciAmIHIgJiB8Cn0KewogIHI0IGQsLCByNCAmIHwgCn0KewogYywsNCByICYgciB8Cn0KXQoKWwp0eXBlOiBhY2NvbXA7CnsKL3RlbXBsYXRlOiBkcnVtcy5tYWluLwpDIHwKL2ZpbGw6IGRydW1zLmZpbGwvIC0tIHBsYXkgZmlsbCBhbmQgZHJ1bSBiZWF0IHRvZ2V0aGVyCkMgfCBDIHwKL2ZpbGw6IGRydW1zLmZpbGwgX3JlcGxhY2U9ImRydW1zLm1haW4iLyAtLSBwbGF5IG9ubHkgdGhlIGZpbGwgaW4KQyB8IEMgfAp9Cl0="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="instrument"><code>instrument</code></h3>
-<h4 id="parameters-10">parameters</h4>
+<h4 id="parameters-12">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -917,7 +959,7 @@ instrument: organ;
 </tr>
 </tbody></table>
 <p>Set or change the instrument of a track.</p>
-<h4 id="examples-5">examples</h4>
+<h4 id="examples-4">examples</h4>
 <p> <strong>set an instrument for a track</strong></p>
 <pre><code><![CDATA[
 [ 
@@ -937,7 +979,7 @@ instrument: myInstrument;
 } 
 ] ]]></code></pre><p><br><br><br></p>
 <h3 id="instrumentconf"><code>instrumentConf</code></h3>
-<h4 id="parameters-11">parameters</h4>
+<h4 id="parameters-13">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -970,7 +1012,7 @@ instrument: myInstrument;
 <li><p>velocity remap</p>
 </li>
 </ul>
-<h4 id="examples-6">examples</h4>
+<h4 id="examples-5">examples</h4>
 <h5 id="mixed-settings">mixed settings</h5>
 <p> <code>instrumentConf: piano volume 100 pan 50;</code></p>
 <h5 id="setup-a-mod">setup a mod</h5>
@@ -979,13 +1021,13 @@ instrument: myInstrument;
 <p> With <code>remapVelocity</code> you are able to change the velocity values behind <code>ppppp..fffff</code> for a specific instrument.</p>
 <p> In the example below the velocity for <code>p</code> will be set to 100 and the value for <code>f</code> will be set to 10.</p>
 <blockquote>
-<p>this approach is deprecated, use <a id="link-35" [routerLink]="['./']" fragment="conduction-rules">conduction rules</a> instead</p>
+<p>this approach is deprecated, use <a id="link-38" [routerLink]="['./']" fragment="conduction-rules">conduction rules</a> instead</p>
 </blockquote>
 <p> The value range is 0..100. (100=127 Midi velocity)</p>
 <p> <code>instrumentConf: _set=remapVelocity _p=100 _f=10;</code>
 <br><br><br></p>
 <h3 id="instrumentdef"><code>instrumentDef</code></h3>
-<h4 id="parameters-12">parameters</h4>
+<h4 id="parameters-14">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1004,7 +1046,7 @@ instrument: myInstrument;
 <tr>
 <td align="left">onDevice</td>
 <td align="left">2</td>
-<td align="left">The device which to use (The name of the device, see <a id="link-36" [routerLink]="['./']" fragment="device">device</a>).</td>
+<td align="left">The device which to use (The name of the device, see <a id="link-39" [routerLink]="['./']" fragment="device">device</a>).</td>
 <td align="left">text</td>
 </tr>
 <tr>
@@ -1045,7 +1087,7 @@ instrument: myInstrument;
 </tr>
 </tbody></table>
 <p>Adds a new MIDI instrument.</p>
-<p> see <a id="link-37" [routerLink]="['./']" fragment="instrument">instrument</a>, <a id="link-38" [routerLink]="['./']" fragment="device">device</a></p>
+<p> see <a id="link-40" [routerLink]="['./']" fragment="instrument">instrument</a>, <a id="link-41" [routerLink]="['./']" fragment="device">device</a></p>
 <h4 id="example-4">example</h4>
 <p> define an device, an instrument and assign it to a track.</p>
 <pre><code><![CDATA[
@@ -1059,7 +1101,7 @@ instrument: organ;
 } 
 ] ]]></code></pre><p><br><br><br></p>
 <h3 id="instrumentsection"><code>instrumentSection</code></h3>
-<h4 id="parameters-13">parameters</h4>
+<h4 id="parameters-15">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1077,14 +1119,14 @@ instrument: organ;
 </tr>
 </tbody></table>
 <p>Layers arbitrary instruments into one.</p>
-<p> see <a id="link-39" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a id="link-40" [routerLink]="['./']" fragment="instrument">instrument</a>, <a id="link-41" [routerLink]="['./']" fragment="device">device</a></p>
+<p> see <a id="link-42" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a id="link-43" [routerLink]="['./']" fragment="instrument">instrument</a>, <a id="link-44" [routerLink]="['./']" fragment="device">device</a></p>
 <h4 id="example-5">example</h4>
 <p> create 3 instruments and assign them to the section <code>myNewInstrument</code>.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSBfdXNlUG9ydD0wOwppbnN0cnVtZW50RGVmOnBpYW5vICAgIF9vbkRldmljZT1NeURldmljZSAgX2NoPTAgX3BjPTA7Cmluc3RydW1lbnREZWY6Z3VpdGFyICAgX29uRGV2aWNlPU15RGV2aWNlIF9jaD0xICBfcGM9Mjk7Cmluc3RydW1lbnREZWY6b3JnYW4gICBfb25EZXZpY2U9TXlEZXZpY2UgX2NoPTIgIF9wYz0xNjsKaW5zdHJ1bWVudFNlY3Rpb246IG15TmV3SW5zdHJ1bWVudCBwaWFubyBndWl0YXIgb3JnYW47CgpbCmluc3RydW1lbnQ6IG15TmV3SW5zdHJ1bWVudDsKewogYSwsMSB8IGEsIHwgZCMsfiB8ICYKfQpd"></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="jump"><code>jump</code></h3>
-<h4 id="parameters-14">parameters</h4>
+<h4 id="parameters-16">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1113,13 +1155,13 @@ instrument: organ;
 <td align="left">0..100</td>
 </tr>
 </tbody></table>
-<p>Jumps to a previous defined mark See <a id="link-42" [routerLink]="['/manual/']" fragment="mark">mark</a>.</p>
+<p>Jumps to a previous defined mark See <a id="link-45" [routerLink]="['/manual/']" fragment="mark">mark</a>.</p>
 <h4 id="example-6">example</h4>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="ZGV2aWNlOiBfdXNlUG9ydD0wIF9zZXROYW1lPU15RGV2aWNlICBfaXNUeXBlPW1pZGk7Cmluc3RydW1lbnREZWY6IF9zZXROYW1lPXBpYW5vIF9vbkRldmljZT1NeURldmljZSBfY2g9MCBfcGM9MSBfY2M9ODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAgL3NpZ25hdHVyZTogNSA0LwogICAgL21hcms6IEEvICAgICAgIC0tIHZhbGlkICYgdW5pcXVlIHRvIHRoaXMgdm9pY2UKICAgIGM0IGQgZSBmIGcgfAogICAgL2p1bXA6IEEvICAgICAgIC0tIGp1bXBzIHRvIEEgb25jZQogICAgYSBiIGMnMgp9Cl0="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="mark"><code>mark</code></h3>
-<h4 id="parameters-15">parameters</h4>
+<h4 id="parameters-17">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1136,13 +1178,13 @@ instrument: organ;
 <td align="left">word</td>
 </tr>
 </tbody></table>
-<p>adds a mark to the voice. Us it in combination with <a id="link-43" [routerLink]="['/manual/']" fragment="jump">jump</a>.</p>
-<h4 id="examples-7">examples</h4>
+<p>adds a mark to the voice. Use it in combination with <a id="link-46" [routerLink]="['/manual/']" fragment="jump">jump</a>.</p>
+<h4 id="examples-6">examples</h4>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="ZGV2aWNlOiBfdXNlUG9ydD0wIF9zZXROYW1lPU15RGV2aWNlICBfaXNUeXBlPW1pZGk7Cmluc3RydW1lbnREZWY6IF9zZXROYW1lPXBpYW5vIF9vbkRldmljZT1NeURldmljZSBfY2g9MCBfcGM9MSBfY2M9ODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAgL3NpZ25hdHVyZTogNSA0LwogICAgL21hcms6IEEvICAgICAgIC0tIHZhbGlkICYgdW5pcXVlIHRvIHRoaXMgdm9pY2UKICAgIGM0IGQgZSBmIGcgfAogICAgL2p1bXA6IEEvICAgICAgIC0tIGp1bXBzIHRvIEEgb25jZQogICAgYSBiIGMnMgp9Cl0="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="mod"><code>mod</code></h3>
-<h4 id="parameters-16">parameters</h4>
+<h4 id="parameters-18">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1160,8 +1202,8 @@ instrument: organ;
 </tr>
 </tbody></table>
 <p>Adds a modification to the track. Every <code>mod</code> statement adds a further modification to the related voice.</p>
-<p> If you want to use ony one modification at the time use <a id="link-44" [routerLink]="['./']" fragment="do">do</a> instead.</p>
-<h4 id="examples-8">examples</h4>
+<p> If you want to use ony one modification at the time use <a id="link-47" [routerLink]="['./']" fragment="do">do</a> instead.</p>
+<h4 id="examples-7">examples</h4>
 <p> <code>/mod: arpeggio/</code></p>
 <p> Mods can be external lua scripts, or one of these internal mods:</p>
 <h5 id="bend">Bend</h5>
@@ -1170,10 +1212,10 @@ instrument: organ;
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="140" wm-data="Ci9kb09uY2U6IGJlbmQgX2Zyb209MC8gYzEgfCAvZG9PbmNlOiBiZW5kIF90bz0wLyBjMQo="></werckmeister-snippet>
 <h5 id="arpeggio">Arpeggio</h5>
 <p> Performs an arpeggio over a given chord.</p>
-<p> <strong>Arpeggio is deprecated. Use the lua mod <a id="link-45" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a> instead.</strong>
+<p> <strong>Arpeggio is deprecated. Use the lua mod <a id="link-48" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a> instead.</strong>
 <br><br><br></p>
 <h3 id="modonce"><code>modOnce</code></h3>
-<h4 id="parameters-17">parameters</h4>
+<h4 id="parameters-19">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1190,12 +1232,12 @@ instrument: organ;
 <td align="left">text</td>
 </tr>
 </tbody></table>
-<p>Like <a id="link-46" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
-<h4 id="examples-9">examples</h4>
+<p>Like <a id="link-49" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<h4 id="examples-8">examples</h4>
 <p> <code>/modOnce: arpeggio/</code>
 <br><br><br></p>
 <h3 id="pan"><code>pan</code></h3>
-<h4 id="parameters-18">parameters</h4>
+<h4 id="parameters-20">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1217,7 +1259,7 @@ instrument: organ;
 <p> <code>/pan: 50/</code>
 <br><br><br></p>
 <h3 id="setchord"><code>setChord</code></h3>
-<h4 id="parameters-19">parameters</h4>
+<h4 id="parameters-21">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1234,13 +1276,13 @@ instrument: organ;
 <td align="left">text</td>
 </tr>
 </tbody></table>
-<p>Sets a chord context to the current voice to be able to use relative <a id="link-47" [routerLink]="['./']" fragment="degree-events">degrees</a> instead of absolute notes.</p>
+<p>Sets a chord context to the current voice to be able to use relative <a id="link-50" [routerLink]="['./']" fragment="degree-events">degrees</a> instead of absolute notes.</p>
 <pre><code><![CDATA[The given chord name must be defined in a *.chords file.]]></code></pre><h4 id="example-8">example</h4>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKZGV2aWNlOiBteURldmljZSBtaWRpIF91c2VQb3J0PTA7Cmluc3RydW1lbnREZWY6IHBpYW5vICBteURldmljZSBfY2g9MCBfcGM9MDsKdGVtcG86IDEyMDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAgL2Nob3JkOiAiQy05Ii8KICAgIEkgSUlJIFYgVklJIHwgSUknMSAKfQpd"></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="signature"><code>signature</code></h3>
-<h4 id="parameters-20">parameters</h4>
+<h4 id="parameters-22">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1268,7 +1310,7 @@ instrument: organ;
 <p> <code>/signature: 3 4/</code>
 <br><br><br></p>
 <h3 id="tempo-1"><code>tempo</code></h3>
-<h4 id="parameters-21">parameters</h4>
+<h4 id="parameters-23">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1289,10 +1331,10 @@ instrument: organ;
 <h4 id="example-10">example</h4>
 <p> <code>tempo: 120;</code></p>
 <p> It is also possible to set different tempo values for several tracks:</p>
-<p> <a id="link-48" [routerLink]="['//manual']" fragment="tempo">see here</a>
+<p> <a id="link-51" [routerLink]="['//manual']" fragment="tempo">see here</a>
 <br><br><br></p>
 <h3 id="voicingstrategy"><code>voicingStrategy</code></h3>
-<h4 id="parameters-22">parameters</h4>
+<h4 id="parameters-24">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1321,7 +1363,7 @@ instrument: organ;
 </li>
 </ul>
 <h3 id="volume"><code>volume</code></h3>
-<h4 id="parameters-23">parameters</h4>
+<h4 id="parameters-25">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1339,12 +1381,12 @@ instrument: organ;
 </tr>
 </tbody></table>
 <p>set the volume of the current instrument</p>
-<h4 id="examples-10">examples</h4>
+<h4 id="examples-9">examples</h4>
 <p> <code>/volume: 50/</code>
 <br><br><br></p>
 <h2 id="modifications">Modifications</h2>
 <h3 id="drumrudiments"><code>drumRudiments</code></h3>
-<h4 id="parameters-24">parameters</h4>
+<h4 id="parameters-26">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1494,7 +1536,7 @@ instrument: organ;
 <br><br><br>
 
 <h3 id="guitarstroke"><code>guitarStroke</code></h3>
-<h4 id="parameters-25">parameters</h4>
+<h4 id="parameters-27">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1540,7 +1582,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2d1aXRhclN0cm9rZS5sdWEiOwp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ICBwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0yNDsKaW5zdHJ1bWVudENvbmY6IHBpYW5vIG1vZCBndWl0YXJTdHJva2UgX21vZGU9YWx0ZXJuYXRlIF92YWx1ZT0xNjsgClsKaW5zdHJ1bWVudDogcGlhbm87CnsKIDxjIGUgZyBiPjQgPGMgZSBnIGI+NCA8YyBlYiBnIGJiPjIgfCAgPGMgZWIgZyBiYj4yIDxjIGViIGcgYmI+Mgp9Cl0="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="legato"><code>legato</code></h3>
-<h4 id="parameters-26">parameters</h4>
+<h4 id="parameters-28">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1571,7 +1613,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2xlZ2F0by5sdWEiOwp0ZW1wbzogMTQwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogIC9tb2Q6IGxlZ2F0byBfZm9yVGFnPWxlZyBfYW1vdW50PTEwMC8KICAtLSBvbmx5IHRoZSBgZGAgd2lsbCBiZSBwZXJmb3JtZWQgbGVnYXRvLiAKICBjICJsZWciQGQgZSBmCn0KXQ=="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="myarpeggio"><code>myArpeggio</code></h3>
-<h4 id="parameters-27">parameters</h4>
+<h4 id="parameters-29">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1602,7 +1644,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL215QXJwZWdnaW8ubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOiAgcGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewovZG86IG15QXJwZWdnaW8vIAo8YyBlIGcgYj4yIAovZG86IG15QXJwZWdnaW8gX2RpcmVjdGlvbj1kb3duLyAKPGMgZWIgZyBiYj4yIAp9Cl0="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="staccato"><code>staccato</code></h3>
-<h4 id="parameters-28">parameters</h4>
+<h4 id="parameters-30">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1633,7 +1675,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL3N0YWNjYXRvLmx1YSI7CnRlbXBvOiAxNDA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCmluc3RydW1lbnQ6IHBpYW5vOwp7CiAgL21vZDogc3RhY2NhdG8gX2ZvclRhZz1zdGFjIF9hbW91bnQ9MTAwLwogIC0tIG9ubHkgdGhlIGBkYCB3aWxsIGJlIHBlcmZvcm1lZCBzdGFjY2F0by4gCiAgYyAic3RhYyJAZCBlIGYKfQpd"></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="swing"><code>swing</code></h3>
-<h4 id="parameters-29">parameters</h4>
+<h4 id="parameters-31">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1664,7 +1706,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <p><br><br><br></p>
 <h2 id="voicing-strategies-1">Voicing Strategies</h2>
 <h3 id="guitar"><code>guitar</code></h3>
-<h4 id="parameters-30">parameters</h4>
+<h4 id="parameters-32">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1688,7 +1730,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgIi9sdWEvdm9pY2luZ3MvZ3VpdGFyLmx1YSI7CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBteVRlbXBsYXRlOwppbnN0cnVtZW50OiBwaWFubzsKewogIC92b2ljaW5nU3RyYXRlZ3k6IGd1aXRhci8KICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAvdGVtcGxhdGU6IG15VGVtcGxhdGUvCgogQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="inversion"><code>inversion</code></h3>
-<h4 id="parameters-31">parameters</h4>
+<h4 id="parameters-33">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1718,7 +1760,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgIi9sdWEvdm9pY2luZ3MvaW52ZXJzaW9uLmx1YSI7CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBteVRlbXBsYXRlOwppbnN0cnVtZW50OiBwaWFubzsKewogIC92b2ljaW5nU3RyYXRlZ3k6IGludmVyc2lvbi8KICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAvdGVtcGxhdGU6IG15VGVtcGxhdGUvCgogQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="simple"><code>simple</code></h3>
-<h4 id="parameters-32">parameters</h4>
+<h4 id="parameters-34">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1742,7 +1784,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgIi9sdWEvdm9pY2luZ3Mvc2ltcGxlLmx1YSI7CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBteVRlbXBsYXRlOwppbnN0cnVtZW50OiBwaWFubzsKewogIC92b2ljaW5nU3RyYXRlZ3k6IHNpbXBsZS8KICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAvdGVtcGxhdGU6IG15VGVtcGxhdGUvCgogQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="voicelead"><code>voicelead</code></h3>
-<h4 id="parameters-33">parameters</h4>
+<h4 id="parameters-35">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1771,7 +1813,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <p>Selects all events.</p>
 <pre><code><![CDATA[all() {...}]]></code></pre><p><br><br><br></p>
 <h3 id="atposition"><code>atPosition</code></h3>
-<h4 id="parameters-34">parameters</h4>
+<h4 id="parameters-36">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1790,11 +1832,11 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 </tbody></table>
 <p>Selects any event where its position is equal to a given value.</p>
 <blockquote>
-<p>Please mind the <a id="link-49" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
+<p>Please mind the <a id="link-52" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
 <br><br><br></p>
 </blockquote>
 <h3 id="channel"><code>channel</code></h3>
-<h4 id="parameters-35">parameters</h4>
+<h4 id="parameters-37">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1816,7 +1858,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 channel(0 1 2) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="chord"><code>chord</code></h3>
-<h4 id="parameters-36">parameters</h4>
+<h4 id="parameters-38">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1838,7 +1880,7 @@ channel(0 1 2) {...}
 <p> every 7th chord you write:</p>
 <pre><code><![CDATA[chord(X7) {...}]]></code></pre><p><br><br><br></p>
 <h3 id="degree"><code>degree</code></h3>
-<h4 id="parameters-37">parameters</h4>
+<h4 id="parameters-39">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1860,7 +1902,7 @@ channel(0 1 2) {...}
 degree(I III) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="expression"><code>expression</code></h3>
-<h4 id="parameters-38">parameters</h4>
+<h4 id="parameters-40">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1884,7 +1926,7 @@ expression(p) {...}
 expression(p f ff) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="frombar"><code>fromBar</code></h3>
-<h4 id="parameters-39">parameters</h4>
+<h4 id="parameters-41">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1904,10 +1946,10 @@ expression(p f ff) {...}
 <p>Selects an event where its bar time is equal or greater.</p>
 <pre><code><![CDATA[
 fromBar(1) {...}
-]]></code></pre><p> see also: <a id="link-50" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-51" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-52" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
+]]></code></pre><p> see also: <a id="link-53" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-54" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-55" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="frombeat"><code>fromBeat</code></h3>
-<h4 id="parameters-40">parameters</h4>
+<h4 id="parameters-42">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1929,7 +1971,7 @@ fromBar(1) {...}
 fromBeat(1) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="frompitch"><code>fromPitch</code></h3>
-<h4 id="parameters-41">parameters</h4>
+<h4 id="parameters-43">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1947,12 +1989,12 @@ fromBeat(1) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its pitch is higher or equal than the given pitch.</p>
-<p> see also: <a id="link-53" [routerLink]="['./']" fragment="toPitch">toPitch</a>, <a id="link-54" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
+<p> see also: <a id="link-56" [routerLink]="['./']" fragment="toPitch">toPitch</a>, <a id="link-57" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
 <pre><code><![CDATA[
 fromPitch(c,) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="fromposition"><code>fromPosition</code></h3>
-<h4 id="parameters-42">parameters</h4>
+<h4 id="parameters-44">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1970,18 +2012,18 @@ fromPitch(c,) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its position is equal or after a given position.</p>
-<p> see also: <a id="link-55" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
+<p> see also: <a id="link-58" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
 <h4 id="example-select-the-events-postion-8-quarters">example, select the events postion &gt;=8 quarters:</h4>
 <pre><code><![CDATA[fromPosition(8) {...}]]></code></pre><h4 id="using-cue-markers-instead-of-quarter-numbers">using cue markers instead of quarter numbers</h4>
 <pre><code><![CDATA[c d e f | /cue: myMark/ g a b 'c]]></code></pre><pre><code><![CDATA[fromPosition(@myMark) {...}]]></code></pre><blockquote>
 <p>In order to work properly, a cue name must occur only once in a document.</p>
 </blockquote>
 <blockquote>
-<p>Please mind the <a id="link-56" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
+<p>Please mind the <a id="link-59" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
 <br><br><br></p>
 </blockquote>
 <h3 id="instrumentselector"><code>instrumentSelector</code></h3>
-<h4 id="parameters-43">parameters</h4>
+<h4 id="parameters-45">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2005,7 +2047,7 @@ fromPitch(c,) {...}
 instrument(bass) {...}
 instrument(bass drums) {...}]]></code></pre><p><br><br><br></p>
 <h3 id="notonbeat"><code>notOnBeat</code></h3>
-<h4 id="parameters-44">parameters</h4>
+<h4 id="parameters-46">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2027,7 +2069,7 @@ instrument(bass drums) {...}]]></code></pre><p><br><br><br></p>
 notOnBeat(1 3) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="nthbar"><code>nthBar</code></h3>
-<h4 id="parameters-45">parameters</h4>
+<h4 id="parameters-47">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2047,10 +2089,10 @@ notOnBeat(1 3) {...}
 <p>Selects the events of every nth bar, counting from the first bar.</p>
 <pre><code><![CDATA[
 nthBar(3 5) {...}
-]]></code></pre><p> see also: <a id="link-57" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-58" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-59" [routerLink]="['./']" fragment="onBar">onBar</a>.
+]]></code></pre><p> see also: <a id="link-60" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-61" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-62" [routerLink]="['./']" fragment="onBar">onBar</a>.
 <br><br><br></p>
 <h3 id="octave"><code>octave</code></h3>
-<h4 id="parameters-46">parameters</h4>
+<h4 id="parameters-48">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2072,7 +2114,7 @@ nthBar(3 5) {...}
 octave(4) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="onbar"><code>onBar</code></h3>
-<h4 id="parameters-47">parameters</h4>
+<h4 id="parameters-49">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2092,10 +2134,10 @@ octave(4) {...}
 <p>Selects an event in a given bar number or a list of bar numbers.</p>
 <pre><code><![CDATA[ TODO: should be renamed into inBar.]]></code></pre><pre><code><![CDATA[
 onBar(1 3) {...}
-]]></code></pre><p> see also: <a id="link-60" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-61" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-62" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
+]]></code></pre><p> see also: <a id="link-63" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-64" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-65" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="onbeat"><code>onBeat</code></h3>
-<h4 id="parameters-48">parameters</h4>
+<h4 id="parameters-50">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2113,13 +2155,13 @@ onBar(1 3) {...}
 </tr>
 </tbody></table>
 <p>Selects an event which appears on a given beat or a list of beats</p>
-<p> see also: <a id="link-63" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a id="link-64" [routerLink]="['./']" fragment="toBeat">toBeat</a>.</p>
+<p> see also: <a id="link-66" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a id="link-67" [routerLink]="['./']" fragment="toBeat">toBeat</a>.</p>
 <h4 id="example-select-the-events-at-beat-1-and-3">example, select the events at beat 1 and 3:</h4>
 <pre><code><![CDATA[
 onBeat(1 3) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="phrase"><code>phrase</code></h3>
-<h4 id="parameters-49">parameters</h4>
+<h4 id="parameters-51">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2141,7 +2183,7 @@ onBeat(1 3) {...}
 phrase(myPhrase1 myPhrase2) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="pitch"><code>pitch</code></h3>
-<h4 id="parameters-50">parameters</h4>
+<h4 id="parameters-52">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2159,14 +2201,14 @@ phrase(myPhrase1 myPhrase2) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its pitch is equal to one of the given pitches.</p>
-<p> see also: <a id="link-65" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a id="link-66" [routerLink]="['./']" fragment="toPitch">toPitch</a>.</p>
+<p> see also: <a id="link-68" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a id="link-69" [routerLink]="['./']" fragment="toPitch">toPitch</a>.</p>
 <pre><code><![CDATA[
 pitch(c) {...}
 
 pitch(c, c c') {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="templateselector"><code>templateSelector</code></h3>
-<h4 id="parameters-51">parameters</h4>
+<h4 id="parameters-53">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2197,7 +2239,7 @@ pitch(c, c c') {...}
 template(myTemplate) {...}
 template(partI partII) {...}]]></code></pre><p><br><br><br></p>
 <h3 id="tobar"><code>toBar</code></h3>
-<h4 id="parameters-52">parameters</h4>
+<h4 id="parameters-54">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2217,55 +2259,9 @@ template(partI partII) {...}]]></code></pre><p><br><br><br></p>
 <p>Selects an event where its bar time is equal or less.</p>
 <pre><code><![CDATA[
 toBar(4) {...}
-]]></code></pre><p> see also: <a id="link-67" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a id="link-68" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-69" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
+]]></code></pre><p> see also: <a id="link-70" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a id="link-71" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-72" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="tobeat"><code>toBeat</code></h3>
-<h4 id="parameters-53">parameters</h4>
-<table class="table table-bordered">
-<thead>
-<tr>
-<th align="left">name</th>
-<th align="left">position</th>
-<th align="left">description</th>
-<th align="left">type</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">beat</td>
-<td align="left">-</td>
-<td align="left"></td>
-<td align="left">quarters</td>
-</tr>
-</tbody></table>
-<p>Selects an event where its beat time is equal or less.</p>
-<p> see also: <a id="link-70" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a id="link-71" [routerLink]="['./']" fragment="onBeat">onBeat</a>.</p>
-<pre><code><![CDATA[
-toBeat(4) {...}
-]]></code></pre><p><br><br><br></p>
-<h3 id="topitch"><code>toPitch</code></h3>
-<h4 id="parameters-54">parameters</h4>
-<table class="table table-bordered">
-<thead>
-<tr>
-<th align="left">name</th>
-<th align="left">position</th>
-<th align="left">description</th>
-<th align="left">type</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">pitch</td>
-<td align="left">-</td>
-<td align="left"></td>
-<td align="left">pitch</td>
-</tr>
-</tbody></table>
-<p>Selects any event where its pitch is lower or equal than the given pitch.</p>
-<p> see also: <a id="link-72" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a id="link-73" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
-<pre><code><![CDATA[
-toPitch(c,) {...}
-]]></code></pre><p><br><br><br></p>
-<h3 id="toposition"><code>toPosition</code></h3>
 <h4 id="parameters-55">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -2283,19 +2279,65 @@ toPitch(c,) {...}
 <td align="left">quarters</td>
 </tr>
 </tbody></table>
+<p>Selects an event where its beat time is equal or less.</p>
+<p> see also: <a id="link-73" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a id="link-74" [routerLink]="['./']" fragment="onBeat">onBeat</a>.</p>
+<pre><code><![CDATA[
+toBeat(4) {...}
+]]></code></pre><p><br><br><br></p>
+<h3 id="topitch"><code>toPitch</code></h3>
+<h4 id="parameters-56">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">pitch</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">pitch</td>
+</tr>
+</tbody></table>
+<p>Selects any event where its pitch is lower or equal than the given pitch.</p>
+<p> see also: <a id="link-75" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a id="link-76" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
+<pre><code><![CDATA[
+toPitch(c,) {...}
+]]></code></pre><p><br><br><br></p>
+<h3 id="toposition"><code>toPosition</code></h3>
+<h4 id="parameters-57">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">beat</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">quarters</td>
+</tr>
+</tbody></table>
 <p>Selects any event where its position is before a given position.</p>
-<p> see also: <a id="link-74" [routerLink]="['./']" fragment="fromPosition">fromPosition</a>.</p>
+<p> see also: <a id="link-77" [routerLink]="['./']" fragment="fromPosition">fromPosition</a>.</p>
 <h4 id="example-select-the-events-position--8-quarters">example, select the events position &lt; 8 quarters:</h4>
 <pre><code><![CDATA[toPosition(8) {...}]]></code></pre><h4 id="using-cue-markers-instead-of-quarter-numbers-1">using cue markers instead of quarter numbers</h4>
 <pre><code><![CDATA[c d e f | /cue: myMark/ g a b 'c]]></code></pre><pre><code><![CDATA[toPosition(@myMark) {...}]]></code></pre><blockquote>
 <p>In order to work properly, a cue name must occur only once in a document.</p>
 </blockquote>
 <blockquote>
-<p>Please mind the <a id="link-75" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
+<p>Please mind the <a id="link-78" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
 <br><br><br></p>
 </blockquote>
 <h3 id="voiceselector"><code>voiceSelector</code></h3>
-<h4 id="parameters-56">parameters</h4>
+<h4 id="parameters-58">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2328,7 +2370,7 @@ toPitch(c,) {...}
 voice(1) {...}
 voice(1 2) {...}]]></code></pre><p><br><br><br></p>
 <h3 id="withtag"><code>withTag</code></h3>
-<h4 id="parameters-57">parameters</h4>
+<h4 id="parameters-59">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>

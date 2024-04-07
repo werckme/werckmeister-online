@@ -1,0 +1,57 @@
+-- TITLE: Glassworks - Opening No. 1
+-- BY: Philip Glass
+-- #repeats #tripplets #featured #jumps #volta-brackets
+
+using "./myConductions.conductions";
+
+device: MyDevice _isType=webPlayer _useFont="Live-HQ-Natural-SoundFont-GM";
+instrumentDef:piano    _onDevice=MyDevice  _ch=0 _pc=0;
+
+
+tempo: 96;
+
+-- melody track
+[
+instrument: piano;
+{
+	/cc: _name="Hold1" _value="100"/
+    /mark: dc/
+	(f ab f)4 (ab f ab) (f ab f) (ab f ab) | (c' f c') (f c' f) (c' f c') (f c' f) | (g c' g) (c' g c') (g c' g) (c' g c') |
+    (ab c' ab) (c' ab c') (ab c' ab) (c' g c') :|: (f ab f) (ab f ab) (f ab f) (ab f ab) | (c' f c') (f c' f) (c' f c') (f c' f) |
+    (g c' g) (c' g c') (g c' g) (c' g c') |^1 (ab c' ab) (c' ab c') (ab c' ab) (c' g c') :|^2 (g c' g) (c' g c') (g c' g) (c' g c')
+    |: (c f c) (f c f) (c f c) (f c f) | (d f d) (f d f) (d f d) (f d f) | (bb, eb bb,) (eb bb, eb) (bb, eb bb,) (eb bb, eb) |
+    (c eb c) (eb c eb) (c eb c) (eb c eb) :|: (c f c) (f c f) (c f c) (f c f) | (d f d) (f d f) (d f d) (f d f) |
+    (bb, eb bb,) (eb bb, eb) (bb, eb bb,) (eb bb, eb) |^1 (c eb c) (eb c eb) (c eb c) (eb c eb) :|^2 (bb, eb bb,) (eb bb, eb) (bb, eb bb,) (eb bb, eb) 
+    |: (d' f d') (f d' f) (d' f d') (f d' f) | (ab d' ab) (d' ab d') (ab d' ab) (d' ab d') | (eb' ab eb') (ab eb' ab) (eb' ab eb') (ab eb' ab) |
+    (eb' ab eb') (ab eb' ab) (eb' ab eb') (ab eb' ab) :| (d' f d') (f d' f) (d' f d') (f d' f) | (ab d' ab) (d' ab d') (ab d' ab) (d' ab d') | 
+    (eb' ab eb') (ab eb' ab) (eb' ab eb') (ab eb' ab) | (eb' ab eb') (ab eb' ab) (eb' ab eb') (ab eb' ab) | (d' g d') (g d' g) (d' g d') (g d' g) |
+    (d' g d') (g d' g) (d' g d') (g d' g) | (d' ab d') (ab d' ab) (d' ab d') (ab d' ab) | (d' bb d') (bb d' bb) (d' bb d') (bb d' bb) |
+    /jump: dc _repeat=1/
+}
+{
+	/mark: dc/
+	ab,8 c  ab,8 c  ab,8 c  ab,8 c | ab,8 c  ab,8 c  ab,8 c  ab,8 c | g, bb, g, bb, g, bb, g, bb, |
+    g, bb, g, bb, g, bb, g, bb,  :|: ab,8 c  ab,8 c  ab,8 c  ab,8 c | ab,8 c  ab,8 c  ab,8 c  ab,8 c |
+    g, bb, g, bb, g, bb, g, bb, |^1 g, bb, g, bb, g, bb, g, bb, :|^2 g, bb, g, bb, g, bb, g, bb,
+    |: f, ab, f, ab, f, ab, f, ab, | f, ab, f, ab, f, ab, f, ab, | eb, g, eb, g, eb, g, eb, g, |
+    eb, g, eb, g, eb, g, eb, g, :|: f, ab, f, ab, f, ab, f, ab, | f, ab, f, ab, f, ab, f, ab, |
+    eb, g, eb, g, eb, g, eb, g, |^1 eb, g, eb, g, eb, g, eb, g, :|^2 eb, g, eb, g, eb, g, eb, g, 
+    |: bb, d bb, d bb, d bb, d | bb, d bb, d bb, d bb, d | c eb c eb c eb c eb |
+    c eb c eb c eb c eb :| bb, d bb, d bb, d bb, d | bb, d bb, d bb, d bb, d | 
+    c eb c eb c eb c eb | c eb c eb c eb c eb | bb, d bb, d bb, d bb, d |
+    bb, d bb, d bb, d bb, d | bb, d bb, d bb, d bb, d | bb, d bb, d bb, d bb, d |
+    /jump: dc _repeat=1/
+    
+}
+{
+	/mark: dc/
+	f,1~ | & | eb, | db, :|: f,1~ | & | eb, |^1 db, :|^2 bb,, 
+    |: c, | bb,, | bb,, |
+    g,, :|: c, | bb,, | & |^1 g,, :|^2 & 
+    |: f,~ | & | ab, |
+    bb, :|  f,~ | & | 
+    ab, | bb,2  ab, | g,1~ |
+    &   | f,~ | & |
+    /jump: dc _repeat=1/
+}
+]
