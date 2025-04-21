@@ -289,7 +289,12 @@ Those degrees are not being rendered, unless your force them to appear using a l
 <p>A phrase is a sequence of events, you can use arbitary in your piece. </p>
 <p><strong>Define a phrase</strong></p>
 <pre><code><![CDATA[PHRASE_NAME = PHRASE_EVENTS;]]></code></pre><p><strong>Use a phrase</strong></p>
-<pre><code><![CDATA[>"PHRASE_NAME"DURATION_VALUE]]></code></pre>
+<p>There are two ways to playback an phrase:</p>
+<p><strong>playback streched</strong></p>
+<p>If the phrase duration is unequal to the target duration, the phrase will be rendered streched to fit into the target.</p>
+<pre><code><![CDATA[>"PHRASE_NAME"DURATION_VALUE]]></code></pre><p><strong>playback cut off</strong>
+If If the phrase duration is unequal to the target duration, the phrase will be rendered cut off or filled with rests to fit into the target.</p>
+<pre><code><![CDATA[>>"PHRASE_NAME"DURATION_VALUE]]></code></pre>
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="ZGV2aWNlOiBNeURldmljZSBfaXNUeXBlPXdlYlBsYXllciBfdXNlRm9udD0iRmx1aWRSMy1HTSI7IAppbnN0cnVtZW50RGVmOiBwaWFubyBfb25EZXZpY2U9TXlEZXZpY2UgX2NoPTAgX3BjPTEgX2NjPTg7Cgp0ZW1wbzogODA7CgpteVBocmFzZSA9IGMgZCBlIGY7IC0tIGRlZmluZSBhIHBocmFzZQoKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAgPiJteVBocmFzZSIxIHwgLS0gdXNlIHRoZSBwaHJhc2UKICAgID4ibXlQaHJhc2UiMi4gPiJteVBocmFzZSI0IHwgLS0gd2l0aCBkaWZmZXJlbnQgZHVyYXRpb25zCiAgICA+Im15UGhyYXNlIjF+IHwgPiJteVBocmFzZSIxIC0tIHVzZSB0aWVzIHRvIHBlcmZvcm0gYSBwaHJhc2Ugb3ZlciBzZXZlcmFsIGJhcnMKfQpd"></werckmeister-snippet>
 <p><strong>Using phrases with degree events</strong></p>
 
@@ -317,9 +322,9 @@ Those degrees are not being rendered, unless your force them to appear using a l
     { name="myOptionalParameter", default="50" }
 }]]></code></pre><pre><code><![CDATA[/mod: myMod _myMandatoryParameter=100/]]></code></pre><h3 id="the-perform-function">The Perform Function</h3>
 <p>In the <code>perform</code> function you can implement your modification. Werckmeister expects a table with event informations to be returned from that function. This is the most minimalistic implementation you could write:</p>
-<pre><code><![CDATA[function perform(events, params, timeinfo)
+<pre><code><![CDATA[function perform(events, params, timeinfo, context)
     return events
-end]]></code></pre><p>The perform function has 3 arguments:</p>
+end]]></code></pre><p>The perform function has 4 arguments:</p>
 <h3 id="events-argument"><code>events</code> argument</h3>
 <p>This table contains all input events.</p>
 <pre><code><![CDATA[{
@@ -374,7 +379,7 @@ end]]></code></pre><p>The perform function has 3 arguments:</p>
         totalTiedDuration = number,
 
         -- the event type
-        type = "note" | "rest" | "degree" | "pitchBend" | "cc" | "sysex",
+        type = "note" | "rest" | "degree" | "pitchBend" | "cc" | "sysex" | "meta",
 
         -- the events velocity value in a range from 0 to 1
         -- only relevant if type is "note" or "degree"
@@ -391,6 +396,19 @@ end]]></code></pre><p>The perform function has 3 arguments:</p>
         -- a table of byte values (excluding F0 and F7)
         -- only relevant if type is "sysex"
         sysexData  = { byte values }
+
+        -- when working with control messages or sysex messages, sometime the order
+        -- of its execution is vital. For this purpose you can give a message a priorisation value.
+        -- 0 is the highest prio.
+        prio = 0 .. MAX_INT
+
+        -- the midi meta event type
+        -- only relevant if type is "meta"
+        metaType  = "textEvent" | "copyright" | "sequenceOrTrackName" | "instrumentName" | "lyricText" | "markerText" | "cuePoint"
+
+        -- the midi meta value
+        -- only relevant if type is "meta"
+        metaValue  = string
     }
     ...
 }
@@ -407,8 +425,26 @@ end]]></code></pre><p>The perform function has 3 arguments:</p>
 
     -- the denominator of the current time signature
     sinatureDenominator = number
+}]]></code></pre><h3 id="context-argument"><code>context</code> argument</h3>
+<p>Contains an interface with some context related functions.</p>
+<h4 id="setdate">setDate</h4>
+<p><code>setDate(key, stringValue)</code>
+sets a global date to exchange data between mods and &quot;perform functions&quot;.</p>
+<h4 id="getdate">getDate</h4>
+<p><code>getDate(key)</code> returns the value for a key (see <a id="link-26" [routerLink]="['./']" fragment="setdate">setDate</a>)</p>
+<h4 id="getcurrentinstrument">getCurrentInstrument</h4>
+<p>returns information about the current instrument</p>
+<pre><code><![CDATA[{
+    name = string, 
+    pan = 0..100,
+    volume = 0..100,
+    midiChannel = 0..15, -- optional
+    midiLsb = 0..127, -- optional
+    midiMsb = 0..127, -- optional
+    midiPc = 0..127, -- optional
+    children: {} -- further instrument children see instrumentSection (https://www.werckme.org/manual#instrumentsection)
 }]]></code></pre><h3 id="return-value">return value</h3>
-<p>Returns a table containing events. See <a id="link-26" [routerLink]="['./']" fragment="events-argument">events</a></p>
+<p>Returns a table containing events. See <a id="link-27" [routerLink]="['./']" fragment="events-argument">events</a></p>
 <h3 id="include-mod-file">include mod file</h3>
 <p>To use your modification you need to include your lua file.</p>
 <pre><code><![CDATA[using "<<path to lua file>>"; -- path can be relative or absolute]]></code></pre><h3 id="apply-mod">apply mod</h3>
@@ -418,7 +454,7 @@ end]]></code></pre><p>The perform function has 3 arguments:</p>
 <li>apply to an instrument</li>
 </ul>
 <h4 id="apply-to-a-voice">apply to a voice</h4>
-<p>Use the mod command with the mod name. The mod name is also the <a id="link-27" [routerLink]="['./']" fragment="create-a-lua-file">file</a> name of the lua script.
+<p>Use the mod command with the mod name. The mod name is also the <a id="link-28" [routerLink]="['./']" fragment="create-a-lua-file">file</a> name of the lua script.
 <strong>syntax</strong></p>
 <pre><code><![CDATA[[
 {
@@ -432,7 +468,7 @@ end]]></code></pre><p>The perform function has 3 arguments:</p>
     mod myModX _modXParameter=1 
     mod myModY _modYParameter=2;]]></code></pre><h3 id="the-execute-function">The Execute Function</h3>
 <p>The <code>execute</code> function works the same way as the <code>perform</code> function does. Except the <code>peform</code> function modifies existing events, the <code>execute</code> function can be used to create new events. Therefore the function signature is slightly different:</p>
-<pre><code><![CDATA[function execute(params, timeinfo)
+<pre><code><![CDATA[function execute(params, timeinfo, context)
     return {
         -- some events
     }
@@ -443,7 +479,7 @@ end]]></code></pre><pre><code><![CDATA[[
 }
 ]]]></code></pre><p>See <a href="https://www.werckme.org/editor?wid=lua-event-functions-example">Example</a>.</p>
 <h2 id="event-tags">Event Tags</h2>
-<p>You can add additional annotations to an event in werckmeister. These informations can be used in <a id="link-28" [routerLink]="['./']" fragment="conduction-rules">conduction rules</a> or <a id="link-29" [routerLink]="['./']" fragment="mods">modifications</a>.</p>
+<p>You can add additional annotations to an event in werckmeister. These informations can be used in <a id="link-29" [routerLink]="['./']" fragment="conduction-rules">conduction rules</a> or <a id="link-30" [routerLink]="['./']" fragment="mods">modifications</a>.</p>
 <p><strong>syntax</strong></p>
 <pre><code><![CDATA["tag1 tag2 ..."@<<event>>]]></code></pre><p><strong>example</strong></p>
 <p>sheet file:</p>
@@ -472,7 +508,7 @@ end]]></code></pre><pre><code><![CDATA[[
 <td align="left">text</td>
 </tr>
 </tbody></table>
-<p>Begins a tag region where its including events will receive the given tags. See <a id="link-30" [routerLink]="['//manual']" fragment="endtag">endTag</a>.</p>
+<p>Begins a tag region where its including events will receive the given tags. See <a id="link-31" [routerLink]="['//manual']" fragment="endtag">endTag</a>.</p>
 <p> <a href="https://www.werckme.org/editor?wid=mariounderworld">Example</a>
 <br><br><br></p>
 <h3 id="call"><code>call</code></h3>
@@ -489,7 +525,7 @@ end]]></code></pre><pre><code><![CDATA[[
 <tbody><tr>
 <td align="left">name</td>
 <td align="left">1</td>
-<td align="left">The name of the lua function. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related implementation (see <a id="link-31" [routerLink]="['//manual']" fragment="the-execute-function">The Execute Function</a>).</td>
+<td align="left">The name of the lua function. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related implementation (see <a id="link-32" [routerLink]="['//manual']" fragment="the-execute-function">The Execute Function</a>).</td>
 <td align="left">text</td>
 </tr>
 </tbody></table>
@@ -523,7 +559,7 @@ end]]></code></pre><pre><code><![CDATA[[
 <td align="left">name</td>
 <td align="left">3</td>
 <td align="left">a controller name, can be used instead of a number. (supported names, see list below)</td>
-<td align="left">text</td>
+<td align="left">[BankSelectMSB,Modulation,BreathController,FootController,PortamentoTime,MainVolume,Balance,Panorama,Expression,EffectControl1,EffectControl2,BankSelectLSB,Hold1,Portamento,Sostenuto,SoftPedal,Legato,Hold2,PortamentoControl,Effects1Depth,Effects2Depth,Effects3Depth,Effects4Depth,Effects5Depth,AllSoundsOff,ControllerReset,LocalControl,AllNotesOff,OmniOff,OmniOn,MonoOn,MonoOff]</td>
 </tr>
 </tbody></table>
 <p>Adds a midi CC message.</p>
@@ -675,8 +711,8 @@ For example:
 <td align="left">a file path</td>
 </tr>
 </tbody></table>
-<p>Defines a device which can be used when adding instruments (see <a id="link-32" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
-<p> see <a id="link-33" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a id="link-34" [routerLink]="['./']" fragment="instrument">instrument</a></p>
+<p>Defines a device which can be used when adding instruments (see <a id="link-33" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>)</p>
+<p> see <a id="link-34" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a id="link-35" [routerLink]="['./']" fragment="instrument">instrument</a></p>
 <h4 id="example">example</h4>
 <p> define an device, an instrument and assign it to a track.</p>
 <pre><code><![CDATA[
@@ -711,7 +747,7 @@ instrument: organ;
 <td align="left">text</td>
 </tr>
 </tbody></table>
-<p>Such as <a id="link-35" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track.</p>
+<p>Such as <a id="link-36" [routerLink]="['./']" fragment="mod">mod</a>&nbsp;<code>do</code> adds a modification to the track.</p>
 <p> The difference is: every <code>mod</code> command adds a further modification to a voice.</p>
 <p> <code>do</code> replaces the previous modification.</p>
 <h4 id="example-1">example</h4>
@@ -735,7 +771,7 @@ instrument: organ;
 <td align="left">text</td>
 </tr>
 </tbody></table>
-<p>Like <a id="link-36" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<p>Like <a id="link-37" [routerLink]="['./']" fragment="do">do</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
 <h4 id="example-2">example</h4>
 <p> <code>/doOnce: arpeggio/</code>
 <br><br><br></p>
@@ -757,7 +793,7 @@ instrument: organ;
 <td align="left">text</td>
 </tr>
 </tbody></table>
-<p>Ends a tag region where its including events will receive the given tags. See <a id="link-37" [routerLink]="['/manual/']" fragment="begintag">beginTag</a>.</p>
+<p>Ends a tag region where its including events will receive the given tags. See <a id="link-38" [routerLink]="['/manual/']" fragment="begintag">beginTag</a>.</p>
 <p> <a href="https://www.werckme.org/editor?wid=mariounderworld">Example</a>
 <br><br><br></p>
 <h3 id="fade"><code>fade</code></h3>
@@ -835,7 +871,7 @@ instrument: organ;
 <td align="left">name</td>
 <td align="left">4</td>
 <td align="left">a controller name, can be used instead of a number. (supported names, see list below)</td>
-<td align="left">text</td>
+<td align="left">[BankSelectMSB,Modulation,BreathController,FootController,PortamentoTime,MainVolume,Balance,Panorama,Expression,EffectControl1,EffectControl2,BankSelectLSB,Hold1,Portamento,Sostenuto,SoftPedal,Legato,Hold2,PortamentoControl,Effects1Depth,Effects2Depth,Effects3Depth,Effects4Depth,Effects5Depth,AllSoundsOff,ControllerReset,LocalControl,AllNotesOff,OmniOff,OmniOn,MonoOn,MonoOff]</td>
 </tr>
 <tr>
 <td align="left">curve</td>
@@ -1021,7 +1057,7 @@ instrument: myInstrument;
 <p> With <code>remapVelocity</code> you are able to change the velocity values behind <code>ppppp..fffff</code> for a specific instrument.</p>
 <p> In the example below the velocity for <code>p</code> will be set to 100 and the value for <code>f</code> will be set to 10.</p>
 <blockquote>
-<p>this approach is deprecated, use <a id="link-38" [routerLink]="['./']" fragment="conduction-rules">conduction rules</a> instead</p>
+<p>this approach is deprecated, use <a id="link-39" [routerLink]="['./']" fragment="conduction-rules">conduction rules</a> instead</p>
 </blockquote>
 <p> The value range is 0..100. (100=127 Midi velocity)</p>
 <p> <code>instrumentConf: _set=remapVelocity _p=100 _f=10;</code>
@@ -1046,7 +1082,7 @@ instrument: myInstrument;
 <tr>
 <td align="left">onDevice</td>
 <td align="left">2</td>
-<td align="left">The device which to use (The name of the device, see <a id="link-39" [routerLink]="['./']" fragment="device">device</a>).</td>
+<td align="left">The device which to use (The name of the device, see <a id="link-40" [routerLink]="['./']" fragment="device">device</a>).</td>
 <td align="left">text</td>
 </tr>
 <tr>
@@ -1087,7 +1123,7 @@ instrument: myInstrument;
 </tr>
 </tbody></table>
 <p>Adds a new MIDI instrument.</p>
-<p> see <a id="link-40" [routerLink]="['./']" fragment="instrument">instrument</a>, <a id="link-41" [routerLink]="['./']" fragment="device">device</a></p>
+<p> see <a id="link-41" [routerLink]="['./']" fragment="instrument">instrument</a>, <a id="link-42" [routerLink]="['./']" fragment="device">device</a></p>
 <h4 id="example-4">example</h4>
 <p> define an device, an instrument and assign it to a track.</p>
 <pre><code><![CDATA[
@@ -1119,7 +1155,7 @@ instrument: organ;
 </tr>
 </tbody></table>
 <p>Layers arbitrary instruments into one.</p>
-<p> see <a id="link-42" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a id="link-43" [routerLink]="['./']" fragment="instrument">instrument</a>, <a id="link-44" [routerLink]="['./']" fragment="device">device</a></p>
+<p> see <a id="link-43" [routerLink]="['./']" fragment="instrumentDef">instrumentDef</a>, <a id="link-44" [routerLink]="['./']" fragment="instrument">instrument</a>, <a id="link-45" [routerLink]="['./']" fragment="device">device</a></p>
 <h4 id="example-5">example</h4>
 <p> create 3 instruments and assign them to the section <code>myNewInstrument</code>.</p>
 
@@ -1155,7 +1191,7 @@ instrument: organ;
 <td align="left">0..100</td>
 </tr>
 </tbody></table>
-<p>Jumps to a previous defined mark See <a id="link-45" [routerLink]="['/manual/']" fragment="mark">mark</a>.</p>
+<p>Jumps to a previous defined mark See <a id="link-46" [routerLink]="['/manual/']" fragment="mark">mark</a>.</p>
 <h4 id="example-6">example</h4>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="ZGV2aWNlOiBfdXNlUG9ydD0wIF9zZXROYW1lPU15RGV2aWNlICBfaXNUeXBlPW1pZGk7Cmluc3RydW1lbnREZWY6IF9zZXROYW1lPXBpYW5vIF9vbkRldmljZT1NeURldmljZSBfY2g9MCBfcGM9MSBfY2M9ODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAgL3NpZ25hdHVyZTogNSA0LwogICAgL21hcms6IEEvICAgICAgIC0tIHZhbGlkICYgdW5pcXVlIHRvIHRoaXMgdm9pY2UKICAgIGM0IGQgZSBmIGcgfAogICAgL2p1bXA6IEEvICAgICAgIC0tIGp1bXBzIHRvIEEgb25jZQogICAgYSBiIGMnMgp9Cl0="></werckmeister-snippet>
@@ -1178,7 +1214,7 @@ instrument: organ;
 <td align="left">word</td>
 </tr>
 </tbody></table>
-<p>adds a mark to the voice. Use it in combination with <a id="link-46" [routerLink]="['/manual/']" fragment="jump">jump</a>.</p>
+<p>adds a mark to the voice. Use it in combination with <a id="link-47" [routerLink]="['/manual/']" fragment="jump">jump</a>.</p>
 <h4 id="examples-6">examples</h4>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="ZGV2aWNlOiBfdXNlUG9ydD0wIF9zZXROYW1lPU15RGV2aWNlICBfaXNUeXBlPW1pZGk7Cmluc3RydW1lbnREZWY6IF9zZXROYW1lPXBpYW5vIF9vbkRldmljZT1NeURldmljZSBfY2g9MCBfcGM9MSBfY2M9ODsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAgL3NpZ25hdHVyZTogNSA0LwogICAgL21hcms6IEEvICAgICAgIC0tIHZhbGlkICYgdW5pcXVlIHRvIHRoaXMgdm9pY2UKICAgIGM0IGQgZSBmIGcgfAogICAgL2p1bXA6IEEvICAgICAgIC0tIGp1bXBzIHRvIEEgb25jZQogICAgYSBiIGMnMgp9Cl0="></werckmeister-snippet>
@@ -1202,7 +1238,7 @@ instrument: organ;
 </tr>
 </tbody></table>
 <p>Adds a modification to the track. Every <code>mod</code> statement adds a further modification to the related voice.</p>
-<p> If you want to use ony one modification at the time use <a id="link-47" [routerLink]="['./']" fragment="do">do</a> instead.</p>
+<p> If you want to use ony one modification at the time use <a id="link-48" [routerLink]="['./']" fragment="do">do</a> instead.</p>
 <h4 id="examples-7">examples</h4>
 <p> <code>/mod: arpeggio/</code></p>
 <p> Mods can be external lua scripts, or one of these internal mods:</p>
@@ -1212,7 +1248,7 @@ instrument: organ;
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="140" wm-data="Ci9kb09uY2U6IGJlbmQgX2Zyb209MC8gYzEgfCAvZG9PbmNlOiBiZW5kIF90bz0wLyBjMQo="></werckmeister-snippet>
 <h5 id="arpeggio">Arpeggio</h5>
 <p> Performs an arpeggio over a given chord.</p>
-<p> <strong>Arpeggio is deprecated. Use the lua mod <a id="link-48" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a> instead.</strong>
+<p> <strong>Arpeggio is deprecated. Use the lua mod <a id="link-49" [routerLink]="['./']" fragment="myarpeggio">myArpeggio</a> instead.</strong>
 <br><br><br></p>
 <h3 id="modonce"><code>modOnce</code></h3>
 <h4 id="parameters-19">parameters</h4>
@@ -1232,7 +1268,7 @@ instrument: organ;
 <td align="left">text</td>
 </tr>
 </tbody></table>
-<p>Like <a id="link-49" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
+<p>Like <a id="link-50" [routerLink]="['./']" fragment="mod">mod</a>. But with the difference, that the loaded mod will be only executed once for the following event.</p>
 <h4 id="examples-8">examples</h4>
 <p> <code>/modOnce: arpeggio/</code>
 <br><br><br></p>
@@ -1276,7 +1312,7 @@ instrument: organ;
 <td align="left">text</td>
 </tr>
 </tbody></table>
-<p>Sets a chord context to the current voice to be able to use relative <a id="link-50" [routerLink]="['./']" fragment="degree-events">degrees</a> instead of absolute notes.</p>
+<p>Sets a chord context to the current voice to be able to use relative <a id="link-51" [routerLink]="['./']" fragment="degree-events">degrees</a> instead of absolute notes.</p>
 <pre><code><![CDATA[The given chord name must be defined in a *.chords file.]]></code></pre><h4 id="example-8">example</h4>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKZGV2aWNlOiBteURldmljZSBtaWRpIF91c2VQb3J0PTA7Cmluc3RydW1lbnREZWY6IHBpYW5vICBteURldmljZSBfY2g9MCBfcGM9MDsKdGVtcG86IDEyMDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAgL2Nob3JkOiAiQy05Ii8KICAgIEkgSUlJIFYgVklJIHwgSUknMSAKfQpd"></werckmeister-snippet>
@@ -1331,7 +1367,7 @@ instrument: organ;
 <h4 id="example-10">example</h4>
 <p> <code>tempo: 120;</code></p>
 <p> It is also possible to set different tempo values for several tracks:</p>
-<p> <a id="link-51" [routerLink]="['//manual']" fragment="tempo">see here</a>
+<p> <a id="link-52" [routerLink]="['//manual']" fragment="tempo">see here</a>
 <br><br><br></p>
 <h3 id="voicingstrategy"><code>voicingStrategy</code></h3>
 <h4 id="parameters-24">parameters</h4>
@@ -1563,6 +1599,12 @@ instrument: organ;
 <td align="left">-</td>
 <td align="left">Deprecated: Use _direction=alternate instead. Perform only one stroke direction (normal) or alternates between up and down. (Default=normal)</td>
 <td align="left">[normal,alternate]</td>
+</tr>
+<tr>
+<td align="left">withTag</td>
+<td align="left">-</td>
+<td align="left">if set, only events including this tag will be processed.</td>
+<td align="left">tagName</td>
 </tr>
 </tbody></table>
 <h4 id="include-extension-1">include extension</h4>
@@ -1832,7 +1874,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 </tbody></table>
 <p>Selects any event where its position is equal to a given value.</p>
 <blockquote>
-<p>Please mind the <a id="link-52" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
+<p>Please mind the <a id="link-53" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
 <br><br><br></p>
 </blockquote>
 <h3 id="channel"><code>channel</code></h3>
@@ -1946,7 +1988,7 @@ expression(p f ff) {...}
 <p>Selects an event where its bar time is equal or greater.</p>
 <pre><code><![CDATA[
 fromBar(1) {...}
-]]></code></pre><p> see also: <a id="link-53" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-54" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-55" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
+]]></code></pre><p> see also: <a id="link-54" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-55" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-56" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="frombeat"><code>fromBeat</code></h3>
 <h4 id="parameters-42">parameters</h4>
@@ -1989,7 +2031,7 @@ fromBeat(1) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its pitch is higher or equal than the given pitch.</p>
-<p> see also: <a id="link-56" [routerLink]="['./']" fragment="toPitch">toPitch</a>, <a id="link-57" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
+<p> see also: <a id="link-57" [routerLink]="['./']" fragment="toPitch">toPitch</a>, <a id="link-58" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
 <pre><code><![CDATA[
 fromPitch(c,) {...}
 ]]></code></pre><p><br><br><br></p>
@@ -2012,14 +2054,14 @@ fromPitch(c,) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its position is equal or after a given position.</p>
-<p> see also: <a id="link-58" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
+<p> see also: <a id="link-59" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
 <h4 id="example-select-the-events-postion-8-quarters">example, select the events postion &gt;=8 quarters:</h4>
 <pre><code><![CDATA[fromPosition(8) {...}]]></code></pre><h4 id="using-cue-markers-instead-of-quarter-numbers">using cue markers instead of quarter numbers</h4>
 <pre><code><![CDATA[c d e f | /cue: myMark/ g a b 'c]]></code></pre><pre><code><![CDATA[fromPosition(@myMark) {...}]]></code></pre><blockquote>
 <p>In order to work properly, a cue name must occur only once in a document.</p>
 </blockquote>
 <blockquote>
-<p>Please mind the <a id="link-59" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
+<p>Please mind the <a id="link-60" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
 <br><br><br></p>
 </blockquote>
 <h3 id="instrumentselector"><code>instrumentSelector</code></h3>
@@ -2089,7 +2131,7 @@ notOnBeat(1 3) {...}
 <p>Selects the events of every nth bar, counting from the first bar.</p>
 <pre><code><![CDATA[
 nthBar(3 5) {...}
-]]></code></pre><p> see also: <a id="link-60" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-61" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-62" [routerLink]="['./']" fragment="onBar">onBar</a>.
+]]></code></pre><p> see also: <a id="link-61" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-62" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-63" [routerLink]="['./']" fragment="onBar">onBar</a>.
 <br><br><br></p>
 <h3 id="octave"><code>octave</code></h3>
 <h4 id="parameters-48">parameters</h4>
@@ -2134,7 +2176,7 @@ octave(4) {...}
 <p>Selects an event in a given bar number or a list of bar numbers.</p>
 <pre><code><![CDATA[ TODO: should be renamed into inBar.]]></code></pre><pre><code><![CDATA[
 onBar(1 3) {...}
-]]></code></pre><p> see also: <a id="link-63" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-64" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-65" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
+]]></code></pre><p> see also: <a id="link-64" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-65" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-66" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="onbeat"><code>onBeat</code></h3>
 <h4 id="parameters-50">parameters</h4>
@@ -2155,7 +2197,7 @@ onBar(1 3) {...}
 </tr>
 </tbody></table>
 <p>Selects an event which appears on a given beat or a list of beats</p>
-<p> see also: <a id="link-66" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a id="link-67" [routerLink]="['./']" fragment="toBeat">toBeat</a>.</p>
+<p> see also: <a id="link-67" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a id="link-68" [routerLink]="['./']" fragment="toBeat">toBeat</a>.</p>
 <h4 id="example-select-the-events-at-beat-1-and-3">example, select the events at beat 1 and 3:</h4>
 <pre><code><![CDATA[
 onBeat(1 3) {...}
@@ -2201,7 +2243,7 @@ phrase(myPhrase1 myPhrase2) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its pitch is equal to one of the given pitches.</p>
-<p> see also: <a id="link-68" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a id="link-69" [routerLink]="['./']" fragment="toPitch">toPitch</a>.</p>
+<p> see also: <a id="link-69" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a id="link-70" [routerLink]="['./']" fragment="toPitch">toPitch</a>.</p>
 <pre><code><![CDATA[
 pitch(c) {...}
 
@@ -2259,7 +2301,7 @@ template(partI partII) {...}]]></code></pre><p><br><br><br></p>
 <p>Selects an event where its bar time is equal or less.</p>
 <pre><code><![CDATA[
 toBar(4) {...}
-]]></code></pre><p> see also: <a id="link-70" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a id="link-71" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-72" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
+]]></code></pre><p> see also: <a id="link-71" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a id="link-72" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-73" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="tobeat"><code>toBeat</code></h3>
 <h4 id="parameters-55">parameters</h4>
@@ -2280,7 +2322,7 @@ toBar(4) {...}
 </tr>
 </tbody></table>
 <p>Selects an event where its beat time is equal or less.</p>
-<p> see also: <a id="link-73" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a id="link-74" [routerLink]="['./']" fragment="onBeat">onBeat</a>.</p>
+<p> see also: <a id="link-74" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a id="link-75" [routerLink]="['./']" fragment="onBeat">onBeat</a>.</p>
 <pre><code><![CDATA[
 toBeat(4) {...}
 ]]></code></pre><p><br><br><br></p>
@@ -2303,7 +2345,7 @@ toBeat(4) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its pitch is lower or equal than the given pitch.</p>
-<p> see also: <a id="link-75" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a id="link-76" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
+<p> see also: <a id="link-76" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a id="link-77" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
 <pre><code><![CDATA[
 toPitch(c,) {...}
 ]]></code></pre><p><br><br><br></p>
@@ -2326,14 +2368,14 @@ toPitch(c,) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its position is before a given position.</p>
-<p> see also: <a id="link-77" [routerLink]="['./']" fragment="fromPosition">fromPosition</a>.</p>
+<p> see also: <a id="link-78" [routerLink]="['./']" fragment="fromPosition">fromPosition</a>.</p>
 <h4 id="example-select-the-events-position--8-quarters">example, select the events position &lt; 8 quarters:</h4>
 <pre><code><![CDATA[toPosition(8) {...}]]></code></pre><h4 id="using-cue-markers-instead-of-quarter-numbers-1">using cue markers instead of quarter numbers</h4>
 <pre><code><![CDATA[c d e f | /cue: myMark/ g a b 'c]]></code></pre><pre><code><![CDATA[toPosition(@myMark) {...}]]></code></pre><blockquote>
 <p>In order to work properly, a cue name must occur only once in a document.</p>
 </blockquote>
 <blockquote>
-<p>Please mind the <a id="link-78" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
+<p>Please mind the <a id="link-79" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
 <br><br><br></p>
 </blockquote>
 <h3 id="voiceselector"><code>voiceSelector</code></h3>

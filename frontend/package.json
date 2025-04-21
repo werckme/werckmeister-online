@@ -22,7 +22,7 @@
     "@types/jszip": "^3.4.1",
     "@types/lodash": "^4.14.157",
     "@types/showdown": "^1.9.3",
-    "@werckmeister/components": "1.1.6-157",
+    "@werckmeister/components": "^1.1.6-161",
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.4",
     "file-saver": "^2.0.5",
