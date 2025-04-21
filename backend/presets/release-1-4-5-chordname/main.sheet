@@ -1,0 +1,33 @@
+-- TITLE: Feature Octave Selector
+-- BY: Release 1.4.5
+-- DESCRIPTION: 
+-- #4/4 #release #release-1-4-5 #chord-name
+
+using "/chords/default.chords";
+
+device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
+instrumentDef: piano _onDevice="MyDevice" _ch=0 _pc=5;
+
+
+[
+template: myTemplate;
+instrument: piano;
+{
+    /chord: "B"/
+    r8 <I III V>
+    /chord: "A"/
+    r8 <I III V>
+    /chord: "G#"/
+    r8 <I III V>
+    /chord: null/
+    r16 <I III V>8. | -- here goes the chord given by the accomp track
+}
+]
+
+[
+type: accomp;
+{
+    /template: myTemplate/
+    F | A | C# |
+}
+]
