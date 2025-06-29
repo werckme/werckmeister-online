@@ -1,0 +1,33 @@
+---- Bend
+withTag(up)
+{
+	fade = "from(50), to(80), type(bend), curve(lin)"; 
+   	fade = "from(50), to(50), type(bend), curve(lin), offset(1)"; -- reset bend after one quarter
+}
+---- Mod Wheel
+withTag(mod)
+{
+	fade = "from(0), to(127), type(cc1), curve(lin)"; 
+   	fade = "from(0), to(0), type(cc1), curve(lin), offset(1)"; -- reset mod after 1 quarter
+}
+
+---- reverb
+withTag(rvb)
+{
+	fade = "from(0), to(127), type(Effects1Depth), curve(lin)"; 
+   	fade = "from(0), to(0), type(Effects1Depth), curve(lin), offset(2.5)"; -- reset reverb after 2.5 quarter
+}
+
+
+---- Staccato
+instrument(leftHand)
+{
+	duration = 15%;
+    velocity = 60;
+}
+
+withTag(leftHand) onBeat(1 3)
+{
+	duration = 50%;
+    velocity = 90;
+}

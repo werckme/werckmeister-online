@@ -2436,8 +2436,58 @@ voice(1 2) {...}]]></code></pre><p><br><br><br></p>
 <h4 id="example-select-the-event-with-the-tag-mytag-assigned">example, select the event with the tag &quot;myTag&quot; assigned:</h4>
 <pre><code><![CDATA[withTag(myTag) {...}]]></code></pre><pre><code><![CDATA[c d e "myTag"@f |]]></code></pre><p><br><br><br></p>
 <h2 id="conductor-declarations">Conductor Declarations</h2>
-<h3 id="duration"><code>duration</code></h3>
+<h3 id="bend-1"><code>bend</code></h3>
 <h4 id="value-types">Value Types</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">bend value</td>
+<td align="left">50 is the neutral position of the bend</td>
+<td align="left">0..100</td>
+</tr>
+</tbody></table>
+<p>adds a pitch bend event at the same position as the selected event.</p>
+<blockquote>
+<p>the <code>%</code> unit and the <code>+=</code>, <code>-=</code>, <code>=&amp; +</code> operations are not supported.</p>
+</blockquote>
+<h4 id="example-15">example:</h4>
+<pre><code><![CDATA[onBeat(1) { 
+  bend = 60; 
+} ]]></code></pre><p><br><br><br></p>
+<h3 id="cc-decl"><code>cc-decl</code></h3>
+<h4 id="value-types-1">Value Types</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">cc type and value</td>
+<td align="left">a contoller name followed by the target number enlcosed by parentheses. See <a href="https://werckme.github.io/manual#cc">https://werckme.github.io/manual#cc</a>. Alternatively you can write cc0..127.</td>
+<td align="left">string</td>
+</tr>
+</tbody></table>
+<p>adds a cc event at the same position as the selected event.</p>
+<blockquote>
+<p>the <code>%</code> unit and the <code>+=</code>, <code>-=</code>, <code>=&amp; +</code> operations are not supported.</p>
+</blockquote>
+<h4 id="example-16">example:</h4>
+<pre><code><![CDATA[onBeat(1) { 
+  bend = "Modulation(100)"; 
+} ]]></code></pre><pre><code><![CDATA[onBeat(1) { 
+  bend = "cc1(100)"; 
+} ]]></code></pre><p><br><br><br></p>
+<h3 id="duration"><code>duration</code></h3>
+<h4 id="value-types-2">Value Types</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2458,7 +2508,7 @@ voice(1 2) {...}]]></code></pre><p><br><br><br></p>
 </tr>
 </tbody></table>
 <p>Changes the duration of an event.</p>
-<h4 id="example-15">example:</h4>
+<h4 id="example-17">example:</h4>
 <pre><code><![CDATA[
 onBeat(1) {
 
@@ -2472,8 +2522,59 @@ onBeat(3) {
 
 }
 ]]></code></pre><p><br><br><br></p>
+<h3 id="fade-decl"><code>fade-decl</code></h3>
+<h4 id="value-types-3">Value Types</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">fade options</td>
+<td align="left">a comma separated list of fade options. E.g. &quot;type(Modulation), from(0) ...&quot;,</td>
+<td align="left">string</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">could be either a controller (See <a href="https://werckme.github.io/manual#cc-declr">https://werckme.github.io/manual#cc-declr</a>) or type(bend)</td>
+<td align="left">string</td>
+</tr>
+<tr>
+<td align="left">from</td>
+<td align="left">the fade start value, in case of a bend the range is 0..100 where 50 is the neutral position. Otherwise it is 0..127</td>
+<td align="left">0..N</td>
+</tr>
+<tr>
+<td align="left">to</td>
+<td align="left">Optional. the fade end value, in case of a bend the range is 0..100 where 50 is the neutral position. Otherwise it is 0..127</td>
+<td align="left">0..N</td>
+</tr>
+<tr>
+<td align="left">curve</td>
+<td align="left">Optional. the curve type see <a href="https://www.werckme.org/manual#fade">https://www.werckme.org/manual#fade</a></td>
+<td align="left">0..N</td>
+</tr>
+<tr>
+<td align="left">offset</td>
+<td align="left">an optional position offset in quarters</td>
+<td align="left">-N..N</td>
+</tr>
+</tbody></table>
+<p>adding a fade of an cc, or pitchbend value at the position of the selected event.</p>
+<blockquote>
+<p>the <code>%</code> unit and the <code>+=</code>, <code>-=</code>, <code>=&amp; +</code> operations are not supported.</p>
+</blockquote>
+<h4 id="example-18">example:</h4>
+<pre><code><![CDATA[onBeat(1) { 
+  fade = "from(0), to(100), type(cc2), curve(exp), offset(-1)"; 
+} ]]></code></pre><pre><code><![CDATA[onBeat(1) { 
+  bend = "cc1(100)"; 
+} ]]></code></pre><p><br><br><br></p>
 <h3 id="pitch-1"><code>pitch</code></h3>
-<h4 id="value-types-1">Value Types</h4>
+<h4 id="value-types-4">Value Types</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2494,7 +2595,7 @@ onBeat(3) {
 </tr>
 </tbody></table>
 <p>Changes the pitch of an event.</p>
-<h4 id="example-16">example:</h4>
+<h4 id="example-19">example:</h4>
 <pre><code><![CDATA[
 onBeat(1) {
 
@@ -2509,7 +2610,7 @@ onBeat(3) {
 }
 ]]></code></pre><p><br><br><br></p>
 <h3 id="timeoffset"><code>timeOffset</code></h3>
-<h4 id="value-types-2">Value Types</h4>
+<h4 id="value-types-5">Value Types</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2531,7 +2632,7 @@ onBeat(3) {
 </tbody></table>
 <p>Changes the time position of an event.</p>
 <p> <strong>Since this is an offset value, the set operation(=) has the same effect as the add(+=) or substract(-=) operation.</strong></p>
-<h4 id="example-17">example:</h4>
+<h4 id="example-20">example:</h4>
 <pre><code><![CDATA[
 onBeat(1) {
 
@@ -2546,7 +2647,7 @@ onBeat(3) {
 }
 ]]></code></pre><p><br><br><br></p>
 <h3 id="velocity"><code>velocity</code></h3>
-<h4 id="value-types-3">Value Types</h4>
+<h4 id="value-types-6">Value Types</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2567,7 +2668,7 @@ onBeat(3) {
 </tr>
 </tbody></table>
 <p>Changes the velocity of an event.</p>
-<h4 id="example-18">example:</h4>
+<h4 id="example-21">example:</h4>
 <pre><code><![CDATA[
 onBeat(1) {
 
