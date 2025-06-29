@@ -11,6 +11,8 @@ tmp/
 app/**/*.js
 app/**/*.js.map
 
+backend/wmonline-backend.zip
+
 # dependencies
 node_modules/
 bower_components/
