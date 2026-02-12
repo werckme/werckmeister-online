@@ -1,0 +1,47 @@
+-- TITLE: Conduction Channel Declaration
+-- BY: Release 1.4.6
+-- DESCRIPTION: 
+-- #4/4 #release #release-1-4-6 #conductions-channel-declaration
+
+
+using "./my.conductions"; -- see here how fade values are implemented
+
+device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
+instrumentDef: i1 _onDevice="MyDevice" _ch=0 _gmInstrument="Acoustic Grand Piano";
+instrumentDef: i2 _onDevice="MyDevice" _ch=1 _gmInstrument="Harpsichord";
+instrumentDef: i3 _onDevice="MyDevice" _ch=2 _gmInstrument="Celesta";
+instrumentDef: i4 _onDevice="MyDevice" _ch=3 _gmInstrument="Vibraphone";
+
+
+tempo: 190;
+
+[
+instrument: i1;
+{
+    c d e f | g a b c' :(x2)|
+}
+]
+
+-- to get this example to work, you need to use the defined instruments, at least in an empty track,
+-- otherwise the channels are missing the instrument initialization
+
+[
+instrument: i2;
+{
+   r1
+}
+]
+
+[
+instrument: i3;
+{
+    r1
+}
+]
+
+[
+instrument: i4;
+{
+   r1
+}
+]

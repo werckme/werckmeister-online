@@ -126,6 +126,13 @@ With this you are able to setup different time signatures during a piece.</p>
 <p>the end of a bar is marked by a pipe: <code>|</code></p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single"  wm-data="YyBkIGUgZiB8IGcgYSBiIGMn"></werckmeister-snippet>
+<h3 id="rests">Rests</h3>
+<p>Just like with notes, you use a <code>r</code> to write a rest.</p>
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="IHIyIHI0IHI4IHIxNiByMzIgcjY0IHIxMjg="></werckmeister-snippet>
+<p>You can also write multimeasure rests.</p>
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single"  wm-data="IGMgZCBlIGYgfCA9Mj0gfCBnIGEgYiBjJw=="></werckmeister-snippet>
 <h3 id="octaves">Octaves</h3>
 <p>Lower octaves are marked by a comma (<code>,</code>) after the note, upper octaves by a single quote (<code>&#39;</code>).</p>
 
@@ -164,7 +171,10 @@ These three notes will now be played in the time of one quarter.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="60" wm-data="YjIgKChiIGMjJyBjIycgYiBkJykgIChmJyBhIGEgYmIgYycpICAoZScgYScgYmInIGYnIGMnIGcpKTI="></werckmeister-snippet>
 <h3 id="repeats">Repeats</h3>
-<h4 id="simple-repeats">Simple repeats</h4>
+<h4 id="measure-repeat">Measure repeat</h4>
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="200" wm-data="YzQgZCBlIGYgfCAlIHwgJSB8"></werckmeister-snippet>
+<h4 id="repeat-barline">Repeat barline</h4>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css" wm-type="single" wm-tempo="200" wm-data="YzQgZCBlIGYgOnwgZyBhIGIgYycgfA=="></werckmeister-snippet>
 
@@ -417,6 +427,10 @@ end]]></code></pre><p>The perform function has 4 arguments:</p>
 <h3 id="timeinfo-argument"><code>timeinfo</code> argument</h3>
 <p>Contains a table with informations about the current musical time.</p>
 <pre><code><![CDATA[{
+
+    -- the absolute position of the current bar in quarters
+    barPosition = number
+
     -- the position of the current event in quarters
     quarterPostion = number,
 
@@ -424,7 +438,10 @@ end]]></code></pre><p>The perform function has 4 arguments:</p>
     signatureNumerator = number,
 
     -- the denominator of the current time signature
-    sinatureDenominator = number
+    sinatureDenominator = number,
+
+    -- the current tempo
+    tempo = number
 }]]></code></pre><h3 id="context-argument"><code>context</code> argument</h3>
 <p>Contains an interface with some context related functions.</p>
 <h4 id="setdate">setDate</h4>
@@ -478,6 +495,66 @@ end]]></code></pre><pre><code><![CDATA[[
     c d e f | -- will not be affected by the (execute) mod
 }
 ]]]></code></pre><p>See <a href="https://www.werckme.org/editor?wid=lua-event-functions-example">Example</a>.</p>
+<h2 id="performer-script">Performer Script</h2>
+<h2 id="overview">Overview</h2>
+<p>The Performer Script feature allows you to embed Lua scripts into the sheetp player to control playback behavior dynamically. Scripts can react to MIDI events, manipulate playback position, and interact with external MIDI inputs.</p>
+<h2 id="usage">Usage</h2>
+<pre><code><![CDATA[./sheetp ./my.sheet --script=./your-script.lua]]></code></pre><h2 id="script-lifecycle">Script Lifecycle</h2>
+<h3 id="init"><code>Init()</code></h3>
+<p>Called once when the player starts. Use this to set up your script&#39;s initial state, register MIDI input listeners, or analyze the sheet&#39;s MIDI events.</p>
+<h3 id="onmidieventevent"><code>OnMidiEvent(event)</code></h3>
+<p>Called for each MIDI event during playback. Use this to react to specific events and control playback flow.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>event</code> (LuaMidi): The current MIDI event being processed</li>
+</ul>
+<h2 id="api-functions">API Functions</h2>
+<h3 id="getmidievents"><code>GetMidiEvents()</code></h3>
+<p>Returns all MIDI tracks and their events from the loaded sheet.</p>
+<p><strong>Returns:</strong> Array of <code>LuaMidiTrack</code> objects</p>
+<h3 id="getmidiinputs"><code>GetMidiInputs()</code></h3>
+<p>Returns all available MIDI input devices.</p>
+<p><strong>Returns:</strong> Array of <code>LuaMidiInput</code> objects</p>
+<h3 id="addmidiinputlistenerinputid-callback"><code>AddMidiInputListener(inputId, callback)</code></h3>
+<p>Registers a callback function to receive MIDI events from an external input device.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>inputId</code> (number): The ID of the MIDI input device</li>
+<li><code>callback</code> (function): Function called with <code>LuaMidi</code> event when input is received</li>
+</ul>
+<h3 id="jumptopositionpositionquarters"><code>JumpToPosition(positionQuarters)</code></h3>
+<p>Jumps playback to a specific position in the sheet.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>position</code> (number): Target position in ticks</li>
+</ul>
+<h2 id="data-types">Data Types</h2>
+<h3 id="luamidi">LuaMidi</h3>
+<p>Represents a MIDI event.</p>
+<p><strong>Properties:</strong></p>
+<ul>
+<li><code>position</code> (number): Position in ticks</li>
+<li><code>type</code> (number): MIDI event type</li>
+<li><code>channel</code> (number): MIDI channel</li>
+<li><code>metaType</code> (number): Meta event type (for meta events)</li>
+<li><code>data</code> (string): Event data (e.g., text for cue points)</li>
+<li><code>parameter1</code> (number): First parameter (e.g., note number, controller)</li>
+<li><code>parameter2</code> (number): Second parameter (e.g., velocity, controller value)</li>
+</ul>
+<h3 id="luamiditrack">LuaMidiTrack</h3>
+<p>Represents a MIDI track.</p>
+<p><strong>Properties:</strong></p>
+<ul>
+<li><code>name</code> (string): Track name</li>
+<li><code>events</code> (array): Array of <code>LuaMidi</code> events</li>
+</ul>
+<h3 id="luamidiinput">LuaMidiInput</h3>
+<p>Represents a MIDI input device.</p>
+<p><strong>Properties:</strong></p>
+<ul>
+<li><code>name</code> (string): Device name</li>
+<li><code>id</code> (number): Device identifier</li>
+</ul>
 <h2 id="event-tags">Event Tags</h2>
 <p>You can add additional annotations to an event in werckmeister. These informations can be used in <a id="link-30" [routerLink]="['./']" fragment="conduction-rules">conduction rules</a> or <a id="link-31" [routerLink]="['./']" fragment="mods">modifications</a>.</p>
 <p><strong>syntax</strong></p>
@@ -727,7 +804,10 @@ instrument: organ;
 ] ]]></code></pre><p> <strong>Fluidsynth</strong></p>
 <p> If you want to use <a href="http://www.fluidsynth.org">fluidSynth</a> as output device, you can achieve this with a command like this:</p>
 <p> <code>device: MyDevice fluidSynth _useFont=&quot;PATH OF A SOUNDFONT FILE&quot;;</code></p>
-<p> On mac, make sure that you have fluidsynth installed.
+<p> On mac and linux, make sure that you have fluidsynth installed.</p>
+<p> If you are using multiple sound fonts with multiple devices, make sure to use the program change argument “_pc” in the instrument definition, otherwise no</p>
+<p> soundfont change will be triggered internally. </p>
+<p> You can set an environment variable <code>WM_SOUNDFONT_PATH</code> to add a search path for soundfont files. <em>(only one path supported)</em>
 <br><br><br></p>
 <h3 id="do"><code>do</code></h3>
 <h4 id="parameters-6">parameters</h4>
@@ -1688,8 +1768,59 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL215QXJwZWdnaW8ubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOiAgcGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewovZG86IG15QXJwZWdnaW8vIAo8YyBlIGcgYj4yIAovZG86IG15QXJwZWdnaW8gX2RpcmVjdGlvbj1kb3duLyAKPGMgZWIgZyBiYj4yIAp9Cl0="></werckmeister-snippet>
 <p><br><br><br></p>
-<h3 id="staccato"><code>staccato</code></h3>
+<h3 id="slide"><code>slide</code></h3>
 <h4 id="parameters-30">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">forTag</td>
+<td align="left">-</td>
+<td align="left">Specifies a tag name. If set only events with this tag name will be affected by the slide mod.</td>
+<td align="left">text</td>
+</tr>
+<tr>
+<td align="left">numNotes</td>
+<td align="left">-</td>
+<td align="left">number of slide nodes. Can be positive or negative</td>
+<td align="left">0..N</td>
+</tr>
+<tr>
+<td align="left">duration</td>
+<td align="left">-</td>
+<td align="left">the duration of the slide in quarters</td>
+<td align="left">0..N</td>
+</tr>
+<tr>
+<td align="left">velocity</td>
+<td align="left">-</td>
+<td align="left">the slide velocity</td>
+<td align="left">0..1</td>
+</tr>
+<tr>
+<td align="left">velocityInc</td>
+<td align="left">-</td>
+<td align="left">a velocity incremental value</td>
+<td align="left">0..1</td>
+</tr>
+</tbody></table>
+<h4 id="include-extension-4">include extension</h4>
+<p><code>using &quot;lua/mod/slide.lua&quot;;</code></p>
+<p>Performs a chromatic slide to the target note.</p>
+<blockquote>
+<p>Works only with absolute notes, not with degree notes !</p>
+</blockquote>
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL3NsaWRlLmx1YSI7CnRlbXBvOiAxNDA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCmluc3RydW1lbnQ6IHBpYW5vOwp7CiAgL21vZE9uOiBzbGlkZSBfZm9yVGFnPXNsaWRlIF9udW1Ob3Rlcz0tNCBfZHVyYXRpb249MC4yNS8KICAtLSBvbmx5IHRoZSBgZGAgd2lsbCBiZSBwZXJmb3JtZWQgc2xpZGUuIAogIGMgInNsaWRlIkBkIGUgZgp9Cl0="></werckmeister-snippet>
+<p><br><br><br></p>
+<h3 id="staccato"><code>staccato</code></h3>
+<h4 id="parameters-31">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1712,7 +1843,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <td align="left">0..100</td>
 </tr>
 </tbody></table>
-<h4 id="include-extension-4">include extension</h4>
+<h4 id="include-extension-5">include extension</h4>
 <p><code>using &quot;lua/mod/staccato.lua&quot;;</code></p>
 <p>Performs every note staccato. It is also possible to tag single notes.</p>
 <p> If a tag is given, only the tagged notes are performed staccato.</p>
@@ -1720,7 +1851,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL3N0YWNjYXRvLmx1YSI7CnRlbXBvOiAxNDA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCmluc3RydW1lbnQ6IHBpYW5vOwp7CiAgL21vZDogc3RhY2NhdG8gX2ZvclRhZz1zdGFjIF9hbW91bnQ9MTAwLwogIC0tIG9ubHkgdGhlIGBkYCB3aWxsIGJlIHBlcmZvcm1lZCBzdGFjY2F0by4gCiAgYyAic3RhYyJAZCBlIGYKfQpd"></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="swing"><code>swing</code></h3>
-<h4 id="parameters-31">parameters</h4>
+<h4 id="parameters-32">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1743,7 +1874,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <td align="left">0..100</td>
 </tr>
 </tbody></table>
-<h4 id="include-extension-5">include extension</h4>
+<h4 id="include-extension-6">include extension</h4>
 <p><code>using &quot;lua/mod/swing.lua&quot;;</code></p>
 <p>Performs a swing groove.</p>
 
@@ -1751,7 +1882,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <p><br><br><br></p>
 <h2 id="voicing-strategies-1">Voicing Strategies</h2>
 <h3 id="guitar"><code>guitar</code></h3>
-<h4 id="parameters-32">parameters</h4>
+<h4 id="parameters-33">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1768,14 +1899,14 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <td align="left">[contrabass,bass,baritone,tenor,alto,mezzosoprano,soprano]</td>
 </tr>
 </tbody></table>
-<h4 id="include-extension-6">include extension</h4>
+<h4 id="include-extension-7">include extension</h4>
 <p><code>using &quot;lua/voicings/guitar.lua&quot;;</code></p>
 <p>Tries to simulate the chord voicing of an guitar.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgIi9sdWEvdm9pY2luZ3MvZ3VpdGFyLmx1YSI7CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBteVRlbXBsYXRlOwppbnN0cnVtZW50OiBwaWFubzsKewogIC92b2ljaW5nU3RyYXRlZ3k6IGd1aXRhci8KICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAvdGVtcGxhdGU6IG15VGVtcGxhdGUvCgogQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="inversion"><code>inversion</code></h3>
-<h4 id="parameters-33">parameters</h4>
+<h4 id="parameters-34">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1798,37 +1929,13 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <td align="left">[contrabass,bass,baritone,tenor,alto,mezzosoprano,soprano]</td>
 </tr>
 </tbody></table>
-<h4 id="include-extension-7">include extension</h4>
+<h4 id="include-extension-8">include extension</h4>
 <p><code>using &quot;lua/voicings/inversion.lua&quot;;</code></p>
 <p>creates an inversion by moving the lowest note an octave hihgher.</p>
 
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgIi9sdWEvdm9pY2luZ3MvaW52ZXJzaW9uLmx1YSI7CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBteVRlbXBsYXRlOwppbnN0cnVtZW50OiBwaWFubzsKewogIC92b2ljaW5nU3RyYXRlZ3k6IGludmVyc2lvbi8KICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAvdGVtcGxhdGU6IG15VGVtcGxhdGUvCgogQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="simple"><code>simple</code></h3>
-<h4 id="parameters-34">parameters</h4>
-<table class="table table-bordered">
-<thead>
-<tr>
-<th align="left">name</th>
-<th align="left">position</th>
-<th align="left">description</th>
-<th align="left">type</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">range</td>
-<td align="left">-</td>
-<td align="left">If given the strategy tries to keeps the range by shifting the octave of the chord.</td>
-<td align="left">[contrabass,bass,baritone,tenor,alto,mezzosoprano,soprano]</td>
-</tr>
-</tbody></table>
-<h4 id="include-extension-8">include extension</h4>
-<p><code>using &quot;lua/voicings/simple.lua&quot;;</code></p>
-<p>The simple approach with no strategy.</p>
-
-<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgIi9sdWEvdm9pY2luZ3Mvc2ltcGxlLmx1YSI7CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBteVRlbXBsYXRlOwppbnN0cnVtZW50OiBwaWFubzsKewogIC92b2ljaW5nU3RyYXRlZ3k6IHNpbXBsZS8KICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAvdGVtcGxhdGU6IG15VGVtcGxhdGUvCgogQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
-<p><br><br><br></p>
-<h3 id="voicelead"><code>voicelead</code></h3>
 <h4 id="parameters-35">parameters</h4>
 <table class="table table-bordered">
 <thead>
@@ -1847,6 +1954,30 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 </tr>
 </tbody></table>
 <h4 id="include-extension-9">include extension</h4>
+<p><code>using &quot;lua/voicings/simple.lua&quot;;</code></p>
+<p>The simple approach with no strategy.</p>
+
+<werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgIi9sdWEvdm9pY2luZ3Mvc2ltcGxlLmx1YSI7CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBteVRlbXBsYXRlOwppbnN0cnVtZW50OiBwaWFubzsKewogIC92b2ljaW5nU3RyYXRlZ3k6IHNpbXBsZS8KICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAvdGVtcGxhdGU6IG15VGVtcGxhdGUvCgogQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
+<p><br><br><br></p>
+<h3 id="voicelead"><code>voicelead</code></h3>
+<h4 id="parameters-36">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">range</td>
+<td align="left">-</td>
+<td align="left">If given the strategy tries to keeps the range by shifting the octave of the chord.</td>
+<td align="left">[contrabass,bass,baritone,tenor,alto,mezzosoprano,soprano]</td>
+</tr>
+</tbody></table>
+<h4 id="include-extension-10">include extension</h4>
 <p><code>using &quot;lua/voicings/voicelead.lua&quot;;</code></p>
 <p>Tries to simulates a voice leading approach:</p>
 <p> the octaves of a chord are rearranged, so that the actual pitch distance between the previous chord is kept minimal.</p>
@@ -1858,7 +1989,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <p>Selects all events.</p>
 <pre><code><![CDATA[all() {...}]]></code></pre><p><br><br><br></p>
 <h3 id="atposition"><code>atPosition</code></h3>
-<h4 id="parameters-36">parameters</h4>
+<h4 id="parameters-37">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1881,7 +2012,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <br><br><br></p>
 </blockquote>
 <h3 id="channel"><code>channel</code></h3>
-<h4 id="parameters-37">parameters</h4>
+<h4 id="parameters-38">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1903,7 +2034,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 channel(0 1 2) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="chord"><code>chord</code></h3>
-<h4 id="parameters-38">parameters</h4>
+<h4 id="parameters-39">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1925,7 +2056,7 @@ channel(0 1 2) {...}
 <p> every 7th chord you write:</p>
 <pre><code><![CDATA[chord(X7) {...}]]></code></pre><p><br><br><br></p>
 <h3 id="degree"><code>degree</code></h3>
-<h4 id="parameters-39">parameters</h4>
+<h4 id="parameters-40">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1946,8 +2077,31 @@ channel(0 1 2) {...}
 <pre><code><![CDATA[ Octaves of a degree will not be considered.]]></code></pre><pre><code><![CDATA[
 degree(I III) {...}
 ]]></code></pre><p><br><br><br></p>
+<h3 id="durationselector"><code>durationSelector</code></h3>
+<h4 id="parameters-41">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">duration</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">quarters</td>
+</tr>
+</tbody></table>
+<p>Selects any event whitch duration matches to the given duration</p>
+<p> see also: <a id="link-55" [routerLink]="['./']" fragment="longerThan">longerThan</a>, <a id="link-56" [routerLink]="['./']" fragment="shorterThan">shorterThan</a>.</p>
+<pre><code><![CDATA[
+duration(1) {...}
+]]></code></pre><p><br><br><br></p>
 <h3 id="expression"><code>expression</code></h3>
-<h4 id="parameters-40">parameters</h4>
+<h4 id="parameters-42">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1971,7 +2125,7 @@ expression(p) {...}
 expression(p f ff) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="frombar"><code>fromBar</code></h3>
-<h4 id="parameters-41">parameters</h4>
+<h4 id="parameters-43">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1991,10 +2145,10 @@ expression(p f ff) {...}
 <p>Selects an event where its bar time is equal or greater.</p>
 <pre><code><![CDATA[
 fromBar(1) {...}
-]]></code></pre><p> see also: <a id="link-55" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-56" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-57" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
+]]></code></pre><p> see also: <a id="link-57" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-58" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-59" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="frombeat"><code>fromBeat</code></h3>
-<h4 id="parameters-42">parameters</h4>
+<h4 id="parameters-44">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2016,7 +2170,7 @@ fromBar(1) {...}
 fromBeat(1) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="frompitch"><code>fromPitch</code></h3>
-<h4 id="parameters-43">parameters</h4>
+<h4 id="parameters-45">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2034,12 +2188,12 @@ fromBeat(1) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its pitch is higher or equal than the given pitch.</p>
-<p> see also: <a id="link-58" [routerLink]="['./']" fragment="toPitch">toPitch</a>, <a id="link-59" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
+<p> see also: <a id="link-60" [routerLink]="['./']" fragment="toPitch">toPitch</a>, <a id="link-61" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
 <pre><code><![CDATA[
 fromPitch(c,) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="fromposition"><code>fromPosition</code></h3>
-<h4 id="parameters-44">parameters</h4>
+<h4 id="parameters-46">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2057,18 +2211,18 @@ fromPitch(c,) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its position is equal or after a given position.</p>
-<p> see also: <a id="link-60" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
+<p> see also: <a id="link-62" [routerLink]="['./']" fragment="toPosition">toPosition</a>.</p>
 <h4 id="example-select-the-events-postion-8-quarters">example, select the events postion &gt;=8 quarters:</h4>
 <pre><code><![CDATA[fromPosition(8) {...}]]></code></pre><h4 id="using-cue-markers-instead-of-quarter-numbers">using cue markers instead of quarter numbers</h4>
 <pre><code><![CDATA[c d e f | /cue: myMark/ g a b 'c]]></code></pre><pre><code><![CDATA[fromPosition(@myMark) {...}]]></code></pre><blockquote>
 <p>In order to work properly, a cue name must occur only once in a document.</p>
 </blockquote>
 <blockquote>
-<p>Please mind the <a id="link-61" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
+<p>Please mind the <a id="link-63" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
 <br><br><br></p>
 </blockquote>
 <h3 id="instrumentselector"><code>instrumentSelector</code></h3>
-<h4 id="parameters-45">parameters</h4>
+<h4 id="parameters-47">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2091,8 +2245,31 @@ fromPitch(c,) {...}
 <pre><code><![CDATA[
 instrument(bass) {...}
 instrument(bass drums) {...}]]></code></pre><p><br><br><br></p>
+<h3 id="longerthan"><code>longerThan</code></h3>
+<h4 id="parameters-48">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">duration</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">quarters</td>
+</tr>
+</tbody></table>
+<p>Selects any event whitch duration is longer or equal than the given duration</p>
+<p> see also: <a id="link-64" [routerLink]="['./']" fragment="durationSelector">duration</a>, <a id="link-65" [routerLink]="['./']" fragment="shorterThan">shorterThan</a>.</p>
+<pre><code><![CDATA[
+longerThan(1) {...}
+]]></code></pre><p><br><br><br></p>
 <h3 id="notonbeat"><code>notOnBeat</code></h3>
-<h4 id="parameters-46">parameters</h4>
+<h4 id="parameters-49">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2114,7 +2291,7 @@ instrument(bass drums) {...}]]></code></pre><p><br><br><br></p>
 notOnBeat(1 3) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="nthbar"><code>nthBar</code></h3>
-<h4 id="parameters-47">parameters</h4>
+<h4 id="parameters-50">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2134,10 +2311,10 @@ notOnBeat(1 3) {...}
 <p>Selects the events of every nth bar, counting from the first bar.</p>
 <pre><code><![CDATA[
 nthBar(3 5) {...}
-]]></code></pre><p> see also: <a id="link-62" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-63" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-64" [routerLink]="['./']" fragment="onBar">onBar</a>.
+]]></code></pre><p> see also: <a id="link-66" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-67" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-68" [routerLink]="['./']" fragment="onBar">onBar</a>.
 <br><br><br></p>
 <h3 id="octave"><code>octave</code></h3>
-<h4 id="parameters-48">parameters</h4>
+<h4 id="parameters-51">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2159,7 +2336,7 @@ nthBar(3 5) {...}
 octave(4) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="onbar"><code>onBar</code></h3>
-<h4 id="parameters-49">parameters</h4>
+<h4 id="parameters-52">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2179,10 +2356,10 @@ octave(4) {...}
 <p>Selects an event in a given bar number or a list of bar numbers.</p>
 <pre><code><![CDATA[ TODO: should be renamed into inBar.]]></code></pre><pre><code><![CDATA[
 onBar(1 3) {...}
-]]></code></pre><p> see also: <a id="link-65" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-66" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-67" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
+]]></code></pre><p> see also: <a id="link-69" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-70" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-71" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="onbeat"><code>onBeat</code></h3>
-<h4 id="parameters-50">parameters</h4>
+<h4 id="parameters-53">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2200,13 +2377,13 @@ onBar(1 3) {...}
 </tr>
 </tbody></table>
 <p>Selects an event which appears on a given beat or a list of beats</p>
-<p> see also: <a id="link-68" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a id="link-69" [routerLink]="['./']" fragment="toBeat">toBeat</a>.</p>
+<p> see also: <a id="link-72" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a id="link-73" [routerLink]="['./']" fragment="toBeat">toBeat</a>.</p>
 <h4 id="example-select-the-events-at-beat-1-and-3">example, select the events at beat 1 and 3:</h4>
 <pre><code><![CDATA[
 onBeat(1 3) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="phrase"><code>phrase</code></h3>
-<h4 id="parameters-51">parameters</h4>
+<h4 id="parameters-54">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2228,7 +2405,7 @@ onBeat(1 3) {...}
 phrase(myPhrase1 myPhrase2) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="pitch"><code>pitch</code></h3>
-<h4 id="parameters-52">parameters</h4>
+<h4 id="parameters-55">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2246,14 +2423,37 @@ phrase(myPhrase1 myPhrase2) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its pitch is equal to one of the given pitches.</p>
-<p> see also: <a id="link-70" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a id="link-71" [routerLink]="['./']" fragment="toPitch">toPitch</a>.</p>
+<p> see also: <a id="link-74" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a id="link-75" [routerLink]="['./']" fragment="toPitch">toPitch</a>.</p>
 <pre><code><![CDATA[
 pitch(c) {...}
 
 pitch(c, c c') {...}
 ]]></code></pre><p><br><br><br></p>
+<h3 id="shorterthan"><code>shorterThan</code></h3>
+<h4 id="parameters-56">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">duration</td>
+<td align="left">-</td>
+<td align="left"></td>
+<td align="left">quarters</td>
+</tr>
+</tbody></table>
+<p>Selects any event whitch duration is shorter or equal than the given duration</p>
+<p> see also: <a id="link-76" [routerLink]="['./']" fragment="durationSelector">duration</a>, <a id="link-77" [routerLink]="['./']" fragment="longerThan">longerThan</a>.</p>
+<pre><code><![CDATA[
+shorterThan(1) {...}
+]]></code></pre><p><br><br><br></p>
 <h3 id="templateselector"><code>templateSelector</code></h3>
-<h4 id="parameters-53">parameters</h4>
+<h4 id="parameters-57">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2284,7 +2484,7 @@ pitch(c, c c') {...}
 template(myTemplate) {...}
 template(partI partII) {...}]]></code></pre><p><br><br><br></p>
 <h3 id="tobar"><code>toBar</code></h3>
-<h4 id="parameters-54">parameters</h4>
+<h4 id="parameters-58">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2304,10 +2504,10 @@ template(partI partII) {...}]]></code></pre><p><br><br><br></p>
 <p>Selects an event where its bar time is equal or less.</p>
 <pre><code><![CDATA[
 toBar(4) {...}
-]]></code></pre><p> see also: <a id="link-72" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a id="link-73" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-74" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
+]]></code></pre><p> see also: <a id="link-78" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a id="link-79" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-80" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="tobeat"><code>toBeat</code></h3>
-<h4 id="parameters-55">parameters</h4>
+<h4 id="parameters-59">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2325,12 +2525,12 @@ toBar(4) {...}
 </tr>
 </tbody></table>
 <p>Selects an event where its beat time is equal or less.</p>
-<p> see also: <a id="link-75" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a id="link-76" [routerLink]="['./']" fragment="onBeat">onBeat</a>.</p>
+<p> see also: <a id="link-81" [routerLink]="['./']" fragment="fromBeat">fromBeat</a>, <a id="link-82" [routerLink]="['./']" fragment="onBeat">onBeat</a>.</p>
 <pre><code><![CDATA[
 toBeat(4) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="topitch"><code>toPitch</code></h3>
-<h4 id="parameters-56">parameters</h4>
+<h4 id="parameters-60">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2348,12 +2548,12 @@ toBeat(4) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its pitch is lower or equal than the given pitch.</p>
-<p> see also: <a id="link-77" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a id="link-78" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
+<p> see also: <a id="link-83" [routerLink]="['./']" fragment="fromPitch">fromPitch</a>, <a id="link-84" [routerLink]="['./']" fragment="pitch">pitch</a>.</p>
 <pre><code><![CDATA[
 toPitch(c,) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="toposition"><code>toPosition</code></h3>
-<h4 id="parameters-57">parameters</h4>
+<h4 id="parameters-61">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2371,18 +2571,18 @@ toPitch(c,) {...}
 </tr>
 </tbody></table>
 <p>Selects any event where its position is before a given position.</p>
-<p> see also: <a id="link-79" [routerLink]="['./']" fragment="fromPosition">fromPosition</a>.</p>
+<p> see also: <a id="link-85" [routerLink]="['./']" fragment="fromPosition">fromPosition</a>.</p>
 <h4 id="example-select-the-events-position--8-quarters">example, select the events position &lt; 8 quarters:</h4>
 <pre><code><![CDATA[toPosition(8) {...}]]></code></pre><h4 id="using-cue-markers-instead-of-quarter-numbers-1">using cue markers instead of quarter numbers</h4>
 <pre><code><![CDATA[c d e f | /cue: myMark/ g a b 'c]]></code></pre><pre><code><![CDATA[toPosition(@myMark) {...}]]></code></pre><blockquote>
 <p>In order to work properly, a cue name must occur only once in a document.</p>
 </blockquote>
 <blockquote>
-<p>Please mind the <a id="link-80" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
+<p>Please mind the <a id="link-86" [routerLink]="['./']" fragment="cue">cue</a> behaviour in combination with repeat and jumps.
 <br><br><br></p>
 </blockquote>
 <h3 id="voiceselector"><code>voiceSelector</code></h3>
-<h4 id="parameters-58">parameters</h4>
+<h4 id="parameters-62">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2415,7 +2615,7 @@ toPitch(c,) {...}
 voice(1) {...}
 voice(1 2) {...}]]></code></pre><p><br><br><br></p>
 <h3 id="withtag"><code>withTag</code></h3>
-<h4 id="parameters-59">parameters</h4>
+<h4 id="parameters-63">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2553,6 +2753,11 @@ onBeat(3) {
 <td align="left">0..N</td>
 </tr>
 <tr>
+<td align="left">duration</td>
+<td align="left">the fade duration in quarters</td>
+<td align="left">0..N</td>
+</tr>
+<tr>
 <td align="left">curve</td>
 <td align="left">Optional. the curve type see <a href="https://www.werckme.org/manual#fade">https://www.werckme.org/manual#fade</a></td>
 <td align="left">0..N</td>
@@ -2573,8 +2778,29 @@ onBeat(3) {
 } ]]></code></pre><pre><code><![CDATA[onBeat(1) { 
   bend = "cc1(100)"; 
 } ]]></code></pre><p><br><br><br></p>
-<h3 id="pitch-1"><code>pitch</code></h3>
+<h3 id="midichannel"><code>midiChannel</code></h3>
 <h4 id="value-types-4">Value Types</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">midiChannel</td>
+<td align="left"></td>
+<td align="left">0..15</td>
+</tr>
+</tbody></table>
+<p>changes the channel of the selected event.</p>
+<h4 id="example-19">example:</h4>
+<pre><code><![CDATA[onBeat(1) { 
+  midiChannel = 1; 
+} ]]></code></pre><p><br><br><br></p>
+<h3 id="pitch-1"><code>pitch</code></h3>
+<h4 id="value-types-5">Value Types</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2595,7 +2821,7 @@ onBeat(3) {
 </tr>
 </tbody></table>
 <p>Changes the pitch of an event.</p>
-<h4 id="example-19">example:</h4>
+<h4 id="example-20">example:</h4>
 <pre><code><![CDATA[
 onBeat(1) {
 
@@ -2610,7 +2836,7 @@ onBeat(3) {
 }
 ]]></code></pre><p><br><br><br></p>
 <h3 id="timeoffset"><code>timeOffset</code></h3>
-<h4 id="value-types-5">Value Types</h4>
+<h4 id="value-types-6">Value Types</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2632,7 +2858,7 @@ onBeat(3) {
 </tbody></table>
 <p>Changes the time position of an event.</p>
 <p> <strong>Since this is an offset value, the set operation(=) has the same effect as the add(+=) or substract(-=) operation.</strong></p>
-<h4 id="example-20">example:</h4>
+<h4 id="example-21">example:</h4>
 <pre><code><![CDATA[
 onBeat(1) {
 
@@ -2647,7 +2873,7 @@ onBeat(3) {
 }
 ]]></code></pre><p><br><br><br></p>
 <h3 id="velocity"><code>velocity</code></h3>
-<h4 id="value-types-6">Value Types</h4>
+<h4 id="value-types-7">Value Types</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2668,7 +2894,7 @@ onBeat(3) {
 </tr>
 </tbody></table>
 <p>Changes the velocity of an event.</p>
-<h4 id="example-21">example:</h4>
+<h4 id="example-22">example:</h4>
 <pre><code><![CDATA[
 onBeat(1) {
 

@@ -1,0 +1,15 @@
+onBeat(1) {
+	midiChannel = 0;
+}
+
+onBeat(2) {
+	midiChannel = 1;
+}
+
+onBeat(3) {
+	midiChannel = 2;
+}
+
+onBeat(4) {
+	midiChannel = 3;
+}

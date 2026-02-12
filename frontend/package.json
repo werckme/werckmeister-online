@@ -21,7 +21,7 @@
     "@angular/router": "^13.2.7",
     "@types/jszip": "^3.4.1",
     "@types/showdown": "^1.9.3",
-    "@werckmeister/components": "^1.1.6-168",
+    "@werckmeister/components": "1.1.6-171",
     "bootstrap": "^4.6.2",
     "core-js": "^2.5.4",
     "file-saver": "^2.0.5",
