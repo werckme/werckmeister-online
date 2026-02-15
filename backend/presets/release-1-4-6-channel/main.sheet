@@ -4,7 +4,7 @@
 -- #4/4 #release #release-1-4-6 #conductions-channel-declaration
 
 
-using "./my.conductions"; -- see here how fade values are implemented
+using "./my.conductions"; -- see here, how every note is assigned to another channel
 
 device: MyDevice _isType=webPlayer _useFont="FluidR3-GM";
 instrumentDef: i1 _onDevice="MyDevice" _ch=0 _gmInstrument="Acoustic Grand Piano";
