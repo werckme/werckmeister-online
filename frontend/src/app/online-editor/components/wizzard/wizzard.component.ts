@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { IMetaData, ISoundFont, IStyleFile, IStyleFileInfo, WizzardService } from 'src/app/services/wizzard.service';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { AWorkspacePlayerComponent, ICompilerError, PlayerState } from '../online-editor/AWorkspacePlayerComponent';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { text as mainSheetText } from './main.sheet';

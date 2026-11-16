@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 export interface IListOfContentsEntry {
   title: string;

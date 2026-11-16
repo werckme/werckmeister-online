@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { Subscription } from 'rxjs';
 import { IResourcesInfo, ResourcesService } from 'src/app/services/resources.service';
 import { songCardHtmlName } from '../../partials/resource-card/resource-card.component';

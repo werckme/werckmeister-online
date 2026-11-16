@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
 const ScrollBlockClass = "cdk-global-scrollblock"; // the same class is used by ant for modal
 
 const scrollSpyOffsetPx = 25;

@@ -1,6 +1,6 @@
 import { firstValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 
 export abstract class ARestService {

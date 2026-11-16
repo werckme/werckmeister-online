@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { GithubService, IRelease } from 'src/app/services/github.service';
 
 @Component({

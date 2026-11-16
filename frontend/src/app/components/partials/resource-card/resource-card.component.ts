@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { IResourcesInfo } from 'src/app/services/resources.service';
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './services/app.service';
 import { Router, NavigationEnd, NavigationError, NavigationStart, Event, ActivatedRoute, ActivationEnd, ActivationStart } from '@angular/router';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 @Component({
     selector: 'app-root',

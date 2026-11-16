@@ -5,11 +5,11 @@ import { Subscription } from 'rxjs';
 import { IFile, IWorkspace, WorkspaceStorageService } from 'src/app/online-editor/services/workspaceStorage';
 import { ShortcutService } from '../../services/shortcut.service';
 import { TmplLuaVoicing, TmplPitchmap, TmplSheetTemplate, TmplLuaMod, TmplConductionRules } from './fileTemplates';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { waitAsync } from 'src/shared/help/waitAsync';
 import { AWorkspacePlayerComponent, ICompilerError, IEditorElement, IWorkspaceElement, PlayerState } from './AWorkspacePlayerComponent';
-import * as JSZip from 'jszip';
-import * as FileSaver from 'file-saver';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 const CheckIsCleanIntervalMillis = 1000;
 
@@ -363,7 +363,7 @@ export class OnlineEditorComponent extends AWorkspacePlayerComponent implements 
       zip.file(file.path, file.data);
     }
     const data = await zip.generateAsync({type: "blob"});
-    FileSaver.saveAs(data, `Werckmeister${this.widStr}.zip`);
+    saveAs(data, `Werckmeister${this.widStr}.zip`);
   }
 
   public onFocus(event: FocusEvent) {

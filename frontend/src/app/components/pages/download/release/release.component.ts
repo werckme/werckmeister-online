@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IRelease, IAsset } from 'src/app/services/github.service';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { marked } from 'marked';
 import { Download } from './download-details/download-details.component';
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GithubService, IRelease } from 'src/app/services/github.service';
-import * as _ from 'lodash';
+import _ from 'lodash';
 @Component({
     selector: 'app-download',
     templateUrl: './download.component.html',
