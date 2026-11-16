@@ -6,7 +6,7 @@ describe('GithubService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: GithubService = TestBed.get(GithubService);
+    const service: GithubService = TestBed.inject(GithubService);
     expect(service).toBeTruthy();
   });
 });

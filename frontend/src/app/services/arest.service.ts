@@ -1,3 +1,4 @@
+import { firstValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import * as _ from 'lodash';
 
@@ -11,18 +12,18 @@ export abstract class ARestService {
 	}
 
 	protected get<T>(url: string = ''): Promise<T> {
-		return this.http.get<T>(`${this.endpointUrl}/${url}`).toPromise();
+		return firstValueFrom(this.http.get<T>(`${this.endpointUrl}/${url}`));
 	}
 
 	protected put<T>(url: string, body: any): Promise<T> {
-		return this.http.put<T>(`${this.endpointUrl}/${url}`, body).toPromise();
+		return firstValueFrom(this.http.put<T>(`${this.endpointUrl}/${url}`, body));
 	}
 
 	protected post<T>(url: string, body: any): Promise<T> {
-		return this.http.post<T>(`${this.endpointUrl}/${url}`, body).toPromise();
+		return firstValueFrom(this.http.post<T>(`${this.endpointUrl}/${url}`, body));
 	}
 
 	protected delete<T>(url: string): Promise<T> {
-		return this.http.delete<T>(`${this.endpointUrl}/${url}`).toPromise();
+		return firstValueFrom(this.http.delete<T>(`${this.endpointUrl}/${url}`));
 	}
 }
