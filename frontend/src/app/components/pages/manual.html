@@ -389,7 +389,7 @@ end]]></code></pre><p>The perform function has 4 arguments:</p>
         totalTiedDuration = number,
 
         -- the event type
-        type = "note" | "rest" | "degree" | "pitchBend" | "cc" | "sysex" | "meta",
+        type = "note" | "rest" | "degree" | "pitchBend" | "cc" | "sysex" | "meta" | "chord" | "werckmeisterCommand",
 
         -- the events velocity value in a range from 0 to 1
         -- only relevant if type is "note" or "degree"
@@ -414,11 +414,22 @@ end]]></code></pre><p>The perform function has 4 arguments:</p>
 
         -- the midi meta event type
         -- only relevant if type is "meta"
-        metaType  = "textEvent" | "copyright" | "sequenceOrTrackName" | "instrumentName" | "lyricText" | "markerText" | "cuePoint"
+        metaType  = "textEvent" | "copyright" | "sequenceOrTrackName" | "instrumentName" | "lyricText" | "markerText" | "cuePoint" ,
 
         -- the midi meta value
         -- only relevant if type is "meta"
-        metaValue  = string
+        metaValue  = string,
+
+        -- the chord name,
+        -- only relevant if type is "chord"
+        chordName = string,
+        
+        -- the command data,
+        -- only relevant if type is "werckmeisterCommand"
+        command = {
+            id = string -- the command id
+            args = {} -- an arguments key, value table
+        }
     }
     ...
 }
@@ -503,7 +514,22 @@ end]]></code></pre><pre><code><![CDATA[[
 <h3 id="init"><code>Init()</code></h3>
 <p>Called once when the player starts. Use this to set up your script&#39;s initial state, register MIDI input listeners, or analyze the sheet&#39;s MIDI events.</p>
 <h3 id="onmidieventevent"><code>OnMidiEvent(event)</code></h3>
-<p>Called for each MIDI event during playback. Use this to react to specific events and control playback flow.</p>
+<p>Called for each MIDI event during playback. Use this to react to events and control playback flow.</p>
+<ul>
+<li>The callback return value determines the result:<ul>
+<li>If the return value is <code>nil</code>: the event will be <strong>skipped</strong>.</li>
+<li>If an event object is returned: it will be <strong>used (possibly modified)</strong> for further processing.</li>
+</ul>
+</li>
+<li>The input <code>event</code> parameter may be modified before returning it.</li>
+<li>Meta events (such as cue points, lyrics, or other metadata events) should <strong>not be modified</strong>.</li>
+</ul>
+<p>This allows you to:</p>
+<ul>
+<li>filter events (return <code>nil</code> to skip)</li>
+<li>transform events (modify and return the event)</li>
+<li>or pass them through unchanged</li>
+</ul>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>event</code> (LuaMidi): The current MIDI event being processed</li>
@@ -524,6 +550,8 @@ end]]></code></pre><pre><code><![CDATA[[
 </ul>
 <h3 id="jumptopositionpositionquarters"><code>JumpToPosition(positionQuarters)</code></h3>
 <p>Jumps playback to a specific position in the sheet.</p>
+<h3 id="releaseallactivenotesint-channel"><code>ReleaseAllActiveNotes(int channel)</code></h3>
+<p>Sends note-off events for all pending pitches on the specified channel.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>position</code> (number): Target position in ticks</li>
@@ -540,6 +568,7 @@ end]]></code></pre><pre><code><![CDATA[[
 <li><code>data</code> (string): Event data (e.g., text for cue points)</li>
 <li><code>parameter1</code> (number): First parameter (e.g., note number, controller)</li>
 <li><code>parameter2</code> (number): Second parameter (e.g., velocity, controller value)</li>
+<li><code>tag</code> an arbitrary int value, can be used to mark events</li>
 </ul>
 <h3 id="luamiditrack">LuaMidiTrack</h3>
 <p>Represents a MIDI track.</p>
@@ -807,7 +836,7 @@ instrument: organ;
 <p> On mac and linux, make sure that you have fluidsynth installed.</p>
 <p> If you are using multiple sound fonts with multiple devices, make sure to use the program change argument “_pc” in the instrument definition, otherwise no</p>
 <p> soundfont change will be triggered internally. </p>
-<p> You can set an environment variable <code>WM_SOUNDFONT_PATH</code> to add a search path for soundfont files. <em>(only one path supported)</em>
+<p> You can set an environment variable <code>WM_SOUNDFONT_PATH</code> or <code>WM_SEARCH_PATH</code> to add a search path for soundfont files. <em>(WM_SOUNDFONT_PATH supports only one path, separated by &#39;;&#39; otherwise)</em>
 <br><br><br></p>
 <h3 id="do"><code>do</code></h3>
 <h4 id="parameters-6">parameters</h4>
@@ -1352,8 +1381,32 @@ instrument: organ;
 <h4 id="examples-8">examples</h4>
 <p> <code>/modOnce: arpeggio/</code>
 <br><br><br></p>
-<h3 id="pan"><code>pan</code></h3>
+<h3 id="modval"><code>modval</code></h3>
 <h4 id="parameters-20">parameters</h4>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">position</th>
+<th align="left">description</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">mod</td>
+<td align="left">1</td>
+<td align="left">The name of the modification to adjust. This is the only &quot;unique&quot; parameter for this command. All further parameters are specific to its related modification.</td>
+<td align="left">text</td>
+</tr>
+</tbody></table>
+<p>Changes an argument value of a mod.</p>
+<h4 id="examples-9">examples</h4>
+<pre><code><![CDATA[
+/mod: arpeggio _direction="up"/ -- load mod 
+-- some music ... 
+/modval: arpeggio _direction="down"/ -- change mod value ]]></code></pre><p><br><br><br></p>
+<h3 id="pan"><code>pan</code></h3>
+<h4 id="parameters-21">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1375,7 +1428,7 @@ instrument: organ;
 <p> <code>/pan: 50/</code>
 <br><br><br></p>
 <h3 id="setchord"><code>setChord</code></h3>
-<h4 id="parameters-21">parameters</h4>
+<h4 id="parameters-22">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1401,7 +1454,7 @@ instrument: organ;
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKZGV2aWNlOiBteURldmljZSBtaWRpIF91c2VQb3J0PTA7Cmluc3RydW1lbnREZWY6IHBpYW5vICBteURldmljZSBfY2g9MCBfcGM9MDsKdGVtcG86IDEyMDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogICAgL2Nob3JkOiAiQy05Ii8KICAgIEkgSUlJIFYgVklJIHwgSUknMSAKfQpd"></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="signature"><code>signature</code></h3>
-<h4 id="parameters-22">parameters</h4>
+<h4 id="parameters-23">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1429,7 +1482,7 @@ instrument: organ;
 <p> <code>/signature: 3 4/</code>
 <br><br><br></p>
 <h3 id="tempo-1"><code>tempo</code></h3>
-<h4 id="parameters-23">parameters</h4>
+<h4 id="parameters-24">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1453,7 +1506,7 @@ instrument: organ;
 <p> <a id="link-53" [routerLink]="['//manual']" fragment="tempo">see here</a>
 <br><br><br></p>
 <h3 id="voicingstrategy"><code>voicingStrategy</code></h3>
-<h4 id="parameters-24">parameters</h4>
+<h4 id="parameters-25">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1482,7 +1535,7 @@ instrument: organ;
 </li>
 </ul>
 <h3 id="volume"><code>volume</code></h3>
-<h4 id="parameters-25">parameters</h4>
+<h4 id="parameters-26">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1500,12 +1553,12 @@ instrument: organ;
 </tr>
 </tbody></table>
 <p>set the volume of the current instrument</p>
-<h4 id="examples-9">examples</h4>
+<h4 id="examples-10">examples</h4>
 <p> <code>/volume: 50/</code>
 <br><br><br></p>
 <h2 id="modifications">Modifications</h2>
 <h3 id="drumrudiments"><code>drumRudiments</code></h3>
-<h4 id="parameters-26">parameters</h4>
+<h4 id="parameters-27">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1655,7 +1708,7 @@ instrument: organ;
 <br><br><br>
 
 <h3 id="guitarstroke"><code>guitarStroke</code></h3>
-<h4 id="parameters-27">parameters</h4>
+<h4 id="parameters-28">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1707,7 +1760,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2d1aXRhclN0cm9rZS5sdWEiOwp0ZW1wbzogMTIwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6ICBwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0yNDsKaW5zdHJ1bWVudENvbmY6IHBpYW5vIG1vZCBndWl0YXJTdHJva2UgX21vZGU9YWx0ZXJuYXRlIF92YWx1ZT0xNjsgClsKaW5zdHJ1bWVudDogcGlhbm87CnsKIDxjIGUgZyBiPjQgPGMgZSBnIGI+NCA8YyBlYiBnIGJiPjIgfCAgPGMgZWIgZyBiYj4yIDxjIGViIGcgYmI+Mgp9Cl0="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="legato"><code>legato</code></h3>
-<h4 id="parameters-28">parameters</h4>
+<h4 id="parameters-29">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1738,7 +1791,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL2xlZ2F0by5sdWEiOwp0ZW1wbzogMTQwOwpkZXZpY2U6IE15RGV2aWNlICBtaWRpIDA7Cmluc3RydW1lbnREZWY6cGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewogIC9tb2Q6IGxlZ2F0byBfZm9yVGFnPWxlZyBfYW1vdW50PTEwMC8KICAtLSBvbmx5IHRoZSBgZGAgd2lsbCBiZSBwZXJmb3JtZWQgbGVnYXRvLiAKICBjICJsZWciQGQgZSBmCn0KXQ=="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="myarpeggio"><code>myArpeggio</code></h3>
-<h4 id="parameters-29">parameters</h4>
+<h4 id="parameters-30">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1769,7 +1822,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL215QXJwZWdnaW8ubHVhIjsKdGVtcG86IDEyMDsKZGV2aWNlOiBNeURldmljZSAgbWlkaSAwOwppbnN0cnVtZW50RGVmOiAgcGlhbm8gIE15RGV2aWNlICBfY2g9MCBfcGM9MDsKWwppbnN0cnVtZW50OiBwaWFubzsKewovZG86IG15QXJwZWdnaW8vIAo8YyBlIGcgYj4yIAovZG86IG15QXJwZWdnaW8gX2RpcmVjdGlvbj1kb3duLyAKPGMgZWIgZyBiYj4yIAp9Cl0="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="slide"><code>slide</code></h3>
-<h4 id="parameters-30">parameters</h4>
+<h4 id="parameters-31">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1820,7 +1873,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL3NsaWRlLmx1YSI7CnRlbXBvOiAxNDA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCmluc3RydW1lbnQ6IHBpYW5vOwp7CiAgL21vZE9uOiBzbGlkZSBfZm9yVGFnPXNsaWRlIF9udW1Ob3Rlcz0tNCBfZHVyYXRpb249MC4yNS8KICAtLSBvbmx5IHRoZSBgZGAgd2lsbCBiZSBwZXJmb3JtZWQgc2xpZGUuIAogIGMgInNsaWRlIkBkIGUgZgp9Cl0="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="staccato"><code>staccato</code></h3>
-<h4 id="parameters-31">parameters</h4>
+<h4 id="parameters-32">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1851,7 +1904,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgImx1YS9tb2RzL3N0YWNjYXRvLmx1YSI7CnRlbXBvOiAxNDA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCmluc3RydW1lbnQ6IHBpYW5vOwp7CiAgL21vZDogc3RhY2NhdG8gX2ZvclRhZz1zdGFjIF9hbW91bnQ9MTAwLwogIC0tIG9ubHkgdGhlIGBkYCB3aWxsIGJlIHBlcmZvcm1lZCBzdGFjY2F0by4gCiAgYyAic3RhYyJAZCBlIGYKfQpd"></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="swing"><code>swing</code></h3>
-<h4 id="parameters-32">parameters</h4>
+<h4 id="parameters-33">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1882,7 +1935,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <p><br><br><br></p>
 <h2 id="voicing-strategies-1">Voicing Strategies</h2>
 <h3 id="guitar"><code>guitar</code></h3>
-<h4 id="parameters-33">parameters</h4>
+<h4 id="parameters-34">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1906,7 +1959,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgIi9sdWEvdm9pY2luZ3MvZ3VpdGFyLmx1YSI7CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBteVRlbXBsYXRlOwppbnN0cnVtZW50OiBwaWFubzsKewogIC92b2ljaW5nU3RyYXRlZ3k6IGd1aXRhci8KICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAvdGVtcGxhdGU6IG15VGVtcGxhdGUvCgogQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="inversion"><code>inversion</code></h3>
-<h4 id="parameters-34">parameters</h4>
+<h4 id="parameters-35">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1936,7 +1989,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgIi9sdWEvdm9pY2luZ3MvaW52ZXJzaW9uLmx1YSI7CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBteVRlbXBsYXRlOwppbnN0cnVtZW50OiBwaWFubzsKewogIC92b2ljaW5nU3RyYXRlZ3k6IGludmVyc2lvbi8KICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAvdGVtcGxhdGU6IG15VGVtcGxhdGUvCgogQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="simple"><code>simple</code></h3>
-<h4 id="parameters-35">parameters</h4>
+<h4 id="parameters-36">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1960,7 +2013,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <werckmeister-snippet wm-css-url="/assets/werckmeister-snippet.css"   wm-data="dXNpbmcgIi9sdWEvdm9pY2luZ3Mvc2ltcGxlLmx1YSI7CnVzaW5nICIvY2hvcmRzL2RlZmF1bHQuY2hvcmRzIjsKCnRlbXBvOiAxMjA7CmRldmljZTogTXlEZXZpY2UgIG1pZGkgMDsKaW5zdHJ1bWVudERlZjpwaWFubyAgTXlEZXZpY2UgIF9jaD0wIF9wYz0wOwpbCnR5cGU6IHRlbXBsYXRlOwpuYW1lOiBteVRlbXBsYXRlOwppbnN0cnVtZW50OiBwaWFubzsKewogIC92b2ljaW5nU3RyYXRlZ3k6IHNpbXBsZS8KICA8SSBJSSBJSUkgSVYgViBWSSBWSUk+MQp9Cl0KWwp0eXBlOiBhY2NvbXA7Cgp7CiAvdGVtcGxhdGU6IG15VGVtcGxhdGUvCgogQyB8IEYgfCBHIHwgQyB8Cn0KXQ=="></werckmeister-snippet>
 <p><br><br><br></p>
 <h3 id="voicelead"><code>voicelead</code></h3>
-<h4 id="parameters-36">parameters</h4>
+<h4 id="parameters-37">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -1989,7 +2042,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <p>Selects all events.</p>
 <pre><code><![CDATA[all() {...}]]></code></pre><p><br><br><br></p>
 <h3 id="atposition"><code>atPosition</code></h3>
-<h4 id="parameters-37">parameters</h4>
+<h4 id="parameters-38">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2012,7 +2065,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 <br><br><br></p>
 </blockquote>
 <h3 id="channel"><code>channel</code></h3>
-<h4 id="parameters-38">parameters</h4>
+<h4 id="parameters-39">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2034,7 +2087,7 @@ instrumentConf: myInstrument mod guitarStroke _mode=alternate; ]]></code></pre><
 channel(0 1 2) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="chord"><code>chord</code></h3>
-<h4 id="parameters-39">parameters</h4>
+<h4 id="parameters-40">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2056,7 +2109,7 @@ channel(0 1 2) {...}
 <p> every 7th chord you write:</p>
 <pre><code><![CDATA[chord(X7) {...}]]></code></pre><p><br><br><br></p>
 <h3 id="degree"><code>degree</code></h3>
-<h4 id="parameters-40">parameters</h4>
+<h4 id="parameters-41">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2078,7 +2131,7 @@ channel(0 1 2) {...}
 degree(I III) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="durationselector"><code>durationSelector</code></h3>
-<h4 id="parameters-41">parameters</h4>
+<h4 id="parameters-42">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2101,7 +2154,7 @@ degree(I III) {...}
 duration(1) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="expression"><code>expression</code></h3>
-<h4 id="parameters-42">parameters</h4>
+<h4 id="parameters-43">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2125,7 +2178,7 @@ expression(p) {...}
 expression(p f ff) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="frombar"><code>fromBar</code></h3>
-<h4 id="parameters-43">parameters</h4>
+<h4 id="parameters-44">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2148,7 +2201,7 @@ fromBar(1) {...}
 ]]></code></pre><p> see also: <a id="link-57" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-58" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-59" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="frombeat"><code>fromBeat</code></h3>
-<h4 id="parameters-44">parameters</h4>
+<h4 id="parameters-45">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2170,7 +2223,7 @@ fromBar(1) {...}
 fromBeat(1) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="frompitch"><code>fromPitch</code></h3>
-<h4 id="parameters-45">parameters</h4>
+<h4 id="parameters-46">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2193,7 +2246,7 @@ fromBeat(1) {...}
 fromPitch(c,) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="fromposition"><code>fromPosition</code></h3>
-<h4 id="parameters-46">parameters</h4>
+<h4 id="parameters-47">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2222,7 +2275,7 @@ fromPitch(c,) {...}
 <br><br><br></p>
 </blockquote>
 <h3 id="instrumentselector"><code>instrumentSelector</code></h3>
-<h4 id="parameters-47">parameters</h4>
+<h4 id="parameters-48">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2246,7 +2299,7 @@ fromPitch(c,) {...}
 instrument(bass) {...}
 instrument(bass drums) {...}]]></code></pre><p><br><br><br></p>
 <h3 id="longerthan"><code>longerThan</code></h3>
-<h4 id="parameters-48">parameters</h4>
+<h4 id="parameters-49">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2269,7 +2322,7 @@ instrument(bass drums) {...}]]></code></pre><p><br><br><br></p>
 longerThan(1) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="notonbeat"><code>notOnBeat</code></h3>
-<h4 id="parameters-49">parameters</h4>
+<h4 id="parameters-50">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2291,7 +2344,7 @@ longerThan(1) {...}
 notOnBeat(1 3) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="nthbar"><code>nthBar</code></h3>
-<h4 id="parameters-50">parameters</h4>
+<h4 id="parameters-51">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2314,7 +2367,7 @@ nthBar(3 5) {...}
 ]]></code></pre><p> see also: <a id="link-66" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-67" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-68" [routerLink]="['./']" fragment="onBar">onBar</a>.
 <br><br><br></p>
 <h3 id="octave"><code>octave</code></h3>
-<h4 id="parameters-51">parameters</h4>
+<h4 id="parameters-52">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2336,7 +2389,7 @@ nthBar(3 5) {...}
 octave(4) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="onbar"><code>onBar</code></h3>
-<h4 id="parameters-52">parameters</h4>
+<h4 id="parameters-53">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2359,7 +2412,7 @@ onBar(1 3) {...}
 ]]></code></pre><p> see also: <a id="link-69" [routerLink]="['./']" fragment="fromBar">fromBar</a>, <a id="link-70" [routerLink]="['./']" fragment="toBar">toBar</a>, <a id="link-71" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="onbeat"><code>onBeat</code></h3>
-<h4 id="parameters-53">parameters</h4>
+<h4 id="parameters-54">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2383,7 +2436,7 @@ onBar(1 3) {...}
 onBeat(1 3) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="phrase"><code>phrase</code></h3>
-<h4 id="parameters-54">parameters</h4>
+<h4 id="parameters-55">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2405,7 +2458,7 @@ onBeat(1 3) {...}
 phrase(myPhrase1 myPhrase2) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="pitch"><code>pitch</code></h3>
-<h4 id="parameters-55">parameters</h4>
+<h4 id="parameters-56">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2430,7 +2483,7 @@ pitch(c) {...}
 pitch(c, c c') {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="shorterthan"><code>shorterThan</code></h3>
-<h4 id="parameters-56">parameters</h4>
+<h4 id="parameters-57">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2453,7 +2506,7 @@ pitch(c, c c') {...}
 shorterThan(1) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="templateselector"><code>templateSelector</code></h3>
-<h4 id="parameters-57">parameters</h4>
+<h4 id="parameters-58">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2484,7 +2537,7 @@ shorterThan(1) {...}
 template(myTemplate) {...}
 template(partI partII) {...}]]></code></pre><p><br><br><br></p>
 <h3 id="tobar"><code>toBar</code></h3>
-<h4 id="parameters-58">parameters</h4>
+<h4 id="parameters-59">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2507,7 +2560,7 @@ toBar(4) {...}
 ]]></code></pre><p> see also: <a id="link-78" [routerLink]="['./']" fragment="toBar">fromBar</a>, <a id="link-79" [routerLink]="['./']" fragment="onBar">onBar</a>, <a id="link-80" [routerLink]="['./']" fragment="nthBar">nthBar</a>.
 <br><br><br></p>
 <h3 id="tobeat"><code>toBeat</code></h3>
-<h4 id="parameters-59">parameters</h4>
+<h4 id="parameters-60">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2530,7 +2583,7 @@ toBar(4) {...}
 toBeat(4) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="topitch"><code>toPitch</code></h3>
-<h4 id="parameters-60">parameters</h4>
+<h4 id="parameters-61">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2553,7 +2606,7 @@ toBeat(4) {...}
 toPitch(c,) {...}
 ]]></code></pre><p><br><br><br></p>
 <h3 id="toposition"><code>toPosition</code></h3>
-<h4 id="parameters-61">parameters</h4>
+<h4 id="parameters-62">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2582,7 +2635,7 @@ toPitch(c,) {...}
 <br><br><br></p>
 </blockquote>
 <h3 id="voiceselector"><code>voiceSelector</code></h3>
-<h4 id="parameters-62">parameters</h4>
+<h4 id="parameters-63">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -2615,7 +2668,7 @@ toPitch(c,) {...}
 voice(1) {...}
 voice(1 2) {...}]]></code></pre><p><br><br><br></p>
 <h3 id="withtag"><code>withTag</code></h3>
-<h4 id="parameters-63">parameters</h4>
+<h4 id="parameters-64">parameters</h4>
 <table class="table table-bordered">
 <thead>
 <tr>
