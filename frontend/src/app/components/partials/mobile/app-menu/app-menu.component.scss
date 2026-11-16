@@ -1,4 +1,4 @@
-@import "../../../../../variables.scss";
+@use "../../../../../variables" as *;
 
 $drawer-transition: 0.3s ease;
 

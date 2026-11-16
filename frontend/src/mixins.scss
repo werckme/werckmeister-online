@@ -1,4 +1,5 @@
-@import "./variables.scss";
+@forward "./variables";
+@use "./variables" as *;
 
 @mixin color-scheme-1 {
     background-color: $wm-bg-color-1;

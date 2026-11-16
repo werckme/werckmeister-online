@@ -1,4 +1,4 @@
- @import "../../../../variables.scss";
+@use "../../../../variables" as *;
 
 $selectedFile: rgb(55, 55, 61);
 .editor-main {

@@ -1,4 +1,4 @@
-@import "../../../mixins.scss";
+@use "../../../mixins" as *;
 
 h1 {
     font-family: Roboto,Arial,Helvetica,sans-serif;

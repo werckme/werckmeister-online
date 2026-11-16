@@ -1,5 +1,5 @@
 @use "sass:math";
-@import "../../../../mixins.scss";
+@use "../../../../mixins" as *;
 
 nz-card {
     .cta {

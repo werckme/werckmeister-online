@@ -1,7 +1,21 @@
+// Display utilities (subset of Bootstrap 4 `d-*` classes, same breakpoints)
+$_breakpoints: (sm: 576px, md: 768px, lg: 992px, xl: 1200px);
+$_displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex;
 
-@import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/variables";
-@import "node_modules/bootstrap/scss/mixins/breakpoints";
-@import "node_modules/bootstrap/scss/utilities/display";
+@each $value in $_displays {
+    .d-#{$value} { display: $value !important; }
+}
 
-  
+@each $bp, $min in $_breakpoints {
+    @media (min-width: $min) {
+        @each $value in $_displays {
+            .d-#{$bp}-#{$value} { display: $value !important; }
+        }
+    }
+}
+
+@media print {
+    @each $value in $_displays {
+        .d-print-#{$value} { display: $value !important; }
+    }
+}

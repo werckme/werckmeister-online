@@ -1,9 +1,10 @@
-@import "./editor-style.scss";
-@import "./roboto-condensed.scss";
-@import "./roboto.scss";
-@import "./variables.scss";
-@import "./mixins.scss";
-@import "./bootstrap-display-utility.scss";
+@use "sass:color";
+@use "./editor-style";
+@use "./roboto-condensed";
+@use "./roboto";
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "./bootstrap-display-utility";
 
 
 /* gloria-hallelujah-regular - latin */
@@ -85,7 +86,7 @@ $blue: rgb(0, 0, 255);
 
 nav, .navbar {
     margin-bottom: 3.5em;
-    background: lighten($color: $background, $amount: 5);
+    background: color.adjust($background, $lightness: 5%);
     width: 100%;
     position: fixed;
     @include mat-card-2;

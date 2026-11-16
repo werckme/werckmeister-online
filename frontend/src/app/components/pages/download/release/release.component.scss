@@ -1,4 +1,4 @@
- @import "../../../../../mixins.scss";
+@use "../../../../../mixins" as *;
 
 .release {
     margin-bottom: 2em;
