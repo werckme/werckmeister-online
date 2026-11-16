@@ -13,7 +13,6 @@ import { GettingStartedComponent } from './components/pages/getting-started';
 import { ResourcesComponent } from './components/pages/resources/resources.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { CodeExtensionComponent } from './components/pages/visual-studio-extension';
-import { NgZorroAntdMobileModule } from 'ng-zorro-antd-mobile';
 import { MobileAppMenuComponent } from './components/partials/mobile/app-menu/app-menu.component';
 import { PushToHistoryIfOnSamePageDirective } from './directives/push-to-history-if-on-same-page.directive';
 import { DownloadComponent } from './components/pages/download/download.component';
@@ -116,7 +115,6 @@ registerLocaleData(en);
         NzIconModule,
         NzSelectModule,
         BrowserAnimationsModule,
-        NgZorroAntdMobileModule,
         NzDescriptionsModule,
         OnlineEditorModule,
         NzImageModule,

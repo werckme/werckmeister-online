@@ -1,8 +1,7 @@
 @import "../../../../../variables.scss";
 
-::ng-deep .am-list-line {
-    border-bottom: none !important;
-}
+$drawer-transition: 0.3s ease;
+
 .app-mobile-menu {
     position: relative;
     background: $app-menu-background;
@@ -17,7 +16,6 @@
         margin-left: 10px;
         visibility: visible;
     }
-    
 }
 
 .action {
@@ -32,66 +30,64 @@
     }
 }
 
-::ng-deep .my-drawer {
+.drawer {
     position: fixed;
+    inset: 0;
     z-index: $z-index-on-top;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    .am-drawer-sidebar {
-        width: calc(100% - 58px);
-    }
-    .am-drawer-overlay {
-        top: 63px;
+    visibility: hidden;
+    pointer-events: none;
+    transition: visibility $drawer-transition;
+    &.open {
+        visibility: visible;
+        pointer-events: auto;
     }
 }
 
-::ng-deep .my-drawer .am-drawer-sidebar {
+.drawer-overlay {
+    position: absolute;
+    top: 63px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity $drawer-transition;
+    .drawer.open & {
+        opacity: 1;
+    }
+}
+
+.drawer-sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: calc(100% - 58px);
     background-color: $app-menu-background;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
-    box-shadow: none !important;
+    transform: translateX(-100%);
+    transition: transform $drawer-transition;
+    .drawer.open & {
+        transform: translateX(0);
+    }
 }
 
-::ng-deep .my-drawer .am-drawer-sidebar .am-list {
+// menu entries are projected from the parent template
+::ng-deep .mobile-menu-list {
+    list-style: none;
     width: 262px;
-    padding: 0;
-}
-
-::ng-deep .my-drawer .am-drawer-sidebar .am-list .am-list-item {
-    background: $app-menu-background;
-    font-size: 14px;
-    font-weight: 400;
-    color: white;
-    padding: 0;
-}
-
-::ng-deep .am-list-item .am-list-line .am-list-content {
-    color: white;
-    margin-top: 8px;
-    margin-left: 25px;
-    line-height: 40px;
-}
-
-::ng-deep drawer {
-    visibility: collapse;
-    transition: visibility 0.3s;
-    &.am-drawer-open {
-        visibility: visible;
-        
-    }
-}
-
-::ng-deep .am-list-item .am-list-line::after {
-    background: inherit !important; // remove separator line
-}
-
-::ng-deep .am-list-body {
-    border: none;
-    &::before {
-        background: $app-menu-background !important; // remove separator line
-    }
-
-    &::after {
-        background: $app-menu-background !important; // remove separator line
+    margin: 0;
+    padding: 8px 0 0;
+    li {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 40px;
+        padding: 4px 0 4px 25px;
+        color: white;
+        a {
+            color: white;
+            display: block;
+        }
     }
 }

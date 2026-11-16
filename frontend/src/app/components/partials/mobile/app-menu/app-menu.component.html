@@ -6,9 +6,9 @@
   </div>
 </div>
 
-<Drawer class="my-drawer" [enableDragHandle]="true" [sidebar]="sidebar"
-  [open]="isOpen" [position]="'left'" (onOpenChange)="onOpenChange()">
-</Drawer>
-<ng-template #sidebar>
-  <ng-content></ng-content>
-</ng-template>
+<div class="drawer" [class.open]="isOpen">
+  <div class="drawer-overlay" (click)="onClose($event)"></div>
+  <nav class="drawer-sidebar">
+    <ng-content></ng-content>
+  </nav>
+</div>

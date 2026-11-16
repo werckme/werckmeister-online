@@ -1,38 +1,38 @@
 <nz-layout [ngClass]="{hasOwnLayout: hasOwnLayout}">
     <nz-header *ngIf="!hasOwnLayout">
         <lib-mobile-app-menu [(isOpen)]="mobileMenuOpen" class="d-block d-md-none">
-            <List>
-                <ListItem>
+            <ul class="mobile-menu-list">
+                <li>
                     <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['werckmeister']">Werckmeister</a>
-                </ListItem>
-                <ListItem>
+                </li>
+                <li>
                     <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['getting-started']">Getting Started</a>
-                </ListItem>  
-                <ListItem>
+                </li>
+                <li>
                     <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['manual']">Manual</a>
-                </ListItem>  
-                <ListItem>
+                </li>
+                <li>
                     <a (click)="onMobileMenuItemClicked($event)" href="/examples">Examples</a>
-                </ListItem>
-                <ListItem>
+                </li>
+                <li>
                     <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['vst']">VST Plugin</a>
-                </ListItem>                  
-                <ListItem>
+                </li>
+                <li>
                     <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['code-extension']">Visual Studio Code</a>
-                </ListItem>  
-                <ListItem>
+                </li>
+                <li>
                     <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['contact']">Contact</a>
-                </ListItem>  
-                <ListItem>
+                </li>
+                <li>
                     <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['wizzard']">Try Online</a>
-                </ListItem>    
-                <ListItem>
+                </li>
+                <li>
                     <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['extras']">Extras</a>
-                </ListItem>
-                <ListItem>
+                </li>
+                <li>
                     <ext-donate></ext-donate>
-                </ListItem>                                                                                                                                                                                                        
-            </List>
+                </li>
+            </ul>
         </lib-mobile-app-menu>
         <a [routerLink]="['/']">
             <img class="logo d-none d-md-block" src="assets/images/Logo.png" alt="werckmeister logo">
