@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IRelease, IAsset } from 'src/app/services/github.service';
 import * as _ from 'lodash';
-import {Converter} from 'showdown';
+import { marked } from 'marked';
 import { Download } from './download-details/download-details.component';
 
 @Component({
@@ -24,7 +24,6 @@ export class ReleaseComponent implements OnInit {
   mac: Download[];
   linux: Download[];
   body: string;
-  mdParser = new Converter();
   
   constructor() { }
 
@@ -33,7 +32,7 @@ export class ReleaseComponent implements OnInit {
   }
 
   private md(str: string) {
-    return this.mdParser.makeHtml(str);
+    return marked.parse(str);
   }
 
   processWindowsDownload(download: Download): Download {
