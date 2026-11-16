@@ -3,9 +3,10 @@ import * as _ from 'lodash';
 import { GithubService, IRelease } from 'src/app/services/github.service';
 
 @Component({
-  selector: 'app-get-vst',
-  templateUrl: './get-vst.component.html',
-  styleUrls: ['./get-vst.component.scss']
+    selector: 'app-get-vst',
+    templateUrl: './get-vst.component.html',
+    styleUrls: ['./get-vst.component.scss'],
+    standalone: false
 })
 export class GetVstComponent implements OnInit {
 

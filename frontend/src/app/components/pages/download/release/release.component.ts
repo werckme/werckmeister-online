@@ -5,9 +5,10 @@ import { marked } from 'marked';
 import { Download } from './download-details/download-details.component';
 
 @Component({
-  selector: 'app-download-release',
-  templateUrl: './release.component.html',
-  styleUrls: ['./release.component.scss']
+    selector: 'app-download-release',
+    templateUrl: './release.component.html',
+    styleUrls: ['./release.component.scss'],
+    standalone: false
 })
 export class ReleaseComponent implements OnInit {
 

@@ -4,9 +4,10 @@ import { AnchorScrollSpy } from 'src/shared/VanillaJs';
 import { IListOfContentsEntry, ListOfContentsComponent } from '../partials/list-of-contents/list-of-contents.component';
 
 @Component({
-	selector: 'app-manual',
-	templateUrl: './manual.html',
-	styleUrls: ['manual.scss']
+    selector: 'app-manual',
+    templateUrl: './manual.html',
+    styleUrls: ['manual.scss'],
+    standalone: false
 })
 export class ManualComponent implements OnInit {
 	constructor() {

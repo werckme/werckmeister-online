@@ -6,9 +6,10 @@ const smallPlayerOptions="color=%23ff5500&inverse=false&auto_play=false&show_use
 const classicPlayerOptions="color=%23ff5500&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=true";
 
 @Component({
-  selector: 'app-embedded-soundcloud-player',
-  templateUrl: './embedded-soundcloud-player.component.html',
-  styleUrls: ['./embedded-soundcloud-player.component.scss']
+    selector: 'app-embedded-soundcloud-player',
+    templateUrl: './embedded-soundcloud-player.component.html',
+    styleUrls: ['./embedded-soundcloud-player.component.scss'],
+    standalone: false
 })
 export class EmbeddedSoundcloudPlayerComponent implements OnInit, IHasUrl {
 

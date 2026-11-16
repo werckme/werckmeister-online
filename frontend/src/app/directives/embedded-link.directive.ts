@@ -6,8 +6,9 @@ import { EmbeddedSoundcloudPlayerComponent } from '../components/partials/embedd
 import { EmbeddedYoutubeComponent } from '../components/partials/embedded-youtube/embedded-youtube.component';
 
 @Component({
-  selector: 'app-embedded-title',
-  template: `<h4>{{title}}</h4>`,
+    selector: 'app-embedded-title',
+    template: `<h4>{{title}}</h4>`,
+    standalone: false
 })
 export class EmbeddedHeaderComponent {
   @Input()
@@ -15,7 +16,8 @@ export class EmbeddedHeaderComponent {
 }
 
 @Directive({
-  selector: 'a[appEmbeddedLink]'
+    selector: 'a[appEmbeddedLink]',
+    standalone: false
 })
 export class EmbeddedLinkDirective implements AfterViewInit {
 

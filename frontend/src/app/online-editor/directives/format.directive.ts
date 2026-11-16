@@ -3,12 +3,13 @@ import { Directive, OnInit, ElementRef, forwardRef, Input, HostListener, Rendere
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Directive({
-  selector: '[wmFormat]',
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => FormatDirective),
-    multi: true
-  }]
+    selector: '[wmFormat]',
+    providers: [{
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => FormatDirective),
+            multi: true
+        }],
+    standalone: false
 })
 export class FormatDirective implements ControlValueAccessor {
   private _input: HTMLInputElement;

@@ -4,9 +4,10 @@ import { Subscription } from 'rxjs';
 import { IResourcesInfo, ResourcesService } from 'src/app/services/resources.service';
 
 @Component({
-  selector: 'app-creator',
-  templateUrl: './creator.component.html',
-  styleUrls: ['./creator.component.scss']
+    selector: 'app-creator',
+    templateUrl: './creator.component.html',
+    styleUrls: ['./creator.component.scss'],
+    standalone: false
 })
 export class CreatorComponent implements OnInit, OnDestroy {
 

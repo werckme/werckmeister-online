@@ -5,9 +5,10 @@ import { AnchorScrollSpy } from 'src/shared/VanillaJs';
 import { IListOfContentsEntry } from '../../partials/list-of-contents/list-of-contents.component';
 
 @Component({
-  selector: 'app-manual-page',
-  templateUrl: './manual-page.component.html',
-  styleUrls: ['./manual-page.component.scss']
+    selector: 'app-manual-page',
+    templateUrl: './manual-page.component.html',
+    styleUrls: ['./manual-page.component.scss'],
+    standalone: false
 })
 export class ManualPageComponent implements OnInit, AfterViewInit, OnDestroy {
 

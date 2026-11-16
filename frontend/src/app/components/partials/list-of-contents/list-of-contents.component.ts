@@ -9,9 +9,10 @@ export interface IListOfContentsEntry {
 }
 
 @Component({
-  selector: 'app-list-of-contents',
-  templateUrl: './list-of-contents.component.html',
-  styleUrls: ['./list-of-contents.component.scss']
+    selector: 'app-list-of-contents',
+    templateUrl: './list-of-contents.component.html',
+    styleUrls: ['./list-of-contents.component.scss'],
+    standalone: false
 })
 export class ListOfContentsComponent implements OnInit {
 

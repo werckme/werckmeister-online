@@ -4,9 +4,10 @@ import { IResourcesInfo } from 'src/app/services/resources.service';
 type ResourceType = "youtube" | "unknown";
 
 @Component({
-  selector: 'app-resource-preview',
-  templateUrl: './resource-preview.component.html',
-  styleUrls: ['./resource-preview.component.scss']
+    selector: 'app-resource-preview',
+    templateUrl: './resource-preview.component.html',
+    styleUrls: ['./resource-preview.component.scss'],
+    standalone: false
 })
 export class ResourcePreviewComponent implements OnInit {
 

@@ -7,9 +7,10 @@ export interface Download extends IAsset {
 }
 
 @Component({
-  selector: 'app-download-details',
-  templateUrl: './download-details.component.html',
-  styleUrls: ['./download-details.component.scss']
+    selector: 'app-download-details',
+    templateUrl: './download-details.component.html',
+    styleUrls: ['./download-details.component.scss'],
+    standalone: false
 })
 export class DownloadDetailsComponent implements OnInit {
 

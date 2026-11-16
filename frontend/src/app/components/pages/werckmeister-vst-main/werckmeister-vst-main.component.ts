@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-werckmeister-vst-main',
-  templateUrl: './werckmeister-vst-main.component.html',
-  styleUrls: ['./werckmeister-vst-main.component.scss']
+    selector: 'app-werckmeister-vst-main',
+    templateUrl: './werckmeister-vst-main.component.html',
+    styleUrls: ['./werckmeister-vst-main.component.scss'],
+    standalone: false
 })
 export class WerckmeisterVstMainComponent implements OnInit {
 

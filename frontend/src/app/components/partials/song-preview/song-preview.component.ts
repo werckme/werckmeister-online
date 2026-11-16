@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IResourcesInfo } from 'src/app/services/resources.service';
 
 @Component({
-  selector: 'app-song-preview',
-  templateUrl: './song-preview.component.html',
-  styleUrls: ['./song-preview.component.scss']
+    selector: 'app-song-preview',
+    templateUrl: './song-preview.component.html',
+    styleUrls: ['./song-preview.component.scss'],
+    standalone: false
 })
 export class SongPreviewComponent implements OnInit {
 

@@ -14,9 +14,10 @@ import * as FileSaver from 'file-saver';
 const CheckIsCleanIntervalMillis = 1000;
 
 @Component({
-  selector: 'ngwerckmeister-online-editor',
-  templateUrl: './online-editor.component.html',
-  styleUrls: ['./online-editor.component.scss']
+    selector: 'ngwerckmeister-online-editor',
+    templateUrl: './online-editor.component.html',
+    styleUrls: ['./online-editor.component.scss'],
+    standalone: false
 })
 export class OnlineEditorComponent extends AWorkspacePlayerComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("editorMain", { read: ViewContainerRef }) editorMain: ViewContainerRef;

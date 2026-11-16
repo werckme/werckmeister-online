@@ -1,7 +1,8 @@
 import { Directive, HostListener, ElementRef } from '@angular/core';
 
 @Directive({
-  selector: '[appPushToHistoryIfOnSamePage]',
+    selector: '[appPushToHistoryIfOnSamePage]',
+    standalone: false
 })
 export class PushToHistoryIfOnSamePageDirective {
 

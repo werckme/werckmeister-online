@@ -23,7 +23,6 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { WizzardComponent } from './components/wizzard/wizzard.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
-import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 
@@ -57,7 +56,6 @@ const icons: IconDefinition[] = [ PlusOutline,
     NzPopconfirmModule,
     NzSelectModule,
     NzAlertModule,
-    NzInputNumberModule,
     NzInputModule,
     NzSpinModule,
     NzIconModule.forRoot(icons),

@@ -2,9 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { setScrollLock } from '../../../../../shared/VanillaJs';
 
 @Component({
-  selector: 'lib-mobile-app-menu',
-  templateUrl: './app-menu.component.html',
-  styleUrls: ['./app-menu.component.scss']
+    selector: 'lib-mobile-app-menu',
+    templateUrl: './app-menu.component.html',
+    styleUrls: ['./app-menu.component.scss'],
+    standalone: false
 })
 export class MobileAppMenuComponent implements OnInit {
   private _isOpen: boolean = false;

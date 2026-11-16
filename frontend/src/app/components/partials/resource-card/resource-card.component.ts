@@ -8,9 +8,10 @@ export function songCardHtmlName(txt: string) {
 }
 
 @Component({
-  selector: 'app-resource-card',
-  templateUrl: './resource-card.component.html',
-  styleUrls: ['./resource-card.component.scss']
+    selector: 'app-resource-card',
+    templateUrl: './resource-card.component.html',
+    styleUrls: ['./resource-card.component.scss'],
+    standalone: false
 })
 export class ResourceCardComponent implements OnInit {
 

@@ -4,9 +4,10 @@ import { Router, NavigationEnd, NavigationError, NavigationStart, Event, Activat
 import * as _ from 'lodash';
 
 @Component({
-	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent implements OnInit {
 	mobileMenuOpen: boolean = false;

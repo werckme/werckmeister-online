@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ViewContainerRef, ElementRef } from '@angular/core';
 @Component({
-  selector: 'ngwerckmeister-file-entry',
-  templateUrl: './file-entry.component.html',
-  styleUrls: ['./file-entry.component.scss']
+    selector: 'ngwerckmeister-file-entry',
+    templateUrl: './file-entry.component.html',
+    styleUrls: ['./file-entry.component.scss'],
+    standalone: false
 })
 export class FileEntryComponent implements OnInit {
 

@@ -3,9 +3,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { IHasUrl } from 'src/shared/IHasUrl';
 
 @Component({
-  selector: 'app-embedded-youtube',
-  templateUrl: './embedded-youtube.component.html',
-  styleUrls: ['./embedded-youtube.component.scss']
+    selector: 'app-embedded-youtube',
+    templateUrl: './embedded-youtube.component.html',
+    styleUrls: ['./embedded-youtube.component.scss'],
+    standalone: false
 })
 export class EmbeddedYoutubeComponent implements OnInit, IHasUrl {
   @Input()

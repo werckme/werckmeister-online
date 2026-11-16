@@ -9,9 +9,10 @@ type Orders = "asc" | "desc" | undefined;
 type SongOrderBy = {iteratees: ((song: IResourcesInfo) => string | number | boolean)[], orders:Orders[]};
 
 @Component({
-  selector: 'app-resources',
-  templateUrl: './resources.component.html',
-  styleUrls: ['./resources.component.scss']
+    selector: 'app-resources',
+    templateUrl: './resources.component.html',
+    styleUrls: ['./resources.component.scss'],
+    standalone: false
 })
 export class ResourcesComponent implements OnInit, OnDestroy {
 

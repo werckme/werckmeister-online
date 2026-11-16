@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AdditionalFiles, DefLinesTemplate, MainSheet } from './src/main.sheet';
 
 @Component({
-  selector: 'app-hero-snippet',
-  templateUrl: './hero-snippet.component.html',
-  styleUrls: ['./hero-snippet.component.scss']
+    selector: 'app-hero-snippet',
+    templateUrl: './hero-snippet.component.html',
+    styleUrls: ['./hero-snippet.component.scss'],
+    standalone: false
 })
 export class HeroSnippetComponent implements OnInit {
 

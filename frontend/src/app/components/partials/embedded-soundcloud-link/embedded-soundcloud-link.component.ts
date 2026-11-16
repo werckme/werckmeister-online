@@ -3,9 +3,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { IHasUrl } from 'src/shared/IHasUrl';
 
 @Component({
-  selector: 'app-embedded-soundcloud-link',
-  templateUrl: './embedded-soundcloud-link.component.html',
-  styleUrls: ['./embedded-soundcloud-link.component.scss']
+    selector: 'app-embedded-soundcloud-link',
+    templateUrl: './embedded-soundcloud-link.component.html',
+    styleUrls: ['./embedded-soundcloud-link.component.scss'],
+    standalone: false
 })
 export class EmbeddedSoundcloudLinkComponent implements OnInit, IHasUrl {
 

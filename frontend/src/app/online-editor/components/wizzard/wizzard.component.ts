@@ -82,9 +82,10 @@ class WizzardConfig {
 }
 
 @Component({
-	selector: 'app-wizzard',
-	templateUrl: './wizzard.component.html',
-	styleUrls: ['./wizzard.component.scss']
+    selector: 'app-wizzard',
+    templateUrl: './wizzard.component.html',
+    styleUrls: ['./wizzard.component.scss'],
+    standalone: false
 })
 export class WizzardComponent extends AWorkspacePlayerComponent implements AfterViewInit, OnDestroy {
 	public selectedGenre: string;
