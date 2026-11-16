@@ -3,7 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/partials/header/header.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { WerckmeisterComponent } from './components/pages/werckmeister.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DecimalPipe, registerLocaleData } from '@angular/common';
@@ -63,8 +63,7 @@ const icons: IconDefinition[] = [ PlayCircleOutline,
 	AppleOutline
 ];
 registerLocaleData(en);
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         HeaderComponent,
         WerckmeisterComponent,
@@ -99,10 +98,9 @@ registerLocaleData(en);
         WerckmeisterVstMainComponent,
         GetVstComponent
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [AppComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA], imports: [BrowserModule,
         AppRoutingModule,
-        HttpClientModule,
         FormsModule,
         NzButtonModule,
         NzGridModule,
@@ -119,14 +117,10 @@ registerLocaleData(en);
         OnlineEditorModule,
         NzImageModule,
         NzIconModule.forRoot(icons),
-        ExternalModule
-    ],
-    providers: [
+        ExternalModule], providers: [
         { provide: NZ_I18N, useValue: en_US },
         ResourcesService,
-        DecimalPipe
-    ],
-    bootstrap: [AppComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
-})
+        DecimalPipe,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
