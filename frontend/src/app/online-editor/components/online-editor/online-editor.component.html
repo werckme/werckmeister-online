@@ -1,83 +1,95 @@
 <div class="werckmeister-online-editor" [ngClass]="{'is-dirty': !workspaceIsClean}">
-    <nz-progress *ngIf="playerPrepareProgressPercent !== null" nzStatus="normal" [nzShowInfo]="false" [nzPercent]="playerPrepareProgressPercent"></nz-progress>
-    <nz-header>
-        <div class="top-menu">
-            <div class="left-side">
-                <div id="editor-navbar" nz-menu nzTheme="light" nzMode="horizontal">
-                    <a [routerLink]="['/']">
-                        <img class="logo" src="assets/images/Logo.png" alt="werckmeister logo">
-                    </a>
-                    <div nz-menu-item>
-                        <werckmeister-workspace #workspace wm-css-url="/assets/werckmeister-workspace.css">
-                        </werckmeister-workspace>
-                    </div>
-                    <div nz-menu-item>
-                        <button nzSize="large" nz-button nzType="link" title="Download MIDI"
-                            (click)="download()"><i nz-icon nzType="download" nzTheme="outline"></i>MIDI</button>
-                    </div>
-                    <div nz-menu-item>
-                        <button nzSize="large" nz-button nzType="link" title="Download Project"
-                            (click)="downloadProject()"><i nz-icon nzType="download" nzTheme="outline"></i>Project .zip</button>
-                    </div>                    
-                    <div nz-menu-item>
-                        <button nzSize="large" nz-button nzType="link" class="has-dirty-workspace-mark"
-                            title="Save" (click)="save()"><i nz-icon nzType="save" nzTheme="outline"></i>Save</button>
-                    </div>
+  @if (playerPrepareProgressPercent !== null) {
+    <nz-progress nzStatus="normal" [nzShowInfo]="false" [nzPercent]="playerPrepareProgressPercent"></nz-progress>
+  }
+  <nz-header>
+    <div class="top-menu">
+      <div class="left-side">
+        <div id="editor-navbar" nz-menu nzTheme="light" nzMode="horizontal">
+          <a [routerLink]="['/']">
+            <img class="logo" src="assets/images/Logo.png" alt="werckmeister logo">
+          </a>
+          <div nz-menu-item>
+            <werckmeister-workspace #workspace wm-css-url="/assets/werckmeister-workspace.css">
+            </werckmeister-workspace>
+          </div>
+          <div nz-menu-item>
+            <button nzSize="large" nz-button nzType="link" title="Download MIDI"
+              (click)="download()"><i nz-icon nzType="download" nzTheme="outline"></i>MIDI</button>
+            </div>
+            <div nz-menu-item>
+              <button nzSize="large" nz-button nzType="link" title="Download Project"
+                (click)="downloadProject()"><i nz-icon nzType="download" nzTheme="outline"></i>Project .zip</button>
+              </div>
+              <div nz-menu-item>
+                <button nzSize="large" nz-button nzType="link" class="has-dirty-workspace-mark"
+                  title="Save" (click)="save()"><i nz-icon nzType="save" nzTheme="outline"></i>Save</button>
                 </div>
+              </div>
             </div>
             <div class="transport-display">
-                <input title="begin in quarters" (focus)="onFocus($event)" (blur)="onBlur($event)" type="number" *ngIf="playerState === 0" [(ngModel)]="beginQuartersStr" wmFormat="3.0-0">
-                <input *ngIf="playerState !== 0" [ngModel]="elapsedQuaters | number:'3.0-0' " disabled>
+              @if (playerState === 0) {
+                <input title="begin in quarters" (focus)="onFocus($event)" (blur)="onBlur($event)" type="number" [(ngModel)]="beginQuartersStr" wmFormat="3.0-0">
+              }
+              @if (playerState !== 0) {
+                <input [ngModel]="elapsedQuaters | number:'3.0-0' " disabled>
+              }
             </div>
             <div class="right-side">
-                <a [routerLink]="['/examples']">Examples</a>
-                <a [routerLink]="['/']">Back To Mainpage <i nz-icon nzType="caret-right" nzTheme="outline"></i></a>
+              <a [routerLink]="['/examples']">Examples</a>
+              <a [routerLink]="['/']">Back To Mainpage <i nz-icon nzType="caret-right" nzTheme="outline"></i></a>
             </div>
-        </div>
-    </nz-header>
+          </div>
+        </nz-header>
 
-    <div class="editor-main" #editorMain>
-        <div class="filelist">
+        <div class="editor-main" #editorMain>
+          <div class="filelist">
             <div class="filemenu">
-                <button (click)="onAddNewAccompaniment()" nz-button nzType="link" nzShape="circle" nzSize="small"
-                    title="Accompaniment Template">
-                    <i nz-icon nzType="plus"></i>
-                    <span>Accomp</span>
-                </button>
-                <button (click)="onAddNewPitchMap()" nz-button nzType="link" nzShape="circle" nzSize="small"
-                    title="Pitch Map">
-                    <i nz-icon nzType="plus" nzTheme="outline"></i>
-                    <span>Pitch</span>
-                </button>
-                <button (click)="onAddNewModScript()" nz-button nzType="link" nzShape="circle" nzSize="small"
-                    title="Mod Script">
-                    <i nz-icon nzType="plus"></i>
-                    <span>Mod</span>
-                </button>
-                <button (click)="onAddNewConductionRules()" nz-button nzType="link" nzShape="circle" nzSize="small"
+              <button (click)="onAddNewAccompaniment()" nz-button nzType="link" nzShape="circle" nzSize="small"
+                title="Accompaniment Template">
+                <i nz-icon nzType="plus"></i>
+                <span>Accomp</span>
+              </button>
+              <button (click)="onAddNewPitchMap()" nz-button nzType="link" nzShape="circle" nzSize="small"
+                title="Pitch Map">
+                <i nz-icon nzType="plus" nzTheme="outline"></i>
+                <span>Pitch</span>
+              </button>
+              <button (click)="onAddNewModScript()" nz-button nzType="link" nzShape="circle" nzSize="small"
+                title="Mod Script">
+                <i nz-icon nzType="plus"></i>
+                <span>Mod</span>
+              </button>
+              <button (click)="onAddNewConductionRules()" nz-button nzType="link" nzShape="circle" nzSize="small"
                 title="Voicing Script">
                 <i nz-icon nzType="plus"></i>
                 <span>Cond. Rules</span>
-            </button>
+              </button>
             </div>
             <hr>
-            <ul>
-                <li [ngClass]="{selected: currentFile===file}" (click)="onFileClicked(file)"
-                    *ngFor="let file of files; let idx=index;">
+              <ul>
+                @for (file of files; track file; let idx = $index) {
+                  <li [ngClass]="{selected: currentFile===file}" (click)="onFileClicked(file)"
+                    >
                     <ngwerckmeister-file-entry [canDelete]="idx>0" [canEdit]="idx>0"
-                        [pathValidator]="isValidPath.bind(this)" (nameChange)="onFileNameChanged(file, $event)"
-                        (ondelete)="onDelete(file)" [name]="file.path" [ngClass]="{dimished: isDimished(file)}">
+                      [pathValidator]="isValidPath.bind(this)" (nameChange)="onFileNameChanged(file, $event)"
+                      (ondelete)="onDelete(file)" [name]="file.path" [ngClass]="{dimished: isDimished(file)}">
                     </ngwerckmeister-file-entry>
-                </li>
+                  </li>
+                }
                 <li>
-                    <ngwerckmeister-file-entry *ngIf="!!newFile" [isNewFile]="true" [editMode]="true"
-                        [pathValidator]="isValidPath.bind(this)" (nameChange)="onNewFileAdded(newFile, $event)"
-                        (oncancel)="onNewFileCancel()" [name]="newFile.path"></ngwerckmeister-file-entry>
+                  @if (!!newFile) {
+                    <ngwerckmeister-file-entry [isNewFile]="true" [editMode]="true"
+                      [pathValidator]="isValidPath.bind(this)" (nameChange)="onNewFileAdded(newFile, $event)"
+                    (oncancel)="onNewFileCancel()" [name]="newFile.path"></ngwerckmeister-file-entry>
+                  }
                 </li>
-            </ul>
+              </ul>
+            </div>
+            @for (file of files; track file) {
+              <werckmeister-editor [ngClass]="{active: currentFile===file}"
+                [attr.wm-filename]="file.path" wm-style="height: 100%; width: 100%; border: none">
+              </werckmeister-editor>
+            }
+          </div>
         </div>
-        <werckmeister-editor [ngClass]="{active: currentFile===file}" *ngFor="let file of files"
-            [attr.wm-filename]="file.path" wm-style="height: 100%; width: 100%; border: none">
-        </werckmeister-editor>
-    </div>
-</div>

@@ -1,49 +1,67 @@
 <nz-card [nzTitle]="title" class="resource-card">
-    <div class="play-cta-container" *ngIf="resource.wid">
-        <a class="play-cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:resource.wid }"><i
-            nz-icon nzType="play-circle" nzTheme="outline"></i></a>
+  @if (resource.wid) {
+    <div class="play-cta-container">
+      <a class="play-cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:resource.wid }"><i
+      nz-icon nzType="play-circle" nzTheme="outline"></i></a>
     </div>
-    <div class="play-cta-container" *ngIf="resource.eid">
-        <a class="play-cta" title="open in editor" target="_blank" [href]="url"><i
-            nz-icon nzType="play-circle" nzTheme="outline"></i></a>
+  }
+  @if (resource.eid) {
+    <div class="play-cta-container">
+      <a class="play-cta" title="open in editor" target="_blank" [href]="url"><i
+      nz-icon nzType="play-circle" nzTheme="outline"></i></a>
     </div>
-    <a *ngIf="!hasThumbnail && resource.wid" [routerLink]="['/editor']" [queryParams]="{ wid:resource.wid }">
-        <img class="thumbnail" *ngIf="hasThumbnail" [src]="resource.metaData.thumbnail">
-        <app-song-preview [song]="resource"></app-song-preview>
+  }
+  @if (!hasThumbnail && resource.wid) {
+    <a [routerLink]="['/editor']" [queryParams]="{ wid:resource.wid }">
+      @if (hasThumbnail) {
+        <img class="thumbnail" [src]="resource.metaData.thumbnail">
+      }
+      <app-song-preview [song]="resource"></app-song-preview>
     </a>
-    <a>
-        <img class="thumbnail" *ngIf="hasThumbnail" [src]="resource.metaData.thumbnail">
-        <app-resource-preview [resource]="resource"></app-resource-preview>
-    </a>
-    <p>
-        <span [innerHtml]="resource.metaData.description">
-        </span>
-    </p>
-    <ul class="links">
-        <li *ngFor="let link of resource.metaData.links">
-            <a appEmbeddedLink target="_blank" (click)="$event.stopPropagation()"
-                [href]="link.url">{{link.title}}</a>
+  }
+  <a>
+    @if (hasThumbnail) {
+      <img class="thumbnail" [src]="resource.metaData.thumbnail">
+    }
+    <app-resource-preview [resource]="resource"></app-resource-preview>
+  </a>
+  <p>
+    <span [innerHtml]="resource.metaData.description">
+    </span>
+  </p>
+  <ul class="links">
+    @for (link of resource.metaData.links; track link) {
+      <li>
+        <a appEmbeddedLink target="_blank" (click)="$event.stopPropagation()"
+        [href]="link.url">{{link.title}}</a>
+      </li>
+    }
+  </ul>
+  <ul class="tags">
+    <app-teaser-collapse>
+      @for (tag of resource.metaData.tags | sorted; track tag) {
+        <li>
+          <a (click)="onTagClicked.emit(tag)" class="tag" [ngClass]="htmlName(tag)">
+            <nz-tag [nzColor]="'purple'">#{{tag}}</nz-tag>
+          </a>
         </li>
-    </ul>
-    <ul class="tags">
-        <app-teaser-collapse>
-            <li *ngFor="let tag of resource.metaData.tags | sorted">
-                <a (click)="onTagClicked.emit(tag)" class="tag" [ngClass]="htmlName(tag)"> 
-                    <nz-tag [nzColor]="'purple'">#{{tag}}</nz-tag>
-                </a>
-            </li>
-        </app-teaser-collapse>
-    </ul>
+      }
+    </app-teaser-collapse>
+  </ul>
 </nz-card>
 <ng-template #title>
-    <div class="title">
-        <a *ngIf="resource.wid" class="cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:resource.wid }">
-            <h2 class="song-title">{{ resource.metaData.title }}</h2>
-            <span class="by">{{ resource.metaData.by.join(',') }}</span>
-        </a>
-        <a *ngIf="resource.eid" class="cta" title="open in editor" target="_blank" [href]="url">
-            <h2 class="song-title">{{ resource.metaData.title }}</h2>
-            <span class="by">{{ resource.metaData.by.join(',') }}</span>
-        </a>
-    </div>
+  <div class="title">
+    @if (resource.wid) {
+      <a class="cta" title="open in editor" [routerLink]="['/editor']" [queryParams]="{ wid:resource.wid }">
+        <h2 class="song-title">{{ resource.metaData.title }}</h2>
+        <span class="by">{{ resource.metaData.by.join(',') }}</span>
+      </a>
+    }
+    @if (resource.eid) {
+      <a class="cta" title="open in editor" target="_blank" [href]="url">
+        <h2 class="song-title">{{ resource.metaData.title }}</h2>
+        <span class="by">{{ resource.metaData.by.join(',') }}</span>
+      </a>
+    }
+  </div>
 </ng-template>

@@ -43,8 +43,9 @@ export class FormatDirective implements ControlValueAccessor {
     this._renderer.setProperty(this._inputRef.nativeElement, 'disabled', isDisabled);
   }
 
-  @HostListener('input', ['$event.target.value'])
-  input(value) {
+  @HostListener('input', ['$event'])
+  input(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
     if (!this._isUserEditing)
       this._onChange(this._parseValue(value));
   }
@@ -66,16 +67,18 @@ export class FormatDirective implements ControlValueAccessor {
     return this._parseValue(value).toString();
   }
 
-  @HostListener('blur', ["$event.target.value"])
-  onBlur(value) {
+  @HostListener('blur', ['$event'])
+  onBlur(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
     let formattedValue: string = this._formatValue(value);
     this._isUserEditing = false;
     this._onChange(this._parseValue(formattedValue));
     this._input.value = formattedValue;
   }
 
-  @HostListener('focus', ['$event.target.value'])
-  onFocus(value) {
+  @HostListener('focus', ['$event'])
+  onFocus(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
     this._isUserEditing = true;
     this._input.value = this._parseFormat(value);
   }

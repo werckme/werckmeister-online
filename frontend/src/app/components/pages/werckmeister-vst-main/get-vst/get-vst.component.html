@@ -1,10 +1,16 @@
 <h2 id="download">Downloads</h2>
-<div *ngIf="!fetchingFailed">
-    <app-download-release *ngIf="!!latestRelease" [release]="latestRelease" [showInstallationHelp]="false">   
-    </app-download-release>    
+@if (!fetchingFailed) {
+  <div>
+    @if (!!latestRelease) {
+      <app-download-release [release]="latestRelease" [showInstallationHelp]="false">
+      </app-download-release>
+    }
     <a target="_blank" href="https://github.com/werckme/werckmeister-vst/releases">Older Releases</a>
-</div>
-<p *ngIf="fetchingFailed">
+  </div>
+}
+@if (fetchingFailed) {
+  <p>
     Failed to fetch github releases.
     You can find them <a target="_blank" href="https://github.com/werckme/werckmeister-vst/releases">here.</a>
-</p>
+  </p>
+}

@@ -1,8 +1,10 @@
-<div *ngIf="download">
+@if (download) {
+  <div>
     <a [href]="download.browser_download_url">{{download.name}}</a>
-    <ng-container *ngIf="download.installation">
-        <br>
+    @if (download.installation) {
+      <br>
         <b >Installation:</b><br>
         <div class="installation-text" [innerHtml]="download.installation"></div>
-    </ng-container>
-</div>
+      }
+    </div>
+  }

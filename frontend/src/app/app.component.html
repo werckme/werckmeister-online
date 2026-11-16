@@ -1,63 +1,65 @@
 <nz-layout [ngClass]="{hasOwnLayout: hasOwnLayout}">
-    <nz-header *ngIf="!hasOwnLayout">
-        <lib-mobile-app-menu [(isOpen)]="mobileMenuOpen" class="d-block d-md-none">
-            <ul class="mobile-menu-list">
-                <li>
-                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['werckmeister']">Werckmeister</a>
-                </li>
-                <li>
-                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['getting-started']">Getting Started</a>
-                </li>
-                <li>
-                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['manual']">Manual</a>
-                </li>
-                <li>
-                    <a (click)="onMobileMenuItemClicked($event)" href="/examples">Examples</a>
-                </li>
-                <li>
-                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['vst']">VST Plugin</a>
-                </li>
-                <li>
-                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['code-extension']">Visual Studio Code</a>
-                </li>
-                <li>
-                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['contact']">Contact</a>
-                </li>
-                <li>
-                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['wizzard']">Try Online</a>
-                </li>
-                <li>
-                    <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['extras']">Extras</a>
-                </li>
-                <li>
-                    <ext-donate></ext-donate>
-                </li>
-            </ul>
-        </lib-mobile-app-menu>
-        <a [routerLink]="['/']">
-            <img class="logo d-none d-md-block" src="assets/images/Logo.png" alt="werckmeister logo">
-        </a>
-        <ul nz-menu nzTheme="light" nzMode="horizontal" class="d-none d-md-block">
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['werckmeister']">Werckmeister</a></li>
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['getting-started']">Getting Started</a></li>
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['manual']">Manual</a>
-            </li>
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['resources']">Resources</a></li>
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['vst']">VST Plugin</a></li>
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['code-extension']">Visual Studio Code</a></li>
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['contact']">Contact</a></li>
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['wizzard']">Try Online</a></li>
-            <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['extras']">Extras</a></li>
-            <li nz-menu-item><ext-donate></ext-donate></li>
+  @if (!hasOwnLayout) {
+    <nz-header>
+      <lib-mobile-app-menu [(isOpen)]="mobileMenuOpen" class="d-block d-md-none">
+        <ul class="mobile-menu-list">
+          <li>
+            <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['werckmeister']">Werckmeister</a>
+          </li>
+          <li>
+            <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['getting-started']">Getting Started</a>
+          </li>
+          <li>
+            <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['manual']">Manual</a>
+          </li>
+          <li>
+            <a (click)="onMobileMenuItemClicked($event)" href="/examples">Examples</a>
+          </li>
+          <li>
+            <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['vst']">VST Plugin</a>
+          </li>
+          <li>
+            <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['code-extension']">Visual Studio Code</a>
+          </li>
+          <li>
+            <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['contact']">Contact</a>
+          </li>
+          <li>
+            <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['wizzard']">Try Online</a>
+          </li>
+          <li>
+            <a (click)="onMobileMenuItemClicked($event)" [routerLink]="['extras']">Extras</a>
+          </li>
+          <li>
+            <ext-donate></ext-donate>
+          </li>
         </ul>
-    </nz-header>
-    <nz-content [ngClass]="urlSegments">
-        <nz-layout>
-            <nz-content class="inner-content">
-                <div>
-                    <router-outlet></router-outlet>
-                </div>
-            </nz-content>
-        </nz-layout>
+      </lib-mobile-app-menu>
+      <a [routerLink]="['/']">
+        <img class="logo d-none d-md-block" src="assets/images/Logo.png" alt="werckmeister logo">
+      </a>
+      <ul nz-menu nzTheme="light" nzMode="horizontal" class="d-none d-md-block">
+        <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['werckmeister']">Werckmeister</a></li>
+        <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['getting-started']">Getting Started</a></li>
+        <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['manual']">Manual</a>
+      </li>
+      <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['resources']">Resources</a></li>
+      <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['vst']">VST Plugin</a></li>
+      <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['code-extension']">Visual Studio Code</a></li>
+      <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['contact']">Contact</a></li>
+      <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['wizzard']">Try Online</a></li>
+      <li nz-menu-item [routerLinkActive]="['ant-menu-item-selected']"><a [routerLink]="['extras']">Extras</a></li>
+      <li nz-menu-item><ext-donate></ext-donate></li>
+    </ul>
+  </nz-header>
+}
+<nz-content [ngClass]="urlSegments">
+  <nz-layout>
+    <nz-content class="inner-content">
+      <div>
+        <router-outlet></router-outlet>
+      </div>
     </nz-content>
+  </nz-layout>
+</nz-content>
 </nz-layout>

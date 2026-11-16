@@ -1,24 +1,30 @@
 <div class="release">
-    <h2>{{release.tag_name}}</h2>
-    <span>Published at {{ release.published_at | date:'medium' }}</span>
+  <h2>{{release.tag_name}}</h2>
+  <span>Published at {{ release.published_at | date:'medium' }}</span>
+  <br>
     <br>
-    <br>
-    <div nz-row class="downloads">
+      <div nz-row class="downloads">
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="8">
-            <h3><i nz-icon nzType="windows" nzTheme="fill"></i>Windows</h3>
-            <app-download-details *ngFor="let download of windows" title="Windows" [download]="download"></app-download-details>
+          <h3><i nz-icon nzType="windows" nzTheme="fill"></i>Windows</h3>
+          @for (download of windows; track download) {
+            <app-download-details title="Windows" [download]="download"></app-download-details>
+          }
         </div>
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="8">
-            <h3><i nz-icon nzType="apple" nzTheme="fill"></i>Mac</h3>
-            <app-download-details *ngFor="let download of mac" title="Mac" [download]="download"></app-download-details>
+          <h3><i nz-icon nzType="apple" nzTheme="fill"></i>Mac</h3>
+          @for (download of mac; track download) {
+            <app-download-details title="Mac" [download]="download"></app-download-details>
+          }
         </div>
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="8">
-            <h3><app-icon-tux class="icon"></app-icon-tux> <span>Linux</span></h3>
-            <app-download-details *ngFor="let download of linux" title="Linux" [download]="download"></app-download-details>
-        </div>                
-    </div>
-    <br>
-    <h4>Release Notes</h4>
-    <div [innerHtml]="body" class="body"></div>
-</div>
-<nz-divider></nz-divider>
+          <h3><app-icon-tux class="icon"></app-icon-tux> <span>Linux</span></h3>
+          @for (download of linux; track download) {
+            <app-download-details title="Linux" [download]="download"></app-download-details>
+          }
+        </div>
+      </div>
+      <br>
+        <h4>Release Notes</h4>
+        <div [innerHtml]="body" class="body"></div>
+      </div>
+      <nz-divider></nz-divider>

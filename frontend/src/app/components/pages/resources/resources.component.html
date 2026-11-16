@@ -1,14 +1,18 @@
 
 <div class="search-bar">
   <nz-select nzMode="tags" [nzAllowClear]="true" nzPlaceHolder="Filter" [(ngModel)]="filters" nzSize="large" (ngModelChange)="filter($event)">
-    <nz-option *ngFor="let tag of allTags" [nzLabel]="'#'+tag" [nzValue]="tag"></nz-option>
+    @for (tag of allTags; track tag) {
+      <nz-option [nzLabel]="'#'+tag" [nzValue]="tag"></nz-option>
+    }
   </nz-select>
 </div>
 
 <div nz-row [nzGutter]="{xs: 0, sm: 20, md: 20, lg: 40, xl: 40, xxl: 40}" >
-    <div nz-col *ngFor="let resource of filteredSongs" [nzXs]="{ span: 24 }" [nzSm]="{ span: 12 }" [nzMd]="{ span: 8 }">
-        <div class="card-wrapper">
-          <app-resource-card [resource]="resource" (onTagClicked)="addTagFilter($event)"></app-resource-card>
-        </div>
+  @for (resource of filteredSongs; track resource) {
+    <div nz-col [nzXs]="{ span: 24 }" [nzSm]="{ span: 12 }" [nzMd]="{ span: 8 }">
+      <div class="card-wrapper">
+        <app-resource-card [resource]="resource" (onTagClicked)="addTagFilter($event)"></app-resource-card>
+      </div>
     </div>
+  }
 </div>

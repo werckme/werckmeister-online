@@ -9,7 +9,7 @@ export class PushToHistoryIfOnSamePageDirective {
   constructor(protected el: ElementRef<HTMLAnchorElement>) { }
 
   @HostListener('mousedown') 
-  onClicked(ev: MouseEvent) {
+  onClicked() {
     const id = this.el.nativeElement.id;
     history.replaceState({}, null, `manual#${id}`);
   }
