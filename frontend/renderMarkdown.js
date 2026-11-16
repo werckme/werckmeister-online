@@ -99,11 +99,20 @@ renderer.code = (code, language, isEscaped) => {
   }
   return `<pre><code>${cdata}</code></pre>`;
 }
-renderer.codespan = (code) => { 
-  return "<code>" + code
-    .replace(/{/g, '{{')
-    .replace(/}/g, '}}') + "</code>";
+// The output is used as an Angular template: `{`, `}` (interpolation,
+// control flow blocks) and `@` (control flow) must not appear literally.
+function escapeAngularTemplateChars(str) {
+  return str
+    .replace(/{/g, '&#123;')
+    .replace(/}/g, '&#125;')
+    .replace(/@/g, '&#64;');
+}
+
+renderer.codespan = (code) => {
+  return "<code>" + escapeAngularTemplateChars(code) + "</code>";
 };
+
+renderer.text = (text) => escapeAngularTemplateChars(text);
 
 // Set options
 // `highlight` example uses `highlight.js`
