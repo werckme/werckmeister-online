@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test"
+    "build": "ng build"
   },
   "private": true,
   "dependencies": {
@@ -39,16 +38,9 @@
     "@angular/compiler-cli": "^21.2.26",
     "@angular/language-service": "^21.2.26",
     "@types/file-saver": "^2.0.7",
-    "@types/jasmine": "~5.1.0",
     "@types/lodash": "^4.14.191",
     "@types/marked": "^4.3.2",
     "@types/node": "^22.0.0",
-    "jasmine-core": "~5.6.0",
-    "karma": "~6.4.4",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.1",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
     "less": "^4.2.0",
     "typescript": "~5.9.3"
   }

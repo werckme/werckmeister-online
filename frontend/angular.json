@@ -100,24 +100,6 @@
           "options": {
             "buildTarget": "spa:build"
           }
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": [
-              "src/polyfills.ts"
-            ],
-            "tsConfig": "src/tsconfig.spec.json",
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
-          }
         }
       }
     }
