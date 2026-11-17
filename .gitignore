@@ -10,7 +10,7 @@ dist/
 tmp/
 app/**/*.js
 app/**/*.js.map
-
+.meta
 backend/wmonline-backend.zip
 
 # dependencies
